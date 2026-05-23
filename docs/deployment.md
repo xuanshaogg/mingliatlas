@@ -28,6 +28,19 @@ Node.js 22 is used because the current local OpenClaw runtime and Next.js 16 sta
 6. Choose the Serverless Function region close to the Supabase project region.
 7. Bind the production domain after the brand/domain decision is finalized.
 
+## Current Production Deployment
+
+- GitHub repository: `https://github.com/xuanshaogg/mingliatlas`
+- Vercel project: `mingliatlascom/mingliatlas`
+- Vercel production deployment: `dpl_B86YpJaW1chms9oYghkymeJ7UQH4`
+- Production URL: `https://mingliatlas.com`
+- WWW URL: `https://www.mingliatlas.com`
+- Vercel fallback URL: `https://mingliatlas.vercel.app`
+- Cloudflare DNS:
+  - `A @ 76.76.21.21`
+  - `CNAME www cname.vercel-dns.com`
+  - Both records were left as DNS only for Vercel validation.
+
 ## Environment Variables
 
 Configure the same variable names in Vercel Production and Preview environments. Use different Supabase projects or database branches for Preview if possible.
@@ -78,6 +91,6 @@ For production, run migrations in a controlled release step before or during dep
 
 ## Current Blockers
 
-- Vercel project cannot be created locally without the target GitHub repository and Vercel account connection.
-- Production/preview environment variables need real Supabase and domain values.
-- Domain and brand name are still pending project-level decisions.
+- Supabase project URL is configured for production, but `DATABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` still need the real Supabase credentials before running remote Prisma migrations.
+- Preview environment variables and PR preview deployment comments still need GitHub/Vercel integration verification.
+- AI interpretation remains disabled until `AI_PROVIDER_BASE_URL` and `AI_PROVIDER_API_KEY` are configured.

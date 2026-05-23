@@ -87,7 +87,7 @@ function faqs(animal?: ZodiacAnimal): FAQ[] {
           "Popular zodiac years often follow Lunar New Year, while Bazi year pillars usually follow solar term timing around Li Chun.",
       },
       {
-        question: "Can zodiac compatibility guarantee a relationship result?",
+        question: "Can zodiac compatibility determine a relationship result?",
         answer:
           "No. Compatibility is a symbolic guide for reflection. Communication, values, and personal choices remain more important.",
       },
@@ -166,7 +166,7 @@ const overview = buildPage({
       content: (
         <>
           <p>
-            The cycle follows Rat, Ox, Tiger, Rabbit, Dragon, Snake, Horse, Goat, Monkey, Rooster, Dog, and Pig. According to Chinese calendar tradition, these animals are cultural symbols layered onto the 12 Earthly Branches.
+            The cycle follows Rat, Ox, Tiger, Rabbit, Dragon, Snake, Horse, Goat, Monkey, Rooster, Dog, and Pig. According to <cite>Chinese calendar tradition</cite>, these animals are cultural symbols layered onto the 12 Earthly Branches.
           </p>
           <p>
             Zodiac pages are useful entry points, but they are not the whole chart. <Link href="/bazi" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Bazi</Link> adds month, day, and hour pillars for a more complete structure.
@@ -187,7 +187,7 @@ const overview = buildPage({
       content: (
         <>
           <p>
-            Compatibility uses six harmonious pairs, four triangular groups, and six clash pairs. These patterns describe ease, shared rhythm, and tension, but they should be read as reflection tools rather than fixed judgments.
+            Compatibility uses six harmonious pairs, four triangular groups, and six clash pairs. In <cite>Earthly Branch tradition</cite>, these patterns describe ease, shared rhythm, and tension, but they should be read as reflection tools rather than fixed judgments.
           </p>
         </>
       ),
@@ -202,6 +202,16 @@ const overview = buildPage({
         <>
           <p>
             2026 is widely discussed as a Horse year. For Bazi purposes, yearly energy should be checked against solar-term timing and the full chart, especially for people born near the Lunar New Year boundary.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Birth dates near Lunar New Year",
+      content: (
+        <>
+          <p>
+            If your birthday falls in January or early February, confirm the exact year boundary before choosing an animal sign. Popular calendars often use Lunar New Year, while Four Pillars work may use solar-term timing.
           </p>
         </>
       ),

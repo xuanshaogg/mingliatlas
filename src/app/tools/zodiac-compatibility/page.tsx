@@ -2,13 +2,35 @@ import type { Metadata } from "next";
 import Breadcrumbs, { type Crumb } from "@/components/shared/Breadcrumbs";
 import ZodiacCompatibilityCalculator from "@/components/tools/ZodiacCompatibilityCalculator";
 import { SITE } from "@/lib/constants";
-import { buildBreadcrumbListSchema, JsonLd, type JsonLdNode } from "@/lib/seo/jsonLd";
+import { buildBreadcrumbListSchema, buildWebApplicationSchema, JsonLd } from "@/lib/seo/jsonLd";
+import { buildShareCardUrl } from "@/lib/share-card";
+
+const shareCardImage = buildShareCardUrl({
+  baseUrl: SITE.url,
+  tool: "zodiac",
+  params: {
+    a: "rat",
+    b: "ox",
+  },
+});
 
 export const metadata: Metadata = {
   title: "Chinese Zodiac Compatibility Calculator",
   description: "Compare two Chinese zodiac signs with harmony pairs, triads, clashes, strengths, and watchouts.",
   alternates: {
     canonical: "/tools/zodiac-compatibility",
+  },
+  openGraph: {
+    title: "Chinese Zodiac Compatibility Calculator",
+    description: "Compare two Chinese zodiac signs with harmony pairs, triads, clashes, strengths, and watchouts.",
+    url: "/tools/zodiac-compatibility",
+    images: [shareCardImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Chinese Zodiac Compatibility Calculator",
+    description: "Compare two Chinese zodiac signs with harmony pairs, triads, clashes, strengths, and watchouts.",
+    images: [shareCardImage],
   },
 };
 
@@ -18,17 +40,12 @@ const breadcrumbs: Crumb[] = [
   { label: "Zodiac Compatibility", href: "/tools/zodiac-compatibility" },
 ];
 
-const softwareSchema: JsonLdNode = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
+const softwareSchema = buildWebApplicationSchema({
   name: "Chinese Zodiac Compatibility Calculator",
-  applicationCategory: "LifestyleApplication",
-  operatingSystem: "Web",
   url: `${SITE.url}/tools/zodiac-compatibility`,
   description: "A browser-based Chinese zodiac compatibility calculator for harmony, triad, and clash patterns.",
-  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-  publisher: { "@type": "Organization", name: SITE.name, url: SITE.url },
-};
+  featureList: ["Liu He harmony pairs", "three-harmony groups", "clash patterns", "strengths", "watchouts"],
+});
 
 export default function ZodiacCompatibilityPage() {
   return (

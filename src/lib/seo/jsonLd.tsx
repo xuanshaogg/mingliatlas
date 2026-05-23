@@ -26,6 +26,25 @@ interface ArticleSchemaInput {
   image?: string;
 }
 
+interface WebApplicationSchemaInput {
+  name: string;
+  description: string;
+  url: string;
+  applicationCategory?: string;
+  featureList?: string[];
+}
+
+interface ItemListSchemaInput {
+  name: string;
+  description: string;
+  url: string;
+  items: Array<{
+    name: string;
+    description: string;
+    url: string;
+  }>;
+}
+
 export function JsonLd({ data }: JsonLdProps) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />;
 }
@@ -69,6 +88,55 @@ export function buildArticleDefinedTermSchema({
       name: entityName,
       description,
     },
+  };
+}
+
+export function buildWebApplicationSchema({
+  name,
+  description,
+  url,
+  applicationCategory = "LifestyleApplication",
+  featureList,
+}: WebApplicationSchemaInput): JsonLdNode {
+  return {
+    "@context": "https://schema.org",
+    "@type": ["WebApplication", "SoftwareApplication"],
+    name,
+    applicationCategory,
+    operatingSystem: "Web",
+    url,
+    description,
+    ...(featureList?.length ? { featureList } : {}),
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SITE.name,
+      url: SITE.url,
+    },
+  };
+}
+
+export function buildItemListSchema({ name, description, url, items }: ItemListSchemaInput): JsonLdNode {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name,
+    description,
+    url,
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "WebApplication",
+        name: item.name,
+        description: item.description,
+        url: item.url,
+      },
+    })),
   };
 }
 

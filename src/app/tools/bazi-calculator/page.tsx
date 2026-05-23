@@ -2,7 +2,22 @@ import type { Metadata } from "next";
 import Breadcrumbs, { type Crumb } from "@/components/shared/Breadcrumbs";
 import BaziCalculator from "@/components/tools/BaziCalculator";
 import { SITE } from "@/lib/constants";
-import { buildBreadcrumbListSchema, JsonLd, type JsonLdNode } from "@/lib/seo/jsonLd";
+import { buildBreadcrumbListSchema, buildWebApplicationSchema, JsonLd } from "@/lib/seo/jsonLd";
+import { buildShareCardUrl } from "@/lib/share-card";
+
+const shareCardImage = buildShareCardUrl({
+  baseUrl: SITE.url,
+  tool: "bazi",
+  params: {
+    y: 1990,
+    m: 1,
+    d: 1,
+    h: 12,
+    min: 0,
+    g: "not-specified",
+    tz: "Asia/Shanghai",
+  },
+});
 
 export const metadata: Metadata = {
   title: "Free Bazi Calculator: Four Pillars Chart",
@@ -10,6 +25,20 @@ export const metadata: Metadata = {
     "Calculate a deterministic Bazi Four Pillars chart with Day Master, Ten Gods, hidden stems, lunar date, and Five Element balance.",
   alternates: {
     canonical: "/tools/bazi-calculator",
+  },
+  openGraph: {
+    title: "Free Bazi Calculator: Four Pillars Chart",
+    description:
+      "Calculate a deterministic Bazi Four Pillars chart with Day Master, Ten Gods, hidden stems, lunar date, and Five Element balance.",
+    url: "/tools/bazi-calculator",
+    images: [shareCardImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Free Bazi Calculator: Four Pillars Chart",
+    description:
+      "Calculate a deterministic Bazi Four Pillars chart with Day Master, Ten Gods, hidden stems, lunar date, and Five Element balance.",
+    images: [shareCardImage],
   },
 };
 
@@ -19,26 +48,13 @@ const breadcrumbs: Crumb[] = [
   { label: "Free Bazi Calculator", href: "/tools/bazi-calculator" },
 ];
 
-const softwareSchema: JsonLdNode = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
+const softwareSchema = buildWebApplicationSchema({
   name: "Free Bazi Calculator",
-  applicationCategory: "LifestyleApplication",
-  operatingSystem: "Web",
   url: `${SITE.url}/tools/bazi-calculator`,
   description:
     "A browser-based Bazi calculator for Four Pillars, Day Master, Ten Gods, hidden stems, and Five Element balance.",
-  offers: {
-    "@type": "Offer",
-    price: "0",
-    priceCurrency: "USD",
-  },
-  publisher: {
-    "@type": "Organization",
-    name: SITE.name,
-    url: SITE.url,
-  },
-};
+  featureList: ["Four Pillars chart", "Day Master", "Ten Gods", "hidden stems", "Five Element balance"],
+});
 
 export default function BaziCalculatorPage() {
   return (

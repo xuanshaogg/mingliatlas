@@ -33,7 +33,7 @@ const defaultFaqs: FAQ[] = [
       "The birth hour completes the fourth pillar and gives a fuller chart. A three-pillar reading can still show broad patterns, but the hour pillar adds detail about later life, children, and inner motivations.",
   },
   {
-    question: "Can Bazi guarantee an outcome?",
+    question: "Can Bazi predict an outcome with certainty?",
     answer:
       "No. Bazi is best used as a self-knowledge and timing framework. It highlights patterns, strengths, and pressure points, but personal choices and context still matter.",
   },
@@ -149,7 +149,7 @@ export const baziPages: BaziContentPage[] = [
               Bazi uses the <Link href="/bazi/heavenly-stems" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">10 Heavenly Stems</Link>, the <Link href="/bazi/earthly-branches" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">12 Earthly Branches</Link>, and the <Link href="/bazi/five-elements" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Five Elements</Link>. These combine into 60 possible stem-branch pairs.
             </p>
             <p>
-              The Day Master, taken from the day stem, anchors the reading. Other chart elements become resources, expression, wealth, authority, or peers depending on how they relate to that Day Master.
+              The Day Master, taken from the day stem, anchors the reading. In <cite>San Ming Tong Hui</cite>, other chart elements become resources, expression, wealth, authority, or peers depending on how they relate to that Day Master.
             </p>
           </>
         ),
@@ -165,6 +165,16 @@ export const baziPages: BaziContentPage[] = [
           <>
             <p>
               Start with Five Elements, then learn stems and branches. After that, Ten Gods and Luck Pillars explain how chart structure becomes practical language for career, relationships, health tendencies, and personal timing.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "What a responsible reading emphasizes",
+        content: (
+          <>
+            <p>
+              A careful Bazi reading compares the natal chart, 10-year Luck Pillars, annual influences, and lived context before drawing conclusions. The strongest readings translate pattern into choices: which environments support growth, when pressure is likely to peak, and where a person can respond with steadier timing.
             </p>
           </>
         ),
@@ -202,7 +212,7 @@ export const baziPages: BaziContentPage[] = [
         content: (
           <>
             <p>
-              Early Chinese birth analysis developed around year and seasonal timing. Tang dynasty scholar Li Xuzhong is often linked with early pillar methods, while Song dynasty Zi Ping methods placed the day stem at the center. According to classical Bazi texts, the Day Master gives the chart a clear reference point.
+              Early Chinese birth analysis developed around year and seasonal timing. Tang dynasty scholar Li Xuzhong is often linked with early pillar methods, while Song dynasty Zi Ping methods placed the day stem at the center. In <cite>Yuan Hai Zi Ping</cite>, the Day Master gives the chart a clear reference point.
             </p>
             <p>
               A full chart uses 4 pillars and 8 characters. These characters come from the same 60-pair cycle used in traditional Chinese calendars, making Bazi a time-pattern system rather than a single-sign identity label.
@@ -223,7 +233,7 @@ export const baziPages: BaziContentPage[] = [
         content: (
           <>
             <p>
-              The year pillar describes broad background and early environment. The month pillar shows season, family conditioning, and career context. The day pillar reveals the Day Master and relationship palace. The hour pillar adds later-life themes, children, projects, and inner drives.
+              The year pillar describes broad background and early environment. The month pillar shows season, family conditioning, and career context. The day pillar reveals the Day Master and relationship palace. The hour pillar adds later-life themes, children, projects, and inner drives, a layered method summarized in <cite>San Ming Tong Hui</cite>.
             </p>
           </>
         ),
@@ -238,6 +248,16 @@ export const baziPages: BaziContentPage[] = [
           <>
             <p>
               Bazi often sits beside Ziwei Doushu, I Ching, Feng Shui, and date selection. Each system asks a different question. Bazi focuses on personal timing and structure, while Feng Shui reads spatial influence and I Ching gives decision context through 64 hexagrams.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "What Bazi can and cannot do",
+        content: (
+          <>
+            <p>
+              Bazi can clarify recurring tendencies, useful elements, relationship patterns, and timing pressure. It should not replace practical judgment, medical advice, or professional planning. The best use is reflective: compare the chart with real experience, then choose better habits, roles, and seasons for action.
             </p>
           </>
         ),
@@ -296,10 +316,10 @@ export const baziPages: BaziContentPage[] = [
         content: (
           <>
             <p>
-              The generating cycle is Wood feeds Fire, Fire creates Earth, Earth bears Metal, Metal enriches Water, and Water nourishes Wood. The controlling cycle is Wood parts Earth, Earth channels Water, Water cools Fire, Fire melts Metal, and Metal cuts Wood.
+              The generating cycle is Wood feeds Fire, Fire creates Earth, Earth bears Metal, Metal enriches Water, and Water nourishes Wood. <cite>San Ming Tong Hui</cite> applies these relationships to stems, branches, and the strength of the Day Master.
             </p>
             <p>
-              Over-acting and insulting patterns describe imbalance. An element can control too strongly, or a weaker element can resist the one that should regulate it.
+              The controlling cycle is Wood parts Earth, Earth channels Water, Water cools Fire, Fire melts Metal, and Metal cuts Wood. Over-acting and insulting patterns describe imbalance: an element can control too strongly, or a weaker element can resist the one that should regulate it.
             </p>
           </>
         ),
@@ -314,6 +334,16 @@ export const baziPages: BaziContentPage[] = [
           <>
             <p>
               Wood relates to growth, planning, and learning. Fire relates to visibility, warmth, and expression. Earth relates to trust, stability, and practical support. Metal relates to standards, refinement, and boundaries. Water relates to wisdom, adaptability, and flow.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "How element balance is read",
+        content: (
+          <>
+            <p>
+              Element balance begins with season, then checks stems, branches, hidden stems, and combinations. A strong Water chart in winter is read differently from a Water signal in summer, because timing changes usefulness. This is why Bazi weighs context before naming helpful or stressful elements.
             </p>
           </>
         ),

@@ -2,13 +2,34 @@ import type { Metadata } from "next";
 import Breadcrumbs, { type Crumb } from "@/components/shared/Breadcrumbs";
 import IChingOracle from "@/components/tools/IChingOracle";
 import { SITE } from "@/lib/constants";
-import { buildBreadcrumbListSchema, JsonLd, type JsonLdNode } from "@/lib/seo/jsonLd";
+import { buildBreadcrumbListSchema, buildWebApplicationSchema, JsonLd } from "@/lib/seo/jsonLd";
+import { buildShareCardUrl } from "@/lib/share-card";
+
+const shareCardImage = buildShareCardUrl({
+  baseUrl: SITE.url,
+  tool: "i-ching",
+  params: {
+    hex: 1,
+  },
+});
 
 export const metadata: Metadata = {
   title: "Free I Ching Oracle",
   description: "Cast a browser-based I Ching hexagram with changing lines and reflective guidance.",
   alternates: {
     canonical: "/tools/i-ching-oracle",
+  },
+  openGraph: {
+    title: "Free I Ching Oracle",
+    description: "Cast a browser-based I Ching hexagram with changing lines and reflective guidance.",
+    url: "/tools/i-ching-oracle",
+    images: [shareCardImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Free I Ching Oracle",
+    description: "Cast a browser-based I Ching hexagram with changing lines and reflective guidance.",
+    images: [shareCardImage],
   },
 };
 
@@ -18,17 +39,12 @@ const breadcrumbs: Crumb[] = [
   { label: "I Ching Oracle", href: "/tools/i-ching-oracle" },
 ];
 
-const softwareSchema: JsonLdNode = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
+const softwareSchema = buildWebApplicationSchema({
   name: "Free I Ching Oracle",
-  applicationCategory: "LifestyleApplication",
-  operatingSystem: "Web",
   url: `${SITE.url}/tools/i-ching-oracle`,
   description: "A browser-based I Ching oracle for six-line hexagram casting and reflective interpretation.",
-  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-  publisher: { "@type": "Organization", name: SITE.name, url: SITE.url },
-};
+  featureList: ["six-line casting", "changing lines", "primary hexagram", "relating hexagram"],
+});
 
 export default function IChingOraclePage() {
   return (

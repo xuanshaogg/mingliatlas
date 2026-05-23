@@ -2,7 +2,9 @@
 
 import { useMemo, useState } from "react";
 import { HeartHandshake } from "lucide-react";
+import ShareCardControls from "@/components/tools/ShareCardControls";
 import { ZODIAC_SIGNS, calculateZodiacCompatibility, type ZodiacSign } from "@/lib/zodiac";
+import { buildZodiacShareParams } from "@/lib/share-card";
 
 export default function ZodiacCompatibilityCalculator() {
   const [first, setFirst] = useState<ZodiacSign>("rat");
@@ -90,6 +92,13 @@ export default function ZodiacCompatibilityCalculator() {
               </dd>
             </div>
           </dl>
+          <div className="mt-6">
+            <ShareCardControls
+              tool="zodiac"
+              params={buildZodiacShareParams(result)}
+              label="zodiac-compatibility-share-card"
+            />
+          </div>
         </article>
       </section>
 

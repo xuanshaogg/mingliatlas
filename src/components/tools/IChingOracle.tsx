@@ -2,7 +2,9 @@
 
 import { useMemo, useState } from "react";
 import { Coins, RotateCcw } from "lucide-react";
+import ShareCardControls from "@/components/tools/ShareCardControls";
 import { castIChingReading, createCoinCast, type IChingReading } from "@/lib/i-ching";
+import { buildIChingShareParams } from "@/lib/share-card";
 
 function buildReading(question: string): IChingReading {
   return castIChingReading({ question, coins: createCoinCast(Date.now()) });
@@ -85,6 +87,8 @@ export default function IChingOracle() {
           </div>
         </div>
       </section>
+
+      <ShareCardControls tool="i-ching" params={buildIChingShareParams(reading)} label="i-ching-share-card" />
 
       <section className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_22rem]">
         <article className="rounded-lg border border-ink-200 bg-white p-6 dark:border-white/10 dark:bg-white/5">

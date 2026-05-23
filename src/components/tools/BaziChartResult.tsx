@@ -1,5 +1,7 @@
 import { CalendarDays, Info, ShieldCheck } from "lucide-react";
+import ShareCardControls from "@/components/tools/ShareCardControls";
 import type { BaziChart, BaziChartPillar, ElementScore } from "@/lib/bazi";
+import { buildBaziShareParams } from "@/lib/share-card";
 
 interface BaziChartResultProps {
   chart: BaziChart;
@@ -120,6 +122,8 @@ export default function BaziChartResult({ chart }: BaziChartResultProps) {
           </p>
         </div>
       </div>
+
+      <ShareCardControls tool="bazi" params={buildBaziShareParams(chart)} label="bazi-share-card" />
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {chart.pillars.map((pillar) => (

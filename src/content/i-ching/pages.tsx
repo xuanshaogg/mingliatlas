@@ -245,7 +245,7 @@ function createHexagramPage(hexagram: (typeof HEXAGRAMS)[number]): IChingContent
     entityName: `Hexagram ${hexagram.number}: ${hexagram.name}`,
     entityType: "DefinedTerm",
     subtitle: `Judgment, image, and reflective use for Hexagram ${hexagram.number}.`,
-    directAnswer: `Hexagram ${hexagram.number}, ${hexagram.name} (${hexagram.chinese}), points to ${hexagram.judgment.toLowerCase()} Its image says: ${hexagram.image}`,
+    directAnswer: `Hexagram ${hexagram.number}, ${hexagram.name} (${hexagram.chinese}), points to ${hexagram.judgment.toLowerCase()} Its image says: ${hexagram.image} Use it as a structured mirror for the present situation, then compare changing lines when the cast shows movement.`,
     breadcrumbs: breadcrumbs(`Hexagram ${hexagram.number}`, path),
     schema: { headline: "", description: "", url: "" },
     stats: [

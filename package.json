@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest",
+    "geo:audit": "vitest __tests__/seo/geo-audit.test.ts --run",
     "test:calendar": "vitest __tests__/calendar",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage"
