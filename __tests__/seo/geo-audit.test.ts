@@ -23,6 +23,15 @@ const priorityContentQualityUrls = [
   "/bazi",
   "/bazi/what-is-bazi",
   "/bazi/five-elements",
+  "/bazi/heavenly-stems",
+  "/bazi/earthly-branches",
+  "/bazi/ten-gods",
+  "/bazi/luck-pillars",
+  "/bazi/career",
+  "/bazi/relationships",
+  "/bazi/health",
+  "/bazi/faq",
+  "/bazi/glossary",
   "/chinese-zodiac",
   "/i-ching",
   "/feng-shui",
@@ -41,6 +50,17 @@ const priorityBlogQualityUrls = [
   "/blog/i-ching-for-beginners",
   "/blog/changing-lines-i-ching",
   "/blog/chinese-zodiac-compatibility-guide",
+];
+
+const priorityBaziQualityUrls = [
+  "/bazi/ten-gods",
+  "/bazi/luck-pillars",
+  "/bazi/free-calculator",
+  "/bazi/career",
+  "/bazi/relationships",
+  "/bazi/health",
+  "/bazi/faq",
+  "/bazi/glossary",
 ];
 
 const placeholderPhrases = ["seed article", "later editorial pass", "MVP page"];
@@ -179,6 +199,17 @@ describe("GEO audit", () => {
 
   it("keeps priority knowledge pages in the content-quality slice", () => {
     for (const path of priorityContentQualityUrls) {
+      const page = knowledgePages.find((candidate) => candidate.path === path);
+
+      expect(page, path).toBeDefined();
+      if (!page) continue;
+
+      expectPriorityQuality(page, path);
+    }
+  });
+
+  it("keeps the Bazi expansion batch in the content-quality slice", () => {
+    for (const path of priorityBaziQualityUrls) {
       const page = knowledgePages.find((candidate) => candidate.path === path);
 
       expect(page, path).toBeDefined();

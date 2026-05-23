@@ -21,6 +21,17 @@ const baziBaseLinks = [
   },
 ];
 
+const linkClass = "text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300";
+
+const briefRelatedLinks = [
+  ...baziBaseLinks,
+  {
+    title: "Free Bazi Calculator",
+    href: "/tools/bazi-calculator",
+    description: "See how the vocabulary becomes a live chart once you are ready to practice.",
+  },
+];
+
 const defaultFaqs: FAQ[] = [
   {
     question: "Is Bazi the same as Western astrology?",
@@ -61,7 +72,7 @@ function cta(title = "Explore your own Bazi pattern") {
     title,
     description:
       "Use the free calculator to see your stems, branches, elements, and life-cycle structure in one chart.",
-    href: "/bazi/free-calculator",
+    href: "/tools/bazi-calculator",
     label: "Open the free calculator",
   };
 }
@@ -381,7 +392,7 @@ export const baziPages: BaziContentPage[] = [
         content: (
           <>
             <p>
-              Jia and Yi are Wood, Bing and Ding are Fire, Wu and Ji are Earth, Geng and Xin are Metal, and Ren and Gui are Water. The first in each pair is yang and the second is yin. This creates 10 visible expressions from 5 elements.
+              Jia and Yi are Wood, Bing and Ding are Fire, Wu and Ji are Earth, Geng and Xin are Metal, and Ren and Gui are Water. The first in each pair is yang and the second is yin. This creates 10 visible expressions from 5 elements, a pattern described in <cite>San Ming Tong Hui</cite>.
             </p>
           </>
         ),
@@ -410,7 +421,20 @@ export const baziPages: BaziContentPage[] = [
         content: (
           <>
             <p>
-              Stems show what is visible and active. They help identify the Day Master, Ten Gods, combinations, and whether a chart expresses its strengths openly or stores them in hidden branches.
+              Stems show what is visible and active. They help identify the Day Master, Ten Gods, combinations, and whether a chart expresses its strengths openly or stores them in hidden branches. In <cite>Yuan Hai Zi Ping</cite>, the day stem is the anchor that organizes the rest of the chart.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "How stems and branches work together",
+        content: (
+          <>
+            <p>
+              A stem without its branch is only half of the pillar. The stem shows the visible quality, while the branch stores seasonal context, hidden stems, and the timing layer that changes how the stem is read. Classical Bazi practice treats the pair as a single unit.
+            </p>
+            <p>
+              When the Day Master is unclear, compare the stem with its branch and then return to the full chart before deciding what the symbol means, especially where <cite>San Ming Tong Hui</cite> emphasizes relationship over isolation.
             </p>
           </>
         ),
@@ -452,7 +476,7 @@ export const baziPages: BaziContentPage[] = [
         content: (
           <>
             <p>
-              Each branch contains a season, direction, two-hour period, animal symbol, and one or more hidden stems. This is why a Bazi branch can hold energy that is not immediately visible in the top stem.
+              Each branch contains a season, direction, two-hour period, animal symbol, and one or more hidden stems. This is why a Bazi branch can hold energy that is not immediately visible in the top stem, which is why <cite>Chinese calendrical tradition</cite> treats branches as more than mascots.
             </p>
           </>
         ),
@@ -484,7 +508,20 @@ export const baziPages: BaziContentPage[] = [
         content: (
           <>
             <p>
-              The 12 branches map to 24 hours in two-hour blocks. The hour pillar therefore adds a precise layer of timing and can shift the reading of personal drives, later-life themes, and projects.
+              The 12 branches map to 24 hours in two-hour blocks. The hour pillar therefore adds a precise layer of timing and can shift the reading of personal drives, later-life themes, and projects, a structure noted in <cite>San Ming Tong Hui</cite>.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "How branches shape interpretation",
+        content: (
+          <>
+            <p>
+              Branches matter because they hold season, direction, animals, and hidden stems. They can strengthen, dilute, or redirect what the visible stem appears to do on its own, so <cite>Yuan Hai Zi Ping</cite> always reads them in relation to the Day Master.
+            </p>
+            <p>
+              A branch reading becomes much clearer when you compare it with the month branch, the day branch, and the full stem-branch sequence around it.
             </p>
           </>
         ),
@@ -513,9 +550,18 @@ const briefTopics = [
   ["glossary", "Bazi Glossary: Chinese Metaphysics Terms", "This Bazi glossary defines key terms such as Day Master, Ten Gods, Heavenly Stems, Earthly Branches, and Luck Pillars.", "30+", "Terms"],
 ] as const;
 
+const briefLabelOverrides: Record<string, string> = {
+  "free-calculator": "Bazi Calculator",
+  career: "Bazi Career Analysis",
+  relationships: "Bazi Relationship Analysis",
+  health: "Bazi Health Tendencies",
+  faq: "Bazi FAQ",
+  glossary: "Bazi Glossary",
+};
+
 const generatedBriefPages = briefTopics.map(([slug, title, description, statValue, statLabel]) => {
   const path = `/bazi/${slug}`;
-  const label = title.split(":")[0].replace("Bazi ", "");
+  const label = briefLabelOverrides[slug] ?? title.split(":")[0].replace("Bazi ", "");
 
   return buildPage({
     slug,
@@ -525,7 +571,7 @@ const generatedBriefPages = briefTopics.map(([slug, title, description, statValu
     entityName: label,
     entityType: slug === "glossary" ? "DefinedTermSet" : "DefinedTerm",
     subtitle: "A focused Bazi guide built with answer-first structure and structured data.",
-    directAnswer: `${label} is part of Four Pillars of Destiny (Bazi) analysis. It helps translate stems, branches, elements, and timing cycles into practical self-knowledge. The page gives a clear definition, core rules, useful statistics, and next steps for responsible interpretation.`,
+    directAnswer: `${label} in Bazi is a focused topic that only makes sense inside the full Four Pillars chart. It explains how a specific symbol, cycle, or relationship changes the Day Master reading, then points you back to season, element balance, and timing before any conclusion.`,
     breadcrumbs: baziBreadcrumbs(label, path),
     schema: { headline: "", description: "", url: "" },
     stats: [
@@ -543,10 +589,10 @@ const generatedBriefPages = briefTopics.map(([slug, title, description, statValu
         content: (
           <>
             <p>
-              {description} According to classical Bazi texts, the topic should be read through the Day Master, season, element balance, and the wider pillar structure rather than as a single isolated symbol.
+              {description} According to <cite>Yuan Hai Zi Ping</cite>, the value of a symbol comes from its position in a full chart, not from a stand-alone label.
             </p>
             <p>
-              This guide is intentionally concise for the first content release. Later editorial passes can expand examples, tables, and case studies while keeping the same schema and layout.
+              Use the term as a map marker: it tells you where to look next, not where to stop.
             </p>
           </>
         ),
@@ -560,29 +606,45 @@ const generatedBriefPages = briefTopics.map(([slug, title, description, statValu
         ],
       },
       {
-        heading: "How to apply it responsibly",
+        heading: "How to read it in the chart",
         content: (
           <>
             <p>
-              Use this topic as one layer of analysis. Compare it with Five Elements, Heavenly Stems, Earthly Branches, and Luck Pillars before drawing a conclusion. Interpretations vary by school, so clear reasoning matters more than dramatic claims.
+              Read the Day Master first, then check season, element balance, and the pillar that carries the topic. In <cite>San Ming Tong Hui</cite>, relationships between parts carry more weight than isolated symbols.
+            </p>
+            <p>
+              If the topic is timing-related, compare it with the natal chart and any relevant Luck Pillars before deciding what it means in practice.
             </p>
           </>
         ),
-        stats: [{ value: "3+", label: "Context layers", description: "Element, pillar position, and timing should be read together." }],
+        stats: [{ value: "3", label: "Context layers", description: "Day Master, season, and timing should stay together." }],
+      },
+      {
+        heading: "Common beginner mistakes",
+        content: (
+          <>
+            <p>
+              Do not flatten a symbol into a personality label or a promise. A chart topic becomes useful only when it stays connected to the surrounding stems, branches, and calendar context.
+            </p>
+            <p>
+              When the meaning is unclear, return to <cite>Chinese calendar tradition</cite> and reread the same topic inside the full time structure.
+            </p>
+          </>
+        ),
       },
       {
         heading: "Where to go next",
         content: (
           <>
             <p>
-              Continue with the core Bazi guides, then use the calculator page when you are ready to map these concepts onto a personal Four Pillars chart.
+              Open the <Link href="/bazi" className={linkClass}>Bazi overview</Link>, then use the <Link href="/tools/bazi-calculator" className={linkClass}>free calculator</Link> to see the chart structure in one place. If the vocabulary is still new, the <Link href="/learn/beginners-guide" className={linkClass}>beginner guide</Link> gives the cleanest reset.
             </p>
           </>
         ),
       },
     ],
     faqs: defaultFaqs,
-    relatedLinks: baziBaseLinks,
+    relatedLinks: briefRelatedLinks,
     cta: cta(),
   });
 });
