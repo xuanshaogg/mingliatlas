@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { createElement, Fragment } from "react";
+import { createElement, Fragment, type ReactNode } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
@@ -18,7 +18,15 @@ import {
   buildWebApplicationSchema,
 } from "@/lib/seo/jsonLd";
 
-const priorityContentQualityUrls = ["/bazi", "/bazi/what-is-bazi", "/bazi/five-elements", "/chinese-zodiac"];
+const priorityContentQualityUrls = [
+  "/bazi",
+  "/bazi/what-is-bazi",
+  "/bazi/five-elements",
+  "/chinese-zodiac",
+  "/i-ching",
+  "/feng-shui",
+  "/ziwei",
+];
 const classicalCitationSignals = [
   "Yuan Hai Zi Ping",
   "San Ming Tong Hui",
@@ -69,7 +77,7 @@ function sourceFile(path: string): string {
   return readFileSync(join(process.cwd(), path), "utf8");
 }
 
-function sectionMarkup(page: (typeof allBaziPages)[number]): string {
+function sectionMarkup(page: { data: { sections: Array<{ content: ReactNode }> } }): string {
   return page.data.sections
     .map((section) => renderToStaticMarkup(createElement(Fragment, null, section.content)))
     .join(" ");

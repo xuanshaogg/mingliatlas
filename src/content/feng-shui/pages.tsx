@@ -39,9 +39,9 @@ const defaultFaqs: FAQ[] = [
       "No. Placement matters, but classical Feng Shui also considers landform, compass direction, qi flow, timing, and how people use a space.",
   },
   {
-    question: "Can Feng Shui guarantee results?",
+    question: "Can Feng Shui determine results?",
     answer:
-      "No. Feng Shui should be used as an environmental reflection and design framework, not as a guarantee.",
+      "No. Feng Shui should be used as an environmental reflection and design framework, not as a promise of outcomes.",
   },
   {
     question: "Where should beginners start?",
@@ -105,7 +105,7 @@ const overview = buildPage({
   entityType: "DefinedTerm",
   subtitle: "A practical introduction to spatial harmony for homes and workspaces.",
   directAnswer:
-    "Feng Shui is a Chinese spatial practice that studies how environment, direction, layout, and timing affect the way a place feels and functions. It uses qi flow, yin-yang balance, Five Elements, Bagua direction, and practical observation of space.",
+    "Feng Shui is a Chinese spatial practice that studies how environment, direction, layout, and timing affect the way a place feels and functions. It uses qi flow, yin-yang balance, Five Elements, Bagua direction, and practical observation of space. Responsible practice starts with the entrance, pathways, light, proportion, and how people actually use the room.",
   breadcrumbs: breadcrumbs("Overview", "/feng-shui"),
   schema: { headline: "", description: "", url: "" },
   stats: [
@@ -152,8 +152,21 @@ const overview = buildPage({
       heading: "Responsible use",
       content: (
         <p>
-          Use Feng Shui as a design and reflection tool. Avoid fear-based claims, dramatic cures, or promises of guaranteed results.
+          Use Feng Shui as a design and reflection tool. Avoid fear-based claims, dramatic cures, or promises of specific outcomes.
         </p>
+      ),
+    },
+    {
+      heading: "How classical schools differ",
+      content: (
+        <>
+          <p>
+            <cite>Form School tradition</cite> focuses on landform, movement, and what a space supports physically, while <cite>Compass School tradition</cite> adds directional formulas and measurement.
+          </p>
+          <p>
+            Use both only when they improve the room&apos;s function and rhythm, not as a fear-based script for certainty.
+          </p>
+        </>
       ),
     },
   ],

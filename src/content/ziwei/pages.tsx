@@ -105,7 +105,7 @@ const overview = buildPage({
   entityType: "DefinedTerm",
   subtitle: "A structured introduction to Purple Star Astrology for Western readers.",
   directAnswer:
-    "Ziwei Doushu, often translated as Purple Star Astrology, is a Chinese metaphysics system that places major stars into 12 life palaces. It studies personality, relationships, career, wealth, health tendencies, and timing through palace structure rather than only stems and branches.",
+    "Ziwei Doushu, often translated as Purple Star Astrology, is a Chinese metaphysics system that places major stars into 12 life palaces. It studies personality, relationships, career, wealth, health tendencies, and timing through palace structure rather than only stems and branches. A careful reading checks the Life Palace, major stars, Four Transformations, and decade cycles before drawing conclusions.",
   breadcrumbs: breadcrumbs("Overview", "/ziwei"),
   schema: { headline: "", description: "", url: "" },
   stats: [
@@ -157,6 +157,19 @@ const overview = buildPage({
         <p>
           Use Ziwei as a structured self-knowledge system. Avoid reading one star as a fixed label. A careful reading checks palace, star brightness, transformations, and timing together.
         </p>
+      ),
+    },
+    {
+      heading: "How Ziwei differs from Bazi",
+      content: (
+        <>
+          <p>
+            <cite>Ziwei Doushu Quan Shu</cite> emphasizes palace structure and star placement, while <cite>Chinese lunar calendar practice</cite> provides the birth-time frame used to build the chart.
+          </p>
+          <p>
+            Read the two systems together when you want both character patterns and timing context.
+          </p>
+        </>
       ),
     },
   ],
