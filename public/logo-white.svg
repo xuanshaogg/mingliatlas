@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="56" viewBox="0 0 240 56" role="img" aria-labelledby="logo-white-title logo-white-desc">
+  <title id="logo-white-title">Eastern Blueprint provisional white logo</title>
+  <desc id="logo-white-desc">A white and gold Tai Chi-inspired mark beside the Eastern Blueprint wordmark for dark backgrounds.</desc>
+  <defs>
+    <linearGradient id="eb-white-gold" x1="8" y1="6" x2="48" y2="50" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F5E7B0" />
+      <stop offset="1" stop-color="#C9A84C" />
+    </linearGradient>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <circle cx="28" cy="28" r="24" fill="none" stroke="#FDFBF7" stroke-width="2" />
+    <path fill="#FDFBF7" d="M28 8a20 20 0 1 1 0 40c6.63 0 12-4.48 12-10S34.63 28 28 28 16 23.52 16 18 21.37 8 28 8Z" />
+    <path fill="url(#eb-white-gold)" d="M28 8a20 20 0 0 0 0 40c-6.63 0-12-4.48-12-10s5.37-10 12-10 12-4.48 12-10S34.63 8 28 8Z" />
+    <circle cx="28" cy="18" r="3.25" fill="#8B0000" />
+    <circle cx="28" cy="38" r="3.25" fill="#FDFBF7" />
+    <g fill="#C9A84C">
+      <circle cx="28" cy="2.5" r="2.5" />
+      <circle cx="52" cy="19.5" r="2.5" />
+      <circle cx="43" cy="49.5" r="2.5" />
+      <circle cx="13" cy="49.5" r="2.5" />
+      <circle cx="4" cy="19.5" r="2.5" />
+    </g>
+    <text x="68" y="25" fill="#FDFBF7" font-family="Cormorant Garamond, Georgia, serif" font-size="24" font-weight="700" letter-spacing="0.2">Eastern Blueprint</text>
+    <text x="69" y="42" fill="#F5F0E5" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="600" letter-spacing="1.6">WHERE EASTERN WISDOM MEETS MODERN LOGIC</text>
+  </g>
+</svg>

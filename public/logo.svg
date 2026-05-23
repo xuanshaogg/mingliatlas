@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="56" viewBox="0 0 240 56" role="img" aria-labelledby="logo-title logo-desc">
+  <title id="logo-title">Eastern Blueprint provisional logo</title>
+  <desc id="logo-desc">A circular Tai Chi-inspired mark with five element points beside the Eastern Blueprint wordmark.</desc>
+  <defs>
+    <linearGradient id="eb-mark" x1="8" y1="6" x2="48" y2="50" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8B0000" />
+      <stop offset="0.55" stop-color="#C95A44" />
+      <stop offset="1" stop-color="#C9A84C" />
+    </linearGradient>
+    <linearGradient id="eb-gold" x1="14" y1="14" x2="42" y2="42" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#D4B460" />
+      <stop offset="1" stop-color="#B89335" />
+    </linearGradient>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <circle cx="28" cy="28" r="24" fill="#FDFBF7" stroke="#8B0000" stroke-width="2" />
+    <path fill="url(#eb-mark)" d="M28 8a20 20 0 1 1 0 40c6.63 0 12-4.48 12-10S34.63 28 28 28 16 23.52 16 18 21.37 8 28 8Z" />
+    <path fill="url(#eb-gold)" d="M28 8a20 20 0 0 0 0 40c-6.63 0-12-4.48-12-10s5.37-10 12-10 12-4.48 12-10S34.63 8 28 8Z" opacity="0.95" />
+    <circle cx="28" cy="18" r="3.25" fill="#FDFBF7" />
+    <circle cx="28" cy="38" r="3.25" fill="#8B0000" />
+    <g fill="#C9A84C">
+      <circle cx="28" cy="2.5" r="2.5" />
+      <circle cx="52" cy="19.5" r="2.5" />
+      <circle cx="43" cy="49.5" r="2.5" />
+      <circle cx="13" cy="49.5" r="2.5" />
+      <circle cx="4" cy="19.5" r="2.5" />
+    </g>
+    <text x="68" y="25" fill="#1A1A2E" font-family="Cormorant Garamond, Georgia, serif" font-size="24" font-weight="700" letter-spacing="0.2">Eastern Blueprint</text>
+    <text x="69" y="42" fill="#3A3A50" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="600" letter-spacing="1.6">WHERE EASTERN WISDOM MEETS MODERN LOGIC</text>
+  </g>
+</svg>

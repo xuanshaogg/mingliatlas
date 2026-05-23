@@ -1,0 +1,168 @@
+// Prisma schema for Chinese Metaphysics GEO Site
+// Managed via prisma.config.ts — datasource URL injected at runtime
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ---------------------------------------------------------------------------
+// Enums
+// ---------------------------------------------------------------------------
+
+enum Category {
+  BAZI
+  ZIWEI
+  ICHING
+  FENGSHUI
+  ZODIAC
+  LEARN
+  BLOG
+  TOOLS
+  GENERAL
+}
+
+enum SchemaType {
+  ARTICLE
+  FAQ
+  HOWTO
+  WEBAPP
+  GLOSSARY
+}
+
+enum BlogCategory {
+  BAZI_GUIDE
+  ZIWEI_GUIDE
+  ICHING_GUIDE
+  FENGSHUI_GUIDE
+  ZODIAC_FORECAST
+  CELEBRITY_ANALYSIS
+  CULTURE_COMPARISON
+  LIFESTYLE
+}
+
+enum ChartType {
+  BAZI
+  ZIWEI
+}
+
+enum ToolType {
+  BAZI_CALCULATOR
+  ZIWEI_CALCULATOR
+  ICHING_ORACLE
+  COMPATIBILITY
+  AI_CHAT
+}
+
+// ---------------------------------------------------------------------------
+// Models
+// ---------------------------------------------------------------------------
+
+/// Knowledge/landing pages for GEO content strategy
+model Page {
+  id          String     @id @default(cuid())
+  slug        String     @unique
+  title       String
+  description String     @db.Text
+  content     String     @db.Text
+  category    Category
+  subCategory String?
+  schemaType  SchemaType
+  wordCount   Int?
+  seoTitle    String?
+  seoDesc     String?    @db.Text
+  ogImage     String?
+  published   Boolean    @default(false)
+  publishedAt DateTime?
+  updatedAt   DateTime   @updatedAt
+  createdAt   DateTime   @default(now())
+  authorId    String?
+  views       Int        @default(0)
+
+  @@index([slug])
+  @@index([category])
+  @@index([published])
+  @@index([publishedAt])
+}
+
+/// Blog articles for content marketing
+model BlogPost {
+  id          String       @id @default(cuid())
+  slug        String       @unique
+  title       String
+  excerpt     String       @db.Text
+  content     String       @db.Text
+  coverImage  String?
+  tags        String[]
+  category    BlogCategory
+  published   Boolean      @default(false)
+  publishedAt DateTime?
+  updatedAt   DateTime     @updatedAt
+  createdAt   DateTime     @default(now())
+  views       Int          @default(0)
+
+  @@index([slug])
+  @@index([publishedAt])
+  @@index([category])
+}
+
+/// Email subscribers — newsletter / lead nurture
+model Subscriber {
+  id             String    @id @default(cuid())
+  email          String    @unique
+  zodiacSign     String?
+  birthDate      DateTime?
+  preferences    Json?
+  verified       Boolean   @default(false)
+  subscribedAt   DateTime  @default(now())
+  unsubscribedAt DateTime?
+
+  @@index([email])
+  @@index([verified])
+}
+
+/// Registered users (reserved for Phase 2 auth)
+model User {
+  id          String    @id @default(cuid())
+  email       String?   @unique
+  name        String?
+  avatarUrl   String?
+  birthDate   DateTime?
+  birthTime   String?
+  birthPlace  String?
+  createdAt   DateTime  @default(now())
+  savedCharts Chart[]
+
+  @@index([email])
+}
+
+/// Saved natal charts linked to a user
+model Chart {
+  id        String    @id @default(cuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  chartType ChartType
+  chartData Json
+  name      String?
+  createdAt DateTime  @default(now())
+
+  @@index([userId])
+  @@index([chartType])
+}
+
+/// Anonymous AI-tool usage telemetry
+model ToolUsage {
+  id        String   @id @default(cuid())
+  toolType  ToolType
+  input     Json?
+  success   Boolean
+  duration  Int?
+  createdAt DateTime @default(now())
+
+  @@index([toolType])
+  @@index([createdAt])
+}

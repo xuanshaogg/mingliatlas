@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-labelledby="logo-icon-title logo-icon-desc">
+  <title id="logo-icon-title">Eastern Blueprint provisional icon</title>
+  <desc id="logo-icon-desc">A Tai Chi-inspired circle with five gold element points.</desc>
+  <defs>
+    <linearGradient id="eb-icon-red" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8B0000" />
+      <stop offset="0.55" stop-color="#C95A44" />
+      <stop offset="1" stop-color="#C9A84C" />
+    </linearGradient>
+    <linearGradient id="eb-icon-gold" x1="16" y1="14" x2="48" y2="50" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#D4B460" />
+      <stop offset="1" stop-color="#B89335" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="18" fill="#FDFBF7" />
+  <circle cx="32" cy="32" r="24" fill="#FDFBF7" stroke="#8B0000" stroke-width="2.5" />
+  <path fill="url(#eb-icon-red)" d="M32 10a22 22 0 1 1 0 44c7.18 0 13-4.93 13-11s-5.82-11-13-11-13-4.93-13-11 5.82-11 13-11Z" />
+  <path fill="url(#eb-icon-gold)" d="M32 10a22 22 0 0 0 0 44c-7.18 0-13-4.93-13-11s5.82-11 13-11 13-4.93 13-11-5.82-11-13-11Z" opacity="0.95" />
+  <circle cx="32" cy="21" r="3.6" fill="#FDFBF7" />
+  <circle cx="32" cy="43" r="3.6" fill="#8B0000" />
+  <g fill="#C9A84C">
+    <circle cx="32" cy="5" r="3" />
+    <circle cx="58" cy="24" r="3" />
+    <circle cx="48" cy="56" r="3" />
+    <circle cx="16" cy="56" r="3" />
+    <circle cx="6" cy="24" r="3" />
+  </g>
+</svg>
