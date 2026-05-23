@@ -5,6 +5,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import robots from "@/app/robots";
 import { allBaziPages } from "@/content/bazi/pages";
+import { allBlogPosts } from "@/content/blog/posts";
 import { allFengShuiPages } from "@/content/feng-shui/pages";
 import { allIChingPages } from "@/content/i-ching/pages";
 import { allLearnPages } from "@/content/learn/pages";
@@ -26,7 +27,23 @@ const priorityContentQualityUrls = [
   "/i-ching",
   "/feng-shui",
   "/ziwei",
+  "/learn",
+  "/learn/beginners-guide",
+  "/learn/chinese-vs-western-astrology",
+  "/learn/common-misconceptions",
+  "/learn/which-system",
+  "/learn/resources",
 ];
+
+const priorityBlogQualityUrls = [
+  "/blog/how-to-read-a-bazi-chart",
+  "/blog/day-master-meaning",
+  "/blog/i-ching-for-beginners",
+  "/blog/changing-lines-i-ching",
+  "/blog/chinese-zodiac-compatibility-guide",
+];
+
+const placeholderPhrases = ["seed article", "later editorial pass", "MVP page"];
 const classicalCitationSignals = [
   "Yuan Hai Zi Ping",
   "San Ming Tong Hui",
@@ -93,6 +110,42 @@ function inlineCitationSignalCount(markup: string): number {
   return Math.max(citeTagCount, sourceNameCount);
 }
 
+function qualitySignals(page: { data: { sections: Array<{ content: ReactNode; stats?: unknown[]; quotes?: unknown[] }> } }) {
+  const markup = sectionMarkup(page);
+  const totalSectionStats = page.data.sections.reduce(
+    (count, section) => count + (section.stats?.length ?? 0),
+    0,
+  );
+  const totalQuotes = page.data.sections.reduce(
+    (count, section) => count + (section.quotes?.length ?? 0),
+    0,
+  );
+
+  return { markup, totalSectionStats, totalQuotes };
+}
+
+function expectPriorityQuality(page: { title: string; description: string; path: string; data: { directAnswer: string; sections: Array<{ content: ReactNode; stats?: unknown[]; quotes?: unknown[] }>; stats: unknown[]; faqs: unknown[]; relatedLinks: unknown[]; citations: unknown[]; schema: { url: string; datePublished?: string; dateModified?: string } } }, path: string) {
+  const { markup, totalSectionStats, totalQuotes } = qualitySignals(page);
+  const pageText = `${page.title} ${page.description} ${page.data.directAnswer} ${markup}`.toLowerCase();
+
+  expect(wordCount(page.data.directAnswer), path).toBeGreaterThanOrEqual(40);
+  expect(wordCount(page.data.directAnswer), path).toBeLessThanOrEqual(75);
+  expect(page.data.sections.length, path).toBeGreaterThanOrEqual(4);
+  expect(page.data.stats.length + totalSectionStats, path).toBeGreaterThanOrEqual(3);
+  expect(totalQuotes, path).toBeGreaterThanOrEqual(1);
+  expect(page.data.citations.length, path).toBeGreaterThanOrEqual(2);
+  expect(inlineCitationSignalCount(markup), path).toBeGreaterThanOrEqual(2);
+  expect(page.data.faqs.length, path).toBeGreaterThanOrEqual(4);
+  expect(page.data.relatedLinks.length, path).toBeGreaterThanOrEqual(3);
+  expect(page.data.schema.url, path).toBe(`${SITE.url}${path}`);
+  expect(page.data.schema.datePublished, path).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+  expect(page.data.schema.dateModified, path).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+
+  for (const phrase of placeholderPhrases) {
+    expect(pageText, `${path} contains placeholder phrase: ${phrase}`).not.toContain(phrase.toLowerCase());
+  }
+}
+
 describe("GEO audit", () => {
   it("keeps the published URL inventory large and unique", () => {
     const hrefs = publishedSitePages.map((page) => page.href);
@@ -131,23 +184,18 @@ describe("GEO audit", () => {
       expect(page, path).toBeDefined();
       if (!page) continue;
 
-      const markup = sectionMarkup(page);
-      const totalSectionStats = page.data.sections.reduce(
-        (count, section) => count + (section.stats?.length ?? 0),
-        0,
-      );
-      const totalQuotes = page.data.sections.reduce(
-        (count, section) => count + (section.quotes?.length ?? 0),
-        0,
-      );
+      expectPriorityQuality(page, path);
+    }
+  });
 
-      expect(wordCount(page.data.directAnswer), path).toBeGreaterThanOrEqual(40);
-      expect(wordCount(page.data.directAnswer), path).toBeLessThanOrEqual(75);
-      expect(page.data.sections.length, path).toBeGreaterThanOrEqual(4);
-      expect(page.data.stats.length + totalSectionStats, path).toBeGreaterThanOrEqual(3);
-      expect(totalQuotes, path).toBeGreaterThanOrEqual(1);
-      expect(page.data.citations.length, path).toBeGreaterThanOrEqual(2);
-      expect(inlineCitationSignalCount(markup), path).toBeGreaterThanOrEqual(2);
+  it("keeps priority blog pages in the content-quality slice", () => {
+    for (const path of priorityBlogQualityUrls) {
+      const page = allBlogPosts.find((candidate) => candidate.path === path);
+
+      expect(page, path).toBeDefined();
+      if (!page) continue;
+
+      expectPriorityQuality(page, path);
     }
   });
 

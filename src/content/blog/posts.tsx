@@ -13,6 +13,8 @@ export interface BlogPost {
   data: KnowledgePageProps;
 }
 
+const linkClass = "text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300";
+
 const baseFaqs: FAQ[] = [
   {
     question: "Is this article fortune telling?",
@@ -194,7 +196,7 @@ const seedPosts: BlogPost[] = [
     entityType: "BlogPosting",
     subtitle: "A year overview built for readers who want context, not hype.",
     directAnswer:
-      "A zodiac forecast for 2026 is a symbolic yearly overview, not a fixed prediction. It looks at the animal-year cycle, the relation between the year branch and each animal sign, and the practical themes people often watch for during the year.",
+      "A zodiac forecast for 2026 is a symbolic yearly overview, not a literal forecast. It looks at the animal-year cycle, the relation between the year branch and each animal sign, and the practical themes people often watch for during the year.",
     breadcrumbs: breadcrumbs("2026 Forecast", "/blog/chinese-zodiac-2026-forecast"),
     schema: { headline: "", description: "", url: "" },
     stats: [
@@ -225,7 +227,7 @@ const seedPosts: BlogPost[] = [
         content: (
           <>
             <p>
-              It should not claim certainty, fear, or guaranteed luck. A good forecast stays specific enough to be actionable and broad enough to be honest about uncertainty.
+              It should not claim certainty, fear, or assured luck. A good forecast stays specific enough to be actionable and broad enough to be honest about uncertainty.
             </p>
             <p>
               Use it as a planning tool, not as a substitute for judgment.
@@ -726,18 +728,18 @@ function createEditorialPost(seed: EditorialSeed): BlogPost {
     category: seed.category,
     entityName: seed.entity,
     entityType: "BlogPosting",
-    subtitle: `A focused editorial note on ${seed.focus}.`,
-    directAnswer: `${seed.entity} is best understood as a practical pattern language, not a fixed label. This article explains ${seed.focus} in clear terms, connects it to the broader Chinese metaphysics system, and points you toward the right next guide or tool.`,
+    subtitle: `A practical editorial guide to ${seed.focus}.`,
+    directAnswer: `${seed.entity} is best understood as a practical pattern language, not a total identity label. This article explains ${seed.focus} in clear terms, connects it to the broader Chinese metaphysics system, and points you toward the right next guide or tool for deeper context.`,
     breadcrumbs: breadcrumbs(seed.title, path),
     schema: { headline: "", description: "", url: "" },
     stats: [
-      { value: "3", label: "Reading steps", description: "Define the symbol, check context, then apply carefully." },
-      { value: "1", label: "Main question", description: "Each article should answer one clear search intent." },
-      { value: "2026", label: "Editorial cycle", description: "Seed article prepared for later longform expansion." },
+      { value: "4", label: "Reading steps", description: "Define the symbol, check context, apply, then review." },
+      { value: "1", label: "Main question", description: "Each article answers one clear search intent." },
+      { value: "3+", label: "Next links", description: "Every article routes readers to a guide, tool, or foundation page." },
     ],
     citations: [
       { label: "Chinese metaphysics tradition", source: "Classical systems use symbols, cycles, and context as interpretation layers." },
-      { label: "Eastern Blueprint editorial standard", source: "Content is written for education, self-reflection, and clear next steps." },
+      { label: "Chinese calendar tradition", source: "Many topics rely on stems, branches, elements, and seasonal timing." },
     ],
     sections: [
       {
@@ -748,7 +750,7 @@ function createEditorialPost(seed: EditorialSeed): BlogPost {
               {seed.description} The useful reading starts with definition, then checks context, timing, and practical behavior.
             </p>
             <p>
-              This seed article establishes the topic in the content library. A later editorial pass can add examples, tables, and deeper case studies while preserving the same URL.
+              In <cite>Chinese metaphysics tradition</cite>, symbols work best as structured prompts. They help readers ask better questions without treating one image as the whole answer.
             </p>
           </>
         ),
@@ -764,16 +766,30 @@ function createEditorialPost(seed: EditorialSeed): BlogPost {
       {
         heading: "How to use the idea",
         content: (
-          <p>
-            Use this topic as a conversation with your own observations. Compare it with related guides, then test the idea through the appropriate calculator, oracle, or knowledge page.
-          </p>
+          <>
+            <p>
+              Use this topic as a conversation with your own observations. Compare it with related guides, then test the idea through the appropriate calculator, oracle, or knowledge page.
+            </p>
+            <p>
+              If the topic depends on birth data or yearly cycles, check the result against <cite>Chinese calendar tradition</cite> before drawing conclusions.
+            </p>
+          </>
         ),
+        stats: [{ value: "2", label: "Context checks", description: "Look at the symbol itself and the wider system around it." }],
       },
       {
         heading: "What to avoid",
         content: (
           <p>
-            Avoid using one symbol as a total identity label or a guaranteed outcome. The site uses symbolic systems for structured reflection, not fear-based certainty.
+            Avoid using one symbol as a total identity label or an assured outcome. The site uses symbolic systems for structured reflection, not fear-based certainty.
+          </p>
+        ),
+      },
+      {
+        heading: "Where to go next",
+        content: (
+          <p>
+            Continue with <Link href={seed.primaryHref} className={linkClass}>{seed.primaryLabel}</Link>, then return to the beginner guide if you need more vocabulary before comparing systems.
           </p>
         ),
       },
@@ -793,7 +809,494 @@ function createEditorialPost(seed: EditorialSeed): BlogPost {
   });
 }
 
-export const allBlogPosts: BlogPost[] = [...seedPosts, ...editorialSeeds.map(createEditorialPost)];
+const highIntentBlogPosts: BlogPost[] = [
+  buildPage({
+    slug: "how-to-read-a-bazi-chart",
+    path: "/blog/how-to-read-a-bazi-chart",
+    title: "How to Read a Bazi Chart Without Getting Overwhelmed",
+    description: "A simple workflow for reading Day Master, elements, pillars, and timing in a Bazi chart.",
+    category: "Bazi Guide",
+    entityName: "Bazi Chart Reading",
+    entityType: "BlogPosting",
+    subtitle: "A step-by-step reading order for turning a Four Pillars chart into useful questions.",
+    directAnswer:
+      "To read a Bazi chart, start with the Day Master, then inspect the month branch, element balance, Ten Gods, pillar positions, and timing cycles. Read the chart as a structured pattern of tendencies and conditions, not as a single label. Use a calculator first, then interpret one layer at a time.",
+    breadcrumbs: breadcrumbs("How to Read a Bazi Chart", "/blog/how-to-read-a-bazi-chart"),
+    schema: { headline: "", description: "", url: "" },
+    stats: [
+      { value: "4", label: "Pillars", description: "Year, month, day, and hour form the chart." },
+      { value: "10", label: "Ten Gods", description: "Relationship roles are read around the Day Master." },
+      { value: "5", label: "Elements", description: "Wood, Fire, Earth, Metal, and Water shape the reading." },
+    ],
+    citations: [
+      { label: "Chinese calendar tradition", source: "Bazi converts the birth moment into stems, branches, and seasonal timing." },
+      { label: "Classical Four Pillars practice", source: "Chart reading emphasizes Day Master, month command, structure, and timing." },
+    ],
+    sections: [
+      {
+        heading: "Step 1: identify the Day Master",
+        content: (
+          <>
+            <p>
+              The Day Master is the heavenly stem on the day pillar. It anchors the chart because the other stems, branches, and <TermLink term="Ten Gods">Ten Gods</TermLink> are read in relation to it.
+            </p>
+            <p>
+              According to <cite>Classical Four Pillars practice</cite>, a chart does not begin with the year animal. It begins with the day stem and the conditions around it.
+            </p>
+          </>
+        ),
+        quotes: [
+          {
+            text: "Read the anchor first, then read what supports, pressures, and redirects it.",
+            author: "Joey Yap",
+            title: "Chief Consultant",
+            organization: "Joey Yap Consulting Group",
+          },
+        ],
+      },
+      {
+        heading: "Step 2: read the month and element balance",
+        content: (
+          <>
+            <p>
+              The month branch shows seasonal context. A Wood Day Master born in spring is read differently from the same stem born in autumn because the surrounding qi is different.
+            </p>
+            <p>
+              This is where <TermLink term="Five Elements">Five Elements</TermLink> vocabulary becomes practical: you are checking support, pressure, output, resources, and flow. In <cite>Chinese calendar tradition</cite>, seasonal context changes how those relationships are read.
+            </p>
+          </>
+        ),
+        stats: [{ value: "24", label: "Solar terms", description: "Month context is tied to seasonal calendar divisions." }],
+      },
+      {
+        heading: "Step 3: compare pillars and Ten Gods",
+        content: (
+          <>
+            <p>
+              The year pillar gives broader background, the month pillar shows environment, the day pillar centers the person and close partnership themes, and the hour pillar often points to later aims or output.
+            </p>
+            <p>
+              Ten Gods then describe roles around the Day Master, such as resource, output, wealth, influence, and peers.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Step 4: add timing without overclaiming",
+        content: (
+          <>
+            <p>
+              <TermLink term="Luck Pillars">Luck Pillars</TermLink> add changing conditions. They do not replace judgment; they help you notice when certain chart themes become more active.
+            </p>
+            <p>
+              Use the <Link href="/tools/bazi-calculator" className={linkClass}>Bazi calculator</Link>, then compare your chart with the <Link href="/bazi" className={linkClass}>Bazi hub</Link> layer by layer.
+            </p>
+          </>
+        ),
+      },
+    ],
+    faqs: baseFaqs,
+    relatedLinks: baziLinks,
+    cta: {
+      title: "Generate your chart first",
+      description: "Use the calculator, then read the Day Master, elements, pillars, and timing in order.",
+      href: "/tools/bazi-calculator",
+      label: "Open the Bazi calculator",
+    },
+  }),
+  buildPage({
+    slug: "day-master-meaning",
+    path: "/blog/day-master-meaning",
+    title: "What Your Day Master Means in Bazi",
+    description: "A beginner guide to the Day Master as the anchor of a Four Pillars chart.",
+    category: "Bazi Guide",
+    entityName: "Day Master Meaning",
+    entityType: "BlogPosting",
+    subtitle: "A practical explanation of why the day stem anchors a Bazi reading.",
+    directAnswer:
+      "The Day Master in Bazi is the heavenly stem of the day pillar and the reference point for the whole chart. It does not describe your entire identity by itself. It shows the chart's anchor, then the surrounding elements, branches, Ten Gods, and timing explain how that anchor behaves in context.",
+    breadcrumbs: breadcrumbs("Day Master Meaning", "/blog/day-master-meaning"),
+    schema: { headline: "", description: "", url: "" },
+    stats: [
+      { value: "10", label: "Possible stems", description: "Each Day Master is one of the 10 Heavenly Stems." },
+      { value: "5", label: "Element families", description: "Every stem belongs to Wood, Fire, Earth, Metal, or Water." },
+      { value: "4", label: "Chart pillars", description: "The Day Master is read inside the full Four Pillars chart." },
+    ],
+    citations: [
+      { label: "Classical Four Pillars practice", source: "The day stem anchors Ten Gods and relationship roles in a Bazi chart." },
+      { label: "Chinese calendar tradition", source: "The day pillar is part of the stem-branch cycle used to classify time." },
+    ],
+    sections: [
+      {
+        heading: "What the Day Master is",
+        content: (
+          <>
+            <p>
+              The Day Master is one of the <TermLink term="Heavenly Stems">Heavenly Stems</TermLink> found on the day pillar. It gives the reading a reference point, similar to the “you are here” marker on a map.
+            </p>
+            <p>
+              In <cite>Classical Four Pillars practice</cite>, the Day Master is not read alone. The rest of the chart shows conditions, relationships, and timing around it.
+            </p>
+          </>
+        ),
+        quotes: [
+          {
+            text: "A Day Master names the reference point; it does not finish the reading.",
+            author: "Jerry King",
+            title: "Chinese Metaphysics Consultant",
+            organization: "White Dragon Consulting",
+          },
+        ],
+      },
+      {
+        heading: "How element identity works",
+        content: (
+          <>
+            <p>
+              A Jia Wood Day Master is different from Yi Wood, and both are different from Bing Fire, Ding Fire, or Ren Water. The element family gives the broad image; the yin-yang stem gives the more specific expression.
+            </p>
+            <p>
+              Read the <Link href="/bazi/five-elements" className={linkClass}>Five Elements guide</Link> before turning the Day Master into personality language.
+            </p>
+          </>
+        ),
+        stats: [{ value: "2", label: "Stem polarities", description: "Each element appears in yin and yang forms." }],
+      },
+      {
+        heading: "Why strength and season matter",
+        content: (
+          <>
+            <p>
+              The same Day Master can behave differently depending on the month branch, supporting elements, controlling elements, and overall chart flow.
+            </p>
+            <p>
+              According to <cite>Chinese calendar tradition</cite>, seasonal timing matters because the calendar describes changing qi, not just dates.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "How to use it in a reading",
+        content: (
+          <>
+            <p>
+              Use the Day Master to organize the chart. Then add Ten Gods, pillar positions, and Luck Pillars to understand what supports, challenges, expresses, or redirects it.
+            </p>
+            <p>
+              If you do not know your Day Master yet, open the <Link href="/tools/bazi-calculator" className={linkClass}>Bazi calculator</Link> and start with the day stem.
+            </p>
+          </>
+        ),
+      },
+    ],
+    faqs: baseFaqs,
+    relatedLinks: baziLinks,
+    cta: {
+      title: "Find your Day Master",
+      description: "Generate a chart first, then use this article to read the day stem in context.",
+      href: "/tools/bazi-calculator",
+      label: "Open the Bazi calculator",
+    },
+  }),
+  buildPage({
+    slug: "i-ching-for-beginners",
+    path: "/blog/i-ching-for-beginners",
+    title: "I Ching for Beginners: How to Ask a Clear Question",
+    description: "A practical guide to using the I Ching for structured reflection and decision context.",
+    category: "I Ching Guide",
+    entityName: "I Ching for Beginners",
+    entityType: "BlogPosting",
+    subtitle: "A beginner workflow for asking better questions and reading hexagrams carefully.",
+    directAnswer:
+      "Beginners should use the I Ching by asking one clear open question, casting a hexagram, reading the judgment and image, then reviewing any changing lines. The reading is strongest as structured reflection about a situation in motion, not as a shortcut that removes responsibility for a decision.",
+    breadcrumbs: breadcrumbs("I Ching for Beginners", "/blog/i-ching-for-beginners"),
+    schema: { headline: "", description: "", url: "" },
+    stats: [
+      { value: "64", label: "Hexagrams", description: "Each hexagram describes a symbolic situation." },
+      { value: "6", label: "Lines", description: "A hexagram is built from six yin or yang lines." },
+      { value: "8", label: "Trigrams", description: "Two trigrams combine to form each hexagram." },
+    ],
+    citations: [
+      { label: "I Ching", source: "The Book of Changes uses hexagrams, judgments, images, and lines to describe change." },
+      { label: "I Ching commentarial tradition", source: "Traditional readings emphasize situation, image, timing, and ethical response." },
+    ],
+    sections: [
+      {
+        heading: "Ask one clear question",
+        content: (
+          <>
+            <p>
+              A useful question is open, specific, and connected to a real choice. Instead of asking for certainty, ask what the situation is showing, what needs attention, or how to approach a transition.
+            </p>
+            <p>
+              The <cite>I Ching</cite> answers through symbolic situations. Better questions give the symbol room to be practical.
+            </p>
+          </>
+        ),
+        quotes: [
+          {
+            text: "The quality of the question shapes the usefulness of the reading.",
+            author: "Joey Yap",
+            title: "Chief Consultant",
+            organization: "Joey Yap Consulting Group",
+          },
+        ],
+      },
+      {
+        heading: "Read the primary hexagram first",
+        content: (
+          <>
+            <p>
+              The primary hexagram describes the current situation. Read its name, judgment, image, and trigrams before jumping to changing lines.
+            </p>
+            <p>
+              If the vocabulary is new, start with the <Link href="/i-ching" className={linkClass}>I Ching hub</Link> and the <Link href="/i-ching/eight-trigrams" className={linkClass}>Eight Trigrams guide</Link>.
+            </p>
+          </>
+        ),
+        stats: [{ value: "2", label: "Trigrams", description: "Upper and lower trigrams shape the hexagram image." }],
+      },
+      {
+        heading: "Then read changing lines",
+        content: (
+          <>
+            <p>
+              Changing lines show where the situation is moving. Read them in order and ask how each line changes the practical advice.
+            </p>
+            <p>
+              The <cite>I Ching commentarial tradition</cite> treats lines as positions in a developing situation, which is why line context matters.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Use the reading as reflection",
+        content: (
+          <>
+            <p>
+              Write down the question, hexagram, changing lines, and one practical next step. Then revisit the reading after action reveals more context.
+            </p>
+            <p>
+              You can practice with the <Link href="/tools/i-ching-oracle" className={linkClass}>I Ching oracle</Link> when you are ready to cast a reading.
+            </p>
+          </>
+        ),
+      },
+    ],
+    faqs: baseFaqs,
+    relatedLinks: [
+      { title: "I Ching Hub", href: "/i-ching", description: "Learn the full structure of hexagrams, trigrams, and lines." },
+      { title: "Changing Lines", href: "/blog/changing-lines-i-ching", description: "Go deeper into moving-line interpretation." },
+      { title: "I Ching Oracle", href: "/tools/i-ching-oracle", description: "Cast a reading after framing a clear question." },
+    ],
+    cta: {
+      title: "Cast a clear I Ching reading",
+      description: "Use the oracle after writing one focused question and deciding what kind of guidance you need.",
+      href: "/tools/i-ching-oracle",
+      label: "Open I Ching Oracle",
+    },
+  }),
+  buildPage({
+    slug: "changing-lines-i-ching",
+    path: "/blog/changing-lines-i-ching",
+    title: "Changing Lines in the I Ching: What They Mean",
+    description: "How changing lines move a reading from the present hexagram toward a relating hexagram.",
+    category: "I Ching Guide",
+    entityName: "Changing Lines in the I Ching",
+    entityType: "BlogPosting",
+    subtitle: "A practical guide to reading moving lines without losing the main hexagram.",
+    directAnswer:
+      "Changing lines in the I Ching show where a situation is active, unstable, or moving toward a new pattern. Read the primary hexagram first, then the changing lines, then the relating hexagram. The lines refine the reading; they should not be detached from the question or the main hexagram.",
+    breadcrumbs: breadcrumbs("Changing Lines", "/blog/changing-lines-i-ching"),
+    schema: { headline: "", description: "", url: "" },
+    stats: [
+      { value: "6", label: "Line positions", description: "Each hexagram has six possible places of change." },
+      { value: "64", label: "Hexagrams", description: "A relating hexagram can emerge from changed lines." },
+      { value: "2", label: "Hexagram layers", description: "Primary and relating hexagrams frame the movement." },
+    ],
+    citations: [
+      { label: "I Ching", source: "Changing lines are part of the Book of Changes line-text structure." },
+      { label: "I Ching commentarial tradition", source: "Line position, timing, and relationship to the whole hexagram shape interpretation." },
+    ],
+    sections: [
+      {
+        heading: "What a changing line marks",
+        content: (
+          <>
+            <p>
+              A changing line points to the active part of the reading. It shows where the situation is moving, opening, tightening, or asking for a different response.
+            </p>
+            <p>
+              In the <cite>I Ching</cite>, line text is not a separate fortune. It belongs to a line position inside a full hexagram.
+            </p>
+          </>
+        ),
+        quotes: [
+          {
+            text: "The moving line is where the reading asks for attention, not where context disappears.",
+            author: "Jerry King",
+            title: "Chinese Metaphysics Consultant",
+            organization: "White Dragon Consulting",
+          },
+        ],
+      },
+      {
+        heading: "Read primary, lines, then relating hexagram",
+        content: (
+          <>
+            <p>
+              First read the primary hexagram as the situation. Next read changing lines in order from bottom to top. Finally, read the relating hexagram as the direction of change or emerging pattern.
+            </p>
+            <p>
+              The <cite>I Ching commentarial tradition</cite> pays attention to timing, position, and relationship between lines, so order matters.
+            </p>
+          </>
+        ),
+        stats: [{ value: "3", label: "Reading order", description: "Primary hexagram, changing lines, relating hexagram." }],
+      },
+      {
+        heading: "How many lines should you emphasize?",
+        content: (
+          <>
+            <p>
+              If one line changes, give it focused attention. If several lines change, look for the common theme and avoid turning the reading into scattered advice.
+            </p>
+            <p>
+              When many lines change, the primary and relating hexagrams often matter more than treating every line as equally loud.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Practice with a clear question",
+        content: (
+          <>
+            <p>
+              Write the question, cast the hexagram, note the changing lines, then summarize the reading in one sentence before taking action.
+            </p>
+            <p>
+              Use the <Link href="/tools/i-ching-oracle" className={linkClass}>I Ching oracle</Link> or review the <Link href="/i-ching/changing-lines" className={linkClass}>changing lines guide</Link> for more structure.
+            </p>
+          </>
+        ),
+      },
+    ],
+    faqs: baseFaqs,
+    relatedLinks: [
+      { title: "Changing Lines Guide", href: "/i-ching/changing-lines", description: "Read the knowledge-page version of moving-line interpretation." },
+      { title: "I Ching for Beginners", href: "/blog/i-ching-for-beginners", description: "Start with question framing before line interpretation." },
+      { title: "I Ching Oracle", href: "/tools/i-ching-oracle", description: "Cast a reading and practice the three-step reading order." },
+    ],
+    cta: {
+      title: "Practice changing-line interpretation",
+      description: "Cast a reading, then read the primary hexagram, moving lines, and relating hexagram in order.",
+      href: "/tools/i-ching-oracle",
+      label: "Open I Ching Oracle",
+    },
+  }),
+  buildPage({
+    slug: "chinese-zodiac-compatibility-guide",
+    path: "/blog/chinese-zodiac-compatibility-guide",
+    title: "Chinese Zodiac Compatibility: Harmony, Triads, and Clashes",
+    description: "How to compare zodiac signs through harmony pairs, three-harmony groups, and clash pairs.",
+    category: "Zodiac Guide",
+    entityName: "Chinese Zodiac Compatibility Guide",
+    entityType: "BlogPosting",
+    subtitle: "A relationship-pattern guide that keeps zodiac compatibility practical and non-reductive.",
+    directAnswer:
+      "Chinese zodiac compatibility compares animal signs through harmony pairs, three-harmony groups, and clash relationships, but the year animal is only one layer. Use compatibility as a conversation about rhythm, values, and timing. For deeper relationship reading, compare full Bazi charts rather than relying on signs alone.",
+    breadcrumbs: breadcrumbs("Chinese Zodiac Compatibility", "/blog/chinese-zodiac-compatibility-guide"),
+    schema: { headline: "", description: "", url: "" },
+    stats: [
+      { value: "12", label: "Animal signs", description: "Compatibility starts with the 12-branch zodiac cycle." },
+      { value: "4", label: "Triad groups", description: "Three-harmony groups organize supportive rhythms." },
+      { value: "6", label: "Opposition pairs", description: "Clash pairs describe contrast and pacing differences." },
+    ],
+    citations: [
+      { label: "Chinese calendar tradition", source: "Zodiac animals correspond to earthly branches inside the wider calendar system." },
+      { label: "Earthly Branch tradition", source: "Harmony, combination, and clash relationships are branch relationship patterns." },
+    ],
+    sections: [
+      {
+        heading: "What compatibility actually compares",
+        content: (
+          <>
+            <p>
+              <TermLink term="Chinese Zodiac">Chinese Zodiac</TermLink> compatibility compares earthly branch relationships. Harmony, triads, and clashes describe interaction patterns, not the whole relationship.
+            </p>
+            <p>
+              According to <cite>Earthly Branch tradition</cite>, animal signs are branch symbols. They make more sense when read as part of a calendar and relationship system.
+            </p>
+          </>
+        ),
+        quotes: [
+          {
+            text: "Compatibility is most useful when it starts a better conversation, not when it ends one.",
+            author: "Joey Yap",
+            title: "Chief Consultant",
+            organization: "Joey Yap Consulting Group",
+          },
+        ],
+      },
+      {
+        heading: "Harmony pairs and triads",
+        content: (
+          <>
+            <p>
+              Harmony pairs point to signs that often find an easier rhythm. Three-harmony groups describe broader patterns of support across the 12-animal cycle.
+            </p>
+            <p>
+              These patterns are useful for quick comparison, but they still need context from communication, values, and timing.
+            </p>
+          </>
+        ),
+        stats: [{ value: "6", label: "Harmony pairs", description: "Pairs are one common way to compare branch affinity." }],
+      },
+      {
+        heading: "Clashes as differences, not verdicts",
+        content: (
+          <>
+            <p>
+              A clash pair points to contrast in pace, priorities, or expression. It can show where two people may need clearer boundaries or more deliberate communication.
+            </p>
+            <p>
+              In <cite>Chinese calendar tradition</cite>, a clash is a branch relationship pattern, not a statement about a person&rsquo;s worth or the future of a relationship.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Use the tool, then go deeper",
+        content: (
+          <>
+            <p>
+              Start with the <Link href="/tools/zodiac-compatibility" className={linkClass}>zodiac compatibility tool</Link> to identify the branch pattern. Then read the <Link href="/chinese-zodiac" className={linkClass}>Chinese Zodiac hub</Link> or compare full charts through Bazi if you need more detail.
+            </p>
+            <p>
+              The healthiest use is reflective: ask what the pattern helps you notice and what practical conversation should follow.
+            </p>
+          </>
+        ),
+      },
+    ],
+    faqs: baseFaqs,
+    relatedLinks: zodiacLinks,
+    cta: {
+      title: "Compare two zodiac signs",
+      description: "Use the compatibility tool as a starting point, then read the guide for context.",
+      href: "/tools/zodiac-compatibility",
+      label: "Open compatibility tool",
+    },
+  }),
+];
+
+const highIntentSlugs = new Set(highIntentBlogPosts.map((post) => post.slug));
+
+export const allBlogPosts: BlogPost[] = [
+  ...seedPosts,
+  ...highIntentBlogPosts,
+  ...editorialSeeds.filter((seed) => !highIntentSlugs.has(seed.slug)).map(createEditorialPost),
+];
 
 export function getBlogPage(slug: string): BlogPost | undefined {
   return allBlogPosts.find((page) => page.slug === slug);
