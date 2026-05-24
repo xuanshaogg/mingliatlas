@@ -1,7 +1,9 @@
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://mingliatlas.com";
+
 export const SITE = {
   name: "Eastern Blueprint",
   tagline: "Where Eastern Wisdom Meets Modern Logic",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://chinesemetaphysics.com",
+  url: siteUrl,
   description:
     "Explore Bazi, Ziwei Doushu, I Ching, Feng Shui, and Chinese Zodiac through clear, modern Chinese metaphysics guides and tools.",
 };
