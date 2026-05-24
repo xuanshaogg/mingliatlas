@@ -8,22 +8,28 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-ink-200/70 bg-paper/90 backdrop-blur-xl dark:border-white/10 dark:bg-ink-950/85">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="group flex items-center gap-3" aria-label={`${SITE.name} home`}>
+        <Link href="/" className="group flex items-center gap-2" aria-label={`${SITE.name} home`}>
+          <span className="flex items-center gap-2 sm:hidden">
+            <Image src="/logo-icon.svg" alt="" width={40} height={40} priority className="h-10 w-10 flex-none" />
+            <span className="font-serif text-xl font-bold leading-none text-ink-950 dark:text-paper">
+              Eastern Blueprint
+            </span>
+          </span>
           <Image
             src="/logo.svg"
             alt=""
-            width={240}
+            width={420}
             height={56}
             priority
-            className="h-10 w-auto max-w-[13rem] transition-transform group-hover:scale-[1.02] dark:hidden sm:max-w-[15rem]"
+            className="hidden h-10 w-auto transition-transform group-hover:scale-[1.02] dark:hidden sm:block"
           />
           <Image
             src="/logo-white.svg"
             alt=""
-            width={240}
+            width={420}
             height={56}
             priority
-            className="hidden h-10 w-auto max-w-[13rem] transition-transform group-hover:scale-[1.02] dark:block sm:max-w-[15rem]"
+            className="hidden h-10 w-auto transition-transform group-hover:scale-[1.02] dark:sm:block"
           />
         </Link>
 

@@ -229,9 +229,9 @@ export function calculateBaziChart(input: BaziChartInput): BaziChart {
     missingElements,
     readingHighlights: buildReadingHighlights(dayMaster, dominantElement, elementBalance, pillars),
     notices: [
-      "This MVP uses deterministic Gan-Zhi and lunar calendar conversion from the supplied civil birth time.",
+      "This chart uses deterministic Gan-Zhi and lunar calendar conversion from the supplied civil birth time.",
       "No birth data is stored by this page; calculation runs in the browser session.",
-      "Swiss Ephemeris-grade solar-term boundary correction and AI interpretation are not enabled in this local MVP.",
+      "Solar-term boundary correction and AI interpretation are intentionally kept separate from this browser chart.",
     ],
   };
 }

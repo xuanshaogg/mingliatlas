@@ -108,7 +108,7 @@ export default function BaziCalculator() {
             </label>
 
             <label className="block">
-              <span className="text-sm font-medium text-ink-900 dark:text-paper">Time zone label</span>
+              <span className="text-sm font-medium text-ink-900 dark:text-paper">Time zone note</span>
               <input
                 type="text"
                 value={form.timezone}
@@ -119,7 +119,7 @@ export default function BaziCalculator() {
             </label>
 
             <label className="block">
-              <span className="text-sm font-medium text-ink-900 dark:text-paper">Gender for later luck-cycle logic</span>
+              <span className="text-sm font-medium text-ink-900 dark:text-paper">Gender (optional)</span>
               <select
                 value={form.gender}
                 onChange={(event) => updateForm("gender", event.target.value as FormState["gender"])}
@@ -156,13 +156,13 @@ export default function BaziCalculator() {
           </div>
         </form>
 
-        <div className="rounded-lg border border-ink-200 bg-paper-100 p-6 dark:border-white/10 dark:bg-ink-900">
-          <h2 className="text-xl font-semibold tracking-tight text-ink-950 dark:text-paper">What this MVP calculates</h2>
+        <div className="self-start rounded-lg border border-ink-200 bg-paper-100 p-6 dark:border-white/10 dark:bg-ink-900">
+          <h2 className="text-xl font-semibold tracking-tight text-ink-950 dark:text-paper">What this calculator returns</h2>
           <div className="mt-5 grid gap-4 text-sm leading-6 text-ink-700 dark:text-ink-200 md:grid-cols-2">
             <p>Four Gan-Zhi pillars for year, month, day, and hour using the existing Chinese calendar module.</p>
             <p>Day Master, stem and branch metadata, hidden stems, and Ten Gods relative to the Day Master.</p>
             <p>Weighted Five Element balance from visible stems and branch hidden-stem structure.</p>
-            <p>Basic reading cues that stay deterministic and avoid unsupported AI claims.</p>
+            <p>Reading cues that stay deterministic and avoid unsupported prediction claims.</p>
           </div>
         </div>
       </section>

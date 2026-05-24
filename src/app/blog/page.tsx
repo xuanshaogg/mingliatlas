@@ -89,7 +89,7 @@ export default function BlogIndexPage() {
         <div className="mt-12 rounded-[1.25rem] border border-gold-300/70 bg-gold-50 p-6 dark:border-gold-500/30 dark:bg-gold-500/10">
           <BookOpen className="h-6 w-6 text-brand-primary dark:text-gold-300" aria-hidden="true" />
           <p className="mt-3 text-sm leading-7 text-ink-700 dark:text-ink-200">
-            Many articles are MVP entries designed to secure URL structure, schema, and internal links before longform editorial expansion.
+            Articles are kept focused and practical, with internal links that help you move from definitions to tools and deeper learning paths.
           </p>
         </div>
       </div>

@@ -9,7 +9,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function SubscribePage() {
+interface SubscribePageProps {
+  searchParams?: Promise<{ error?: string }>;
+}
+
+export default async function SubscribePage({ searchParams }: SubscribePageProps) {
+  const params = await searchParams;
+  const hasValidationError = params?.error === "invalid";
+
   return (
     <main className="bg-paper px-4 py-12 dark:bg-ink-950 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-3xl">
@@ -24,6 +31,11 @@ export default function SubscribePage() {
         </p>
 
         <form className="mt-10 grid gap-4 rounded-[1.25rem] border border-ink-200 bg-white p-6 dark:border-white/10 dark:bg-white/5" action="/api/subscribe" method="post">
+          {hasValidationError ? (
+            <p role="alert" className="rounded-lg border border-brand-200 bg-brand-50 px-4 py-3 text-sm leading-6 text-brand-900 dark:border-brand-500/30 dark:bg-brand-500/10 dark:text-brand-100">
+              Please enter a valid email address before subscribing.
+            </p>
+          ) : null}
           <label className="grid gap-2 text-sm font-medium text-ink-900 dark:text-paper" htmlFor="subscribe-email">
             Email address
             <input
@@ -31,6 +43,7 @@ export default function SubscribePage() {
               name="email"
               type="email"
               required
+              autoComplete="email"
               placeholder="you@example.com"
               className="rounded-md border border-ink-200 bg-paper px-4 py-3 text-sm text-ink-950 outline-none focus:border-brand-primary dark:border-white/10 dark:bg-ink-900 dark:text-paper"
             />

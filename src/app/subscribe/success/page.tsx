@@ -1,4 +1,17 @@
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Subscription Received",
+  description: "Confirmation page for a submitted newsletter subscription.",
+  alternates: {
+    canonical: "/subscribe/success",
+  },
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default function SubscribeSuccessPage() {
   return (

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import KnowledgePage from "@/components/templates/KnowledgePage";
 import { getFengShuiPage, getFengShuiStaticParams } from "@/content/feng-shui/pages";
+import { buildKnowledgePageMetadata } from "@/lib/seo/metadata";
 
 interface FengShuiPageProps {
   params: Promise<{
@@ -25,19 +26,7 @@ export async function generateMetadata({ params }: FengShuiPageProps): Promise<M
     return {};
   }
 
-  return {
-    title: page.title,
-    description: page.description,
-    alternates: {
-      canonical: page.path,
-    },
-    openGraph: {
-      title: page.title,
-      description: page.description,
-      url: page.data.schema.url,
-      type: "article",
-    },
-  };
+  return buildKnowledgePageMetadata(page);
 }
 
 export default async function FengShuiPage({ params }: FengShuiPageProps) {

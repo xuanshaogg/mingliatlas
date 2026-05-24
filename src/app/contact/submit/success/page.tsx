@@ -1,4 +1,17 @@
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Message Received",
+  description: "Confirmation page for a submitted contact message.",
+  alternates: {
+    canonical: "/contact/submit/success",
+  },
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default function ContactSuccessPage() {
   return (

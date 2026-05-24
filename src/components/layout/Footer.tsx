@@ -10,11 +10,11 @@ export default function Footer() {
         <div>
           <Link href="/" className="flex items-center gap-3" aria-label={`${SITE.name} home`}>
             <Image
-              src="/logo-vertical.svg"
+              src="/logo-white.svg"
               alt=""
-              width={176}
-              height={160}
-              className="h-24 w-auto rounded-2xl bg-paper/95 p-3"
+              width={420}
+              height={56}
+              className="h-12 w-auto max-w-full"
             />
           </Link>
           <p className="mt-5 max-w-sm text-sm leading-6 text-ink-300">
@@ -41,9 +41,15 @@ export default function Footer() {
           <ul className="mt-4 space-y-3 text-sm text-ink-300">
             {footerNavigation.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="transition hover:text-white">
-                  {item.label}
-                </Link>
+                {item.href.endsWith(".xml") ? (
+                  <a href={item.href} className="transition hover:text-white">
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link href={item.href} className="transition hover:text-white">
+                    {item.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
@@ -62,6 +68,8 @@ export default function Footer() {
               id="footer-email"
               name="email"
               type="email"
+              required
+              autoComplete="email"
               placeholder="you@example.com"
               className="min-w-0 flex-1 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm text-white placeholder:text-ink-400 outline-none ring-gold-400 transition focus:ring-2"
             />

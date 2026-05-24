@@ -249,7 +249,7 @@ function createTopicPage(topic: TopicInput): ZiweiContentPage {
               {topic.description} In Ziwei, meaning comes from the relationship between star, palace, transformation, and timing cycle.
             </p>
             <p>
-              This MVP page establishes the entity, URL, structured data, and internal-link position for later longform expansion.
+              Use this page as a concise reference point, then follow the related links for broader chart context and examples.
             </p>
           </>
         ),

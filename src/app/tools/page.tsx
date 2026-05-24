@@ -57,7 +57,7 @@ export default function ToolsPage() {
             Free tools
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-ink-600 dark:text-ink-300">
-            Start with the published Bazi calculator, then use this hub as additional deterministic and AI-assisted tools come online.
+            Use these browser-friendly workflows for quick charts, I Ching reflection, and zodiac compatibility checks.
           </p>
 
           <div className="mt-10 grid gap-5 md:grid-cols-3">

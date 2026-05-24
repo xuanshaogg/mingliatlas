@@ -78,19 +78,26 @@ The current CI only validates/generates Prisma and builds the app. It does not r
 
 ## Database Migration Flow
 
-After real Supabase credentials are available:
+Local and production use the same variable names. Store real values in `.env.local` and Vercel environment variables; keep `.env` as a non-production placeholder.
 
 ```bash
 cp .env.example .env.local
-# Fill DATABASE_URL and public Supabase variables
-pnpm prisma migrate dev
-pnpm prisma generate
+# Fill DATABASE_URL and public Supabase variables.
+pnpm exec prisma migrate status
+pnpm exec prisma migrate deploy
+pnpm exec prisma generate
 ```
 
-For production, run migrations in a controlled release step before or during deployment, not from every CI pull request.
+For production, run migrations in a controlled release step before or during deployment, not from every CI pull request. If the remote `public` schema already contains unrelated tables, apply the initial SQL once and baseline with `pnpm exec prisma migrate resolve --applied <migration_name>`.
+
+### Current Production Database Status
+
+- Supabase project `fuiuwcsvztafedmszkyr` is linked locally via Supabase CLI.
+- Vercel Production has `DATABASE_URL`, `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, and `NEXT_PUBLIC_SITE_URL`.
+- The initial Prisma schema was applied to Supabase on 2026-05-24 and `pnpm exec prisma migrate status` reports the database schema is up to date.
+- Runtime `DATABASE_URL` uses a dedicated `mingliatlas_app` Postgres role through Supabase pooler, not the Supabase owner password.
 
 ## Current Blockers
 
-- Supabase project URL is configured for production, but `DATABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` still need the real Supabase credentials before running remote Prisma migrations.
 - Preview environment variables and PR preview deployment comments still need GitHub/Vercel integration verification.
-- AI interpretation remains disabled until `AI_PROVIDER_BASE_URL` and `AI_PROVIDER_API_KEY` are configured.
+- AI interpretation now has a production DeepSeek provider. RAG/source-corpus retrieval is still pending.

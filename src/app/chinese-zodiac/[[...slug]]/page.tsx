@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import KnowledgePage from "@/components/templates/KnowledgePage";
 import { getZodiacPage, getZodiacStaticParams } from "@/content/zodiac/pages";
+import { buildKnowledgePageMetadata } from "@/lib/seo/metadata";
 
 interface ZodiacPageProps {
   params: Promise<{
@@ -25,19 +26,7 @@ export async function generateMetadata({ params }: ZodiacPageProps): Promise<Met
     return {};
   }
 
-  return {
-    title: page.title,
-    description: page.description,
-    alternates: {
-      canonical: page.path,
-    },
-    openGraph: {
-      title: page.title,
-      description: page.description,
-      url: page.data.schema.url,
-      type: "article",
-    },
-  };
+  return buildKnowledgePageMetadata(page);
 }
 
 export default async function ZodiacPage({ params }: ZodiacPageProps) {

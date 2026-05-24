@@ -118,7 +118,7 @@ export default function BaziChartResult({ chart }: BaziChartResultProps) {
             Privacy
           </div>
           <p className="mt-3 text-sm leading-6 text-ink-700 dark:text-ink-200">
-            This MVP calculates in the browser and does not save your birth details to a server.
+            This calculator runs in the browser and does not save your birth details to a server.
           </p>
         </div>
       </div>
@@ -135,7 +135,7 @@ export default function BaziChartResult({ chart }: BaziChartResultProps) {
         <section className="rounded-lg border border-ink-200 bg-white p-6 dark:border-white/10 dark:bg-white/5">
           <h2 className="text-2xl font-semibold tracking-tight text-ink-950 dark:text-paper">Five Element Balance</h2>
           <p className="mt-2 text-sm leading-6 text-ink-600 dark:text-ink-300">
-            Weighted from visible heavenly stems and branch hidden stems. This is a practical MVP signal, not a full
+            Weighted from visible heavenly stems and branch hidden stems. This is a practical signal, not a full
             strength judgment.
           </p>
           <div className="mt-6 space-y-4">

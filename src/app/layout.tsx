@@ -107,6 +107,8 @@ export default function RootLayout({
       <head>
         <OrganizationSchema />
         <WebSiteSchema />
+        <link rel="alternate" type="application/rss+xml" title={`${SITE.name} RSS Feed`} href="/rss.xml" />
+        <link rel="alternate" type="text/plain" title={`${SITE.name} LLM Context`} href="/llms.txt" />
         {plausibleDomain ? (
           <Script
             defer

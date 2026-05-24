@@ -3,7 +3,11 @@ import { createElement, Fragment, type ReactNode } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import sitemap from "@/app/sitemap";
+import { GET as getLlmsFullTxt } from "@/app/llms-full.txt/route";
+import { GET as getLlmsTxt } from "@/app/llms.txt/route";
 import robots from "@/app/robots";
+import { GET as getRssFeed } from "@/app/rss.xml/route";
 import { allBaziPages } from "@/content/bazi/pages";
 import { allBlogPosts } from "@/content/blog/posts";
 import { allFengShuiPages } from "@/content/feng-shui/pages";
@@ -240,6 +244,46 @@ describe("GEO audit", () => {
         allow: "/",
       });
     }
+  });
+
+  it("keeps XML sitemap entries canonical and stable", () => {
+    const sitemapEntries = sitemap();
+    const entriesByUrl = new Map(sitemapEntries.map((entry) => [entry.url, entry]));
+
+    expect(sitemapEntries.length).toBe(publishedSitePages.length);
+    expect(entriesByUrl.size).toBe(sitemapEntries.length);
+    expect(entriesByUrl.has(`${SITE.url}/contact/submit/success`)).toBe(false);
+    expect(entriesByUrl.has(`${SITE.url}/subscribe/success`)).toBe(false);
+
+    for (const page of publishedSitePages) {
+      const entry = entriesByUrl.get(`${SITE.url}${page.href}`);
+
+      expect(entry, page.href).toBeDefined();
+      expect(entry?.lastModified, page.href).toBe(page.lastModified);
+      expect(entry?.changeFrequency, page.href).toBeTruthy();
+      expect(entry?.priority, page.href).toBeGreaterThan(0);
+    }
+  });
+
+  it("exposes AI-readable discovery files", async () => {
+    const llms = await getLlmsTxt().text();
+    const fullLlms = await getLlmsFullTxt().text();
+
+    expect(llms).toContain(`# ${SITE.name}`);
+    expect(llms).toContain(`${SITE.url}/llms-full.txt`);
+    expect(llms).toContain(`${SITE.url}/tools/bazi-calculator`);
+    expect(fullLlms).toContain("# Eastern Blueprint Full Page Index");
+    expect(fullLlms).toContain("## Bazi");
+    expect(fullLlms).toContain(`${SITE.url}/i-ching/hexagram-64`);
+  });
+
+  it("keeps RSS feed machine-readable for blog discovery", async () => {
+    const rss = await getRssFeed().text();
+
+    expect(rss).toContain('<atom:link href="');
+    expect(rss).toContain("<guid isPermaLink=\"true\">");
+    expect(rss).toContain("<pubDate>");
+    expect(rss).toContain("<lastBuildDate>");
   });
 
   it("builds schema required by the GEO matrix", () => {
