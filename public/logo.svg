@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="420" height="56" viewBox="0 0 420 56" role="img" aria-labelledby="logo-title logo-desc">
-  <title id="logo-title">Eastern Blueprint provisional logo</title>
-  <desc id="logo-desc">A circular Tai Chi-inspired mark with five element points beside the Eastern Blueprint wordmark.</desc>
+  <title id="logo-title">mingliatlas logo</title>
+  <desc id="logo-desc">A circular Tai Chi-inspired mark with five element points beside the mingliatlas wordmark.</desc>
   <defs>
     <linearGradient id="eb-mark" x1="8" y1="6" x2="48" y2="50" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#8B0000" />
@@ -25,7 +25,7 @@
       <circle cx="13" cy="49.5" r="2.5" />
       <circle cx="4" cy="19.5" r="2.5" />
     </g>
-    <text x="68" y="25" fill="#1A1A2E" font-family="Cormorant Garamond, Georgia, serif" font-size="24" font-weight="700" letter-spacing="0.2">Eastern Blueprint</text>
+    <text x="68" y="25" fill="#1A1A2E" font-family="Cormorant Garamond, Georgia, serif" font-size="26" font-weight="700" letter-spacing="0">mingliatlas</text>
     <text x="69" y="42" fill="#3A3A50" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="600" letter-spacing="1.6">WHERE EASTERN WISDOM MEETS MODERN LOGIC</text>
   </g>
 </svg>

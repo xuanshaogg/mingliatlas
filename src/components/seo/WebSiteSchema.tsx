@@ -5,6 +5,7 @@ export default function WebSiteSchema() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: SITE.name,
+    alternateName: SITE.alternateNames,
     url: SITE.url,
     description: SITE.description,
     potentialAction: {

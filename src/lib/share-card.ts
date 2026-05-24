@@ -21,7 +21,7 @@ export interface ShareCardData {
   isFallback: boolean;
 }
 
-const DEFAULT_BASE_URL = "https://chinesemetaphysics.com";
+const DEFAULT_BASE_URL = "https://mingliatlas.com";
 const SHARE_CARD_PATH = "/api/share-card";
 const SUMMARY_MAX_LENGTH = 180;
 const QUERY_VALUE_MAX_LENGTH = 80;
@@ -57,7 +57,7 @@ export function shapeShareCardData(searchParams: URLSearchParams): ShareCardData
     return shapeZodiacShareCard(searchParams);
   }
 
-  return buildFallbackCard("Eastern Blueprint Tools", "Generate a local metaphysics result and share a privacy-safe preview.");
+  return buildFallbackCard("mingliatlas Tools", "Generate a local metaphysics result and share a privacy-safe preview.");
 }
 
 export function encodeShareParam(value: string | number | boolean | null | undefined): string | undefined {
@@ -205,7 +205,7 @@ function shapeZodiacShareCard(searchParams: URLSearchParams): ShareCardData {
 function buildFallbackCard(title: string, summary: string): ShareCardData {
   return {
     tool: "bazi",
-    eyebrow: "Eastern Blueprint",
+    eyebrow: "mingliatlas",
     title,
     subtitle: "Privacy-safe local tools",
     summary,

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Subscribe",
-  description: "Subscribe to the Eastern Blueprint newsletter.",
+  description: "Subscribe to the mingliatlas newsletter.",
   alternates: {
     canonical: "/subscribe",
   },

@@ -3,7 +3,7 @@ import StaticPage from "@/components/templates/StaticPage";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "About Eastern Blueprint, its editorial mission, and content standards.",
+  description: "About mingliatlas, its editorial mission, and content standards.",
   alternates: {
     canonical: "/about",
   },
@@ -13,8 +13,8 @@ export default function AboutPage() {
   return (
     <StaticPage
       eyebrow="Company"
-      title="About Eastern Blueprint"
-      description="Eastern Blueprint is built to make Chinese metaphysics understandable to Western readers through clear explanations, structured guides, and practical tools."
+      title="About mingliatlas"
+      description="mingliatlas is built to make Chinese metaphysics understandable to Western readers through clear explanations, structured guides, and practical tools."
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "About", href: "/about" },

@@ -108,14 +108,18 @@ export default function BaziCalculator() {
             </label>
 
             <label className="block">
-              <span className="text-sm font-medium text-ink-900 dark:text-paper">Time zone note</span>
+              <span className="text-sm font-medium text-ink-900 dark:text-paper">Birthplace or time zone note</span>
               <input
                 type="text"
                 value={form.timezone}
                 onChange={(event) => updateForm("timezone", event.target.value)}
-                placeholder="Example: America/New_York"
+                placeholder="Example: New York local time"
                 className="mt-2 h-11 w-full rounded-md border border-ink-200 bg-white px-3 text-sm text-ink-950 outline-none transition focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 dark:border-white/10 dark:bg-ink-950 dark:text-paper"
               />
+              <span className="mt-2 block text-xs leading-5 text-ink-500 dark:text-ink-400">
+                Enter the birth time as local civil time at the birthplace. This note labels the chart; it does not
+                convert time zones.
+              </span>
             </label>
 
             <label className="block">
@@ -159,10 +163,10 @@ export default function BaziCalculator() {
         <div className="self-start rounded-lg border border-ink-200 bg-paper-100 p-6 dark:border-white/10 dark:bg-ink-900">
           <h2 className="text-xl font-semibold tracking-tight text-ink-950 dark:text-paper">What this calculator returns</h2>
           <div className="mt-5 grid gap-4 text-sm leading-6 text-ink-700 dark:text-ink-200 md:grid-cols-2">
-            <p>Four Gan-Zhi pillars for year, month, day, and hour using the existing Chinese calendar module.</p>
+            <p>Four Gan-Zhi pillars for year, month, day, and hour from the local civil date-time you enter.</p>
             <p>Day Master, stem and branch metadata, hidden stems, and Ten Gods relative to the Day Master.</p>
             <p>Weighted Five Element balance from visible stems and branch hidden-stem structure.</p>
-            <p>Reading cues that stay deterministic and avoid unsupported prediction claims.</p>
+            <p>Reading cues that stay deterministic and separate calculation from AI interpretation.</p>
           </div>
         </div>
       </section>

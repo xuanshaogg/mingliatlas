@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import SearchDirectory from "@/components/search/SearchDirectory";
 import { publishedSitePages } from "@/lib/content/sitePages";
 
@@ -22,7 +23,15 @@ export default function SearchPage() {
           Type a topic, system, tool, or keyword to find the most useful guide.
         </p>
 
-        <SearchDirectory pages={publishedSitePages} />
+        <Suspense
+          fallback={
+            <div className="mt-10 rounded-lg border border-ink-200 bg-white p-6 text-sm text-ink-600 dark:border-white/10 dark:bg-white/5 dark:text-ink-300">
+              Loading search directory...
+            </div>
+          }
+        >
+          <SearchDirectory pages={publishedSitePages} />
+        </Suspense>
       </div>
     </main>
   );

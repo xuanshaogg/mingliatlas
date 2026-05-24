@@ -272,7 +272,7 @@ describe("GEO audit", () => {
     expect(llms).toContain(`# ${SITE.name}`);
     expect(llms).toContain(`${SITE.url}/llms-full.txt`);
     expect(llms).toContain(`${SITE.url}/tools/bazi-calculator`);
-    expect(fullLlms).toContain("# Eastern Blueprint Full Page Index");
+    expect(fullLlms).toContain(`# ${SITE.name} Full Page Index`);
     expect(fullLlms).toContain("## Bazi");
     expect(fullLlms).toContain(`${SITE.url}/i-ching/hexagram-64`);
   });

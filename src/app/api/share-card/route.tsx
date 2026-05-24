@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { shapeShareCardData } from "@/lib/share-card";
 
 export const runtime = "edge";
-export const alt = "Eastern Blueprint tool result share card";
+export const alt = "mingliatlas tool result share card";
 export const contentType = "image/png";
 export const size = {
   width: 1200,
@@ -46,7 +46,7 @@ export function GET(request: Request) {
             {data.eyebrow}
           </div>
           <div style={{ color: "#fef3c7", fontFamily: "Arial, sans-serif", fontSize: 26, fontWeight: 700 }}>
-            Eastern Blueprint
+            mingliatlas
           </div>
         </div>
 

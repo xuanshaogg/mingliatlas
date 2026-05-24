@@ -18,7 +18,7 @@ import { SITE } from "@/lib/constants";
 import { buildItemListSchema, JsonLd } from "@/lib/seo/jsonLd";
 
 export const metadata: Metadata = {
-  title: "Chinese Metaphysics Guides and Free Tools",
+  title: `${SITE.name} | Chinese Metaphysics Guides and Free Tools`,
   description:
     "Discover Bazi, Ziwei Doushu, I Ching, Feng Shui, and Chinese Zodiac through modern guides, structured explanations, and free tools.",
   alternates: {
@@ -149,7 +149,7 @@ function HeroAtlasPreview() {
         <div className="flex items-center justify-between border-b border-ink-100 px-5 py-4 dark:border-white/10">
           <div className="flex items-center gap-2 text-sm font-semibold text-ink-950 dark:text-paper">
             <Layers3 className="h-4 w-4 text-brand-primary dark:text-gold-300" aria-hidden="true" />
-            Mingli Atlas workspace
+            {SITE.name} workspace
           </div>
           <span className="rounded-full bg-gold-100 px-3 py-1 text-xs font-semibold text-gold-800 dark:bg-gold-500/15 dark:text-gold-200">
             Free tools

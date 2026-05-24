@@ -41,7 +41,7 @@ export const generalPages: SitePage[] = [
   {
     title: "About",
     href: "/about",
-    description: "Mission, editorial standards, and the educational scope of Eastern Blueprint.",
+    description: "Mission, editorial standards, and the educational scope of mingliatlas.",
     section: "Company",
     lastModified: CONTENT_LAST_MODIFIED,
   },

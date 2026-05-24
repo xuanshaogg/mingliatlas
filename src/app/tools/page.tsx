@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Calculator, Coins, HeartHandshake } from "lucide-react";
+import DirectAnswer from "@/components/shared/DirectAnswer";
+import FAQSection, { type FAQ } from "@/components/shared/FAQSection";
+import RelatedLinks from "@/components/shared/RelatedLinks";
 import { SITE } from "@/lib/constants";
-import { buildItemListSchema, JsonLd } from "@/lib/seo/jsonLd";
+import { buildFAQPageSchema, buildItemListSchema, JsonLd } from "@/lib/seo/jsonLd";
 
 export const metadata: Metadata = {
   title: "Tools",
@@ -11,6 +14,35 @@ export const metadata: Metadata = {
     canonical: "/tools",
   },
 };
+
+const toolsFaqs: FAQ[] = [
+  {
+    question: "Are the Chinese metaphysics tools free?",
+    answer:
+      "Yes. The Bazi calculator, I Ching oracle, and zodiac compatibility calculator are free browser-based tools for learning and self-reflection.",
+  },
+  {
+    question: "Do the tools store birth details or questions?",
+    answer:
+      "The browser tools are designed to return a result without saving birth details or I Ching questions to a user profile.",
+  },
+  {
+    question: "Which tool should a beginner try first?",
+    answer:
+      "Start with the Bazi calculator if you have a birth date and time, the I Ching oracle for a specific decision question, or zodiac compatibility for a quick relationship context.",
+  },
+  {
+    question: "Are these tools a replacement for professional advice?",
+    answer:
+      "No. They are educational tools for symbolic reflection and should not replace medical, legal, financial, or mental health guidance.",
+  },
+];
+
+const relatedLinks = [
+  { title: "Bazi Overview", href: "/bazi", description: "Learn the Four Pillars vocabulary behind the calculator." },
+  { title: "I Ching Guide", href: "/i-ching", description: "Understand hexagrams, changing lines, and reflective use." },
+  { title: "Chinese Zodiac", href: "/chinese-zodiac", description: "Read the 12-animal cycle before comparing signs." },
+];
 
 export default function ToolsPage() {
   const tools = [
@@ -49,7 +81,7 @@ export default function ToolsPage() {
 
   return (
     <>
-      <JsonLd data={itemListSchema} />
+      <JsonLd data={[itemListSchema, buildFAQPageSchema(toolsFaqs)]} />
       <main className="bg-paper px-4 py-12 dark:bg-ink-950 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-brand-primary dark:text-gold-300">Tools</p>
@@ -59,6 +91,9 @@ export default function ToolsPage() {
           <p className="mt-5 max-w-3xl text-lg leading-8 text-ink-600 dark:text-ink-300">
             Use these browser-friendly workflows for quick charts, I Ching reflection, and zodiac compatibility checks.
           </p>
+          <div className="mt-8 max-w-4xl">
+            <DirectAnswer answer="The free tools turn Chinese metaphysics concepts into practical workflows: calculate a Bazi chart, cast an I Ching hexagram, or compare two Chinese zodiac signs. Use them as structured learning aids before reading deeper guides." />
+          </div>
 
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             {tools.map((tool) => {
@@ -86,6 +121,8 @@ export default function ToolsPage() {
               );
             })}
           </div>
+          <FAQSection faqs={toolsFaqs} />
+          <RelatedLinks links={relatedLinks} />
         </div>
       </main>
     </>

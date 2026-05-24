@@ -120,6 +120,9 @@ export default function BaziChartResult({ chart }: BaziChartResultProps) {
           <p className="mt-3 text-sm leading-6 text-ink-700 dark:text-ink-200">
             This calculator runs in the browser and does not save your birth details to a server.
           </p>
+          <p className="mt-3 text-sm leading-6 text-ink-700 dark:text-ink-200">
+            Use the birth time already adjusted to the birthplace&apos;s local civil time before reading the pillars.
+          </p>
         </div>
       </div>
 

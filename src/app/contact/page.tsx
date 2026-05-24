@@ -3,7 +3,7 @@ import StaticPage from "@/components/templates/StaticPage";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Contact Eastern Blueprint for content corrections, partnerships, or support.",
+  description: "Contact mingliatlas for content corrections, partnerships, or support.",
   alternates: {
     canonical: "/contact",
   },

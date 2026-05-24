@@ -15,7 +15,7 @@ Node.js 22 is used because the current local OpenClaw runtime and Next.js 16 sta
 
 ## Vercel Setup Checklist
 
-1. Create a GitHub repository and push `chinese-metaphysics-site`.
+1. Create a GitHub repository and push `mingliatlas`.
 2. Import the GitHub repository in Vercel.
 3. Use these settings:
    - Framework Preset: Next.js

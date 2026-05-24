@@ -1,5 +1,5 @@
 {
-  "name": "chinese-metaphysics-site",
+  "name": "mingliatlas",
   "version": "0.1.0",
   "private": true,
   "packageManager": "pnpm@11.2.2",
@@ -12,7 +12,8 @@
     "geo:audit": "vitest __tests__/seo/geo-audit.test.ts --run",
     "test:calendar": "vitest __tests__/calendar",
     "test:ui": "vitest --ui",
-    "test:coverage": "vitest --coverage"
+    "test:coverage": "vitest --coverage",
+    "audit:links": "node scripts/audit-links.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

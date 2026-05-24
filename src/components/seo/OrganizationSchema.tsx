@@ -11,6 +11,7 @@ export default function OrganizationSchema({
     "@context": "https://schema.org",
     "@type": "Organization",
     name: SITE.name,
+    alternateName: SITE.alternateNames,
     url: SITE.url,
     logo: `${SITE.url}/logo-icon.svg`,
     description: SITE.description,

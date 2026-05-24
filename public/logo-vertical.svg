@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="176" height="160" viewBox="0 0 176 160" role="img" aria-labelledby="logo-vertical-title logo-vertical-desc">
-  <title id="logo-vertical-title">Eastern Blueprint provisional vertical logo</title>
-  <desc id="logo-vertical-desc">A centered Tai Chi-inspired mark with the Eastern Blueprint wordmark stacked below.</desc>
+  <title id="logo-vertical-title">mingliatlas vertical logo</title>
+  <desc id="logo-vertical-desc">A centered Tai Chi-inspired mark with the mingliatlas wordmark stacked below.</desc>
   <defs>
     <linearGradient id="eb-vertical-red" x1="52" y1="10" x2="124" y2="82" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#8B0000" />
@@ -25,7 +25,7 @@
       <circle cx="63" cy="82" r="4" />
       <circle cx="48" cy="34" r="4" />
     </g>
-    <text x="88" y="122" fill="#1A1A2E" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-size="25" font-weight="700" letter-spacing="0.2">Eastern Blueprint</text>
+    <text x="88" y="122" fill="#1A1A2E" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-size="29" font-weight="700" letter-spacing="0">mingliatlas</text>
     <text x="88" y="140" fill="#3A3A50" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="9" font-weight="600" letter-spacing="1.4">WHERE EASTERN WISDOM</text>
     <text x="88" y="153" fill="#3A3A50" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="9" font-weight="600" letter-spacing="1.4">MEETS MODERN LOGIC</text>
   </g>

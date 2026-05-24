@@ -45,6 +45,13 @@ interface ItemListSchemaInput {
   }>;
 }
 
+interface HowToSchemaInput {
+  name: string;
+  description: string;
+  url: string;
+  steps: string[];
+}
+
 export function JsonLd({ data }: JsonLdProps) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />;
 }
@@ -136,6 +143,21 @@ export function buildItemListSchema({ name, description, url, items }: ItemListS
         description: item.description,
         url: item.url,
       },
+    })),
+  };
+}
+
+export function buildHowToSchema({ name, description, url, steps }: HowToSchemaInput): JsonLdNode {
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name,
+    description,
+    url,
+    step: steps.map((step, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      text: step,
     })),
   };
 }

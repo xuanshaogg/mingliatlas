@@ -12,7 +12,7 @@ export default function Header() {
           <span className="flex items-center gap-2 sm:hidden">
             <Image src="/logo-icon.svg" alt="" width={40} height={40} priority className="h-10 w-10 flex-none" />
             <span className="font-serif text-xl font-bold leading-none text-ink-950 dark:text-paper">
-              Eastern Blueprint
+              {SITE.name}
             </span>
           </span>
           <Image

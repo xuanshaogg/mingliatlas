@@ -1,7 +1,8 @@
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://mingliatlas.com";
 
 export const SITE = {
-  name: "Eastern Blueprint",
+  name: "mingliatlas",
+  alternateNames: ["mingliatlas.com"],
   tagline: "Where Eastern Wisdom Meets Modern Logic",
   url: siteUrl,
   description:

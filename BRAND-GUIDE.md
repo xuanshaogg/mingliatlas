@@ -1,6 +1,6 @@
-# Eastern Blueprint Brand Guide
+# mingliatlas Brand Guide
 
-Eastern Blueprint is a provisional brand name for the Chinese metaphysics site. Replace it once the final brand and domain are confirmed.
+mingliatlas is the final brand name for the Chinese metaphysics site at `https://mingliatlas.com`.
 
 ## Positioning
 
@@ -109,13 +109,10 @@ Use “auspicious,” “favorable,” “challenging,” “suggest,” “indi
 - Dividers: gold gradient lines for editorial or section emphasis.
 - Quotes: left gold rule with warm paper background.
 
-## Replacement steps after final brand/domain confirmation
+## Brand maintenance
 
-1. Update `SITE.name`, `SITE.url`, and metadata strings in `src/lib/constants.ts` and `src/app/layout.tsx` as needed.
-2. Replace logo text in all `public/logo*.svg` assets or export final designer-provided SVGs with the same filenames.
-3. Confirm whether `src/app/favicon.ico` should remain or be regenerated from `public/logo-icon.svg` for the final brand.
-4. Search for “Eastern Blueprint” and replace with the final brand name across app copy and docs.
-5. Update Open Graph and Twitter image assets if final brand visuals change.
-6. Re-run `pnpm lint`, `pnpm exec tsc --noEmit`, and `pnpm build`.
-
-Final brand name and domain selection remain external user/business decisions.
+1. Keep `SITE.name` set to `mingliatlas` and `SITE.url` set to `https://mingliatlas.com`.
+2. Keep logo text in all `public/logo*.svg` assets aligned with the lowercase `mingliatlas` wordmark.
+3. Confirm whether `src/app/favicon.ico` should be regenerated from `public/logo-icon.svg` when the icon mark changes.
+4. Update Open Graph and Twitter image assets if final brand visuals change.
+5. Re-run `pnpm lint`, `pnpm exec tsc --noEmit`, and `pnpm build`.

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Search, X } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { SitePage } from "@/lib/content/sitePages";
@@ -14,11 +15,30 @@ function normalize(value: string): string {
 }
 
 export default function SearchDirectory({ pages }: SearchDirectoryProps) {
-  const [query, setQuery] = useState("");
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const [query, setQuery] = useState(() => searchParams.get("q") ?? "");
   const [section, setSection] = useState("All");
 
   const sections = useMemo(() => ["All", ...Array.from(new Set(pages.map((page) => page.section)))], [pages]);
   const normalizedQuery = normalize(query);
+
+  function updateQuery(nextQuery: string): void {
+    setQuery(nextQuery);
+
+    const params = new URLSearchParams(searchParams.toString());
+    const trimmedQuery = nextQuery.trim();
+
+    if (trimmedQuery) {
+      params.set("q", trimmedQuery);
+    } else {
+      params.delete("q");
+    }
+
+    const nextUrl = params.toString() ? `${pathname}?${params.toString()}` : pathname;
+    router.replace(nextUrl, { scroll: false });
+  }
 
   const filteredPages = useMemo(() => {
     return pages.filter((page) => {
@@ -42,15 +62,15 @@ export default function SearchDirectory({ pages }: SearchDirectoryProps) {
           id="site-search"
           type="search"
           value={query}
-          onChange={(event) => setQuery(event.target.value)}
+          onChange={(event) => updateQuery(event.target.value)}
           placeholder="Search Bazi, I Ching, zodiac, tools..."
           className="h-14 w-full rounded-lg border border-ink-200 bg-white pl-12 pr-12 text-base text-ink-950 outline-none transition placeholder:text-ink-400 focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 dark:border-white/10 dark:bg-white/5 dark:text-paper"
         />
         {query ? (
           <button
             type="button"
-            onClick={() => setQuery("")}
-            className="absolute right-4 top-1/2 hidden h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-ink-500 transition hover:bg-ink-100 hover:text-ink-900 dark:text-ink-300 dark:hover:bg-white/10 dark:hover:text-paper sm:inline-flex"
+            onClick={() => updateQuery("")}
+            className="absolute right-4 top-1/2 inline-flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-ink-500 transition hover:bg-ink-100 hover:text-ink-900 dark:text-ink-300 dark:hover:bg-white/10 dark:hover:text-paper"
             aria-label="Clear search"
           >
             <X className="h-4 w-4" aria-hidden="true" />
@@ -105,7 +125,7 @@ export default function SearchDirectory({ pages }: SearchDirectoryProps) {
           <button
             type="button"
             onClick={() => {
-              setQuery("");
+              updateQuery("");
               setSection("All");
             }}
             className="mt-4 rounded-full bg-brand-primary px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-700"
