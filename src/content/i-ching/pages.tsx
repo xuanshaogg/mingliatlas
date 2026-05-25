@@ -491,6 +491,55 @@ const hexagramDirectAnswers: Partial<Record<number, string>> = {
   7: "Hexagram 7, The Army (师 Shi), shows Water within Earth — a reservoir of organized force held in reserve. It describes collective effort that requires discipline, clear leadership, and proportionate response. The classical advice is that the leader who mobilizes people must have the authority to do so, the discipline to direct them well, and the judgment to know when to stop.",
   17: "Hexagram 17, Following (随 Sui), shows Thunder within the Lake — movement that adapts to the season. It describes a situation where following is the correct response, but only if you choose what is genuinely worth following. The classical advice is to rest when rest is called for and to respond when response is called for, rather than forcing either activity or stillness.",
   25: "Hexagram 25, Innocence (无妄 Wu Wang), shows Thunder under Heaven — natural action without calculation. It describes a situation where acting without manipulation or hidden agenda is both the correct approach and the most effective one. The classical warning is that unexpected misfortune can arrive even when conduct is correct; the response is to accept it without resentment rather than to search for someone to blame.",
+  3: "Hexagram 3, Difficulty at the Beginning (屯 Zhun), describes the turbulent first stage of any new growth — the moment when potential exists but form has not yet emerged. Like a seedling pushing through hard soil, the energy is real but the path is not yet clear. It appears when a project, relationship, or transition is genuinely new and the disorder you are experiencing is not a sign of failure but of necessary early struggle. The classical advice is to organize before forcing progress.",
+  5: "Hexagram 5, Waiting (需 Xu), shows Water above Heaven — clouds gathering but rain not yet falling. It describes a situation where the conditions for action are not yet complete, and the correct response is active preparation rather than forced movement. It is not passive resignation; it is the disciplined readiness of someone who knows that timing matters and uses the waiting period to nourish strength. Use it when you are tempted to act before conditions are ready.",
+  8: "Hexagram 8, Holding Together (比 Bi), shows Water above Earth — water finding its level and gathering into a unified body. It describes a moment when alliance, loyalty, and mutual commitment are both available and necessary. The classical question it asks is direct: have you chosen what you are genuinely committed to, and have you done so in time? Late commitment weakens the bond. Use it when considering who to align with, or when a group needs a center it can trust.",
+  9: "Hexagram 9, Small Taming (小畜 Xiao Chu), shows Wind above Heaven — a gentle force restraining a much larger one. It describes a situation where only small, incremental adjustments are possible right now, not sweeping change. The classical image is of clouds gathering but rain not yet falling: the conditions for a major shift are building, but the moment has not arrived. Use it when you feel the urge to force a large outcome and the situation is asking for patient, precise refinement instead.",
+  10: "Hexagram 10, Treading (履 Lü), shows Heaven above the Lake — a vast difference in level, and the image of someone walking carefully on the tail of a tiger without being bitten. It describes a situation requiring precise, respectful conduct in conditions where a misstep carries real consequences. The classical advice is not to avoid the situation but to navigate it with full awareness of the power differential and the care that awareness demands. Use it when you are operating in sensitive territory where conduct matters as much as intention.",
+  13: "Hexagram 13, Fellowship (同人 Tong Ren), shows Fire rising into Heaven — clarity ascending toward the widest possible perspective. It describes genuine alignment with others based on shared values rather than shared convenience. The classical text distinguishes between fellowship in the open field (broad, principled) and fellowship only within the clan (narrow, self-serving). Use it when considering whether a collaboration or alliance is built on real common ground or on the comfort of similarity.",
+  14: "Hexagram 14, Great Possession (大有 Da You), shows Fire above Heaven — the sun at its zenith, illuminating everything below. It describes a moment of genuine abundance: resources, influence, or clarity are available in unusual measure. The classical teaching is that great possession is only favorable when governed with clarity and without arrogance. What you hold must be used well, shared appropriately, and not clung to as a permanent condition. Use it when you have more than usual and the question is how to steward it.",
+  15: "Hexagram 15, Modesty (谦 Qian), shows a Mountain hidden within the Earth — great substance held below the surface rather than displayed above it. It describes the quality of measured conduct that makes strength acceptable and durable over time. In the I Ching, modesty is not self-deprecation or false humility; it is the accurate calibration of expression to context. Use it when you have real capability and the question is how to deploy it without triggering resistance or resentment.",
+  16: "Hexagram 16, Enthusiasm (豫 Yu), shows Thunder emerging from Earth — stored energy releasing into movement. It describes the moment when preparation meets readiness and collective momentum becomes possible. The classical use of this hexagram is specifically about mobilization: music, ritual, and shared rhythm as tools for aligning people around a common direction. Use it when you need to build morale, launch a movement, or create the conditions for others to commit and act together.",
+  18: "Hexagram 18, Work on What Has Been Spoiled (蛊 Gu), shows Wind below the Mountain — gentle penetration beneath a heavy, immovable structure. It describes a situation where decay has set in, usually through neglect or inherited dysfunction, and deliberate corrective work is now required. The classical advice is to examine what went wrong before the current generation, repair it carefully, and allow three days before and after the correction to assess the full scope of the problem. Use it when you are dealing with a pattern that has been broken for longer than the current moment.",
+  19: "Hexagram 19, Approach (临 Lin), shows the Lake above Earth — water rising over the land, the image of something great drawing near. It describes a moment of expanding influence and increasing presence: conditions are favorable, access is opening, and the opportunity to affect others positively is real. The classical warning is that this favorable period has a natural limit — the eighth month brings a reversal. Use it when influence is growing and the question is how to use that access well before conditions change.",
+  20: "Hexagram 20, Contemplation (观 Guan), shows Wind above Earth — the image of wind moving across the land, touching everything and revealing what is actually there. It describes a moment of stepping back to observe the full pattern before acting. The classical use of this hexagram is specifically about the influence of example: what others see in your conduct teaches them more than what you say. Use it when you need to assess a situation clearly, or when your actions are being watched and interpreted by others.",
+  21: "Hexagram 21, Biting Through (噬嗑 Shi He), shows Thunder above Fire — the image of lightning and thunder together, the combination that produces the clearest and most decisive natural signal. It describes a situation where an obstacle is blocking connection and must be removed through precise, fair action. The classical context is legal: a case that requires judgment, not negotiation. Use it when something is genuinely in the way — a misunderstanding, a violation, a blockage — and the correct response is clear, proportionate action rather than continued tolerance or avoidance.",
+  22: "Hexagram 22, Grace (贲 Bi), shows Fire at the foot of the Mountain — light illuminating the surface of something solid and substantial. It describes the relationship between form and content: beauty and presentation that support substance rather than replace it. The classical teaching is that grace is appropriate and valuable in small matters but should not be used to make decisions about what is fundamentally important. Use it when considering how to present something well, while remaining clear that the presentation is not the thing itself.",
+  23: "Hexagram 23, Splitting Apart (剥 Bo), shows a Mountain resting on Earth — but the mountain is eroding, its base being eaten away from below. Five yin lines have risen from the bottom, leaving only one yang line at the top. It describes a period of genuine erosion: structures are weakening, support is withdrawing, and the conditions for action are unfavorable. The classical advice is not to force movement but to preserve what is essential, strengthen foundations quietly, and wait for the cycle to turn. Use it when you recognize that the ground beneath a situation is no longer solid.",
+  26: "Hexagram 26, Great Taming (大畜 Da Chu), shows Heaven within the Mountain — the greatest creative force held inside a solid, containing structure. It describes a situation where significant power or capability is being accumulated, trained, and held in reserve rather than released prematurely. The classical image is of a sage who does not serve the current ruler but instead cultivates depth and waits for the right moment. Use it when you have real strength that is not yet ready to be deployed, and the work is to deepen it rather than express it.",
+  27: "Hexagram 27, Nourishment (颐 Yi), shows Thunder below the Mountain — the image of a mouth, with movement at the bottom and stillness at the top. It describes the question of what you take in and what you put out: what you eat, what you say, and what you allow to nourish or deplete you. The classical teaching is that character is shaped by intake — both physical and mental. Use it when you are making choices about what to consume, what to produce, or what kind of environment you are sustaining yourself within.",
+  28: "Hexagram 28, Great Exceeding (大过 Da Guo), shows a Lake above Wind — water rising above the trees, the image of a beam that is too heavy for its supports. It describes a situation where the load exceeds the structure's capacity: something is under more strain than it can sustain indefinitely. The classical advice is not to deny the strain but to make a transition — to find an extraordinary response to an extraordinary situation. Use it when you recognize that the current structure cannot hold what is being asked of it, and a fundamental change is required rather than incremental adjustment.",
+  31: "Hexagram 31, Influence (咸 Xian), shows a Lake above the Mountain — the yielding above the firm, water resting on solid ground. It describes mutual attraction and the conditions under which genuine influence operates: openness, receptivity, and the absence of calculated agenda. The classical image is of courtship — two people drawn to each other through authentic response rather than strategy. Use it when you want to understand how influence actually works, or when you are trying to affect a situation and finding that direct pressure is not producing results.",
+  32: "Hexagram 32, Duration (恒 Heng), shows Thunder above Wind — two forces that move together continuously, each sustaining the other. It describes the quality of endurance that comes not from rigidity but from consistent, adaptive movement. The classical teaching is that duration is not sameness; it is the capacity to remain true to a direction while responding to changing conditions. Use it when you are asking whether something is worth sustaining over time, or when you need to distinguish between healthy consistency and stubborn inflexibility.",
+  33: "Hexagram 33, Retreat (遁 Dun), shows Heaven above the Mountain — the sky withdrawing upward as the mountain rises. It describes a strategic withdrawal from a situation where continued engagement is no longer productive or safe. The classical teaching is that retreat is not defeat; it is the intelligent preservation of strength for a moment when it can be used effectively. Use it when you recognize that the conditions around you have shifted against you and that holding your position will cost more than it gains.",
+  34: "Hexagram 34, Great Power (大壮 Da Zhuang), shows Thunder above Heaven — the most active force above the most creative, an image of exceptional strength at its peak. The classical teaching is that great power succeeds only when it follows what is right, not merely what is possible. A ram that charges a fence with full force may break through — or may become entangled in it. Use it when you have real strength available and the question is whether you are directing it toward what is genuinely correct, or simply toward what you can force.",
+  35: "Hexagram 35, Progress (晋 Jin), shows Fire above Earth — the sun rising over the land, illuminating everything below with increasing clarity. It describes a moment of genuine advancement: visibility is increasing, recognition is available, and the conditions for moving forward are favorable. The classical image is of a feudal lord who receives horses and is granted audience three times in a single day — rapid, welcomed advancement. Use it when conditions are genuinely open and the question is how to advance with the clarity and generosity that makes progress sustainable.",
+  37: "Hexagram 37, The Family (家人 Jia Ren), shows Wind coming from Fire — the image of warmth generating movement, of inner clarity expressing itself outward. It describes the conditions that make a household, team, or organization function well: clear roles, genuine care, and conduct that matches what is said. The classical teaching is that order in the family begins with the individual — specifically with the consistency between inner values and outward behavior. Use it when examining whether the structures you live or work within are genuinely healthy, or when your own conduct is not matching what you claim to value.",
+  38: "Hexagram 38, Opposition (睽 Kui), shows Fire above the Lake — two forces that both move upward and downward respectively, naturally diverging. It describes a situation of genuine difference: two people, two values, or two directions that cannot be fully reconciled. The classical teaching is that opposition can clarify rather than destroy, if you do not force unity where difference is real. Small matters can still be accomplished even when fundamental alignment is absent. Use it when you are navigating a relationship or situation where real difference exists and the question is how to work with it rather than against it.",
+  39: "Hexagram 39, Obstruction (蹇 Jian), shows Water above the Mountain — danger ahead and a steep climb behind. It describes a situation where the direct path forward is genuinely blocked and forcing through it will not work. The classical advice is to stop, turn inward, seek help, and find a wiser route. The obstruction is real, but it is also temporary — and the period of being blocked, used well, can produce the self-examination and alliance-building that makes eventual progress more solid. Use it when you have hit a wall and need to decide whether to push harder or to change your approach entirely.",
+  41: "Hexagram 41, Decrease (损 Sun), shows a Lake below the Mountain — the image of something being reduced at the bottom to strengthen what is above. It describes a situation where voluntary simplification, reduction of excess, or sacrifice of something immediate produces a more solid foundation over time. The classical teaching is that decrease, when it comes from genuine sincerity rather than from external compulsion, is not a loss — it is a rebalancing that creates the conditions for eventual increase. Use it when you are being asked to give up something, or when you recognize that excess in one area is weakening the whole.",
+  42: "Hexagram 42, Increase (益 Yi), shows Wind above Thunder — two forces that amplify each other, movement reinforcing movement. It describes a moment of genuine growth: conditions are favorable, effort produces more than usual return, and the opportunity to benefit others while advancing yourself is real. The classical teaching is that increase is most durable when it flows outward — when the growth benefits more than just the person receiving it. Use it when conditions are genuinely favorable and the question is how to use a period of increase well, rather than simply accumulating.",
+  43: "Hexagram 43, Breakthrough (夬 Guai), shows a Lake risen above Heaven — five yang lines pressing upward against a single yin line at the top. It describes the moment when something that has been building must finally be declared and resolved. The classical teaching is specific: state the truth clearly, do it in the right forum, do not use force alone, and do not underestimate what remains. Use it when you have been tolerating something that needs to be addressed directly, or when a decision that has been deferred can no longer be avoided.",
+  44: "Hexagram 44, Coming to Meet (姤 Gou), shows Wind below Heaven — a single yin line appearing at the bottom of five yang lines, the image of something small and soft beginning to grow beneath something large and strong. It describes an unexpected encounter or influence that arrives without being sought. The classical warning is specific: a single yin line, if not recognized and bounded early, can gradually displace the yang above it. Use it when something new has entered your situation unexpectedly — an opportunity, a person, or an influence — and the question is whether to engage with it and on what terms.",
+  45: "Hexagram 45, Gathering Together (萃 Cui), shows a Lake above Earth — water collecting on the land, forming a body that is greater than any of its tributaries. It describes a moment when people, resources, or energies are converging around a shared center. The classical teaching is that genuine gathering requires a trustworthy center, a ritual of commitment, and the sincerity to sustain it. Use it when you are building a group, convening people around a purpose, or joining something that is forming — and the question is what makes the gathering real rather than merely nominal.",
+  46: "Hexagram 46, Pushing Upward (升 Sheng), shows Wind below Earth — wood growing upward through the soil, steady and unhurried. It describes a period of gradual, organic ascent: conditions are favorable for advancement, but the movement is step by step rather than sudden. The classical image is of a tree that grows from a seed into a great form through consistent, patient effort. Use it when you are in a phase of steady progress and the temptation is either to rush the ascent or to doubt it because it is not dramatic.",
+  51: "Hexagram 51, The Arousing (震 Zhen), doubles the Thunder trigram — shock above and shock below. It describes a sudden, disruptive event that arrives without warning and demands an immediate response. The classical teaching is that the person of genuine character responds to shock by remaining composed: they may feel fear in the first moment, but they do not lose their footing. The shock itself is not the problem — it is a test of whether inner stability is real. Use it when something unexpected has disrupted your situation and the question is how to respond rather than simply react.",
+  52: "Hexagram 52, Keeping Still (艮 Gen), doubles the Mountain trigram — stillness above and stillness below. It describes the active practice of stopping: not the stillness of exhaustion or avoidance, but the deliberate cessation of movement at the right moment. The classical teaching is that knowing when to stop is as important as knowing when to move. The back is stilled — the part of the body that drives forward motion — so that the person no longer perceives what is behind or ahead, only what is present. Use it when you need to stop a pattern, a thought, or a movement that has been running past its useful point.",
+  53: "Hexagram 53, Development (渐 Jian), shows Wind above the Mountain — the image of a tree growing on a high ridge, visible from a distance, its growth measured and unhurried. It describes advancement that follows a proper sequence: each step prepares for the next, and no stage is skipped. The classical image is of a marriage ceremony conducted through the correct sequence of rituals — not because the rituals are ends in themselves, but because the sequence ensures that what is built is solid. Use it when you are in a process that requires patience with proper order, and the temptation is to skip steps to reach the outcome faster.",
+  54: "Hexagram 54, The Marrying Maiden (归妹 Gui Mei), shows Thunder above the Lake — movement above joy, the image of a younger sister joining a household in a secondary position. It describes a situation of unequal roles where the person in the subordinate position must navigate with dignity, realistic expectations, and patience. The classical teaching is that acting from a position of weakness or dependency requires particular care: premature action tends to make the situation worse. Use it when you are in a relationship or role where the power differential is real and the question is how to maintain integrity within it.",
+  55: "Hexagram 55, Abundance (丰 Feng), shows Thunder above Fire — movement above clarity, the image of both at their peak simultaneously. It describes a moment of maximum visibility and influence: the sun at noon, the harvest at its fullest. The classical teaching is that peak moments are temporary and that the wise use of abundance is to act decisively while the light is strong, rather than assuming the conditions will continue. Use it when you are at a high point — of influence, clarity, or resources — and the question is how to use that peak well before it passes.",
+  56: "Hexagram 56, The Wanderer (旅 Lü), shows Fire above the Mountain — a flame passing over high ground, illuminating briefly and moving on. It describes a situation of temporary residence: you are passing through, not settled. The classical teaching is that the wanderer succeeds through courtesy, caution, and traveling light — not through trying to establish the same kind of presence in a temporary place that would be appropriate in a permanent one. Use it when you are in a transitional situation — a new environment, a temporary role, or a period between more stable phases — and the question is how to conduct yourself well without overreaching.",
+  57: "Hexagram 57, The Gentle (巽 Xun), doubles the Wind trigram — penetration above and below, soft persistence working through everything. It describes influence that operates not through force but through consistent, repeated presence: wind that finds every opening, bends without breaking, and gradually shapes what it touches. The classical teaching is that this kind of influence requires a clear direction and a willingness to keep moving even when the immediate effect is not visible. Use it when direct force is unavailable or counterproductive, and the situation calls for patient, persistent penetration rather than dramatic action.",
+  58: "Hexagram 58, The Joyous (兑 Dui), doubles the Lake trigram — open water above and below, the image of two lakes connected and mutually replenishing. It describes genuine joy that comes from exchange, learning, and sincere connection with others. The classical teaching is that joy is constructive when it remains sincere and is shared through honest communication rather than through flattery or empty pleasure. Use it when you are considering how to create genuine morale, deepen a relationship, or sustain the kind of joy that builds rather than depletes.",
+  59: "Hexagram 59, Dispersion (涣 Huan), shows Wind above Water — wind moving across the surface of water, breaking up what has frozen or congealed. It describes the dissolution of rigidity: hardened attitudes, accumulated resentment, or blocked communication that has prevented genuine exchange. The classical use of this hexagram includes religious ceremony and the crossing of great waters — both acts that dissolve the boundaries between self and other, individual and collective. Use it when something has hardened that needs to flow again, or when a group has lost its shared sense of purpose and needs to be reconnected.",
+  60: "Hexagram 60, Limitation (节 Jie), shows Water above the Lake — water that has reached its natural boundary, contained within a defined measure. It describes the value of appropriate limits: not the harsh restrictions that create resentment and resistance, but the clear boundaries that preserve energy, define quality, and make sustained effort possible. The classical teaching is that good limits are those you can live within without distress; harsh limits that cannot be maintained are worse than no limits at all. Use it when you are setting boundaries — for yourself or others — and the question is whether the limit is genuinely appropriate or merely severe.",
+  61: "Hexagram 61, Inner Truth (中孚 Zhong Fu), shows Wind above the Lake — wind moving across open water, the image of something that penetrates to the center without force. It describes the quality of genuine sincerity: the alignment between inner reality and outer expression that makes communication trustworthy and influence real. The classical teaching is that inner truth reaches others not through clever words but through the quality of presence that comes from genuine alignment. Use it when you want to understand why some communications land and others do not, or when you need to rebuild trust that has been damaged by inconsistency.",
+  62: "Hexagram 62, Small Exceeding (小过 Xiao Guo), shows Thunder above the Mountain — movement above stillness, the image of a bird flying too high and missing the nest. It describes a situation where small adjustments are favored and grand overreach is not. The classical teaching is that when the situation calls for modesty and careful attention to detail, attempting something large tends to produce worse results than attending carefully to what is immediately present. Use it when you are tempted to make a sweeping move and the situation is actually asking for precise, small corrections.",
+  30: "Hexagram 30, The Clinging (离 Li), doubles the Fire trigram — two flames, each with a hollow center, each dependent on what it burns. It describes clarity that is real but not self-sustaining: your vision, judgment, and illumination depend entirely on what you have attached yourself to. The classical teaching is not to avoid attachment but to choose it consciously. Use it when examining whether the commitments, frameworks, or relationships that are currently providing your clarity are genuinely worth maintaining — and whether the light they produce is steady or consuming.",
+  48: "Hexagram 48, The Well (井 Jing), shows Water above Wood — the wooden bucket drawing water upward from depth. It describes a source of nourishment that is fixed, available to all, and dependent on maintenance to remain useful. The classical teaching identifies three failure modes: muddy water (contaminated source), a rope too short (mechanism cannot reach the depth), and a broken jug at the surface (failure at the last step). Use it when you are asking whether a deep resource — expertise, a practice, a relationship — is genuinely accessible, or whether the mechanism connecting you to it has been neglected.",
+  50: "Hexagram 50, The Cauldron (鼎 Ding), shows Fire above Wood — controlled combustion transforming raw material into refined nourishment. It describes transformation through culture, vessel, and offering: raw experience or capacity brought into a structured container, subjected to sustained process, and offered outward. The classical teaching is that all three elements must be present — the vessel must be sound, the process must be sustained, and the result must be offered rather than hoarded. Use it when you are building something meant to transform raw input into refined output for others, and the question is whether the container is actually holding the transformation.",
+  63: "Hexagram 63, After Completion (既济 Jiji), is the only hexagram where every line is in its correct position — yang in yang places, yin in yin places. It describes the paradox of perfect completion: the moment of maximum order is also the moment of maximum vulnerability to disorder. Water above fire is stable only as long as the fire burns at the right intensity. The classical teaching is that completion requires maintenance, not celebration followed by withdrawal. Use it after a significant achievement, when the temptation is to relax the attention that produced the result.",
+  64: "Hexagram 64, Before Completion (未济 Weiji), is the final hexagram of the I Ching — and every line is in the wrong position. It describes the threshold moment: the transition is real, the direction is correct, but the crossing is not yet complete. The classical image is of a young fox that gets its tail wet at the very last step. The teaching is that the final stage of a transition is often the most dangerous, because premature confidence produces the careless last step that undoes the whole crossing. Use it when you are close to a significant completion and the risk is declaring arrival before it has actually occurred.",
 };
 
 const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> = {
@@ -1569,6 +1618,4099 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
           </p>
           <p>
             It is also not advising indefinite delay. The fox is crossing the river — it is not standing on the bank. Hexagram 64 asks for careful, sequenced movement toward completion, not for paralysis in the face of incompletion. The distinction between careful crossing and fearful non-crossing is important: one is attentive to the remaining steps, the other avoids them. The hexagram supports the former and cautions against the latter.
+          </p>
+        </>
+      ),
+    },
+  ],
+  3: [
+    {
+      heading: "What Hexagram 3 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 3, Zhun (屯), pairs Thunder below with Water above — movement
+            pressing upward into danger. The <cite>I Ching</cite> places it third
+            in the sequence, immediately after the Creative and the Receptive,
+            because once heaven and earth exist, the first thing that emerges is
+            difficulty. This is not an accident of placement; it reflects a
+            classical observation that new beginnings are inherently disordered.
+          </p>
+          <p>
+            The image is of a seedling breaking through hard ground. The energy
+            for growth is present, but the form is not yet established. Receiving
+            this hexagram does not mean the situation is hopeless — it means you
+            are at the genuinely difficult first stage, where structure must be
+            built before speed is possible.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Thunder and rain begin; organize before forcing
+            progress." Thunder represents the impulse to move; Water above
+            represents the obstacle or the unclear terrain ahead. The lesson is
+            not to stop, but to pause long enough to establish order — to find
+            helpers, clarify the goal, and build a minimal structure before
+            pushing forward.
+          </p>
+          <p>
+            The <cite>King Wen sequence</cite> commentary on this hexagram
+            specifically recommends appointing helpers rather than acting alone.
+            Early-stage difficulty is rarely solved by more individual effort; it
+            is solved by finding the right people and the right sequence of steps.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career contexts, Hexagram 3 often appears at the start of a new
+            role, a new business, or a new project where the initial chaos feels
+            overwhelming. The hexagram validates that the disorder is real and
+            normal — but it asks whether you have taken time to organize before
+            pushing for results. Hiring the right collaborator or clarifying the
+            scope before executing is the move this hexagram supports.
+          </p>
+          <p>
+            In relationship contexts, it can describe the early stage of a
+            connection where both people are still finding their footing. The
+            classical advice applies: do not force premature definition. Allow the
+            structure to emerge through honest exchange rather than rushing to
+            label or commit before the foundation is solid.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 3 is not telling you to abandon the effort. The difficulty it
+            describes is the difficulty of beginning, not the difficulty of
+            something fundamentally wrong. The <cite>I Ching</cite> does not place
+            this hexagram third in the sequence to warn against starting — it
+            places it there to prepare you for what starting actually feels like.
+          </p>
+          <p>
+            It is also not advising indefinite preparation. The seedling that
+            never breaks through the soil does not survive. The balance this
+            hexagram asks for is between organizing enough to move effectively and
+            not using organization as a substitute for action.
+          </p>
+        </>
+      ),
+    },
+  ],
+  5: [
+    {
+      heading: "What Hexagram 5 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 5, Xu (需), places Water above Heaven — clouds have gathered
+            above the sky, but the rain has not yet come. In the{" "}
+            <cite>I Ching</cite>, this image describes a moment of genuine
+            readiness that cannot yet be released. The energy is present, the
+            direction is clear, but the external conditions have not aligned. The
+            classical Judgment reads: "right timing matters; prepare while
+            conditions gather."
+          </p>
+          <p>
+            This hexagram is frequently misread as an instruction to do nothing.
+            In classical interpretation, waiting is an active state. Heaven
+            (Qian) below is moving upward with full creative force — it is not
+            passive. The water above is not an enemy; it is the condition that
+            must be met. The question this hexagram asks is: are you using the
+            waiting period well?
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Clouds rise above heaven; nourishment comes through
+            patient readiness." The word <em>xu</em> in classical Chinese carries
+            the meaning of nourishment as well as waiting — the two are linked.
+            While you wait, you eat, rest, and prepare. The <cite>I Ching</cite>{" "}
+            commentary suggests that the wise person in this situation maintains
+            their strength rather than exhausting it through premature action.
+          </p>
+          <p>
+            In practical terms, the lesson is about the difference between
+            waiting that builds capacity and waiting that wastes it. Hexagram 5
+            supports the former: use the interval to clarify your plan, strengthen
+            your position, and remain alert for the moment when conditions shift.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career contexts, Hexagram 5 often appears when someone is waiting
+            for a decision — a job offer, a funding round, a project approval.
+            The hexagram does not tell you the answer will come; it tells you that
+            forcing the outcome before it is ready tends to produce worse results
+            than maintaining readiness. Use the interval to prepare for the next
+            step rather than repeatedly checking for news.
+          </p>
+          <p>
+            In decision contexts, it can describe a situation where you have
+            enough information to know the direction but not enough to act safely.
+            The classical advice is to wait for the signal that conditions have
+            changed — not to manufacture that signal through impatience.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 5 is not telling you to wait indefinitely or to avoid
+            responsibility for moving forward. The clouds in the image do
+            eventually produce rain — the waiting has an end. If you have been
+            waiting for a very long time without any movement, this hexagram may
+            be asking whether the obstacle is external timing or an internal
+            reluctance to act.
+          </p>
+          <p>
+            It is also not a guarantee that the outcome will be favorable once
+            conditions align. The <cite>I Ching</cite> does not promise results;
+            it describes the quality of the moment and the appropriate response.
+            Waiting well improves your position — it does not determine the
+            outcome.
+          </p>
+        </>
+      ),
+    },
+  ],
+  8: [
+    {
+      heading: "What Hexagram 8 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 8, Bi (比), places Water above Earth — water naturally
+            seeking its level, pooling together, forming a coherent body from
+            separate streams. In the <cite>I Ching</cite>, this image describes
+            the formation of genuine alliance: people or forces coming together
+            around a shared center, not through coercion but through mutual
+            recognition of common interest and trust.
+          </p>
+          <p>
+            The classical Judgment includes an unusual instruction: examine
+            yourself to see whether you have the qualities needed to be a center
+            others can gather around. Holding together is not just about finding
+            the right group — it is about being the kind of person or organization
+            that others can sincerely commit to.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Water rests on the earth; communities form around
+            shared trust." The <cite>I Ching</cite> commentary on this hexagram
+            emphasizes timing: those who come late to the alliance find the bonds
+            already formed and the center already occupied. The practical lesson
+            is that genuine commitment requires early and clear declaration, not
+            hedged participation.
+          </p>
+          <p>
+            In organizational terms, this hexagram describes the difference
+            between a group held together by genuine shared purpose and one held
+            together by convenience or fear. The former is durable; the latter
+            dissolves under pressure. Hexagram 8 asks which kind of alliance you
+            are building or joining.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career contexts, Hexagram 8 often appears when someone is deciding
+            whether to commit to a team, a partnership, or an organization. The
+            hexagram supports genuine commitment but asks for honest self-assessment
+            first: do you share the values and direction of this group, or are you
+            joining for convenience? Convenience-based alliances tend to fracture
+            at the first serious test.
+          </p>
+          <p>
+            In relationship contexts, it can describe a moment when two people
+            need to decide whether they are genuinely building something together
+            or simply occupying the same space. The classical emphasis on timing
+            applies here too — the longer a genuine commitment is deferred, the
+            harder it becomes to establish the trust that makes it real.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 8 is not telling you to join every group or commit to every
+            alliance that presents itself. The <cite>I Ching</cite> is explicit
+            that the center of a genuine alliance must have real authority and
+            real trustworthiness — not just availability. Committing to a weak or
+            corrupt center produces the appearance of alliance without its
+            substance.
+          </p>
+          <p>
+            It is also not saying that solitary effort is wrong. Some situations
+            call for independence. But when Hexagram 8 appears, the question being
+            asked is specifically about alliance — and the hexagram's consistent
+            message is that genuine holding together, when the conditions are
+            right, produces more than any individual effort can.
+          </p>
+        </>
+      ),
+    },
+  ],
+  9: [
+    {
+      heading: "What Hexagram 9 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 9, Xiao Chu (小畜), places Wind above Heaven — the gentlest
+            of forces positioned above the strongest. In the <cite>I Ching</cite>,
+            this pairing describes a situation where a small, persistent influence
+            is the only thing capable of shaping a large, powerful momentum. The
+            classical Judgment reads: "small restraints refine a larger force."
+          </p>
+          <p>
+            The hexagram is often received when someone wants to make a major
+            move but the conditions are not yet aligned. The clouds in the image
+            have gathered — the potential is real — but the rain has not come.
+            This is not a failure of the situation; it is a description of where
+            things actually are. The appropriate response is to work with what is
+            available: small, careful adjustments that build toward the larger
+            shift.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Wind moves across heaven; details shape momentum."
+            Wind does not stop heaven — it redirects it gradually. The practical
+            lesson is that in situations where direct force is unavailable or
+            counterproductive, consistent small actions accumulate into real
+            change. This is the hexagram of editing, refining, and preparing
+            rather than launching.
+          </p>
+          <p>
+            The <cite>I Ching</cite> commentary notes that this is a time for
+            cultivating virtue and refining conduct — not because grand action is
+            wrong in principle, but because the moment for it has not arrived.
+            Using the interval to improve the quality of what you are building is
+            the move that makes the eventual release more effective.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career contexts, Hexagram 9 often appears when someone is in a
+            preparatory phase — building skills, refining a product, or
+            strengthening a team before a major launch or transition. The
+            hexagram validates the preparation and asks for patience with the
+            pace. Forcing the launch before the refinement is complete tends to
+            produce a weaker result than waiting for the right moment.
+          </p>
+          <p>
+            In relationship or negotiation contexts, it can describe a situation
+            where you have influence but not control. The other party is not ready
+            to move, and pushing harder will not accelerate their readiness. Small,
+            consistent demonstrations of reliability and care are more effective
+            than dramatic gestures.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 9 is not telling you that large action is permanently
+            unavailable. The clouds do eventually produce rain — the restraint is
+            temporary. The <cite>I Ching</cite> places Hexagram 10 (Treading)
+            immediately after Hexagram 9, suggesting that careful conduct in the
+            small-taming phase prepares the ground for the more demanding
+            navigation that follows.
+          </p>
+          <p>
+            It is also not a license for indefinite delay. Small taming is a
+            phase, not a permanent condition. If you have been refining and
+            preparing for a long time without any movement toward release, the
+            hexagram may be asking whether the preparation has become a way of
+            avoiding the risk of the larger action.
+          </p>
+        </>
+      ),
+    },
+  ],
+  10: [
+    {
+      heading: "What Hexagram 10 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 10, Lü (履), places Heaven above the Lake — the strongest
+            trigram above the most joyful, creating a significant difference in
+            level and power. The <cite>I Ching</cite> uses the image of treading
+            on a tiger's tail: the danger is real, the power differential is
+            obvious, and yet the person who treads carefully is not harmed. The
+            classical Judgment reads: "careful conduct protects progress in
+            sensitive conditions."
+          </p>
+          <p>
+            This hexagram is not about fear. It is about the kind of precise,
+            respectful awareness that allows someone to move through a genuinely
+            difficult situation without triggering the danger that is present. The
+            tiger does not bite the person who treads correctly — not because the
+            tiger is friendly, but because the conduct was appropriate to the
+            situation.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Heaven above the lake; distinguish higher and lower
+            roles." The practical lesson is about knowing your position relative
+            to the power structures around you and conducting yourself accordingly
+            — not out of servility, but out of accurate situational awareness. The{" "}
+            <cite>I Ching</cite> commentary notes that distinguishing roles is not
+            the same as accepting injustice; it is the recognition that different
+            positions carry different responsibilities and different risks.
+          </p>
+          <p>
+            In sensitive negotiations, hierarchical environments, or situations
+            where one wrong word can undo careful work, Hexagram 10 asks for the
+            discipline to match your conduct to the actual conditions rather than
+            to how you wish the conditions were.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career contexts, Hexagram 10 often appears when someone is
+            navigating a relationship with a powerful superior, a difficult client,
+            or a high-stakes institutional process. The hexagram does not tell you
+            to be passive — it tells you to be precise. Knowing when to speak,
+            when to defer, and when to hold your position without escalating is
+            the skill this hexagram describes.
+          </p>
+          <p>
+            In decision contexts, it can describe a situation where the stakes are
+            high and the margin for error is small. The classical advice is to
+            proceed — the tiger's tail can be tread upon — but to do so with full
+            attention rather than casual confidence.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 10 is not telling you to be permanently deferential or to
+            suppress your own judgment in the face of authority. The person
+            treading on the tiger's tail is not the tiger's servant — they are
+            someone with a destination who is navigating a dangerous path with
+            skill. The goal is to reach the other side, not to remain in the
+            tiger's shadow indefinitely.
+          </p>
+          <p>
+            It is also not saying that the situation is more dangerous than it
+            appears. The <cite>I Ching</cite> is explicit that careful conduct
+            leads to success here — the hexagram is not a warning to retreat but
+            an instruction on how to advance. The danger is real but navigable.
+          </p>
+        </>
+      ),
+    },
+  ],
+  13: [
+    {
+      heading: "What Hexagram 13 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 13, Tong Ren (同人), places Fire below Heaven — clarity
+            rising toward the broadest possible view. In the <cite>I Ching</cite>,
+            this image describes fellowship that extends beyond the immediate
+            group: not just loyalty to those who are already close, but the
+            capacity to find common ground with people who are different. The
+            classical Judgment reads: "open alignment with others expands
+            perspective."
+          </p>
+          <p>
+            The hexagram makes a pointed distinction. Fellowship confined to the
+            clan — to those who already agree with you — is described as limited
+            and ultimately humiliating. Fellowship in the open field — based on
+            shared purpose rather than shared background — is described as
+            genuinely favorable. This is not a call for naive universalism; it is
+            a call for principled rather than tribal alignment.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Fire rises into heaven; shared purpose clarifies the
+            group." Fire illuminates — it makes visible what is actually present.
+            The practical lesson is that genuine fellowship requires honesty about
+            what the group actually shares, not just the assumption of agreement
+            because people are familiar with each other.
+          </p>
+          <p>
+            The <cite>I Ching</cite> commentary on this hexagram emphasizes that
+            the leader of a fellowship must be able to distinguish people clearly
+            — to see who is genuinely aligned and who is present for other
+            reasons. This discernment is not suspicion; it is the clarity that
+            makes real trust possible.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career contexts, Hexagram 13 often appears when someone is building
+            a team, forming a partnership, or joining an organization. The
+            hexagram asks whether the alignment is based on genuine shared values
+            or on convenience and familiarity. Teams built on real common purpose
+            survive disagreement; teams built on comfort tend to fracture when
+            the first real conflict arrives.
+          </p>
+          <p>
+            In community or leadership contexts, it describes the difference
+            between a leader who builds broad coalitions and one who surrounds
+            themselves only with people who already agree. The hexagram consistently
+            favors the former — not because consensus is always right, but because
+            narrow fellowship limits what is possible.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 13 is not saying that all alliances are equally valid or that
+            you should seek fellowship with people whose values are genuinely
+            incompatible with yours. The <cite>I Ching</cite> is clear that
+            fellowship requires real common ground — the point is that this ground
+            should be principled rather than merely tribal.
+          </p>
+          <p>
+            It is also not a guarantee that broad fellowship will be easy. Fire
+            rising into heaven is a powerful image, but fire also requires fuel
+            and direction. Building genuine alignment across difference takes more
+            effort than staying within familiar circles — the hexagram supports
+            that effort without pretending it is simple.
+          </p>
+        </>
+      ),
+    },
+  ],
+  14: [
+    {
+      heading: "What Hexagram 14 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 14, Da You (大有), places Fire above Heaven — the sun
+            positioned above the sky itself, casting light in every direction. In
+            the <cite>I Ching</cite>, this image describes a moment of exceptional
+            abundance: not just material wealth, but any situation where resources,
+            influence, clarity, or opportunity are available in unusual measure.
+            The classical Judgment reads: "abundance is useful only when governed
+            with clarity."
+          </p>
+          <p>
+            The hexagram follows Hexagram 13 (Fellowship) in the{" "}
+            <cite>King Wen sequence</cite> deliberately: genuine fellowship with
+            others naturally produces great possession, because shared effort
+            creates more than individual effort can. The abundance described here
+            is not accidental — it is the result of alignment and cooperation.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Fire above heaven; illuminate resources with
+            responsibility." The sun does not hoard its light — it illuminates
+            everything equally. The practical lesson is that great possession
+            carries an obligation to use what you hold in a way that benefits more
+            than just yourself. The <cite>I Ching</cite> commentary specifically
+            warns against arrogance: the person who holds much and becomes
+            contemptuous of others loses the conditions that made the abundance
+            possible.
+          </p>
+          <p>
+            The hexagram also asks for clarity about what you actually possess.
+            Fire illuminates — it makes things visible as they are, not as you
+            wish them to be. Accurate assessment of your resources is as important
+            as generosity in using them.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career contexts, Hexagram 14 often appears at a peak moment — a
+            successful launch, a period of strong performance, or a position of
+            unusual influence. The hexagram validates the abundance but asks how
+            it is being used. Investing in others, sharing credit, and building
+            durable structures during a peak period is the move this hexagram
+            supports.
+          </p>
+          <p>
+            In leadership contexts, it describes the responsibility that comes
+            with holding significant resources or authority. The classical warning
+            against arrogance is directly applicable: leaders who use peak moments
+            to consolidate personal advantage rather than to strengthen the
+            collective tend to find that the peak was shorter than it needed to be.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 14 is not telling you to give everything away or to feel
+            guilty about abundance. The <cite>I Ching</cite> does not treat
+            possession as inherently problematic — it treats ungoverned possession
+            as problematic. Holding resources well, using them with clarity, and
+            remaining free from arrogance is the standard, not self-denial.
+          </p>
+          <p>
+            It is also not a promise that the abundance will last. The sun at its
+            zenith is also the sun at the moment before it begins to descend. The
+            hexagram asks you to use the peak well precisely because peaks are
+            temporary. Building something durable during a period of great
+            possession is wiser than assuming the conditions will continue
+            indefinitely.
+          </p>
+        </>
+      ),
+    },
+  ],
+  15: [
+    {
+      heading: "What Hexagram 15 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 15, Qian (谦), places Mountain below Earth — the image of
+            something substantial deliberately positioned beneath rather than
+            above. In the <cite>I Ching</cite>, this is one of the most
+            consistently favorable hexagrams: the classical commentary notes that
+            modesty succeeds in every line, which is unusual. The Judgment reads:
+            "measured conduct makes strength acceptable and durable."
+          </p>
+          <p>
+            The hexagram is frequently misread as an instruction to minimize
+            yourself or pretend to less capability than you have. Classical
+            interpretation is more precise: modesty is the accurate matching of
+            expression to context. The mountain does not disappear — it is simply
+            not elevated above everything else. The substance is real; the
+            positioning is deliberate.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "A mountain within the earth; reduce excess and honor
+            balance." The <cite>I Ching</cite> commentary describes modesty as a
+            leveling force: it reduces what is excessive and supplements what is
+            insufficient. In practical terms, this means that the modest person
+            does not dominate conversations they should listen in, does not claim
+            credit that belongs to others, and does not display capability in ways
+            that invite unnecessary competition.
+          </p>
+          <p>
+            The durability aspect is important. Strength that is displayed
+            constantly invites challenge and exhaustion. Strength held in reserve
+            and deployed appropriately lasts longer and produces less friction.
+            Hexagram 15 describes the long-game advantage of measured conduct.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career contexts, Hexagram 15 often appears when someone is in a
+            position of real capability but is generating resistance — perhaps by
+            being too visible, too assertive, or too quick to demonstrate
+            expertise. The hexagram does not ask you to become less capable; it
+            asks whether the way you are expressing that capability is creating
+            unnecessary friction that could be avoided.
+          </p>
+          <p>
+            In leadership contexts, it describes the quality that makes authority
+            sustainable: leaders who do not need to constantly assert their
+            position tend to hold it more securely than those who do. The mountain
+            within the earth is not diminished by its position — it is protected
+            by it.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 15 is not telling you to be passive, to suppress legitimate
+            contributions, or to accept being overlooked indefinitely. The
+            mountain is still a mountain — it has not ceased to exist. Modesty in
+            the <cite>I Ching</cite> is a strategic and ethical quality, not a
+            permanent condition of self-erasure.
+          </p>
+          <p>
+            It is also not saying that all self-promotion is wrong. Context
+            matters. There are situations where clear, direct communication of
+            your capabilities is exactly what is needed. Hexagram 15 asks for
+            calibration, not silence — the question is always whether the level
+            of expression matches what the situation actually calls for.
+          </p>
+        </>
+      ),
+    },
+  ],
+  16: [
+    {
+      heading: "What Hexagram 16 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 16, Yu (豫), places Thunder above Earth — the image of
+            stored energy finally releasing into movement. In the{" "}
+            <cite>I Ching</cite>, this hexagram describes the conditions for
+            genuine collective enthusiasm: not manufactured excitement, but the
+            natural release of energy that has been properly prepared and timed.
+            The classical Judgment reads: "mobilize energy through rhythm, morale,
+            and preparation."
+          </p>
+          <p>
+            The hexagram is notable for its emphasis on music and ritual as
+            practical tools. The <cite>I Ching</cite> commentary describes how
+            ancient kings used music to honor virtue and offer it to the ancestors
+            — not as decoration, but as a technology for aligning people's
+            emotions and creating shared readiness for action. Enthusiasm, in this
+            sense, is something that can be deliberately cultivated.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Thunder emerges from earth; movement follows stored
+            readiness." The practical lesson is about sequencing: enthusiasm that
+            is not grounded in real preparation exhausts itself quickly. The
+            thunder in this hexagram has been building underground — the release
+            is powerful because the preparation was real.
+          </p>
+          <p>
+            In organizational terms, this hexagram describes the difference
+            between a launch that lands and one that fizzles. The conditions for
+            genuine enthusiasm — clear purpose, shared rhythm, visible leadership,
+            and a sense that the moment is right — must be built before the
+            release, not improvised during it.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career or leadership contexts, Hexagram 16 often appears when
+            someone needs to rally a team, launch a campaign, or create momentum
+            around a new direction. The hexagram supports the move but asks
+            whether the conditions for genuine buy-in have been established. People
+            commit to movements they feel, not just movements they are told about.
+          </p>
+          <p>
+            In creative contexts, it can describe the moment when a project is
+            ready to be shared — when the internal preparation has reached the
+            point where release will generate real response rather than premature
+            exposure. The timing of enthusiasm matters as much as its intensity.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 16 is not a license for hype or manufactured excitement. The
+            <cite>I Ching</cite> is consistent that enthusiasm without substance
+            behind it leads to exhaustion and loss of credibility. The thunder
+            that emerges from earth in this hexagram is real — it has been
+            building. Simulated enthusiasm that has no preparation behind it is a
+            different thing entirely.
+          </p>
+          <p>
+            It is also not saying that enthusiasm is always the right mode. The
+            hexagram describes a specific moment — the release of stored readiness
+            — not a permanent operating style. After the launch, after the
+            mobilization, a different hexagram will describe what comes next.
+          </p>
+        </>
+      ),
+    },
+  ],
+  18: [
+    {
+      heading: "What Hexagram 18 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 18, Gu (蛊), places Wind below Mountain — a gentle,
+            penetrating force working beneath something heavy and fixed. In the{" "}
+            <cite>I Ching</cite>, the character <em>gu</em> originally depicted a
+            vessel containing decaying matter — the image of something that has
+            been left too long and has begun to rot. The classical Judgment reads:
+            "repair inherited patterns before asking for new growth."
+          </p>
+          <p>
+            The hexagram specifically addresses decay that has developed over
+            time, often through the failures of a previous generation or a
+            previous phase of a project. It is not about sudden crisis but about
+            the slow accumulation of neglect that eventually requires deliberate
+            correction. Receiving this hexagram is a signal that the work ahead
+            is repair work — and that repair work done well creates the conditions
+            for genuine renewal.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Wind below the mountain; renewal begins with
+            correction." The <cite>I Ching</cite> commentary on this hexagram
+            includes an unusual instruction: consider what happened three days
+            before the spoiling began, and plan for three days after the
+            correction. This is a classical way of saying: understand the full
+            context of the problem before acting, and monitor the results of your
+            correction carefully rather than assuming the repair is complete.
+          </p>
+          <p>
+            The practical lesson is that inherited dysfunction rarely has a single
+            cause or a single fix. Wind working beneath a mountain is patient and
+            persistent — it does not try to move the mountain directly. The
+            corrective work this hexagram describes is thorough, careful, and
+            willing to address root causes rather than symptoms.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career or organizational contexts, Hexagram 18 often appears when
+            someone has inherited a broken system, a dysfunctional team, or a
+            project that has been mismanaged. The hexagram validates the
+            difficulty of the situation and asks for the patience to diagnose
+            before fixing. Jumping to solutions before understanding the full
+            scope of the decay tends to produce surface repairs that leave the
+            underlying problem intact.
+          </p>
+          <p>
+            In personal contexts, it can describe the work of addressing patterns
+            that were established in childhood or early in a relationship — habits
+            and assumptions that have been in place so long they feel like fixed
+            conditions rather than things that can be changed. The hexagram
+            supports that work and asks for the same patient, thorough approach.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 18 is not saying that the situation is hopeless or that the
+            decay is permanent. The <cite>I Ching</cite> treats this hexagram as
+            genuinely favorable — not because the work is easy, but because
+            repair work done well creates better conditions than existed before
+            the decay began. The spoiling is not the end of the story; it is the
+            beginning of a correction that can produce real renewal.
+          </p>
+          <p>
+            It is also not assigning blame to the previous generation or the
+            previous phase. The classical framing is practical rather than
+            judgmental: something went wrong, here is how to address it. The
+            energy spent on blame is energy not spent on repair.
+          </p>
+        </>
+      ),
+    },
+  ],
+  19: [
+    {
+      heading: "What Hexagram 19 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 19, Lin (临), places the Lake above Earth — water rising
+            over the land, bringing nourishment and expanding reach. In the{" "}
+            <cite>I Ching</cite>, the character <em>lin</em> carries the meaning
+            of drawing near, overseeing, and approaching with care. The classical
+            Judgment reads: "influence grows through presence, care, and timely
+            supervision."
+          </p>
+          <p>
+            This hexagram describes a period of genuine access and expanding
+            influence — a time when your presence is welcomed, your input is
+            valued, and the conditions for positive impact are unusually
+            favorable. The <cite>King Wen sequence</cite> places it after
+            Hexagram 18 (Work on What Has Been Spoiled) deliberately: repair work
+            done well creates the conditions for this kind of open, growing
+            approach.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "The lake rises over earth; approach with generosity."
+            The practical lesson is about the quality of approach: the lake does
+            not force itself onto the land — it rises naturally, bringing
+            nourishment rather than flood. The <cite>I Ching</cite> commentary
+            describes the ideal approach as one that combines genuine care for
+            others with clear-eyed assessment of what is actually needed.
+          </p>
+          <p>
+            The classical warning about the eighth month is significant. Hexagram
+            19 describes a favorable window, not a permanent condition. The wise
+            use of an approach period is to build something durable — relationships,
+            structures, understanding — that will persist after the window closes.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career contexts, Hexagram 19 often appears when someone has
+            recently gained access — a new role, a new relationship with a
+            decision-maker, or a period of increased visibility. The hexagram
+            supports using that access actively and generously, while remaining
+            aware that the window is not permanent. Building genuine relationships
+            during a period of favorable access is more valuable than extracting
+            maximum short-term benefit.
+          </p>
+          <p>
+            In mentorship or leadership contexts, it describes the responsibility
+            of someone in a position of oversight: approaching those under your
+            care with genuine interest in their development, not just their
+            performance. The lake nourishes the earth — it does not simply
+            measure it.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 19 is not telling you that the favorable conditions will
+            last indefinitely. The classical warning about the eighth month is
+            one of the more explicit time-limit signals in the{" "}
+            <cite>I Ching</cite> — it is a reminder that approach periods end,
+            and that the work done during them determines what survives the
+            transition.
+          </p>
+          <p>
+            It is also not saying that approach means intrusion. The lake rises
+            naturally — it does not force itself where it is not welcome. Genuine
+            approach requires reading whether your presence is actually useful to
+            the situation, not just assuming that your intentions make it so.
+          </p>
+        </>
+      ),
+    },
+  ],
+  20: [
+    {
+      heading: "What Hexagram 20 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 20, Guan (观), places Wind above Earth — wind moving across
+            the land, observing and being observed. In the <cite>I Ching</cite>,
+            the character <em>guan</em> means both to contemplate and to be
+            contemplated: the hexagram operates in both directions simultaneously.
+            The classical Judgment reads: "step back and see the pattern before
+            acting."
+          </p>
+          <p>
+            The hexagram describes a moment of genuine observation — not passive
+            waiting, but the active work of seeing clearly. The{" "}
+            <cite>King Wen sequence</cite> places it after Hexagram 19 (Approach)
+            deliberately: after a period of active engagement and influence, the
+            appropriate next move is often to step back and assess what has
+            actually been built.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Wind moves over earth; observe what your conduct
+            teaches." The <cite>I Ching</cite> commentary on this hexagram
+            emphasizes the teaching function of example: ancient kings would tour
+            their territories not primarily to inspect but to be seen — their
+            conduct in public set the standard for the entire realm. The practical
+            lesson is that how you behave when you think you are simply observing
+            is itself a form of communication.
+          </p>
+          <p>
+            In analytical terms, Hexagram 20 asks for the kind of observation
+            that sees systems and patterns rather than just individual events.
+            Wind touches everything — it does not focus on one point. The
+            contemplation this hexagram describes is wide rather than narrow.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career contexts, Hexagram 20 often appears when someone is in a
+            position of visibility — a new leadership role, a public-facing
+            project, or a moment when their decisions are being watched by others
+            who will draw conclusions from them. The hexagram asks whether your
+            conduct in this visible position is teaching what you intend to teach.
+          </p>
+          <p>
+            In decision contexts, it describes the value of pausing before acting
+            to assess the full situation. Many decisions that seem urgent are
+            actually better served by a period of genuine observation — gathering
+            more information, watching how the situation develops, and seeing the
+            pattern before committing to a direction.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 20 is not telling you to remain permanently in observation
+            mode or to use contemplation as a way of avoiding commitment. The
+            wind moves — it does not stop. Observation in the{" "}
+            <cite>I Ching</cite> is a phase that leads to action, not a
+            substitute for it.
+          </p>
+          <p>
+            It is also not saying that your inner life is irrelevant. The
+            hexagram operates in both directions: you observe the world, and the
+            world observes you. But the classical emphasis is on the outward
+            dimension — what your conduct actually communicates — rather than on
+            private reflection alone. Both matter, but Hexagram 20 specifically
+            asks about the gap between intention and visible example.
+          </p>
+        </>
+      ),
+    },
+  ],
+  21: [
+    {
+      heading: "What Hexagram 21 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 21, Shi He (噬嗑), places Thunder above Fire — the image of
+            lightning and thunder arriving together, the most decisive natural
+            signal. In the <cite>I Ching</cite>, the hexagram's name literally
+            means "biting through": the image is of a mouth with something
+            obstructing it that must be bitten through before the mouth can close
+            properly. The classical Judgment reads: "a blockage requires precise,
+            fair, and decisive action."
+          </p>
+          <p>
+            The hexagram is specifically associated with legal judgment and the
+            administration of consequences. This is not about aggression or
+            punishment for its own sake — it is about the removal of an obstacle
+            that is preventing a situation from functioning correctly. The
+            obstacle must be addressed; tolerating it indefinitely does not make
+            it go away.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Thunder and lightning combine; clarify law and
+            consequence." The <cite>I Ching</cite> commentary describes how
+            ancient kings used this hexagram as the basis for establishing clear
+            penalties — not to be harsh, but to be unambiguous. The practical
+            lesson is that unclear consequences invite repeated violations. When
+            the standard is clear and the response is proportionate, the obstacle
+            is removed and the situation can function again.
+          </p>
+          <p>
+            Precision matters here. Biting through requires knowing exactly where
+            the obstruction is and applying exactly the right force. Too little
+            and the obstacle remains; too much and you damage what you are trying
+            to restore. The <cite>I Ching</cite> consistently emphasizes fairness
+            alongside decisiveness in this hexagram.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career or organizational contexts, Hexagram 21 often appears when
+            a problem has been tolerated too long — a performance issue that has
+            not been addressed, a boundary that has been repeatedly crossed, or a
+            conflict that has been avoided rather than resolved. The hexagram
+            supports taking clear action and asks for proportionality: the
+            response should match the actual severity of the obstruction.
+          </p>
+          <p>
+            In relationship contexts, it can describe a moment when something
+            that has been left unsaid must be said directly. The obstacle to
+            genuine connection is the unaddressed issue, not the act of addressing
+            it. Biting through the discomfort of a difficult conversation is often
+            what allows the relationship to function properly again.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 21 is not a license for aggression, punishment beyond what
+            the situation warrants, or using force to resolve what could be
+            resolved through honest communication. The classical emphasis on
+            fairness is not decorative — it is the condition that makes the action
+            legitimate. Decisive action that is disproportionate or unjust creates
+            new problems rather than removing the old one.
+          </p>
+          <p>
+            It is also not saying that every difficulty requires this kind of
+            response. The <cite>I Ching</cite> has many hexagrams that describe
+            patience, withdrawal, and gradual influence. Hexagram 21 applies
+            specifically to situations where there is a genuine obstruction that
+            cannot be worked around — where the only path forward goes through it.
+          </p>
+        </>
+      ),
+    },
+  ],
+  22: [
+    {
+      heading: "What Hexagram 22 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 22, Bi (贲), places Fire below Mountain — light at the base
+            of something solid, illuminating its surface. In the{" "}
+            <cite>I Ching</cite>, this image describes the relationship between
+            form and substance: the fire does not create the mountain, but it
+            makes the mountain visible and beautiful. The classical Judgment reads:
+            "form and beauty support substance when they do not replace it."
+          </p>
+          <p>
+            The hexagram occupies an interesting position in the{" "}
+            <cite>King Wen sequence</cite>: it follows Hexagram 21 (Biting
+            Through), which deals with decisive action to remove obstacles. After
+            the obstacle is cleared, grace — the careful attention to form and
+            presentation — becomes appropriate again. The sequence suggests that
+            beauty has its place, but that place comes after the essential work
+            is done.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Fire at the foot of the mountain; clarify
+            appearances." The <cite>I Ching</cite> commentary on this hexagram
+            makes a careful distinction: grace is appropriate for small affairs
+            but should not be the basis for important decisions. The practical
+            lesson is that how something looks matters — presentation, form, and
+            aesthetic care are real contributions — but they are secondary to what
+            the thing actually is.
+          </p>
+          <p>
+            In classical Chinese thought, ritual and ceremony are forms of grace:
+            they give important moments their proper weight and make invisible
+            values visible. Hexagram 22 supports this kind of meaningful form
+            while warning against form that has become empty — ceremony without
+            substance, presentation without content.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career contexts, Hexagram 22 often appears when someone is working
+            on how to present their work — a pitch, a design, a communication
+            strategy. The hexagram validates the importance of presentation while
+            asking whether the underlying substance is solid enough to support it.
+            A beautiful presentation of weak content is still weak content.
+          </p>
+          <p>
+            In creative contexts, it describes the phase of refinement and
+            finishing — the work of making something that is already good also
+            beautiful. This is legitimate and valuable work. The hexagram supports
+            it while reminding you that the refinement serves the work, not the
+            other way around.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 22 is not saying that appearance is unimportant or that
+            aesthetic care is superficial. The <cite>I Ching</cite> treats grace
+            as a genuine value — fire illuminating a mountain is a beautiful and
+            useful image. The warning is specifically against using grace as a
+            substitute for substance in important decisions, not against grace
+            itself.
+          </p>
+          <p>
+            It is also not saying that all situations call for elaborate
+            presentation. Sometimes the most graceful response is simplicity —
+            the mountain does not need decoration to be a mountain. The question
+            this hexagram asks is whether the form you are adding genuinely serves
+            the content, or whether it is covering something that needs to be
+            addressed more directly.
+          </p>
+        </>
+      ),
+    },
+  ],
+  23: [
+    {
+      heading: "What Hexagram 23 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 23, Bo (剥), places Mountain above Earth — but the structure
+            is precarious. Five yin lines have risen from the bottom of the
+            hexagram, leaving a single yang line isolated at the top. In the{" "}
+            <cite>I Ching</cite>, this image describes a period of erosion: the
+            solid is being undermined, support is withdrawing, and the conditions
+            that once sustained a situation are no longer present. The classical
+            Judgment reads: "when structure erodes, preserve what is essential."
+          </p>
+          <p>
+            The hexagram is associated with the ninth month in the classical
+            calendar — late autumn, when the last of the yang energy is retreating
+            before winter. This is not a permanent condition; the{" "}
+            <cite>King Wen sequence</cite> places Hexagram 24 (Return) immediately
+            after, because the cycle always turns. But the turning requires
+            patience, not forced action.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "A mountain rests on earth; strengthen foundations
+            quietly." The <cite>I Ching</cite> commentary on this hexagram is
+            unusually direct: those above can only maintain their position by
+            being genuinely generous to those below. A mountain that has no
+            support from the earth beneath it will fall. The practical lesson is
+            that during a period of erosion, the work is not to push forward but
+            to tend to the relationships and foundations that will matter when
+            conditions improve.
+          </p>
+          <p>
+            The hexagram also asks for honest assessment. Splitting apart is
+            sometimes the result of external conditions, but it is sometimes the
+            result of neglected foundations — relationships not tended, structures
+            not maintained, warnings not heeded. The <cite>I Ching</cite> does
+            not assign blame, but it does ask for clear-eyed recognition of what
+            has actually happened.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career contexts, Hexagram 23 often appears when a project, role,
+            or organization is losing coherence — when the support structures that
+            made something work are quietly withdrawing. The hexagram does not
+            advise dramatic action to reverse the erosion; it advises identifying
+            what is genuinely worth preserving and focusing energy there rather
+            than trying to hold everything together at once.
+          </p>
+          <p>
+            In relationship contexts, it can describe a period when the
+            foundations of a connection have been weakened — through neglect,
+            accumulated resentment, or changed circumstances. The classical advice
+            applies: tend to what is essential, do not force premature resolution,
+            and allow the cycle to turn rather than demanding immediate repair.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 23 is not saying that everything is lost or that the
+            situation cannot recover. The single yang line at the top of the
+            hexagram is still present — the essential quality has not disappeared,
+            only been reduced. The <cite>I Ching</cite> places Return immediately
+            after Splitting Apart precisely because the cycle does turn, and the
+            seed of renewal is already present in the moment of greatest erosion.
+          </p>
+          <p>
+            It is also not advising passivity in the face of genuine injustice or
+            harm. Preserving what is essential sometimes requires active
+            protection, not just quiet waiting. The distinction is between
+            protecting what genuinely matters and exhausting yourself trying to
+            prevent every aspect of a natural cycle from completing itself.
+          </p>
+        </>
+      ),
+    },
+  ],
+  26: [
+    {
+      heading: "What Hexagram 26 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 26, Da Chu (大畜), places Heaven inside the Mountain — the
+            strongest creative force contained within the most solid and immovable
+            structure. In the <cite>I Ching</cite>, this image describes the
+            accumulation of great power through restraint: not suppression, but
+            the deliberate holding of force until it has been fully developed and
+            the moment for its release is right. The classical Judgment reads:
+            "strong power must be stored, trained, and directed."
+          </p>
+          <p>
+            The hexagram is paired with Hexagram 9 (Small Taming) earlier in the{" "}
+            <cite>King Wen sequence</cite>. Where Small Taming describes minor
+            restraints on a large force, Great Taming describes the full
+            containment and cultivation of something genuinely powerful. The
+            difference is scale and depth: this is not a temporary pause but a
+            sustained period of development.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Heaven within the mountain; cultivate depth before
+            release." The <cite>I Ching</cite> commentary describes how the wise
+            person in this situation studies the words and deeds of those who came
+            before — not to imitate them, but to absorb their experience and
+            build a foundation of genuine understanding. The practical lesson is
+            that great capability requires great preparation, and the preparation
+            is not wasted time but the source of the eventual power.
+          </p>
+          <p>
+            The hexagram also describes the value of not eating at home — of
+            going out into the world, engaging with difficulty, and testing
+            accumulated strength against real conditions. Cultivation that never
+            meets resistance remains theoretical.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career contexts, Hexagram 26 often appears during a period of
+            intensive development — deep study, apprenticeship, or a role that
+            builds foundational capability without yet offering full expression.
+            The hexagram validates this phase and asks for patience with it. The
+            mountain does not release what it contains until the conditions are
+            right; forcing early release produces less than waiting for the
+            proper moment.
+          </p>
+          <p>
+            In creative or intellectual contexts, it describes the long
+            preparation that precedes a major work — the years of reading,
+            practice, and accumulated experience that make a breakthrough possible.
+            The breakthrough is real, but it is the product of the containment,
+            not a substitute for it.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 26 is not telling you to remain permanently in preparation
+            mode or to use cultivation as a way of avoiding the risk of action.
+            Heaven inside the mountain is building pressure — it will eventually
+            need to be released. The <cite>I Ching</cite> places Hexagram 27
+            (Nourishment) immediately after, suggesting that the accumulated
+            strength must eventually be used to nourish something beyond itself.
+          </p>
+          <p>
+            It is also not saying that your current capabilities are insufficient.
+            Great Taming describes a situation where real strength exists and is
+            being deepened — not a situation of inadequacy. The work is
+            refinement and timing, not remediation.
+          </p>
+        </>
+      ),
+    },
+  ],
+  27: [
+    {
+      heading: "What Hexagram 27 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 27, Yi (颐), places Thunder below Mountain — movement at the
+            base, stillness above, forming the image of an open mouth. In the{" "}
+            <cite>I Ching</cite>, this hexagram asks two questions simultaneously:
+            what are you nourishing yourself with, and what are you nourishing
+            others with? The classical Judgment reads: "watch what you feed and
+            what feeds you."
+          </p>
+          <p>
+            The hexagram operates on multiple levels. Physically, it concerns
+            food and the body. Intellectually, it concerns what ideas and
+            information you take in. Socially, it concerns what you say and how
+            your words nourish or deplete the people around you. The{" "}
+            <cite>I Ching</cite> treats all of these as aspects of the same
+            question: the quality of what passes through you shapes who you
+            become.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Thunder below the mountain; speech and intake shape
+            character." The <cite>I Ching</cite> commentary is specific: be
+            careful about what you say, and be moderate in what you eat and drink.
+            This is not moralism — it is a practical observation that the habits
+            of intake and output accumulate into character over time. What you
+            consume regularly becomes part of how you think; what you say
+            regularly becomes part of how others experience you.
+          </p>
+          <p>
+            The hexagram also asks about the source of nourishment. Seeking
+            nourishment from the right place — from genuine substance rather than
+            from what merely looks satisfying — is the classical standard. The
+            wrong kind of nourishment depletes even as it appears to fill.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career contexts, Hexagram 27 often appears when someone is
+            depleted — working in an environment that takes more than it gives, or
+            consuming information and stimulation without genuine nourishment. The
+            hexagram asks what is actually sustaining you and whether the sources
+            of nourishment in your current situation are adequate for what you are
+            being asked to produce.
+          </p>
+          <p>
+            In communication contexts, it describes the responsibility of someone
+            whose words reach many people. What you put into the world through
+            speech, writing, or teaching nourishes or depletes those who receive
+            it. The hexagram asks whether what you are producing is genuinely
+            useful to others or merely satisfying to produce.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 27 is not prescribing a specific diet or a specific
+            information regimen. The <cite>I Ching</cite> does not specify what
+            the right nourishment is — it asks you to pay attention to the
+            question. What genuinely sustains you is something you have to
+            discover through honest observation of your own experience, not
+            through following a formula.
+          </p>
+          <p>
+            It is also not saying that all pleasure is suspect or that enjoyment
+            is a form of weakness. The hexagram is about quality and attention,
+            not about deprivation. The mouth that opens in the image is meant to
+            be filled — the question is with what, and whether what fills it
+            actually nourishes.
+          </p>
+        </>
+      ),
+    },
+  ],
+  28: [
+    {
+      heading: "What Hexagram 28 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 28, Da Guo (大过), places Lake above Wind — water rising
+            above the wood that would normally contain it, the image of a ridgepole
+            sagging under excessive weight. In the <cite>I Ching</cite>, this
+            hexagram describes a situation of genuine structural overload: the
+            middle is too heavy, the ends are too weak, and the ordinary supports
+            are no longer adequate. The classical Judgment reads: "a heavy load
+            asks for transition, not denial."
+          </p>
+          <p>
+            The hexagram is notable for the quality of response it describes. When
+            the load is genuinely extraordinary, the <cite>I Ching</cite> does not
+            advise ordinary caution — it describes figures who act with unusual
+            independence and accept unusual consequences. The sage who stands alone
+            in floodwaters without fear is the classical image of the appropriate
+            response to great exceeding.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "A lake rises above wood; reinforce what is under
+            strain." The practical lesson operates on two levels. First: honestly
+            assess whether the strain is real. Not every difficulty is a great
+            exceeding — sometimes what feels like structural overload is actually
+            manageable with ordinary adjustments. Second: if the strain is
+            genuinely extraordinary, respond with extraordinary measures rather
+            than pretending ordinary ones will suffice.
+          </p>
+          <p>
+            The <cite>I Ching</cite> commentary on this hexagram describes the
+            wise person as someone who can stand alone without support and
+            withdraw from the world without distress — not because isolation is
+            desirable, but because the situation requires a kind of independence
+            that ordinary social support cannot provide.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career contexts, Hexagram 28 often appears when someone is carrying
+            a workload, responsibility, or role that has grown beyond what the
+            current structure can support. The hexagram does not advise simply
+            working harder — it asks whether the structure itself needs to change.
+            Hiring, delegating, restructuring, or stepping back from something
+            that cannot be sustained are all responses this hexagram supports.
+          </p>
+          <p>
+            In personal contexts, it can describe a period of exceptional demand —
+            caregiving, crisis, or a transition that requires more than ordinary
+            reserves. The classical advice is to accept the extraordinary nature
+            of the situation and respond accordingly, rather than measuring
+            yourself against normal standards during an abnormal period.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 28 is not saying that all strain is a crisis or that every
+            difficult period requires a fundamental restructuring. The{" "}
+            <cite>I Ching</cite> is specific that this hexagram describes genuine
+            overload — the ridgepole that is actually sagging, not just under
+            normal load. Treating ordinary difficulty as great exceeding leads to
+            unnecessary disruption.
+          </p>
+          <p>
+            It is also not a license for recklessness. The sage who stands in
+            floodwaters does so without fear, but also without foolishness — they
+            have assessed the situation and chosen their position deliberately.
+            Extraordinary action in response to extraordinary circumstances is
+            different from impulsive action in response to ordinary discomfort.
+          </p>
+        </>
+      ),
+    },
+  ],
+  31: [
+    {
+      heading: "What Hexagram 31 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 31, Xian (咸), places Lake above Mountain — the yielding
+            trigram above the firm, softness resting on solidity. In the{" "}
+            <cite>I Ching</cite>, this is the first hexagram of the second half of
+            the sequence, and the <cite>King Wen</cite> commentary treats it as
+            foundational: just as Heaven and Earth are the basis of the natural
+            world, the mutual attraction between people is the basis of human
+            society. The classical Judgment reads: "mutual attraction works
+            through openness and restraint."
+          </p>
+          <p>
+            The hexagram's name, <em>xian</em>, means "all" or "universal" — the
+            sense of a feeling that moves through everything without obstruction.
+            The classical image is of genuine courtship: two people responding to
+            each other authentically, without calculation or agenda. This kind of
+            influence is described as the most powerful precisely because it does
+            not force.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "A lake on the mountain; influence comes through
+            receptivity." The practical lesson is about the mechanism of genuine
+            influence: it works through emptying yourself of fixed agenda and
+            becoming genuinely responsive to what is actually present. The{" "}
+            <cite>I Ching</cite> commentary describes the sage as someone whose
+            mind is like a still lake — it reflects everything accurately because
+            it is not disturbed by its own preferences.
+          </p>
+          <p>
+            The restraint mentioned in the Judgment is equally important. Influence
+            that overreaches — that tries to affect everything at once or that
+            pushes past the natural limit of the connection — loses its quality.
+            The lake rests on the mountain; it does not flood it.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career or leadership contexts, Hexagram 31 often appears when
+            someone is trying to persuade, inspire, or move others and finding
+            that their usual approaches are not working. The hexagram asks whether
+            the influence attempt is genuinely responsive to what the other person
+            needs, or whether it is primarily an expression of what the influencer
+            wants. Authentic responsiveness tends to produce more movement than
+            well-crafted pressure.
+          </p>
+          <p>
+            In relationship contexts, it describes the quality of genuine
+            attraction — the kind that does not need to manufacture itself or
+            sustain itself through effort. When this quality is present, the
+            hexagram supports acting on it. When it is absent, no amount of
+            technique will substitute for it.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 31 is not saying that all attraction is trustworthy or that
+            every feeling of connection should be acted upon without discernment.
+            The <cite>I Ching</cite> places this hexagram at the opening of the
+            second half of the sequence precisely because it describes a
+            foundational human experience — but foundational experiences can be
+            misread or manipulated. Genuine influence requires both openness and
+            the judgment to know what is worth responding to.
+          </p>
+          <p>
+            It is also not saying that influence requires passivity. Receptivity
+            is an active quality — it takes real attention and real presence to
+            respond accurately to what is actually there. The still lake is not
+            an empty lake; it is a lake that is fully present to what it reflects.
+          </p>
+        </>
+      ),
+    },
+  ],
+  32: [
+    {
+      heading: "What Hexagram 32 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 32, Heng (恒), places Thunder above Wind — two moving forces
+            paired together, each reinforcing the other's momentum. In the{" "}
+            <cite>I Ching</cite>, this image describes duration as an active
+            quality: not the stillness of a stone, but the continuous movement of
+            the sun and moon through their cycles, the four seasons through their
+            sequence. The classical Judgment reads: "consistency creates trust
+            when it can adapt without breaking."
+          </p>
+          <p>
+            The hexagram follows Hexagram 31 (Influence) in the{" "}
+            <cite>King Wen sequence</cite> deliberately: attraction and connection
+            are the beginning, but duration is what makes them real over time.
+            What endures is not what never changes — it is what maintains its
+            essential direction through change.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Thunder and wind endure together; stay steady in
+            motion." The <cite>I Ching</cite> commentary describes the wise person
+            as someone who stands firm in their direction without being rigid about
+            the path. The practical lesson is the difference between commitment to
+            a purpose and attachment to a specific form: the former endures, the
+            latter breaks.
+          </p>
+          <p>
+            The hexagram also asks about the quality of what is being sustained.
+            Duration is only favorable when what endures is genuinely worth
+            sustaining. Persisting in a direction that has become wrong is not
+            duration in the classical sense — it is stubbornness. The{" "}
+            <cite>I Ching</cite> asks you to examine whether what you are
+            maintaining is still aligned with what you actually value.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career contexts, Hexagram 32 often appears when someone is
+            questioning whether to continue with a long-term commitment — a
+            career path, a project, a relationship with an organization. The
+            hexagram asks two questions: is the direction still right, and is the
+            way you are sustaining it genuinely adaptive or merely habitual?
+            Continuing because it is familiar is different from continuing because
+            it is still the right direction.
+          </p>
+          <p>
+            In relationship contexts, it describes the quality that makes
+            long-term connection possible: not the absence of change, but the
+            presence of a shared direction that both people continue to choose.
+            Duration in a relationship is renewed through ongoing commitment, not
+            assumed from past commitment.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 32 is not telling you to persist regardless of circumstances
+            or to treat endurance as a virtue independent of what is being
+            endured. The <cite>I Ching</cite> is clear that duration requires
+            ongoing assessment — the sun and moon endure because they follow their
+            natural course, not because they refuse to move. Enduring in a
+            direction that has become genuinely wrong is not what this hexagram
+            describes.
+          </p>
+          <p>
+            It is also not saying that change is a failure of duration. Thunder
+            and wind both move — they do not stand still. The consistency this
+            hexagram describes is consistency of direction and character, not
+            consistency of form. Adapting how you pursue a genuine commitment is
+            part of what makes the commitment durable.
+          </p>
+        </>
+      ),
+    },
+  ],
+  33: [
+    {
+      heading: "What Hexagram 33 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 33, Dun (遁), places Heaven above Mountain — the sky moving
+            upward, away from the rising ground below. In the <cite>I Ching</cite>,
+            this image describes a moment when the conditions have shifted and the
+            correct response is to withdraw rather than to hold or advance. The
+            classical Judgment reads: "strategic withdrawal protects long-term
+            strength."
+          </p>
+          <p>
+            The hexagram is associated with the sixth month in the classical
+            calendar — the point when yin energy begins to grow again after the
+            summer solstice. Two yin lines have risen from the bottom of the
+            hexagram, and the four yang lines above are retreating. This is not a
+            rout; it is a deliberate, orderly withdrawal before the balance shifts
+            further.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Heaven above the mountain; step back without
+            resentment." The <cite>I Ching</cite> commentary emphasizes the
+            quality of the retreat: it must be timely, orderly, and free from
+            bitterness. A retreat made too late, or made with resentment and
+            recrimination, loses the benefit that strategic withdrawal is meant to
+            provide. The practical lesson is to recognize the moment early and
+            move cleanly.
+          </p>
+          <p>
+            The hexagram also distinguishes between different kinds of retreat.
+            Retreating to a position of genuine independence and strength is
+            favorable. Retreating into entanglement — maintaining connections that
+            drain rather than support — is not. The <cite>I Ching</cite> asks
+            whether the withdrawal is genuinely clean or whether it is partial and
+            therefore ineffective.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career contexts, Hexagram 33 often appears when someone is in a
+            role, organization, or project that has become genuinely untenable —
+            where the conditions have shifted against them and continued engagement
+            is producing diminishing returns at increasing cost. The hexagram
+            supports leaving, but asks for a clean and timely exit rather than a
+            prolonged, resentful withdrawal.
+          </p>
+          <p>
+            In relationship or social contexts, it can describe the need to
+            withdraw from a dynamic that has become draining or harmful. The
+            classical emphasis on doing this without resentment is practically
+            important: a withdrawal made in anger tends to create new entanglements
+            rather than genuine freedom.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 33 is not telling you to avoid all difficulty or to retreat
+            at the first sign of resistance. The <cite>I Ching</cite> has many
+            hexagrams that describe persisting through difficulty — Hexagram 29
+            (The Abysmal), Hexagram 47 (Oppression), and others. Retreat is
+            appropriate when the conditions have genuinely shifted against you,
+            not when the situation is simply hard.
+          </p>
+          <p>
+            It is also not a permanent condition. Heaven retreats above the
+            mountain, but it does not disappear. The strength preserved through
+            strategic withdrawal is available for a future moment when conditions
+            are more favorable. Retreat in the <cite>I Ching</cite> is always
+            preparation for eventual return, not permanent withdrawal from
+            engagement.
+          </p>
+        </>
+      ),
+    },
+  ],
+  34: [
+    {
+      heading: "What Hexagram 34 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 34, Da Zhuang (大壮), places Thunder above Heaven — the most
+            active trigram above the most creative, producing an image of force at
+            its maximum. In the <cite>I Ching</cite>, four yang lines have risen
+            from the bottom, pushing the two remaining yin lines upward. The
+            momentum is real and substantial. The classical Judgment reads: "power
+            succeeds when governed by proportion."
+          </p>
+          <p>
+            The hexagram is not a warning against strength — it is a warning
+            against strength that has become untethered from what is right. The{" "}
+            <cite>I Ching</cite> is explicit: great power that follows correct
+            principles is genuinely favorable. Great power that simply follows its
+            own momentum, without asking whether the direction is right, tends to
+            create the problems it was meant to solve.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Thunder in heaven; strength must follow what is
+            right." The classical image of the ram charging the fence is
+            instructive: the ram has real power, and it may break through — but
+            if it charges without assessing the fence, it may also become caught
+            in it. The practical lesson is that the availability of force does not
+            determine whether using it is wise.
+          </p>
+          <p>
+            The <cite>I Ching</cite> commentary describes the wise person in this
+            situation as someone who does not tread paths that are not correct —
+            not because they lack the power to force their way, but because they
+            understand that power used without principle exhausts itself and
+            creates resistance that compounds over time.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career or leadership contexts, Hexagram 34 often appears when
+            someone has accumulated significant influence, resources, or momentum
+            and is deciding how to use it. The hexagram supports bold action but
+            asks whether the direction is genuinely right — not just achievable.
+            Using a position of strength to force an outcome that is not actually
+            correct tends to produce short-term results and long-term costs.
+          </p>
+          <p>
+            In negotiation or conflict contexts, it describes a moment when you
+            have the leverage to impose a resolution. The hexagram asks whether
+            imposing it is the right move, or whether the strength available to
+            you is better used to create conditions for a genuinely better outcome
+            than the one you could force.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 34 is not telling you to be timid or to hold back strength
+            that is genuinely needed. The <cite>I Ching</cite> treats great power
+            as favorable when it is correctly directed — the hexagram is not a
+            caution against action but a caution against action that has lost its
+            connection to what is right. Bold, well-directed strength is exactly
+            what this hexagram describes at its best.
+          </p>
+          <p>
+            It is also not saying that every use of power requires elaborate
+            justification. Sometimes the right action is obvious and the strength
+            to take it is simply what is needed. The question the hexagram asks is
+            not "can you justify this?" but "is this actually right?" — a
+            simpler and more demanding standard.
+          </p>
+        </>
+      ),
+    },
+  ],
+  35: [
+    {
+      heading: "What Hexagram 35 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 35, Jin (晋), places Fire above Earth — the sun rising over
+            the land, its light spreading outward and upward. In the{" "}
+            <cite>I Ching</cite>, this image describes a moment of genuine
+            advancement: conditions are open, recognition is available, and
+            movement forward is both possible and welcomed. The classical Judgment
+            reads: "visibility increases when support and clarity align."
+          </p>
+          <p>
+            The hexagram follows Hexagram 34 (Great Power) in the{" "}
+            <cite>King Wen sequence</cite> deliberately: power that is correctly
+            directed naturally produces progress. The advancement described here
+            is not forced — it is the natural result of alignment between
+            capability, timing, and the openness of the situation.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "The sun rises over earth; advance with generosity."
+            The sun does not advance by pushing — it advances by illuminating.
+            The practical lesson is that genuine progress in this hexagram comes
+            through clarity and generosity rather than through force or
+            self-promotion. The <cite>I Ching</cite> commentary describes the
+            ideal response as brightening one's own virtue — making what is
+            genuinely good more visible, rather than manufacturing an appearance
+            of advancement.
+          </p>
+          <p>
+            The classical image of receiving horses and multiple audiences in a
+            single day suggests rapid movement — but movement that is welcomed
+            rather than imposed. Progress that others support tends to be more
+            durable than progress that others merely tolerate.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career contexts, Hexagram 35 often appears when someone is in a
+            period of genuine opportunity — a favorable environment, a supportive
+            relationship with decision-makers, or a moment when their work is
+            being recognized. The hexagram supports moving forward actively and
+            asks for the generosity to share credit and illuminate others as you
+            advance, rather than treating the favorable conditions as a private
+            resource.
+          </p>
+          <p>
+            In creative or public contexts, it describes a moment when work is
+            ready to be seen and the conditions for sharing it are favorable. The
+            sun rises — it does not wait for a perfect moment that never comes.
+            Advancing when conditions are genuinely open is the appropriate
+            response to this hexagram.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 35 is not a guarantee that all advancement will be welcomed
+            or that favorable conditions will last indefinitely. The sun rises and
+            also sets — the <cite>I Ching</cite> places Hexagram 36 (Darkening of
+            the Light) immediately after Progress precisely because peak visibility
+            is followed by a period of concealment. Using a period of progress
+            well means building something durable, not assuming the conditions
+            will continue.
+          </p>
+          <p>
+            It is also not saying that advancement requires external validation.
+            The sun illuminates regardless of whether anyone is watching. If the
+            conditions for recognized progress are not present, the hexagram's
+            instruction to brighten one's own virtue still applies — the work of
+            genuine development continues independent of whether it is currently
+            being seen.
+          </p>
+        </>
+      ),
+    },
+  ],
+  37: [
+    {
+      heading: "What Hexagram 37 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 37, Jia Ren (家人), places Wind above Fire — warmth rising
+            and generating outward movement. In the <cite>I Ching</cite>, this
+            image describes the household as a microcosm of all social order: the
+            patterns established within a family or close group become the
+            patterns that extend outward into the world. The classical Judgment
+            reads: "healthy order begins with roles, care, and example."
+          </p>
+          <p>
+            The hexagram is not primarily about family in the narrow sense — it
+            is about any close-knit group that functions as a unit. Teams,
+            partnerships, and small organizations all exhibit the dynamics this
+            hexagram describes. The classical emphasis is on the quality of the
+            internal structure: clear responsibilities, genuine mutual care, and
+            leadership that teaches through example rather than through command.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Wind comes from fire; words and conduct shape the
+            home." The <cite>I Ching</cite> commentary is specific: the words of
+            the person in authority must have substance behind them, and their
+            conduct must be consistent with what they say. Wind that comes from
+            fire is warm and genuine; wind without fire is empty movement. The
+            practical lesson is that the influence of a leader or parent is
+            carried primarily through example, not through instruction.
+          </p>
+          <p>
+            The hexagram also asks about the clarity of roles. Not because rigid
+            hierarchy is inherently good, but because ambiguity about
+            responsibility tends to produce either conflict or neglect. Clear
+            roles, held with genuine care rather than with rigidity, create the
+            conditions for the group to function well.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In leadership or management contexts, Hexagram 37 often appears when
+            a team or organization is experiencing internal friction. The hexagram
+            asks whether the source of the friction is unclear roles, inconsistent
+            leadership, or a gap between stated values and actual conduct. Fixing
+            the surface symptoms without addressing the underlying structural
+            issue tends to produce temporary relief and recurring problems.
+          </p>
+          <p>
+            In personal contexts, it can describe the work of examining whether
+            your own conduct is consistent with what you say you value. The fire
+            that generates the wind must be genuine — warmth that is performed
+            rather than felt does not produce the same quality of movement.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 37 is not prescribing a specific family structure or
+            organizational hierarchy as universally correct. The{" "}
+            <cite>I Ching</cite> describes principles — clear roles, genuine care,
+            consistent example — that apply across different structures. The
+            specific form those principles take in a given context is a matter of
+            judgment, not of fixed prescription.
+          </p>
+          <p>
+            It is also not saying that all existing family or organizational
+            structures deserve to be maintained. The hexagram asks whether the
+            structure is genuinely healthy — whether it produces the warmth and
+            clarity that the image describes. A structure that produces neither
+            is not what this hexagram is defending.
+          </p>
+        </>
+      ),
+    },
+  ],
+  38: [
+    {
+      heading: "What Hexagram 38 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 38, Kui (睽), places Fire above the Lake — fire moves upward,
+            water moves downward, and the two naturally diverge. In the{" "}
+            <cite>I Ching</cite>, this image describes genuine opposition: not
+            conflict that can be resolved through better communication, but
+            difference that is real and structural. The classical Judgment reads:
+            "difference can clarify, but do not force unity too soon."
+          </p>
+          <p>
+            The hexagram is notable for its nuance. It does not describe
+            opposition as simply bad — it describes it as a condition that has
+            its own appropriate uses. Heaven and earth are different, yet they
+            produce all things together. Man and woman are different, yet their
+            union creates new life. The{" "}
+            <cite>I Ching</cite> treats difference as generative when it is
+            acknowledged honestly rather than suppressed or forced into false
+            unity.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Fire above the lake; honor distinct positions." The
+            practical lesson is about the difference between productive difference
+            and destructive conflict. Productive difference — two perspectives
+            that genuinely illuminate different aspects of a situation — is
+            valuable. Destructive conflict — two positions that cannot coexist and
+            are fighting for dominance — is not. The{" "}
+            <cite>I Ching</cite> asks which kind of opposition you are actually
+            dealing with.
+          </p>
+          <p>
+            The classical advice for small matters is favorable even in a context
+            of opposition. This is a practical observation: even when fundamental
+            alignment is absent, specific, limited cooperation is often still
+            possible. Working within the scope of what can actually be shared,
+            rather than demanding full agreement, is the move this hexagram
+            supports.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career or organizational contexts, Hexagram 38 often appears when
+            two people or groups have genuinely different values or directions and
+            are trying to work together anyway. The hexagram does not advise
+            forcing a resolution — it advises identifying what can actually be
+            shared and working within that scope, while being honest about where
+            the difference is real and cannot be bridged.
+          </p>
+          <p>
+            In relationship contexts, it can describe a moment when two people
+            recognize that they see something fundamentally differently. The
+            classical teaching is not to immediately end the relationship or to
+            pretend the difference does not exist, but to assess honestly whether
+            the difference is in an area that matters for what the relationship
+            needs to be.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 38 is not saying that all opposition is productive or that
+            difference should always be preserved. The <cite>I Ching</cite> places
+            Hexagram 39 (Obstruction) immediately after Opposition, suggesting
+            that unresolved difference can become a genuine obstacle. The question
+            is whether the difference is generative — producing clarity and
+            complementarity — or simply blocking.
+          </p>
+          <p>
+            It is also not advising permanent separation. Fire and water are
+            different, but they can coexist and even cooperate within appropriate
+            structures. The hexagram asks for honest assessment of what is
+            actually possible, not for a predetermined conclusion about whether
+            the opposition can be worked with.
+          </p>
+        </>
+      ),
+    },
+  ],
+  39: [
+    {
+      heading: "What Hexagram 39 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 39, Jian (蹇), places Water above Mountain — danger in front
+            and difficult terrain behind. In the <cite>I Ching</cite>, this image
+            describes a genuine obstruction: not a minor inconvenience that can be
+            pushed through, but a situation where the direct path is blocked and
+            the usual approaches are not working. The classical Judgment reads:
+            "when blocked, seek help and choose a wiser route."
+          </p>
+          <p>
+            The hexagram is associated with the southwest in classical geography —
+            the direction of open plains and allies — and the northeast — the
+            direction of mountains and difficulty. The practical implication is
+            that moving toward what is open and supportive is more productive than
+            continuing to push against what is closed and resistant.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Water on the mountain; turn inward and prepare." The{" "}
+            <cite>I Ching</cite> commentary describes the wise person in this
+            situation as someone who uses the period of obstruction to examine
+            their own conduct and cultivate their virtue — not as a consolation
+            prize, but as the actual work that makes eventual progress possible.
+            Obstructions often reveal something about the approach that needs to
+            change before the path can open.
+          </p>
+          <p>
+            The emphasis on seeking help is equally important. The{" "}
+            <cite>I Ching</cite> is explicit that going alone into obstruction
+            produces more difficulty, while going with the right allies produces
+            praise. This is not a call for dependence but for the honest
+            recognition that some obstacles require more than individual effort
+            to navigate.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career contexts, Hexagram 39 often appears when a project has
+            stalled, a proposal has been rejected, or a path that seemed clear
+            has become blocked. The hexagram does not advise simply trying harder
+            — it asks whether the approach itself needs to change, and whether
+            there are people or resources that could help navigate the obstacle
+            that have not yet been engaged.
+          </p>
+          <p>
+            In personal contexts, it can describe a period when progress in an
+            important area has stopped and the usual strategies are not producing
+            movement. The classical advice to turn inward is practically useful:
+            what is the obstruction actually revealing about what needs to change
+            before the path can open?
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 39 is not saying that the situation is hopeless or that the
+            obstruction is permanent. The <cite>I Ching</cite> places Hexagram 40
+            (Deliverance) immediately after Obstruction — the release follows the
+            blockage. The period of being blocked, used well, creates the
+            conditions for the release to be genuine rather than superficial.
+          </p>
+          <p>
+            It is also not advising permanent retreat or the abandonment of the
+            goal. The mountain with water above it is still a mountain — the
+            terrain is difficult, not impassable. The question is whether you are
+            approaching it in the right way, with the right support, at the right
+            time.
+          </p>
+        </>
+      ),
+    },
+  ],
+  41: [
+    {
+      heading: "What Hexagram 41 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 41, Sun (损), places the Lake below the Mountain — the lower
+            trigram reduced, the upper strengthened. In the <cite>I Ching</cite>,
+            this image describes a moment of voluntary decrease: something is
+            given up at the lower level in order to support what is above. The
+            classical Judgment reads: "reduce excess to restore right proportion."
+          </p>
+          <p>
+            The hexagram is paired with Hexagram 42 (Increase) in the{" "}
+            <cite>King Wen sequence</cite>, and the two are understood as a cycle:
+            decrease precedes increase, and increase eventually requires decrease
+            again. The <cite>I Ching</cite> treats this not as a problem but as
+            the natural rhythm of any living system. The question is not whether
+            decrease will come, but whether it is approached with sincerity or
+            with resentment.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "A lake below the mountain; simplicity strengthens
+            sincerity." The <cite>I Ching</cite> commentary on this hexagram
+            makes a careful point: even a small offering made with genuine
+            sincerity is more valuable than a large offering made without it. The
+            practical lesson is that the quality of the decrease matters more than
+            its quantity. Giving up something small with full sincerity produces
+            more than giving up something large with resentment.
+          </p>
+          <p>
+            The hexagram also asks about the target of the decrease. Reducing
+            what is genuinely excessive — anger, indulgence, unnecessary
+            complexity — strengthens the whole. Reducing what is actually
+            necessary produces a different kind of imbalance. The discernment
+            required is about what is truly excess and what is genuinely needed.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career or organizational contexts, Hexagram 41 often appears when
+            resources are constrained and choices must be made about what to
+            reduce. The hexagram supports making those reductions deliberately and
+            sincerely rather than reactively. Cutting what is genuinely excess
+            while protecting what is genuinely essential is the move this hexagram
+            describes.
+          </p>
+          <p>
+            In personal contexts, it can describe a period of voluntary
+            simplification — reducing commitments, possessions, or habits that
+            have accumulated beyond what is actually useful. The classical
+            emphasis on sincerity applies: decrease that comes from genuine
+            recognition of what is excess feels different from decrease that is
+            imposed or resented.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 41 is not saying that decrease is always good or that
+            austerity is a virtue in itself. The <cite>I Ching</cite> is clear
+            that decrease must be appropriate to the situation — reducing what is
+            genuinely excess, not reducing what is genuinely needed. Decrease that
+            goes too far produces a different kind of imbalance than the one it
+            was meant to correct.
+          </p>
+          <p>
+            It is also not a permanent condition. The cycle of decrease and
+            increase is continuous — Hexagram 42 follows immediately. The decrease
+            described here is a phase that creates the conditions for genuine
+            growth, not a permanent state of reduction.
+          </p>
+        </>
+      ),
+    },
+  ],
+  42: [
+    {
+      heading: "What Hexagram 42 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 42, Yi (益), places Wind above Thunder — two active forces
+            reinforcing each other, each amplifying the other's momentum. In the{" "}
+            <cite>I Ching</cite>, this image describes a period of genuine
+            increase: effort produces more than usual return, conditions are
+            favorable, and the capacity to grow and to help others grow
+            simultaneously is present. The classical Judgment reads: "growth is
+            favorable when it benefits more than the self."
+          </p>
+          <p>
+            The hexagram is paired with Hexagram 41 (Decrease) and understood as
+            its complement. Where decrease asks for voluntary simplification,
+            increase asks for generous expansion. The{" "}
+            <cite>King Wen sequence</cite> treats the two as a continuous cycle:
+            the sincerity developed through decrease creates the quality of
+            character that makes increase genuinely beneficial rather than merely
+            accumulative.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Wind and thunder increase; move toward useful
+            action." The <cite>I Ching</cite> commentary on this hexagram
+            describes the wise person as someone who, upon seeing good in others,
+            moves toward it and emulates it; upon seeing their own faults, corrects
+            them. The practical lesson is that a period of increase is best used
+            not just for accumulation but for genuine development — of capability,
+            of character, and of the relationships that make growth sustainable.
+          </p>
+          <p>
+            The hexagram also supports crossing great rivers — taking on
+            significant challenges during a period of favorable conditions. The
+            wind and thunder together create more than either alone; the moment
+            of increase is the moment to attempt what would be too difficult under
+            ordinary conditions.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career contexts, Hexagram 42 often appears during a period of
+            genuine momentum — a successful project, a favorable market, or a
+            relationship with a mentor or sponsor that is producing real
+            opportunity. The hexagram supports moving forward actively and asks
+            for the generosity to share the growth: investing in others, building
+            durable structures, and using the favorable period to create something
+            that will outlast the conditions that produced it.
+          </p>
+          <p>
+            In decision contexts, it describes a moment when the risk-reward ratio
+            is genuinely favorable — when attempting something significant is more
+            likely to succeed than usual. The classical support for crossing great
+            rivers applies: this is the time to take on the challenge you have
+            been preparing for.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 42 is not a guarantee that all growth will continue
+            indefinitely or that favorable conditions are permanent. The cycle of
+            increase and decrease is continuous — the <cite>I Ching</cite> places
+            Hexagram 43 (Breakthrough) after Increase, suggesting that the energy
+            of growth eventually reaches a point where it must be expressed or
+            released decisively. Using a period of increase to build something
+            durable is wiser than assuming the conditions will last.
+          </p>
+          <p>
+            It is also not saying that all increase is beneficial. Growth that
+            benefits only the self at the expense of others is not what this
+            hexagram describes — the classical emphasis on outward benefit is not
+            decorative. Increase that flows outward creates the conditions for
+            continued growth; increase that is hoarded tends to produce the
+            conditions for its own reversal.
+          </p>
+        </>
+      ),
+    },
+  ],
+  43: [
+    {
+      heading: "What Hexagram 43 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 43, Guai (夬), places the Lake above Heaven — water risen
+            above the sky, five yang lines pressing against a single yin line at
+            the top. In the <cite>I Ching</cite>, this image describes a moment
+            of decisive breakthrough: the accumulated force of what is correct
+            finally confronting what has been wrong or unresolved. The classical
+            Judgment reads: "state the truth clearly without aggression."
+          </p>
+          <p>
+            The hexagram is notable for the precision of its classical
+            instructions. The breakthrough must be announced in the king's court
+            — in the appropriate public forum, not in private. It must be
+            conducted with sincerity and a sense of danger, not with triumphalism.
+            And it must not rely on force alone: the <cite>I Ching</cite> is
+            explicit that armed confrontation without moral clarity tends to
+            produce new problems rather than genuine resolution.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "A lake rises to heaven; declare what must change."
+            The practical lesson is about the conditions for a genuine
+            breakthrough rather than a pyrrhic victory. The single yin line at
+            the top of the hexagram is still present — the situation is not yet
+            fully resolved, and overconfidence at this moment is specifically
+            warned against. The <cite>I Ching</cite> asks for the combination of
+            decisiveness and continued vigilance.
+          </p>
+          <p>
+            The emphasis on the right forum is practically important. A truth
+            stated in the wrong context — too privately to have effect, or too
+            publicly to allow for genuine response — does not produce the
+            breakthrough the hexagram describes. The court is the place where
+            declarations carry weight and where accountability is possible.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career or organizational contexts, Hexagram 43 often appears when
+            something that has been tolerated — a dysfunctional dynamic, an
+            unaddressed problem, a decision that has been deferred — has reached
+            the point where it must be resolved. The hexagram supports taking
+            clear action but asks for the right approach: direct, honest, in the
+            appropriate forum, and without the kind of aggression that turns a
+            necessary confrontation into a destructive one.
+          </p>
+          <p>
+            In personal contexts, it can describe the moment when something that
+            has been left unsaid must finally be said — a boundary that must be
+            stated, a truth that must be acknowledged, a decision that can no
+            longer be avoided. The classical emphasis on sincerity over force
+            applies: the goal is resolution, not victory.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 43 is not a license for aggression or for using a position
+            of strength to humiliate or destroy. The <cite>I Ching</cite> is
+            explicit that the breakthrough must be conducted with a sense of
+            danger — an awareness that even five yang lines pressing against one
+            yin line can produce a bad outcome if the approach is wrong. The
+            single remaining yin line is not to be underestimated.
+          </p>
+          <p>
+            It is also not saying that every unresolved situation requires this
+            kind of decisive confrontation. The <cite>I Ching</cite> has many
+            hexagrams that describe patience, gradual influence, and strategic
+            withdrawal. Hexagram 43 applies specifically to situations where the
+            accumulated pressure has reached the point where declaration is
+            necessary — not to every situation where something is imperfect.
+          </p>
+        </>
+      ),
+    },
+  ],
+  44: [
+    {
+      heading: "What Hexagram 44 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 44, Gou (姤), places Wind below Heaven — a single yin line
+            at the base of five yang lines, movement arising beneath the most
+            expansive force. In the <cite>I Ching</cite>, this image describes an
+            unexpected encounter: something arrives without being invited, and its
+            significance is not immediately obvious. The classical Judgment reads:
+            "an unexpected influence needs careful boundaries."
+          </p>
+          <p>
+            The hexagram is the structural opposite of Hexagram 43 (Breakthrough):
+            where Breakthrough shows five yang lines pressing against one yin,
+            Coming to Meet shows one yin line beginning to rise beneath five yang.
+            The <cite>King Wen sequence</cite> places them together to show the
+            cycle: after a decisive resolution, something new and unexpected
+            begins to enter.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Wind under heaven; encounters can be powerful." The{" "}
+            <cite>I Ching</cite> commentary describes the prince as someone who
+            issues commands and makes them known throughout the four quarters —
+            the image of someone who sets clear terms for how encounters will be
+            conducted rather than simply reacting to whatever arrives. The
+            practical lesson is that the quality of an unexpected encounter is
+            shaped significantly by the clarity of the boundaries you bring to it.
+          </p>
+          <p>
+            The classical warning about the single yin line is not a warning
+            against all new influences — it is a warning against allowing
+            something that has not yet been assessed to gradually displace what
+            has been carefully built. Early recognition and clear boundaries are
+            more effective than either rejection or uncritical acceptance.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career contexts, Hexagram 44 often appears when an unexpected
+            opportunity, offer, or person enters the situation. The hexagram does
+            not advise automatic rejection — wind under heaven can carry something
+            genuinely valuable. It asks for honest assessment: what is this
+            actually, what does engaging with it require, and what boundaries are
+            needed to ensure that the encounter serves your actual direction rather
+            than gradually redirecting it?
+          </p>
+          <p>
+            In relationship contexts, it can describe the arrival of someone or
+            something that was not sought but that carries real attraction or
+            significance. The classical emphasis on boundaries is practically
+            important: the most powerful encounters are often the ones that arrive
+            without announcement, and they require more discernment, not less,
+            precisely because of their power.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 44 is not saying that all unexpected encounters are
+            dangerous or that new influences should be automatically rejected. The{" "}
+            <cite>I Ching</cite> treats wind as a carrier of genuine possibility —
+            the same trigram that appears in hexagrams of gentle penetration and
+            gradual influence. The warning is about the specific dynamic of
+            something small gradually displacing something large, not about
+            newness itself.
+          </p>
+          <p>
+            It is also not saying that the encounter cannot be engaged with. The
+            prince in the image does not hide from the wind — he issues commands
+            that shape how it moves through his territory. Engagement with clear
+            terms is different from either avoidance or uncritical openness.
+          </p>
+        </>
+      ),
+    },
+  ],
+  45: [
+    {
+      heading: "What Hexagram 45 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 45, Cui (萃), places the Lake above Earth — water gathering
+            on the land, pooling into a body larger than any single source. In
+            the <cite>I Ching</cite>, this image describes the conditions for
+            genuine collective gathering: people or forces coming together around
+            a center that is trustworthy enough to hold them. The classical
+            Judgment reads: "shared purpose needs a center and a ritual of trust."
+          </p>
+          <p>
+            The hexagram is paired with Hexagram 8 (Holding Together) earlier in
+            the sequence, but where Hexagram 8 describes the formation of
+            alliance, Hexagram 45 describes the larger gathering — the assembly
+            of many around a common purpose. The <cite>King Wen</cite> commentary
+            treats this as one of the most significant moments in social life:
+            when people genuinely gather, something becomes possible that was not
+            possible for any of them alone.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "A lake over earth; gather people through sincerity."
+            The <cite>I Ching</cite> commentary on this hexagram emphasizes the
+            role of ritual: great offerings, the presence of a great person, and
+            the deliberate creation of a shared moment that marks the gathering
+            as real. The practical lesson is that genuine assembly requires more
+            than proximity — it requires a shared act of commitment that makes
+            the gathering visible and binding to those who participate.
+          </p>
+          <p>
+            The hexagram also asks about preparedness for what gathering produces.
+            When people come together, unexpected things happen — conflicts arise,
+            resources are strained, and the center is tested. The{" "}
+            <cite>I Ching</cite> advises preparing for these contingencies rather
+            than assuming that the gathering will be smooth simply because the
+            intention is good.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career or organizational contexts, Hexagram 45 often appears when
+            someone is convening a team, launching a community, or building a
+            coalition around a shared purpose. The hexagram supports the effort
+            and asks for the quality of center that can actually hold the
+            gathering: clear purpose, genuine trustworthiness, and the ritual
+            acts — kickoffs, agreements, shared commitments — that make the
+            assembly real rather than merely announced.
+          </p>
+          <p>
+            In community or social contexts, it describes the conditions under
+            which people genuinely come together rather than simply occupying the
+            same space. The lake does not form without a basin to hold it — the
+            gathering requires a structure that gives it shape and depth.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 45 is not saying that all gatherings are beneficial or that
+            assembling people around any center is good. The{" "}
+            <cite>I Ching</cite> is specific that the center must be genuinely
+            trustworthy — a great person, in the classical language, meaning
+            someone whose authority is real and whose conduct matches their
+            position. A gathering around a weak or corrupt center produces the
+            appearance of assembly without its substance.
+          </p>
+          <p>
+            It is also not saying that gathering is always the right move. Some
+            situations call for individual action or small-group work rather than
+            broad assembly. Hexagram 45 applies specifically to moments when the
+            scale of what is needed genuinely requires bringing many together —
+            not to every situation where collaboration might be useful.
+          </p>
+        </>
+      ),
+    },
+  ],
+  46: [
+    {
+      heading: "What Hexagram 46 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 46, Sheng (升), places Wind below Earth — wood pressing
+            upward through the ground, growing toward the light through patient,
+            consistent effort. In the <cite>I Ching</cite>, this image describes
+            a period of genuine upward movement that is organic rather than
+            forced. The classical Judgment reads: "gradual ascent succeeds through
+            steady effort."
+          </p>
+          <p>
+            The hexagram is associated with the south in classical geography —
+            the direction of warmth and visibility — and the commentary describes
+            the wise person as someone who accumulates small virtues to build
+            something high and great. The ascent is real, but it is built from
+            many small steps rather than from a single dramatic leap.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Wood grows from earth; rise step by step." The{" "}
+            <cite>I Ching</cite> commentary describes the wise person as someone
+            who accumulates small acts of virtue the way a mountain is built from
+            individual stones — each one modest, the accumulation significant. The
+            practical lesson is that the quality of the ascent matters as much as
+            its speed. Advancement built from genuine capability and consistent
+            effort is more durable than advancement achieved through a single
+            fortunate moment.
+          </p>
+          <p>
+            The hexagram also supports seeking out those who can help the ascent —
+            the classical image includes visiting a great person without anxiety,
+            suggesting that asking for guidance or support during a period of
+            genuine upward movement is appropriate and will be well received.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career contexts, Hexagram 46 often appears during a period of
+            steady professional development — building skills, taking on
+            increasing responsibility, or moving through a sequence of roles that
+            each prepare for the next. The hexagram validates this kind of
+            patient, sequential advancement and asks for the discipline to stay
+            with it rather than jumping ahead before the foundation is solid.
+          </p>
+          <p>
+            In creative or intellectual contexts, it describes the long process
+            of developing genuine mastery — the years of practice and study that
+            precede the work that looks effortless from the outside. The tree does
+            not apologize for growing slowly; it simply grows.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 46 is not telling you that dramatic advancement is wrong or
+            that you must always move slowly. The <cite>I Ching</cite> has
+            hexagrams that describe rapid progress (Hexagram 35) and decisive
+            breakthrough (Hexagram 43). Pushing Upward describes a specific
+            quality of movement — organic, sequential, built from genuine
+            accumulation — not a universal prescription for pace.
+          </p>
+          <p>
+            It is also not saying that the ascent will be without difficulty. Wood
+            growing through earth encounters resistance — roots must push through
+            compacted soil, branches must find their way around obstacles. The
+            steadiness this hexagram describes is not the absence of difficulty
+            but the capacity to continue through it without losing direction.
+          </p>
+        </>
+      ),
+    },
+  ],
+  51: [
+    {
+      heading: "What Hexagram 51 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 51, Zhen (震), doubles the Thunder trigram — shock arriving
+            from above and below simultaneously. In the <cite>I Ching</cite>, this
+            image describes a sudden, disruptive event: something that arrives
+            without warning and forces an immediate response. The classical
+            Judgment reads: "shock awakens movement; stay composed after the first
+            impact."
+          </p>
+          <p>
+            The hexagram is associated with the eldest son in the classical family
+            system — the one who takes charge when the father is absent. This
+            association suggests that the appropriate response to shock is not
+            paralysis but the assumption of responsibility: the shock has arrived,
+            and someone must respond to it with clarity and steadiness.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Thunder repeats; fear turns into discipline." The{" "}
+            <cite>I Ching</cite> commentary describes the wise person as someone
+            who, when the first shock arrives, feels fear and then sets their
+            inner life in order — examining their conduct, correcting what needs
+            correction, and using the disruption as an occasion for genuine
+            self-examination rather than simply waiting for the shock to pass.
+          </p>
+          <p>
+            The practical lesson is about the difference between the first moment
+            of shock and the response that follows it. The first moment is
+            involuntary — the spilled wine, the startled reaction. What comes
+            after is a choice. The <cite>I Ching</cite> asks whether the response
+            to shock produces genuine recalibration or simply a return to the
+            previous pattern once the disruption has passed.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career contexts, Hexagram 51 often appears when an unexpected
+            disruption has arrived — a sudden change in direction, an unexpected
+            failure, or a shock to the system that forces a reassessment. The
+            hexagram does not advise pretending the shock did not happen or
+            immediately returning to business as usual. It asks for the composure
+            to respond thoughtfully rather than reactively, and for the honesty
+            to use the disruption as an occasion to examine what it has revealed.
+          </p>
+          <p>
+            In personal contexts, it can describe any sudden event that has
+            disrupted a previously stable situation. The classical emphasis on
+            inner stability is practically important: the person who has genuine
+            inner resources can absorb a shock and continue; the person whose
+            stability was entirely dependent on external conditions cannot.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 51 is not saying that shock is good or that disruption
+            should be sought out. The <cite>I Ching</cite> does not romanticize
+            difficulty. The thunder arrives whether or not it is welcome — the
+            hexagram describes how to respond to it, not how to invite it.
+          </p>
+          <p>
+            It is also not saying that composure means the absence of feeling.
+            The classical image includes the spilled wine and the startled
+            reaction — the shock is felt. Composure in this hexagram means that
+            the feeling does not become the response: fear is acknowledged and
+            then set aside in favor of clear, steady action. That is different
+            from suppressing the feeling or pretending it is not there.
+          </p>
+        </>
+      ),
+    },
+  ],
+  52: [
+    {
+      heading: "What Hexagram 52 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 52, Gen (艮), doubles the Mountain trigram — two mountains
+            stacked, stillness above and below. In the <cite>I Ching</cite>, this
+            image describes the active practice of stopping: not passive
+            inactivity, but the deliberate choice to cease movement at the
+            appropriate moment. The classical Judgment reads: "stillness is active
+            when it stops the wrong movement."
+          </p>
+          <p>
+            The hexagram's classical image is unusual: stilling the back so that
+            the person no longer perceives what is behind or ahead of them. This
+            is not blindness — it is the focused presence of someone who has
+            stopped the forward momentum of thought and action in order to be
+            fully present to what is actually here. The{" "}
+            <cite>I Ching</cite> treats this as a genuine achievement, not a
+            default state.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Mountain on mountain; rest where rest is needed."
+            The <cite>I Ching</cite> commentary describes the wise person as
+            someone who knows when to stop and when to move — and who does not
+            confuse the two. The practical lesson is about the discipline of
+            stopping: not stopping because you are tired or because the situation
+            is difficult, but stopping because the movement has reached its
+            natural limit and continuing would produce diminishing returns or
+            genuine harm.
+          </p>
+          <p>
+            The hexagram also describes the quality of genuine rest: not the
+            restlessness of someone who has stopped moving but cannot stop
+            thinking, but the actual stillness of someone whose inner and outer
+            movement have both ceased. This kind of rest restores; the other kind
+            does not.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career contexts, Hexagram 52 often appears when someone has been
+            in continuous motion — working, deciding, producing — and the quality
+            of the output has begun to decline because the movement has not been
+            interrupted by genuine rest or reflection. The hexagram supports
+            stopping deliberately rather than waiting until exhaustion forces a
+            stop.
+          </p>
+          <p>
+            In decision contexts, it can describe the value of pausing before
+            acting — not the indefinite delay of Hexagram 5 (Waiting), but the
+            specific, deliberate stop that allows a situation to clarify before
+            the next move is made. Some decisions that seem urgent are actually
+            better served by a moment of genuine stillness than by immediate
+            action.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 52 is not telling you to stop permanently or to treat
+            inaction as inherently superior to action. The{" "}
+            <cite>I Ching</cite> places Hexagram 53 (Development) immediately
+            after Keeping Still — the stillness creates the conditions for the
+            next movement to be genuine rather than merely habitual. Stopping is
+            a phase, not a destination.
+          </p>
+          <p>
+            It is also not saying that all rest is equivalent. The hexagram
+            describes a specific quality of stillness — active, deliberate,
+            present — that is different from the restlessness of someone who has
+            stopped moving but not stopped running. The mountain is genuinely
+            still; it is not simply a hill that has paused.
+          </p>
+        </>
+      ),
+    },
+  ],
+  53: [
+    {
+      heading: "What Hexagram 53 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 53, Jian (渐), places Wind above Mountain — a tree growing
+            on a high ridge, its roots deep, its growth visible and gradual. In
+            the <cite>I Ching</cite>, this image describes development that
+            follows a proper sequence: each stage is completed before the next
+            begins, and the result is something that has genuine depth because it
+            was not rushed. The classical Judgment reads: "gradual progress
+            becomes stable through proper sequence."
+          </p>
+          <p>
+            The hexagram uses the image of a marriage conducted through the
+            correct sequence of rituals. This is not about formality for its own
+            sake — it is about the recognition that some processes have a natural
+            order, and that skipping stages in that order produces a result that
+            looks complete but lacks the foundation that the skipped stages would
+            have provided.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Wood on the mountain; growth takes position over
+            time." The <cite>I Ching</cite> commentary describes the wise person
+            as someone who abides in excellence and improves the customs of the
+            people — not through dramatic intervention, but through the consistent
+            example of someone who has developed genuinely over time. The
+            practical lesson is that the quality of gradual development is visible
+            in the result: the tree that has grown slowly on a high ridge is more
+            deeply rooted than one that has been forced.
+          </p>
+          <p>
+            The hexagram also asks about the relationship between personal
+            development and the development of those around you. The tree on the
+            mountain is visible — its growth influences the landscape. Gradual,
+            genuine development tends to have this quality: it shapes the
+            environment through example rather than through instruction.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career contexts, Hexagram 53 often appears when someone is in a
+            developmental process that requires patience — a training program, an
+            apprenticeship, or a sequence of roles that each build on the
+            previous. The hexagram validates the process and asks for the
+            discipline to complete each stage genuinely rather than rushing to
+            the credential or the title without the underlying development.
+          </p>
+          <p>
+            In relationship contexts, it describes the natural sequence of
+            deepening connection — the stages of trust, understanding, and
+            commitment that build on each other. Attempting to skip to a later
+            stage before the earlier ones are solid tends to produce a connection
+            that looks more advanced than it actually is.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 53 is not saying that all processes must be slow or that
+            speed is inherently suspect. The <cite>I Ching</cite> has hexagrams
+            that describe rapid progress and decisive action. Development describes
+            a specific quality of process — one that has a natural sequence —
+            not a universal prescription for pace. Some things genuinely develop
+            quickly; others require time. The question is whether the pace matches
+            the nature of what is being developed.
+          </p>
+          <p>
+            It is also not saying that the sequence must be rigid or that
+            deviation from a prescribed order is always wrong. The marriage
+            rituals in the classical image are a means to an end — the end being
+            a genuine, solid union. If a different sequence produces the same
+            quality of foundation, the hexagram's principle is satisfied. The
+            point is the depth of the result, not the specific form of the process.
+          </p>
+        </>
+      ),
+    },
+  ],
+  54: [
+    {
+      heading: "What Hexagram 54 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 54, Gui Mei (归妹), places Thunder above the Lake — movement
+            above joy, the image of a younger sister entering a household not as
+            the primary wife but in a secondary role. In the <cite>I Ching</cite>,
+            this image describes a situation of genuine inequality: one party
+            holds more power, and the other must navigate within that constraint.
+            The classical Judgment reads: "unequal roles require caution, dignity,
+            and realistic expectations."
+          </p>
+          <p>
+            The hexagram is one of the more challenging in the{" "}
+            <cite>King Wen sequence</cite> because it describes a situation that
+            is structurally unfavorable. The <cite>I Ching</cite> does not pretend
+            the inequality does not exist — it asks how to conduct oneself within
+            it with integrity, rather than either accepting mistreatment passively
+            or acting rashly in a way that makes the situation worse.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Thunder over the lake; endings reveal the proper
+            place." The <cite>I Ching</cite> commentary describes the wise person
+            as someone who understands the difference between what is permanent
+            and what is temporary — who can endure a difficult position without
+            losing their sense of what they actually are. The practical lesson is
+            about the quality of conduct in constrained circumstances: dignity
+            that does not require external validation, and patience that is not
+            the same as resignation.
+          </p>
+          <p>
+            The hexagram also asks about realistic expectations. The younger
+            sister who enters a household expecting to be treated as the primary
+            wife will be disappointed and may act in ways that damage her
+            position further. Accurate assessment of the actual situation — not
+            the situation as you wish it were — is the foundation of effective
+            navigation within it.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career contexts, Hexagram 54 often appears when someone is in a
+            junior, secondary, or constrained role — a new hire, a contractor, or
+            someone whose authority is limited by the structure they are working
+            within. The hexagram does not advise accepting permanent subordination,
+            but it does ask for the patience to build credibility and influence
+            gradually rather than acting prematurely from a position that does not
+            yet have the standing to support the action.
+          </p>
+          <p>
+            In relationship contexts, it can describe any situation where the
+            power differential is real and the person in the less powerful
+            position must decide how to maintain their integrity within it. The
+            classical emphasis on dignity is practically important: conduct that
+            preserves self-respect tends to produce better outcomes than conduct
+            that either collapses into compliance or escalates into conflict.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 54 is not telling you to accept mistreatment or to remain
+            permanently in a position that is genuinely harmful. The{" "}
+            <cite>I Ching</cite> describes the situation as it is, not as it
+            should be. The advice to act with caution and patience is practical —
+            premature action from a weak position tends to make the situation
+            worse — not a moral endorsement of the inequality itself.
+          </p>
+          <p>
+            It is also not saying that the constrained position is permanent. The
+            image of endings revealing the proper place suggests that the
+            situation will eventually clarify — that what is genuinely valuable
+            will become visible over time. The patience this hexagram asks for is
+            the patience of someone who knows their own worth and is willing to
+            wait for the moment when it can be expressed effectively.
+          </p>
+        </>
+      ),
+    },
+  ],
+  55: [
+    {
+      heading: "What Hexagram 55 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 55, Feng (丰), places Thunder above Fire — movement and
+            clarity both at their maximum, the image of a moment when everything
+            is illuminated and the capacity for action is fully present. In the{" "}
+            <cite>I Ching</cite>, this is the hexagram of the peak: not the
+            approach to the peak, but the peak itself. The classical Judgment
+            reads: "peak visibility asks for wise use before decline begins."
+          </p>
+          <p>
+            The hexagram is associated with the image of the sun at noon — the
+            moment of maximum light, which is also the moment when the sun begins
+            its descent. The <cite>King Wen sequence</cite> places this hexagram
+            near the end of the second half deliberately: abundance is real, but
+            it is a phase, not a permanent condition. The question the hexagram
+            asks is what you will do with the peak while you are in it.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Thunder and lightning arrive; decide while the light
+            is strong." The <cite>I Ching</cite> commentary describes the wise
+            person as someone who uses a period of abundance to settle disputes,
+            administer justice, and complete what needs to be completed — not
+            because these things are only possible at the peak, but because the
+            clarity and resources available at the peak make them easier to do
+            well. The practical lesson is to act on what matters while the
+            conditions are favorable, rather than deferring until the conditions
+            have changed.
+          </p>
+          <p>
+            The hexagram also asks about the quality of the abundance. Thunder
+            and fire together produce both sound and light — the abundance
+            described here is not just material but includes clarity of
+            perception and decisiveness of action. Using a peak moment well means
+            using all of these, not just the material resources.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career contexts, Hexagram 55 often appears at a moment of genuine
+            peak performance — a successful launch, a period of strong results,
+            or a position of unusual influence. The hexagram supports acting
+            decisively during this period and asks for the awareness that the
+            peak is temporary. Completing important work, making significant
+            decisions, and building durable structures during a peak period is
+            wiser than assuming the conditions will continue indefinitely.
+          </p>
+          <p>
+            In creative contexts, it describes the moment when a project is fully
+            alive — when the vision is clear, the energy is present, and the
+            capacity to execute is at its highest. The hexagram asks for the
+            discipline to work hard during this window rather than saving the
+            effort for a later moment that may not arrive with the same quality
+            of conditions.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 55 is not saying that decline is inevitable or that the peak
+            should be approached with anxiety. The sun at noon is not diminished
+            by the fact that it will set — it is fully itself at that moment. The
+            <cite>I Ching</cite> asks for full engagement with the peak, not
+            premature mourning of its passing.
+          </p>
+          <p>
+            It is also not saying that abundance requires constant activity. The
+            thunder and lightning in the image are decisive and focused — they do
+            not produce continuous noise, but a specific, powerful signal at the
+            right moment. Using a peak well sometimes means choosing carefully
+            what to act on rather than trying to act on everything at once.
+          </p>
+        </>
+      ),
+    },
+  ],
+  56: [
+    {
+      heading: "What Hexagram 56 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 56, Lü (旅), places Fire above Mountain — a flame moving
+            across high ground, bright but transient. In the <cite>I Ching</cite>,
+            this image describes the condition of the traveler: someone who is
+            passing through a place rather than settled in it, and who must
+            conduct themselves accordingly. The classical Judgment reads: "travel
+            lightly; courtesy protects you in temporary places."
+          </p>
+          <p>
+            The hexagram is not about physical travel alone — it describes any
+            situation of temporary residence or transitional status. A new role
+            before you have established yourself, a period between more stable
+            phases, or a relationship with an institution or community where you
+            are still an outsider: all of these have the quality of the wanderer's
+            situation.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Fire on the mountain; clarity passes through." The{" "}
+            <cite>I Ching</cite> commentary describes the wise wanderer as someone
+            who is careful about where they stay, cautious about whom they become
+            entangled with, and attentive to the small courtesies that protect a
+            person in unfamiliar territory. The practical lesson is that the
+            standards appropriate to a settled situation do not always apply in a
+            transitional one — and that trying to act as if you are settled when
+            you are not tends to produce friction and loss.
+          </p>
+          <p>
+            The hexagram also asks about the quality of what you carry. The
+            wanderer who travels light — with genuine capability, clear values,
+            and the flexibility to adapt — moves through temporary situations
+            more effectively than one who is burdened by expectations or
+            attachments that do not fit the current context.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career contexts, Hexagram 56 often appears during transitions —
+            a new job before you have established credibility, a consulting
+            engagement in an unfamiliar organization, or a period of freelance
+            work between more stable roles. The hexagram asks for the courtesy
+            and caution appropriate to someone who is still learning the terrain,
+            rather than the confidence appropriate to someone who has already
+            established their position.
+          </p>
+          <p>
+            In personal contexts, it can describe any period of genuine
+            transition — moving to a new city, entering a new community, or
+            navigating a phase of life that does not yet have the structure of
+            what came before. The classical advice to travel light is practically
+            useful: the less you insist on replicating your previous context in
+            the new one, the more effectively you can engage with what is
+            actually present.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 56 is not saying that transitional situations are inherently
+            inferior or that the wanderer's condition is a failure. The flame on
+            the mountain illuminates — it has genuine value in its temporary
+            passage. Some of the most significant contributions come from people
+            who are passing through rather than settled, precisely because they
+            bring a perspective that insiders cannot have.
+          </p>
+          <p>
+            It is also not advising permanent transience. The{" "}
+            <cite>I Ching</cite> places Hexagram 57 (The Gentle) after The
+            Wanderer — the persistent, penetrating influence that comes from
+            sustained presence. The wanderer's caution is appropriate to the
+            transitional phase; it is not a permanent operating mode.
+          </p>
+        </>
+      ),
+    },
+  ],
+  57: [
+    {
+      heading: "What Hexagram 57 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 57, Xun (巽), doubles the Wind trigram — gentle penetration
+            above and below, the image of wind moving through everything without
+            obstruction. In the <cite>I Ching</cite>, this hexagram describes
+            influence that works through persistence rather than force: the kind
+            of effect that accumulates over time through consistent, repeated
+            presence. The classical Judgment reads: "soft persistence penetrates
+            where force cannot."
+          </p>
+          <p>
+            The hexagram is associated with the eldest daughter in the classical
+            family system — someone whose influence operates through attentiveness
+            and adaptability rather than through authority. This association
+            suggests that the quality of Xun is not weakness but a different kind
+            of strength: the strength of something that can move through any
+            opening because it does not insist on a single path.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Wind follows wind; influence accumulates through
+            repetition." The <cite>I Ching</cite> commentary describes the wise
+            person as someone who repeats their commands and makes their
+            intentions known through consistent action over time rather than
+            through a single dramatic declaration. The practical lesson is that
+            the kind of influence this hexagram describes requires both clarity
+            of direction and patience with the pace of effect.
+          </p>
+          <p>
+            The hexagram also asks about the quality of the direction. Wind that
+            has no direction simply disperses — it does not penetrate. The
+            gentleness of Xun is effective precisely because it is consistent and
+            directed, not because it is random or accommodating of everything.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career or organizational contexts, Hexagram 57 often appears when
+            someone is trying to shift a culture, change a habit, or influence a
+            situation where direct authority is limited. The hexagram supports
+            the patient, consistent approach — showing up repeatedly, modeling
+            the desired behavior, and allowing the influence to accumulate rather
+            than expecting immediate results from a single intervention.
+          </p>
+          <p>
+            In negotiation or persuasion contexts, it describes the approach of
+            someone who returns to the same point from multiple angles over time,
+            rather than trying to force agreement in a single conversation. Wind
+            finds every opening — the persistent communicator who adapts their
+            approach while maintaining their direction tends to produce more
+            genuine movement than the one who pushes harder through a single
+            channel.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 57 is not saying that all situations call for gentle
+            persistence or that direct action is always wrong. The{" "}
+            <cite>I Ching</cite> has hexagrams that describe decisive
+            breakthrough, clear declaration, and the use of real power. The
+            Gentle describes a specific approach — appropriate when force is
+            unavailable or counterproductive — not a universal operating mode.
+          </p>
+          <p>
+            It is also not saying that gentleness means accommodation of
+            everything. Wind is gentle but it is also persistent and directed —
+            it does not simply go wherever the terrain pushes it. The quality
+            this hexagram describes requires knowing what you are moving toward
+            and continuing to move toward it, even when the path requires
+            bending around obstacles rather than going through them.
+          </p>
+        </>
+      ),
+    },
+  ],
+  58: [
+    {
+      heading: "What Hexagram 58 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 58, Dui (兑), doubles the Lake trigram — open, reflective
+            water above and below, each replenishing the other. In the{" "}
+            <cite>I Ching</cite>, this image describes joy that is mutual and
+            self-sustaining: not the pleasure of consumption, but the delight of
+            genuine exchange. The classical Judgment reads: "joy is constructive
+            when it remains sincere."
+          </p>
+          <p>
+            The hexagram is associated with the youngest daughter in the classical
+            family system — someone whose quality is openness and responsiveness.
+            The <cite>I Ching</cite> treats this as a genuine strength: the
+            capacity to receive and reflect what is present, to find delight in
+            learning and in the company of others, and to communicate that delight
+            in a way that encourages others to open as well.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Lake joins lake; learning and exchange create
+            delight." The <cite>I Ching</cite> commentary describes the wise
+            person as someone who gathers with friends to discuss and practice —
+            the image of genuine intellectual and social exchange as a source of
+            sustainable joy. The practical lesson is that the kind of joy this
+            hexagram describes is not passive or consumptive; it is generated
+            through active engagement with others and with ideas.
+          </p>
+          <p>
+            The hexagram also asks about the quality of the joy. The{" "}
+            <cite>I Ching</cite> distinguishes between joy that comes from
+            genuine exchange and joy that comes from flattery, empty pleasure, or
+            the avoidance of difficulty. The former sustains; the latter depletes.
+            Two lakes that are genuinely connected replenish each other; two lakes
+            that are merely adjacent do not.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career or team contexts, Hexagram 58 often appears when the
+            question is about morale, culture, or the quality of working
+            relationships. The hexagram supports investing in genuine exchange —
+            conversations that are honest rather than performative, celebrations
+            that acknowledge real achievement rather than manufactured enthusiasm,
+            and the kind of shared learning that creates genuine connection rather
+            than just shared information.
+          </p>
+          <p>
+            In relationship contexts, it describes the quality of connection that
+            comes from genuine mutual interest and honest communication. The joy
+            of two lakes joined is not the joy of one lake filling the other —
+            it is the joy of mutual replenishment, where both are enriched by the
+            exchange.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 58 is not saying that all pleasure is good or that joy
+            should be pursued without discernment. The <cite>I Ching</cite> is
+            specific that joy must remain sincere to be constructive — joy that
+            comes from flattery, from avoiding necessary difficulty, or from
+            pleasures that deplete rather than replenish is not what this
+            hexagram describes.
+          </p>
+          <p>
+            It is also not saying that joy requires constant social engagement.
+            Two lakes joined is an image of connection, not of constant activity.
+            The joy this hexagram describes can be quiet — the delight of genuine
+            understanding, of work that is going well, of a relationship that is
+            genuinely mutual. It does not require performance or display to be
+            real.
+          </p>
+        </>
+      ),
+    },
+  ],
+  59: [
+    {
+      heading: "What Hexagram 59 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 59, Huan (涣), places Wind above Water — wind moving across
+            the surface of a river or lake, breaking up ice, dispersing what has
+            congealed. In the <cite>I Ching</cite>, this image describes the
+            dissolution of rigidity: the melting of what has frozen, the loosening
+            of what has hardened, the restoration of flow where flow has stopped.
+            The classical Judgment reads: "dissolve rigidity and restore shared
+            movement."
+          </p>
+          <p>
+            The hexagram is associated with spring in the classical calendar —
+            the season when ice melts and rivers begin to move again. The{" "}
+            <cite>King Wen sequence</cite> places it near the end of the second
+            half, after many hexagrams describing difficulty, constraint, and
+            careful navigation. Dispersion describes the moment when the
+            accumulated tension of those phases begins to release.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Wind moves over water; loosen what has hardened."
+            The <cite>I Ching</cite> commentary describes the ancient kings as
+            using this hexagram as the basis for religious ceremony — specifically,
+            the kind of ceremony that dissolves the boundaries between people and
+            reconnects them to something larger than their individual concerns.
+            The practical lesson is that dispersion is not just about removing
+            obstacles; it is about restoring the conditions for genuine connection
+            and shared movement.
+          </p>
+          <p>
+            The hexagram supports crossing great waters — taking on significant
+            challenges — precisely because the dissolution of rigidity creates
+            the flexibility needed for major transitions. What was frozen cannot
+            cross; what flows can.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In organizational contexts, Hexagram 59 often appears when a team or
+            group has become rigid — when accumulated resentment, siloed thinking,
+            or hardened positions are preventing genuine collaboration. The
+            hexagram supports interventions that dissolve these rigidities: honest
+            conversations, shared experiences, or structural changes that break
+            up the patterns that have congealed. The goal is not to eliminate
+            difference but to restore the flow of genuine exchange.
+          </p>
+          <p>
+            In personal contexts, it can describe the work of releasing
+            accumulated resentment, grief, or fixed beliefs that have been
+            preventing movement. The wind does not force the ice to melt — it
+            creates the conditions in which melting becomes possible. The
+            dispersion this hexagram describes is often gentler than it sounds.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 59 is not saying that all structure should be dissolved or
+            that boundaries are inherently problematic. The wind disperses what
+            has congealed — it does not eliminate the water itself. The goal is
+            to restore flow, not to eliminate form. Some structures are genuinely
+            useful and should be maintained; the hexagram asks specifically about
+            what has hardened past its useful point.
+          </p>
+          <p>
+            It is also not saying that dispersion is always comfortable. Ice
+            melting is a real process — it requires energy and produces change.
+            The <cite>I Ching</cite> does not promise that dissolving rigidity
+            will be painless, only that it is necessary when the alternative is
+            continued stagnation.
+          </p>
+        </>
+      ),
+    },
+  ],
+  60: [
+    {
+      heading: "What Hexagram 60 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 60, Jie (节), places Water above the Lake — water contained
+            within its natural boundary, neither overflowing nor depleted. In the{" "}
+            <cite>I Ching</cite>, this image describes the value of appropriate
+            limitation: the kind of boundary that gives a situation its shape and
+            makes sustained effort possible. The classical Judgment reads: "good
+            limits preserve energy; harsh limits create resistance."
+          </p>
+          <p>
+            The hexagram is associated with the joints of a bamboo stalk in
+            classical Chinese — the nodes that give the bamboo its strength and
+            flexibility. Without the nodes, the bamboo would be a hollow tube
+            with no structural integrity. The limits this hexagram describes are
+            not constraints imposed from outside but the natural articulations
+            that give a living system its form.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Water over the lake; define measure and boundary."
+            The <cite>I Ching</cite> commentary makes a careful distinction: the
+            wise person sets limits on their own expenditure and conduct, but does
+            not impose harsh limits on others. The practical lesson is that
+            limitation works best when it is self-chosen and genuinely appropriate
+            to the situation — when the person living within the limit understands
+            why it exists and can sustain it without resentment.
+          </p>
+          <p>
+            The hexagram also asks about the quality of the limit. A limit that
+            is too loose provides no structure; a limit that is too tight creates
+            the pressure that eventually produces a break. The water that fills
+            the lake exactly is the image of the right measure — not more, not
+            less.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career or organizational contexts, Hexagram 60 often appears when
+            someone is setting boundaries around their time, energy, or scope of
+            work. The hexagram supports clear limits and asks whether the limits
+            being set are genuinely appropriate — sustainable over time, clearly
+            communicated, and based on real assessment of what is possible rather
+            than on either excessive permissiveness or excessive restriction.
+          </p>
+          <p>
+            In personal contexts, it describes the work of defining what you will
+            and will not do — the limits that protect your capacity to function
+            well over time. The classical emphasis on self-chosen limits is
+            practically important: limits that are imposed without understanding
+            tend to be resisted or circumvented, while limits that are genuinely
+            understood and chosen tend to be maintained.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 60 is not saying that all limits are good or that restriction
+            is inherently virtuous. The <cite>I Ching</cite> is explicit that
+            harsh limits — those that cannot be maintained without distress —
+            are not favorable. The question is always whether the limit is
+            genuinely appropriate: does it preserve what needs to be preserved
+            without creating the kind of pressure that eventually produces a
+            break?
+          </p>
+          <p>
+            It is also not saying that limits should never change. The bamboo
+            node is a fixed point in the stalk's growth, but the stalk continues
+            to grow beyond it. Limits that were appropriate at one stage of a
+            situation may need to be revised as the situation develops. The
+            hexagram asks for the discernment to know when a limit is still
+            serving its purpose and when it has become an obstacle to necessary
+            growth.
+          </p>
+        </>
+      ),
+    },
+  ],
+  61: [
+    {
+      heading: "What Hexagram 61 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 61, Zhong Fu (中孚), places Wind above the Lake — wind
+            moving across open water, penetrating to the center of what it
+            touches. In the <cite>I Ching</cite>, this image describes the quality
+            of genuine sincerity: not the performance of honesty, but the actual
+            alignment between what is inside and what is expressed outward. The
+            classical Judgment reads: "trust grows when inner and outer signals
+            match."
+          </p>
+          <p>
+            The hexagram's name, <em>zhong fu</em>, means literally "inner
+            faithfulness" or "truth at the center." The structure of the hexagram
+            reflects this: two solid lines at the top and bottom, two open lines
+            in the middle — the image of something hollow at the center, open to
+            receive. The <cite>I Ching</cite> treats this openness not as
+            emptiness but as the receptivity that makes genuine connection
+            possible.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Wind over the lake; sincerity reaches others." The{" "}
+            <cite>I Ching</cite> commentary describes the wise person as someone
+            who deliberates carefully before speaking and is cautious about what
+            they commit to — not because they are withholding, but because they
+            understand that words carry weight only when they are backed by
+            genuine intention and consistent action. The practical lesson is that
+            the quality of communication is determined more by the alignment
+            between inner and outer than by the skill of the expression itself.
+          </p>
+          <p>
+            The hexagram also describes the capacity to reach others who are
+            difficult to reach — the classical image includes influencing even
+            fish and pigs, the least responsive of creatures. Genuine sincerity
+            penetrates where clever argument cannot, because it operates at a
+            level that bypasses the defenses that argument triggers.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career or leadership contexts, Hexagram 61 often appears when
+            someone is trying to rebuild trust after a period of inconsistency,
+            or when their communications are not landing despite being technically
+            correct. The hexagram asks whether the inner and outer signals are
+            actually aligned — whether what is being said matches what is being
+            felt and intended. Inconsistency between these levels is usually
+            perceptible even when it is not consciously identified.
+          </p>
+          <p>
+            In negotiation or conflict resolution contexts, it describes the
+            quality that makes agreement durable: not the cleverness of the terms,
+            but the genuine sincerity of the parties. Agreements reached through
+            genuine mutual understanding tend to hold; agreements reached through
+            clever maneuvering tend to require constant maintenance.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 61 is not saying that sincerity alone is sufficient or that
+            good intentions guarantee good outcomes. The <cite>I Ching</cite> is
+            consistent that sincerity must be paired with appropriate action —
+            inner truth that never expresses itself outward does not produce the
+            connection this hexagram describes. The wind must actually move across
+            the lake; it cannot simply exist as a potential.
+          </p>
+          <p>
+            It is also not saying that all expressions of sincerity will be
+            received. Some situations are not ready for genuine connection, and
+            some people are not in a position to receive it. The hexagram
+            describes what makes genuine influence possible when the conditions
+            are present — it does not guarantee that the conditions will always
+            be present.
+          </p>
+        </>
+      ),
+    },
+  ],
+  62: [
+    {
+      heading: "What Hexagram 62 describes",
+      content: (
+        <>
+          <p>
+            Hexagram 62, Xiao Guo (小过), places Thunder above Mountain —
+            movement above stillness, the image of something that has gone
+            slightly beyond its proper measure. In the <cite>I Ching</cite>, this
+            hexagram describes a situation where the scale of action must be
+            carefully calibrated: small exceeding is possible and sometimes
+            necessary, but large exceeding produces loss. The classical Judgment
+            reads: "small adjustments are favored; avoid grand overreach."
+          </p>
+          <p>
+            The hexagram is paired with Hexagram 28 (Great Exceeding) earlier in
+            the sequence. Where Great Exceeding describes a situation of genuine
+            structural overload requiring extraordinary response, Small Exceeding
+            describes a situation where the load is manageable but the tendency
+            to overreach must be consciously restrained. The difference is scale
+            and the appropriate response to it.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The image and its practical lesson",
+      content: (
+        <>
+          <p>
+            The image says: "Thunder above the mountain; attend to detail." The{" "}
+            <cite>I Ching</cite> commentary uses the image of a flying bird: the
+            bird that flies too high misses the nest; the bird that descends finds
+            food. The practical lesson is that in situations described by this
+            hexagram, the correct move is downward rather than upward — toward
+            what is concrete, immediate, and manageable rather than toward what
+            is grand, abstract, or ambitious.
+          </p>
+          <p>
+            The hexagram also describes specific behavioral adjustments: in
+            mourning, exceed in grief rather than in ceremony; in ordinary
+            conduct, exceed in frugality rather than in display; in service,
+            exceed in deference rather than in assertion. These are all forms of
+            the same principle: when in doubt, err on the side of less rather
+            than more.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Modern applications",
+      content: (
+        <>
+          <p>
+            In career contexts, Hexagram 62 often appears when someone is
+            considering a move that is larger than the situation actually requires
+            — a reorganization when a conversation would suffice, a public
+            declaration when a private one would be more effective, or an
+            ambitious initiative when careful execution of what is already
+            underway would produce better results. The hexagram asks whether the
+            scale of the intended action matches the actual scale of the need.
+          </p>
+          <p>
+            In decision contexts, it describes the value of precision over
+            ambition: the small, well-aimed adjustment that actually hits the
+            target is more effective than the large, sweeping move that misses.
+            The bird that descends to find food is more successful than the bird
+            that flies higher hoping to see further.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What this hexagram is not saying",
+      content: (
+        <>
+          <p>
+            Hexagram 62 is not saying that ambition is always wrong or that small
+            is always better than large. The <cite>I Ching</cite> has hexagrams
+            that describe great power, decisive breakthrough, and the crossing of
+            great waters. Small Exceeding applies specifically to situations where
+            the conditions do not support large action — where the structure is
+            not yet ready, the timing is not right, or the situation genuinely
+            calls for precision rather than scale.
+          </p>
+          <p>
+            It is also not saying that the small adjustments are unimportant. The
+            bird that finds food by descending has accomplished something real.
+            Attending carefully to what is immediately present, doing it well, and
+            not overreaching the situation is a genuine achievement — not a
+            consolation prize for failing to do something larger.
           </p>
         </>
       ),
