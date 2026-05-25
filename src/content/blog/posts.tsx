@@ -229,7 +229,7 @@ const seedPosts: BlogPost[] = [
               Avoid trying to interpret every character at once. Classical practitioners spend years on single concepts. For a beginner, the most useful first pass is: Day Master element → month pillar element → whether they support or pressure each other. That relationship alone tells you a great deal about the structural theme of the chart.
             </p>
             <p>
-              After that first pass, add detail slowly. Look at whether the chart is mostly warm or cold, dry or wet, active or restrained. Then compare the visible stems with the hidden stems inside the branches. This prevents a common beginner mistake: treating one attractive symbol as the whole reading. A strong Wealth star, for example, does not automatically mean money will arrive; it must be read against the Day Master, the season, the chart structure, and the timing cycle. A useful Bazi reading keeps all of those layers visible before turning the chart into practical advice.
+              After that first pass, add detail slowly. Look at whether the chart is mostly warm or cold, dry or wet, active or restrained. Then compare the visible stems with the hidden stems inside the branches. This prevents a common beginner mistake: treating one attractive symbol as the whole reading. A strong Wealth star, for example, does not automatically mean money will arrive; it must be read against the Day Master, the season, the chart structure, and the timing cycle. A useful Bazi reading keeps all of those layers visible before turning the chart into practical advice. Keep notes as you read so each conclusion can be traced back to a visible chart feature.
             </p>
           </>
         ),
