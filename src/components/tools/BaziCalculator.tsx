@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Calculator, RotateCcw } from "lucide-react";
 import BaziChartResult from "@/components/tools/BaziChartResult";
 import { calculateBaziChart, type BaziChart, type BaziChartInput } from "@/lib/bazi";
+import { trackEvent } from "@/lib/analytics";
 
 interface FormState {
   birthDate: string;
@@ -49,11 +50,13 @@ export default function BaziCalculator() {
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
+    trackEvent("calculator_started", { tool: "bazi" });
 
     try {
       const nextChart = calculateBaziChart(parseInput(form));
       setChart(nextChart);
       setError(null);
+      trackEvent("calculator_completed", { tool: "bazi" });
     } catch (chartError) {
       setError(chartError instanceof Error ? chartError.message : "Unable to calculate this chart.");
     }

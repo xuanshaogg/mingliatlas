@@ -13,7 +13,8 @@
     "test:calendar": "vitest __tests__/calendar",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
-    "audit:links": "node scripts/audit-links.mjs"
+    "audit:links": "node scripts/audit-links.mjs",
+    "audit:local": "node scripts/audit-local-site.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

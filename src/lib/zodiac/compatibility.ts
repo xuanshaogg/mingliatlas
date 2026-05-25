@@ -29,6 +29,7 @@ export interface ZodiacCompatibilityResult {
   summary: string;
   strengths: string[];
   watchouts: string[];
+  conversationPrompts: string[];
 }
 
 export const ZODIAC_SIGNS: ZodiacSignMeta[] = [
@@ -85,6 +86,11 @@ export function calculateZodiacCompatibility(signA: ZodiacSign, signB: ZodiacSig
       summary: `${first.name} and ${second.name} share the same branch rhythm, which can feel familiar and direct. The main risk is doubling the same blind spot.`,
       strengths: ["Fast mutual recognition", "Shared pacing and instincts", "Easy cultural symbolism for planning"],
       watchouts: ["Similar habits can reinforce each other", "Conflict may become repetitive", "A full Bazi comparison is still needed"],
+      conversationPrompts: [
+        `What habits do you both share that might be worth questioning?`,
+        `Where do you each feel most understood by the other?`,
+        `What would a different perspective bring to your dynamic?`,
+      ],
     };
   }
 
@@ -115,6 +121,11 @@ export function calculateZodiacCompatibility(signA: ZodiacSign, signB: ZodiacSig
       summary: `${first.name} and ${second.name} sit opposite each other in the branch cycle. This can create friction, but it can also clarify boundaries and priorities.`,
       strengths: ["Different viewpoints can expose blind spots", "Strong chemistry when both sides respect pacing", "Useful for growth-oriented partnerships"],
       watchouts: ["Different timing and stress responses", "Higher need for explicit agreements", "Avoid using the clash as a fixed verdict"],
+      conversationPrompts: [
+        `Where do you each feel the most friction — and what does it reveal?`,
+        `How do you each handle pressure differently?`,
+        `What would it look like to use your differences as a strength?`,
+      ],
     };
   }
 
@@ -133,6 +144,11 @@ function buildResult(
   label: string,
   relationship: string,
   strengths: string[],
+  conversationPrompts: string[] = [
+    `What do you each bring to the relationship that the other doesn't?`,
+    `Where do your rhythms naturally align?`,
+    `What would a deeper Bazi comparison reveal about your dynamic?`,
+  ],
 ): ZodiacCompatibilityResult {
   return {
     signA: first,
@@ -147,6 +163,7 @@ function buildResult(
       "Check communication style and life stage",
       "Use this as a conversation starter, not a guarantee",
     ],
+    conversationPrompts,
   };
 }
 

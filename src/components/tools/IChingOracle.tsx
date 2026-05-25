@@ -1,9 +1,11 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import { Coins, RotateCcw } from "lucide-react";
 import ShareCardControls from "@/components/tools/ShareCardControls";
 import { castIChingReading, createCoinCast, type IChingReading } from "@/lib/i-ching";
+import { trackEvent } from "@/lib/analytics";
 import { buildIChingShareParams } from "@/lib/share-card";
 
 function buildReading(question: string): IChingReading {
@@ -27,6 +29,7 @@ export default function IChingOracle() {
   );
 
   function castReading(): void {
+    trackEvent("calculator_completed", { tool: "i-ching" });
     setReading(buildReading(question));
   }
 
@@ -85,6 +88,14 @@ export default function IChingOracle() {
             <p>The relating hexagram appears only when at least one line changes.</p>
             <p>Use the result for structured reflection, not as a command or fixed forecast.</p>
           </div>
+          <div className="mt-5 border-t border-ink-200 pt-5 dark:border-white/10">
+            <p className="text-sm font-semibold text-ink-900 dark:text-paper">How to ask a good question</p>
+            <ul className="mt-3 space-y-1.5 text-sm leading-6 text-ink-600 dark:text-ink-300">
+              <li>Be specific: "What should I pay attention to in this decision?" not "Will I succeed?"</li>
+              <li>Ask once — cast once. Repeated casts for the same question produce confusion, not clarity.</li>
+              <li>Focus on your role: "How can I approach this?" rather than "What will the other person do?"</li>
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -119,6 +130,24 @@ export default function IChingOracle() {
               <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-ink-500 dark:text-ink-400">Image</h3>
               <p className="mt-2 text-sm leading-6 text-ink-700 dark:text-ink-200">{reading.primary.image}</p>
             </div>
+          </div>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link
+              href={`/i-ching/hexagram-${reading.primary.number}`}
+              onClick={() => trackEvent("related_content_clicked", { tool: "i-ching", target: `hexagram-${reading.primary.number}` })}
+              className="inline-flex h-9 items-center justify-center rounded-full border border-brand-primary px-4 text-sm font-semibold text-brand-primary transition hover:bg-brand-primary hover:text-white dark:border-gold-400 dark:text-gold-300 dark:hover:bg-gold-400 dark:hover:text-ink-950"
+            >
+              Read Hexagram {reading.primary.number} in full →
+            </Link>
+            {reading.relating ? (
+              <Link
+                href={`/i-ching/hexagram-${reading.relating.number}`}
+                onClick={() => { const n = reading.relating?.number; if (n) trackEvent("related_content_clicked", { tool: "i-ching", target: `hexagram-${n}` }); }}
+                className="inline-flex h-9 items-center justify-center rounded-full border border-ink-200 px-4 text-sm font-semibold text-ink-700 transition hover:border-brand-primary hover:text-brand-primary dark:border-white/10 dark:text-ink-300 dark:hover:border-gold-400 dark:hover:text-gold-300"
+              >
+                Relating: Hexagram {reading.relating.number} →
+              </Link>
+            ) : null}
           </div>
         </article>
 

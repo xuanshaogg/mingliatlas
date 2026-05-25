@@ -1,7 +1,16 @@
-import { CalendarDays, Info, ShieldCheck } from "lucide-react";
+import Link from "next/link";
+import { CalendarDays, Info, Mail, ShieldCheck } from "lucide-react";
 import ShareCardControls from "@/components/tools/ShareCardControls";
 import type { BaziChart, BaziChartPillar, ElementScore } from "@/lib/bazi";
+import { trackEvent } from "@/lib/analytics";
 import { buildBaziShareParams } from "@/lib/share-card";
+
+const NEXT_READS = [
+  { href: "/bazi/what-is-bazi", label: "What Is Bazi", description: "Understand the Four Pillars system before reading a chart." },
+  { href: "/bazi/five-elements", label: "Five Elements", description: "Read the element balance in depth." },
+  { href: "/bazi/ten-gods", label: "Ten Gods", description: "Decode the relationship roles around the Day Master." },
+  { href: "/bazi/luck-pillars", label: "Luck Pillars", description: "See how timing cycles layer over the natal chart." },
+];
 
 interface BaziChartResultProps {
   chart: BaziChart;
@@ -171,6 +180,51 @@ export default function BaziChartResult({ chart }: BaziChartResultProps) {
         <p className="mt-5 text-sm leading-6 text-ink-500 dark:text-ink-400">
           For entertainment and self-reflection purposes.
         </p>
+      </section>
+
+      <section className="rounded-lg border border-ink-200 bg-white p-6 dark:border-white/10 dark:bg-white/5">
+        <h2 className="text-2xl font-semibold tracking-tight text-ink-950 dark:text-paper">Read next</h2>
+        <p className="mt-2 text-sm leading-6 text-ink-600 dark:text-ink-300">
+          Deepen your understanding of the chart you just calculated.
+        </p>
+        <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+          {NEXT_READS.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={() => trackEvent("related_content_clicked", { tool: "bazi", target: item.href })}
+              className="group rounded-lg border border-ink-200 p-4 transition hover:border-brand-primary dark:border-white/10 dark:hover:border-gold-400"
+            >
+              <p className="font-semibold text-ink-950 group-hover:text-brand-primary dark:text-paper dark:group-hover:text-gold-300">
+                {item.label}
+              </p>
+              <p className="mt-1 text-sm leading-5 text-ink-500 dark:text-ink-400">{item.description}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="rounded-lg border border-brand-200 bg-brand-50 p-6 dark:border-gold-500/30 dark:bg-gold-500/10">
+        <div className="flex flex-wrap items-start justify-between gap-6">
+          <div className="flex items-start gap-4">
+            <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-brand-primary text-white dark:bg-gold-400 dark:text-ink-950">
+              <Mail className="h-5 w-5" aria-hidden="true" />
+            </span>
+            <div>
+              <h2 className="text-lg font-semibold text-ink-950 dark:text-paper">Get a weekly Bazi learning note</h2>
+              <p className="mt-1 text-sm leading-6 text-ink-600 dark:text-ink-300">
+                One short email each week — a concept, a chart pattern, or a reflection prompt. No predictions, no spam.
+              </p>
+            </div>
+          </div>
+          <Link
+            href="/subscribe"
+            onClick={() => trackEvent("subscribe_clicked", { tool: "bazi", source: "chart_result" })}
+            className="inline-flex h-11 flex-none items-center justify-center rounded-full bg-brand-primary px-6 text-sm font-semibold text-white transition hover:bg-brand-800 dark:bg-gold-400 dark:text-ink-950 dark:hover:bg-gold-300"
+          >
+            Subscribe free
+          </Link>
+        </div>
       </section>
     </section>
   );

@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { Copy, Download, Share2 } from "lucide-react";
 import { buildShareCardUrl, type ShareTool } from "@/lib/share-card";
+import { trackEvent } from "@/lib/analytics";
 import { SITE } from "@/lib/constants";
 
 interface ShareCardControlsProps {
@@ -18,6 +19,7 @@ export default function ShareCardControls({ tool, params, label }: ShareCardCont
   async function copyShareCardUrl(): Promise<void> {
     await navigator.clipboard.writeText(shareCardUrl);
     setCopied(true);
+    trackEvent("share_card_clicked", { tool, action: "copy" });
     window.setTimeout(() => setCopied(false), 1800);
   }
 
@@ -35,6 +37,7 @@ export default function ShareCardControls({ tool, params, label }: ShareCardCont
             href={shareCardUrl}
             target="_blank"
             rel="noreferrer"
+            onClick={() => trackEvent("share_card_clicked", { tool, action: "preview" })}
             className="inline-flex h-10 items-center justify-center gap-2 rounded-full border border-ink-200 px-4 text-sm font-semibold text-ink-800 transition hover:border-brand-primary hover:text-brand-primary dark:border-white/10 dark:text-ink-200 dark:hover:border-gold-300 dark:hover:text-gold-200"
           >
             <Share2 className="h-4 w-4" aria-hidden="true" />
@@ -51,6 +54,7 @@ export default function ShareCardControls({ tool, params, label }: ShareCardCont
           <a
             href={shareCardUrl}
             download={`${label}.png`}
+            onClick={() => trackEvent("share_card_clicked", { tool, action: "download" })}
             className="inline-flex h-10 items-center justify-center gap-2 rounded-full bg-brand-primary px-4 text-sm font-semibold text-white transition hover:bg-brand-800 dark:bg-gold-400 dark:text-ink-950 dark:hover:bg-gold-300"
           >
             <Download className="h-4 w-4" aria-hidden="true" />

@@ -1,9 +1,11 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import { HeartHandshake } from "lucide-react";
 import ShareCardControls from "@/components/tools/ShareCardControls";
 import { ZODIAC_SIGNS, calculateZodiacCompatibility, type ZodiacSign } from "@/lib/zodiac";
+import { trackEvent } from "@/lib/analytics";
 import { buildZodiacShareParams } from "@/lib/share-card";
 
 export default function ZodiacCompatibilityCalculator() {
@@ -121,6 +123,42 @@ export default function ZodiacCompatibilityCalculator() {
           <p className="mt-5 text-sm leading-6 text-ink-500 dark:text-ink-400">
             For entertainment and self-reflection purposes.
           </p>
+        </div>
+      </section>
+
+      {result.conversationPrompts && result.conversationPrompts.length > 0 ? (
+        <section className="rounded-lg border border-ink-200 bg-white p-6 dark:border-white/10 dark:bg-white/5">
+          <h2 className="text-2xl font-semibold tracking-tight text-ink-950 dark:text-paper">Conversation prompts</h2>
+          <p className="mt-2 text-sm leading-6 text-ink-600 dark:text-ink-300">
+            Questions to explore together — not conclusions about the relationship.
+          </p>
+          <ul className="mt-5 grid gap-3 text-sm leading-6 text-ink-700 dark:text-ink-200 sm:grid-cols-2">
+            {result.conversationPrompts.map((prompt) => (
+              <li key={prompt} className="rounded-md border border-ink-100 px-4 py-3 dark:border-white/10">
+                {prompt}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
+      <section className="rounded-lg border border-ink-200 bg-white p-6 dark:border-white/10 dark:bg-white/5">
+        <h2 className="text-xl font-semibold tracking-tight text-ink-950 dark:text-paper">Explore each sign</h2>
+        <div className="mt-4 flex flex-wrap gap-3">
+          <Link
+            href={`/chinese-zodiac/${result.signA.slug}`}
+            onClick={() => trackEvent("related_content_clicked", { tool: "zodiac", target: result.signA.slug })}
+            className="inline-flex h-9 items-center justify-center rounded-full border border-brand-primary px-4 text-sm font-semibold text-brand-primary transition hover:bg-brand-primary hover:text-white dark:border-gold-400 dark:text-gold-300 dark:hover:bg-gold-400 dark:hover:text-ink-950"
+          >
+            {result.signA.name} guide →
+          </Link>
+          <Link
+            href={`/chinese-zodiac/${result.signB.slug}`}
+            onClick={() => trackEvent("related_content_clicked", { tool: "zodiac", target: result.signB.slug })}
+            className="inline-flex h-9 items-center justify-center rounded-full border border-ink-200 px-4 text-sm font-semibold text-ink-700 transition hover:border-brand-primary hover:text-brand-primary dark:border-white/10 dark:text-ink-300 dark:hover:border-gold-400 dark:hover:text-gold-300"
+          >
+            {result.signB.name} guide →
+          </Link>
         </div>
       </section>
     </div>
