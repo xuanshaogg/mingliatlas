@@ -32,7 +32,6 @@ const playfair = Playfair_Display({
 
 const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
 const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
-const isVercelRuntime = process.env.VERCEL === "1";
 const adsenseId = process.env.NEXT_PUBLIC_ADSENSE_ID;
 
 export const metadata: Metadata = {
@@ -151,12 +150,8 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer />
         <ScrollDepthTracker />
-        {isVercelRuntime ? (
-          <>
-            <Analytics />
-            <SpeedInsights />
-          </>
-        ) : null}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
