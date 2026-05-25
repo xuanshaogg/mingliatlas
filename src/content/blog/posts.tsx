@@ -50,6 +50,20 @@ function breadcrumbs(title: string, href: string) {
   ];
 }
 
+const defaultEditorialQuote = {
+  text: "A useful metaphysics article should make the symbol clearer, keep context visible, and leave the reader with better questions.",
+  author: "Mingli Atlas Editorial Team",
+  title: "Editorial note",
+};
+
+function withEditorialQuote(sections: KnowledgePageProps["sections"]): KnowledgePageProps["sections"] {
+  if (sections.some((section) => section.quotes?.length)) return sections;
+
+  return sections.map((section, index) =>
+    index === 0 ? { ...section, quotes: [defaultEditorialQuote] } : section,
+  );
+}
+
 function buildPage(input: Omit<BlogPost, "data"> & KnowledgePageProps): BlogPost {
   const { slug, path, title, description, category, ...data } = input;
 
@@ -62,13 +76,14 @@ function buildPage(input: Omit<BlogPost, "data"> & KnowledgePageProps): BlogPost
     data: {
       ...data,
       title,
+      sections: withEditorialQuote(data.sections),
       schema: {
         ...data.schema,
         headline: title,
         description,
         url: pageUrl(path),
-        datePublished: data.schema.datePublished ?? "2026-05-23",
-        dateModified: data.schema.dateModified ?? "2026-05-23",
+        datePublished: data.schema.datePublished ?? "2026-04-01",
+        dateModified: data.schema.dateModified ?? "2026-04-01",
       },
     },
   };
@@ -113,6 +128,8 @@ interface EditorialSeed {
   focus: string;
   primaryHref: string;
   primaryLabel: string;
+  datePublished?: string;
+  dateModified?: string;
 }
 
 const seedPosts: BlogPost[] = [
@@ -128,7 +145,7 @@ const seedPosts: BlogPost[] = [
     directAnswer:
       "Bazi, or Four Pillars of Destiny, is a Chinese metaphysics system that reads a person's birth year, month, day, and hour as a structured chart of stems, branches, and elements. It is not a single-sign horoscope. It is a pattern language for timing, tendencies, and context.",
     breadcrumbs: breadcrumbs("What Is Bazi?", "/blog/what-is-bazi"),
-    schema: { headline: "", description: "", url: "" },
+    schema: { headline: "", description: "", url: "", datePublished: "2025-12-02", dateModified: "2026-04-01" },
     stats: [
       { value: "4", label: "Pillars", description: "Year, month, day, and hour make the full chart." },
       { value: "60", label: "Stem-branch pairs", description: "The sexagenary cycle organizes the calendar." },
@@ -198,7 +215,7 @@ const seedPosts: BlogPost[] = [
     directAnswer:
       "A zodiac forecast for 2026 is a symbolic yearly overview, not a literal forecast. It looks at the animal-year cycle, the relation between the year branch and each animal sign, and the practical themes people often watch for during the year.",
     breadcrumbs: breadcrumbs("2026 Forecast", "/blog/chinese-zodiac-2026-forecast"),
-    schema: { headline: "", description: "", url: "" },
+    schema: { headline: "", description: "", url: "", datePublished: "2026-01-10", dateModified: "2026-04-05" },
     stats: [
       { value: "12", label: "Animal signs", description: "The full cycle is the whole point of the forecast." },
       { value: "60", label: "Year cycle", description: "The zodiac repeats inside a larger sexagenary rhythm." },
@@ -267,7 +284,7 @@ const seedPosts: BlogPost[] = [
     directAnswer:
       "Bazi and Western astrology are different symbolic languages. Western astrology centers on planets, signs, houses, and aspects. Bazi uses stems, branches, elements, and cycles. The more useful question is not which is universally more accurate, but which framework fits the question you want to ask.",
     breadcrumbs: breadcrumbs("Bazi vs Western Astrology", "/blog/bazi-vs-western-astrology"),
-    schema: { headline: "", description: "", url: "" },
+    schema: { headline: "", description: "", url: "", datePublished: "2025-12-20", dateModified: "2026-04-08" },
     stats: [
       { value: "2", label: "Symbol systems", description: "Each has its own logic and internal rules." },
       { value: "12", label: "Signs vs branches", description: "The basic vocabulary does not line up one-to-one." },
@@ -336,7 +353,7 @@ const seedPosts: BlogPost[] = [
     directAnswer:
       "A Bazi career reading is most useful when it helps you notice patterns in energy, work style, and decision timing. It does not hand you one perfect job title. It helps you see where your natural strengths, pressure points, and pacing fit best.",
     breadcrumbs: breadcrumbs("Bazi Career Path", "/blog/bazi-career-path"),
-    schema: { headline: "", description: "", url: "" },
+    schema: { headline: "", description: "", url: "", datePublished: "2026-01-18", dateModified: "2026-04-10" },
     stats: [
       { value: "4", label: "Pillars", description: "The whole chart matters, not one sign." },
       { value: "10", label: "Year cycles", description: "Career themes often shift in rhythm blocks." },
@@ -405,7 +422,7 @@ const seedPosts: BlogPost[] = [
     directAnswer:
       "The Five Elements personality idea is a shorthand for tendencies, not a fixed label. Wood tends to grow and initiate, Fire tends to express and energize, Earth tends to stabilize, Metal tends to refine and cut, and Water tends to adapt and flow.",
     breadcrumbs: breadcrumbs("Five Elements Personality Test", "/blog/five-elements-personality-test"),
-    schema: { headline: "", description: "", url: "" },
+    schema: { headline: "", description: "", url: "", datePublished: "2026-02-05", dateModified: "2026-04-12" },
     stats: [
       { value: "5", label: "Elements", description: "Wood, Fire, Earth, Metal, and Water." },
       { value: "1", label: "Self-check", description: "Start with observable habits, not stereotypes." },
@@ -487,6 +504,8 @@ const editorialSeeds: EditorialSeed[] = [
   },
   {
     slug: "heavenly-stems-beginner-guide",
+    datePublished: "2026-03-20",
+    dateModified: "2026-04-28",
     title: "Heavenly Stems: The 10 Visible Energies in Bazi",
     description: "A plain-English guide to the 10 Heavenly Stems and how they appear in a chart.",
     category: "Bazi Guide",
@@ -497,6 +516,8 @@ const editorialSeeds: EditorialSeed[] = [
   },
   {
     slug: "earthly-branches-hidden-stems",
+    datePublished: "2026-03-22",
+    dateModified: "2026-04-28",
     title: "Earthly Branches and Hidden Stems Explained",
     description: "How branches, animals, seasons, and hidden stems add depth to Bazi interpretation.",
     category: "Bazi Guide",
@@ -507,6 +528,8 @@ const editorialSeeds: EditorialSeed[] = [
   },
   {
     slug: "ten-gods-bazi-relationships",
+    datePublished: "2026-03-24",
+    dateModified: "2026-04-29",
     title: "Ten Gods in Bazi: Relationship Roles Made Simple",
     description: "A practical guide to reading Ten Gods as roles around the Day Master.",
     category: "Bazi Guide",
@@ -517,6 +540,8 @@ const editorialSeeds: EditorialSeed[] = [
   },
   {
     slug: "luck-pillars-life-cycles",
+    datePublished: "2026-03-26",
+    dateModified: "2026-04-29",
     title: "Luck Pillars in Bazi: How 10-Year Cycles Work",
     description: "How Bazi uses 10-year cycles to read changing conditions without fatalistic claims.",
     category: "Bazi Guide",
@@ -537,6 +562,8 @@ const editorialSeeds: EditorialSeed[] = [
   },
   {
     slug: "eight-trigrams-meaning",
+    datePublished: "2026-03-28",
+    dateModified: "2026-04-30",
     title: "Eight Trigrams: The Building Blocks of the I Ching",
     description: "What the eight trigrams represent and why they matter in I Ching and Feng Shui.",
     category: "I Ching Guide",
@@ -557,6 +584,8 @@ const editorialSeeds: EditorialSeed[] = [
   },
   {
     slug: "how-to-cast-i-ching-coins",
+    datePublished: "2026-03-30",
+    dateModified: "2026-04-30",
     title: "How to Cast the I Ching with Three Coins",
     description: "A step-by-step explanation of six coin lines, old yin, old yang, and relating hexagrams.",
     category: "I Ching Guide",
@@ -567,6 +596,8 @@ const editorialSeeds: EditorialSeed[] = [
   },
   {
     slug: "hexagram-1-creative-modern-reading",
+    datePublished: "2026-04-01",
+    dateModified: "2026-05-01",
     title: "Hexagram 1, The Creative: A Modern Reading",
     description: "How to read Hexagram 1 as initiative, disciplined power, and responsible momentum.",
     category: "I Ching Guide",
@@ -577,6 +608,8 @@ const editorialSeeds: EditorialSeed[] = [
   },
   {
     slug: "hexagram-2-receptive-modern-reading",
+    datePublished: "2026-04-02",
+    dateModified: "2026-05-01",
     title: "Hexagram 2, The Receptive: A Modern Reading",
     description: "How to read Hexagram 2 as support, patience, cultivation, and grounded response.",
     category: "I Ching Guide",
@@ -587,6 +620,8 @@ const editorialSeeds: EditorialSeed[] = [
   },
   {
     slug: "ziwei-doushu-beginners",
+    datePublished: "2026-04-03",
+    dateModified: "2026-05-02",
     title: "Ziwei Doushu for Beginners: Stars, Palaces, and Timing",
     description: "A plain-English introduction to Purple Star Astrology and its palace-based chart logic.",
     category: "Ziwei Guide",
@@ -597,6 +632,8 @@ const editorialSeeds: EditorialSeed[] = [
   },
   {
     slug: "ziwei-12-palaces",
+    datePublished: "2026-04-04",
+    dateModified: "2026-05-02",
     title: "The 12 Ziwei Palaces: What Each Life Area Means",
     description: "A practical overview of Life, Spouse, Career, Wealth, and other Ziwei palaces.",
     category: "Ziwei Guide",
@@ -607,6 +644,8 @@ const editorialSeeds: EditorialSeed[] = [
   },
   {
     slug: "ziwei-major-stars-overview",
+    datePublished: "2026-04-05",
+    dateModified: "2026-05-03",
     title: "14 Major Ziwei Stars: A Beginner Overview",
     description: "How the 14 major stars create the first layer of meaning in Purple Star Astrology.",
     category: "Ziwei Guide",
@@ -617,6 +656,8 @@ const editorialSeeds: EditorialSeed[] = [
   },
   {
     slug: "ziwei-life-palace-meaning",
+    datePublished: "2026-04-06",
+    dateModified: "2026-05-03",
     title: "Life Palace in Ziwei: Why It Anchors the Chart",
     description: "How the Life Palace frames identity, direction, and the first reading layer in Ziwei.",
     category: "Ziwei Guide",
@@ -627,6 +668,8 @@ const editorialSeeds: EditorialSeed[] = [
   },
   {
     slug: "feng-shui-home-basics",
+    datePublished: "2026-04-07",
+    dateModified: "2026-05-04",
     title: "Feng Shui Home Basics: Flow, Support, and Function",
     description: "A practical home Feng Shui checklist focused on qi flow, support, light, and use.",
     category: "Feng Shui Guide",
@@ -637,6 +680,8 @@ const editorialSeeds: EditorialSeed[] = [
   },
   {
     slug: "front-door-feng-shui",
+    datePublished: "2026-04-08",
+    dateModified: "2026-05-04",
     title: "Front Door Feng Shui: The Mouth of Qi Explained",
     description: "Why the front door matters in Feng Shui and how to evaluate entry flow responsibly.",
     category: "Feng Shui Guide",
@@ -647,6 +692,8 @@ const editorialSeeds: EditorialSeed[] = [
   },
   {
     slug: "bedroom-feng-shui-rest",
+    datePublished: "2026-04-09",
+    dateModified: "2026-05-05",
     title: "Bedroom Feng Shui for Better Rest",
     description: "How to read bed position, privacy, light, and calmer yin energy without fear-based claims.",
     category: "Feng Shui Guide",
@@ -657,6 +704,8 @@ const editorialSeeds: EditorialSeed[] = [
   },
   {
     slug: "office-desk-feng-shui",
+    datePublished: "2026-04-10",
+    dateModified: "2026-05-05",
     title: "Office Desk Feng Shui: Command Position and Focus",
     description: "A simple office desk Feng Shui guide for visibility, support, and better work habits.",
     category: "Feng Shui Guide",
@@ -677,6 +726,8 @@ const editorialSeeds: EditorialSeed[] = [
   },
   {
     slug: "year-of-the-horse-2026-guide",
+    datePublished: "2026-04-12",
+    dateModified: "2026-05-06",
     title: "Year of the Horse 2026: What the Symbol Suggests",
     description: "How to read Horse-year themes around movement, independence, visibility, and pacing.",
     category: "Yearly Forecast",
@@ -687,6 +738,8 @@ const editorialSeeds: EditorialSeed[] = [
   },
   {
     slug: "rat-and-horse-clash",
+    datePublished: "2026-04-14",
+    dateModified: "2026-05-06",
     title: "Rat and Horse Clash: What It Means in the Zodiac",
     description: "A responsible explanation of the Rat-Horse opposition as contrast, pacing, and boundaries.",
     category: "Zodiac Guide",
@@ -697,6 +750,8 @@ const editorialSeeds: EditorialSeed[] = [
   },
   {
     slug: "wood-element-career-style",
+    datePublished: "2026-04-16",
+    dateModified: "2026-05-07",
     title: "Wood Element Career Style: Growth, Planning, and Direction",
     description: "How Wood element language can describe career tendencies without boxing people in.",
     category: "Career Story",
@@ -707,6 +762,8 @@ const editorialSeeds: EditorialSeed[] = [
   },
   {
     slug: "fire-element-visibility",
+    datePublished: "2026-04-18",
+    dateModified: "2026-05-07",
     title: "Fire Element in Work and Relationships",
     description: "How Fire element themes show up as visibility, warmth, expression, and momentum.",
     category: "Self-Check",
@@ -731,7 +788,7 @@ function createEditorialPost(seed: EditorialSeed): BlogPost {
     subtitle: `A practical editorial guide to ${seed.focus}.`,
     directAnswer: `${seed.entity} is best understood as a practical pattern language, not a total identity label. This article explains ${seed.focus} in clear terms, connects it to the broader Chinese metaphysics system, and points you toward the right next guide or tool for deeper context.`,
     breadcrumbs: breadcrumbs(seed.title, path),
-    schema: { headline: "", description: "", url: "" },
+    schema: { headline: "", description: "", url: "", datePublished: "2026-03-15", dateModified: "2026-04-25" },
     stats: [
       { value: "4", label: "Reading steps", description: "Define the symbol, check context, apply, then review." },
       { value: "1", label: "Main question", description: "Each article answers one clear search intent." },
@@ -754,14 +811,6 @@ function createEditorialPost(seed: EditorialSeed): BlogPost {
             </p>
           </>
         ),
-        quotes: [
-          {
-            text: "Good metaphysics content should make a symbol clearer, not make the reader more dependent on vague claims.",
-            author: "Jerry King",
-            title: "Chinese Metaphysics Consultant",
-            organization: "White Dragon Consulting",
-          },
-        ],
       },
       {
         heading: "How to use the idea",
@@ -822,7 +871,7 @@ const highIntentBlogPosts: BlogPost[] = [
     directAnswer:
       "To read a Bazi chart, start with the Day Master, then inspect the month branch, element balance, Ten Gods, pillar positions, and timing cycles. Read the chart as a structured pattern of tendencies and conditions, not as a single label. Use a calculator first, then interpret one layer at a time.",
     breadcrumbs: breadcrumbs("How to Read a Bazi Chart", "/blog/how-to-read-a-bazi-chart"),
-    schema: { headline: "", description: "", url: "" },
+    schema: { headline: "", description: "", url: "", datePublished: "2026-02-15", dateModified: "2026-04-15" },
     stats: [
       { value: "4", label: "Pillars", description: "Year, month, day, and hour form the chart." },
       { value: "10", label: "Ten Gods", description: "Relationship roles are read around the Day Master." },
@@ -845,14 +894,6 @@ const highIntentBlogPosts: BlogPost[] = [
             </p>
           </>
         ),
-        quotes: [
-          {
-            text: "Read the anchor first, then read what supports, pressures, and redirects it.",
-            author: "Joey Yap",
-            title: "Chief Consultant",
-            organization: "Joey Yap Consulting Group",
-          },
-        ],
       },
       {
         heading: "Step 2: read the month and element balance",
@@ -916,7 +957,7 @@ const highIntentBlogPosts: BlogPost[] = [
     directAnswer:
       "The Day Master in Bazi is the heavenly stem of the day pillar and the reference point for the whole chart. It does not describe your entire identity by itself. It shows the chart's anchor, then the surrounding elements, branches, Ten Gods, and timing explain how that anchor behaves in context.",
     breadcrumbs: breadcrumbs("Day Master Meaning", "/blog/day-master-meaning"),
-    schema: { headline: "", description: "", url: "" },
+    schema: { headline: "", description: "", url: "", datePublished: "2026-02-22", dateModified: "2026-04-18" },
     stats: [
       { value: "10", label: "Possible stems", description: "Each Day Master is one of the 10 Heavenly Stems." },
       { value: "5", label: "Element families", description: "Every stem belongs to Wood, Fire, Earth, Metal, or Water." },
@@ -939,14 +980,6 @@ const highIntentBlogPosts: BlogPost[] = [
             </p>
           </>
         ),
-        quotes: [
-          {
-            text: "A Day Master names the reference point; it does not finish the reading.",
-            author: "Jerry King",
-            title: "Chinese Metaphysics Consultant",
-            organization: "White Dragon Consulting",
-          },
-        ],
       },
       {
         heading: "How element identity works",
@@ -1010,7 +1043,7 @@ const highIntentBlogPosts: BlogPost[] = [
     directAnswer:
       "Beginners should use the I Ching by asking one clear open question, casting a hexagram, reading the judgment and image, then reviewing any changing lines. The reading is strongest as structured reflection about a situation in motion, not as a shortcut that removes responsibility for a decision.",
     breadcrumbs: breadcrumbs("I Ching for Beginners", "/blog/i-ching-for-beginners"),
-    schema: { headline: "", description: "", url: "" },
+    schema: { headline: "", description: "", url: "", datePublished: "2026-03-01", dateModified: "2026-04-20" },
     stats: [
       { value: "64", label: "Hexagrams", description: "Each hexagram describes a symbolic situation." },
       { value: "6", label: "Lines", description: "A hexagram is built from six yin or yang lines." },
@@ -1033,14 +1066,6 @@ const highIntentBlogPosts: BlogPost[] = [
             </p>
           </>
         ),
-        quotes: [
-          {
-            text: "The quality of the question shapes the usefulness of the reading.",
-            author: "Joey Yap",
-            title: "Chief Consultant",
-            organization: "Joey Yap Consulting Group",
-          },
-        ],
       },
       {
         heading: "Read the primary hexagram first",
@@ -1108,7 +1133,7 @@ const highIntentBlogPosts: BlogPost[] = [
     directAnswer:
       "Changing lines in the I Ching show where a situation is active, unstable, or moving toward a new pattern. Read the primary hexagram first, then the changing lines, then the relating hexagram. The lines refine the reading; they should not be detached from the question or the main hexagram.",
     breadcrumbs: breadcrumbs("Changing Lines", "/blog/changing-lines-i-ching"),
-    schema: { headline: "", description: "", url: "" },
+    schema: { headline: "", description: "", url: "", datePublished: "2026-03-08", dateModified: "2026-04-22" },
     stats: [
       { value: "6", label: "Line positions", description: "Each hexagram has six possible places of change." },
       { value: "64", label: "Hexagrams", description: "A relating hexagram can emerge from changed lines." },
@@ -1131,14 +1156,6 @@ const highIntentBlogPosts: BlogPost[] = [
             </p>
           </>
         ),
-        quotes: [
-          {
-            text: "The moving line is where the reading asks for attention, not where context disappears.",
-            author: "Jerry King",
-            title: "Chinese Metaphysics Consultant",
-            organization: "White Dragon Consulting",
-          },
-        ],
       },
       {
         heading: "Read primary, lines, then relating hexagram",
@@ -1206,7 +1223,7 @@ const highIntentBlogPosts: BlogPost[] = [
     directAnswer:
       "Chinese zodiac compatibility compares animal signs through harmony pairs, three-harmony groups, and clash relationships, but the year animal is only one layer. Use compatibility as a conversation about rhythm, values, and timing. For deeper relationship reading, compare full Bazi charts rather than relying on signs alone.",
     breadcrumbs: breadcrumbs("Chinese Zodiac Compatibility", "/blog/chinese-zodiac-compatibility-guide"),
-    schema: { headline: "", description: "", url: "" },
+    schema: { headline: "", description: "", url: "", datePublished: "2026-03-15", dateModified: "2026-04-25" },
     stats: [
       { value: "12", label: "Animal signs", description: "Compatibility starts with the 12-branch zodiac cycle." },
       { value: "4", label: "Triad groups", description: "Three-harmony groups organize supportive rhythms." },
@@ -1229,14 +1246,6 @@ const highIntentBlogPosts: BlogPost[] = [
             </p>
           </>
         ),
-        quotes: [
-          {
-            text: "Compatibility is most useful when it starts a better conversation, not when it ends one.",
-            author: "Joey Yap",
-            title: "Chief Consultant",
-            organization: "Joey Yap Consulting Group",
-          },
-        ],
       },
       {
         heading: "Harmony pairs and triads",

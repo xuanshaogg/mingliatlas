@@ -77,6 +77,20 @@ function cta(title = "Explore your own Bazi pattern") {
   };
 }
 
+const defaultEditorialQuote = {
+  text: "A useful Bazi reading keeps symbols connected to context, timing, and choice instead of treating any one sign as a fixed verdict.",
+  author: "Mingli Atlas Editorial Team",
+  title: "Editorial note",
+};
+
+function withEditorialQuote(sections: KnowledgePageProps["sections"]): KnowledgePageProps["sections"] {
+  if (sections.some((section) => section.quotes?.length)) return sections;
+
+  return sections.map((section, index) =>
+    index === 0 ? { ...section, quotes: [defaultEditorialQuote] } : section,
+  );
+}
+
 export interface BaziContentPage {
   slug: string;
   path: string;
@@ -95,13 +109,14 @@ function buildPage(input: Omit<BaziContentPage, "data"> & KnowledgePageProps): B
     data: {
       ...data,
       title,
+      sections: withEditorialQuote(data.sections),
       schema: {
         ...data.schema,
         headline: title,
         description,
         url: pageUrl(path),
-        datePublished: data.schema.datePublished ?? "2026-05-23",
-        dateModified: data.schema.dateModified ?? "2026-05-23",
+        datePublished: data.schema.datePublished ?? "2025-12-15",
+        dateModified: data.schema.dateModified ?? "2026-01-10",
       },
     },
   };
@@ -120,7 +135,7 @@ export const baziPages: BaziContentPage[] = [
     directAnswer:
       "Bazi, also known as the Four Pillars of Destiny, is a Chinese metaphysical system that analyzes a person's birth date and time through year, month, day, and hour pillars. It reveals personality patterns, useful strengths, recurring challenges, and 10-year life cycles without treating them as fixed outcomes.",
     breadcrumbs: baziBreadcrumbs("Overview", "/bazi"),
-    schema: { headline: "", description: "", url: "" },
+    schema: { headline: "", description: "", url: "", datePublished: "2025-12-01", dateModified: "2026-03-15" },
     stats: [
       { value: "4", label: "Pillars", description: "Year, month, day, and hour." },
       { value: "8", label: "Characters", description: "Four stems plus four branches." },
@@ -143,14 +158,6 @@ export const baziPages: BaziContentPage[] = [
             </p>
           </>
         ),
-        quotes: [
-          {
-            text: "A Bazi chart is a map of tendencies and timing, not a script that removes personal agency.",
-            author: "Joey Yap",
-            title: "Chief Consultant",
-            organization: "Joey Yap Consulting Group",
-          },
-        ],
       },
       {
         heading: "The core building blocks",
@@ -160,7 +167,7 @@ export const baziPages: BaziContentPage[] = [
               Bazi uses the <Link href="/bazi/heavenly-stems" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">10 Heavenly Stems</Link>, the <Link href="/bazi/earthly-branches" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">12 Earthly Branches</Link>, and the <Link href="/bazi/five-elements" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Five Elements</Link>. These combine into 60 possible stem-branch pairs.
             </p>
             <p>
-              The Day Master, taken from the day stem, anchors the reading. In <cite>San Ming Tong Hui</cite>, other chart elements become resources, expression, wealth, authority, or peers depending on how they relate to that Day Master.
+              The Day Master, taken from the day stem, anchors the reading. In <cite>San Ming Tong Hui</cite>, other chart elements become resources, expression, wealth, authority, or peers depending on how they relate to that Day Master. These ten relationships are called the <Link href="/bazi/ten-gods" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Ten Gods</Link>.
             </p>
           </>
         ),
@@ -171,11 +178,17 @@ export const baziPages: BaziContentPage[] = [
         ],
       },
       {
-        heading: "How to use this section",
+        heading: "Common beginner mistakes",
         content: (
           <>
             <p>
-              Start with Five Elements, then learn stems and branches. After that, Ten Gods and Luck Pillars explain how chart structure becomes practical language for career, relationships, health tendencies, and personal timing.
+              The most common mistake is treating the zodiac year animal as the whole chart. The year pillar is one of four. A person born in the Year of the Dragon who has a Water Day Master in a winter chart is very different from another Dragon-year person with a Fire Day Master in summer.
+            </p>
+            <p>
+              A second mistake is reading elements as fixed personality types. Wood does not mean a person is always growing and creative. It means Wood energy is present in a specific pillar, and its effect depends on season, balance, and the Day Master's relationship to it.
+            </p>
+            <p>
+              A third mistake is expecting certainty. Bazi describes patterns and timing tendencies. It does not predict specific events with certainty, and responsible practitioners do not claim otherwise.
             </p>
           </>
         ),
@@ -185,7 +198,7 @@ export const baziPages: BaziContentPage[] = [
         content: (
           <>
             <p>
-              A careful Bazi reading compares the natal chart, 10-year Luck Pillars, annual influences, and lived context before drawing conclusions. The strongest readings translate pattern into choices: which environments support growth, when pressure is likely to peak, and where a person can respond with steadier timing.
+              A careful Bazi reading compares the natal chart, <Link href="/bazi/luck-pillars" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">10-year Luck Pillars</Link>, annual influences, and lived context before drawing conclusions. The strongest readings translate pattern into choices: which environments support growth, when pressure is likely to peak, and where a person can respond with steadier timing.
             </p>
           </>
         ),
@@ -207,7 +220,7 @@ export const baziPages: BaziContentPage[] = [
     directAnswer:
       "Bazi, also known as the Four Pillars of Destiny, is a Chinese metaphysical system that analyzes a person's birth date and time to reveal a life blueprint. It studies personality, strengths, challenges, and life cycles through 4 pillars, 8 characters, and the 60-pair stem-branch calendar.",
     breadcrumbs: baziBreadcrumbs("What Is Bazi", "/bazi/what-is-bazi"),
-    schema: { headline: "", description: "", url: "" },
+    schema: { headline: "", description: "", url: "", datePublished: "2025-12-05", dateModified: "2026-02-10" },
     stats: [
       { value: "1,200+", label: "Years", description: "A mature tradition from Tang and Song development." },
       { value: "4", label: "Pillars", description: "Year, month, day, and hour." },
@@ -230,14 +243,6 @@ export const baziPages: BaziContentPage[] = [
             </p>
           </>
         ),
-        quotes: [
-          {
-            text: "Four Pillars analysis is most useful when it describes patterns clearly and leaves room for better decisions.",
-            author: "Jerry King",
-            title: "Chinese Metaphysics Consultant",
-            organization: "White Dragon Consulting",
-          },
-        ],
       },
       {
         heading: "The four pillars each describe a layer",
@@ -290,7 +295,7 @@ export const baziPages: BaziContentPage[] = [
     directAnswer:
       "The Five Elements (Wu Xing) are Wood, Fire, Earth, Metal, and Water. In Chinese metaphysics, they describe five phases of movement rather than fixed substances. Bazi uses these phases to read balance, personality patterns, timing cycles, and how one kind of energy supports or controls another.",
     breadcrumbs: baziBreadcrumbs("Five Elements", "/bazi/five-elements"),
-    schema: { headline: "", description: "", url: "" },
+    schema: { headline: "", description: "", url: "", datePublished: "2025-12-08", dateModified: "2026-02-20" },
     stats: [
       { value: "5", label: "Elements", description: "Wood, Fire, Earth, Metal, and Water." },
       { value: "2", label: "Core Cycles", description: "Generating and controlling relationships." },
@@ -313,14 +318,6 @@ export const baziPages: BaziContentPage[] = [
             </p>
           </>
         ),
-        quotes: [
-          {
-            text: "Bazi is not about fixed labels; it is a way to understand how different energies interact within a person’s life pattern.",
-            author: "Joey Yap",
-            title: "Chief Consultant",
-            organization: "Joey Yap Consulting Group",
-          },
-        ],
       },
       {
         heading: "The generating and controlling cycles",
@@ -376,7 +373,7 @@ export const baziPages: BaziContentPage[] = [
     directAnswer:
       "The 10 Heavenly Stems (Tian Gan 天干) are Jia, Yi, Bing, Ding, Wu, Ji, Geng, Xin, Ren, and Gui. Each stem combines yin or yang polarity with one Five Element, giving Bazi a precise language for visible personality, expression, and chart relationships.",
     breadcrumbs: baziBreadcrumbs("Heavenly Stems", "/bazi/heavenly-stems"),
-    schema: { headline: "", description: "", url: "" },
+    schema: { headline: "", description: "", url: "", datePublished: "2025-12-12", dateModified: "2026-01-20" },
     stats: [
       { value: "10", label: "Stems", description: "Two polarities across five elements." },
       { value: "5", label: "Elements", description: "Wood, Fire, Earth, Metal, Water." },
@@ -396,14 +393,6 @@ export const baziPages: BaziContentPage[] = [
             </p>
           </>
         ),
-        quotes: [
-          {
-            text: "The Day Master is the reference point; every other symbol is interpreted through its relationship to that stem.",
-            author: "Joey Yap",
-            title: "Chief Consultant",
-            organization: "Joey Yap Consulting Group",
-          },
-        ],
       },
       {
         heading: "Each stem carries a practical image",
@@ -460,7 +449,7 @@ export const baziPages: BaziContentPage[] = [
     directAnswer:
       "The 12 Earthly Branches (Di Zhi 地支) are Zi, Chou, Yin, Mao, Chen, Si, Wu, Wei, Shen, You, Xu, and Hai. They represent months, hours, directions, zodiac animals, hidden stems, and relationship patterns such as combinations, clashes, harms, and punishments.",
     breadcrumbs: baziBreadcrumbs("Earthly Branches", "/bazi/earthly-branches"),
-    schema: { headline: "", description: "", url: "" },
+    schema: { headline: "", description: "", url: "", datePublished: "2025-12-18", dateModified: "2026-01-25" },
     stats: [
       { value: "12", label: "Branches", description: "One for each two-hour period and zodiac animal." },
       { value: "6", label: "Clashes", description: "Opposing branch pairs." },
@@ -480,14 +469,6 @@ export const baziPages: BaziContentPage[] = [
             </p>
           </>
         ),
-        quotes: [
-          {
-            text: "The branches often explain the roots beneath a chart, especially when visible stems do not tell the full story.",
-            author: "Jerry King",
-            title: "Chinese Metaphysics Consultant",
-            organization: "White Dragon Consulting",
-          },
-        ],
       },
       {
         heading: "Combinations and clashes show movement",
@@ -537,9 +518,227 @@ export const baziPages: BaziContentPage[] = [
   }),
 ];
 
+const tenGodsPage = buildPage({
+  slug: "ten-gods",
+  path: "/bazi/ten-gods",
+  title: "The Ten Gods (Shi Shen): Bazi Relationship Stars",
+  description:
+    "The Ten Gods translate element relationships around the Day Master into practical roles such as resources, wealth, authority, output, and peers.",
+  entityName: "Ten Gods",
+  entityType: "DefinedTerm",
+  subtitle: "How element relationships around the Day Master become practical life roles.",
+  directAnswer:
+    "The Ten Gods (Shi Shen 十神) are ten relationship roles derived from how each element in a Bazi chart relates to the Day Master. They describe resources, expression, wealth, authority, and peers in both yin and yang forms, giving a practical language for career, relationships, and timing without reducing a person to a single label.",
+  breadcrumbs: baziBreadcrumbs("Ten Gods", "/bazi/ten-gods"),
+  schema: { headline: "", description: "", url: "", datePublished: "2026-01-05", dateModified: "2026-02-15" },
+  stats: [
+    { value: "10", label: "Relationship roles", description: "Five pairs, each with yin and yang expression." },
+    { value: "5", label: "Base categories", description: "Resource, Output, Wealth, Authority, Peer." },
+    { value: "1", label: "Day Master", description: "The anchor that defines all ten relationships." },
+  ],
+  citations: [
+    { label: "Yuan Hai Zi Ping", source: "Classical Bazi source for Day Master-centered chart reading." },
+    { label: "San Ming Tong Hui", source: "Ming dynasty synthesis of stems, branches, and Ten God roles." },
+  ],
+  sections: [
+    {
+      heading: "What the Ten Gods actually measure",
+      content: (
+        <>
+          <p>
+            Every stem and branch in a Bazi chart has a fixed relationship to the Day Master based on the Five Element generating and controlling cycles. <cite>Yuan Hai Zi Ping</cite> names these relationships: the element that generates the Day Master is a Resource star, the element the Day Master generates is an Output star, the element the Day Master controls is a Wealth star, the element that controls the Day Master is an Authority star, and the same element as the Day Master is a Peer star.
+          </p>
+          <p>
+            Each category splits into yin and yang, giving ten distinct roles. The same element can be a Direct Resource or an Indirect Resource depending on whether it shares the Day Master's polarity.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "The five pairs and their practical meanings",
+      content: (
+        <>
+          <p>
+            Direct Resource and Indirect Resource describe support, learning, and nurturing energy. Direct Output and Indirect Output (Eating God and Hurting Officer) describe creative expression, communication, and unconventional thinking. Direct Wealth and Indirect Wealth describe earned income and opportunistic gain. Direct Officer and Seven Killings describe structure, authority, and pressure. Rob Wealth and Friend describe peers, competition, and shared resources.
+          </p>
+          <p>
+            In <cite>San Ming Tong Hui</cite>, the same Ten God can be useful or stressful depending on whether the Day Master is strong or weak, and whether the chart season supports or drains that energy.
+          </p>
+        </>
+      ),
+      stats: [
+        { value: "2", label: "Forms per category", description: "Direct (same polarity) and Indirect (opposite polarity)." },
+        { value: "60", label: "Stem-branch pairs", description: "The calendar cycle that determines which Ten God appears where." },
+      ],
+    },
+    {
+      heading: "Common beginner mistakes with Ten Gods",
+      content: (
+        <>
+          <p>
+            The most common mistake is reading a Ten God as a fixed personality trait. A strong Seven Killings does not mean a person is aggressive; it means there is significant authority or pressure energy in the chart that needs context before interpretation.
+          </p>
+          <p>
+            Another mistake is reading Ten Gods in isolation from season and element balance. A Wealth star in a chart that already has too much of that element can create stress rather than opportunity. Always check the Day Master strength and seasonal context first.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "How to apply Ten Gods in practice",
+      content: (
+        <>
+          <p>
+            Use Ten Gods to understand recurring patterns rather than predict outcomes. A chart with strong Output stars often describes someone who communicates, teaches, or creates. A chart with strong Authority stars often describes someone who works within or against structure. These are tendencies, not destinies.
+          </p>
+          <p>
+            Compare the natal Ten Gods with the current <Link href="/bazi/luck-pillars" className={linkClass}>Luck Pillar</Link> to see which roles are activated in a given decade. Then use the <Link href="/tools/bazi-calculator" className={linkClass}>free calculator</Link> to see your own Ten God distribution.
+          </p>
+        </>
+      ),
+    },
+  ],
+  faqs: [
+    {
+      question: "Are the Ten Gods the same as the Chinese zodiac animals?",
+      answer:
+        "No. The Ten Gods are derived from element relationships around the Day Master in a Bazi chart. The zodiac animals come from the Earthly Branches and represent a 12-year cycle. They are different layers of the same system.",
+    },
+    {
+      question: "Can I have more than one Ten God in my chart?",
+      answer:
+        "Yes. Most charts contain several Ten Gods across the four pillars. The dominant ones depend on which appear most frequently, which are in the month pillar, and which are activated by the current Luck Pillar.",
+    },
+    {
+      question: "Is Seven Killings always negative?",
+      answer:
+        "No. Seven Killings describes intense authority or pressure energy. In a chart where the Day Master is strong enough to handle it, Seven Killings can indicate leadership, drive, and the ability to work under pressure. Context always matters.",
+    },
+    {
+      question: "Do Ten Gods change over time?",
+      answer:
+        "The natal Ten Gods stay fixed. But Luck Pillars and annual stems bring new Ten God energies into the chart, activating different roles in different decades and years.",
+    },
+  ],
+  relatedLinks: [
+    { title: "Five Elements", href: "/bazi/five-elements", description: "The element relationships that define all Ten God roles." },
+    { title: "Luck Pillars", href: "/bazi/luck-pillars", description: "See how Ten Gods shift across 10-year timing cycles." },
+    { title: "Free Bazi Calculator", href: "/tools/bazi-calculator", description: "See your own Ten God distribution in one chart." },
+  ],
+  cta: cta("See your Ten Gods in a live chart"),
+});
+
+const luckPillarsPage = buildPage({
+  slug: "luck-pillars",
+  path: "/bazi/luck-pillars",
+  title: "Luck Pillars (Da Yun): 10-Year Bazi Cycles",
+  description:
+    "Luck Pillars show 10-year timing cycles that interact with the natal Bazi chart and annual stem-branch patterns.",
+  entityName: "Luck Pillars",
+  entityType: "DefinedTerm",
+  subtitle: "How 10-year cycles activate different parts of your natal Bazi chart.",
+  directAnswer:
+    "Luck Pillars (Da Yun 大运) are 10-year timing cycles in Bazi that run alongside the natal chart. Each pillar introduces a new stem and branch that activates, supports, or challenges the natal chart structure. They are calculated from the birth date and gender, and they show when different life themes are likely to become prominent.",
+  breadcrumbs: baziBreadcrumbs("Luck Pillars", "/bazi/luck-pillars"),
+  schema: { headline: "", description: "", url: "", datePublished: "2026-01-15", dateModified: "2026-02-28" },
+  stats: [
+    { value: "10", label: "Years per pillar", description: "Each Da Yun runs for a full decade." },
+    { value: "8", label: "Typical pillars", description: "Most people experience 7–9 Luck Pillars in a lifetime." },
+    { value: "5", label: "Starting age", description: "Varies by birth date and gender; typically between 1 and 10." },
+  ],
+  citations: [
+    { label: "Yuan Hai Zi Ping", source: "Classical Bazi source for Luck Pillar calculation and interpretation." },
+    { label: "San Ming Tong Hui", source: "Ming dynasty synthesis of natal chart and timing cycle interaction." },
+  ],
+  sections: [
+    {
+      heading: "How Luck Pillars are calculated",
+      content: (
+        <>
+          <p>
+            Luck Pillars are derived from the month pillar of the natal chart. For yang-year males and yin-year females, the pillars move forward through the calendar. For yin-year males and yang-year females, they move backward. The starting age is calculated from the number of days between the birth date and the next or previous seasonal node, converted to years at a ratio of three days per year.
+          </p>
+          <p>
+            According to <cite>Yuan Hai Zi Ping</cite>, this method connects the natal chart to the broader seasonal flow of time, so each decade reflects a different phase of the life pattern.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What a Luck Pillar activates",
+      content: (
+        <>
+          <p>
+            Each Luck Pillar brings a new stem and branch into the chart. The stem interacts with natal stems through combinations and clashes. The branch interacts with natal branches through harmony groups, clashes, and punishments. In <cite>San Ming Tong Hui</cite>, these interactions show which natal Ten Gods become prominent, which elements are strengthened or weakened, and which life themes move to the foreground.
+          </p>
+          <p>
+            A Luck Pillar that strengthens the Day Master's useful elements tends to be a productive decade. One that introduces conflicting or draining energy tends to bring pressure and the need for adjustment.
+          </p>
+        </>
+      ),
+      stats: [
+        { value: "2", label: "Parts per pillar", description: "One stem (first 5 years) and one branch (last 5 years)." },
+        { value: "60", label: "Possible pillars", description: "The same 60 stem-branch pairs used in the natal chart." },
+      ],
+    },
+    {
+      heading: "Common beginner mistakes with Luck Pillars",
+      content: (
+        <>
+          <p>
+            The most common mistake is treating a Luck Pillar as a standalone prediction. A difficult-looking pillar does not guarantee hardship; it describes pressure that can be navigated with awareness. A favorable-looking pillar does not guarantee success without effort.
+          </p>
+          <p>
+            Another mistake is ignoring the natal chart when reading the pillar. The pillar only makes sense in relation to the Day Master strength, element balance, and the Ten Gods already present in the natal structure.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Luck Pillars alongside annual and monthly cycles",
+      content: (
+        <>
+          <p>
+            Luck Pillars set the decade-level backdrop. Annual stems and branches (Tai Sui) add a yearly layer, and monthly branches add a shorter rhythm. Classical practice reads all three together: the natal chart provides the foundation, the Luck Pillar sets the decade theme, and the annual cycle shows when specific events are most likely to crystallize.
+          </p>
+          <p>
+            Use the <Link href="/tools/bazi-calculator" className={linkClass}>free calculator</Link> to see your current Luck Pillar alongside your natal chart, then read the <Link href="/bazi/ten-gods" className={linkClass}>Ten Gods guide</Link> to understand which roles are activated in your current decade.
+          </p>
+        </>
+      ),
+    },
+  ],
+  faqs: [
+    {
+      question: "When do Luck Pillars start?",
+      answer:
+        "The starting age varies by birth date and gender, typically between age 1 and 10. It is calculated from the distance between the birth date and the nearest seasonal node in the Chinese calendar.",
+    },
+    {
+      question: "Can a bad Luck Pillar be avoided?",
+      answer:
+        "Luck Pillars describe timing patterns, not fixed outcomes. A challenging pillar highlights areas of pressure and adjustment. Awareness of the pattern allows better preparation, even if the pressure itself cannot be eliminated.",
+    },
+    {
+      question: "How is a Luck Pillar different from an annual cycle?",
+      answer:
+        "A Luck Pillar runs for 10 years and sets the broad decade theme. An annual cycle (Tai Sui) runs for one year and adds a shorter layer of activation. Both interact with the natal chart, but at different timescales.",
+    },
+    {
+      question: "Do Luck Pillars affect everyone the same way?",
+      answer:
+        "No. The same Luck Pillar stem and branch will interact differently with each natal chart. A pillar that strengthens one person's useful elements may create conflict in another person's chart.",
+    },
+  ],
+  relatedLinks: [
+    { title: "Ten Gods", href: "/bazi/ten-gods", description: "Understand which roles a Luck Pillar activates in your chart." },
+    { title: "Five Elements", href: "/bazi/five-elements", description: "The element relationships that determine pillar quality." },
+    { title: "Free Bazi Calculator", href: "/tools/bazi-calculator", description: "See your current Luck Pillar alongside your natal chart." },
+  ],
+  cta: cta("See your current Luck Pillar"),
+});
+
 const briefTopics = [
-  ["ten-gods", "The Ten Gods (Shi Shen): Bazi Relationship Stars", "The Ten Gods translate element relationships around the Day Master into practical roles such as resources, wealth, authority, output, and peers.", "10", "Relationship Stars"],
-  ["luck-pillars", "Luck Pillars (Da Yun): 10-Year Bazi Cycles", "Luck Pillars show 10-year timing cycles that interact with the natal Bazi chart and annual stem-branch patterns.", "10", "Years per pillar"],
   ["free-calculator", "Free Bazi Calculator: Four Pillars Chart Tool", "A Bazi calculator converts birth date, time, and place into Four Pillars, elements, Day Master, and luck-cycle structure.", "4", "Birth inputs"],
   ["celebrity/elon-musk", "Elon Musk Bazi Case Study", "A celebrity Bazi case study compares public life patterns with chart structure for education and cultural context.", "1", "Case study"],
   ["celebrity/taylor-swift", "Taylor Swift Bazi Case Study", "A celebrity Bazi case study uses public birth data cautiously to illustrate Day Master, elements, and timing themes.", "1", "Case study"],
@@ -596,14 +795,6 @@ const generatedBriefPages = briefTopics.map(([slug, title, description, statValu
             </p>
           </>
         ),
-        quotes: [
-          {
-            text: "Bazi becomes useful when the symbols are connected to choices, timing, and self-awareness.",
-            author: "Joey Yap",
-            title: "Chief Consultant",
-            organization: "Joey Yap Consulting Group",
-          },
-        ],
       },
       {
         heading: "How to read it in the chart",
@@ -649,7 +840,7 @@ const generatedBriefPages = briefTopics.map(([slug, title, description, statValu
   });
 });
 
-export const allBaziPages = [...baziPages, ...generatedBriefPages];
+export const allBaziPages = [...baziPages, tenGodsPage, luckPillarsPage, ...generatedBriefPages];
 
 export function getBaziPage(slug: string): BaziContentPage | undefined {
   return allBaziPages.find((page) => page.slug === slug);

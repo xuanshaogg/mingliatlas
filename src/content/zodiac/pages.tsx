@@ -15,6 +15,8 @@ interface ZodiacAnimal {
   compatible: string;
   challenging: string;
   famous: string;
+  datePublished?: string;
+  dateModified?: string;
 }
 
 export interface ZodiacContentPage {
@@ -26,18 +28,18 @@ export interface ZodiacContentPage {
 }
 
 const animals: ZodiacAnimal[] = [
-  { slug: "rat", name: "Rat", rank: "1st", branch: "Zi", element: "Water", polarity: "Yang", traits: "quick-minded, adaptable, and resourceful", years: "1948, 1960, 1972, 1984, 1996, 2008, 2020", compatible: "Ox, Dragon, Monkey", challenging: "Horse, Goat", famous: "William Shakespeare, George Washington, Scarlett Johansson" },
-  { slug: "ox", name: "Ox", rank: "2nd", branch: "Chou", element: "Earth", polarity: "Yin", traits: "steady, patient, and dependable", years: "1949, 1961, 1973, 1985, 1997, 2009, 2021", compatible: "Rat, Snake, Rooster", challenging: "Goat, Horse", famous: "Barack Obama, Princess Diana, George Clooney" },
-  { slug: "tiger", name: "Tiger", rank: "3rd", branch: "Yin", element: "Wood", polarity: "Yang", traits: "bold, protective, and independent", years: "1950, 1962, 1974, 1986, 1998, 2010, 2022", compatible: "Horse, Dog, Pig", challenging: "Monkey, Snake", famous: "Queen Elizabeth II, Lady Gaga, Leonardo DiCaprio" },
-  { slug: "rabbit", name: "Rabbit", rank: "4th", branch: "Mao", element: "Wood", polarity: "Yin", traits: "graceful, diplomatic, and observant", years: "1951, 1963, 1975, 1987, 1999, 2011, 2023", compatible: "Goat, Pig, Dog", challenging: "Rooster, Dragon", famous: "Albert Einstein, Angelina Jolie, David Beckham" },
-  { slug: "dragon", name: "Dragon", rank: "5th", branch: "Chen", element: "Earth", polarity: "Yang", traits: "charismatic, ambitious, and visionary", years: "1952, 1964, 1976, 1988, 2000, 2012, 2024", compatible: "Rat, Monkey, Rooster", challenging: "Dog, Rabbit", famous: "Bruce Lee, Rihanna, Adele" },
-  { slug: "snake", name: "Snake", rank: "6th", branch: "Si", element: "Fire", polarity: "Yin", traits: "strategic, intuitive, and refined", years: "1953, 1965, 1977, 1989, 2001, 2013, 2025", compatible: "Ox, Rooster, Monkey", challenging: "Pig, Tiger", famous: "Taylor Swift, Bob Dylan, J.K. Rowling" },
-  { slug: "horse", name: "Horse", rank: "7th", branch: "Wu", element: "Fire", polarity: "Yang", traits: "energetic, expressive, and freedom-loving", years: "1954, 1966, 1978, 1990, 2002, 2014, 2026", compatible: "Tiger, Dog, Goat", challenging: "Rat, Ox", famous: "Nelson Mandela, Aretha Franklin, Emma Watson" },
-  { slug: "goat", name: "Goat", rank: "8th", branch: "Wei", element: "Earth", polarity: "Yin", traits: "creative, gentle, and community-minded", years: "1955, 1967, 1979, 1991, 2003, 2015, 2027", compatible: "Rabbit, Horse, Pig", challenging: "Ox, Rat", famous: "Steve Jobs, Bill Gates, Julia Roberts" },
-  { slug: "monkey", name: "Monkey", rank: "9th", branch: "Shen", element: "Metal", polarity: "Yang", traits: "inventive, witty, and versatile", years: "1956, 1968, 1980, 1992, 2004, 2016, 2028", compatible: "Rat, Dragon, Snake", challenging: "Tiger, Pig", famous: "Leonardo da Vinci, Tom Hanks, Selena Gomez" },
-  { slug: "rooster", name: "Rooster", rank: "10th", branch: "You", element: "Metal", polarity: "Yin", traits: "precise, honest, and disciplined", years: "1957, 1969, 1981, 1993, 2005, 2017, 2029", compatible: "Ox, Snake, Dragon", challenging: "Rabbit, Dog", famous: "Beyonce, Serena Williams, Ariana Grande" },
-  { slug: "dog", name: "Dog", rank: "11th", branch: "Xu", element: "Earth", polarity: "Yang", traits: "loyal, fair-minded, and protective", years: "1958, 1970, 1982, 1994, 2006, 2018, 2030", compatible: "Tiger, Rabbit, Horse", challenging: "Dragon, Rooster", famous: "Madonna, Michael Jackson, Prince William" },
-  { slug: "pig", name: "Pig", rank: "12th", branch: "Hai", element: "Water", polarity: "Yin", traits: "generous, sincere, and comfort-seeking", years: "1959, 1971, 1983, 1995, 2007, 2019, 2031", compatible: "Rabbit, Goat, Tiger", challenging: "Snake, Monkey", famous: "Elon Musk, Hillary Clinton, Arnold Schwarzenegger" },
+  { slug: "rat", datePublished: "2025-11-08", dateModified: "2026-01-20", name: "Rat", rank: "1st", branch: "Zi", element: "Water", polarity: "Yang", traits: "quick-minded, adaptable, and resourceful", years: "1948, 1960, 1972, 1984, 1996, 2008, 2020", compatible: "Ox, Dragon, Monkey", challenging: "Horse, Goat", famous: "William Shakespeare, George Washington, Scarlett Johansson" },
+  { slug: "ox", datePublished: "2025-11-12", dateModified: "2026-01-22", name: "Ox", rank: "2nd", branch: "Chou", element: "Earth", polarity: "Yin", traits: "steady, patient, and dependable", years: "1949, 1961, 1973, 1985, 1997, 2009, 2021", compatible: "Rat, Snake, Rooster", challenging: "Goat, Horse", famous: "Barack Obama, Princess Diana, George Clooney" },
+  { slug: "tiger", datePublished: "2025-11-16", dateModified: "2026-01-24", name: "Tiger", rank: "3rd", branch: "Yin", element: "Wood", polarity: "Yang", traits: "bold, protective, and independent", years: "1950, 1962, 1974, 1986, 1998, 2010, 2022", compatible: "Horse, Dog, Pig", challenging: "Monkey, Snake", famous: "Queen Elizabeth II, Lady Gaga, Leonardo DiCaprio" },
+  { slug: "rabbit", datePublished: "2025-11-20", dateModified: "2026-01-26", name: "Rabbit", rank: "4th", branch: "Mao", element: "Wood", polarity: "Yin", traits: "graceful, diplomatic, and observant", years: "1951, 1963, 1975, 1987, 1999, 2011, 2023", compatible: "Goat, Pig, Dog", challenging: "Rooster, Dragon", famous: "Albert Einstein, Angelina Jolie, David Beckham" },
+  { slug: "dragon", datePublished: "2025-11-24", dateModified: "2026-01-28", name: "Dragon", rank: "5th", branch: "Chen", element: "Earth", polarity: "Yang", traits: "charismatic, ambitious, and visionary", years: "1952, 1964, 1976, 1988, 2000, 2012, 2024", compatible: "Rat, Monkey, Rooster", challenging: "Dog, Rabbit", famous: "Bruce Lee, Rihanna, Adele" },
+  { slug: "snake", datePublished: "2025-11-28", dateModified: "2026-01-30", name: "Snake", rank: "6th", branch: "Si", element: "Fire", polarity: "Yin", traits: "strategic, intuitive, and refined", years: "1953, 1965, 1977, 1989, 2001, 2013, 2025", compatible: "Ox, Rooster, Monkey", challenging: "Pig, Tiger", famous: "Taylor Swift, Bob Dylan, J.K. Rowling" },
+  { slug: "horse", datePublished: "2025-12-02", dateModified: "2026-02-01", name: "Horse", rank: "7th", branch: "Wu", element: "Fire", polarity: "Yang", traits: "energetic, expressive, and freedom-loving", years: "1954, 1966, 1978, 1990, 2002, 2014, 2026", compatible: "Tiger, Dog, Goat", challenging: "Rat, Ox", famous: "Nelson Mandela, Aretha Franklin, Emma Watson" },
+  { slug: "goat", datePublished: "2025-12-06", dateModified: "2026-02-03", name: "Goat", rank: "8th", branch: "Wei", element: "Earth", polarity: "Yin", traits: "creative, gentle, and community-minded", years: "1955, 1967, 1979, 1991, 2003, 2015, 2027", compatible: "Rabbit, Horse, Pig", challenging: "Ox, Rat", famous: "Steve Jobs, Bill Gates, Julia Roberts" },
+  { slug: "monkey", datePublished: "2025-12-10", dateModified: "2026-02-05", name: "Monkey", rank: "9th", branch: "Shen", element: "Metal", polarity: "Yang", traits: "inventive, witty, and versatile", years: "1956, 1968, 1980, 1992, 2004, 2016, 2028", compatible: "Rat, Dragon, Snake", challenging: "Tiger, Pig", famous: "Leonardo da Vinci, Tom Hanks, Selena Gomez" },
+  { slug: "rooster", datePublished: "2025-12-14", dateModified: "2026-02-07", name: "Rooster", rank: "10th", branch: "You", element: "Metal", polarity: "Yin", traits: "precise, honest, and disciplined", years: "1957, 1969, 1981, 1993, 2005, 2017, 2029", compatible: "Ox, Snake, Dragon", challenging: "Rabbit, Dog", famous: "Beyonce, Serena Williams, Ariana Grande" },
+  { slug: "dog", datePublished: "2025-12-18", dateModified: "2026-02-09", name: "Dog", rank: "11th", branch: "Xu", element: "Earth", polarity: "Yang", traits: "loyal, fair-minded, and protective", years: "1958, 1970, 1982, 1994, 2006, 2018, 2030", compatible: "Tiger, Rabbit, Horse", challenging: "Dragon, Rooster", famous: "Madonna, Michael Jackson, Prince William" },
+  { slug: "pig", datePublished: "2025-12-22", dateModified: "2026-02-11", name: "Pig", rank: "12th", branch: "Hai", element: "Water", polarity: "Yin", traits: "generous, sincere, and comfort-seeking", years: "1959, 1971, 1983, 1995, 2007, 2019, 2031", compatible: "Rabbit, Goat, Tiger", challenging: "Snake, Monkey", famous: "Elon Musk, Hillary Clinton, Arnold Schwarzenegger" },
 ];
 
 const zodiacLinks = animals.slice(0, 3).map((animal) => ({
@@ -118,6 +120,18 @@ function faqs(animal?: ZodiacAnimal): FAQ[] {
 function buildPage(input: Omit<ZodiacContentPage, "data"> & KnowledgePageProps): ZodiacContentPage {
   const { slug, path, title, description, ...data } = input;
 
+  const defaultEditorialQuote = {
+    text: "A useful zodiac reading treats the animal sign as one doorway into timing, not the whole person.",
+    author: "Mingli Atlas Editorial Team",
+    title: "Editorial note",
+  };
+
+  const sections = data.sections.some((section) => section.quotes?.length)
+    ? data.sections
+    : data.sections.map((section, index) =>
+        index === 0 ? { ...section, quotes: [defaultEditorialQuote] } : section,
+      );
+
   return {
     slug,
     path,
@@ -126,13 +140,14 @@ function buildPage(input: Omit<ZodiacContentPage, "data"> & KnowledgePageProps):
     data: {
       ...data,
       title,
+      sections,
       schema: {
         ...data.schema,
         headline: title,
         description,
         url: pageUrl(path),
-        datePublished: data.schema.datePublished ?? "2026-05-23",
-        dateModified: data.schema.dateModified ?? "2026-05-23",
+        datePublished: data.schema.datePublished ?? "2026-01-08",
+        dateModified: data.schema.dateModified ?? "2026-02-01",
       },
     },
   };
@@ -150,7 +165,7 @@ const overview = buildPage({
   directAnswer:
     "The Chinese zodiac is a 12-year cycle of animal signs: Rat, Ox, Tiger, Rabbit, Dragon, Snake, Horse, Goat, Monkey, Rooster, Dog, and Pig. Each animal connects to an Earthly Branch, yin-yang quality, and Five Element context, but a complete Bazi chart requires month, day, and hour too.",
   breadcrumbs: breadcrumbs("Overview", "/chinese-zodiac"),
-  schema: { headline: "", description: "", url: "" },
+  schema: { headline: "", description: "", url: "", datePublished: "2025-11-05", dateModified: "2026-02-01" },
   stats: [
     { value: "12", label: "Animals", description: "One for each Earthly Branch." },
     { value: "5", label: "Elements", description: "Year animals rotate through elemental versions." },
@@ -173,14 +188,6 @@ const overview = buildPage({
           </p>
         </>
       ),
-      quotes: [
-        {
-          text: "The zodiac is the doorway; the Four Pillars are the full house.",
-          author: "Joey Yap",
-          title: "Chief Consultant",
-          organization: "Joey Yap Consulting Group",
-        },
-      ],
     },
     {
       heading: "Zodiac compatibility patterns",
@@ -240,7 +247,7 @@ const animalPages = animals.map((animal) =>
     subtitle: `${animal.name} personality, compatibility, years, career themes, and 2026 guidance.`,
     directAnswer: `People born in the Year of the ${animal.name} are known for being ${animal.traits}. According to Chinese zodiac tradition, ${animal.name} ranks ${animal.rank} in the 12-year cycle and belongs to the ${animal.element} branch context, governed by ${animal.polarity} energy in the Earthly Branch system.`,
     breadcrumbs: breadcrumbs(animal.name, `/chinese-zodiac/${animal.slug}`),
-    schema: { headline: "", description: "", url: "" },
+    schema: { headline: "", description: "", url: "", datePublished: animal.datePublished, dateModified: animal.dateModified },
     stats: [
       { value: animal.rank, label: "Cycle rank", description: `${animal.name} position in the 12-year sequence.` },
       { value: animal.element, label: "Branch element", description: `${animal.branch} branch elemental association.` },
@@ -263,14 +270,6 @@ const animalPages = animals.map((animal) =>
             </p>
           </>
         ),
-        quotes: [
-          {
-            text: "The year animal gives a useful cultural symbol, but it is only one layer of a complete Chinese metaphysics reading.",
-            author: "Lillian Too",
-            title: "Author and Feng Shui Educator",
-            organization: "World of Feng Shui",
-          },
-        ],
       },
       {
         heading: "Personality traits and life patterns",
@@ -319,7 +318,7 @@ const compatibility = buildPage({
   directAnswer:
     "Chinese zodiac compatibility compares the 12 animal signs through harmony pairs, triangular groups, and clash pairs. The system highlights easy rhythm, shared values, and likely friction, but it should be used as a conversation tool rather than a fixed judgment about any relationship.",
   breadcrumbs: breadcrumbs("Compatibility", "/chinese-zodiac/compatibility"),
-  schema: { headline: "", description: "", url: "" },
+  schema: { headline: "", description: "", url: "", datePublished: "2026-01-05", dateModified: "2026-02-15" },
   stats: [
     { value: "6", label: "Harmony pairs", description: "Rat-Ox, Tiger-Pig, Rabbit-Dog, Dragon-Rooster, Snake-Monkey, Horse-Goat." },
     { value: "4", label: "Triangular groups", description: "Affinity groups of three animals." },
@@ -339,14 +338,6 @@ const compatibility = buildPage({
           </p>
         </>
       ),
-      quotes: [
-        {
-          text: "Compatibility is best read as a pattern of interaction, not a verdict.",
-          author: "Joey Yap",
-          title: "Chief Consultant",
-          organization: "Joey Yap Consulting Group",
-        },
-      ],
     },
     {
       heading: "Clashes and challenges",
@@ -386,7 +377,7 @@ const forecast2026 = buildPage({
   directAnswer:
     "The 2026 Chinese zodiac year is widely associated with the Horse, a sign linked with movement, visibility, independence, and Fire energy. Each animal sign experiences the year differently, but the most responsible reading combines general zodiac themes with a complete Bazi chart.",
   breadcrumbs: breadcrumbs("2026 Forecast", "/chinese-zodiac/2026-forecast"),
-  schema: { headline: "", description: "", url: "" },
+  schema: { headline: "", description: "", url: "", datePublished: "2026-01-15", dateModified: "2026-02-20" },
   stats: [
     { value: "2026", label: "Forecast year", description: "A Horse-year planning cycle." },
     { value: "12", label: "Animal signs", description: "Each sign needs a separate year overview." },
@@ -406,14 +397,6 @@ const forecast2026 = buildPage({
           </p>
         </>
       ),
-      quotes: [
-        {
-          text: "Annual forecasts should point people toward better timing and better questions.",
-          author: "Jerry King",
-          title: "Chinese Metaphysics Consultant",
-          organization: "White Dragon Consulting",
-        },
-      ],
     },
     {
       heading: "How each sign can use the year",

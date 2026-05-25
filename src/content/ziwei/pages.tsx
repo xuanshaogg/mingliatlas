@@ -19,6 +19,8 @@ interface TopicInput {
   statValue: string;
   statLabel: string;
   group: string;
+  datePublished?: string;
+  dateModified?: string;
 }
 
 const relatedLinks = [
@@ -72,6 +74,20 @@ function cta(title = "Compare Ziwei with Bazi") {
   };
 }
 
+const defaultEditorialQuote = {
+  text: "A careful Ziwei reading uses palaces and stars as a structured map, then checks timing and lived context.",
+  author: "Mingli Atlas Editorial Team",
+  title: "Editorial note",
+};
+
+function withEditorialQuote(sections: KnowledgePageProps["sections"]): KnowledgePageProps["sections"] {
+  if (sections.some((section) => section.quotes?.length)) return sections;
+
+  return sections.map((section, index) =>
+    index === 0 ? { ...section, quotes: [defaultEditorialQuote] } : section,
+  );
+}
+
 function buildPage(input: Omit<ZiweiContentPage, "data"> & KnowledgePageProps): ZiweiContentPage {
   const { slug, path, title, description, ...data } = input;
 
@@ -83,13 +99,14 @@ function buildPage(input: Omit<ZiweiContentPage, "data"> & KnowledgePageProps): 
     data: {
       ...data,
       title,
+      sections: withEditorialQuote(data.sections),
       schema: {
         ...data.schema,
         headline: title,
         description,
         url: pageUrl(path),
-        datePublished: data.schema.datePublished ?? "2026-05-23",
-        dateModified: data.schema.dateModified ?? "2026-05-23",
+        datePublished: data.schema.datePublished ?? "2026-02-20",
+        dateModified: data.schema.dateModified ?? "2026-03-10",
       },
     },
   };
@@ -107,7 +124,7 @@ const overview = buildPage({
   directAnswer:
     "Ziwei Doushu, often translated as Purple Star Astrology, is a Chinese metaphysics system that places major stars into 12 life palaces. It studies personality, relationships, career, wealth, health tendencies, and timing through palace structure rather than only stems and branches. A careful reading checks the Life Palace, major stars, Four Transformations, and decade cycles before drawing conclusions.",
   breadcrumbs: breadcrumbs("Overview", "/ziwei"),
-  schema: { headline: "", description: "", url: "" },
+  schema: { headline: "", description: "", url: "", datePublished: "2025-12-05", dateModified: "2026-03-10" },
   stats: [
     { value: "12", label: "Palaces", description: "Life areas such as career, wealth, spouse, and health." },
     { value: "14", label: "Major stars", description: "Core star vocabulary for chart interpretation." },
@@ -123,51 +140,60 @@ const overview = buildPage({
       content: (
         <>
           <p>
-            Purple Star Astrology (Ziwei Doushu) organizes a birth chart into 12 palaces. Each palace describes a life area, while major stars show style, pressure, support, and timing.
+            Purple Star Astrology organizes a birth chart into 12 palaces. Each palace describes a life area: career, wealth, relationships, health, travel, and more. Major stars placed in those palaces show style, pressure, support, and timing patterns.
           </p>
           <p>
-            Compared with <Link href="/bazi" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Bazi</Link>, Ziwei gives a more visual palace map. Bazi emphasizes element balance and stem-branch relationships.
+            Compared with <Link href="/bazi" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Bazi</Link>, Ziwei gives a more visual palace map. Bazi emphasizes element balance and stem-branch relationships. Ziwei emphasizes star placement, palace interactions, and the Four Transformations that activate different life areas across time.
           </p>
         </>
       ),
-      quotes: [
-        {
-          text: "Ziwei is most helpful when stars, palaces, and timing are read as one connected chart.",
-          author: "Jerry King",
-          title: "Chinese Metaphysics Consultant",
-          organization: "White Dragon Consulting",
-        },
-      ],
     },
     {
-      heading: "The core vocabulary",
-      content: (
-        <p>
-          Beginners should learn the 12 palaces, 14 major stars, and Four Transformations before reading advanced combinations. The same star can behave differently depending on palace, companions, and chart context.
-        </p>
-      ),
-      stats: [
-        { value: "1", label: "Life Palace", description: "The chart anchor for identity and basic direction." },
-        { value: "10-year", label: "Cycles", description: "Major timing cycles are commonly read by decade." },
-      ],
-    },
-    {
-      heading: "Responsible use",
-      content: (
-        <p>
-          Use Ziwei as a structured self-knowledge system. Avoid reading one star as a fixed label. A careful reading checks palace, star brightness, transformations, and timing together.
-        </p>
-      ),
-    },
-    {
-      heading: "How Ziwei differs from Bazi",
+      heading: "Ziwei vs Bazi: key differences",
       content: (
         <>
           <p>
-            <cite>Ziwei Doushu Quan Shu</cite> emphasizes palace structure and star placement, while <cite>Chinese lunar calendar practice</cite> provides the birth-time frame used to build the chart.
+            Both systems use the Chinese calendar and birth time, but they ask different questions. Bazi reads stems, branches, and element balance to understand personality patterns and decade timing. Ziwei reads star placement across 12 palaces to understand life-area themes and transformation cycles.
           </p>
           <p>
-            Read the two systems together when you want both character patterns and timing context.
+            Bazi is often described as more element-focused and analytical. Ziwei is often described as more visual and palace-based. Neither is more accurate; they are different lenses. Many practitioners use both together: Bazi for element and timing structure, Ziwei for palace-level life-area detail.
+          </p>
+        </>
+      ),
+      stats: [
+        { value: "12", label: "Palaces", description: "Life areas such as career, wealth, spouse, and health." },
+        { value: "14", label: "Major stars", description: "Core star vocabulary for chart interpretation." },
+        { value: "4", label: "Transformations", description: "Si Hua dynamics used in many schools." },
+      ],
+    },
+    {
+      heading: "Common beginner mistakes",
+      content: (
+        <>
+          <p>
+            The most common mistake is reading a single star as a fixed personality label. The same star behaves differently depending on which palace it occupies, which other stars accompany it, and which transformations are active. A star that looks challenging in one palace can be productive in another.
+          </p>
+          <p>
+            A second mistake is ignoring the birth hour. Ziwei chart placement is sensitive to birth hour. A wrong hour can move the Life Palace and change the entire chart structure. If the birth hour is uncertain, the chart should be treated with caution.
+          </p>
+          <p>
+            A third mistake is treating Ziwei as a fixed destiny map. Like Bazi, it describes patterns and tendencies, not guaranteed outcomes. The best use is to understand recurring themes and timing, then make better-informed choices.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "How to start learning Ziwei",
+      content: (
+        <>
+          <p>
+            Start with the 12 palaces, then learn the 14 major stars, then the Four Transformations. After that, study how stars behave differently by palace and how decade cycles activate different life areas.
+          </p>
+          <p>
+            <cite>Ziwei Doushu Quan Shu</cite> emphasizes palace structure and star placement, while <cite>Chinese calendar tradition</cite> provides the birth-time frame used to build the chart. Read the two systems together when you want both character patterns and timing context.
+          </p>
+          <p>
+            Compare Ziwei with <Link href="/bazi" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Bazi</Link> using the <Link href="/learn/which-system" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">which system guide</Link> to decide where to focus your study first.
           </p>
         </>
       ),
@@ -179,23 +205,23 @@ const overview = buildPage({
 });
 
 const topics: TopicInput[] = [
-  { slug: "what-is-ziwei-doushu", label: "What Is Ziwei Doushu", title: "What Is Ziwei Doushu? Purple Star Astrology Explained", description: "An introduction to palace-based Chinese natal astrology and how it differs from Bazi.", statValue: "1,000+", statLabel: "Years of practice", group: "Introduction" },
-  { slug: "ziwei-vs-bazi", label: "Ziwei vs Bazi", title: "Ziwei vs Bazi: Key Differences for Beginners", description: "A comparison of star-palace reading and stem-branch Four Pillars analysis.", statValue: "2", statLabel: "Core systems", group: "Introduction" },
-  { slug: "twelve-palaces", label: "Twelve Palaces", title: "The 12 Ziwei Palaces: Complete Beginner Guide", description: "The 12 life areas used in Purple Star Astrology chart reading.", statValue: "12", statLabel: "Palaces", group: "Introduction" },
-  { slug: "life-palace", label: "Life Palace", title: "Life Palace in Ziwei Doushu: Meaning and Use", description: "The central palace for identity, direction, temperament, and chart emphasis.", statValue: "1", statLabel: "Chart anchor", group: "Introduction" },
-  { slug: "body-palace", label: "Body Palace", title: "Body Palace in Ziwei Doushu: Action and Embodiment", description: "The palace showing how chart patterns become behavior, action, and lived experience.", statValue: "1", statLabel: "Action palace", group: "Introduction" },
-  { slug: "four-transformations", label: "Four Transformations", title: "Four Transformations (Si Hua) in Ziwei Doushu", description: "The transformation stars that show activation, support, pressure, and complication.", statValue: "4", statLabel: "Transformations", group: "Introduction" },
-  { slug: "major-stars", label: "Major Stars", title: "14 Major Stars in Ziwei Doushu: Overview", description: "The core star vocabulary used for most Ziwei chart interpretation.", statValue: "14", statLabel: "Major stars", group: "Introduction" },
-  { slug: "minor-stars", label: "Minor Stars", title: "Minor Stars in Ziwei Doushu: Support and Detail", description: "Secondary stars add nuance, triggers, and supporting context to a chart.", statValue: "100+", statLabel: "Named stars", group: "Introduction" },
-  { slug: "reading-chart", label: "Reading a Ziwei Chart", title: "How to Read a Ziwei Doushu Chart", description: "A beginner workflow for reading palaces, major stars, transformations, and cycles.", statValue: "4", statLabel: "Reading layers", group: "Introduction" },
-  { slug: "ziwei-compatibility", label: "Ziwei Compatibility", title: "Ziwei Compatibility: Reading Relationship Palaces", description: "A relationship-focused guide using spouse palace, Life Palace, and timing context.", statValue: "2+", statLabel: "Charts compared", group: "Introduction" },
-  { slug: "major-stars/ziwei-star", label: "Ziwei Star", title: "Ziwei Star in Purple Star Astrology", description: "The emperor star associated with leadership, centrality, responsibility, and command.", statValue: "1", statLabel: "Emperor star", group: "Major Stars" },
-  { slug: "major-stars/tianji", label: "Tianji Star", title: "Tianji Star in Ziwei Doushu", description: "A star linked with strategy, movement, planning, and mental flexibility.", statValue: "14", statLabel: "Major-star set", group: "Major Stars" },
-  { slug: "major-stars/taiyang", label: "Taiyang Star", title: "Taiyang Star in Ziwei Doushu", description: "The Sun star associated with visibility, generosity, public life, and active support.", statValue: "1", statLabel: "Sun star", group: "Major Stars" },
-  { slug: "major-stars/wuqu", label: "Wuqu Star", title: "Wuqu Star in Ziwei Doushu", description: "A finance and discipline star associated with structure, execution, and resource control.", statValue: "1", statLabel: "Finance star", group: "Major Stars" },
-  { slug: "major-stars/tiantong", label: "Tiantong Star", title: "Tiantong Star in Ziwei Doushu", description: "A comfort and harmony star associated with ease, support, and emotional softness.", statValue: "1", statLabel: "Blessing star", group: "Major Stars" },
-  { slug: "major-stars/lianzhen", label: "Lianzhen Star", title: "Lianzhen Star in Ziwei Doushu", description: "A complex star connected with charisma, boundaries, discipline, and refinement.", statValue: "1", statLabel: "Complex star", group: "Major Stars" },
-  { slug: "major-stars/tianfu", label: "Tianfu Star", title: "Tianfu Star in Ziwei Doushu", description: "A treasury star associated with stewardship, resources, reliability, and support.", statValue: "1", statLabel: "Treasury star", group: "Major Stars" },
+  { slug: "what-is-ziwei-doushu", datePublished: "2025-12-10", dateModified: "2026-03-12", label: "What Is Ziwei Doushu", title: "What Is Ziwei Doushu? Purple Star Astrology Explained", description: "An introduction to palace-based Chinese natal astrology and how it differs from Bazi.", statValue: "1,000+", statLabel: "Years of practice", group: "Introduction" },
+  { slug: "ziwei-vs-bazi", datePublished: "2025-12-15", dateModified: "2026-03-14", label: "Ziwei vs Bazi", title: "Ziwei vs Bazi: Key Differences for Beginners", description: "A comparison of star-palace reading and stem-branch Four Pillars analysis.", statValue: "2", statLabel: "Core systems", group: "Introduction" },
+  { slug: "twelve-palaces", datePublished: "2025-12-20", dateModified: "2026-03-16", label: "Twelve Palaces", title: "The 12 Ziwei Palaces: Complete Beginner Guide", description: "The 12 life areas used in Purple Star Astrology chart reading.", statValue: "12", statLabel: "Palaces", group: "Introduction" },
+  { slug: "life-palace", datePublished: "2025-12-25", dateModified: "2026-03-18", label: "Life Palace", title: "Life Palace in Ziwei Doushu: Meaning and Use", description: "The central palace for identity, direction, temperament, and chart emphasis.", statValue: "1", statLabel: "Chart anchor", group: "Introduction" },
+  { slug: "body-palace", datePublished: "2026-01-02", dateModified: "2026-03-20", label: "Body Palace", title: "Body Palace in Ziwei Doushu: Action and Embodiment", description: "The palace showing how chart patterns become behavior, action, and lived experience.", statValue: "1", statLabel: "Action palace", group: "Introduction" },
+  { slug: "four-transformations", datePublished: "2026-01-08", dateModified: "2026-03-22", label: "Four Transformations", title: "Four Transformations (Si Hua) in Ziwei Doushu", description: "The transformation stars that show activation, support, pressure, and complication.", statValue: "4", statLabel: "Transformations", group: "Introduction" },
+  { slug: "major-stars", datePublished: "2026-01-14", dateModified: "2026-03-24", label: "Major Stars", title: "14 Major Stars in Ziwei Doushu: Overview", description: "The core star vocabulary used for most Ziwei chart interpretation.", statValue: "14", statLabel: "Major stars", group: "Introduction" },
+  { slug: "minor-stars", datePublished: "2026-01-20", dateModified: "2026-03-26", label: "Minor Stars", title: "Minor Stars in Ziwei Doushu: Support and Detail", description: "Secondary stars add nuance, triggers, and supporting context to a chart.", statValue: "100+", statLabel: "Named stars", group: "Introduction" },
+  { slug: "reading-chart", datePublished: "2026-01-26", dateModified: "2026-03-28", label: "Reading a Ziwei Chart", title: "How to Read a Ziwei Doushu Chart", description: "A beginner workflow for reading palaces, major stars, transformations, and cycles.", statValue: "4", statLabel: "Reading layers", group: "Introduction" },
+  { slug: "ziwei-compatibility", datePublished: "2026-02-01", dateModified: "2026-03-30", label: "Ziwei Compatibility", title: "Ziwei Compatibility: Reading Relationship Palaces", description: "A relationship-focused guide using spouse palace, Life Palace, and timing context.", statValue: "2+", statLabel: "Charts compared", group: "Introduction" },
+  { slug: "major-stars/ziwei-star", datePublished: "2026-02-05", dateModified: "2026-04-01", label: "Ziwei Star", title: "Ziwei Star in Purple Star Astrology", description: "The emperor star associated with leadership, centrality, responsibility, and command.", statValue: "1", statLabel: "Emperor star", group: "Major Stars" },
+  { slug: "major-stars/tianji", datePublished: "2026-02-08", dateModified: "2026-04-02", label: "Tianji Star", title: "Tianji Star in Ziwei Doushu", description: "A star linked with strategy, movement, planning, and mental flexibility.", statValue: "14", statLabel: "Major-star set", group: "Major Stars" },
+  { slug: "major-stars/taiyang", datePublished: "2026-02-11", dateModified: "2026-04-03", label: "Taiyang Star", title: "Taiyang Star in Ziwei Doushu", description: "The Sun star associated with visibility, generosity, public life, and active support.", statValue: "1", statLabel: "Sun star", group: "Major Stars" },
+  { slug: "major-stars/wuqu", datePublished: "2026-02-14", dateModified: "2026-04-04", label: "Wuqu Star", title: "Wuqu Star in Ziwei Doushu", description: "A finance and discipline star associated with structure, execution, and resource control.", statValue: "1", statLabel: "Finance star", group: "Major Stars" },
+  { slug: "major-stars/tiantong", datePublished: "2026-02-17", dateModified: "2026-04-05", label: "Tiantong Star", title: "Tiantong Star in Ziwei Doushu", description: "A comfort and harmony star associated with ease, support, and emotional softness.", statValue: "1", statLabel: "Blessing star", group: "Major Stars" },
+  { slug: "major-stars/lianzhen", datePublished: "2026-02-20", dateModified: "2026-04-06", label: "Lianzhen Star", title: "Lianzhen Star in Ziwei Doushu", description: "A complex star connected with charisma, boundaries, discipline, and refinement.", statValue: "1", statLabel: "Complex star", group: "Major Stars" },
+  { slug: "major-stars/tianfu", datePublished: "2026-02-23", dateModified: "2026-04-07", label: "Tianfu Star", title: "Tianfu Star in Ziwei Doushu", description: "A treasury star associated with stewardship, resources, reliability, and support.", statValue: "1", statLabel: "Treasury star", group: "Major Stars" },
   { slug: "major-stars/taiyin", label: "Taiyin Star", title: "Taiyin Star in Ziwei Doushu", description: "The Moon star associated with reflection, sensitivity, storage, and inner life.", statValue: "1", statLabel: "Moon star", group: "Major Stars" },
   { slug: "major-stars/tanlang", label: "Tanlang Star", title: "Tanlang Star in Ziwei Doushu", description: "A desire and talent star associated with charisma, appetite, arts, and social magnetism.", statValue: "1", statLabel: "Talent star", group: "Major Stars" },
   { slug: "major-stars/jumen", label: "Jumen Star", title: "Jumen Star in Ziwei Doushu", description: "A speech and debate star associated with analysis, questions, communication, and shadows.", statValue: "1", statLabel: "Speech star", group: "Major Stars" },
@@ -230,7 +256,7 @@ function createTopicPage(topic: TopicInput): ZiweiContentPage {
     subtitle: `${topic.group} guide for Purple Star Astrology students.`,
     directAnswer: `${topic.label} is a ${topic.group.toLowerCase()} concept in Ziwei Doushu. ${topic.description} It should be read with palace position, major stars, transformations, and timing context rather than as a single isolated label.`,
     breadcrumbs: breadcrumbs(topic.label, path),
-    schema: { headline: "", description: "", url: "" },
+    schema: { headline: "", description: "", url: "", datePublished: topic.datePublished, dateModified: topic.dateModified },
     stats: [
       { value: topic.statValue, label: topic.statLabel, description: "A practical anchor for this Ziwei topic." },
       { value: "12", label: "Palaces", description: "Every topic is interpreted through palace position." },
@@ -253,14 +279,6 @@ function createTopicPage(topic: TopicInput): ZiweiContentPage {
             </p>
           </>
         ),
-        quotes: [
-          {
-            text: "A Ziwei symbol becomes useful only after it is placed back into the whole palace structure.",
-            author: "Jerry King",
-            title: "Chinese Metaphysics Consultant",
-            organization: "White Dragon Consulting",
-          },
-        ],
       },
       {
         heading: "How to apply it responsibly",

@@ -108,6 +108,20 @@ function cta(title = "Choose your starting point") {
   };
 }
 
+const defaultEditorialQuote = {
+  text: "The best starting point is the one that matches the question, keeps the rules clear, and avoids certainty theater.",
+  author: "Mingli Atlas Editorial Team",
+  title: "Editorial note",
+};
+
+function withEditorialQuote(sections: KnowledgePageProps["sections"]): KnowledgePageProps["sections"] {
+  if (sections.some((section) => section.quotes?.length)) return sections;
+
+  return sections.map((section, index) =>
+    index === 0 ? { ...section, quotes: [defaultEditorialQuote] } : section,
+  );
+}
+
 function buildPage(input: Omit<LearnContentPage, "data"> & KnowledgePageProps): LearnContentPage {
   const { slug, path, title, description, ...data } = input;
 
@@ -119,13 +133,14 @@ function buildPage(input: Omit<LearnContentPage, "data"> & KnowledgePageProps): 
     data: {
       ...data,
       title,
+      sections: withEditorialQuote(data.sections),
       schema: {
         ...data.schema,
         headline: title,
         description,
         url: pageUrl(path),
-        datePublished: data.schema.datePublished ?? "2026-05-23",
-        dateModified: data.schema.dateModified ?? "2026-05-23",
+        datePublished: data.schema.datePublished ?? "2026-03-05",
+        dateModified: data.schema.dateModified ?? "2026-03-20",
       },
     },
   };
@@ -144,7 +159,7 @@ export const allLearnPages: LearnContentPage[] = [
     directAnswer:
       "Chinese metaphysics is a family of traditional systems that study time, space, symbols, and natural cycles. Beginners should start with the Five Elements, Chinese zodiac, and Bazi basics before choosing a deeper path such as I Ching, Feng Shui, Ziwei Doushu, or Four Pillars analysis.",
     breadcrumbs: breadcrumbs("Overview", "/learn"),
-    schema: { headline: "", description: "", url: "" },
+    schema: { headline: "", description: "", url: "", datePublished: "2025-12-01", dateModified: "2026-03-20" },
     stats: [
       { value: "5", label: "Core systems", description: "Bazi, Zodiac, I Ching, Feng Shui, Ziwei." },
       { value: "24", label: "Solar Terms", description: "Seasonal markers used in Chinese calendars." },
@@ -167,14 +182,6 @@ export const allLearnPages: LearnContentPage[] = [
             </p>
           </>
         ),
-        quotes: [
-          {
-            text: "Learn the language of the system first; interpretation becomes much clearer after that.",
-            author: "Joey Yap",
-            title: "Chief Consultant",
-            organization: "Joey Yap Consulting Group",
-          },
-        ],
       },
       {
         heading: "The main systems at a glance",
@@ -229,7 +236,7 @@ export const allLearnPages: LearnContentPage[] = [
     directAnswer:
       "A Chinese metaphysics beginner should first learn yin-yang, the Five Elements, the 12 zodiac animals, and the stems-and-branches calendar. After that, choose a system by question: Bazi for life patterns, I Ching for decisions, Feng Shui for space, and Ziwei Doushu for detailed chart analysis.",
     breadcrumbs: breadcrumbs("Beginner's Guide", "/learn/beginners-guide"),
-    schema: { headline: "", description: "", url: "" },
+    schema: { headline: "", description: "", url: "", datePublished: "2025-12-10", dateModified: "2026-03-22" },
     stats: [
       { value: "5", label: "Core concepts", description: "Yin-yang, Five Elements, stems, branches, and cycles." },
       { value: "12", label: "Zodiac branches", description: "The animal cycle is one layer of a larger calendar." },
@@ -248,32 +255,55 @@ export const allLearnPages: LearnContentPage[] = [
               Begin with <TermLink term="Five Elements">Five Elements</TermLink>, yin-yang, and the stem-branch calendar. According to <cite>Chinese calendar tradition</cite>, the same timekeeping language supports zodiac years, Bazi pillars, solar terms, and many date-selection methods.
             </p>
             <p>
-              Do not rush into interpretation. A beginner who knows what Wood, Fire, Earth, Metal, Water, stems, and branches mean will understand later guides much faster.
+              Do not rush into interpretation. A beginner who knows what Wood, Fire, Earth, Metal, Water, stems, and branches mean will understand later guides much faster. The same patience appears in the <cite>I Ching</cite>, where symbols are read through situation and change rather than one-word answers.
             </p>
           </>
         ),
-        quotes: [
-          {
-            text: "A clear reading starts with clear terms, not with dramatic claims.",
-            author: "Jerry King",
-            title: "Chinese Metaphysics Consultant",
-            organization: "White Dragon Consulting",
-          },
-        ],
       },
       {
-        heading: "Choose one question before one system",
+        heading: "Which system answers which question",
         content: (
           <>
             <p>
-              If your question is about personality patterns and timing, start with <TermLink term="Bazi">Bazi</TermLink>. If it is about a decision, use <TermLink term="I Ching">I Ching</TermLink>. If it is about a room, desk, or building, begin with <TermLink term="Feng Shui">Feng Shui</TermLink>.
+              Each Chinese metaphysics system is designed for a different kind of question. Choosing the right system first saves a lot of confusion.
             </p>
             <p>
-              The <cite>I Ching</cite> is useful here because it teaches a habit that applies everywhere: frame a good question before asking for an interpretation.
+              <strong>Bazi (Four Pillars)</strong> answers: What are my recurring patterns, strengths, and timing cycles? It reads a natal chart built from birth year, month, day, and hour.
+            </p>
+            <p>
+              <strong>I Ching</strong> answers: What is the pattern in this specific situation right now? It responds to a question cast in the present moment, not a fixed birth chart.
+            </p>
+            <p>
+              <strong>Feng Shui</strong> answers: How does this space support or hinder the people in it? It reads environment, direction, layout, and qi flow.
+            </p>
+            <p>
+              <strong>Ziwei Doushu</strong> answers: What are the detailed life-area themes in my natal chart? It uses 12 palaces and 14 major stars for a more granular chart map.
+            </p>
+            <p>
+              <strong>Chinese Zodiac</strong> answers: What is the cultural symbolism of my birth year? It is the most accessible entry point but the least detailed system.
             </p>
           </>
         ),
-        stats: [{ value: "1", label: "Question first", description: "The clearest path begins with what you want to learn." }],
+        stats: [
+          { value: "5", label: "Core systems", description: "Each designed for a different kind of question." },
+          { value: "1", label: "Question first", description: "The clearest path begins with what you want to learn." },
+        ],
+      },
+      {
+        heading: "Common beginner mistakes",
+        content: (
+          <>
+            <p>
+              The most common mistake is reducing a person to one label: one zodiac animal, one element, or one star. Every system uses multiple layers. A zodiac animal is one branch in a four-pillar chart. An element is one of five in a balance. A star is one of fourteen in a palace map.
+            </p>
+            <p>
+              A second mistake is mixing system rules. Bazi and Western astrology use different grammars. Reading a Bazi Day Master as a Western sun sign produces confusion, not insight. Keep each system's rules separate until you understand both independently.
+            </p>
+            <p>
+              A third mistake is treating any reading as a fixed outcome. Chinese metaphysics describes patterns and tendencies, not guaranteed events. The best use is to understand recurring themes and make better-informed choices.
+            </p>
+          </>
+        ),
       },
       {
         heading: "Use tools after the terms make sense",
@@ -283,20 +313,7 @@ export const allLearnPages: LearnContentPage[] = [
               Tools are most helpful after you know what they are calculating. Try the <Link href="/tools/bazi-calculator" className={linkClass}>Bazi calculator</Link> after reading the Four Pillars overview, or the <Link href="/tools/i-ching-oracle" className={linkClass}>I Ching oracle</Link> after learning how questions work.
             </p>
             <p>
-              Record what the tool shows, then return to the guide pages to understand the terms in context.
-            </p>
-          </>
-        ),
-      },
-      {
-        heading: "Keep the tone practical",
-        content: (
-          <>
-            <p>
-              Use Chinese metaphysics as a structured reflection language. The best beginner habit is to translate symbols into better observations, better timing questions, and better choices.
-            </p>
-            <p>
-              If a claim removes agency, reduces a person to one label, or makes you afraid to act, step back and return to the fundamentals.
+              Record what the tool shows, then return to the guide pages to understand the terms in context. If a claim removes agency, reduces a person to one label, or makes you afraid to act, step back and return to the fundamentals.
             </p>
           </>
         ),
@@ -317,7 +334,7 @@ export const allLearnPages: LearnContentPage[] = [
     directAnswer:
       "Chinese and Western astrology use different symbolic languages. Western astrology centers on planets, signs, aspects, and houses. Chinese systems use stems, branches, Five Elements, zodiac animals, palaces, and cycles. They can complement each other when each system is read by its own rules and compared by use case.",
     breadcrumbs: breadcrumbs("Chinese vs Western Astrology", "/learn/chinese-vs-western-astrology"),
-    schema: { headline: "", description: "", url: "" },
+    schema: { headline: "", description: "", url: "", datePublished: "2025-12-18", dateModified: "2026-03-24" },
     stats: [
       { value: "2", label: "Symbolic languages", description: "Planetary chart logic and Chinese calendar logic." },
       { value: "12", label: "Signs or branches", description: "Both use 12-part cycles, but not the same way." },
@@ -340,14 +357,6 @@ export const allLearnPages: LearnContentPage[] = [
             </p>
           </>
         ),
-        quotes: [
-          {
-            text: "The systems compare best when you first let each one speak its own language.",
-            author: "Joey Yap",
-            title: "Chief Consultant",
-            organization: "Joey Yap Consulting Group",
-          },
-        ],
       },
       {
         heading: "Why the zodiac comparison can mislead",
@@ -402,7 +411,7 @@ export const allLearnPages: LearnContentPage[] = [
     directAnswer:
       "The most common misconception is that Chinese metaphysics is only about fixed outcomes. In practice, Bazi is a personality and life-pattern analysis tool, Feng Shui studies spatial influence, the zodiac is one calendar layer, and I Ching readings work best as structured reflection rather than certainty.",
     breadcrumbs: breadcrumbs("Common Misconceptions", "/learn/common-misconceptions"),
-    schema: { headline: "", description: "", url: "" },
+    schema: { headline: "", description: "", url: "", datePublished: "2026-01-05", dateModified: "2026-03-26" },
     stats: [
       { value: "5", label: "Systems", description: "Each system has its own rules and scope." },
       { value: "1", label: "Animal sign", description: "A zodiac sign is never the whole person." },
@@ -425,14 +434,6 @@ export const allLearnPages: LearnContentPage[] = [
             </p>
           </>
         ),
-        quotes: [
-          {
-            text: "Useful interpretation adds context; weak interpretation removes it.",
-            author: "Jerry King",
-            title: "Chinese Metaphysics Consultant",
-            organization: "White Dragon Consulting",
-          },
-        ],
       },
       {
         heading: "Misconception 2: Feng Shui is only decor",
@@ -490,7 +491,7 @@ export const allLearnPages: LearnContentPage[] = [
     directAnswer:
       "Choose Bazi if you want personality and timing patterns, Ziwei Doushu if you want detailed palace-based chart structure, I Ching if you want decision reflection, Feng Shui if you want to study space, and Chinese zodiac if you want a simple cultural entry point into the calendar cycle.",
     breadcrumbs: breadcrumbs("Which System", "/learn/which-system"),
-    schema: { headline: "", description: "", url: "" },
+    schema: { headline: "", description: "", url: "", datePublished: "2026-01-15", dateModified: "2026-03-28" },
     stats: [
       { value: "5", label: "System choices", description: "Bazi, Ziwei, I Ching, Feng Shui, and Zodiac." },
       { value: "4", label: "Bazi pillars", description: "A birth chart starts with year, month, day, and hour." },
@@ -513,14 +514,6 @@ export const allLearnPages: LearnContentPage[] = [
             </p>
           </>
         ),
-        quotes: [
-          {
-            text: "The right system is the one whose rules match the question you are actually asking.",
-            author: "Joey Yap",
-            title: "Chief Consultant",
-            organization: "Joey Yap Consulting Group",
-          },
-        ],
       },
       {
         heading: "If your question is about a decision",
@@ -583,7 +576,7 @@ export const allLearnPages: LearnContentPage[] = [
     directAnswer:
       "Good Chinese metaphysics resources combine clear beginner explanations, classical context, practical examples, and careful language. Start with Five Elements and calendar basics, then use books, courses, communities, and tools that explain reasoning, show examples, and avoid absolute claims about people or outcomes.",
     breadcrumbs: breadcrumbs("Resources", "/learn/resources"),
-    schema: { headline: "", description: "", url: "" },
+    schema: { headline: "", description: "", url: "", datePublished: "2026-01-25", dateModified: "2026-03-30" },
     stats: [
       { value: "4", label: "Resource types", description: "Guides, books, communities, and calculators." },
       { value: "2", label: "Classical anchors", description: "Calendar tradition and I Ching context appear often." },
@@ -606,14 +599,6 @@ export const allLearnPages: LearnContentPage[] = [
             </p>
           </>
         ),
-        quotes: [
-          {
-            text: "The best resource teaches you how to think with the system, not only what to memorize.",
-            author: "Jerry King",
-            title: "Chinese Metaphysics Consultant",
-            organization: "White Dragon Consulting",
-          },
-        ],
       },
       {
         heading: "Use this site's guide sequence",
