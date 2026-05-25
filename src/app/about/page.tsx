@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import StaticPage from "@/components/templates/StaticPage";
+import { JsonLd } from "@/lib/seo/jsonLd";
+import { AUTHOR, SITE } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "About",
@@ -9,9 +11,26 @@ export const metadata: Metadata = {
   },
 };
 
+const personSchema = {
+  "@context": "https://schema.org" as const,
+  "@type": "Person" as const,
+  name: AUTHOR.name,
+  url: AUTHOR.url,
+  jobTitle: AUTHOR.jobTitle,
+  description: AUTHOR.description,
+  knowsAbout: AUTHOR.knowsAbout,
+  worksFor: {
+    "@type": "Organization",
+    name: SITE.name,
+    url: SITE.url,
+  },
+};
+
 export default function AboutPage() {
   return (
-    <StaticPage
+    <>
+      <JsonLd data={personSchema} />
+      <StaticPage
       eyebrow="Company"
       title="About mingliatlas"
       description="mingliatlas is built to make Chinese metaphysics understandable to Western readers through clear explanations, structured guides, and practical tools."
@@ -46,5 +65,6 @@ export default function AboutPage() {
         },
       ]}
     />
+    </>
   );
 }

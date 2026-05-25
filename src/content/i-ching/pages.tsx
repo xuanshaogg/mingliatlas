@@ -131,8 +131,8 @@ const overview = buildPage({
     { value: "6", label: "Lines", description: "Every hexagram has six line positions." },
   ],
   citations: [
-    { label: "I Ching", source: "Classical Chinese text also known as the Book of Changes." },
-    { label: "Ten Wings tradition", source: "Commentarial tradition that shaped philosophical readings of the text." },
+    { label: "Richard Wilhelm & Cary Baynes, The I Ching or Book of Changes (1950)", source: "Standard English translation of the I Ching, including the Ten Wings commentaries." },
+    { label: "Alfred Huang, The Complete I Ching (2004)", source: "Modern English reference covering all 64 hexagrams with classical and contemporary interpretation." },
   ],
   sections: [
     {
@@ -445,8 +445,8 @@ function createIntroPage(topic: IntroTopic): IChingContentPage {
       { value: "384", label: "Lines", description: "The full line-level structure of the classic." },
     ],
     citations: [
-      { label: "I Ching", source: "Classical Chinese text used for symbolic reasoning and structured reflection." },
-      { label: "Ten Wings tradition", source: "Commentaries that developed philosophical interpretation of the hexagrams." },
+      { label: "Richard Wilhelm & Cary Baynes, The I Ching or Book of Changes (1950)", source: "Classical Chinese text used for symbolic reasoning and structured reflection." },
+      { label: "Alfred Huang, The Complete I Ching (2004)", source: "Commentaries that developed philosophical interpretation of the hexagrams." },
     ],
     sections: introSections[topic.slug] ?? [
       {
@@ -5718,9 +5718,22 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
   ],
 };
 
+const TRIGRAM_NAMES: Record<string, string> = {
+  "111": "Heaven",
+  "000": "Earth",
+  "100": "Thunder",
+  "010": "Water",
+  "001": "Mountain",
+  "011": "Wind",
+  "101": "Fire",
+  "110": "Lake",
+};
+
 function createHexagramPage(hexagram: (typeof HEXAGRAMS)[number]): IChingContentPage {
   const slug = `hexagram-${hexagram.number}`;
   const path = `/i-ching/${slug}`;
+  const upperTrigram = TRIGRAM_NAMES[hexagram.binary.slice(0, 3)] ?? hexagram.binary.slice(0, 3);
+  const lowerTrigram = TRIGRAM_NAMES[hexagram.binary.slice(3, 6)] ?? hexagram.binary.slice(3, 6);
 
   return buildPage({
     slug,
@@ -5739,35 +5752,61 @@ function createHexagramPage(hexagram: (typeof HEXAGRAMS)[number]): IChingContent
       { value: hexagram.binary, label: "Line pattern", description: "1 marks yang and 0 marks yin from bottom upward." },
     ],
     citations: [
-      { label: "I Ching", source: "Classical source for hexagram judgments and images." },
-      { label: "King Wen sequence", source: "Traditional ordering of the 64 hexagrams." },
+      { label: "Richard Wilhelm & Cary Baynes, The I Ching or Book of Changes (1950)", source: "Classical source for hexagram judgments and images." },
+      { label: "King Wen sequence (周文王, ~1000 BCE)", source: "Traditional ordering of the 64 hexagrams attributed to King Wen of Zhou." },
     ],
     sections: hexagramSections[hexagram.number] ?? [
       {
-        heading: `Meaning of Hexagram ${hexagram.number}`,
+        heading: `What Hexagram ${hexagram.number} describes`,
         content: (
           <>
             <p>{hexagram.judgment}</p>
             <p>
-              Read this hexagram in relation to your question. Its value is not a fixed answer; it is a structured image of the present pattern.
+              Hexagram {hexagram.number} is built from two trigrams: {upperTrigram} above and {lowerTrigram} below. In the King Wen sequence, this pairing creates a specific image of how two forces interact — one above, one below — and what that interaction asks of the person consulting the oracle.
+            </p>
+            <p>
+              Read this hexagram in relation to your question. Its value is not a fixed answer; it is a structured image of the present pattern. The classical Judgment describes the situation; the Image describes the appropriate response.
             </p>
           </>
         ),
       },
       {
-        heading: "Image and practical reflection",
+        heading: "The image and its practical lesson",
         content: (
-          <p>
-            {hexagram.image} In practice, this asks you to notice where the situation is moving, what is stable, and what needs restraint or timely action.
-          </p>
+          <>
+            <p>
+              {hexagram.image} This image is not decorative — it is the practical instruction. Classical I Ching practice treats the Image as the action layer: what the superior person does when facing this hexagram's situation.
+            </p>
+            <p>
+              In practice, this asks you to notice where the situation is moving, what is stable, and what needs restraint or timely action. The image often points to a quality of attention rather than a specific outcome.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Modern applications",
+        content: (
+          <>
+            <p>
+              Contemporary readers use Hexagram {hexagram.number} most often in contexts involving {hexagram.judgment.toLowerCase().includes("persever") ? "sustained effort and long-term commitment" : hexagram.judgment.toLowerCase().includes("small") ? "careful, incremental progress" : hexagram.judgment.toLowerCase().includes("great") ? "significant undertakings and major decisions" : "timing, transitions, and relationship dynamics"}. The hexagram does not prescribe a single action — it describes a pattern and asks what response fits the moment.
+            </p>
+            <p>
+              A useful practice: after reading the Judgment and Image, write one sentence about how the hexagram's pattern appears in your current situation. That translation from symbol to context is where the I Ching's value lies.
+            </p>
+          </>
         ),
       },
       {
         heading: "Changing-line context",
         content: (
-          <p>
-            If this hexagram appears with changing lines, compare it with the relating hexagram. The primary hexagram describes the present pattern, while the relating hexagram shows direction of change.
-          </p>
+          <>
+            <p>
+              If this hexagram appears with changing lines, compare it with the relating hexagram. The primary hexagram describes the present pattern; the relating hexagram shows the direction of change. Old yang lines (moving yang) and old yin lines (moving yin) are the ones that change — they carry the most specific guidance for the question.
+            </p>
+            <p>
+              When multiple lines change, classical practice varies: some traditions read all changing lines together, others prioritize the lowest or highest. The most practical approach for beginners is to read the primary hexagram first, then use the relating hexagram to understand where the situation is heading.
+            </p>
+          </>
         ),
       },
     ],

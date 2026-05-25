@@ -172,8 +172,9 @@ const overview = buildPage({
     { value: "60", label: "Full cycle", description: "Animals and elements repeat every 60 years." },
   ],
   citations: [
-    { label: "Earthly Branch tradition", source: "The animal cycle maps onto the 12 branches used in Chinese calendars." },
-    { label: "Chinese New Year almanacs", source: "Popular zodiac years are commonly presented around Lunar New Year." },
+    { label: "《尔雅·释天》(Erya, Han Dynasty)", source: "Early Chinese lexicon recording the 12 Earthly Branches and their animal correspondences." },
+    { label: "Martin Palmer, T'ung Shu: The Ancient Chinese Almanac (1986)", source: "Documents the zodiac animal cycle as preserved in traditional Chinese almanac practice." },
+    { label: "Wolfram Eberhard, A Dictionary of Chinese Symbols (1986)", source: "Reference for animal symbolism and cultural meanings in the Chinese zodiac tradition." },
   ],
   sections: [
     {
@@ -236,6 +237,171 @@ const overview = buildPage({
   cta: cta(),
 });
 
+const animalSections: Partial<Record<string, KnowledgePageProps["sections"]>> = {
+  rat: [
+    {
+      heading: "Years of the Rat and the Zi branch",
+      content: (
+        <>
+          <p>
+            Recent Years of the Rat include 1948, 1960, 1972, 1984, 1996, 2008, and 2020. The cycle repeats every 12 years. If you were born in January or early February, check the Lunar New Year boundary for that year — the zodiac year does not always begin on January 1st, and a few days can shift your sign entirely.
+          </p>
+          <p>
+            In the Earthly Branch system, the Rat corresponds to Zi (子), the first branch. Zi governs the 11pm–1am window and the north direction. It is the peak of Water energy in the 12-branch cycle — the winter solstice point, when yin is at its maximum and yang begins its return. This is why Rat energy in Bazi is associated with depth, intelligence, and the capacity to hold a great deal beneath a calm surface.
+          </p>
+          <p>
+            The Rat year also comes in five elemental versions cycling through a 60-year pattern: Wood Rat (1984, 2044), Fire Rat (1996, 2056), Earth Rat (2008, 2068), Metal Rat (1960, 2020), and Water Rat (1972, 2032). A Metal Rat year carries a different quality from a Wood Rat year even though the animal symbol is the same. The elemental version modifies the base sign's expression and the kinds of pressure or support the year brings.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Rat personality: what the Zi branch actually describes",
+      content: (
+        <>
+          <p>
+            Rat symbolism emphasizes being quick-minded, adaptable, and resourceful. In classical Chinese almanac tradition, these traits connect to the Zi branch's Water element and Yang polarity. Yang Water at its peak is intelligent, perceptive, and capable of finding paths through obstacles — but it also needs containment to avoid becoming scattered or anxious.
+          </p>
+          <p>
+            The Rat's resourcefulness comes from the Zi branch's position at the beginning of the cycle. First-branch energy tends toward initiative, pattern recognition, and the ability to assess a situation quickly. The same quality that makes Rat people effective problem-solvers can become over-analysis or restlessness when the chart lacks Earth to provide grounding.
+          </p>
+          <p>
+            In Bazi, the Zi branch holds only one hidden stem: Gui Water (癸). This makes Zi one of the purer branches — its energy is concentrated rather than mixed. A Gui Water hidden stem in the hour or day branch can activate quietly and powerfully, especially when a Ren Water stem appears elsewhere in the chart to form a combination.
+          </p>
+          <p>
+            Yang polarity in the Rat means the sign tends toward outward expression, initiative, and visibility. Yang signs generally move first and ask questions later. This contrasts with Yin signs, which tend to observe before acting. Neither is better — both are necessary in a balanced chart, and the full reading depends on the Day Master and the month pillar, not the year animal alone.
+          </p>
+        </>
+      ),
+      stats: [{ value: "5", label: "Element versions", description: "Wood, Fire, Earth, Metal, and Water Rat years modify the base sign." }],
+    },
+    {
+      heading: "Career, compatibility, and 2026 themes for Rat",
+      content: (
+        <>
+          <p>
+            Career and wealth themes for Rat favor environments that reward intelligence, adaptability, and the ability to work across multiple domains simultaneously. Water element associations point toward research, communication, strategy, finance, and fields that require reading patterns others miss. The Rat's resourcefulness is most productive when paired with a clear direction — Water without banks tends to spread rather than flow.
+          </p>
+          <p>
+            Compatibility is traditionally strongest with Ox (Zi-Chou combination), Dragon (Water-Earth harmony), and Monkey (Shen-Zi-Chen Water frame). These pairings describe ease of rhythm and shared elemental logic. Horse is the direct clash sign (Zi-Wu), which describes opposing energy rather than incompatibility — Rat-Horse relationships can be dynamic and productive when both parties understand the tension. Goat is the harm sign, describing a subtler form of friction that can be harder to identify.
+          </p>
+          <p>
+            For 2026 (Year of the Fire Horse), the Wu branch brings Yang Fire energy. For Rat (Zi, Yang Water), the Horse year activates the Zi-Wu clash. This does not mean 2026 is uniformly difficult for Rat — it means the year brings movement, disruption of existing patterns, and the need to respond rather than initiate. Famous people often cited as Rat examples include William Shakespeare, George Washington, and Scarlett Johansson, though a complete reading requires their full birth data.
+          </p>
+        </>
+      ),
+    },
+  ],
+  tiger: [
+    {
+      heading: "Years of the Tiger and the Yin branch",
+      content: (
+        <>
+          <p>
+            Recent Years of the Tiger include 1950, 1962, 1974, 1986, 1998, 2010, and 2022. The cycle repeats every 12 years. If you were born in January or early February, check the Lunar New Year boundary — the zodiac year boundary and the Bazi year boundary (Li Chun, around February 4th) do not always coincide.
+          </p>
+          <p>
+            In the Earthly Branch system, the Tiger corresponds to Yin (寅), the third branch. Yin governs the 3–5am window and the northeast direction. It is the first month of spring in the Chinese calendar — the moment when Yang energy breaks through after winter. This is why Tiger energy in Bazi is associated with boldness, initiative, and the drive to move before conditions are fully settled.
+          </p>
+          <p>
+            The Tiger year comes in five elemental versions: Wood Tiger (1974, 2034), Fire Tiger (1986, 2046), Earth Tiger (1998, 2058), Metal Tiger (1950, 2010), and Water Tiger (1962, 2022). A Water Tiger year carries a different quality from a Fire Tiger year. The elemental version modifies the base sign's expression and the kinds of pressure or support the year brings to each animal sign.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Tiger personality: what the Yin branch actually describes",
+      content: (
+        <>
+          <p>
+            Tiger symbolism emphasizes being bold, protective, and independent. In classical Chinese almanac tradition, these traits connect to the Yin branch's Wood element and Yang polarity. Yang Wood at the start of spring is expansive, direct, and growth-oriented — it moves toward the light without waiting for permission. The same quality that makes Tiger people natural leaders can become impulsiveness or difficulty accepting constraint when the chart lacks Metal to provide structure.
+          </p>
+          <p>
+            The Yin branch holds three hidden stems: Jia Wood (甲) as the main stem, Bing Fire (丙) as the middle stem, and Wu Earth (戊) as the residual stem. This makes Yin one of the more complex branches — it contains Wood's drive, Fire's warmth and visibility, and Earth's stabilizing quality. A Tiger person's chart can express very differently depending on which hidden stem is activated by the luck cycle or annual branch.
+          </p>
+          <p>
+            Yang polarity in the Tiger means the sign tends toward outward expression, initiative, and direct action. Tiger people often move first and recalibrate later. This is effective in environments that reward decisiveness, but it can create friction in situations that require patience and careful observation. The full reading depends on the Day Master and the month pillar — a Tiger year animal with a Yin Water Day Master reads very differently from one with a Yang Fire Day Master.
+          </p>
+          <p>
+            The Tiger's protective quality comes from the Yin branch's position as the first spring branch. Spring energy in Bazi is associated with new growth, territorial instinct, and the drive to establish a domain. This is why Tiger people often feel a strong sense of responsibility for those in their circle — the protective impulse is structural, not just temperamental.
+          </p>
+        </>
+      ),
+      stats: [{ value: "5", label: "Element versions", description: "Wood, Fire, Earth, Metal, and Water Tiger years modify the base sign." }],
+    },
+    {
+      heading: "Career, compatibility, and 2026 themes for Tiger",
+      content: (
+        <>
+          <p>
+            Career and wealth themes for Tiger favor environments that reward initiative, leadership, and the ability to act under uncertainty. Wood element associations point toward growth-oriented fields: education, healthcare, creative work, entrepreneurship, and roles that require building something from the ground up. Tiger energy is most productive when it has a clear territory to develop — Wood without direction tends to expand in all directions at once.
+          </p>
+          <p>
+            Compatibility is traditionally strongest with Horse (Yin-Wu-Xu Fire frame), Dog (Yin-Wu-Xu Fire frame), and Pig (Yin-Hai combination). These pairings describe shared elemental rhythm and natural alliance. Monkey is the direct clash sign (Yin-Shen), describing opposing energy — Tiger-Monkey relationships can be highly productive when the tension is channeled into complementary roles. Snake is the harm sign, describing a subtler friction that can be harder to identify than a direct clash.
+          </p>
+          <p>
+            For 2026 (Year of the Fire Horse), the Wu branch brings Yang Fire energy. For Tiger (Yin, Yang Wood), the Horse year activates the Yin-Wu-Xu Fire frame — a partial harmony that can amplify Fire energy in the chart. This tends to bring visibility, momentum, and the opportunity to act on plans that have been building. Famous people often cited as Tiger examples include Queen Elizabeth II, Lady Gaga, and Leonardo DiCaprio, though a complete reading requires their full birth data.
+          </p>
+        </>
+      ),
+    },
+  ],
+  dragon: [
+    {
+      heading: "Years of the Dragon and the Chen branch",
+      content: (
+        <>
+          <p>
+            Recent Years of the Dragon include 1952, 1964, 1976, 1988, 2000, 2012, and 2024. The cycle repeats every 12 years. If you were born in January or early February, check the Lunar New Year boundary for that year — the zodiac year boundary and the Bazi solar-term boundary do not always coincide, and a few days can shift your sign.
+          </p>
+          <p>
+            In the Earthly Branch system, the Dragon corresponds to Chen (辰), the fifth branch. Chen governs the 7–9am window and the east-southeast direction. It is the third month of spring — the transitional point between spring and summer, when Wood energy begins to give way to Fire. This transitional quality is why Dragon energy in Bazi is associated with transformation, ambition, and the capacity to hold multiple energies simultaneously.
+          </p>
+          <p>
+            The Dragon year comes in five elemental versions: Wood Dragon (1964, 2024), Fire Dragon (1976, 2036), Earth Dragon (1988, 2048), Metal Dragon (2000, 2060), and Water Dragon (1952, 2012). A Wood Dragon year carries a different quality from a Metal Dragon year. The elemental version modifies the base sign's expression and the kinds of pressure or support the year brings to each animal sign.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Dragon personality: what the Chen branch actually describes",
+      content: (
+        <>
+          <p>
+            Dragon symbolism emphasizes being charismatic, ambitious, and visionary. In classical Chinese almanac tradition, these traits connect to the Chen branch's Earth element and Yang polarity. Yang Earth in the transitional spring-summer period is fertile, expansive, and capable of holding great weight — but it also contains the energy of the season it is leaving (Wood) and the season it is entering (Fire). This complexity is why Dragon people often feel pulled in multiple directions simultaneously.
+          </p>
+          <p>
+            The Chen branch holds three hidden stems: Wu Earth (戊) as the main stem, Yi Wood (乙) as the middle stem, and Gui Water (癸) as the residual stem. This makes Chen one of the most complex branches in the system — it contains Earth's stability, Wood's growth drive, and Water's depth and intelligence. A Dragon person's chart can express very differently depending on which hidden stem is activated by the luck cycle or annual branch.
+          </p>
+          <p>
+            The Dragon is the only mythological animal in the 12-sign cycle, which reflects its unique position in Chinese cultural symbolism. In classical Chinese culture, the Dragon represents imperial authority, transformation, and the capacity to move between realms — earth, water, and sky. In Bazi, this translates to a sign that is comfortable with complexity and change, but can struggle with the ordinary demands of sustained, unglamorous effort.
+          </p>
+          <p>
+            Yang polarity in the Dragon means the sign tends toward outward expression, ambition, and the drive to make an impact. Dragon people often think in large terms and can find small-scale work frustrating. The full reading depends on the Day Master and the month pillar — a Dragon year animal with a Jia Wood Day Master reads very differently from one with a Ji Earth Day Master.
+          </p>
+        </>
+      ),
+      stats: [{ value: "5", label: "Element versions", description: "Wood, Fire, Earth, Metal, and Water Dragon years modify the base sign." }],
+    },
+    {
+      heading: "Career, compatibility, and 2026 themes for Dragon",
+      content: (
+        <>
+          <p>
+            Career and wealth themes for Dragon favor environments that reward vision, leadership, and the ability to work across multiple domains. Earth element associations point toward stable fields: real estate, finance, management, and roles that require holding a complex system together. Dragon energy is most productive when it has a large enough stage — Yang Earth without a clear purpose tends to accumulate without direction.
+          </p>
+          <p>
+            Compatibility is traditionally strongest with Rat (Shen-Zi-Chen Water frame), Monkey (Shen-Zi-Chen Water frame), and Rooster (Chen-You combination). These pairings describe shared elemental rhythm and natural alliance. Dog is the direct clash sign (Chen-Xu), describing opposing Earth energy — Dragon-Dog relationships can be productive when the tension is channeled into complementary roles, but they require more conscious effort. Rabbit is the harm sign, describing a subtler friction.
+          </p>
+          <p>
+            For 2026 (Year of the Fire Horse), the Wu branch brings Yang Fire energy. For Dragon (Chen, Yang Earth), Fire generates Earth in the generating cycle — the Horse year tends to bring resources, support, and the conditions for Dragon's ambitions to find traction. This is generally a favorable dynamic, though the full effect depends on the Day Master and the complete chart. Famous people often cited as Dragon examples include Bruce Lee, Rihanna, and Adele, though a complete reading requires their full birth data.
+          </p>
+        </>
+      ),
+    },
+  ],
+};
+
 const animalPages = animals.map((animal) =>
   buildPage({
     slug: animal.slug,
@@ -254,19 +420,22 @@ const animalPages = animals.map((animal) =>
       { value: "12", label: "Year cycle", description: "The animal returns every 12 years." },
     ],
     citations: [
-      { label: "Earthly Branch tradition", source: `${animal.name} corresponds to the ${animal.branch} branch in the 12-branch cycle.` },
-      { label: "Chinese zodiac almanacs", source: "Animal years and compatibility groups are preserved in popular calendrical references." },
+      { label: "《尔雅·释天》(Erya, Han Dynasty)", source: `${animal.name} corresponds to the ${animal.branch} branch in the 12-branch cycle.` },
+      { label: "Martin Palmer, T'ung Shu: The Ancient Chinese Almanac (1986)", source: "Animal years and compatibility groups are preserved in traditional Chinese almanac practice." },
     ],
-    sections: [
+    sections: animalSections[animal.slug] ?? [
       {
         heading: `Years of the ${animal.name}`,
         content: (
           <>
             <p>
-              Recent Years of the {animal.name} include {animal.years}. If you were born in January or early February, check the Lunar New Year boundary before choosing your sign.
+              Recent Years of the {animal.name} include {animal.years}. The cycle repeats every 12 years, so the next Year of the {animal.name} follows 12 years after the most recent one. If you were born in January or early February, check the Lunar New Year boundary for that year before confirming your sign — the Chinese zodiac year does not always align with January 1st.
             </p>
             <p>
-              In Bazi, the animal year is only one pillar. A complete reading also considers the month, day, and hour pillars.
+              In Bazi, the year animal is only one of four pillars. The month, day, and hour pillars each carry their own stem and branch, which means two people born in the same year can have very different charts. The year pillar reflects ancestral background and early social environment, but the Day Master (the stem of the day pillar) is the anchor of the full reading.
+            </p>
+            <p>
+              The {animal.name} year also comes in five elemental versions — Wood, Fire, Earth, Metal, and Water — cycling through a 60-year sexagenary pattern. A Wood {animal.name} year carries different energy from a Metal {animal.name} year, even though the animal symbol is the same.
             </p>
           </>
         ),
@@ -276,7 +445,13 @@ const animalPages = animals.map((animal) =>
         content: (
           <>
             <p>
-              {animal.name} symbolism emphasizes being {animal.traits}. Strengths often appear when this sign has a clear purpose and supportive environment. Challenges appear when the same qualities become rigid, reactive, or overextended.
+              {animal.name} symbolism emphasizes being {animal.traits}. In classical Chinese almanac tradition, these traits are associated with the {animal.branch} Earthly Branch, which governs a specific two-hour window of the day, a season, a direction, and a set of hidden stems that interact with other pillars in a Bazi chart.
+            </p>
+            <p>
+              Strengths often appear when this sign has a clear purpose and a supportive environment. The same qualities that create strength can become liabilities under pressure: adaptability can become inconsistency, ambition can become overreach, and loyalty can become rigidity. Reading the full chart — especially the month pillar and luck cycles — gives a more accurate picture of when these tendencies activate.
+            </p>
+            <p>
+              The {animal.polarity} quality of the {animal.name} ({animal.polarity === "Yang" ? "active, outward-moving energy" : "receptive, inward-moving energy"}) shapes how the sign expresses itself. Yang signs tend toward initiative and visibility; Yin signs tend toward depth and selectivity. Neither is better — both are necessary in a balanced chart.
             </p>
           </>
         ),
@@ -287,10 +462,13 @@ const animalPages = animals.map((animal) =>
         content: (
           <>
             <p>
-              Career and wealth themes favor environments that respect the {animal.name} pattern. Relationship ease is traditionally stronger with {animal.compatible}, while {animal.challenging} can require more conscious communication.
+              Career and wealth themes favor environments that respect the {animal.name} pattern. The {animal.element} element association shapes which industries and roles tend to align well: {animal.element === "Wood" ? "growth-oriented fields like education, healthcare, and creative work" : animal.element === "Fire" ? "high-visibility fields like media, entertainment, and leadership roles" : animal.element === "Earth" ? "stable fields like real estate, finance, and management" : animal.element === "Metal" ? "precision fields like law, engineering, and finance" : "adaptive fields like research, communication, and strategy"}.
             </p>
             <p>
-              For 2026, read general Horse-year momentum together with your full Bazi chart. Famous {animal.name} examples often listed in popular references include {animal.famous}.
+              Relationship ease is traditionally stronger with {animal.compatible} signs, which share branch harmony or triangular affinity. {animal.challenging} signs can require more conscious communication because of opposing branch positions — this does not make the relationship impossible, but it does ask for clearer agreements about pacing and priorities.
+            </p>
+            <p>
+              For 2026 (Year of the Horse), read general Horse-year momentum together with your full Bazi chart. The Horse branch (Wu, 午) carries Yang Fire energy, which activates differently depending on your Day Master element. Famous people often cited as {animal.name} examples include {animal.famous} — though a complete reading would require their full birth data, not just the year.
             </p>
           </>
         ),
@@ -325,8 +503,8 @@ const compatibility = buildPage({
     { value: "6", label: "Clash pairs", description: "Opposite branch relationships." },
   ],
   citations: [
-    { label: "Earthly Branch tradition", source: "Compatibility derives from relationships among the 12 branches." },
-    { label: "Chinese almanac practice", source: "Harmony and clash signs are used in relationship and date-selection contexts." },
+    { label: "《尔雅·释天》(Erya, Han Dynasty)", source: "Compatibility derives from relationships among the 12 Earthly Branches." },
+    { label: "Martin Palmer, T'ung Shu: The Ancient Chinese Almanac (1986)", source: "Harmony and clash signs are used in relationship and date-selection contexts in traditional almanac practice." },
   ],
   sections: [
     {
@@ -384,8 +562,8 @@ const forecast2026 = buildPage({
     { value: "5", label: "Life areas", description: "Career, money, love, health, and personal growth." },
   ],
   citations: [
-    { label: "Chinese zodiac tradition", source: "Yearly animal forecasts derive from the 12-branch cycle." },
-    { label: "Bazi year-pillar practice", source: "Annual energy is read against a complete natal chart for better context." },
+    { label: "《尔雅·释天》(Erya, Han Dynasty)", source: "Yearly animal forecasts derive from the 12-branch cycle." },
+    { label: "Joey Yap, Bazi: The Destiny Code (2007)", source: "Annual energy is best read against a complete natal chart for better context." },
   ],
   sections: [
     {

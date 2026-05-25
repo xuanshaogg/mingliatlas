@@ -1,4 +1,4 @@
-import { SITE } from "@/lib/constants";
+import { AUTHOR, SITE } from "@/lib/constants";
 import type { Crumb } from "@/components/shared/Breadcrumbs";
 import type { FAQ } from "@/components/shared/FAQSection";
 
@@ -77,9 +77,15 @@ export function buildArticleDefinedTermSchema({
     ...(datePublished ? { datePublished } : {}),
     ...(dateModified ? { dateModified } : {}),
     author: {
-      "@type": "Organization",
-      name: SITE.name,
-      url: SITE.url,
+      "@type": "Person",
+      name: AUTHOR.name,
+      url: AUTHOR.url,
+      jobTitle: AUTHOR.jobTitle,
+      worksFor: {
+        "@type": "Organization",
+        name: SITE.name,
+        url: SITE.url,
+      },
     },
     publisher: {
       "@type": "Organization",

@@ -105,7 +105,9 @@ export default function RootLayout({
       className={`${inter.variable} ${cormorant.variable} ${playfair.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
     >
       <head>
-        <OrganizationSchema />
+        <OrganizationSchema socialLinks={[
+          "https://mingliatlas.com",
+        ]} />
         <WebSiteSchema />
         <link rel="alternate" type="application/rss+xml" title={`${SITE.name} RSS Feed`} href="/rss.xml" />
         <link rel="alternate" type="text/plain" title={`${SITE.name} LLM Context`} href="/llms.txt" />

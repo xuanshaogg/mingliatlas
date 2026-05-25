@@ -152,8 +152,9 @@ const seedPosts: BlogPost[] = [
       { value: "10", label: "Year luck cycle", description: "Luck pillars usually move in 10-year blocks." },
     ],
     citations: [
-      { label: "Chinese calendar tradition", source: "Stems, branches, and solar terms form the timekeeping base of Bazi." },
-      { label: "Classical Four Pillars practice", source: "Bazi reads structure, timing, and relationship patterns instead of one isolated symbol." },
+      { label: "《渊海子平》Yuan Hai Zi Ping (Song Dynasty, ~1100 CE)", source: "Classical Bazi text establishing the Four Pillars framework and Day Master interpretation." },
+      { label: "《三命通会》San Ming Tong Hui (Ming Dynasty, ~1550 CE)", source: "Comprehensive classical reference for stem-branch interactions and Ten Gods analysis." },
+      { label: "Joey Yap, Bazi: The Destiny Code (2007)", source: "Modern English-language reference for Four Pillars methodology." },
     ],
     sections: [
       {
@@ -161,11 +162,29 @@ const seedPosts: BlogPost[] = [
         content: (
           <>
             <p>
-              The system uses the birth moment to build four pillars, then interprets the interaction between stems, branches, Five Elements, and the Day Master. The result is a map of tendencies, not a fixed verdict.
+              Bazi reads the birth moment as four pillars — year, month, day, and hour — each made of a Heavenly Stem on top and an Earthly Branch below. That gives you eight characters total, which is why the system is also called Ba Zi (八字), literally "eight characters." Each character carries an element (Wood, Fire, Earth, Metal, or Water) and a yin or yang quality.
             </p>
             <p>
-              If you want the foundational vocabulary, start with the <TermLink term="Wu Xing">Five Elements</TermLink>, then read the
-              <TermLink term="Tian Gan"> Heavenly Stems</TermLink> and <TermLink term="Di Zhi"> Earthly Branches</TermLink>.
+              The Day Master is the stem of the day pillar. It represents the self — the anchor around which the rest of the chart is interpreted. A Yang Fire Day Master, for example, is read differently from a Yin Water Day Master even if the surrounding pillars look similar. The Day Master determines which of the Ten Gods each other stem becomes in relation to you.
+            </p>
+            <p>
+              The system uses the birth moment to build four pillars, then interprets the interaction between stems, branches, Five Elements, and the Day Master. The result is a map of tendencies, not a fixed verdict. If you want the foundational vocabulary, start with the <TermLink term="Wu Xing">Five Elements</TermLink>, then read the <TermLink term="Tian Gan">Heavenly Stems</TermLink> and <TermLink term="Di Zhi">Earthly Branches</TermLink>.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "The four pillars and what each one covers",
+        content: (
+          <>
+            <p>
+              Each pillar covers a different layer of life context. The year pillar reflects ancestral background, early environment, and how others perceive you socially. The month pillar is the strongest pillar in most classical schools — it shows career direction, the season of birth, and the dominant element pressure on the Day Master. The day pillar is the self and the intimate relationship sphere. The hour pillar covers children, later life, and inner motivations.
+            </p>
+            <p>
+              Practitioners disagree on how much weight to give each pillar, but most agree that the month pillar and the Day Master together form the core of any reading. A chart with a strong month pillar that supports the Day Master reads very differently from one where the month pillar creates pressure or conflict.
+            </p>
+            <p>
+              Hidden stems inside the Earthly Branches add another layer. Each branch contains one to three hidden stems that activate under specific conditions — when a luck pillar arrives, when an annual stem triggers a combination, or when the season shifts. This is why two people born on the same day can have noticeably different charts if their birth hours differ.
             </p>
           </>
         ),
@@ -175,10 +194,26 @@ const seedPosts: BlogPost[] = [
         content: (
           <>
             <p>
-              Bazi is useful because it turns a birth date into a structured interpretation framework. Readers use it for self-reflection, timing, career themes, and relationship patterns.
+              Bazi is useful because it turns a birth date into a structured interpretation framework. Readers use it for self-reflection, timing, career themes, and relationship patterns. The value is in the structure: when you know which parts of the chart matter, you can ask better questions and avoid reading every symbol as a prediction.
             </p>
             <p>
-              The value is in the structure. When you know which parts of the chart matter, you can ask better questions and avoid reading every symbol as a prediction.
+              The timing layer is what separates Bazi from a static personality profile. Luck pillars (大运, Da Yun) move in roughly 10-year blocks and shift the elemental environment around the natal chart. Annual pillars add a shorter cycle on top. A period that looks difficult on paper may be productive if the arriving elements support the Day Master; a period that looks favorable may bring pressure if the elements clash.
+            </p>
+            <p>
+              This is why practitioners say Bazi is more useful for timing than for fixed prediction. The natal chart shows tendencies and structural strengths. The luck and annual pillars show when those tendencies are likely to activate or face resistance.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "How Bazi differs from Western astrology",
+        content: (
+          <>
+            <p>
+              Western astrology maps planetary positions at birth onto a zodiac wheel. Bazi maps the birth moment onto the Chinese stem-branch calendar. The two systems use different symbolic languages, different time structures, and different interpretive frameworks — they are not interchangeable, but they can be studied in parallel.
+            </p>
+            <p>
+              The most practical difference for a new reader: Western astrology gives you one sun sign. Bazi gives you eight characters, a Day Master, Ten Gods, hidden stems, and a timing cycle. The depth is higher, but so is the learning curve. Most practitioners recommend starting with the Five Elements and the Day Master before trying to read a full chart.
             </p>
           </>
         ),
@@ -188,7 +223,10 @@ const seedPosts: BlogPost[] = [
         content: (
           <>
             <p>
-              Start with one chart, one question, and one source of vocabulary. Then compare the result with the broader Bazi hub and the free calculator.
+              Start with one chart, one question, and one source of vocabulary. Generate your chart with the free calculator, identify your Day Master, and read the Five Elements page to understand what element your Day Master belongs to. That single step — knowing your Day Master element — gives you enough context to begin reading the Ten Gods and the month pillar.
+            </p>
+            <p>
+              Avoid trying to interpret every character at once. Classical practitioners spend years on single concepts. For a beginner, the most useful first pass is: Day Master element → month pillar element → whether they support or pressure each other. That relationship alone tells you a great deal about the structural theme of the chart.
             </p>
           </>
         ),

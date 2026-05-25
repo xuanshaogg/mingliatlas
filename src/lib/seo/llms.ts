@@ -58,6 +58,20 @@ export function buildLlmsText(): string {
     "- Pages use direct-answer sections, FAQs, breadcrumbs, source notes, and related links.",
     "- Free tools are browser-based workflows for Bazi charts, I Ching casting, and zodiac compatibility.",
     "- Classical systems are presented as symbolic frameworks for reflection, not deterministic forecasts.",
+    "",
+    "## Core Entities",
+    "",
+    "This site is the primary English-language reference for the following Chinese metaphysics entities:",
+    "- Bazi (Four Pillars of Destiny, 八字) — birth chart system using year, month, day, hour pillars",
+    "- Wu Xing (Five Elements, 五行) — Wood, Fire, Earth, Metal, Water and their interactions",
+    "- Tian Gan (Ten Heavenly Stems, 天干) — the 10 visible energies above each Bazi pillar",
+    "- Di Zhi (Twelve Earthly Branches, 地支) — the 12 branches with hidden stems and seasonal context",
+    "- Shi Shen (Ten Gods / Ten Relationship Stars, 十神) — the relational framework within a Bazi chart",
+    "- Da Yun (Luck Pillars, 大运) — 10-year luck cycle timing in Bazi",
+    "- Ziwei Doushu (Purple Star Astrology, 紫微斗数) — palace-based natal chart system with 14 major stars",
+    "- I Ching (Book of Changes, 易经) — 64-hexagram system for structured reflection and decision context",
+    "- Feng Shui (风水) — spatial system for qi flow, direction, landform, and environment",
+    "- Chinese Zodiac (十二生肖) — 12-year animal cycle connected to the Earthly Branches",
   ].join("\n");
 }
 

@@ -142,8 +142,8 @@ export const baziPages: BaziContentPage[] = [
       { value: "60", label: "Cycle pairs", description: "The Jia Zi stem-branch cycle." },
     ],
     citations: [
-      { label: "Yuan Hai Zi Ping", source: "Classical source associated with Zi Ping Bazi methods." },
-      { label: "San Ming Tong Hui", source: "Ming dynasty synthesis of stems, branches, and chart rules." },
+      { label: "《渊海子平》Yuan Hai Zi Ping (Song Dynasty, ~1100 CE)", source: "Classical source associated with Zi Ping Bazi methods." },
+      { label: "《三命通会》San Ming Tong Hui (Ming Dynasty, ~1550 CE)", source: "Ming dynasty synthesis of stems, branches, and chart rules." },
     ],
     sections: [
       {
@@ -227,8 +227,8 @@ export const baziPages: BaziContentPage[] = [
       { value: "60", label: "Jia Zi pairs", description: "The repeating stem-branch cycle." },
     ],
     citations: [
-      { label: "Xu Ziping", source: "Song dynasty figure associated with Day Master-centered Bazi." },
-      { label: "Yuan Hai Zi Ping", source: "Classical text that shaped later Four Pillars methods." },
+      { label: "Xu Ziping (徐子平, Song Dynasty)", source: "Song dynasty figure associated with Day Master-centered Bazi." },
+      { label: "《渊海子平》Yuan Hai Zi Ping (Song Dynasty, ~1100 CE)", source: "Classical text that shaped later Four Pillars methods." },
     ],
     sections: [
       {
@@ -302,19 +302,22 @@ export const baziPages: BaziContentPage[] = [
       { value: "10", label: "Heavenly Stems", description: "Each stem carries an element and yin-yang polarity." },
     ],
     citations: [
-      { label: "Huangdi Neijing", source: "Classical medical text that organizes nature through five phase correspondences." },
-      { label: "San Ming Tong Hui", source: "Classical Bazi source applying stems, branches, and elements." },
+      { label: "《黄帝内经》Huangdi Neijing (Han Dynasty, ~200 BCE)", source: "Classical medical text that organizes nature through five phase correspondences." },
+      { label: "《三命通会》San Ming Tong Hui (Ming Dynasty, ~1550 CE)", source: "Classical Bazi source applying stems, branches, and elements." },
     ],
     sections: [
       {
-        heading: "What are the Five Elements?",
+        heading: "What the Five Elements actually describe",
         content: (
           <>
             <p>
-              The Five Elements (Wu Xing 五行) are a classical Chinese model for understanding change. Wood expands, Fire rises, Earth stabilizes, Metal refines, and Water flows downward. In Bazi, these elements describe the energy pattern behind the Four Pillars.
+              The Five Elements (Wu Xing 五行) are not five substances — they are five phases of movement. Wood expands outward, Fire rises and radiates, Earth stabilizes and centers, Metal contracts and refines, and Water descends and flows. The Chinese character 行 means movement or process, not material. This distinction matters for Bazi: when a chart shows strong Wood, it does not mean the person is made of wood. It means the expanding, outward-moving quality is dominant in their birth pattern.
             </p>
             <p>
-              According to the <cite>Huangdi Neijing</cite>, seasonal movement, organs, colors, tastes, and climates can be organized through five phase relationships. Bazi adapts that logic to time and personal chart structure.
+              According to the <cite>Huangdi Neijing</cite>, the five phases organize seasonal movement, organs, directions, colors, tastes, and climates into a coherent system of correspondences. The Neijing applies this framework to medicine; Bazi applies the same logic to time and personal chart structure. Both systems treat the five phases as a language for describing how energy moves through cycles rather than as a fixed taxonomy.
+            </p>
+            <p>
+              The framework appears in Chinese thought as early as the Warring States period (475–221 BCE), when philosophers systematized earlier observations about seasonal change into a formal model. By the Han dynasty, Wu Xing had become the organizing principle behind medicine, cosmology, music, and governance. Bazi inherited this framework and applied it specifically to the stem-branch calendar and birth timing.
             </p>
           </>
         ),
@@ -324,34 +327,56 @@ export const baziPages: BaziContentPage[] = [
         content: (
           <>
             <p>
-              The generating cycle is Wood feeds Fire, Fire creates Earth, Earth bears Metal, Metal enriches Water, and Water nourishes Wood. <cite>San Ming Tong Hui</cite> applies these relationships to stems, branches, and the strength of the Day Master.
+              The generating cycle (相生 xiāng shēng) describes how each element supports the next: Wood feeds Fire, Fire creates Earth (ash), Earth bears Metal (ore), Metal enriches Water (condensation), and Water nourishes Wood. This cycle describes productive flow — each phase creates the conditions for the next to arise. In a Bazi chart, a Day Master that is supported by its generating element tends to have more resources available.
             </p>
             <p>
-              The controlling cycle is Wood parts Earth, Earth channels Water, Water cools Fire, Fire melts Metal, and Metal cuts Wood. Over-acting and insulting patterns describe imbalance: an element can control too strongly, or a weaker element can resist the one that should regulate it.
+              The controlling cycle (相克 xiāng kè) describes how each element regulates another: Wood parts Earth, Earth channels Water, Water cools Fire, Fire melts Metal, and Metal cuts Wood. Control is not inherently negative — it provides structure and prevents excess. A chart with no controlling relationships can become unbalanced in a different way than one with too much control.
+            </p>
+            <p>
+              <cite>San Ming Tong Hui</cite> applies these relationships to stems, branches, and the strength of the Day Master. Two additional patterns describe imbalance: over-acting (侮, wǔ) occurs when a controlling element is too strong and damages what it should regulate; insulting (乘, chéng) occurs when a weakened element fails to control what it should, and the controlled element turns against it. These patterns help explain why a chart that looks balanced on paper can still produce difficult timing.
             </p>
           </>
         ),
         stats: [
           { value: "5", label: "Generating steps", description: "Each element supports one other element." },
           { value: "5", label: "Controlling steps", description: "Each element regulates one other element." },
+          { value: "2", label: "Imbalance patterns", description: "Over-acting and insulting describe excess and deficiency." },
         ],
       },
       {
-        heading: "Element meanings in Bazi",
+        heading: "What each element means in a Bazi chart",
         content: (
           <>
             <p>
-              Wood relates to growth, planning, and learning. Fire relates to visibility, warmth, and expression. Earth relates to trust, stability, and practical support. Metal relates to standards, refinement, and boundaries. Water relates to wisdom, adaptability, and flow.
+              Wood relates to growth, planning, learning, and the drive to expand. In a chart, strong Wood often shows up as someone who initiates projects, values development, and can struggle with completion when Wood has no controlling Metal. Wood governs the liver and gallbladder in classical medicine, the east direction, and the spring season.
+            </p>
+            <p>
+              Fire relates to visibility, warmth, expression, and the drive to connect. Strong Fire in a chart often produces charisma and social presence, but without Water to moderate it, Fire can become scattered or exhausting. Fire governs the heart and small intestine, the south direction, and summer.
+            </p>
+            <p>
+              Earth relates to trust, stability, practical support, and the capacity to hold things together. Earth appears in all four seasonal transitions (the last 18 days of each season) and in the center direction. Strong Earth in a chart often produces reliability and caretaking, but excess Earth without Wood to break it up can become stagnation.
+            </p>
+            <p>
+              Metal relates to standards, refinement, boundaries, and the drive to clarify. Strong Metal in a chart often produces precision and the ability to cut through ambiguity, but without Fire to temper it, Metal can become rigid or critical. Metal governs the lungs and large intestine, the west direction, and autumn.
+            </p>
+            <p>
+              Water relates to wisdom, adaptability, depth, and the capacity to flow around obstacles. Strong Water in a chart often produces intelligence and flexibility, but without Earth to contain it, Water can become unfocused or anxious. Water governs the kidneys and bladder, the north direction, and winter.
             </p>
           </>
         ),
       },
       {
-        heading: "How element balance is read",
+        heading: "How element balance is read in practice",
         content: (
           <>
             <p>
-              Element balance begins with season, then checks stems, branches, hidden stems, and combinations. A strong Water chart in winter is read differently from a Water signal in summer, because timing changes usefulness. This is why Bazi weighs context before naming helpful or stressful elements.
+              Element balance in Bazi begins with the birth season, which determines which elements are naturally strong or weak at the time of birth. A person born in winter (Water season) already has strong Water in the environment, so additional Water in the chart may be excessive rather than supportive. A person born in summer (Fire season) has strong Fire in the environment, which affects how the Day Master uses its own element.
+            </p>
+            <p>
+              After season, the reader checks stems, branches, hidden stems inside branches, and any combinations that transform elements. A branch combination can change a Wood branch into a Fire branch, for example, which shifts the element count significantly. This is why two people with the same Day Master can have very different element balances depending on their birth month and the combinations present in their chart.
+            </p>
+            <p>
+              The goal is not to have all five elements present in equal measure. The goal is to identify which elements support the Day Master's function and which create pressure. A chart that is missing one element is not automatically weak — the missing element may be supplied by the luck cycle or annual influences. Bazi reads element balance as a dynamic pattern across time, not a fixed snapshot.
             </p>
           </>
         ),
@@ -380,16 +405,22 @@ export const baziPages: BaziContentPage[] = [
       { value: "1", label: "Day Master", description: "The day stem anchors Bazi interpretation." },
     ],
     citations: [
-      { label: "San Ming Tong Hui", source: "Classical source for stem and branch relationships." },
-      { label: "Yuan Hai Zi Ping", source: "Zi Ping tradition focused on the Day Master." },
+      { label: "《三命通会》San Ming Tong Hui (Ming Dynasty, ~1550 CE)", source: "Classical source for stem and branch relationships." },
+      { label: "《渊海子平》Yuan Hai Zi Ping (Song Dynasty, ~1100 CE)", source: "Zi Ping tradition focused on the Day Master." },
     ],
     sections: [
       {
-        heading: "The stems pair elements with polarity",
+        heading: "The ten stems pair elements with polarity",
         content: (
           <>
             <p>
-              Jia and Yi are Wood, Bing and Ding are Fire, Wu and Ji are Earth, Geng and Xin are Metal, and Ren and Gui are Water. The first in each pair is yang and the second is yin. This creates 10 visible expressions from 5 elements, a pattern described in <cite>San Ming Tong Hui</cite>.
+              The 10 Heavenly Stems (Tian Gan 天干) are Jia (甲), Yi (乙), Bing (丙), Ding (丁), Wu (戊), Ji (己), Geng (庚), Xin (辛), Ren (壬), and Gui (癸). Each stem combines one of the Five Elements with yin or yang polarity: Jia and Yi are Wood, Bing and Ding are Fire, Wu and Ji are Earth, Geng and Xin are Metal, and Ren and Gui are Water. The first in each pair is yang and the second is yin. This creates 10 distinct visible expressions from 5 elements, a pattern described in <cite>San Ming Tong Hui</cite>.
+            </p>
+            <p>
+              The stems appear in the top position of each Bazi pillar. They represent what is visible, active, and expressed outwardly. The Earthly Branch below each stem holds the seasonal context and hidden stems that modify how the visible stem actually functions. Classical Bazi practice always reads the stem in relation to its branch, not in isolation.
+            </p>
+            <p>
+              The stem cycle has been used in the Chinese calendar for over 3,000 years. Oracle bone inscriptions from the Shang dynasty (c. 1600–1046 BCE) already used the ten stems to mark days. By the time Bazi developed its mature form in the Song dynasty, the stems had accumulated a rich layer of symbolic meaning that practitioners applied to personality, timing, and chart relationships.
             </p>
           </>
         ),
@@ -399,31 +430,47 @@ export const baziPages: BaziContentPage[] = [
         content: (
           <>
             <p>
-              Jia is like a tall tree, Yi like vines and flowers, Bing like the sun, Ding like candlelight, Wu like a mountain, Ji like cultivated soil, Geng like raw metal, Xin like jewelry, Ren like the ocean, and Gui like mist or rain.
+              Classical Bazi uses natural images to make each stem concrete. Jia (甲) is like a tall tree — upright, direct, and growth-oriented, with strong roots but limited flexibility. Yi (乙) is like vines and flowers — adaptable, persistent, and able to find support in unexpected places. Bing (丙) is like the sun — warm, generous, and visible to everyone, but unable to focus its light on one person. Ding (丁) is like candlelight — precise, intimate, and capable of sustained illumination in a small space.
+            </p>
+            <p>
+              Wu (戊) is like a mountain or dry earth — solid, reliable, and capable of holding great weight, but slow to change direction. Ji (己) is like cultivated soil — fertile, receptive, and able to nourish what is planted in it, but dependent on what it receives. Geng (庚) is like raw metal or an axe — strong, decisive, and capable of cutting through obstacles, but requiring refinement before it becomes truly useful. Xin (辛) is like jewelry or a refined blade — precise, beautiful, and sensitive to its environment.
+            </p>
+            <p>
+              Ren (壬) is like the ocean or a great river — vast, powerful, and capable of carrying enormous loads, but difficult to direct without strong banks. Gui (癸) is like mist, rain, or underground water — subtle, penetrating, and able to reach places that direct force cannot, but easily dispersed without containment. These images are not decorative — they are practical tools for reading how a Day Master expresses itself and what kind of environment supports or depletes it.
             </p>
           </>
         ),
-        stats: [{ value: "10", label: "Core images", description: "One image for each visible stem." }],
+        stats: [
+          { value: "10", label: "Core images", description: "One natural image for each visible stem." },
+          { value: "5", label: "Yang stems", description: "Jia, Bing, Wu, Geng, Ren — outward-moving expression." },
+          { value: "5", label: "Yin stems", description: "Yi, Ding, Ji, Xin, Gui — inward-moving expression." },
+        ],
       },
       {
-        heading: "Why stems matter for chart reading",
+        heading: "The Day Master and why it anchors the chart",
         content: (
           <>
             <p>
-              Stems show what is visible and active. They help identify the Day Master, Ten Gods, combinations, and whether a chart expresses its strengths openly or stores them in hidden branches. In <cite>Yuan Hai Zi Ping</cite>, the day stem is the anchor that organizes the rest of the chart.
+              The Day Master is the stem of the day pillar. In <cite>Yuan Hai Zi Ping</cite>, the Day Master is the self — the reference point from which all other chart elements are interpreted. Every other stem and branch in the chart becomes a Ten God (a relationship role) based on how its element relates to the Day Master's element. A Jia Wood Day Master, for example, reads Bing Fire as its Output star, Geng Metal as its Authority star, and Ren Water as its Resource star.
+            </p>
+            <p>
+              This is why two people born in the same year with the same zodiac animal can have completely different Bazi readings: if one has a Jia Wood Day Master and the other has a Ren Water Day Master, the same surrounding elements play entirely different roles in each chart. The Day Master is not just one of eight characters — it is the lens through which all eight are read.
+            </p>
+            <p>
+              Identifying the Day Master is the first step in any Bazi reading. Once the Day Master is known, the reader can determine element strength, Ten Gods, useful and stressful elements, and how the luck cycle interacts with the natal chart. Without the Day Master as an anchor, the chart is a collection of symbols without a center.
             </p>
           </>
         ),
       },
       {
-        heading: "How stems and branches work together",
+        heading: "Stem combinations and their effects",
         content: (
           <>
             <p>
-              A stem without its branch is only half of the pillar. The stem shows the visible quality, while the branch stores seasonal context, hidden stems, and the timing layer that changes how the stem is read. Classical Bazi practice treats the pair as a single unit.
+              Five stem combinations (天干合 tiān gān hé) describe pairs of stems that attract each other and can transform into a new element when conditions are right: Jia-Ji combine toward Earth, Yi-Geng combine toward Metal, Bing-Xin combine toward Water, Ding-Ren combine toward Wood, and Wu-Gui combine toward Fire. These combinations are significant because they can change the element count in a chart and alter how the Day Master functions.
             </p>
             <p>
-              When the Day Master is unclear, compare the stem with its branch and then return to the full chart before deciding what the symbol means, especially where <cite>San Ming Tong Hui</cite> emphasizes relationship over isolation.
+              A combination does not always transform. Classical practice checks whether the resulting element is supported by the season and surrounding branches before confirming the transformation. A Jia-Ji combination in a summer chart surrounded by Fire may not produce Earth, because the conditions for Earth to dominate are not present. This is why <cite>San Ming Tong Hui</cite> treats combinations as conditional rather than automatic.
             </p>
           </>
         ),
@@ -456,8 +503,8 @@ export const baziPages: BaziContentPage[] = [
       { value: "4", label: "Season groups", description: "Spring, summer, autumn, winter." },
     ],
     citations: [
-      { label: "Chinese calendrical tradition", source: "Branches organize months, hours, directions, and zodiac animals." },
-      { label: "San Ming Tong Hui", source: "Classical Bazi source for branch relations and hidden stems." },
+      { label: "Chinese calendrical tradition (干支历法)", source: "Branches organize months, hours, directions, and zodiac animals." },
+      { label: "《三命通会》San Ming Tong Hui (Ming Dynasty, ~1550 CE)", source: "Classical Bazi source for branch relations and hidden stems." },
     ],
     sections: [
       {
@@ -465,44 +512,66 @@ export const baziPages: BaziContentPage[] = [
         content: (
           <>
             <p>
-              Each branch contains a season, direction, two-hour period, animal symbol, and one or more hidden stems. This is why a Bazi branch can hold energy that is not immediately visible in the top stem, which is why <cite>Chinese calendrical tradition</cite> treats branches as more than mascots.
+              The 12 Earthly Branches (Di Zhi 地支) are Zi (子), Chou (丑), Yin (寅), Mao (卯), Chen (辰), Si (巳), Wu (午), Wei (未), Shen (申), You (酉), Xu (戌), and Hai (亥). Each branch contains a season, direction, two-hour period, animal symbol, and one or more hidden stems. This layered structure is why <cite>Chinese calendrical tradition</cite> treats branches as far more than mascots — they are containers of seasonal energy that hold information invisible at the surface level.
+            </p>
+            <p>
+              The hidden stems inside each branch are the most important feature for Bazi reading. Zi holds only Gui Water. Chou holds Ji Earth, Gui Water, and Xin Metal. Yin holds Jia Wood, Bing Fire, and Wu Earth. Each branch's hidden stems represent the energies stored within that seasonal container, and they can activate or be activated by stems and branches elsewhere in the chart. A chart that appears to lack a certain element at the surface level may hold it in hidden form inside a branch.
+            </p>
+            <p>
+              The branch system has been used in Chinese timekeeping for over 3,000 years. Oracle bone inscriptions from the Shang dynasty already used the 12 branches to mark days and months. The association with zodiac animals developed later, probably during the Han dynasty, as a mnemonic device for a largely non-literate population. The animal names are cultural overlays on a technical calendar system.
             </p>
           </>
         ),
       },
       {
-        heading: "Combinations and clashes show movement",
+        heading: "Branch relationships: combinations, clashes, and more",
         content: (
           <>
             <p>
-              Six combinations, three harmony groups, six clashes, six harms, and punishments describe how branch energy changes. These relationships are used to read movement, tension, timing, and changes in life circumstances.
+              Six combinations (六合 liù hé) pair branches that attract each other: Zi-Chou, Yin-Hai, Mao-Xu, Chen-You, Si-Shen, and Wu-Wei. When two branches in a chart form a combination, their energy can merge or transform, which changes the element balance. Like stem combinations, branch combinations are conditional — they require seasonal support and the absence of a clashing branch to fully transform.
+            </p>
+            <p>
+              Three harmony groups (三合 sān hé) describe triangular affinity: Yin-Wu-Xu form a Fire frame, Si-You-Chou form a Metal frame, Shen-Zi-Chen form a Water frame, and Hai-Mao-Wei form a Wood frame. When all three branches of a harmony group appear in a chart, they can produce a strong elemental frame that dominates the chart's energy. Two of the three branches can form a partial harmony, which is weaker but still significant.
+            </p>
+            <p>
+              Six clashes (六冲 liù chōng) describe opposing branch pairs: Zi-Wu, Chou-Wei, Yin-Shen, Mao-You, Chen-Xu, and Si-Hai. Clashes describe tension, disruption, and movement. In <cite>San Ming Tong Hui</cite>, a clash in the year or month pillar can indicate instability in early life or career; a clash in the day or hour pillar can affect relationships and later-life themes. Clashes are not always negative — they can also break up stagnation and force necessary change.
+            </p>
+            <p>
+              Six harms (六害 liù hài) and punishments (刑 xíng) describe subtler forms of tension. Harms describe indirect damage — one branch undermining another without direct confrontation. Punishments describe self-defeating patterns: the self-punishment of Chen, Wu, and You; the unkind punishment of Yin, Si, and Shen; and the bullying punishment of Chou, Xu, and Wei. These patterns are used to identify recurring difficulties that are not explained by clashes alone.
             </p>
           </>
         ),
         stats: [
           { value: "6", label: "Combination pairs", description: "Branch pairs that can transform energy." },
           { value: "4", label: "Harmony groups", description: "Seasonal trines used in chart analysis." },
+          { value: "6", label: "Clash pairs", description: "Opposing branches that create tension and movement." },
         ],
       },
       {
-        heading: "Branches connect Bazi to daily time",
+        heading: "Branches map to daily time and seasons",
         content: (
           <>
             <p>
-              The 12 branches map to 24 hours in two-hour blocks. The hour pillar therefore adds a precise layer of timing and can shift the reading of personal drives, later-life themes, and projects, a structure noted in <cite>San Ming Tong Hui</cite>.
+              The 12 branches divide the 24-hour day into two-hour periods: Zi governs 11pm–1am, Chou 1–3am, Yin 3–5am, and so on through the cycle. The hour pillar in a Bazi chart is determined by this system, which is why birth time matters for a complete reading. The hour pillar adds a precise layer of timing and can shift the reading of personal drives, later-life themes, and the relationship between the self and its environment.
+            </p>
+            <p>
+              The four seasons are organized into three branches each: Yin, Mao, and Chen govern spring (Wood season); Si, Wu, and Wei govern summer (Fire season); Shen, You, and Xu govern autumn (Metal season); Hai, Zi, and Chou govern winter (Water season). The middle branch of each season — Mao, Wu, You, and Zi — is the strongest expression of that season's element. The first and last branches of each season are transitional, holding mixed energies.
             </p>
           </>
         ),
       },
       {
-        heading: "How branches shape interpretation",
+        heading: "How branches shape the full chart reading",
         content: (
           <>
             <p>
-              Branches matter because they hold season, direction, animals, and hidden stems. They can strengthen, dilute, or redirect what the visible stem appears to do on its own, so <cite>Yuan Hai Zi Ping</cite> always reads them in relation to the Day Master.
+              Branches matter because they hold season, direction, animals, and hidden stems. They can strengthen, dilute, or redirect what the visible stem appears to do on its own. A Jia Wood Day Master sitting on a Zi Water branch is supported by its resource element from below — the branch nourishes the stem. The same Jia Wood sitting on a Shen Metal branch faces its controlling element from below, which creates a different dynamic entirely.
             </p>
             <p>
-              A branch reading becomes much clearer when you compare it with the month branch, the day branch, and the full stem-branch sequence around it.
+              Reading branches requires checking the month branch first, because the month branch determines the season and therefore the strength of all elements in the chart. A branch that looks strong in isolation may be weak in context if the season does not support it. <cite>Yuan Hai Zi Ping</cite> always reads branches in relation to the Day Master and the month branch before drawing conclusions about any individual pillar.
+            </p>
+            <p>
+              A branch reading becomes much clearer when you compare it with the full stem-branch sequence around it, check for combinations and clashes, and identify which hidden stems are likely to activate based on the luck cycle and annual branches. This is why Bazi practitioners spend more time on branches than on stems — the visible layer is only the beginning of the chart's information.
             </p>
           </>
         ),
@@ -537,8 +606,8 @@ const tenGodsPage = buildPage({
     { value: "1", label: "Day Master", description: "The anchor that defines all ten relationships." },
   ],
   citations: [
-    { label: "Yuan Hai Zi Ping", source: "Classical Bazi source for Day Master-centered chart reading." },
-    { label: "San Ming Tong Hui", source: "Ming dynasty synthesis of stems, branches, and Ten God roles." },
+    { label: "《渊海子平》Yuan Hai Zi Ping (Song Dynasty, ~1100 CE)", source: "Classical Bazi source for Day Master-centered chart reading." },
+    { label: "《三命通会》San Ming Tong Hui (Ming Dynasty, ~1550 CE)", source: "Ming dynasty synthesis of stems, branches, and Ten God roles." },
   ],
   sections: [
     {
@@ -647,8 +716,8 @@ const luckPillarsPage = buildPage({
     { value: "5", label: "Starting age", description: "Varies by birth date and gender; typically between 1 and 10." },
   ],
   citations: [
-    { label: "Yuan Hai Zi Ping", source: "Classical Bazi source for Luck Pillar calculation and interpretation." },
-    { label: "San Ming Tong Hui", source: "Ming dynasty synthesis of natal chart and timing cycle interaction." },
+    { label: "《渊海子平》Yuan Hai Zi Ping (Song Dynasty, ~1100 CE)", source: "Classical Bazi source for Luck Pillar calculation and interpretation." },
+    { label: "《三命通会》San Ming Tong Hui (Ming Dynasty, ~1550 CE)", source: "Ming dynasty synthesis of natal chart and timing cycle interaction." },
   ],
   sections: [
     {
@@ -779,8 +848,8 @@ const generatedBriefPages = briefTopics.map(([slug, title, description, statValu
       { value: "4", label: "Pillars", description: "Every topic connects back to year, month, day, and hour." },
     ],
     citations: [
-      { label: "Yuan Hai Zi Ping", source: "Classical Bazi reference for Four Pillars interpretation." },
-      { label: "San Ming Tong Hui", source: "Classical synthesis of stems, branches, and chart methods." },
+      { label: "《渊海子平》Yuan Hai Zi Ping (Song Dynasty, ~1100 CE)", source: "Classical Bazi reference for Four Pillars interpretation." },
+      { label: "《三命通会》San Ming Tong Hui (Ming Dynasty, ~1550 CE)", source: "Classical synthesis of stems, branches, and chart methods." },
     ],
     sections: [
       {

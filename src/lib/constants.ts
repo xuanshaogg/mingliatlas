@@ -9,6 +9,22 @@ export const SITE = {
     "Explore Bazi, Ziwei Doushu, I Ching, Feng Shui, and Chinese Zodiac through clear, modern Chinese metaphysics guides and tools.",
 };
 
+export const AUTHOR = {
+  name: "Mingli Atlas Editorial Team",
+  url: `${siteUrl}/about`,
+  jobTitle: "Chinese Metaphysics Researchers and Writers",
+  description:
+    "A team of researchers and writers specializing in Chinese metaphysics, including Bazi, I Ching, Feng Shui, and Ziwei Doushu.",
+  knowsAbout: [
+    "Bazi (Four Pillars of Destiny)",
+    "I Ching (Book of Changes)",
+    "Feng Shui",
+    "Ziwei Doushu (Purple Star Astrology)",
+    "Chinese Zodiac",
+    "Wu Xing (Five Elements)",
+  ],
+};
+
 export interface NavigationItem {
   label: string;
   href: string;
