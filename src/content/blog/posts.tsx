@@ -1603,7 +1603,7 @@ const highIntentBlogPosts: BlogPost[] = [
               The healthiest reading is reflective. Ask what the hexagram and changing lines suggest about your <em>attitude</em>, not what will happen. The I Ching is most useful as a mirror for decision-making.
             </p>
             <p>
-              Cast a real reading with the <Link href="/tools/i-ching" className={linkClass}>I Ching tool</Link>, or browse the <Link href="/i-ching" className={linkClass}>I Ching hub</Link> for deeper study.
+              Cast a real reading with the <Link href="/tools/i-ching-oracle" className={linkClass}>I Ching oracle</Link>, or browse the <Link href="/i-ching" className={linkClass}>I Ching hub</Link> for deeper study.
             </p>
           </>
         ),
@@ -1614,12 +1614,12 @@ const highIntentBlogPosts: BlogPost[] = [
       { title: "I Ching hub", href: "/i-ching", description: "All hexagrams and core concepts in one place." },
       { title: "I Ching for Beginners", href: "/blog/i-ching-for-beginners", description: "Question framing before line interpretation." },
       { title: "Changing Lines Guide", href: "/blog/i-ching-changing-lines", description: "How to read 6 and 9 lines and the derived hexagram." },
-      { title: "I Ching Tool", href: "/tools/i-ching", description: "Cast a digital reading with one click." },
+      { title: "I Ching Oracle", href: "/tools/i-ching-oracle", description: "Cast a digital reading with one click." },
     ],
     cta: {
       title: "Cast your first reading",
       description: "Try the I Ching tool with a clear question in mind.",
-      href: "/tools/i-ching",
+      href: "/tools/i-ching-oracle",
       label: "Open I Ching tool",
     },
   }),
