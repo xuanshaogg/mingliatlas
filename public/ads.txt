@@ -1,0 +1,6 @@
+# Google AdSense ads.txt
+# This file will be populated after AdSense approval.
+# Format: google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+# Uncomment and replace pub-XXXXXXXXXXXXXXXX with your actual publisher ID once approved.
+
+# google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0

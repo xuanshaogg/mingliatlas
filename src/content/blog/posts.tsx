@@ -1338,6 +1338,291 @@ const highIntentBlogPosts: BlogPost[] = [
       label: "Open compatibility tool",
     },
   }),
+  buildPage({
+    slug: "day-master-bazi-complete-guide",
+    path: "/blog/day-master-bazi-complete-guide",
+    title: "Day Master in Bazi: A Complete Guide to the 10 Heavenly Stems",
+    description: "Understand your Day Master, the central pillar of your Bazi chart, and how the ten Heavenly Stems shape personality, strengths, and life patterns.",
+    category: "Bazi Guide",
+    entityName: "Day Master Bazi Complete Guide",
+    entityType: "BlogPosting",
+    subtitle: "A practical, non-fatalistic walkthrough of the Day Master concept and the ten Heavenly Stems in Bazi.",
+    directAnswer:
+      "The Day Master is the Heavenly Stem of your day pillar in a Bazi chart and represents the self. It is one of ten stems (five elements in yin and yang form) and serves as the reference point for reading the rest of the chart. Knowing your Day Master is the first step to understanding how the elements around you support, drain, or balance your core nature.",
+    breadcrumbs: breadcrumbs("Day Master Complete Guide", "/blog/day-master-bazi-complete-guide"),
+    schema: { headline: "", description: "", url: "", datePublished: "2026-04-20", dateModified: "2026-05-20" },
+    stats: [
+      { value: "10", label: "Heavenly Stems", description: "Five elements expressed as yin or yang form the ten Day Master types." },
+      { value: "4", label: "Pillars", description: "Year, month, day, and hour pillars frame the Day Master's context." },
+      { value: "5", label: "Elements", description: "Wood, Fire, Earth, Metal, and Water shape every Day Master profile." },
+    ],
+    citations: [
+      { label: "Bazi tradition", source: "The Day Master is the Heavenly Stem of the day pillar and represents the self in Four Pillars analysis." },
+      { label: "Heavenly Stem theory", source: "Each element appears as a yang and yin stem, producing the ten Heavenly Stems." },
+    ],
+    sections: [
+      {
+        heading: "What the Day Master is",
+        content: (
+          <>
+            <p>
+              In a <TermLink term="Bazi">Bazi</TermLink> chart, the Day Master is the Heavenly Stem of the day pillar. It is the reference point that the rest of the chart is read against.
+            </p>
+            <p>
+              According to <cite>Bazi tradition</cite>, the Day Master represents the self. Other stems and branches are read in relation to it as supporters, resources, output, wealth, or pressure.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "The ten Heavenly Stems",
+        content: (
+          <>
+            <p>
+              The five elements each appear in yang and yin form: Yang Wood (Jia) and Yin Wood (Yi); Yang Fire (Bing) and Yin Fire (Ding); Yang Earth (Wu) and Yin Earth (Ji); Yang Metal (Geng) and Yin Metal (Xin); Yang Water (Ren) and Yin Water (Gui).
+            </p>
+            <p>
+              Each Day Master has a recognizable temperament pattern. Yang Wood is steady and structural; Yin Wood is adaptive and relational. Yang Fire is expansive; Yin Fire is focused. The yin/yang distinction matters as much as the element itself.
+            </p>
+          </>
+        ),
+        stats: [{ value: "10", label: "Day Master types", description: "Five elements x yin/yang = ten distinct Day Master profiles." }],
+      },
+      {
+        heading: "Strong vs. weak Day Master",
+        content: (
+          <>
+            <p>
+              A Day Master is described as strong when supportive elements (same element + producing element) are abundant, and weak when draining or controlling elements dominate. Neither is good or bad on its own.
+            </p>
+            <p>
+              The strength reading tells you which elements are <em>favorable</em> for balance. A strong Day Master usually benefits from output, wealth, or officer elements; a weak one benefits from resource or peer elements.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "How to use your Day Master",
+        content: (
+          <>
+            <p>
+              Start with the <Link href="/tools/bazi-calculator" className={linkClass}>Bazi calculator</Link> to find your Day Master. Then read the <Link href="/blog/day-master-meaning" className={linkClass}>Day Master meaning overview</Link> for a faster summary, or the <Link href="/bazi" className={linkClass}>Bazi hub</Link> for the full system.
+            </p>
+            <p>
+              The healthiest use is reflective: identify which elements you naturally lean on, and notice which ones you may be neglecting in environment, relationships, or daily routine.
+            </p>
+          </>
+        ),
+      },
+    ],
+    faqs: baseFaqs,
+    relatedLinks: baziLinks,
+    cta: {
+      title: "Find your Day Master",
+      description: "Generate your Bazi chart and read your Day Master in seconds.",
+      href: "/tools/bazi-calculator",
+      label: "Open Bazi calculator",
+    },
+  }),
+  buildPage({
+    slug: "chinese-zodiac-compatibility-chart",
+    path: "/blog/chinese-zodiac-compatibility-chart",
+    title: "Chinese Zodiac Compatibility Chart: All 12 Signs Compared",
+    description: "A complete compatibility chart for all 12 Chinese zodiac signs, with harmony pairs, three-harmony triads, and clash pairs explained.",
+    category: "Zodiac Guide",
+    entityName: "Chinese Zodiac Compatibility Chart",
+    entityType: "BlogPosting",
+    subtitle: "A reference chart for comparing any two of the 12 zodiac signs through branch relationship patterns.",
+    directAnswer:
+      "A Chinese zodiac compatibility chart maps how the 12 animal signs interact through three-harmony triads, six harmony pairs, and six clash pairs. The chart is a quick reference, not a verdict: harmony pairs share rhythm, triads share long-term values, and clashes signal differences in pace that benefit from clearer communication.",
+    breadcrumbs: breadcrumbs("Compatibility Chart", "/blog/chinese-zodiac-compatibility-chart"),
+    schema: { headline: "", description: "", url: "", datePublished: "2026-04-22", dateModified: "2026-05-20" },
+    stats: [
+      { value: "12", label: "Animal signs", description: "Rat, Ox, Tiger, Rabbit, Dragon, Snake, Horse, Goat, Monkey, Rooster, Dog, Pig." },
+      { value: "4", label: "Three-harmony triads", description: "Each triad groups three signs that share a long-term affinity." },
+      { value: "6", label: "Clash pairs", description: "Each animal has one opposing sign across the 12-branch cycle." },
+    ],
+    citations: [
+      { label: "Earthly Branch tradition", source: "Branch combinations, three-harmony groups, and clash pairs structure zodiac relationship patterns." },
+      { label: "Chinese calendar tradition", source: "The 12 animals correspond to the 12 earthly branches in the lunar-solar calendar." },
+    ],
+    sections: [
+      {
+        heading: "How to read the compatibility chart",
+        content: (
+          <>
+            <p>
+              The <TermLink term="Chinese Zodiac">Chinese Zodiac</TermLink> chart compares two animals through three lenses: three-harmony triads (long-term affinity), six harmony pairs (everyday rhythm), and six clash pairs (contrasting pace).
+            </p>
+            <p>
+              According to <cite>Earthly Branch tradition</cite>, these are branch relationship patterns. They describe interaction tendencies, not fixed outcomes.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "The four three-harmony triads",
+        content: (
+          <>
+            <p>
+              The four triads are: Rat-Dragon-Monkey, Ox-Snake-Rooster, Tiger-Horse-Dog, and Rabbit-Goat-Pig. Signs inside the same triad tend to share a long-term sense of values and direction.
+            </p>
+            <p>
+              Triads are useful for friendships, family, and long-running collaborations where stability matters more than instant chemistry.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "The six harmony pairs",
+        content: (
+          <>
+            <p>
+              The six harmony (Liu He) pairs are Rat-Ox, Tiger-Pig, Rabbit-Dog, Dragon-Rooster, Snake-Monkey, and Horse-Goat. These pairs often find an easier daily rhythm and complementary energy.
+            </p>
+            <p>
+              Harmony pairs tend to feel cooperative, but they still need shared values to thrive long term.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "The six clash pairs",
+        content: (
+          <>
+            <p>
+              The six clash pairs are Rat-Horse, Ox-Goat, Tiger-Monkey, Rabbit-Rooster, Dragon-Dog, and Snake-Pig. Each is exactly six positions apart in the 12-branch cycle.
+            </p>
+            <p>
+              A clash signals differences in pace and priority. It often produces growth when both sides communicate openly, and friction when they do not.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "From chart to deeper reading",
+        content: (
+          <>
+            <p>
+              Use the <Link href="/tools/zodiac-compatibility" className={linkClass}>compatibility tool</Link> to compare any two signs, then read the <Link href="/blog/chinese-zodiac-compatibility-guide" className={linkClass}>compatibility guide</Link> for context. For deeper readings, compare full <Link href="/bazi" className={linkClass}>Bazi</Link> charts.
+            </p>
+          </>
+        ),
+      },
+    ],
+    faqs: baseFaqs,
+    relatedLinks: zodiacLinks,
+    cta: {
+      title: "Compare two zodiac signs",
+      description: "Use the compatibility tool, then return to the chart for context.",
+      href: "/tools/zodiac-compatibility",
+      label: "Open compatibility tool",
+    },
+  }),
+  buildPage({
+    slug: "i-ching-beginners-reading-guide",
+    path: "/blog/i-ching-beginners-reading-guide",
+    title: "How to Cast and Read an I Ching Hexagram: A Beginner's Reading Guide",
+    description: "A step-by-step beginner guide to casting an I Ching hexagram, reading the lines, and interpreting changing lines without overcomplicating the practice.",
+    category: "I Ching Guide",
+    entityName: "I Ching Beginners Reading Guide",
+    entityType: "BlogPosting",
+    subtitle: "A practical walkthrough from question framing to hexagram interpretation, written for first-time readers.",
+    directAnswer:
+      "To read an I Ching hexagram, frame a clear question, cast six lines using coins or yarrow stalks, identify the resulting hexagram and any changing lines, and read the hexagram statement together with the line texts. Beginners benefit from focusing on question framing first, since a vague question produces a vague reading.",
+    breadcrumbs: breadcrumbs("I Ching Beginners Reading Guide", "/blog/i-ching-beginners-reading-guide"),
+    schema: { headline: "", description: "", url: "", datePublished: "2026-04-25", dateModified: "2026-05-20" },
+    stats: [
+      { value: "64", label: "Hexagrams", description: "Each hexagram is a unique six-line configuration." },
+      { value: "6", label: "Lines per cast", description: "A reading produces six stacked yin or yang lines." },
+      { value: "3", label: "Coins", description: "The most common modern casting method uses three coins per line." },
+    ],
+    citations: [
+      { label: "I Ching tradition", source: "The Book of Changes uses 64 hexagrams built from six lines and changing-line dynamics." },
+      { label: "Coin method tradition", source: "Three-coin casting is a widely used modern alternative to yarrow stalk divination." },
+    ],
+    sections: [
+      {
+        heading: "Step 1: frame the question",
+        content: (
+          <>
+            <p>
+              The <TermLink term="I Ching">I Ching</TermLink> answers questions in proportion to the clarity of the question. Avoid yes/no framing for situational readings; ask &ldquo;what attitude best serves this situation?&rdquo; or &ldquo;what is the dynamic at play?&rdquo;
+            </p>
+            <p>
+              Beginners often jump to casting too quickly. The question is half the reading.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Step 2: cast six lines",
+        content: (
+          <>
+            <p>
+              The simplest method uses three coins. Assign 3 to heads and 2 to tails, then sum the three coins for each line. A total of 6 is changing yin, 7 is stable yang, 8 is stable yin, and 9 is changing yang. Cast six times, building the hexagram from the bottom up.
+            </p>
+            <p>
+              According to <cite>Coin method tradition</cite>, this method preserves the same probability balance as yarrow stalks for most practical purposes.
+            </p>
+          </>
+        ),
+        stats: [{ value: "6-9", label: "Line totals", description: "6 and 9 are changing lines; 7 and 8 are stable lines." }],
+      },
+      {
+        heading: "Step 3: identify the hexagram",
+        content: (
+          <>
+            <p>
+              Read the hexagram from the bottom line to the top. Look up the resulting figure in the 64-hexagram set to find its name, judgment, and image. This is your primary hexagram.
+            </p>
+            <p>
+              According to <cite>I Ching tradition</cite>, the judgment describes the situation and the image suggests an attitude or response.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Step 4: read changing lines",
+        content: (
+          <>
+            <p>
+              If any lines were 6 or 9, they are changing lines. Read each changing-line text in order from bottom to top, then flip those lines to derive a second hexagram. The second hexagram describes where the situation is moving.
+            </p>
+            <p>
+              Read the <Link href="/blog/i-ching-changing-lines" className={linkClass}>changing lines guide</Link> for a deeper walkthrough.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Step 5: synthesize, don&rsquo;t predict",
+        content: (
+          <>
+            <p>
+              The healthiest reading is reflective. Ask what the hexagram and changing lines suggest about your <em>attitude</em>, not what will happen. The I Ching is most useful as a mirror for decision-making.
+            </p>
+            <p>
+              Cast a real reading with the <Link href="/tools/i-ching" className={linkClass}>I Ching tool</Link>, or browse the <Link href="/i-ching" className={linkClass}>I Ching hub</Link> for deeper study.
+            </p>
+          </>
+        ),
+      },
+    ],
+    faqs: baseFaqs,
+    relatedLinks: [
+      { title: "I Ching hub", href: "/i-ching", description: "All hexagrams and core concepts in one place." },
+      { title: "I Ching for Beginners", href: "/blog/i-ching-for-beginners", description: "Question framing before line interpretation." },
+      { title: "Changing Lines Guide", href: "/blog/i-ching-changing-lines", description: "How to read 6 and 9 lines and the derived hexagram." },
+      { title: "I Ching Tool", href: "/tools/i-ching", description: "Cast a digital reading with one click." },
+    ],
+    cta: {
+      title: "Cast your first reading",
+      description: "Try the I Ching tool with a clear question in mind.",
+      href: "/tools/i-ching",
+      label: "Open I Ching tool",
+    },
+  }),
 ];
 
 const highIntentSlugs = new Set(highIntentBlogPosts.map((post) => post.slug));

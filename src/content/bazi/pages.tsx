@@ -382,7 +382,38 @@ export const baziPages: BaziContentPage[] = [
         ),
       },
     ],
-    faqs: defaultFaqs,
+    faqs: [
+      {
+        question: "What are the Five Elements in Chinese metaphysics?",
+        answer:
+          "The Five Elements (Wu Xing, 五行) are Wood (木), Fire (火), Earth (土), Metal (金), and Water (水). Unlike the Western four-element model, Wu Xing describes five phases of cyclical energy rather than static substances. Each element has associated seasons, organs, directions, emotions, and qualities used across Bazi, Feng Shui, and Traditional Chinese Medicine.",
+      },
+      {
+        question: "What is the difference between the generating and controlling cycles?",
+        answer:
+          "The generating cycle (相生, xiāng shēng) is the nourishing sequence: Wood feeds Fire, Fire produces Earth ash, Earth yields Metal ore, Metal collects Water, Water nourishes Wood. The controlling cycle (相克, xiāng kè) is the restraining sequence: Wood parts Earth, Earth dams Water, Water extinguishes Fire, Fire melts Metal, Metal chops Wood. Both cycles operate simultaneously in every Bazi chart.",
+      },
+      {
+        question: "How do I find my element in Bazi?",
+        answer:
+          "Your primary element in Bazi is determined by your Day Master — the Heavenly Stem of the day pillar in your Four Pillars chart. For example, a Jiǎ (甲) or Yǐ (乙) Day Master is a Wood person. The full chart will also contain other stems and branches that add, drain, or restrain that element, so the Day Master is a starting point, not the complete picture.",
+      },
+      {
+        question: "What do Wood, Fire, Earth, Metal, and Water represent in Bazi?",
+        answer:
+          "Wood represents growth, vision, and expansion — linked to spring and the liver. Fire represents expression, clarity, and warmth — linked to summer and the heart. Earth represents stability, transition, and nurturing — linked to the seasonal change between seasons and the stomach. Metal represents structure, precision, and contraction — linked to autumn and the lungs. Water represents wisdom, adaptability, and depth — linked to winter and the kidneys.",
+      },
+      {
+        question: "How is Wu Xing different from Western four elements?",
+        answer:
+          "The Western model (fire, water, earth, air) describes static substances and temperament archetypes rooted in ancient Greek philosophy. Wu Xing describes dynamic phases of change in a cyclical relationship — each element transforms into the next through the generating cycle. Wu Xing is also embedded in time (each element governs specific hours, days, months, and years) and is used as a practical calculation system rather than a symbolic framework alone.",
+      },
+      {
+        question: "Can I balance my Five Elements through lifestyle choices?",
+        answer:
+          "Classical Bazi does not prescribe specific remedies for element imbalance in the same way modern wellness culture does. The primary tool is awareness: knowing which elements are weak or excessive in your chart helps you interpret the luck cycles and annual influences that supply or drain those elements over time. Some practitioners do suggest colour, direction, or diet associations derived from Five Element theory, but these are supplementary interpretations rather than core classical doctrine.",
+      },
+    ],
     relatedLinks: baziBaseLinks,
     cta: cta("Explore your own elemental pattern"),
   }),
@@ -476,7 +507,32 @@ export const baziPages: BaziContentPage[] = [
         ),
       },
     ],
-    faqs: defaultFaqs,
+    faqs: [
+      {
+        question: "What are the 10 Heavenly Stems in Bazi?",
+        answer: "The 10 Heavenly Stems (天干 Tian Gan) are Jia, Yi, Bing, Ding, Wu, Ji, Geng, Xin, Ren, and Gui. Each stem is the yang or yin expression of one of the Five Elements: Wood, Fire, Earth, Metal, and Water. In a Bazi chart, the stems occupy the top row of the four pillars and represent visible, expressed energy.",
+      },
+      {
+        question: "What is the Day Master in Bazi?",
+        answer: "The Day Master is the Heavenly Stem of the day pillar in your Bazi chart. It represents the self — the reference point from which every other stem and branch is interpreted. All Ten God relationships are calculated relative to the Day Master's element, making it the single most important character in the chart.",
+      },
+      {
+        question: "What is the difference between yang and yin stems?",
+        answer: "Yang stems (Jia, Bing, Wu, Geng, Ren) represent outward, expanding, and direct expressions of their element. Yin stems (Yi, Ding, Ji, Xin, Gui) represent inward, subtle, and adaptive expressions. For example, Jia Wood is like a tall tree — upright and visible — while Yi Wood is like a vine that bends and adapts to its environment.",
+      },
+      {
+        question: "How do Heavenly Stem combinations work?",
+        answer: "Adjacent yang and yin stems of complementary elements can combine and transform into a new element. For example, Jia (Yang Wood) and Ji (Yin Earth) combine to produce Earth energy. These combinations are conditional — they require seasonal support from the month branch to fully transform, and a clashing stem can block the combination.",
+      },
+      {
+        question: "Can two people have the same Day Master but different charts?",
+        answer: "Yes. The Day Master is determined by the day of birth, but the remaining seven characters — the year, month, and hour stems and branches — create an entirely different surrounding context. Two Jia Wood Day Masters born in different months, hours, or years will have different elemental balances, Ten God patterns, and luck cycle timings.",
+      },
+      {
+        question: "Which stem represents me in Bazi?",
+        answer: "Your Day Master stem — the top character of your day pillar — represents you. You can identify it by entering your birth date and time into a Bazi calculator. The stem's element and polarity (yang or yin) describe the core quality of how you express yourself and engage with the world.",
+      },
+    ],
     relatedLinks: [
       baziBaseLinks[0],
       baziBaseLinks[2],
@@ -577,7 +633,38 @@ export const baziPages: BaziContentPage[] = [
         ),
       },
     ],
-    faqs: defaultFaqs,
+    faqs: [
+      {
+        question: "What are the 12 Earthly Branches in Bazi?",
+        answer:
+          "The 12 Earthly Branches (地支 dì zhī) are Zi, Chou, Yin, Mao, Chen, Si, Wu, Wei, Shen, You, Xu, and Hai. Each branch carries an element, a yin-yang polarity, a season, a two-hour time period, and one or more hidden stems inside it. They form the lower row of all four pillars in a Bazi chart.",
+      },
+      {
+        question: "What are hidden stems and why do they matter?",
+        answer:
+          "Hidden stems (藏干 cáng gān) are the Heavenly Stems concealed inside each Earthly Branch. For example, the branch Yin hides Jia Wood (main), Bing Fire, and Wu Earth. These hidden stems carry additional elemental energy that can activate Ten God relationships not visible in the surface layer of the chart, making them critical for accurate chart reading.",
+      },
+      {
+        question: "What is a branch clash (六冲) in Bazi?",
+        answer:
+          "A branch clash (六冲 liù chōng) occurs when two opposing branches appear in the same chart or luck cycle. The six clash pairs are Zi-Wu, Chou-Wei, Yin-Shen, Mao-You, Chen-Xu, and Si-Hai. Clashes indicate tension, disruption, or forced change in the life area governed by the affected pillar. They are not always negative — clashes can break stagnation and trigger necessary transitions.",
+      },
+      {
+        question: "How do branch combinations (六合) differ from clashes?",
+        answer:
+          "Branch combinations (六合 liù hé) pair branches that attract and potentially transform each other: Zi-Chou, Yin-Hai, Mao-Xu, Chen-You, Si-Shen, and Wu-Wei. Unlike clashes, combinations suggest merging or blending energy. When conditions are met — seasonal support and no blocking clash — a combination can transform both branches into a new dominant element, altering the chart's elemental balance.",
+      },
+      {
+        question: "What is the difference between a branch and a zodiac animal?",
+        answer:
+          "Each of the 12 Earthly Branches corresponds to one zodiac animal: Zi is Rat, Chou is Ox, Yin is Tiger, and so on. The animal is the popular name for the branch, but in Bazi analysis the branch is defined by its element, hidden stems, season, and relationships — not by personality traits associated with the zodiac. The animal label is a mnemonic; the elemental analysis is what matters in chart reading.",
+      },
+      {
+        question: "Why does the month branch have the most weight in a Bazi chart?",
+        answer:
+          "The month branch sets the season, which determines whether any given element is in season (strong) or out of season (weak). A Day Master's strength is assessed primarily against the month branch. Classical texts like Yuan Hai Zi Ping (渊海子平) consistently read the month branch first because it provides the environmental context that makes all other branch and stem readings meaningful.",
+      },
+    ],
     relatedLinks: [
       baziBaseLinks[0],
       baziBaseLinks[1],

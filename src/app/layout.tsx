@@ -33,6 +33,7 @@ const playfair = Playfair_Display({
 const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
 const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 const isVercelRuntime = process.env.VERCEL === "1";
+const adsenseId = process.env.NEXT_PUBLIC_ADSENSE_ID;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -117,6 +118,14 @@ export default function RootLayout({
             data-domain={plausibleDomain}
             src="https://plausible.io/js/script.js"
             strategy="afterInteractive"
+          />
+        ) : null}
+        {adsenseId ? (
+          <Script
+            async
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseId}`}
+            strategy="afterInteractive"
+            crossOrigin="anonymous"
           />
         ) : null}
         {gaMeasurementId ? (

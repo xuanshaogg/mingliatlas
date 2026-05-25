@@ -70,7 +70,109 @@ function cta(title = "Find your Chinese zodiac sign") {
   };
 }
 
+const animalFaqs: Partial<Record<string, FAQ[]>> = {
+  dragon: [
+    {
+      question: "What are the personality traits of the Dragon zodiac?",
+      answer:
+        "The Dragon (Chen, 辰) is the 5th sign and the only mythological animal in the cycle. Traditional readings describe Dragons as charismatic, ambitious, visionary, and naturally drawn to leadership. Their Yang Earth polarity gives them stability paired with outward expression — a confident presence, but with a grounded sense of timing.",
+    },
+    {
+      question: "Which signs are most compatible with the Dragon?",
+      answer:
+        "Dragon (Chen) forms the strongest harmony with Rat (Zi) and Monkey (Shen) through the Shen-Zi-Chen Water trine, and a six-combination with Rooster (You). Relationships with Dog (Xu) tend to be challenging due to the Chen-Xu clash, and Rabbit (Mao) creates a six-harm pattern that asks for more conscious communication.",
+    },
+    {
+      question: "What years are Year of the Dragon?",
+      answer:
+        "Recent Dragon years are 1952, 1964, 1976, 1988, 2000, 2012, and 2024. Each Dragon year combines the Chen branch with a different Heavenly Stem, producing variations like Wood Dragon (2024), Water Dragon (2012), and Earth Dragon (1988). Check the Lunar New Year boundary if your birthday falls in late January or early February.",
+    },
+    {
+      question: "Is the Dragon considered the most powerful zodiac sign?",
+      answer:
+        "In cultural symbolism, yes — Dragons are associated with imperial power and considered auspicious in Chinese tradition. In Bazi, however, no animal is intrinsically stronger than another. The Chen branch carries hidden stems Wu (Earth), Yi (Wood), and Gui (Water), so its actual chart strength depends on seasonal context, the Day Master, and the surrounding pillars.",
+    },
+    {
+      question: "Is 2024 a good year to be born a Dragon?",
+      answer:
+        "2024 was the Year of the Wood Dragon (Jia Chen). The Jia Wood stem on a Chen Earth branch creates a controlling cycle (Wood parts Earth), which traditionally suggests an active and ambitious year energy, but a child's chart strength depends on the month, day, and hour pillars — the year alone is not enough to predict outcomes.",
+    },
+    {
+      question: "What career paths suit Dragon zodiac people?",
+      answer:
+        "Dragons traditionally thrive in roles that combine vision and leadership: entrepreneurship, executive positions, creative direction, and high-stakes decision-making. The Chen branch's Earth element supports stable, structural work, while the hidden Yi Wood adds creative growth and hidden Gui Water adds strategic depth. Pair this with the full Bazi chart for accurate career guidance.",
+    },
+  ],
+  rat: [
+    {
+      question: "What are the personality traits of the Rat zodiac?",
+      answer:
+        "The Rat (Zi, 子) is the 1st sign in the cycle. Traditional readings describe Rats as quick-minded, adaptable, resourceful, and naturally observant. Their Yang Water polarity gives them flowing intelligence and the ability to navigate complex social and professional environments with ease.",
+    },
+    {
+      question: "Which signs are most compatible with the Rat?",
+      answer:
+        "Rat (Zi) forms the strongest harmony with Dragon (Chen) and Monkey (Shen) through the Shen-Zi-Chen Water trine, and a six-combination with Ox (Chou). Relationships with Horse (Wu) tend to be challenging due to the Zi-Wu clash, and Goat (Wei) creates a six-harm pattern.",
+    },
+    {
+      question: "What years are Year of the Rat?",
+      answer:
+        "Recent Rat years are 1948, 1960, 1972, 1984, 1996, 2008, and 2020. Each Rat year combines the Zi branch with a different Heavenly Stem, producing variations like Metal Rat (2020), Water Rat (1972), and Earth Rat (1948).",
+    },
+    {
+      question: "Why is the Rat first in the Chinese zodiac?",
+      answer:
+        "The popular legend says the Rat won the Jade Emperor's race by riding on the Ox's back and jumping ahead at the finish line. The structural reason is that Zi is the first Earthly Branch, governing midnight (11pm-1am) — the start of the daily cycle and the deepest Yin point from which Yang energy begins to grow.",
+    },
+    {
+      question: "Is the Rat considered lucky in Chinese culture?",
+      answer:
+        "Yes. Rats are associated with prosperity, abundance, and shrewd intelligence. Because Zi is the first branch and represents the moment when new Yang energy starts to emerge, the Rat carries connotations of fresh beginnings and seizing opportunity early.",
+    },
+    {
+      question: "What career paths suit Rat zodiac people?",
+      answer:
+        "Rats traditionally thrive in roles requiring quick adaptation, communication, and strategic thinking: research, finance, journalism, sales, and information-driven fields. The Zi branch's Yang Water energy supports flow and adaptability, but as always, a full Bazi chart provides more accurate career guidance than the year animal alone.",
+    },
+  ],
+  tiger: [
+    {
+      question: "What are the personality traits of the Tiger zodiac?",
+      answer:
+        "The Tiger (Yin, 寅) is the 3rd sign in the cycle. Traditional readings describe Tigers as bold, protective, independent, and natural leaders. Their Yang Wood polarity gives them upward, expansive energy and a willingness to take initiative when others hesitate.",
+    },
+    {
+      question: "Which signs are most compatible with the Tiger?",
+      answer:
+        "Tiger (Yin) forms the strongest harmony with Horse (Wu) and Dog (Xu) through the Yin-Wu-Xu Fire trine, and a six-combination with Pig (Hai). Relationships with Monkey (Shen) tend to be challenging due to the Yin-Shen clash, and Snake (Si) creates a punishment pattern that asks for more conscious boundary-setting.",
+    },
+    {
+      question: "What years are Year of the Tiger?",
+      answer:
+        "Recent Tiger years are 1950, 1962, 1974, 1986, 1998, 2010, and 2022. Each Tiger year combines the Yin branch with a different Heavenly Stem, producing variations like Water Tiger (2022), Wood Tiger (1974), and Fire Tiger (1986).",
+    },
+    {
+      question: "Why is the Tiger associated with courage in Chinese culture?",
+      answer:
+        "Yin Wood symbolizes the strong, upward growth of spring — the season Tiger governs. The branch represents February in the solar Bazi calendar, when life force returns to the world after winter. This seasonal symbolism, combined with the tiger's status as a predator at the top of the food chain, made the sign synonymous with bravery and protective strength.",
+    },
+    {
+      question: "Is the Tiger a good zodiac sign for leadership?",
+      answer:
+        "Yes — Tigers are traditionally associated with leadership, especially in roles that require courage, vision, and willingness to act before consensus is reached. The Yin branch hides Jia Wood, Bing Fire, and Wu Earth, giving the Tiger a combination of growth force, expressive energy, and stable grounding when the chart structure supports it.",
+    },
+    {
+      question: "What career paths suit Tiger zodiac people?",
+      answer:
+        "Tigers traditionally thrive in roles requiring initiative and visible action: entrepreneurship, military or law enforcement, advocacy, sports, and any field where independent decision-making is rewarded. The Yang Wood energy supports growth-oriented and pioneering work — but as always, the full Bazi chart provides clearer career direction than the year animal alone.",
+    },
+  ],
+};
+
 function faqs(animal?: ZodiacAnimal): FAQ[] {
+  if (animal && animalFaqs[animal.slug]) {
+    return animalFaqs[animal.slug] as FAQ[];
+  }
   if (!animal) {
     return [
       {
