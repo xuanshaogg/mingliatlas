@@ -14,7 +14,8 @@
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
     "audit:links": "node scripts/audit-links.mjs",
-    "audit:local": "node scripts/audit-local-site.mjs"
+    "audit:local": "node scripts/audit-local-site.mjs",
+    "audit:current-content": "node scripts/audit-current-content.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

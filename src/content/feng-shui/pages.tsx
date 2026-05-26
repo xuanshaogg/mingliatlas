@@ -236,7 +236,7 @@ function createTopicPage(topic: FengShuiTopic): FengShuiContentPage {
     entityName: topic.label,
     entityType: "DefinedTerm",
     subtitle: `${topic.group} guide for practical Feng Shui study.`,
-    directAnswer: `${topic.label} is a ${topic.group.toLowerCase()} topic in Feng Shui. ${topic.description} It should be applied through observation, proportion, function, and context rather than fear-based rules.`,
+    directAnswer: `${topic.label} is a ${topic.group.toLowerCase()} topic in Feng Shui. ${topic.description} Read it first through visible conditions: entrance quality, movement paths, light, proportion, support, and how people use the space each day. Directional formulas, Bagua areas, and Five Element adjustments work best after the physical room already supports calm function.`,
     breadcrumbs: breadcrumbs(topic.label, path),
     schema: { headline: "", description: "", url: "", datePublished: topic.datePublished, dateModified: topic.dateModified },
     stats: [
@@ -252,26 +252,67 @@ function createTopicPage(topic: FengShuiTopic): FengShuiContentPage {
       {
         heading: `What ${topic.label} means`,
         content: (
-          <p>
-            {topic.description} The first step is to observe how people actually move, rest, work, and gather in the space.
-          </p>
+          <>
+            <p>
+              {topic.description} In practical Feng Shui, the meaning is not a fixed rule pulled from a chart. It is a way to read whether the space supports the activity it is meant to hold.
+            </p>
+            <p>
+              A good reading starts with the same questions every time: where qi enters, where it slows down, where people feel supported, and where the layout creates friction. This keeps the interpretation tied to observable space instead of superstition.
+            </p>
+          </>
         ),
       },
       {
-        heading: "How to apply it responsibly",
+        heading: "What to observe first",
         content: (
-          <p>
-            Start with clear pathways, supportive positions, appropriate light, and practical function. Then add Bagua, Five Elements, and directional methods where they genuinely help.
-          </p>
+          <>
+            <p>
+              Begin with the entrance and the main path through the room. A blocked door, awkward walking line, exposed resting position, or harsh light usually matters more than a symbolic cure.
+            </p>
+            <p>
+              Then check support and proportion. Seats, beds, desks, and gathering areas should feel stable, visible, and easy to use. Materials, color, plants, mirrors, and water features should reinforce the room purpose rather than compete with it.
+            </p>
+          </>
         ),
         stats: [{ value: "3", label: "First checks", description: "Flow, support, and function before advanced formulas." }],
       },
       {
+        heading: "How to apply it responsibly",
+        content: (
+          <>
+            <p>
+              Apply Feng Shui in layers. First improve clear pathways, supportive positions, appropriate light, air, cleanliness, and practical function. Then use Bagua, Five Elements, Luo Pan direction, or Flying Stars only where they add useful detail.
+            </p>
+            <p>
+              Form School observation and Compass School measurement should support each other. If a formula suggests a change that makes the space harder to use, treat that as a signal to review the context rather than force the rule.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Common mistakes",
+        content: (
+          <>
+            <p>
+              One common mistake is treating {topic.label} as a universal prescription. The same arrangement can feel supportive in one home and awkward in another because door position, light, furniture scale, and daily habits are different.
+            </p>
+            <p>
+              Another mistake is using Feng Shui language to create anxiety. A responsible interpretation describes tradeoffs and practical improvements. It should not turn a room, object, or direction into a threat.
+            </p>
+          </>
+        ),
+      },
+      {
         heading: "Where to go next",
         content: (
-          <p>
-            Continue with the Feng Shui hub, then compare shared vocabulary with <Link href="/bazi/five-elements" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Five Elements</Link> and the I Ching trigrams.
-          </p>
+          <>
+            <p>
+              Continue with the <Link href="/feng-shui" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Feng Shui hub</Link> for the full reading order, then study <Link href="/feng-shui/qi-flow" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">qi flow</Link>, <Link href="/feng-shui/bagua-map" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Bagua map</Link>, and <Link href="/bazi/five-elements" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Five Elements</Link>.
+            </p>
+            <p>
+              For comparison across systems, use the <Link href="/learn/which-system" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">which system guide</Link> to see when Feng Shui, Bazi, I Ching, or Ziwei is the better lens for a question.
+            </p>
+          </>
         ),
       },
     ],

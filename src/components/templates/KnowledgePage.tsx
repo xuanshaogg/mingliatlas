@@ -128,6 +128,11 @@ export default function KnowledgePage({
       datePublished: schema.datePublished,
       dateModified: schema.dateModified,
       image: schema.image ?? ogImage,
+      citations,
+      mentions: relatedLinks.map((link) => ({
+        name: link.title,
+        url: link.href,
+      })),
     });
 
   return (

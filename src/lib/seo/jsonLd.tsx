@@ -24,6 +24,15 @@ interface ArticleSchemaInput {
   datePublished?: string;
   dateModified?: string;
   image?: string;
+  citations?: Array<{
+    label: string;
+    source: string;
+    url?: string;
+  }>;
+  mentions?: Array<{
+    name: string;
+    url?: string;
+  }>;
 }
 
 interface WebApplicationSchemaInput {
@@ -65,7 +74,15 @@ export function buildArticleDefinedTermSchema({
   datePublished,
   dateModified,
   image,
+  citations,
+  mentions,
 }: ArticleSchemaInput): JsonLdNode {
+  const entityNode = {
+    "@type": entityType,
+    name: entityName,
+    description,
+  };
+
   return {
     "@context": "https://schema.org",
     "@type": ["Article", entityType],
@@ -76,6 +93,31 @@ export function buildArticleDefinedTermSchema({
     ...(image ? { image: image.startsWith("http") ? image : `${SITE.url}${image}` } : {}),
     ...(datePublished ? { datePublished } : {}),
     ...(dateModified ? { dateModified } : {}),
+    isPartOf: {
+      "@type": "WebSite",
+      name: SITE.name,
+      url: SITE.url,
+    },
+    about: entityNode,
+    ...(citations?.length
+      ? {
+          citation: citations.map((citation) => ({
+            "@type": citation.url ? "CreativeWork" : "Book",
+            name: citation.label,
+            description: citation.source,
+            ...(citation.url ? { url: citation.url } : {}),
+          })),
+        }
+      : {}),
+    ...(mentions?.length
+      ? {
+          mentions: mentions.map((mention) => ({
+            "@type": "DefinedTerm",
+            name: mention.name,
+            ...(mention.url ? { url: mention.url.startsWith("http") ? mention.url : `${SITE.url}${mention.url}` } : {}),
+          })),
+        }
+      : {}),
     author: {
       "@type": "Person",
       name: AUTHOR.name,
@@ -96,11 +138,7 @@ export function buildArticleDefinedTermSchema({
         url: `${SITE.url}/logo-icon.svg`,
       },
     },
-    mainEntity: {
-      "@type": entityType,
-      name: entityName,
-      description,
-    },
+    mainEntity: entityNode,
   };
 }
 

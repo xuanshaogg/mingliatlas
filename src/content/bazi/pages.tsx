@@ -144,6 +144,7 @@ export const baziPages: BaziContentPage[] = [
     citations: [
       { label: "《渊海子平》Yuan Hai Zi Ping (Song Dynasty, ~1100 CE)", source: "Classical source associated with Zi Ping Bazi methods." },
       { label: "《三命通会》San Ming Tong Hui (Ming Dynasty, ~1550 CE)", source: "Ming dynasty synthesis of stems, branches, and chart rules." },
+      { label: "Joey Yap, Bazi: The Destiny Code (2007)", source: "Modern English-language reference that introduces Four Pillars logic to contemporary readers." },
     ],
     sections: [
       {
@@ -155,6 +156,9 @@ export const baziPages: BaziContentPage[] = [
             </p>
             <p>
               The system is over 1,200 years old in its mature form. It developed from Tang dynasty birth-year methods and became more detailed when later scholars emphasized the Day Master as the center of the chart.
+            </p>
+            <p>
+              The most important point for beginners is that Bazi is not the same as the Chinese zodiac. The zodiac year animal is only one branch in the year pillar. A full reading also checks the month pillar, day pillar, hour pillar, hidden stems, element balance, and 10-year Luck Pillars before drawing a practical conclusion.
             </p>
           </>
         ),
@@ -169,12 +173,33 @@ export const baziPages: BaziContentPage[] = [
             <p>
               The Day Master, taken from the day stem, anchors the reading. In <cite>San Ming Tong Hui</cite>, other chart elements become resources, expression, wealth, authority, or peers depending on how they relate to that Day Master. These ten relationships are called the <Link href="/bazi/ten-gods" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Ten Gods</Link>.
             </p>
+            <p>
+              Each layer answers a different question. Stems show what is visible, branches show seasonal context, hidden stems show what is stored below the surface, and Ten Gods explain relationship roles around the Day Master. When the layers agree, the theme is strong. When they conflict, the chart needs more careful reading.
+            </p>
           </>
         ),
         stats: [
           { value: "10", label: "Stems", description: "Visible yin-yang elemental qualities." },
           { value: "12", label: "Branches", description: "Seasonal containers with hidden stems." },
           { value: "5", label: "Elements", description: "Wood, Fire, Earth, Metal, and Water." },
+        ],
+      },
+      {
+        heading: "A practical reading order",
+        content: (
+          <>
+            <p>
+              A reliable beginner reading follows a fixed order: first identify the Day Master, then check the month branch for season, then compare element balance, then read the Ten Gods, and only after that add the 10-year Luck Pillars. This order keeps the chart grounded. Starting with a dramatic clash or a favorite element often leads to a shallow interpretation.
+            </p>
+            <p>
+              The free <Link href="/tools/bazi-calculator" className={linkClass}>Bazi calculator</Link> follows the same logic by separating calculation from interpretation. It shows the four pillars, Day Master, Ten Gods, hidden stems, lunar date, and Five Element balance in one view so readers can verify each statement against a visible chart feature.
+            </p>
+          </>
+        ),
+        stats: [
+          { value: "5", label: "Reading steps", description: "Day Master, season, elements, Ten Gods, timing." },
+          { value: "10", label: "Luck years per pillar", description: "Da Yun cycles usually span 10 years." },
+          { value: "24", label: "Solar terms", description: "Month boundaries follow the solar calendar." },
         ],
       },
       {
@@ -190,6 +215,9 @@ export const baziPages: BaziContentPage[] = [
             <p>
               A third mistake is expecting certainty. Bazi describes patterns and timing tendencies. It does not predict specific events with certainty, and responsible practitioners do not claim otherwise.
             </p>
+            <p>
+              A fourth mistake is treating a useful element as a simple lifestyle prescription. If Water is useful in a chart, that does not automatically mean a person should wear blue or move north. Classical analysis first asks why Water is useful: does it support the Day Master, cool excessive Fire, release Metal pressure, or complete a combination? The reason matters more than the label.
+            </p>
           </>
         ),
       },
@@ -200,12 +228,20 @@ export const baziPages: BaziContentPage[] = [
             <p>
               A careful Bazi reading compares the natal chart, <Link href="/bazi/luck-pillars" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">10-year Luck Pillars</Link>, annual influences, and lived context before drawing conclusions. The strongest readings translate pattern into choices: which environments support growth, when pressure is likely to peak, and where a person can respond with steadier timing.
             </p>
+            <p>
+              Responsible use also keeps domain boundaries clear. Bazi can help a reader reflect on temperament, work style, relationship dynamics, and timing pressure. It should not replace medical, legal, financial, or mental health advice. When a question carries real-world risk, the chart can be a reflection tool, but the decision still belongs to practical judgment and qualified professionals.
+            </p>
           </>
         ),
       },
     ],
     faqs: defaultFaqs,
-    relatedLinks: baziBaseLinks,
+    relatedLinks: [
+      ...baziBaseLinks,
+      { title: "Ten Gods", href: "/bazi/ten-gods", description: "Read relationship roles around the Day Master." },
+      { title: "Luck Pillars", href: "/bazi/luck-pillars", description: "Understand how 10-year cycles change the chart environment." },
+      { title: "Free Bazi Calculator", href: "/tools/bazi-calculator", description: "Generate a chart and follow the reading order." },
+    ],
     cta: cta(),
   }),
   buildPage({
@@ -229,6 +265,7 @@ export const baziPages: BaziContentPage[] = [
     citations: [
       { label: "Xu Ziping (徐子平, Song Dynasty)", source: "Song dynasty figure associated with Day Master-centered Bazi." },
       { label: "《渊海子平》Yuan Hai Zi Ping (Song Dynasty, ~1100 CE)", source: "Classical text that shaped later Four Pillars methods." },
+      { label: "《三命通会》San Ming Tong Hui (Ming Dynasty, ~1550 CE)", source: "Comprehensive classical synthesis of stem-branch interactions, Ten Gods, and chart structure." },
     ],
     sections: [
       {
@@ -241,6 +278,9 @@ export const baziPages: BaziContentPage[] = [
             <p>
               A full chart uses 4 pillars and 8 characters. These characters come from the same 60-pair cycle used in traditional Chinese calendars, making Bazi a time-pattern system rather than a single-sign identity label.
             </p>
+            <p>
+              The word Bazi literally means "eight characters" because the chart has four stems and four branches. Those eight characters are not read as isolated personality symbols. They are read as a structured calendar snapshot: the climate of the birth moment, the visible stems, the hidden branch contents, and the relationship each part has to the Day Master.
+            </p>
           </>
         ),
       },
@@ -251,6 +291,9 @@ export const baziPages: BaziContentPage[] = [
             <p>
               The year pillar describes broad background and early environment. The month pillar shows season, family conditioning, and career context. The day pillar reveals the Day Master and relationship palace. The hour pillar adds later-life themes, children, projects, and inner drives, a layered method summarized in <cite>San Ming Tong Hui</cite>.
             </p>
+            <p>
+              The month pillar usually carries the most weight because it sets the season. A Fire Day Master born in summer starts from a very different environment than the same Fire Day Master born in winter. The day stem identifies the self, but the month branch tells you whether that self is supported, pressured, drained, or out of season.
+            </p>
           </>
         ),
         stats: [
@@ -259,11 +302,35 @@ export const baziPages: BaziContentPage[] = [
         ],
       },
       {
+        heading: "How Bazi turns a birth time into a chart",
+        content: (
+          <>
+            <p>
+              Bazi calculation begins by converting the birth moment into the Chinese solar calendar. Month pillars follow the 24 solar terms, not the lunar new year. This is why a person born in early February may still belong to the previous solar month for Bazi even if popular zodiac calendars say the new animal year has started.
+            </p>
+            <p>
+              Once the year, month, day, and hour pillars are calculated, the reader identifies the Day Master from the day stem. Then every other visible stem and hidden stem is translated into a Ten God relationship: resource, peer, output, wealth, or authority. This translation is what turns a calendar table into a personal chart.
+            </p>
+            <p>
+              Timing enters through Luck Pillars (Da Yun), which usually shift in 10-year blocks, and annual pillars, which change every year. The natal chart describes the starting structure; Luck Pillars describe the changing environment around that structure. A chart theme may remain quiet for years and then become active when the arriving pillar triggers it.
+            </p>
+          </>
+        ),
+        stats: [
+          { value: "24", label: "Solar terms", description: "Bazi month boundaries use solar terms." },
+          { value: "10", label: "Ten Gods", description: "Relationship roles are calculated from the Day Master." },
+          { value: "10", label: "Years per Luck Pillar", description: "Da Yun cycles form the main timing layer." },
+        ],
+      },
+      {
         heading: "Bazi works with other Chinese systems",
         content: (
           <>
             <p>
               Bazi often sits beside Ziwei Doushu, I Ching, Feng Shui, and date selection. Each system asks a different question. Bazi focuses on personal timing and structure, while Feng Shui reads spatial influence and I Ching gives decision context through 64 hexagrams.
+            </p>
+            <p>
+              Compared with <Link href="/ziwei" className={linkClass}>Ziwei Doushu</Link>, Bazi is more compact and element-driven. Ziwei uses a 12-palace chart with stars and transformations. Compared with the <Link href="/chinese-zodiac" className={linkClass}>Chinese Zodiac</Link>, Bazi is much more detailed because the year animal is only one branch out of the full four-pillar chart.
             </p>
           </>
         ),
@@ -275,12 +342,20 @@ export const baziPages: BaziContentPage[] = [
             <p>
               Bazi can clarify recurring tendencies, useful elements, relationship patterns, and timing pressure. It should not replace practical judgment, medical advice, or professional planning. The best use is reflective: compare the chart with real experience, then choose better habits, roles, and seasons for action.
             </p>
+            <p>
+              It can also help separate structure from story. A chart may show strong Output stars, but that does not automatically mean someone should become an artist; it means expression, production, teaching, or problem-solving may be important channels. A chart may show strong Authority stars, but that does not guarantee status; it points to pressure, standards, responsibility, or rule systems that need careful handling.
+            </p>
           </>
         ),
       },
     ],
     faqs: defaultFaqs,
-    relatedLinks: baziBaseLinks,
+    relatedLinks: [
+      ...baziBaseLinks,
+      { title: "Ten Gods", href: "/bazi/ten-gods", description: "Understand how other elements become roles around the Day Master." },
+      { title: "Luck Pillars", href: "/bazi/luck-pillars", description: "Learn the 10-year timing layer used after the natal chart." },
+      { title: "Free Bazi Calculator", href: "/tools/bazi-calculator", description: "Generate the four pillars and Day Master before reading." },
+    ],
     cta: cta(),
   }),
   buildPage({
@@ -926,7 +1001,9 @@ const generatedBriefPages = briefTopics.map(([slug, title, description, statValu
     entityName: label,
     entityType: slug === "glossary" ? "DefinedTermSet" : "DefinedTerm",
     subtitle: "A focused Bazi guide built with answer-first structure and structured data.",
-    directAnswer: `${label} in Bazi is a focused topic that only makes sense inside the full Four Pillars chart. It explains how a specific symbol, cycle, or relationship changes the Day Master reading, then points you back to season, element balance, and timing before any conclusion.`,
+    directAnswer: slug === "free-calculator"
+      ? "A Bazi calculator converts a birth date and local birth time into the Four Pillars: year, month, day, and hour. A useful calculator should show the Day Master, Ten Gods, hidden stems, Five Element balance, and timing context while keeping interpretation educational rather than deterministic."
+      : `${label} in Bazi is a focused topic that only makes sense inside the full Four Pillars chart. It explains how a specific symbol, cycle, or relationship changes the Day Master reading, then points you back to season, element balance, and timing before any conclusion.`,
     breadcrumbs: baziBreadcrumbs(label, path),
     schema: { headline: "", description: "", url: "" },
     stats: [
@@ -943,12 +1020,25 @@ const generatedBriefPages = briefTopics.map(([slug, title, description, statValu
         heading: `What ${label} means in Bazi`,
         content: (
           <>
-            <p>
-              {description} According to <cite>Yuan Hai Zi Ping</cite>, the value of a symbol comes from its position in a full chart, not from a stand-alone label.
-            </p>
-            <p>
-              Use the term as a map marker: it tells you where to look next, not where to stop.
-            </p>
+            {slug === "free-calculator" ? (
+              <>
+                <p>
+                  A Bazi calculator is a chart-construction tool, not an automatic destiny verdict. It turns a birth date and local civil birth time into 4 pillars and 8 characters, then displays the Day Master, Ten Gods, hidden stems, and Five Element balance. According to <cite>Yuan Hai Zi Ping</cite>, those chart parts only become meaningful when read against the Day Master and the birth season.
+                </p>
+                <p>
+                  The calculator is useful because it removes the most error-prone first step: converting ordinary calendar data into the stem-branch system. Once the chart is visible, the reader can slow down and ask better questions: which element anchors the self, which branch sets the season, which Ten Gods are visible, and what support or pressure appears around the chart.
+                </p>
+              </>
+            ) : (
+              <>
+                <p>
+                  {description} According to <cite>Yuan Hai Zi Ping</cite>, the value of a symbol comes from its position in a full chart, not from a stand-alone label.
+                </p>
+                <p>
+                  Use the term as a map marker: it tells you where to look next, not where to stop.
+                </p>
+              </>
+            )}
           </>
         ),
       },
@@ -956,26 +1046,74 @@ const generatedBriefPages = briefTopics.map(([slug, title, description, statValu
         heading: "How to read it in the chart",
         content: (
           <>
-            <p>
-              Read the Day Master first, then check season, element balance, and the pillar that carries the topic. In <cite>San Ming Tong Hui</cite>, relationships between parts carry more weight than isolated symbols.
-            </p>
-            <p>
-              If the topic is timing-related, compare it with the natal chart and any relevant Luck Pillars before deciding what it means in practice.
-            </p>
+            {slug === "free-calculator" ? (
+              <>
+                <p>
+                  Start with the Day Master, then read the month branch for season. After that, compare visible stems, hidden stems, and Five Element balance. In <cite>San Ming Tong Hui</cite>, relationships between parts carry more weight than isolated symbols, so a calculator result should be read as a connected structure.
+                </p>
+                <p>
+                  Next, check the Ten Gods around the Day Master. A Wealth star, Resource star, or Authority star does not mean the same thing for every chart; it changes according to Day Master strength, season, and timing. Finally, compare the natal chart with Luck Pillars and annual influences before treating a theme as active.
+                </p>
+              </>
+            ) : (
+              <>
+                <p>
+                  Read the Day Master first, then check season, element balance, and the pillar that carries the topic. In <cite>San Ming Tong Hui</cite>, relationships between parts carry more weight than isolated symbols.
+                </p>
+                <p>
+                  If the topic is timing-related, compare it with the natal chart and any relevant Luck Pillars before deciding what it means in practice.
+                </p>
+              </>
+            )}
           </>
         ),
         stats: [{ value: "3", label: "Context layers", description: "Day Master, season, and timing should stay together." }],
       },
+      ...(slug === "free-calculator"
+        ? [
+            {
+              heading: "What the calculator should show",
+              content: (
+                <>
+                  <p>
+                    A strong Four Pillars calculator should show the year, month, day, and hour pillars in both Heavenly Stem and Earthly Branch form. It should also show hidden stems inside each branch, because many important chart relationships are not visible in the top row. The Day Master should be clearly marked, since it is the reference point for the entire chart.
+                  </p>
+                  <p>
+                    The tool should also show the Ten Gods for visible and hidden stems. This makes the chart easier to read because it translates raw elements into relationship roles: Resource, Peer, Output, Wealth, and Authority. Element balance is useful as a first overview, but it should not be treated as the whole reading.
+                  </p>
+                </>
+              ),
+              stats: [
+                { value: "8", label: "Visible characters", description: "Four stems plus four branches." },
+                { value: "10", label: "Ten Gods", description: "Relationship roles around the Day Master." },
+                { value: "5", label: "Elements", description: "Wood, Fire, Earth, Metal, and Water." },
+              ],
+            },
+          ]
+        : []),
       {
         heading: "Common beginner mistakes",
         content: (
           <>
-            <p>
-              Do not flatten a symbol into a personality label or a promise. A chart topic becomes useful only when it stays connected to the surrounding stems, branches, and calendar context.
-            </p>
-            <p>
-              When the meaning is unclear, return to <cite>Chinese calendar tradition</cite> and reread the same topic inside the full time structure.
-            </p>
+            {slug === "free-calculator" ? (
+              <>
+                <p>
+                  The first mistake is reading the year animal as the whole result. The calculator may show Dragon, Tiger, or Rat in the year branch, but that is only one of four branches. The Day Master and month branch usually matter more for a serious Bazi reading.
+                </p>
+                <p>
+                  The second mistake is treating element percentages as a quick personality test. Element balance is useful, but it must be checked against season, Day Master strength, combinations, and timing. The third mistake is expecting a calculator to replace interpretation. A calculator builds the chart; a careful reader still has to connect the parts.
+                </p>
+              </>
+            ) : (
+              <>
+                <p>
+                  Do not flatten a symbol into a personality label or a promise. A chart topic becomes useful only when it stays connected to the surrounding stems, branches, and calendar context.
+                </p>
+                <p>
+                  When the meaning is unclear, return to <cite>Chinese calendar tradition</cite> and reread the same topic inside the full time structure.
+                </p>
+              </>
+            )}
           </>
         ),
       },

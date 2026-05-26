@@ -254,7 +254,7 @@ function createTopicPage(topic: TopicInput): ZiweiContentPage {
     entityName: topic.label,
     entityType: "DefinedTerm",
     subtitle: `${topic.group} guide for Purple Star Astrology students.`,
-    directAnswer: `${topic.label} is a ${topic.group.toLowerCase()} concept in Ziwei Doushu. ${topic.description} It should be read with palace position, major stars, transformations, and timing context rather than as a single isolated label.`,
+    directAnswer: `${topic.label} is a ${topic.group.toLowerCase()} concept in Ziwei Doushu. ${topic.description} Read it through the full chart structure: palace position, major stars, minor stars, Four Transformations, decade cycles, and birth-hour confidence. A single palace or star can describe a theme, but it should not become a fixed verdict about a person.`,
     breadcrumbs: breadcrumbs(topic.label, path),
     schema: { headline: "", description: "", url: "", datePublished: topic.datePublished, dateModified: topic.dateModified },
     stats: [
@@ -272,29 +272,65 @@ function createTopicPage(topic: TopicInput): ZiweiContentPage {
         content: (
           <>
             <p>
-              {topic.description} In Ziwei, meaning comes from the relationship between star, palace, transformation, and timing cycle.
+              {topic.description} In Ziwei, meaning comes from the relationship between star, palace, transformation, and timing cycle rather than from one keyword alone.
             </p>
             <p>
-              Use this page as a concise reference point, then follow the related links for broader chart context and examples.
+              Use this page as a reference point for vocabulary and reading order. A complete interpretation still needs the full chart, the exact birth hour, and the school-specific rules used to calculate the chart.
             </p>
           </>
         ),
       },
       {
-        heading: "How to apply it responsibly",
+        heading: "How it functions in the chart",
         content: (
-          <p>
-            Read this topic with the Life Palace, the relevant life-area palace, the 14 major stars, and Four Transformations. Avoid turning one star or palace into a fixed verdict about a person.
-          </p>
+          <>
+            <p>
+              First identify whether the topic is describing a palace, a star, a transformation, or a comparison method. Palaces show life areas, major stars show style and emphasis, minor stars add detail, and Four Transformations show activation, support, pressure, or complication.
+            </p>
+            <p>
+              Then locate the topic in relation to the Life Palace, Body Palace, and relevant life-area palace. The same star can read differently in career, spouse, wealth, or health contexts, especially when decade cycles activate a different palace.
+            </p>
+          </>
         ),
         stats: [{ value: "4+", label: "Context layers", description: "Palace, star, transformation, and timing should be read together." }],
       },
       {
+        heading: "What to compare before judging",
+        content: (
+          <>
+            <p>
+              Compare the main palace with its opposite palace, the three-harmony structure, and the active decade cycle before drawing conclusions. This helps separate a central chart theme from a temporary timing emphasis.
+            </p>
+            <p>
+              Also compare Ziwei findings with <Link href="/bazi" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Bazi</Link> when the question depends on element balance, seasonal strength, or stem-branch timing. The systems can support each other, but they should not be collapsed into one method.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Common mistakes",
+        content: (
+          <>
+            <p>
+              The biggest mistake is reading {topic.label} as a fixed personality label. Ziwei keywords are starting points, not final judgments. Palace context, companion stars, transformations, and timing can all change how the theme shows up.
+            </p>
+            <p>
+              A second mistake is ignoring birth-hour uncertainty. Ziwei is sensitive to birth hour, so an uncertain time should be treated as a hypothesis. A careful reading names that limitation instead of pretending the chart is exact.
+            </p>
+          </>
+        ),
+      },
+      {
         heading: "Where to go next",
         content: (
-          <p>
-            Continue through the Ziwei hub, then compare the chart logic with <Link href="/bazi" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Bazi</Link> and the learning center.
-          </p>
+          <>
+            <p>
+              Continue through the <Link href="/ziwei" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Ziwei hub</Link>, then study the <Link href="/ziwei/twelve-palaces" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">12 palaces</Link>, <Link href="/ziwei/major-stars" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">14 major stars</Link>, and <Link href="/ziwei/four-transformations" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Four Transformations</Link>.
+            </p>
+            <p>
+              For system choice, compare Ziwei with <Link href="/bazi" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Bazi</Link> and the <Link href="/learn/which-system" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">which system guide</Link> before deciding which method fits your question.
+            </p>
+          </>
         ),
       },
     ],

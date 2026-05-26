@@ -18,6 +18,7 @@ import { allZiweiPages } from "@/content/ziwei/pages";
 import { publishedSitePages } from "@/lib/content/sitePages";
 import { SITE } from "@/lib/constants";
 import {
+  buildArticleDefinedTermSchema,
   buildBreadcrumbListSchema,
   buildFAQPageSchema,
   buildWebApplicationSchema,
@@ -236,7 +237,17 @@ describe("GEO audit", () => {
 
   it("allows priority AI crawlers in robots.txt", () => {
     const robotRules = robots().rules;
-    const priorityBots = ["GPTBot", "PerplexityBot", "Google-Extended"];
+    const priorityBots = [
+      "GPTBot",
+      "OAI-SearchBot",
+      "ChatGPT-User",
+      "PerplexityBot",
+      "ClaudeBot",
+      "Claude-SearchBot",
+      "anthropic-ai",
+      "CCBot",
+      "Google-Extended",
+    ];
 
     for (const bot of priorityBots) {
       expect(robotRules).toContainEqual({
@@ -272,6 +283,10 @@ describe("GEO audit", () => {
     expect(llms).toContain(`# ${SITE.name}`);
     expect(llms).toContain(`${SITE.url}/llms-full.txt`);
     expect(llms).toContain(`${SITE.url}/tools/bazi-calculator`);
+    expect(llms).toContain("## Core Entities");
+    expect(llms).toContain("## Canonical Entity Pages");
+    expect(llms).toContain(`${SITE.url}/bazi/five-elements`);
+    expect(llms).toContain("## Citation Policy");
     expect(fullLlms).toContain(`# ${SITE.name} Full Page Index`);
     expect(fullLlms).toContain("## Bazi");
     expect(fullLlms).toContain(`${SITE.url}/i-ching/hexagram-64`);
@@ -302,10 +317,45 @@ describe("GEO audit", () => {
       description: "A browser-based Bazi chart calculator.",
       url: `${SITE.url}/tools/bazi-calculator`,
     });
+    const articleSchema = buildArticleDefinedTermSchema({
+      headline: "The Five Elements",
+      description: "A guide to Wu Xing.",
+      url: `${SITE.url}/bazi/five-elements`,
+      entityName: "Five Elements",
+      entityType: "DefinedTerm",
+      citations: [
+        {
+          label: "San Ming Tong Hui",
+          source: "Classical Bazi reference.",
+        },
+      ],
+      mentions: [
+        {
+          name: "Bazi",
+          url: "/bazi",
+        },
+      ],
+    });
 
     expect(faqSchema["@type"]).toBe("FAQPage");
     expect(breadcrumbSchema["@type"]).toBe("BreadcrumbList");
     expect(applicationSchema["@type"]).toEqual(["WebApplication", "SoftwareApplication"]);
+    expect(articleSchema.isPartOf).toMatchObject({ "@type": "WebSite", name: SITE.name });
+    expect(articleSchema.about).toMatchObject({ "@type": "DefinedTerm", name: "Five Elements" });
+    expect(articleSchema.citation).toEqual([
+      {
+        "@type": "Book",
+        name: "San Ming Tong Hui",
+        description: "Classical Bazi reference.",
+      },
+    ]);
+    expect(articleSchema.mentions).toEqual([
+      {
+        "@type": "DefinedTerm",
+        name: "Bazi",
+        url: `${SITE.url}/bazi`,
+      },
+    ]);
   });
 
   it("keeps tool pages covered by WebApplication schema", () => {

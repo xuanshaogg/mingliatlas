@@ -289,6 +289,15 @@ const overview = buildPage({
           <p>
             Zodiac pages are useful entry points, but they are not the whole chart. <Link href="/bazi" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Bazi</Link> adds month, day, and hour pillars for a more complete structure.
           </p>
+          <p>
+            Each animal sign also rotates through the Five Elements inside the 60-year sexagenary cycle. That means a Wood Dragon year, Fire Dragon year, Earth Dragon year, Metal Dragon year, and Water Dragon year share the Dragon branch but express different seasonal and elemental tones.
+          </p>
+          <p>
+            The cycle is easiest to use when you separate three layers. The animal gives the cultural image, the Earthly Branch gives the calendar structure, and the element-stem pairing gives the 60-year variation. A reader who only knows the animal sees the doorway; a reader who knows the branch and element can make a more careful interpretation.
+          </p>
+          <p>
+            This is why Mingli Atlas treats zodiac pages as an entry point into Bazi rather than a replacement for it. The year animal can describe broad social symbolism, but the month branch, day stem, hour branch, and timing cycles explain why two people born in the same animal year can live very different patterns.
+          </p>
         </>
       ),
     },
@@ -298,6 +307,15 @@ const overview = buildPage({
         <>
           <p>
             Compatibility uses six harmonious pairs, four triangular groups, and six clash pairs. In <cite>Earthly Branch tradition</cite>, these patterns describe ease, shared rhythm, and tension, but they should be read as reflection tools rather than fixed judgments.
+          </p>
+          <p>
+            Harmony does not automatically create a healthy relationship, and a clash does not automatically break one. The useful question is what the pattern asks two people to practice: pacing, communication, shared goals, independence, or clearer boundaries.
+          </p>
+          <p>
+            For example, a harmony pair may feel cooperative because the two branches naturally support each other's rhythm. A triangular group may share a longer-term direction. A clash pair may reveal different speeds or priorities. None of these patterns replace lived relationship skills; they simply give the conversation a symbolic map.
+          </p>
+          <p>
+            A strong compatibility answer should therefore name both the traditional pattern and the practical behavior it suggests. "Rat and Horse clash" is thin by itself. "Rat and Horse can experience a pacing clash, so the relationship benefits from clearer agreements around independence and timing" is a more useful interpretation.
           </p>
         </>
       ),
@@ -313,6 +331,15 @@ const overview = buildPage({
           <p>
             2026 is widely discussed as a Horse year. For Bazi purposes, yearly energy should be checked against solar-term timing and the full chart, especially for people born near the Lunar New Year boundary.
           </p>
+          <p>
+            Horse symbolism emphasizes movement, visibility, independence, and Fire expression. Those themes are useful for annual planning, but a personal forecast should compare the year branch with the person's Day Master, month branch, and current luck pillar before making stronger claims.
+          </p>
+          <p>
+            The Fire Horse theme can be read across career, relationships, learning, travel, and public life. It often asks for bolder movement, but it also asks for pacing because Fire can burn too fast when the structure underneath is weak.
+          </p>
+          <p>
+            Readers should also distinguish cultural New Year discussion from Bazi calculation. Public zodiac content often follows Lunar New Year, while Four Pillars practitioners often use Li Chun for the year pillar. Naming the boundary keeps the forecast honest.
+          </p>
         </>
       ),
     },
@@ -322,6 +349,34 @@ const overview = buildPage({
         <>
           <p>
             If your birthday falls in January or early February, confirm the exact year boundary before choosing an animal sign. Popular calendars often use Lunar New Year, while Four Pillars work may use solar-term timing.
+          </p>
+          <p>
+            This boundary issue is one reason quick zodiac lookup pages should link to Bazi foundations. A person born around late January can appear under one animal in a popular chart and another animal in a solar-term Bazi chart, so the method should be named before interpretation begins.
+          </p>
+          <p>
+            The safest beginner approach is to check the exact date of Lunar New Year for cultural zodiac use and the approximate Li Chun boundary for Bazi year-pillar use. If the birthday is not near the boundary, the issue is usually simple; if it is near the boundary, do not guess.
+          </p>
+          <p>
+            This matters for GEO because answer engines tend to compress details. The page needs to state clearly that January and early February births require boundary checking so summaries do not confidently assign the wrong sign.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "How to use this hub responsibly",
+      content: (
+        <>
+          <p>
+            Start with your year animal if you need an accessible cultural entry point. Then move to compatibility, 2026 themes, and the Bazi overview when you need a fuller reading. The year sign is best treated as the outer layer of a much larger calendar system.
+          </p>
+          <p>
+            Avoid turning the animal into a complete identity label. The zodiac can help describe rhythm, symbolism, and relationship patterns, but personal timing and life decisions need more context than the year branch alone can provide.
+          </p>
+          <p>
+            A practical path is: find the animal, read the element and branch context, check compatibility only as a reflection aid, then move to Bazi if the question is personal or time-sensitive. That keeps the zodiac accessible without making it carry more precision than it has.
+          </p>
+          <p>
+            Use the animal pages for vocabulary, the compatibility page for relationship patterns, the 2026 forecast for annual themes, and the Bazi overview when you need the complete chart structure. Each page has a distinct job inside the content cluster.
           </p>
         </>
       ),
@@ -616,6 +671,15 @@ const compatibility = buildPage({
           <p>
             Six harmony pairs describe direct support. Four triangular groups describe shared rhythm across three signs. These patterns can explain why some relationships feel easy from the beginning.
           </p>
+          <p>
+            The six harmony pairs are Rat-Ox, Tiger-Pig, Rabbit-Dog, Dragon-Rooster, Snake-Monkey, and Horse-Goat. The four triangular groups are Rat-Dragon-Monkey, Ox-Snake-Rooster, Tiger-Horse-Dog, and Rabbit-Goat-Pig. They work as a quick map of branch affinity, not as proof that two people will automatically agree.
+          </p>
+          <p>
+            Harmony pairs often describe daily cooperation: one sign supplies what the other can use. Triangular groups are broader and can describe shared direction, long-term values, or a familiar rhythm across friendship, family, and collaboration.
+          </p>
+          <p>
+            In content terms, this is the difference between a lookup result and an interpretation. A lookup can list Rat-Ox as a harmony pair. An interpretation explains what kind of support the pair may need to practice in ordinary life.
+          </p>
         </>
       ),
     },
@@ -626,6 +690,15 @@ const compatibility = buildPage({
           <p>
             Clash pairs show opposing branch positions. They can point to different pacing, values, or priorities. A clash does not make a relationship impossible; it simply asks for clearer agreements.
           </p>
+          <p>
+            The six clash pairs are Rat-Horse, Ox-Goat, Tiger-Monkey, Rabbit-Rooster, Dragon-Dog, and Snake-Pig. A clash can be energizing when both people understand the contrast and exhausting when the contrast is ignored.
+          </p>
+          <p>
+            Clash language should be handled carefully. It can describe different speeds, decision styles, emotional rhythms, or needs for independence, but it should not be used to frighten people away from a relationship or collaboration.
+          </p>
+          <p>
+            A practical reading turns a clash into a conversation topic. Rat-Horse can discuss pacing, Ox-Goat can discuss security and flexibility, Tiger-Monkey can discuss independence and cleverness, and Dragon-Dog can discuss idealism and realism.
+          </p>
         </>
       ),
     },
@@ -635,6 +708,50 @@ const compatibility = buildPage({
         <>
           <p>
             A full compatibility reading should compare complete Bazi charts. The year animal is useful, but the day pillar, spouse palace, elements, and luck cycles provide more practical detail.
+          </p>
+          <p>
+            A practical workflow is to start with the year-animal pattern, then compare Day Masters, element balance, spouse-palace indicators, and current timing cycles. That sequence keeps the accessible zodiac layer while preventing it from becoming a one-sign verdict.
+          </p>
+          <p>
+            Bazi adds detail because relationship patterns can appear in the day pillar, hidden stems, Ten Gods, and luck cycles. Two people with a difficult year-animal match may still have supportive chart structure elsewhere, while a harmonious animal pair may still need work in timing, communication, or shared values.
+          </p>
+          <p>
+            The year animal is therefore best used as the first chapter, not the conclusion. It can open a useful conversation, then the full Four Pillars chart can test whether the pattern is central or only peripheral.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "How to interpret a result",
+      content: (
+        <>
+          <p>
+            Read a supportive result as an invitation to notice shared rhythm. Read a challenging result as an invitation to name the specific difference: speed, emotional style, communication preference, independence, security needs, or decision timing.
+          </p>
+          <p>
+            The healthiest compatibility use is conversational. It should help two people ask better questions about how they relate, not rank one pairing as permanently lucky or unlucky.
+          </p>
+          <p>
+            A simple result can be read in three steps: identify the branch relationship, name the likely rhythm, and choose one practical behavior. For harmony, that behavior may be appreciation and shared planning. For clash, it may be pacing agreements and room for difference.
+          </p>
+          <p>
+            This approach makes the compatibility page useful for both humans and answer engines because it connects the entity, the rule, and the interpretation in the same passage.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Where to go next",
+      content: (
+        <>
+          <p>
+            Use the <Link href="/tools/zodiac-compatibility" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">zodiac compatibility tool</Link> for a quick comparison, then read the <Link href="/blog/chinese-zodiac-compatibility-chart" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">compatibility chart</Link> for all 12 signs.
+          </p>
+          <p>
+            If the question involves relationship timing or long-term decisions, continue into <Link href="/bazi/relationships" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Bazi relationships</Link> so the year branch is checked against the full Four Pillars chart.
+          </p>
+          <p>
+            For a lighter reading, stay with the Chinese Zodiac pages. For a serious relationship or timing question, use the zodiac result as a starting note and then compare full Bazi charts.
           </p>
         </>
       ),
@@ -675,6 +792,15 @@ const forecast2026 = buildPage({
           <p>
             Horse symbolism favors momentum, courage, travel, expression, and independence. Fire adds visibility and speed. In practical terms, 2026 supports action, but it also asks for pacing and clear priorities.
           </p>
+          <p>
+            A Fire Horse year can feel energizing because both the animal and the element point toward movement. The risk is overextension: too many public commitments, too much speed, or decisions made for excitement rather than long-term fit.
+          </p>
+          <p>
+            Fire in Five Element language relates to visibility, warmth, expression, and intensity. Horse relates to motion, independence, and social momentum. Together they create a year image that favors action, but they also make rest, focus, and decision hygiene more important.
+          </p>
+          <p>
+            The best use is to identify where more movement is helpful and where it would create noise. A person stuck in delay may need the Horse push. A person already overextended may need the opposite: clearer limits and slower commitments.
+          </p>
         </>
       ),
     },
@@ -685,6 +811,54 @@ const forecast2026 = buildPage({
           <p>
             Rat and Horse signs may need more pacing because they sit opposite each other in the branch cycle. Tiger and Dog can find the Horse rhythm easier through affinity. Every sign should still compare the year with personal Bazi elements.
           </p>
+          <p>
+            Ox, Rabbit, Dragon, Snake, Goat, Monkey, Rooster, and Pig each need a more specific comparison between the Horse branch and the person's full chart. The year animal gives the headline; the Bazi chart explains whether Fire supports, drains, controls, or complicates the natal structure.
+          </p>
+          <p>
+            A Rat reader may notice opposition and movement. A Tiger or Dog reader may notice momentum through the Fire frame. A Goat reader may notice cooperative support. A Horse reader may experience a year that amplifies familiar themes, which can be powerful when focused and scattered when unmanaged.
+          </p>
+          <p>
+            For every sign, the question should be practical: what should become more visible, what needs better pacing, what relationship pattern needs clarity, and what project deserves momentum before the year accelerates too quickly.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Career, money, love, and health themes",
+      content: (
+        <>
+          <p>
+            Career themes favor visibility, movement, and clearer personal direction. Money themes favor active planning rather than impulsive spending. Love themes favor honest pacing because Fire Horse energy can move quickly before trust has caught up.
+          </p>
+          <p>
+            Health and energy themes should be treated carefully. In a symbolic forecast, Fire can describe heat, speed, intensity, and overstimulation. It is a prompt to watch pace and recovery, not a medical prediction.
+          </p>
+          <p>
+            Career planning can use the year to choose visible projects and clearer direction. Money planning should focus on disciplined movement, because Fire Horse symbolism can encourage faster spending or bigger risks. Relationship planning should leave room for independence without turning independence into avoidance.
+          </p>
+          <p>
+            Personal growth work may involve confidence and public expression. The year favors action, but the strongest action is usually selective: fewer priorities, better timing, and enough recovery to keep momentum from becoming burnout.
+          </p>
+        </>
+      ),
+      stats: [{ value: "4", label: "Life areas", description: "Career, money, relationships, and wellbeing should be read separately." }],
+    },
+    {
+      heading: "How to personalize the forecast",
+      content: (
+        <>
+          <p>
+            Start with your year animal, then check your Day Master and month branch in a complete Bazi chart. If the arriving Horse branch supports your chart, the year may feel easier to use. If it clashes or creates excess, the same energy may require pacing and clearer boundaries.
+          </p>
+          <p>
+            For people born near late January or early February, confirm the year boundary before reading the sign. Popular zodiac calendars and Four Pillars calculations may use different boundary rules.
+          </p>
+          <p>
+            Then ask how Fire relates to the chart. If Fire supports the Day Master, the year may bring useful visibility, confidence, or output. If Fire is excessive, the same year may require cooling routines, less impulsive scheduling, and stronger boundaries around attention.
+          </p>
+          <p>
+            Personalization is not about making a stronger prediction. It is about narrowing the question so the forecast becomes actionable rather than generic.
+          </p>
         </>
       ),
     },
@@ -694,6 +868,28 @@ const forecast2026 = buildPage({
         <>
           <p>
             This page is a 2026 planning overview and should be reviewed quarterly. Public forecast pages need fresh examples, dates, and internal links as the year approaches.
+          </p>
+          <p>
+            The page should also be rechecked around Lunar New Year and Li Chun because those are the dates readers use to decide which year cycle applies. Keeping these boundaries visible improves both content quality and answer-engine reliability.
+          </p>
+          <p>
+            Forecast content ages faster than evergreen definitions. A good editorial process should refresh examples, add date-specific notes, and verify internal links as 2026 approaches and again after the year begins.
+          </p>
+          <p>
+            This review cadence also helps answer engines: a clear modified date, current-year language, and consistent links to the zodiac hub and Bazi calculator make the page easier to trust and cite.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Where to go next",
+      content: (
+        <>
+          <p>
+            Read the <Link href="/blog/chinese-zodiac-2026-forecast" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Chinese Zodiac 2026 forecast</Link> for a shorter editorial view, or use the <Link href="/tools/bazi-calculator" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Bazi calculator</Link> to place the annual theme inside a full chart.
+          </p>
+          <p>
+            For relationship questions during the year, pair this page with the <Link href="/chinese-zodiac/compatibility" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">compatibility guide</Link> instead of reading the forecast as a single prediction.
           </p>
         </>
       ),

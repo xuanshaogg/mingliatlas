@@ -23,7 +23,18 @@ const machineFiles = [
   {
     path: "/robots.txt",
     expectedContentType: "text/plain",
-    requiredText: ["User-Agent: GPTBot", "User-Agent: PerplexityBot", "User-Agent: Google-Extended", "Disallow: /api/"],
+    requiredText: [
+      "User-Agent: GPTBot",
+      "User-Agent: OAI-SearchBot",
+      "User-Agent: ChatGPT-User",
+      "User-Agent: PerplexityBot",
+      "User-Agent: ClaudeBot",
+      "User-Agent: Claude-SearchBot",
+      "User-Agent: anthropic-ai",
+      "User-Agent: CCBot",
+      "User-Agent: Google-Extended",
+      "Disallow: /api/",
+    ],
   },
   {
     path: "/sitemap.xml",
@@ -33,7 +44,15 @@ const machineFiles = [
   {
     path: "/llms.txt",
     expectedContentType: "text/plain",
-    requiredText: ["# mingliatlas", "Full LLM index", "https://mingliatlas.com/tools/bazi-calculator", "not deterministic forecasts"],
+    requiredText: [
+      "# mingliatlas",
+      "Full LLM index",
+      "https://mingliatlas.com/tools/bazi-calculator",
+      "not deterministic forecasts",
+      "## Core Entities",
+      "## Canonical Entity Pages",
+      "## Citation Policy",
+    ],
   },
   {
     path: "/llms-full.txt",

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SITE } from "@/lib/constants";
+import { AUTHOR, SITE } from "@/lib/constants";
 
 interface PageMetadataInput {
   title: string;
@@ -29,7 +29,7 @@ export function buildKnowledgePageMetadata(page: PageMetadataInput): Metadata {
       siteName: SITE.name,
       publishedTime: page.data.schema.datePublished,
       modifiedTime: page.data.schema.dateModified,
-      authors: [SITE.name],
+      authors: [AUTHOR.name],
     },
   };
 }

@@ -7,7 +7,7 @@ import ScrollDepthTracker from "@/components/analytics/ScrollDepthTracker";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import { OrganizationSchema, WebSiteSchema } from "@/components/seo";
-import { SITE } from "@/lib/constants";
+import { AUTHOR, SITE } from "@/lib/constants";
 import "./globals.css";
 
 const geistMono = Geist_Mono({
@@ -53,8 +53,8 @@ export const metadata: Metadata = {
     "Chinese metaphysics",
     "Eastern philosophy",
   ],
-  authors: [{ name: SITE.name }],
-  creator: SITE.name,
+  authors: [{ name: AUTHOR.name, url: AUTHOR.url }],
+  creator: AUTHOR.name,
   publisher: SITE.name,
   alternates: {
     canonical: "/",

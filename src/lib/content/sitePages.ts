@@ -169,7 +169,7 @@ export const blogPages: SitePage[] = [
   {
     title: "Blog",
     href: "/blog",
-    description: "Seed articles for the content library and editorial workflow.",
+    description: "Practical Chinese metaphysics articles with source notes, examples, and learning paths.",
     section: "Blog",
     lastModified: latestBlogModified,
   },

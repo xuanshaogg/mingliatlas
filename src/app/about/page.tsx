@@ -120,6 +120,42 @@ export default function AboutPage() {
             ),
           },
           {
+            heading: "Source policy",
+            content: (
+              <>
+                <p>
+                  We separate source types so readers can see where a claim comes from. Classical source notes
+                  explain inherited concepts, modern practitioner sources explain contemporary usage, and academic
+                  or historical references help with context. Editorial notes explain how mingliatlas applies those
+                  sources for beginner-friendly education.
+                </p>
+                <p>
+                  A strong knowledge page should not rely on a single generic tradition label. When a page covers a
+                  core entity such as Bazi, Wu Xing, I Ching, Feng Shui, Ziwei Doushu, or the Chinese Zodiac, we aim
+                  to include named sources and clear boundaries around interpretation.
+                </p>
+              </>
+            ),
+          },
+          {
+            heading: "Review workflow",
+            content: (
+              <>
+                <p>
+                  New and revised pages are reviewed against four checks before publication: factual consistency,
+                  terminology consistency, source quality, and reader safety. We check that Chinese terms are used
+                  consistently across the site, that claims match the stated source layer, and that practical advice
+                  stays within education and self-reflection.
+                </p>
+                <p>
+                  We also run technical quality checks for canonical URLs, structured data, sitemap inclusion,
+                  internal links, and AI-readable discovery files such as <code>llms.txt</code> and{" "}
+                  <code>llms-full.txt</code>.
+                </p>
+              </>
+            ),
+          },
+          {
             heading: "Content update policy",
             content: (
               <p>

@@ -104,6 +104,9 @@ const relatedLinks = [
   { title: "What Is Bazi?", href: "/bazi/what-is-bazi", description: "Understand the Four Pillars before reading a chart." },
   { title: "The Five Elements", href: "/bazi/five-elements", description: "Learn Wood, Fire, Earth, Metal, and Water in Bazi." },
   { title: "Ten Gods", href: "/bazi/ten-gods", description: "Decode the relationship roles around the Day Master." },
+  { title: "Heavenly Stems", href: "/bazi/heavenly-stems", description: "Read the visible stem layer shown in each pillar." },
+  { title: "Earthly Branches", href: "/bazi/earthly-branches", description: "Understand branches, hidden stems, and seasonal context." },
+  { title: "Luck Pillars", href: "/bazi/luck-pillars", description: "Add the 10-year timing layer after the natal chart." },
 ];
 
 export default function BaziCalculatorPage() {
@@ -138,6 +141,45 @@ export default function BaziCalculatorPage() {
           <div className="mt-10">
             <BaziCalculator />
           </div>
+          <section className="mt-14 grid gap-8 lg:grid-cols-3">
+            <div className="rounded-lg border border-ink-200 bg-white p-6 dark:border-white/10 dark:bg-white/5">
+              <h2 className="text-xl font-semibold tracking-tight text-ink-950 dark:text-paper">What the chart calculates</h2>
+              <p className="mt-3 text-sm leading-7 text-ink-600 dark:text-ink-300">
+                The calculator maps a birth date and local civil time into the Chinese stem-branch calendar. It returns
+                the year, month, day, and hour pillars, then marks the Day Master from the day stem so the rest of the
+                chart can be read in relation to that anchor.
+              </p>
+            </div>
+            <div className="rounded-lg border border-ink-200 bg-white p-6 dark:border-white/10 dark:bg-white/5">
+              <h2 className="text-xl font-semibold tracking-tight text-ink-950 dark:text-paper">How to read it first</h2>
+              <p className="mt-3 text-sm leading-7 text-ink-600 dark:text-ink-300">
+                Start with the Day Master, then check the month branch for season, visible stems for expression, hidden
+                stems for stored energy, and Ten Gods for relationship roles. Element balance is a helpful overview,
+                but it should be read after season and Day Master context.
+              </p>
+            </div>
+            <div className="rounded-lg border border-ink-200 bg-white p-6 dark:border-white/10 dark:bg-white/5">
+              <h2 className="text-xl font-semibold tracking-tight text-ink-950 dark:text-paper">What it should not do</h2>
+              <p className="mt-3 text-sm leading-7 text-ink-600 dark:text-ink-300">
+                A Bazi chart is not a medical, legal, financial, or mental health diagnosis. Use the result as a
+                structured learning reference. For real-world decisions, combine chart reflection with practical
+                judgment and qualified professional advice where needed.
+              </p>
+            </div>
+          </section>
+          <section className="mt-14 rounded-lg border border-gold-300/70 bg-gold-50 p-6 dark:border-gold-500/30 dark:bg-gold-500/10">
+            <h2 className="text-2xl font-semibold tracking-tight text-ink-950 dark:text-paper">
+              Recommended Bazi reading order
+            </h2>
+            <ol className="mt-5 grid gap-4 text-sm leading-7 text-ink-700 dark:text-ink-200 md:grid-cols-2">
+              <li><strong>1. Day Master:</strong> find the self-reference point in the day stem.</li>
+              <li><strong>2. Month branch:</strong> check season and element strength before judging balance.</li>
+              <li><strong>3. Stems and branches:</strong> compare visible expression with hidden stored energy.</li>
+              <li><strong>4. Ten Gods:</strong> translate elements into resource, peer, output, wealth, and authority roles.</li>
+              <li><strong>5. Luck Pillars:</strong> add 10-year timing only after the natal chart is clear.</li>
+              <li><strong>6. Practical reflection:</strong> connect chart themes to lived choices without treating them as fixed outcomes.</li>
+            </ol>
+          </section>
           <FAQSection faqs={baziCalculatorFaqs} />
           <RelatedLinks links={relatedLinks} />
         </div>

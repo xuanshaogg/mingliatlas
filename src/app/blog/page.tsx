@@ -36,10 +36,10 @@ export default function BlogIndexPage() {
             Blog
           </p>
           <h1 className="mt-4 text-4xl font-semibold tracking-tight text-ink-950 dark:text-paper sm:text-5xl">
-            Articles for the content library
+            Chinese metaphysics articles and practical guides
           </h1>
           <p className="mt-5 text-lg leading-8 text-ink-600 dark:text-ink-300">
-            Browse by topic area: foundations, comparisons, I Ching, Ziwei, Feng Shui, zodiac, yearly forecasts, and practical reflection.
+            Browse focused explainers on Bazi, I Ching, Ziwei Doushu, Feng Shui, Chinese zodiac, yearly cycles, and practical self-reflection.
           </p>
         </div>
 
@@ -89,7 +89,7 @@ export default function BlogIndexPage() {
         <div className="mt-12 rounded-[1.25rem] border border-gold-300/70 bg-gold-50 p-6 dark:border-gold-500/30 dark:bg-gold-500/10">
           <BookOpen className="h-6 w-6 text-brand-primary dark:text-gold-300" aria-hidden="true" />
           <p className="mt-3 text-sm leading-7 text-ink-700 dark:text-ink-200">
-            Articles are kept focused and practical, with internal links that help you move from definitions to tools and deeper learning paths.
+            Articles are kept focused and practical, with source notes and internal links that help you move from definitions to tools and deeper learning paths.
           </p>
         </div>
       </div>

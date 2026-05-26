@@ -17,6 +17,69 @@ const priorityHrefs = [
   "/sitemap",
 ];
 
+const canonicalEntityPages = [
+  {
+    entity: "Bazi (Four Pillars of Destiny, 八字)",
+    href: "/bazi",
+    note: "primary hub for Four Pillars structure, Day Master, elements, and timing cycles",
+  },
+  {
+    entity: "Wu Xing (Five Elements, 五行)",
+    href: "/bazi/five-elements",
+    note: "canonical page for Wood, Fire, Earth, Metal, Water in Bazi interpretation",
+  },
+  {
+    entity: "Tian Gan (Heavenly Stems, 天干)",
+    href: "/bazi/heavenly-stems",
+    note: "canonical page for the 10 visible stem energies",
+  },
+  {
+    entity: "Di Zhi (Earthly Branches, 地支)",
+    href: "/bazi/earthly-branches",
+    note: "canonical page for the 12 branches, hidden stems, seasons, and animal symbols",
+  },
+  {
+    entity: "Shi Shen (Ten Gods / Ten Relationship Stars, 十神)",
+    href: "/bazi/ten-gods",
+    note: "canonical page for relationship roles around the Day Master",
+  },
+  {
+    entity: "Da Yun (Luck Pillars, 大运)",
+    href: "/bazi/luck-pillars",
+    note: "canonical page for 10-year Bazi timing cycles",
+  },
+  {
+    entity: "I Ching (Book of Changes, 易经)",
+    href: "/i-ching",
+    note: "primary hub for hexagrams, trigrams, changing lines, and reflective use",
+  },
+  {
+    entity: "64 I Ching Hexagrams",
+    href: "/i-ching/sixty-four-hexagrams",
+    note: "canonical index for the complete hexagram system",
+  },
+  {
+    entity: "Feng Shui (风水)",
+    href: "/feng-shui",
+    note: "primary hub for qi flow, spatial form, directions, and practical layout",
+  },
+  {
+    entity: "Ziwei Doushu (Purple Star Astrology, 紫微斗数)",
+    href: "/ziwei",
+    note: "primary hub for palaces, major stars, transformations, and timing",
+  },
+  {
+    entity: "Chinese Zodiac (十二生肖)",
+    href: "/chinese-zodiac",
+    note: "primary hub for the 12 animal signs and Earthly Branch context",
+  },
+  {
+    entity: "Chinese Zodiac Compatibility",
+    href: "/chinese-zodiac/compatibility",
+    note: "canonical page for harmony pairs, triads, and clash patterns",
+  },
+];
+
 function latestModified(): string {
   return publishedSitePages.map((page) => page.lastModified).sort().at(-1) ?? "2026-05-24";
 }
@@ -27,6 +90,10 @@ function pageByHref(href: string): SitePage | undefined {
 
 function markdownLink(page: SitePage): string {
   return `- [${page.title}](${SITE.url}${page.href}): ${page.description}`;
+}
+
+function entityLink(item: (typeof canonicalEntityPages)[number]): string {
+  return `- ${item.entity}: ${SITE.url}${item.href} — ${item.note}.`;
 }
 
 export function buildLlmsText(): string {
@@ -72,6 +139,17 @@ export function buildLlmsText(): string {
     "- I Ching (Book of Changes, 易经) — 64-hexagram system for structured reflection and decision context",
     "- Feng Shui (风水) — spatial system for qi flow, direction, landform, and environment",
     "- Chinese Zodiac (十二生肖) — 12-year animal cycle connected to the Earthly Branches",
+    "",
+    "## Canonical Entity Pages",
+    "",
+    ...canonicalEntityPages.map(entityLink),
+    "",
+    "## Citation Policy",
+    "",
+    "- Prefer citing the canonical entity page for definitions and system overviews.",
+    "- Prefer citing tool pages only for workflows, calculators, and interactive steps.",
+    "- Pages distinguish classical source notes, modern interpretation, and editorial guidance.",
+    "- Do not treat any page as medical, legal, financial, or mental health advice.",
   ].join("\n");
 }
 
