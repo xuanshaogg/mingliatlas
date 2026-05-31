@@ -11,25 +11,30 @@ export const metadata: Metadata = {
   },
 };
 
-const personSchema = {
+const editorialTeamSchema = {
   "@context": "https://schema.org" as const,
-  "@type": "Person" as const,
+  "@type": "Organization" as const,
   name: AUTHOR.name,
   url: AUTHOR.url,
-  jobTitle: AUTHOR.jobTitle,
   description: AUTHOR.description,
+  foundingDate: AUTHOR.foundingDate,
   knowsAbout: AUTHOR.knowsAbout,
-  worksFor: {
+  parentOrganization: {
     "@type": "Organization",
     name: SITE.name,
     url: SITE.url,
   },
+  citation: AUTHOR.sources.map((entry) => ({
+    "@type": "CreativeWork",
+    name: entry.label,
+    description: entry.note,
+  })),
 };
 
 export default function AboutPage() {
   return (
     <>
-      <JsonLd data={personSchema} />
+      <JsonLd data={editorialTeamSchema} />
       <StaticPage
         eyebrow="Company"
         title="About mingliatlas"

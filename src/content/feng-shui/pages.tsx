@@ -50,6 +50,11 @@ const defaultFaqs: FAQ[] = [
     answer:
       "Start with qi flow, yin-yang balance, Five Elements, Bagua direction, and the main entrance before applying advanced formulas.",
   },
+  {
+    question: "What is the difference between Form School and Compass School Feng Shui?",
+    answer:
+      "Form School (峦头, Luan Tou) reads the visible landscape — mountains, water, roads, and the shape of a space — to judge how qi gathers or scatters. Compass School (理气, Li Qi) uses the Luo Pan and formulas such as Flying Stars and Eight Mansions to read direction and timing. Classical practice combines both rather than treating either as complete on its own.",
+  },
 ];
 
 function pageUrl(path: string): string {

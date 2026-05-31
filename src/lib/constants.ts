@@ -13,15 +13,32 @@ export const AUTHOR = {
   name: "Mingli Atlas Editorial Team",
   url: `${siteUrl}/about`,
   jobTitle: "Chinese Metaphysics Researchers and Writers",
+  foundingDate: "2025",
   description:
-    "A team of researchers and writers specializing in Chinese metaphysics, including Bazi, I Ching, Feng Shui, and Ziwei Doushu.",
+    "A team of researchers and writers specializing in Chinese metaphysics. The team works directly from classical source texts — including the Yuan Hai Zi Ping (渊海子平), the San Ming Tong Hui (三命通会), and the Wilhelm/Baynes translation of the I Ching — and cross-references contemporary practitioners such as Joey Yap and Alfred Huang.",
   knowsAbout: [
-    "Bazi (Four Pillars of Destiny)",
-    "I Ching (Book of Changes)",
-    "Feng Shui",
-    "Ziwei Doushu (Purple Star Astrology)",
-    "Chinese Zodiac",
-    "Wu Xing (Five Elements)",
+    "Bazi (Four Pillars of Destiny, 八字)",
+    "I Ching (Book of Changes, 易经)",
+    "Feng Shui (风水)",
+    "Ziwei Doushu (Purple Star Astrology, 紫微斗数)",
+    "Chinese Zodiac (十二生肖)",
+    "Wu Xing (Five Elements, 五行)",
+    "Tian Gan (Ten Heavenly Stems, 天干)",
+    "Di Zhi (Twelve Earthly Branches, 地支)",
+  ],
+  sources: [
+    {
+      label: "Yuan Hai Zi Ping (渊海子平)",
+      note: "Song-dynasty Zi Ping classic, c. 1100 CE — Day Master tradition in Bazi.",
+    },
+    {
+      label: "San Ming Tong Hui (三命通会)",
+      note: "Ming-dynasty compendium, c. 1550 CE — stem-branch relationships and chart structure.",
+    },
+    {
+      label: "I Ching, Wilhelm/Baynes translation",
+      note: "Standard English reference translation of the Book of Changes.",
+    },
   ],
 };
 

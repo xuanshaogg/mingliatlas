@@ -1046,7 +1046,7 @@ function createEditorialPost(seed: EditorialSeed): BlogPost {
     ],
     faqs: baseFaqs,
     relatedLinks: [
-      { title: seed.primaryLabel, href: seed.primaryHref, description: "Continue with the most relevant guide or tool for this topic." },
+      { title: seed.primaryLabel, href: seed.primaryHref, description: "The canonical reference page for this topic — start here for the full definition and structure." },
       { title: "Beginner's Guide", href: "/learn/beginners-guide", description: "Return to the learning path if the vocabulary is new." },
       { title: "Common Misconceptions", href: "/learn/common-misconceptions", description: "Avoid common reading mistakes and oversimplified claims." },
     ],

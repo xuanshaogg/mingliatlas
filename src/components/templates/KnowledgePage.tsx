@@ -41,6 +41,7 @@ export interface KnowledgePageSchemaInput {
   headline: string;
   description: string;
   url: string;
+  alternateName?: string | string[];
   datePublished?: string;
   dateModified?: string;
   image?: string;
@@ -125,6 +126,7 @@ export default function KnowledgePage({
       url: schema.url,
       entityName,
       entityType,
+      alternateName: schema.alternateName,
       datePublished: schema.datePublished,
       dateModified: schema.dateModified,
       image: schema.image ?? ogImage,

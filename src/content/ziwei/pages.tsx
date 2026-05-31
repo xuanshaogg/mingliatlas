@@ -50,6 +50,11 @@ const defaultFaqs: FAQ[] = [
     answer:
       "Start with the 12 palaces, then learn the 14 major stars, Four Transformations, and how stars behave differently by palace.",
   },
+  {
+    question: "What makes Ziwei Doushu different from Western astrology?",
+    answer:
+      "Ziwei Doushu builds a chart from the Chinese lunar calendar and birth hour, then arranges 14 major stars across 12 fixed palaces tied to life areas such as career, wealth, and relationships. Western astrology maps planetary positions against the tropical zodiac instead, so the two systems use different inputs, symbols, and chart logic.",
+  },
 ];
 
 function pageUrl(path: string): string {

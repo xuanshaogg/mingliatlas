@@ -53,6 +53,11 @@ const defaultFaqs: FAQ[] = [
     answer:
       "The Day Master is the anchor, but it should never be read alone. Season, element balance, Ten Gods, and luck cycles all shape the final interpretation.",
   },
+  {
+    question: "How accurate does my birth time need to be for Bazi?",
+    answer:
+      "Aim for accuracy within the two-hour window that defines the hour pillar, since each Earthly Branch covers two clock hours. If your birth falls near the boundary between two branches, a small error can shift the hour pillar, so check the birth certificate time and, when in doubt, compare both possible charts.",
+  },
 ];
 
 function pageUrl(slug: string): string {

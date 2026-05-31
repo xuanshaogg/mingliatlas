@@ -29,6 +29,94 @@ const relatedLinks = [
   { title: "Learn Resources", href: "/learn/resources", description: "Find a guided path through Chinese metaphysics." },
 ];
 
+const PAIRED_HEXAGRAMS: Record<number, number> = {
+  1: 2, 2: 1, 3: 4, 4: 3, 5: 6, 6: 5, 7: 8, 8: 7, 9: 10, 10: 9,
+  11: 12, 12: 11, 13: 14, 14: 13, 15: 16, 16: 15, 17: 18, 18: 17, 19: 20, 20: 19,
+  21: 22, 22: 21, 23: 24, 24: 23, 25: 26, 26: 25, 27: 28, 28: 27, 29: 30, 30: 29,
+  31: 32, 32: 31, 33: 34, 34: 33, 35: 36, 36: 35, 37: 38, 38: 37, 39: 40, 40: 39,
+  41: 42, 42: 41, 43: 44, 44: 43, 45: 46, 46: 45, 47: 48, 48: 47, 49: 50, 50: 49,
+  51: 52, 52: 51, 53: 54, 54: 53, 55: 56, 56: 55, 57: 58, 58: 57, 59: 60, 60: 59,
+  61: 62, 62: 61, 63: 64, 64: 63,
+};
+
+const HEXAGRAM_PINYIN: Record<number, string> = {
+  1: "Qian",
+  2: "Kun",
+  3: "Zhun",
+  4: "Meng",
+  5: "Xu",
+  6: "Song",
+  7: "Shi",
+  8: "Bi",
+  9: "Xiao Chu",
+  10: "Lu",
+  11: "Tai",
+  12: "Pi",
+  13: "Tong Ren",
+  14: "Da You",
+  15: "Qian",
+  16: "Yu",
+  17: "Sui",
+  18: "Gu",
+  19: "Lin",
+  20: "Guan",
+  21: "Shi He",
+  22: "Bi",
+  23: "Bo",
+  24: "Fu",
+  25: "Wu Wang",
+  26: "Da Chu",
+  27: "Yi",
+  28: "Da Guo",
+  29: "Kan",
+  30: "Li",
+  31: "Xian",
+  32: "Heng",
+  33: "Dun",
+  34: "Da Zhuang",
+  35: "Jin",
+  36: "Ming Yi",
+  37: "Jia Ren",
+  38: "Kui",
+  39: "Jian",
+  40: "Xie",
+  41: "Sun",
+  42: "Yi",
+  43: "Guai",
+  44: "Gou",
+  45: "Cui",
+  46: "Sheng",
+  47: "Kun",
+  48: "Jing",
+  49: "Ge",
+  50: "Ding",
+  51: "Zhen",
+  52: "Gen",
+  53: "Jian",
+  54: "Gui Mei",
+  55: "Feng",
+  56: "Lu",
+  57: "Xun",
+  58: "Dui",
+  59: "Huan",
+  60: "Jie",
+  61: "Zhong Fu",
+  62: "Xiao Guo",
+  63: "Jiji",
+  64: "Weiji",
+};
+
+const TRIGRAM_NAMES: Record<string, string> = {
+  "111": "Heaven",
+  "000": "Earth",
+  "100": "Thunder",
+  "010": "Water",
+  "001": "Mountain",
+  "011": "Wind",
+  "101": "Fire",
+  "110": "Lake",
+};
+
 const defaultFaqs: FAQ[] = [
   {
     question: "What is the I Ching used for?",
@@ -476,69 +564,69 @@ function hexagramModDate(n: number): string {
 }
 
 const hexagramDirectAnswers: Partial<Record<number, string>> = {
-  1: "Hexagram 1, The Creative (乾 Qian), describes a moment of pure creative momentum — conditions are aligned, energy is available, and the direction is clear. It asks whether your momentum is guided by disciplined purpose or by restless force. Use it when considering a major initiative, leadership commitment, or sustained effort that requires both direction and endurance.",
-  2: "Hexagram 2, The Receptive (坤 Kun), is the complement to Hexagram 1: where Qian initiates, Kun receives, sustains, and completes. It is frequently misread as passive — in classical interpretation, Kun is the active force of sustaining. Use it when your most useful role is support rather than initiative, or when a situation needs cultivation rather than dramatic action.",
-  11: "Hexagram 11, Peace (泰 Tai), places Earth above Heaven — each moving toward the other, creating genuine exchange. It describes a moment of productive communication between levels: resources flow, effort is recognized, and cooperation is real. It is not a promise of permanence; it is an invitation to build something durable while conditions are favorable.",
-  12: "Hexagram 12, Standstill (否 Pi), is the direct opposite of Peace: Heaven and Earth move away from each other, and exchange stops. It describes a blocked situation where pushing harder wastes resources. The classical advice is to conserve integrity, withdraw from empty exchange, and wait for conditions to shift rather than forcing movement through a closed channel.",
-  24: "Hexagram 24, Return (复 Fu), shows a single yang line at the bottom of five yin lines — the image of the winter solstice, the first moment of turning. It describes the beginning of renewal after a difficult period: not a completed recovery, but the first genuine reorientation. The classical advice is to protect this fragile new energy with patience rather than rushing it into premature action.",
-  29: "Hexagram 29, The Abysmal (坎 Kan), doubles the Water trigram — danger above and danger below. It describes not a single obstacle but a repeated pattern of challenge. The classical teaching is that water does not stop at an obstacle; it fills the hollow and flows on. The way through is sincerity and skill, not force or avoidance.",
-  36: "Hexagram 36, Darkening of the Light (明夷 Ming Yi), shows the sun entering the earth — clarity going underground in an unsupportive environment. The classical advice is to protect inner standards without broadcasting them where doing so invites suppression. It describes a temporary phase requiring strategic patience, not permanent self-concealment.",
-  40: "Hexagram 40, Deliverance (解 Xie), shows Thunder above Water — a storm breaking after sustained tension. It describes the moment when a difficulty finally releases. The classical advice is to act quickly once the cause is understood: forgive what no longer needs holding, resolve what can be resolved, and do not reintroduce the tension by dwelling on it.",
-  47: "Hexagram 47, Oppression (困 Kun), shows a lake without water — resources exhausted, expression blocked, and the usual channels closed. It describes a period of genuine constraint where words carry little weight and effort produces little result. The classical advice is to conserve inner resources, maintain integrity under pressure, and trust that the constraint is temporary.",
-  49: "Hexagram 49, Revolution (革 Ge), shows Fire within the Lake — two forces that cannot coexist indefinitely. It describes a situation where real change is necessary, not cosmetic adjustment. The classical conditions for successful revolution are timing, legitimacy, and clear need. Change that lacks any of these three tends to create new problems rather than resolving the old ones.",
-  4: "Hexagram 4, Youthful Folly (蒙 Meng), shows Water below the Mountain — a spring that has not yet found its course. It describes a learning situation where the student must come to the teacher, not the other way around. The classical advice is that genuine learning requires honest questions, patience with repetition, and the humility to not know before you know.",
-  6: "Hexagram 6, Conflict (讼 Song), shows Heaven above Water — two forces moving in opposite directions. It describes a dispute that has not yet escalated but could. The classical advice is to examine the origin of the disagreement before acting: most conflicts that reach a court could have been resolved earlier by clarifying terms, acknowledging partial fault, or withdrawing from an untenable position.",
-  7: "Hexagram 7, The Army (师 Shi), shows Water within Earth — a reservoir of organized force held in reserve. It describes collective effort that requires discipline, clear leadership, and proportionate response. The classical advice is that the leader who mobilizes people must have the authority to do so, the discipline to direct them well, and the judgment to know when to stop.",
-  17: "Hexagram 17, Following (随 Sui), shows Thunder within the Lake — movement that adapts to the season. It describes a situation where following is the correct response, but only if you choose what is genuinely worth following. The classical advice is to rest when rest is called for and to respond when response is called for, rather than forcing either activity or stillness.",
-  25: "Hexagram 25, Innocence (无妄 Wu Wang), shows Thunder under Heaven — natural action without calculation. It describes a situation where acting without manipulation or hidden agenda is both the correct approach and the most effective one. The classical warning is that unexpected misfortune can arrive even when conduct is correct; the response is to accept it without resentment rather than to search for someone to blame.",
-  3: "Hexagram 3, Difficulty at the Beginning (屯 Zhun), describes the turbulent first stage of any new growth — the moment when potential exists but form has not yet emerged. Like a seedling pushing through hard soil, the energy is real but the path is not yet clear. It appears when a project, relationship, or transition is genuinely new and the disorder you are experiencing is not a sign of failure but of necessary early struggle. The classical advice is to organize before forcing progress.",
-  5: "Hexagram 5, Waiting (需 Xu), shows Water above Heaven — clouds gathering but rain not yet falling. It describes a situation where the conditions for action are not yet complete, and the correct response is active preparation rather than forced movement. It is not passive resignation; it is the disciplined readiness of someone who knows that timing matters and uses the waiting period to nourish strength. Use it when you are tempted to act before conditions are ready.",
+  1: "Hexagram 1, The Creative (乾 Qian), describes a moment of pure creative momentum — conditions are aligned, energy is available, and the direction is clear. Heaven doubled above Heaven gives the image of force that renews itself through disciplined motion rather than random intensity. It asks whether your momentum is guided by principle, timing, endurance, and a reliable sense of sequence or by restless pressure. Use it when considering a major initiative, leadership commitment, or sustained effort that requires both boldness and self-command.",
+  2: "Hexagram 2, The Receptive (坤 Kun), is the complement to Hexagram 1: where Qian initiates, Kun receives, sustains, and completes. Earth doubled above Earth gives the image of a field able to carry, nourish, and shape what arrives without needing to dominate it. It is frequently misread as passive, but Kun is the active force of sustaining over time and through changing conditions. Use it when your most useful role is support rather than initiative, or when a situation needs cultivation rather than dramatic action.",
+  11: "Hexagram 11, Peace (泰 Tai), places Earth above Heaven — each moving toward the other, creating genuine exchange. The heavy Earth descends and the light Heaven rises, so their movement meets instead of separating. It describes productive communication between levels: resources flow, effort is recognized, and cooperation is real. It is not a promise of permanence; peace has to be maintained. Use it when favorable conditions are open and the work is to build something durable before the cycle changes.",
+  12: "Hexagram 12, Standstill (否 Pi), places Heaven above Earth so the two forces move away from each other and exchange stops. The image is separation between high and low: the channel exists in form, but real communication no longer flows through it. It describes a blocked situation where pushing harder wastes resources. The classical advice is to conserve integrity and withdraw from empty exchange. Use it when progress is structurally closed and the wiser response is preservation until conditions shift.",
+  24: "Hexagram 24, Return (复 Fu), shows Thunder within Earth — one yang line returning beneath five yin lines, like the first motion after winter stillness. It describes the beginning of renewal after difficulty: not completed recovery, but the first genuine reorientation. The classical advice is to protect this fragile new energy with patience instead of rushing it into premature action before asking it to carry visible results. Use it when a better pattern has just begun and the task is to keep returning to it steadily.",
+  29: "Hexagram 29, The Abysmal (坎 Kan), doubles the Water trigram — danger above and danger below, a gorge repeated rather than a single obstacle. It describes a recurring pattern of challenge where fear, pressure, or risk cannot simply be avoided. The classical teaching is that water does not stop at an obstacle; it fills the hollow and flows on. The way through is sincerity, practiced skill, and respect for each passage's specific shape. Use it when repeated difficulty asks for steadiness, not panic or force.",
+  36: "Hexagram 36, Darkening of the Light (明夷 Ming Yi), shows Fire below Earth — the sun entering the ground, clarity going underground in an unsupportive environment. It describes a temporary phase in which open brilliance would invite suppression or waste. The classical advice is to protect inner standards without broadcasting them where they cannot be received. This is strategic patience, not permanent self-concealment, while preserving the light for a better season. Use it when your insight is real but the context requires discretion before expression.",
+  40: "Hexagram 40, Deliverance (解 Xie), shows Thunder above Water — a storm breaking after sustained tension, danger beginning to release through movement. It describes the moment when a difficulty finally loosens and action becomes useful again. The classical advice is to act quickly once the cause is understood: forgive what no longer needs holding, resolve what can be resolved, and stop feeding the old tension while the opening is fresh. Use it when release is possible and delay would recreate the problem.",
+  47: "Hexagram 47, Oppression (困 Kun), shows Lake above Water — a lake drained of its source, with resources exhausted and expression blocked. It describes genuine constraint where words carry little weight and ordinary effort produces little result. The classical advice is to conserve inner resources, maintain integrity under pressure, and avoid spending energy proving what cannot yet be heard until the channel opens again. Use it when the outer channel is closed but character, patience, and truthful endurance still matter.",
+  49: "Hexagram 49, Revolution (革 Ge), shows Lake above Fire — two forces that cannot coexist indefinitely, heat pressing against containment. It describes a situation where real change is necessary, not cosmetic adjustment or impatience dressed as reform. The classical conditions for successful revolution are timing, legitimacy, and clear need. Change that lacks any of these tends to create new problems, with consent that can survive resistance. Use it when the old order has lost coherence and renewal requires careful public timing.",
+  4: "Hexagram 4, Youthful Folly (蒙 Meng), shows Mountain above Water — a spring at the mountain's foot, full of potential but not yet channeled. It describes a learning situation where the student must come to the teacher, not the other way around. The classical advice is that genuine learning requires honest questions, patience with repetition, and the humility to not know before you know and before acting as if understanding has arrived. Use it when confusion is natural and disciplined instruction matters more than quick certainty.",
+  6: "Hexagram 6, Conflict (讼 Song), shows Heaven above Water — strength rising while danger flows downward, two forces moving in opposite directions. It describes a dispute that has not yet fully escalated but could become costly if pride takes over. The classical advice is to examine the origin of disagreement before acting: clarify terms, acknowledge partial fault, or withdraw from an untenable position before the pattern hardens into formal opposition. Use it when winning the argument may cost more than resolving the tension early.",
+  7: "Hexagram 7, The Army (师 Shi), shows Water within Earth — a reservoir of organized force hidden below stable ground. It describes collective effort that requires discipline, clear leadership, and proportionate response, whether the field is military, organizational, or communal. The classical advice is that the leader who mobilizes people must have authority, discipline, and the judgment to know when to stop around a cause that justifies the cost. Use it when many people must move together and unstructured energy would become dangerous.",
+  17: "Hexagram 17, Following (随 Sui), shows Lake above Thunder — responsive joy above movement, the image of action that adapts to the season. It describes a situation where following is correct, but only if you choose what is genuinely worth following. The classical advice is to rest when rest is called for and respond when response is called for, rather than forcing activity or stillness. Use it when adaptation, loyalty, or apprenticeship is central and discernment must guide whom you follow.",
+  25: "Hexagram 25, Innocence (无妄 Wu Wang), shows Heaven above Thunder — natural movement beneath a larger order, action without manipulation. It describes a situation where acting without hidden agenda is both the correct approach and the most effective one. The classical warning is that unexpected misfortune can still arrive even when conduct is correct; the response is acceptance without resentment, not blame-seeking, even when outcomes are not fully controllable. Use it when clean intention, direct action, and freedom from calculation are the strongest position available.",
+  3: "Hexagram 3, Difficulty at the Beginning (屯 Zhun), shows Water above Thunder — danger over movement, like new life pushing into a storm before its form is stable. It describes the turbulent first stage of growth, when potential exists but the path has not emerged. A project, relationship, or transition can be genuinely promising and still feel disordered at the start. The classical advice is to organize before forcing progress. Use it when beginning is hard and structure matters more than speed.",
+  5: "Hexagram 5, Waiting (需 Xu), shows Water above Heaven — clouds gathering but rain not yet falling. It describes a situation where the conditions for action are not yet complete, and the correct response is active preparation rather than forced movement. It is not passive resignation; it is the disciplined readiness of someone who knows that timing matters and uses the waiting period to nourish strength, clarify allies, and preserve confidence. Use it when you are tempted to act before conditions are ready.",
   8: "Hexagram 8, Holding Together (比 Bi), shows Water above Earth — water finding its level and gathering into a unified body. It describes a moment when alliance, loyalty, and mutual commitment are both available and necessary. The classical question it asks is direct: have you chosen what you are genuinely committed to, and have you done so in time? Late commitment weakens the bond. Use it when considering who to align with, or when a group needs a center it can trust.",
   9: "Hexagram 9, Small Taming (小畜 Xiao Chu), shows Wind above Heaven — a gentle force restraining a much larger one. It describes a situation where only small, incremental adjustments are possible right now, not sweeping change. The classical image is of clouds gathering but rain not yet falling: the conditions for a major shift are building, but the moment has not arrived. Use it when you feel the urge to force a large outcome and the situation is asking for patient, precise refinement instead.",
   10: "Hexagram 10, Treading (履 Lü), shows Heaven above the Lake — a vast difference in level, and the image of someone walking carefully on the tail of a tiger without being bitten. It describes a situation requiring precise, respectful conduct in conditions where a misstep carries real consequences. The classical advice is not to avoid the situation but to navigate it with full awareness of the power differential and the care that awareness demands. Use it when you are operating in sensitive territory where conduct matters as much as intention.",
-  13: "Hexagram 13, Fellowship (同人 Tong Ren), shows Fire rising into Heaven — clarity ascending toward the widest possible perspective. It describes genuine alignment with others based on shared values rather than shared convenience. The classical text distinguishes between fellowship in the open field (broad, principled) and fellowship only within the clan (narrow, self-serving). Use it when considering whether a collaboration or alliance is built on real common ground or on the comfort of similarity.",
+  13: "Hexagram 13, Fellowship (同人 Tong Ren), shows Fire rising into Heaven — clarity ascending toward the widest possible perspective. It describes genuine alignment with others based on shared values rather than shared convenience. The classical text distinguishes between fellowship in the open field, which is broad and principled, and fellowship only within the clan, which is narrow and self-serving. Use it when considering whether a collaboration, team, or public alliance is built on real common ground or on the comfort of similarity.",
   14: "Hexagram 14, Great Possession (大有 Da You), shows Fire above Heaven — the sun at its zenith, illuminating everything below. It describes a moment of genuine abundance: resources, influence, or clarity are available in unusual measure. The classical teaching is that great possession is only favorable when governed with clarity and without arrogance. What you hold must be used well, shared appropriately, and not clung to as a permanent condition. Use it when you have more than usual and the question is how to steward it.",
-  15: "Hexagram 15, Modesty (谦 Qian), shows a Mountain hidden within the Earth — great substance held below the surface rather than displayed above it. It describes the quality of measured conduct that makes strength acceptable and durable over time. In the I Ching, modesty is not self-deprecation or false humility; it is the accurate calibration of expression to context. Use it when you have real capability and the question is how to deploy it without triggering resistance or resentment.",
-  16: "Hexagram 16, Enthusiasm (豫 Yu), shows Thunder emerging from Earth — stored energy releasing into movement. It describes the moment when preparation meets readiness and collective momentum becomes possible. The classical use of this hexagram is specifically about mobilization: music, ritual, and shared rhythm as tools for aligning people around a common direction. Use it when you need to build morale, launch a movement, or create the conditions for others to commit and act together.",
+  15: "Hexagram 15, Modesty (谦 Qian), shows a Mountain hidden within the Earth — great substance held below the surface rather than displayed above it. It describes the quality of measured conduct that makes strength acceptable and durable over time. In the I Ching, modesty is not self-deprecation or false humility; it is the accurate calibration of expression to context and the willingness to reduce excess. Use it when you have real capability and the question is how to deploy it without triggering resistance or resentment.",
+  16: "Hexagram 16, Enthusiasm (豫 Yu), shows Thunder emerging from Earth — stored energy releasing into movement. It describes the moment when preparation meets readiness and collective momentum becomes possible. The classical use of this hexagram is specifically about mobilization: music, ritual, and shared rhythm as tools for aligning people around a common direction. Enthusiasm succeeds when it has structure, not when excitement substitutes for preparation. Use it when you need to build morale, launch a movement, or create the conditions for others to commit and act together.",
   18: "Hexagram 18, Work on What Has Been Spoiled (蛊 Gu), shows Wind below the Mountain — gentle penetration beneath a heavy, immovable structure. It describes a situation where decay has set in, usually through neglect or inherited dysfunction, and deliberate corrective work is now required. The classical advice is to examine what went wrong before the current generation, repair it carefully, and allow three days before and after the correction to assess the problem. Use it when you are dealing with a pattern broken for longer than the current moment.",
   19: "Hexagram 19, Approach (临 Lin), shows the Lake above Earth — water rising over the land, the image of something great drawing near. It describes a moment of expanding influence and increasing presence: conditions are favorable, access is opening, and the opportunity to affect others positively is real. The classical warning is that this favorable period has a natural limit — the eighth month brings a reversal. Use it when influence is growing and the question is how to use that access well before conditions change.",
   20: "Hexagram 20, Contemplation (观 Guan), shows Wind above Earth — the image of wind moving across the land, touching everything and revealing what is actually there. It describes a moment of stepping back to observe the full pattern before acting. The classical use of this hexagram is specifically about the influence of example: what others see in your conduct teaches them more than what you say. Use it when you need to assess a situation clearly, or when your actions are being watched and interpreted by others.",
   21: "Hexagram 21, Biting Through (噬嗑 Shi He), shows Thunder above Fire — the image of lightning and thunder together, the combination that produces the clearest and most decisive natural signal. It describes a situation where an obstacle is blocking connection and must be removed through precise, fair action. The classical context is legal: a case that requires judgment, not negotiation. Use it when something is genuinely in the way — a misunderstanding, a violation, a blockage — and the correct response is clear, proportionate action rather than continued tolerance or avoidance.",
   22: "Hexagram 22, Grace (贲 Bi), shows Fire at the foot of the Mountain — light illuminating the surface of something solid and substantial. It describes the relationship between form and content: beauty and presentation that support substance rather than replace it. The classical teaching is that grace is appropriate and valuable in small matters but should not be used to make decisions about what is fundamentally important. Use it when considering how to present something well, while remaining clear that the presentation is not the thing itself.",
-  23: "Hexagram 23, Splitting Apart (剥 Bo), shows a Mountain resting on Earth while its base erodes from below. Five yin lines have risen, leaving one yang line at the top. It describes genuine erosion: structures weaken, support withdraws, and action is unfavorable. The classical advice is not to force movement but to preserve essentials, strengthen foundations quietly, and wait for the cycle to turn. Use it when the ground beneath a situation is no longer solid.",
+  23: "Hexagram 23, Splitting Apart (剥 Bo), shows a Mountain resting on Earth while its base erodes from below. Five yin lines have risen, leaving one yang line at the top, so the image is not sudden collapse but progressive weakening. It describes genuine erosion: structures weaken, support withdraws, and action is unfavorable. The classical advice is not to force movement but to preserve essentials, strengthen foundations quietly, and wait for the cycle to turn. Use it when the ground beneath a situation is no longer solid.",
   26: "Hexagram 26, Great Taming (大畜 Da Chu), shows Heaven within the Mountain — the greatest creative force held inside a solid, containing structure. It describes a situation where significant power or capability is being accumulated, trained, and held in reserve rather than released prematurely. The classical image is of a sage who does not serve the current ruler but instead cultivates depth and waits for the right moment. Use it when you have real strength that is not yet ready to be deployed, and the work is to deepen it rather than express it.",
   27: "Hexagram 27, Nourishment (颐 Yi), shows Thunder below the Mountain — the image of a mouth, with movement at the bottom and stillness at the top. It describes the question of what you take in and what you put out: what you eat, what you say, and what you allow to nourish or deplete you. The classical teaching is that character is shaped by intake — both physical and mental. Use it when you are making choices about what to consume, what to produce, or what kind of environment you are sustaining yourself within.",
-  28: "Hexagram 28, Great Exceeding (大过 Da Guo), shows a Lake above Wind — water rising above the trees, like a beam too heavy for its supports. It describes a load beyond the structure's capacity: something is carrying more strain than it can sustain. The classical advice is to acknowledge the pressure and make a transition, finding an extraordinary response to an extraordinary situation. Use it when the current structure cannot hold what is being asked of it.",
+  28: "Hexagram 28, Great Exceeding (大过 Da Guo), shows Lake above Wind — water rising above the trees, like a beam too heavy for its supports. It describes a load beyond the structure's capacity: something is carrying more strain than it can sustain. The classical advice is to acknowledge the pressure and make a transition, finding an extraordinary response to an extraordinary situation rather than pretending normal methods are enough. Use it when the current structure cannot hold what is being asked of it.",
   31: "Hexagram 31, Influence (咸 Xian), shows a Lake above the Mountain — the yielding above the firm, water resting on solid ground. It describes mutual attraction and the conditions under which genuine influence operates: openness, receptivity, and the absence of calculated agenda. The classical image is of courtship — two people drawn to each other through authentic response rather than strategy. Use it when you want to understand how influence actually works, or when you are trying to affect a situation and finding that direct pressure is not producing results.",
   32: "Hexagram 32, Duration (恒 Heng), shows Thunder above Wind — two forces that move together continuously, each sustaining the other. It describes the quality of endurance that comes not from rigidity but from consistent, adaptive movement. The classical teaching is that duration is not sameness; it is the capacity to remain true to a direction while responding to changing conditions. Use it when you are asking whether something is worth sustaining over time, or when you need to distinguish between healthy consistency and stubborn inflexibility.",
   33: "Hexagram 33, Retreat (遁 Dun), shows Heaven above the Mountain — the sky withdrawing upward as the mountain rises. It describes a strategic withdrawal from a situation where continued engagement is no longer productive or safe. The classical teaching is that retreat is not defeat; it is the intelligent preservation of strength for a moment when it can be used effectively. Use it when you recognize that the conditions around you have shifted against you and that holding your position will cost more than it gains.",
-  34: "Hexagram 34, Great Power (大壮 Da Zhuang), shows Thunder above Heaven — exceptional strength at its peak. The classical teaching is that great power succeeds only when it follows what is right, not merely what is possible. A ram charging a fence may break through or become entangled. Use it when you have real strength available and the question is whether you are directing it toward what is genuinely correct, or simply toward what you can force.",
+  34: "Hexagram 34, Great Power (大壮 Da Zhuang), shows Thunder above Heaven — exceptional strength at its peak, movement amplified by the largest possible field. The classical teaching is that great power succeeds only when it follows what is right, not merely what is possible. A ram charging a fence may break through or become entangled, so force without judgment becomes self-trapping. Use it when you have real strength available and the question is whether you are directing it toward what is genuinely correct.",
   35: "Hexagram 35, Progress (晋 Jin), shows Fire above Earth — the sun rising over the land, illuminating everything below with increasing clarity. It describes a moment of genuine advancement: visibility is increasing, recognition is available, and the conditions for moving forward are favorable. The classical image is of a feudal lord who receives horses and is granted audience three times in a single day — rapid, welcomed advancement. Use it when conditions are genuinely open and the question is how to advance with the clarity and generosity that makes progress sustainable.",
-  37: "Hexagram 37, The Family (家人 Jia Ren), shows Wind coming from Fire — warmth generating movement and inner clarity expressing itself outward. It describes what lets a household, team, or organization function well: clear roles, genuine care, and conduct that matches what is said. The classical teaching is that order begins with the individual, especially consistency between inner values and outward behavior. Use it when examining whether the structures you live or work within are healthy.",
+  37: "Hexagram 37, The Family (家人 Jia Ren), shows Wind coming from Fire — warmth generating movement and inner clarity expressing itself outward. It describes what lets a household, team, or organization function well: clear roles, genuine care, and conduct that matches what is said. The classical teaching is that order begins with the individual, especially consistency between inner values and outward behavior, because example travels through the whole group. Use it when examining whether the structures you live or work within are healthy.",
   38: "Hexagram 38, Opposition (睽 Kui), shows Fire above the Lake — two forces naturally diverging. It describes genuine difference: two people, values, or directions that cannot be fully reconciled. The classical teaching is that opposition can clarify rather than destroy, if you do not force unity where difference is real. Small matters can still be accomplished even when fundamental alignment is absent. Use it when real difference exists and the question is how to work with it rather than against it.",
-  39: "Hexagram 39, Obstruction (蹇 Jian), shows Water above the Mountain — danger ahead and a steep climb behind. It describes a situation where the direct path forward is genuinely blocked and forcing through will not work. The classical advice is to stop, turn inward, seek help, and find a wiser route. The obstruction is real but temporary; used well, it can produce self-examination and better alliances. Use it when you have hit a wall and need a different approach.",
-  41: "Hexagram 41, Decrease (损 Sun), shows a Lake below the Mountain — something reduced below to strengthen what is above. It describes voluntary simplification, reduction of excess, or sacrifice of something immediate to create a stronger foundation over time. The classical teaching is that sincere decrease is not merely loss; it is rebalancing that prepares eventual increase. Use it when you are being asked to give up something, or when excess in one area is weakening the whole.",
+  39: "Hexagram 39, Obstruction (蹇 Jian), shows Water above the Mountain — danger ahead and a steep climb behind, making the direct route genuinely blocked. It describes a situation where forcing through will not work because the obstacle is structural, not imaginary. The classical advice is to stop, turn inward, seek help, and find a wiser route. The obstruction is temporary if used for self-examination and better alliances. Use it when you have hit a wall and need a different approach.",
+  41: "Hexagram 41, Decrease (损 Sun), shows Mountain above Lake — something reduced below to strengthen what is above. It describes voluntary simplification, reduction of excess, or sacrifice of something immediate to create a stronger foundation over time. The classical teaching is that sincere decrease is not merely loss; it is rebalancing that prepares eventual increase and makes devotion visible through restraint. Use it when you are being asked to give up something, or when excess in one area is weakening the whole.",
   42: "Hexagram 42, Increase (益 Yi), shows Wind above Thunder — two forces that amplify each other, movement reinforcing movement. It describes a moment of genuine growth: conditions are favorable, effort produces more than usual return, and the opportunity to benefit others while advancing yourself is real. The classical teaching is that increase is most durable when it flows outward — when the growth benefits more than just the person receiving it. Use it when conditions are genuinely favorable and the question is how to use a period of increase well, rather than simply accumulating.",
   43: "Hexagram 43, Breakthrough (夬 Guai), shows a Lake risen above Heaven — five yang lines pressing upward against a single yin line at the top. It describes the moment when something that has been building must finally be declared and resolved. The classical teaching is specific: state the truth clearly, do it in the right forum, do not use force alone, and do not underestimate what remains. Use it when you have been tolerating something that needs to be addressed directly, or when a decision that has been deferred can no longer be avoided.",
   44: "Hexagram 44, Coming to Meet (姤 Gou), shows Wind below Heaven — a single yin line appearing beneath five yang lines. It describes an unexpected encounter or influence that arrives without being sought. The classical warning is specific: something small, if not recognized and bounded early, can gradually displace what is strong above it. Use it when something new enters your situation unexpectedly — an opportunity, person, or influence — and the question is whether to engage with it and on what terms.",
-  45: "Hexagram 45, Gathering Together (萃 Cui), shows a Lake above Earth — water collecting on the land into a larger body. It describes people, resources, or energies converging around a shared center. The classical teaching is that genuine gathering requires a trustworthy center, a ritual of commitment, and the sincerity to sustain it. Use it when you are building a group, convening people around a purpose, or joining something that is forming.",
+  45: "Hexagram 45, Gathering Together (萃 Cui), shows Lake above Earth — water collecting on the land into a larger body. It describes people, resources, or energies converging around a shared center. The classical teaching is that genuine gathering requires a trustworthy center, a ritual of commitment, and the sincerity to sustain it; otherwise the crowd disperses as quickly as it formed. Use it when you are building a group, convening people around a purpose, or joining something that is forming.",
   46: "Hexagram 46, Pushing Upward (升 Sheng), shows Wind below Earth — wood growing upward through the soil, steady and unhurried. It describes a period of gradual, organic ascent: conditions are favorable for advancement, but the movement is step by step rather than sudden. The classical image is of a tree that grows from a seed into a great form through consistent, patient effort. Use it when you are in a phase of steady progress and the temptation is either to rush the ascent or to doubt it because it is not dramatic.",
   51: "Hexagram 51, The Arousing (震 Zhen), doubles the Thunder trigram — shock above and shock below. It describes a sudden, disruptive event that arrives without warning and demands response. The classical teaching is that genuine character remains composed under shock: fear may arise, but footing is not lost. The shock itself is a test of whether inner stability is real. Use it when something unexpected has disrupted your situation and the question is how to respond rather than simply react.",
   52: "Hexagram 52, Keeping Still (艮 Gen), doubles the Mountain trigram — stillness above and below. It describes the active practice of stopping: not exhaustion or avoidance, but deliberate cessation at the right moment. The classical teaching is that knowing when to stop is as important as knowing when to move. The back is stilled so attention returns to what is present. Use it when you need to stop a pattern, thought, or movement that has run past its useful point.",
-  53: "Hexagram 53, Development (渐 Jian), shows Wind above the Mountain — a tree growing on a high ridge, visible and unhurried. It describes advancement that follows proper sequence: each step prepares for the next, and no stage is skipped. The classical image is a marriage ceremony conducted through correct rituals because sequence helps make what is built solid. Use it when a process requires patience with proper order and the temptation is to skip steps.",
-  54: "Hexagram 54, The Marrying Maiden (归妹 Gui Mei), shows Thunder above the Lake — movement above joy, and a younger sister joining a household in a secondary position. It describes unequal roles where the subordinate person must navigate with dignity, realistic expectations, and patience. The classical teaching is that acting from weakness or dependency requires care: premature action tends to worsen the situation. Use it when a real power difference asks for integrity within constraint.",
-  55: "Hexagram 55, Abundance (丰 Feng), shows Thunder above Fire — movement above clarity, both at their peak. It describes maximum visibility and influence: the sun at noon, the harvest at its fullest. The classical teaching is that peak moments are temporary, so abundance should be used decisively while the light is strong rather than assumed permanent. Use it when you are at a high point of influence, clarity, or resources and need to use it well before it passes.",
-  56: "Hexagram 56, The Wanderer (旅 Lü), shows Fire above the Mountain — a flame passing over high ground, illuminating briefly and moving on. It describes temporary residence: you are passing through, not settled. The classical teaching is that the wanderer succeeds through courtesy, caution, and traveling light, not by trying to establish permanence in a temporary place. Use it when you are in a transitional situation and the question is how to conduct yourself well without overreaching.",
+  53: "Hexagram 53, Development (渐 Jian), shows Wind above the Mountain — a tree growing on a high ridge, visible and unhurried. It describes advancement that follows proper sequence: each step prepares for the next, and no stage is skipped. The classical image is a marriage ceremony conducted through correct rituals because sequence helps make what is built solid, socially recognized, and relationally trusted by everyone involved. Use it when a process requires patience with proper order and the temptation is to skip steps.",
+  54: "Hexagram 54, The Marrying Maiden (归妹 Gui Mei), shows Thunder above Lake — movement above joy, and a younger sister joining a household in a secondary position. It describes unequal roles where the subordinate person must navigate with dignity, realistic expectations, and patience. The classical teaching is that acting from weakness or dependency requires care because premature action tends to worsen the situation inside limits you did not choose. Use it when a real power difference asks for integrity within constraint rather than dramatic assertion.",
+  55: "Hexagram 55, Abundance (丰 Feng), shows Thunder above Fire — movement above clarity, both at their peak. It describes maximum visibility and influence: the sun at noon, the harvest at its fullest. The classical teaching is that peak moments are temporary, so abundance should be used decisively while the light is strong rather than assumed permanent. The question is stewardship under bright conditions. Use it when you are at a high point of influence, clarity, or resources and need to use it well.",
+  56: "Hexagram 56, The Wanderer (旅 Lu), shows Fire above Mountain — a flame passing over high ground, illuminating briefly and moving on. It describes temporary residence: you are passing through, not settled, and the place does not belong to you. The classical teaching is that the wanderer succeeds through courtesy, caution, and traveling light, not by trying to establish permanence in a temporary place. Use it when you are in transition and the question is how to conduct yourself well without overreaching.",
   57: "Hexagram 57, The Gentle (巽 Xun), doubles the Wind trigram — penetration above and below, soft persistence working through everything. It describes influence that operates not through force but through consistent, repeated presence: wind that finds every opening, bends without breaking, and gradually shapes what it touches. The classical teaching is that this kind of influence requires a clear direction and a willingness to keep moving even when the immediate effect is not visible. Use it when direct force is unavailable or counterproductive, and the situation calls for patient, persistent penetration rather than dramatic action.",
   58: "Hexagram 58, The Joyous (兑 Dui), doubles the Lake trigram — open water above and below, the image of two lakes connected and mutually replenishing. It describes genuine joy that comes from exchange, learning, and sincere connection with others. The classical teaching is that joy is constructive when it remains sincere and is shared through honest communication rather than through flattery or empty pleasure. Use it when you are considering how to create genuine morale, deepen a relationship, or sustain the kind of joy that builds rather than depletes.",
-  59: "Hexagram 59, Dispersion (涣 Huan), shows Wind above Water — wind moving across water, breaking up what has frozen or congealed. It describes dissolution of rigidity: hardened attitudes, resentment, or blocked communication that prevents exchange. The classical use includes ceremony and crossing great waters, both acts that dissolve boundaries between self and other. Use it when something has hardened and needs to flow again, or when a group needs reconnection.",
-  60: "Hexagram 60, Limitation (节 Jie), shows Water above the Lake — water contained within its natural boundary. It describes appropriate limits: not harsh restrictions that create resentment, but clear boundaries that preserve energy, define quality, and make sustained effort possible. The classical teaching is that good limits can be lived within without distress; harsh limits that cannot be maintained are worse than none. Use it when setting boundaries and asking whether the limit is appropriate or merely severe.",
-  61: "Hexagram 61, Inner Truth (中孚 Zhong Fu), shows Wind above the Lake — wind moving across open water and penetrating without force. It describes genuine sincerity: alignment between inner reality and outer expression that makes communication trustworthy and influence real. The classical teaching is that inner truth reaches others through presence, not clever words alone. Use it when you need to understand why some communications land and others do not, or when trust damaged by inconsistency must be rebuilt.",
+  59: "Hexagram 59, Dispersion (涣 Huan), shows Wind above Water — wind moving across water, breaking up what has frozen or congealed. It describes dissolution of rigidity: hardened attitudes, resentment, or blocked communication that prevents exchange. The classical use includes ceremony and crossing great waters, both acts that dissolve boundaries between self and other and restore shared movement without losing the shared center again. Use it when something has hardened and needs to flow again, or when a group needs reconnection.",
+  60: "Hexagram 60, Limitation (节 Jie), shows Water above Lake — water contained within its natural boundary. It describes appropriate limits: not harsh restrictions that create resentment, but clear boundaries that preserve energy, define quality, and make sustained effort possible. The classical teaching is that good limits can be lived within without distress; harsh limits that cannot be maintained are worse than none over time and across real behavior. Use it when setting boundaries and asking whether the limit is appropriate, sustainable, or merely severe.",
+  61: "Hexagram 61, Inner Truth (中孚 Zhong Fu), shows Wind above Lake — wind moving across open water and penetrating without force. It describes genuine sincerity: alignment between inner reality and outer expression that makes communication trustworthy and influence real. The classical teaching is that inner truth reaches others through presence, not clever words alone, because the center must be credible before speech can carry. Use it when you need to understand why some communications land, or when trust damaged by inconsistency must be rebuilt.",
   62: "Hexagram 62, Small Exceeding (小过 Xiao Guo), shows Thunder above the Mountain — movement above stillness, the image of a bird flying too high and missing the nest. It describes a situation where small adjustments are favored and grand overreach is not. The classical teaching is that when the situation calls for modesty and careful attention to detail, attempting something large tends to produce worse results than attending carefully to what is immediately present. Use it when you are tempted to make a sweeping move and the situation is actually asking for precise, small corrections.",
   30: "Hexagram 30, The Clinging (离 Li), doubles the Fire trigram — two flames, each with a hollow center, each dependent on what it burns. It describes clarity that is real but not self-sustaining: your vision, judgment, and illumination depend entirely on what you have attached yourself to. The classical teaching is not to avoid attachment but to choose it consciously. Use it when examining whether the commitments, frameworks, or relationships that are currently providing your clarity are genuinely worth maintaining — and whether the light they produce is steady or consuming.",
   48: "Hexagram 48, The Well (井 Jing), shows Water above Wood — the wooden bucket drawing water from depth. It describes a source of nourishment that is fixed, available to all, and dependent on maintenance. The classical teaching names three failures: muddy water, a rope too short, and a broken jug at the surface. Use it when asking whether a deep resource — expertise, practice, or relationship — is genuinely accessible, or whether the mechanism connecting you to it has been neglected.",
-  50: "Hexagram 50, The Cauldron (鼎 Ding), shows Fire above Wood — controlled combustion transforming raw material into refined nourishment. It describes transformation through vessel, process, and offering: raw experience or capacity brought into a structured container, refined through sustained work, and offered outward. The classical teaching is that the vessel must be sound, the process sustained, and the result offered rather than hoarded. Use it when building something meant to transform raw input into refined output for others.",
-  63: "Hexagram 63, After Completion (既济 Jiji), is the only hexagram where every line is in its correct position — yang in yang places, yin in yin places. It describes the paradox of perfect completion: the moment of maximum order is also the moment of maximum vulnerability to disorder. Water above fire is stable only as long as the fire burns at the right intensity. The classical teaching is that completion requires maintenance, not celebration followed by withdrawal. Use it after a significant achievement, when the temptation is to relax the attention that produced the result.",
+  50: "Hexagram 50, The Cauldron (鼎 Ding), shows Fire above Wood — controlled combustion transforming raw material into refined nourishment. It describes transformation through vessel, process, and offering: raw experience or capacity brought into a structured container, refined through sustained work, and offered outward. The classical teaching is that the vessel must be sound, the process sustained, and the result offered rather than hoarded. Use it when building something meant to transform raw input into refined output for others through a reliable container.",
+  63: "Hexagram 63, After Completion (既济 Jiji), shows Water above Fire, the only hexagram where every line is in its correct position — yang in yang places, yin in yin places. It describes the paradox of perfect completion: the moment of maximum order is also the moment of maximum vulnerability to disorder. Water above fire is stable only as long as the fire burns at the right intensity. The classical teaching is that completion requires maintenance, not celebration followed by withdrawal. Use it when a significant achievement is complete and the temptation is to relax the attention that produced the result.",
   64: "Hexagram 64, Before Completion (未济 Weiji), is the final hexagram of the I Ching, with every line in the wrong position. It describes a threshold moment: the transition is real, the direction is correct, but the crossing is not complete. The classical image is a young fox getting its tail wet at the last step. The teaching is that final stages are dangerous because premature confidence can undo the crossing. Use it when completion is near but not yet secured.",
 };
 
@@ -5815,24 +5903,80 @@ const hexagramFaqs: Partial<Record<number, FAQ[]>> = {
     { question: "When does Hexagram 12 appear in readings?", answer: "During organizational dysfunction, blocked relationships, periods when normal channels of progress have closed. The hexagram is realistic about the situation and clear about what to do: wait, conserve, do not engage prematurely." },
     { question: "How does Hexagram 12 end?", answer: "The top line says 'the standstill comes to an end' — these periods are temporary by nature. The line emphasizes that the change comes from a shift in conditions, not from forcing the obstruction. Patience and preservation are the bridge to the next phase." },
   ],
+  ...buildHexagramFaqEntries(),
 };
 
-const TRIGRAM_NAMES: Record<string, string> = {
-  "111": "Heaven",
-  "000": "Earth",
-  "100": "Thunder",
-  "010": "Water",
-  "001": "Mountain",
-  "011": "Wind",
-  "101": "Fire",
-  "110": "Lake",
-};
+function buildHexagramFaqEntries(): Record<number, FAQ[]> {
+  return Object.fromEntries(
+    HEXAGRAMS.filter((hexagram) => hexagram.number >= 13).map((hexagram) => [
+      hexagram.number,
+      buildHexagramFaqs(hexagram),
+    ]),
+  );
+}
+
+function buildHexagramFaqs(hexagram: (typeof HEXAGRAMS)[number]): FAQ[] {
+  const pairedHex = HEXAGRAMS.find((item) => item.number === PAIRED_HEXAGRAMS[hexagram.number]);
+  const pairedName = pairedHex ? `Hexagram ${pairedHex.number} (${pairedHex.name})` : "its paired hexagram";
+  const pinyin = HEXAGRAM_PINYIN[hexagram.number];
+  const chineseName = `${hexagram.chinese} ${pinyin}`;
+  const lowerTrigram = TRIGRAM_NAMES[hexagram.binary.slice(0, 3)] ?? hexagram.binary.slice(0, 3);
+  const upperTrigram = TRIGRAM_NAMES[hexagram.binary.slice(3, 6)] ?? hexagram.binary.slice(3, 6);
+  const judgmentLower = hexagram.judgment.replace(/\.$/, "").toLowerCase();
+
+  return [
+    {
+      question: `What does Hexagram ${hexagram.number} (${hexagram.name}) mean?`,
+      answer: `Hexagram ${hexagram.number}, ${chineseName}, means ${hexagram.judgment.toLowerCase()} Its Image says, "${hexagram.image}" Read it as a complete statement about the pattern now present, not as a fixed prediction or isolated omen.`,
+    },
+    {
+      question: `What is the trigram structure of Hexagram ${hexagram.number}?`,
+      answer: `Hexagram ${hexagram.number}, ${chineseName}, is built from ${upperTrigram} above ${lowerTrigram}. This structure gives the page its core image: ${hexagram.image} The upper trigram shows the visible field, while the lower trigram shows the pressure or resource underneath.`,
+    },
+    {
+      question: `When does Hexagram ${hexagram.number} appear in a reading?`,
+      answer: `Hexagram ${hexagram.number}, ${chineseName}, appears when the question matches this Judgment: "${hexagram.judgment}" It often points to decisions about timing, conduct, relationships, or responsibility where the symbolic image gives a practical response.`,
+    },
+    {
+      question: `How does Hexagram ${hexagram.number} differ from ${pairedName}?`,
+      answer: `Hexagram ${hexagram.number}, ${chineseName}, emphasizes ${judgmentLower}. ${pairedHex ? `Hexagram ${pairedHex.number}, ${pairedHex.chinese} ${HEXAGRAM_PINYIN[pairedHex.number]}, emphasizes ${pairedHex.judgment.replace(/\.$/, "").toLowerCase()}.` : "Its pair emphasizes the adjacent movement in the King Wen sequence."} Read the pair together to distinguish the current condition from its complementary or contrasting phase.`,
+    },
+    {
+      question: `What does Hexagram ${hexagram.number} warn against?`,
+      answer: `Hexagram ${hexagram.number}, ${chineseName}, warns against missing the discipline implied by its Image: "${hexagram.image}" The risk is treating ${judgmentLower} as permission for habit, haste, or passivity. The safer response is precise conduct that fits the moment.`,
+    },
+  ];
+}
+
+function buildHexagramRelatedLinks(hexagram: (typeof HEXAGRAMS)[number]) {
+  const pairedNum = PAIRED_HEXAGRAMS[hexagram.number];
+  const pairedHex = HEXAGRAMS.find((item) => item.number === pairedNum);
+  const links = [
+    { title: "I Ching Oracle", href: "/tools/i-ching-oracle", description: "Cast a six-line hexagram in the browser." },
+  ];
+
+  if (pairedHex) {
+    links.push({
+      title: `Hexagram ${pairedHex.number}: ${pairedHex.name} (${pairedHex.chinese})`,
+      href: `/i-ching/hexagram-${pairedHex.number}`,
+      description: `The paired hexagram in the King Wen sequence. ${pairedHex.judgment}`,
+    });
+  }
+
+  links.push({
+    title: "I Ching Overview",
+    href: "/i-ching",
+    description: "Complete guide to the 64 hexagrams and how to use them.",
+  });
+
+  return links;
+}
 
 function createHexagramPage(hexagram: (typeof HEXAGRAMS)[number]): IChingContentPage {
   const slug = `hexagram-${hexagram.number}`;
   const path = `/i-ching/${slug}`;
-  const upperTrigram = TRIGRAM_NAMES[hexagram.binary.slice(0, 3)] ?? hexagram.binary.slice(0, 3);
-  const lowerTrigram = TRIGRAM_NAMES[hexagram.binary.slice(3, 6)] ?? hexagram.binary.slice(3, 6);
+  const lowerTrigram = TRIGRAM_NAMES[hexagram.binary.slice(0, 3)] ?? hexagram.binary.slice(0, 3);
+  const upperTrigram = TRIGRAM_NAMES[hexagram.binary.slice(3, 6)] ?? hexagram.binary.slice(3, 6);
 
   return buildPage({
     slug,
@@ -5844,7 +5988,14 @@ function createHexagramPage(hexagram: (typeof HEXAGRAMS)[number]): IChingContent
     subtitle: `Judgment, image, and reflective use for Hexagram ${hexagram.number}.`,
     directAnswer: hexagramDirectAnswers[hexagram.number] ?? `Hexagram ${hexagram.number}, ${hexagram.name} (${hexagram.chinese}), points to ${hexagram.judgment.toLowerCase()} Its image says: ${hexagram.image} Use it as a structured mirror for the present situation, then compare changing lines when the cast shows movement.`,
     breadcrumbs: breadcrumbs(`Hexagram ${hexagram.number}`, path),
-    schema: { headline: "", description: "", url: "", datePublished: hexagramDate(hexagram.number), dateModified: hexagramModDate(hexagram.number) },
+    schema: {
+      headline: "",
+      description: "",
+      url: "",
+      alternateName: [hexagram.chinese, hexagram.name],
+      datePublished: hexagramDate(hexagram.number),
+      dateModified: hexagramModDate(hexagram.number),
+    },
     stats: [
       { value: String(hexagram.number), label: "Hexagram number", description: "Position in the King Wen sequence." },
       { value: "6", label: "Lines", description: "Every hexagram has six yin or yang positions." },
@@ -5910,7 +6061,7 @@ function createHexagramPage(hexagram: (typeof HEXAGRAMS)[number]): IChingContent
       },
     ],
     faqs: hexagramFaqs[hexagram.number] ?? defaultFaqs,
-    relatedLinks,
+    relatedLinks: buildHexagramRelatedLinks(hexagram),
     cta: cta(`Cast Hexagram ${hexagram.number} context`),
   });
 }

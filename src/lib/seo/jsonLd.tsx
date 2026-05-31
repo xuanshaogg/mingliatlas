@@ -21,6 +21,7 @@ interface ArticleSchemaInput {
   url: string;
   entityName: string;
   entityType: string;
+  alternateName?: string | string[];
   datePublished?: string;
   dateModified?: string;
   image?: string;
@@ -71,6 +72,7 @@ export function buildArticleDefinedTermSchema({
   url,
   entityName,
   entityType,
+  alternateName,
   datePublished,
   dateModified,
   image,
@@ -80,6 +82,7 @@ export function buildArticleDefinedTermSchema({
   const entityNode = {
     "@type": entityType,
     name: entityName,
+    ...(alternateName ? { alternateName } : {}),
     description,
   };
 
@@ -88,6 +91,7 @@ export function buildArticleDefinedTermSchema({
     "@type": ["Article", entityType],
     headline,
     name: entityName,
+    ...(alternateName ? { alternateName } : {}),
     description,
     url,
     ...(image ? { image: image.startsWith("http") ? image : `${SITE.url}${image}` } : {}),

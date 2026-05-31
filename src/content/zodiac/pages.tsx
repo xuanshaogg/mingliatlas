@@ -195,6 +195,11 @@ function faqs(animal?: ZodiacAnimal): FAQ[] {
         answer:
           "No. Compatibility is a symbolic guide for reflection. Communication, values, and personal choices remain more important.",
       },
+      {
+        question: "How is the Chinese zodiac connected to the Five Elements?",
+        answer:
+          "Each zodiac animal pairs with one of the Five Elements (Wu Xing, 五行) in a 60-year cycle, producing combinations such as Fire Horse or Wood Rabbit. The element layer shades the animal's baseline traits and is also why a full Bazi chart, which tracks elements across all four pillars, gives more detail than the birth-year animal alone.",
+      },
     ];
   }
 
