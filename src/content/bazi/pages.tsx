@@ -239,12 +239,46 @@ export const baziPages: BaziContentPage[] = [
           </>
         ),
       },
+      {
+        heading: "Your 6-step Bazi learning path",
+        content: (
+          <>
+            <p>
+              <strong>Learning Bazi works best in sequence.</strong> Each concept builds on the one before it. Follow these six steps to go from absolute beginner to a confident chart reader:
+            </p>
+            <ol className="list-decimal pl-6 space-y-4 mt-4">
+              <li>
+                <strong>Five Elements (Wu Xing):</strong> Start here. Wood, Fire, Earth, Metal, and Water are the vocabulary of the entire system. Learn the generating and controlling cycles, and you can already understand the basic logic behind every Bazi relationship. <Link href="/bazi/five-elements" className={linkClass}>Read the Five Elements guide →</Link>
+              </li>
+              <li>
+                <strong>Heavenly Stems (Tian Gan):</strong> The 10 stems sit on top of each pillar and represent visible energy. Each stem is one element in yin or yang form — Jia Wood, Yi Wood, Bing Fire, Ding Fire, and so on. The Day Master is one of these ten. <Link href="/bazi/heavenly-stems" className={linkClass}>Read the Heavenly Stems guide →</Link>
+              </li>
+              <li>
+                <strong>Earthly Branches (Di Zhi):</strong> The 12 branches sit below each pillar and hold seasonal context, zodiac animals, and hidden stems. Branches are where most of the chart's hidden information lives. <Link href="/bazi/earthly-branches" className={linkClass}>Read the Earthly Branches guide →</Link>
+              </li>
+              <li>
+                <strong>Your Day Master:</strong> The stem of your day pillar is your Day Master — the reference point for the whole chart. Find yours with the <Link href="/tools/bazi-calculator" className={linkClass}>free Bazi calculator</Link>, then learn its element, polarity, and Ten God relationships.
+              </li>
+              <li>
+                <strong>Ten Gods (Shi Shen):</strong> Every other element in your chart relates to your Day Master as a Resource, Output, Wealth, Authority, or Peer star. These roles describe career, relationships, and life patterns. <Link href="/bazi/ten-gods" className={linkClass}>Read the Ten Gods guide →</Link>
+              </li>
+              <li>
+                <strong>Luck Pillars (Da Yun):</strong> Your chart is not static — 10-year Luck Pillars change the elemental environment around it. Timing is what makes Bazi more useful than a static personality profile. <Link href="/bazi/luck-pillars" className={linkClass}>Read the Luck Pillars guide →</Link>
+              </li>
+            </ol>
+            <p className="mt-4">
+              Once you have completed these six steps, return to the <Link href="/tools/bazi-calculator" className={linkClass}>Bazi calculator</Link> and practice reading your own chart from start to finish.
+            </p>
+          </>
+        ),
+      },
     ],
     faqs: defaultFaqs,
     relatedLinks: [
       ...baziBaseLinks,
       { title: "Ten Gods", href: "/bazi/ten-gods", description: "Read relationship roles around the Day Master." },
       { title: "Luck Pillars", href: "/bazi/luck-pillars", description: "Understand how 10-year cycles change the chart environment." },
+      { title: "Day Master Series", href: "/blog/jia-wood-day-master", description: "Read dedicated guides for all 10 Day Master types." },
       { title: "Free Bazi Calculator", href: "/tools/bazi-calculator", description: "Generate a chart and follow the reading order." },
     ],
     cta: cta(),
@@ -349,6 +383,9 @@ export const baziPages: BaziContentPage[] = [
             </p>
             <p>
               It can also help separate structure from story. A chart may show strong Output stars, but that does not automatically mean someone should become an artist; it means expression, production, teaching, or problem-solving may be important channels. A chart may show strong Authority stars, but that does not guarantee status; it points to pressure, standards, responsibility, or rule systems that need careful handling.
+            </p>
+            <p>
+              For a more beginner-friendly walkthrough, read the <Link href="/blog/what-is-bazi" className={linkClass}>What Is Bazi blog post</Link> — it covers the same foundation in a more conversational style before you dive into the full Bazi knowledge hub.
             </p>
           </>
         ),
@@ -623,14 +660,14 @@ export const baziPages: BaziContentPage[] = [
   buildPage({
     slug: "earthly-branches",
     path: "/bazi/earthly-branches",
-    title: "The 12 Earthly Branches (Di Zhi): Complete Guide",
+    title: "Earthly Branches (Di Zhi / Kuar-di Zhi / 地支): Complete Guide to the 12 Branches",
     description:
-      "The Earthly Branches are 12 seasonal containers used in Bazi for months, hours, zodiac animals, hidden stems, and branch relationships.",
+      "Earthly Branches (地支, also known as Di Zhi or Kuar-di Zhi) are the 12 terrestrial branches used in Bazi for months, hours, zodiac animals, hidden stems, and branch relationships. Complete guide with meanings and interactions.",
     entityName: "Earthly Branches",
     entityType: "DefinedTerm",
     subtitle: "The seasonal foundation of Bazi pillars and hidden chart structure.",
     directAnswer:
-      "The 12 Earthly Branches (Di Zhi 地支) are Zi, Chou, Yin, Mao, Chen, Si, Wu, Wei, Shen, You, Xu, and Hai. They represent months, hours, directions, zodiac animals, hidden stems, and relationship patterns such as combinations, clashes, harms, and punishments.",
+      "The 12 Earthly Branches (Di Zhi 地支, also known as Kuar-di Zhi) are Zi, Chou, Yin, Mao, Chen, Si, Wu, Wei, Shen, You, Xu, and Hai. They are the terrestrial or earthly branches used in Bazi to represent months, hours, directions, zodiac animals, hidden stems, and relationship patterns such as combinations, clashes, harms, and punishments.",
     breadcrumbs: baziBreadcrumbs("Earthly Branches", "/bazi/earthly-branches"),
     schema: { headline: "", description: "", url: "", datePublished: "2025-12-18", dateModified: "2026-01-25" },
     stats: [
@@ -648,7 +685,7 @@ export const baziPages: BaziContentPage[] = [
         content: (
           <>
             <p>
-              The 12 Earthly Branches (Di Zhi 地支) are Zi (子), Chou (丑), Yin (寅), Mao (卯), Chen (辰), Si (巳), Wu (午), Wei (未), Shen (申), You (酉), Xu (戌), and Hai (亥). Each branch contains a season, direction, two-hour period, animal symbol, and one or more hidden stems. This layered structure is why <cite>Chinese calendrical tradition</cite> treats branches as far more than mascots — they are containers of seasonal energy that hold information invisible at the surface level.
+              The 12 Earthly Branches (Di Zhi 地支, also romanized as Kuar-di Zhi) are Zi (子), Chou (丑), Yin (寅), Mao (卯), Chen (辰), Si (巳), Wu (午), Wei (未), Shen (申), You (酉), Xu (戌), and Hai (亥). Each branch contains a season, direction, two-hour period, animal symbol, Chinese zodiac association, and one or more hidden stems. This layered structure is why <cite>Chinese calendrical tradition</cite> treats branches as far more than mascots — they are containers of seasonal energy that hold information invisible at the surface level.
             </p>
             <p>
               The hidden stems inside each branch are the most important feature for Bazi reading. Zi holds only Gui Water. Chou holds Ji Earth, Gui Water, and Xin Metal. Yin holds Jia Wood, Bing Fire, and Wu Earth. Each branch's hidden stems represent the energies stored within that seasonal container, and they can activate or be activated by stems and branches elsewhere in the chart. A chart that appears to lack a certain element at the surface level may hold it in hidden form inside a branch.
@@ -749,6 +786,7 @@ export const baziPages: BaziContentPage[] = [
       baziBaseLinks[0],
       baziBaseLinks[1],
       { title: "Chinese Zodiac", href: "/chinese-zodiac", description: "Learn how branch animals became the 12-year zodiac cycle." },
+      { title: "Zodiac Compatibility Chart", href: "/blog/chinese-zodiac-compatibility-chart", description: "See how earthly branch relationships map to zodiac compatibility patterns." },
     ],
     cta: cta(),
   }),

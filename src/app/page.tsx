@@ -14,13 +14,14 @@ import {
   Sparkles,
   Stars,
 } from "lucide-react";
+import FAQSection from "@/components/shared/FAQSection";
 import { SITE } from "@/lib/constants";
-import { buildItemListSchema, JsonLd } from "@/lib/seo/jsonLd";
+import { buildFAQPageSchema, buildItemListSchema, JsonLd } from "@/lib/seo/jsonLd";
 
 export const metadata: Metadata = {
   title: `${SITE.name} | Chinese Metaphysics Guides and Free Tools`,
   description:
-    "Discover Bazi, Ziwei Doushu, I Ching, Feng Shui, and Chinese Zodiac through modern guides, structured explanations, and free tools.",
+    "Learn Bazi, Ziwei Doushu, I Ching, Feng Shui, and Chinese Zodiac with modern guides plus free Bazi calculator, I Ching oracle, and zodiac compatibility tools.",
   alternates: {
     canonical: "/",
   },
@@ -97,6 +98,26 @@ const featuredToolsSchema = buildItemListSchema({
   })),
 });
 
+const homepageFaqs = [
+  {
+    question: "What should I start with if I am new to Chinese metaphysics?",
+    answer:
+      "Start with the beginner guide for yin-yang, Five Elements, and zodiac basics. If you want something personalized quickly, the Bazi calculator is the clearest first tool because it turns a birth date into a concrete chart structure.",
+  },
+  {
+    question: "What is the difference between Bazi, I Ching, and Chinese Zodiac?",
+    answer:
+      "Bazi is a birth-chart system based on year, month, day, and hour pillars. I Ching is a question-based reflection system built around hexagrams and changing lines. Chinese Zodiac is the 12-animal cycle and works best as cultural context rather than a full chart-reading substitute.",
+  },
+  {
+    question: "Can I use the free tools without knowing any Chinese terms?",
+    answer:
+      "Yes. The site explains core terms like Day Master, Ten Gods, trigrams, and harmony pairs in plain English and links deeper guides from the tool results so you can learn only the terms relevant to your question.",
+  },
+];
+
+const homepageFaqSchema = buildFAQPageSchema(homepageFaqs);
+
 const learningPaths = [
   {
     title: "New to Chinese metaphysics",
@@ -124,6 +145,27 @@ const posts = [
       "A practical introduction to year, month, day, and hour pillars for readers new to Chinese metaphysics.",
   },
   {
+    title: "Day Master Is the Day Stem — Complete Guide to Bazi Day Master",
+    href: "/blog/day-master-bazi-complete-guide",
+    category: "Bazi Guide",
+    excerpt:
+      "The Day Master is the day stem (heavenly stem of day pillar). Complete guide to the 10 Heavenly Stems and your Bazi day master source.",
+  },
+  {
+    title: "Jia Wood Day Master: The Tall Tree — Personality & Meaning",
+    href: "/blog/jia-wood-day-master",
+    category: "Bazi Guide",
+    excerpt:
+      "Jia Wood (甲) is the Yang Wood Day Master — the tall tree. A complete guide to Jia Wood personality, career, relationships, and elemental strengths.",
+  },
+  {
+    title: "Chinese Zodiac Compatibility Chart: Triads, Harmony Pairs & Clashes",
+    href: "/blog/chinese-zodiac-compatibility-chart",
+    category: "Zodiac Guide",
+    excerpt:
+      "A complete compatibility chart with triads, harmony pairs, and clash pairs for all 12 animal signs.",
+  },
+  {
     title: "Chinese Zodiac 2026 Forecast: What to Expect for All 12 Animals",
     href: "/blog/chinese-zodiac-2026-forecast",
     category: "Yearly Forecast",
@@ -136,6 +178,36 @@ const posts = [
     category: "Comparison",
     excerpt:
       "A side-by-side comparison of symbolic systems without flattening either into the other.",
+  },
+  {
+    title: "How to Read a Bazi Chart Without Getting Overwhelmed",
+    href: "/blog/how-to-read-a-bazi-chart",
+    category: "Bazi Guide",
+    excerpt:
+      "A step-by-step reading order for turning a Four Pillars chart into useful questions about timing and tendencies.",
+  },
+];
+
+const intentPaths = [
+  {
+    title: "I want a personal reading",
+    href: "/tools/bazi-calculator",
+    description: "Generate a Four Pillars chart, then read Day Master, element balance, and Ten Gods.",
+  },
+  {
+    title: "I have a question and need guidance",
+    href: "/tools/i-ching-oracle",
+    description: "Cast a hexagram, review changing lines, and open the related hexagram guides.",
+  },
+  {
+    title: "I want relationship compatibility",
+    href: "/tools/zodiac-compatibility",
+    description: "Check harmony, clashes, and sign dynamics before diving into deeper chart work.",
+  },
+  {
+    title: "I just need the basics first",
+    href: "/learn/beginners-guide",
+    description: "Start with a structured introduction to key ideas, terms, and when to use each system.",
   },
 ];
 
@@ -257,6 +329,7 @@ export default function Home() {
   return (
     <>
       <JsonLd data={featuredToolsSchema} />
+      <JsonLd data={homepageFaqSchema} />
       <section className="relative isolate overflow-hidden border-b border-ink-100 bg-paper dark:border-white/10 dark:bg-ink-950">
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(139,0,0,0.05)_1px,transparent_1px),linear-gradient(0deg,rgba(201,168,76,0.08)_1px,transparent_1px)] bg-[size:64px_64px]" />
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 pb-10 pt-12 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-8 lg:pb-14 lg:pt-16">
@@ -288,7 +361,19 @@ export default function Home() {
             </div>
 
             <div className="mt-8 max-w-xl border-l-2 border-brand-primary bg-white/70 px-4 py-3 text-sm leading-6 text-ink-700 shadow-sm dark:bg-white/5 dark:text-ink-200">
-              <strong className="text-ink-950 dark:text-paper">Quick answer:</strong> start with Five Elements and the Chinese Zodiac, then use Bazi for birth-chart structure, I Ching for decisions, and Feng Shui for space.
+              <strong className="text-ink-950 dark:text-paper">Quick answer:</strong> start with <Link href="/blog/what-is-bazi" className="font-semibold underline">What Is Bazi</Link> and Five Elements, then use Bazi for birth-chart structure, I Ching for decisions, and Feng Shui for space.
+            </div>
+
+            <div className="mt-6 grid grid-cols-3 gap-3 max-w-xl">
+              <Link href="/tools/bazi-calculator" className="rounded-lg border border-ink-200 bg-white px-4 py-3 text-center text-sm font-semibold text-ink-900 transition hover:border-brand-primary hover:text-brand-primary dark:border-white/10 dark:bg-white/5 dark:text-paper">
+                Calculate Bazi
+              </Link>
+              <Link href="/tools/i-ching-oracle" className="rounded-lg border border-ink-200 bg-white px-4 py-3 text-center text-sm font-semibold text-ink-900 transition hover:border-brand-primary hover:text-brand-primary dark:border-white/10 dark:bg-white/5 dark:text-paper">
+                Ask I Ching
+              </Link>
+              <Link href="/tools/zodiac-compatibility" className="rounded-lg border border-ink-200 bg-white px-4 py-3 text-center text-sm font-semibold text-ink-900 transition hover:border-brand-primary hover:text-brand-primary dark:border-white/10 dark:bg-white/5 dark:text-paper">
+                Zodiac Match
+              </Link>
             </div>
           </div>
 
@@ -318,6 +403,23 @@ export default function Home() {
 
       <section className="bg-paper px-4 py-20 dark:bg-ink-950 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
+          <div className="grid gap-4 border-b border-ink-200 pb-10 dark:border-white/10 lg:grid-cols-4">
+            {intentPaths.map((path) => (
+              <Link
+                key={path.href}
+                href={path.href}
+                className="group rounded-lg border border-ink-200 bg-white px-5 py-5 transition hover:border-brand-gold hover:shadow-lg hover:shadow-ink-950/5 dark:border-white/10 dark:bg-white/5"
+              >
+                <p className="text-sm font-semibold text-ink-950 dark:text-paper">{path.title}</p>
+                <p className="mt-3 text-sm leading-6 text-ink-600 dark:text-ink-300">{path.description}</p>
+                <span className="mt-4 inline-flex items-center text-sm font-semibold text-brand-primary dark:text-gold-300">
+                  Go there
+                  <ArrowRight className="ml-1 h-4 w-4 transition group-hover:translate-x-1" aria-hidden="true" />
+                </span>
+              </Link>
+            ))}
+          </div>
+
           <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
             <div>
               <p className="text-sm font-semibold uppercase text-brand-primary dark:text-gold-300">
@@ -437,6 +539,12 @@ export default function Home() {
             Open the calculator
             <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
           </Link>
+        </div>
+      </section>
+
+      <section className="bg-paper px-4 py-20 dark:bg-ink-950 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl">
+          <FAQSection faqs={homepageFaqs} />
         </div>
       </section>
     </>

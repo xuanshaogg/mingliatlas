@@ -3,6 +3,8 @@ import type { KnowledgePageProps } from "@/components/templates/KnowledgePage";
 import type { FAQ } from "@/components/shared/FAQSection";
 import { SITE } from "@/lib/constants";
 
+const linkClass = "text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300";
+
 interface ZodiacAnimal {
   slug: string;
   name: string;
@@ -561,6 +563,61 @@ const animalSections: Partial<Record<string, KnowledgePageProps["sections"]>> = 
         </>
       ),
     },
+    {
+      heading: "Dragon zodiac years — complete list with elements",
+      content: (
+        <>
+          <p>
+            <strong>The Dragon year repeats every 12 years, but each occurrence has a unique elemental pairing.</strong> The Heavenly Stem that rides above the Chen branch changes every cycle, producing five distinct Dragon types across a 60-year sexagenary cycle. Below is the complete list of recent and upcoming Dragon years with their stem-element combinations:
+          </p>
+          <div className="overflow-x-auto mt-4">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b border-ink-200 dark:border-white/10">
+                  <th className="text-left py-2 pr-4 font-semibold">Year</th>
+                  <th className="text-left py-2 pr-4 font-semibold">Stem-Branch</th>
+                  <th className="text-left py-2 pr-4 font-semibold">Element</th>
+                  <th className="text-left py-2 font-semibold">Key Quality</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-ink-100 dark:border-white/5"><td className="py-2 pr-4">1952</td><td className="py-2 pr-4">Ren-Chen (壬辰)</td><td className="py-2 pr-4">Water Dragon</td><td className="py-2">Adaptive, strategic, depth-oriented</td></tr>
+                <tr className="border-b border-ink-100 dark:border-white/5"><td className="py-2 pr-4">1964</td><td className="py-2 pr-4">Jia-Chen (甲辰)</td><td className="py-2 pr-4">Wood Dragon</td><td className="py-2">Growth-oriented, visionary, expansive</td></tr>
+                <tr className="border-b border-ink-100 dark:border-white/5"><td className="py-2 pr-4"><Link href="/chinese-zodiac/dragon/1976" className={linkClass}>1976</Link></td><td className="py-2 pr-4">Bing-Chen (丙辰)</td><td className="py-2 pr-4">Fire Dragon</td><td className="py-2">Charismatic, expressive, action-driven</td></tr>
+                <tr className="border-b border-ink-100 dark:border-white/5"><td className="py-2 pr-4"><Link href="/chinese-zodiac/dragon/1988" className={linkClass}>1988</Link></td><td className="py-2 pr-4">Wu-Chen (戊辰)</td><td className="py-2 pr-4">Earth Dragon</td><td className="py-2">Stable, authoritative, grounded</td></tr>
+                <tr className="border-b border-ink-100 dark:border-white/5"><td className="py-2 pr-4"><Link href="/chinese-zodiac/dragon/2000" className={linkClass}>2000</Link></td><td className="py-2 pr-4">Geng-Chen (庚辰)</td><td className="py-2 pr-4">Metal Dragon</td><td className="py-2">Determined, precise, structured</td></tr>
+                <tr className="border-b border-ink-100 dark:border-white/5"><td className="py-2 pr-4"><Link href="/chinese-zodiac/dragon/2012" className={linkClass}>2012</Link></td><td className="py-2 pr-4">Ren-Chen (壬辰)</td><td className="py-2 pr-4">Water Dragon</td><td className="py-2">Adaptive, strategic, depth-oriented</td></tr>
+                <tr className="border-b border-ink-100 dark:border-white/5"><td className="py-2 pr-4"><Link href="/chinese-zodiac/dragon/2024" className={linkClass}>2024</Link></td><td className="py-2 pr-4">Jia-Chen (甲辰)</td><td className="py-2 pr-4">Wood Dragon</td><td className="py-2">Growth-oriented, visionary, expansive</td></tr>
+                <tr><td className="py-2 pr-4">2036</td><td className="py-2 pr-4">Bing-Chen (丙辰)</td><td className="py-2 pr-4">Fire Dragon</td><td className="py-2">Charismatic, expressive, action-driven</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-4">
+            The element modifier changes how the Dragon year expresses its energy. A Water Dragon year (1952, 2012) emphasizes strategy and depth; a Fire Dragon year (1976, 2036) emphasizes visibility and action. For year-specific guidance, start with the linked Dragon year pages in the table.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Dragon personality by Five Element type",
+      content: (
+        <>
+          <p>
+            <strong>Each Dragon elemental type brings a different flavor to the core Chen branch personality.</strong> While all Dragons share the Chen branch&rsquo;s ambition, charisma, and transformative energy, the Heavenly Stem of the birth year adds a distinct layer:
+          </p>
+          <ul className="list-disc pl-6 space-y-2 mt-4">
+            <li><strong>Wood Dragon (Jia Chen, 甲辰):</strong> The most visionary and growth-oriented Dragon. Wood adds planning, expansion, and a long-term perspective. Wood Dragons tend to build systems and institutions rather than simply leading them. Notable period: 1964, 2024.</li>
+            <li><strong>Fire Dragon (Bing Chen, 丙辰):</strong> The most charismatic and publicly visible Dragon. Fire adds expression, warmth, and a need for recognition. Fire Dragons thrive in performance, media, and high-visibility leadership. Notable period: 1976, 2036.</li>
+            <li><strong>Earth Dragon (Wu Chen, 戊辰):</strong> The most stable and authoritative Dragon. Yang Earth on Yang Earth creates double grounding — steady, practical, and resistant to being moved. Earth Dragons excel in management, finance, and long-term planning. Notable period: 1988.</li>
+            <li><strong>Metal Dragon (Geng Chen, 庚辰):</strong> The most determined and precise Dragon. Metal adds structure, decisiveness, and a drive for quality. Metal Dragons are natural executives, engineers, and system-builders. Notable period: 2000.</li>
+            <li><strong>Water Dragon (Ren Chen, 壬辰):</strong> The most strategic and adaptable Dragon. Water adds depth, intelligence, and the ability to navigate complex situations. Water Dragons excel in research, strategy, and behind-the-scenes influence. Notable period: 1952, 2012.</li>
+          </ul>
+          <p className="mt-4">
+            Your specific Dragon year type can be found using the <Link href="/tools/bazi-calculator" className={linkClass}>Bazi calculator</Link>, which shows the full stem-branch pair of your year pillar. The elemental modifier of your birth year interacts with your Day Master, month pillar, and the rest of the chart to create your complete profile.
+          </p>
+        </>
+      ),
+    },
   ],
 };
 
@@ -905,7 +962,146 @@ const forecast2026 = buildPage({
   cta: cta("Explore zodiac compatibility before 2026"),
 });
 
-export const allZodiacPages = [overview, ...animalPages, compatibility, forecast2026];
+// ── Year-specific zodiac pages ──────────────────────────────────────────
+// Each page targets a specific animal-year combination (e.g. Dragon/1976)
+// to capture long-tail searches like "year of the dragon 1976 meaning"
+
+function buildYearPage(animal: ZodiacAnimal, year: string, stemBranch: string, elementLabel: string, elementDesc: string) {
+  const slug = `${animal.slug}/${year}`;
+  const path = `/chinese-zodiac/${slug}`;
+  const yearSign = `${year} Year of the ${animal.name}`;
+  return buildPage({
+    slug,
+    path,
+    title: `${year} Year of the ${animal.name}: ${elementLabel} ${animal.name} Personality & Meaning`,
+    description: `${year} is the ${elementLabel} ${animal.name} year (${stemBranch}). Discover the ${elementLabel.toLowerCase()} ${animal.name} personality, element traits, and what this specific ${animal.name} year means in Bazi and Chinese zodiac.`,
+    entityName: yearSign,
+    entityType: "DefinedTerm",
+    subtitle: `${yearSign} — the ${elementLabel.toLowerCase()} expression of the ${animal.name} archetype.`,
+    directAnswer: `${year} was a ${elementLabel} ${animal.name} year (${stemBranch}) in the Chinese zodiac. The ${elementLabel.toLowerCase()} modifier gives the ${animal.name} year a distinctive quality: ${elementDesc}. People born in this year carry both the ${animal.name}&rsquo;s base traits (${animal.traits}) and the ${elementLabel.toLowerCase()} element&rsquo;s expressive style.`,
+    breadcrumbs: breadcrumbs(yearSign, path),
+    schema: { headline: "", description: "", url: "", datePublished: "2026-05-01", dateModified: "2026-06-05" },
+    stats: [
+      { value: elementLabel, label: "Year element", description: `The ${elementLabel.toLowerCase()} modifier of this ${animal.name} year.` },
+      { value: stemBranch, label: "Stem-branch pair", description: "The Heavenly Stem and Earthly Branch for this year." },
+      { value: animal.element, label: "Animal element", description: `${animal.name} belongs to the ${animal.element} element context.` },
+    ],
+    citations: [
+      { label: "Chinese zodiac tradition", source: `${year} is a ${animal.name} year in the 12-year cycle with a ${elementLabel} Heavenly Stem modifier.` },
+      { label: "Earthly Branch tradition", source: `${animal.name} corresponds to the ${animal.branch} branch, which governs specific two-hour time periods and seasonal qualities.` },
+    ],
+    sections: [
+      {
+        heading: `What ${year} means as a ${elementLabel} ${animal.name} year`,
+        content: (
+          <>
+            <p>
+              <strong>${year} was a ${elementLabel} ${animal.name} year (${stemBranch}) in the Chinese zodiac calendar.</strong> The Heavenly Stem ${stemBranch.split("-")[0] || ""} combined with the ${animal.branch} (${animal.name}) Earthly Branch to create a year energy that blends ${animal.name} traits with ${elementLabel.toLowerCase()} element qualities.
+            </p>
+            <p>
+              ${elementDesc} For people born in this year, the ${elementLabel.toLowerCase()} modifier shapes how the ${animal.name}&rsquo;s natural ambition, charisma, and vision express themselves. A ${elementLabel} ${animal.name} tends to approach leadership, relationships, and life goals through a ${elementLabel.toLowerCase()}-inflected lens.
+            </p>
+            <p>
+              In Bazi, the year pillar represents ancestral background and early social environment. The ${stemBranch} year pillar contributes a specific elemental combination to the full Four Pillars chart, interacting with the month, day, and hour pillars to produce a unique life pattern.
+            </p>
+            <p>
+              Read the <Link href={`/chinese-zodiac/${animal.slug}`} className={linkClass}>${animal.name} zodiac page</Link> for the base ${animal.name} personality, or use the <Link href="/tools/bazi-calculator" className={linkClass}>Bazi calculator</Link> to see how this year pillar interacts with your full chart.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: `${animal.name} years at a glance`,
+        content: (
+          <>
+            <p>
+              The ${animal.name} repeats every 12 years in the zodiac cycle. Each occurrence carries a different Heavenly Stem that modifies the year energy. Recent ${animal.name} years include ${animal.years}. The full sexagenary cycle produces five ${animal.name} types — Wood, Fire, Earth, Metal, and Water.
+            </p>
+            <p>
+              ${year} belongs to the ${elementLabel} ${animal.name} type. If your birthday falls in January or early February of ${year}, check the Lunar New Year boundary for that year — the zodiac year does not always begin on January 1st, and the Bazi solar-term boundary (Li Chun) may differ from the popular calendar.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: `Element compatibility and chart context for ${elementLabel} ${animal.name}`,
+        content: (
+          <>
+            <p>
+              In Five Element theory, the ${elementLabel.toLowerCase()} element ${
+                elementLabel === "Wood" ? "generates Fire, controls Earth, and is controlled by Metal" :
+                elementLabel === "Fire" ? "generates Earth, controls Metal, and is controlled by Water" :
+                elementLabel === "Earth" ? "generates Metal, controls Water, and is controlled by Wood" :
+                elementLabel === "Metal" ? "generates Water, controls Wood, and is controlled by Fire" :
+                "generates Wood, controls Fire, and is controlled by Earth"
+              }. This means ${year}&rsquo;s ${elementLabel.toLowerCase()} ${animal.name} energy resonates most harmoniously with charts that need ${elementLabel.toLowerCase()} energy and may create friction in charts that already have excess ${elementLabel.toLowerCase()}.
+            </p>
+            <p>
+              Traditional compatibility for ${animal.name} involves ${animal.compatible} as harmony signs and ${animal.challenging} as the challenging signs. The ${elementLabel.toLowerCase()} modifier adds a second compatibility layer based on element relationships. A full Bazi chart reading considers both the branch-level compatibility and the elemental interaction.
+            </p>
+            <p>
+              For a complete compatibility check, use the <Link href="/tools/zodiac-compatibility" className={linkClass}>zodiac compatibility tool</Link> or generate a full <Link href="/tools/bazi-calculator" className={linkClass}>Bazi chart</Link>.
+            </p>
+          </>
+        ),
+      },
+    ],
+    faqs: [
+      {
+        question: `What does ${year} mean in the Chinese zodiac?`,
+        answer: `${year} was the Year of the ${elementLabel} ${animal.name} (${stemBranch}) in the Chinese zodiac. It is one of five ${animal.name} types in the 60-year cycle.`,
+      },
+      {
+        question: `What element is ${year} in the Chinese zodiac?`,
+        answer: `${year} is a ${elementLabel} ${animal.name} year. The Heavenly Stem for ${year} carries ${elementLabel.toLowerCase()} energy, making this a ${elementLabel.toLowerCase()} ${animal.name} year in the 60-year sexagenary cycle.`,
+      },
+      {
+        question: `What animal is ${year} in the Chinese zodiac?`,
+        answer: `${year} is the Year of the ${animal.name}. The ${animal.name} is the ${animal.rank} sign in the 12-year zodiac cycle, associated with the ${animal.branch} Earthly Branch.`,
+      },
+      {
+        question: `Was ${year} a ${elementLabel} ${animal.name}?`,
+        answer: `Yes. ${year} corresponds to ${stemBranch} in the Chinese calendar, making it a ${elementLabel} ${animal.name} year.`,
+      },
+    ],
+    relatedLinks: [
+      { title: `${animal.name} Zodiac Guide`, href: `/chinese-zodiac/${animal.slug}`, description: `Full ${animal.name} personality, compatibility, and 2026 forecast.` },
+      { title: "Chinese Zodiac Compatibility", href: "/chinese-zodiac/compatibility", description: "Compare harmony pairs, triangular groups, and clash pairs." },
+      { title: "Bazi Calculator", href: "/tools/bazi-calculator", description: "See how this year fits into a complete Four Pillars chart." },
+    ],
+    cta: cta(`Read the full ${animal.name} guide`),
+  });
+}
+
+const dragonYears = [
+  { year: "1976", stemBranch: "Bing-Chen (丙辰)", elementLabel: "Fire", elementDesc: "Fire adds charisma, visibility, expressive warmth, and a drive for recognition. A Fire Dragon year tends to be action-oriented, publicly visible, and emotionally intense." },
+  { year: "1988", stemBranch: "Wu-Chen (戊辰)", elementLabel: "Earth", elementDesc: "Earth adds stability, authority, practicality, and groundedness. An Earth Dragon year tends to be steady, structural, and focused on long-term foundations." },
+  { year: "2000", stemBranch: "Geng-Chen (庚辰)", elementLabel: "Metal", elementDesc: "Metal adds precision, determination, structure, and a drive for quality. A Metal Dragon year tends to be disciplined, exacting, and systems-oriented." },
+  { year: "2012", stemBranch: "Ren-Chen (壬辰)", elementLabel: "Water", elementDesc: "Water adds depth, strategy, adaptability, and intelligence. A Water Dragon year tends to be reflective, strategic, and philosophically inclined." },
+  { year: "2024", stemBranch: "Jia-Chen (甲辰)", elementLabel: "Wood", elementDesc: "Wood adds vision, growth, planning, and expansion. A Wood Dragon year tends to be forward-looking, idealistic, and institution-building." },
+];
+
+const ratYears = [
+  { year: "2008", stemBranch: "Wu-Zi (戊子)", elementLabel: "Earth", elementDesc: "Earth adds stability, practicality, and grounded intelligence. An Earth Rat year tends to be methodical, strategic, and resource-conscious." },
+  { year: "2020", stemBranch: "Geng-Zi (庚子)", elementLabel: "Metal", elementDesc: "Metal adds precision, resilience, and structural thinking. A Metal Rat year tends to be sharp, determined, and efficiency-focused." },
+];
+
+const tigerYears = [
+  { year: "2010", stemBranch: "Geng-Yin (庚寅)", elementLabel: "Metal", elementDesc: "Metal adds decisiveness, structure, and a cutting edge. A Metal Tiger year tends to be bold, strategic, and authority-challenging." },
+  { year: "2022", stemBranch: "Ren-Yin (壬寅)", elementLabel: "Water", elementDesc: "Water adds adaptability, depth, and strategic flow. A Water Tiger year tends to be perceptive, diplomatic, and psychologically nuanced." },
+];
+
+const dragonAnimal = animals.find(a => a.slug === "dragon")!;
+const ratAnimal = animals.find(a => a.slug === "rat")!;
+const tigerAnimal = animals.find(a => a.slug === "tiger")!;
+
+const yearPages: ZodiacContentPage[] = [
+  ...dragonYears.map(y => buildYearPage(dragonAnimal, y.year, y.stemBranch, y.elementLabel, y.elementDesc)),
+  ...ratYears.map(y => buildYearPage(ratAnimal, y.year, y.stemBranch, y.elementLabel, y.elementDesc)),
+  ...tigerYears.map(y => buildYearPage(tigerAnimal, y.year, y.stemBranch, y.elementLabel, y.elementDesc)),
+];
+
+export const allZodiacPages = [overview, ...animalPages, compatibility, forecast2026, ...yearPages];
 
 export function getZodiacPage(slug: string): ZodiacContentPage | undefined {
   return allZodiacPages.find((page) => page.slug === slug);

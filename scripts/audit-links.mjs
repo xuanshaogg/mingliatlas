@@ -31,6 +31,15 @@ function addMatches(set, text, regex, prefix = "") {
   }
 }
 
+function addZodiacYearRoutes(set, text, animal, listName) {
+  const start = text.indexOf(`const ${listName} = [`);
+  if (start === -1) return;
+
+  const end = text.indexOf("];", start);
+  const block = end === -1 ? text.slice(start) : text.slice(start, end);
+  addMatches(set, block, /year:\s*"(\d+)"/g, `/chinese-zodiac/${animal}/`);
+}
+
 function collectPublishedRoutes() {
   const routes = new Set(staticRoutes);
 
@@ -50,7 +59,14 @@ function collectPublishedRoutes() {
   addMatches(routes, read("src/content/i-ching/pages.tsx"), /\{ slug: "([^"]+)"/g, "/i-ching/");
   addMatches(routes, read("src/content/ziwei/pages.tsx"), /\{ slug: "([^"]+)"/g, "/ziwei/");
   addMatches(routes, read("src/content/feng-shui/pages.tsx"), /\{ slug: "([^"]+)"/g, "/feng-shui/");
-  addMatches(routes, read("src/content/zodiac/pages.tsx"), /\{ slug: "([^"]+)"/g, "/chinese-zodiac/");
+  addMatches(routes, read("src/content/blog/posts.tsx"), /slug:\s*"([^"]+-day-master)"/g, "/blog/");
+
+  const zodiacContent = read("src/content/zodiac/pages.tsx");
+  addMatches(routes, zodiacContent, /\{ slug: "([^"]+)"/g, "/chinese-zodiac/");
+  addZodiacYearRoutes(routes, zodiacContent, "dragon", "dragonYears");
+  addZodiacYearRoutes(routes, zodiacContent, "rat", "ratYears");
+  addZodiacYearRoutes(routes, zodiacContent, "tiger", "tigerYears");
+
   addMatches(routes, read("src/lib/i-ching/index.ts"), /number:\s*(\d+)/g, "/i-ching/hexagram-");
 
   return routes;
