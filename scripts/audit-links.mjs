@@ -40,6 +40,12 @@ function addZodiacYearRoutes(set, text, animal, listName) {
   addMatches(set, block, /year:\s*"(\d+)"/g, `/chinese-zodiac/${animal}/`);
 }
 
+function addAllZodiacYearRoutes(set, text) {
+  for (const match of text.matchAll(/const\s+([a-z]+)Years\s*=/g)) {
+    addZodiacYearRoutes(set, text, match[1], `${match[1]}Years`);
+  }
+}
+
 function collectPublishedRoutes() {
   const routes = new Set(staticRoutes);
 
@@ -63,9 +69,7 @@ function collectPublishedRoutes() {
 
   const zodiacContent = read("src/content/zodiac/pages.tsx");
   addMatches(routes, zodiacContent, /\{ slug: "([^"]+)"/g, "/chinese-zodiac/");
-  addZodiacYearRoutes(routes, zodiacContent, "dragon", "dragonYears");
-  addZodiacYearRoutes(routes, zodiacContent, "rat", "ratYears");
-  addZodiacYearRoutes(routes, zodiacContent, "tiger", "tigerYears");
+  addAllZodiacYearRoutes(routes, zodiacContent);
 
   addMatches(routes, read("src/lib/i-ching/index.ts"), /number:\s*(\d+)/g, "/i-ching/hexagram-");
 

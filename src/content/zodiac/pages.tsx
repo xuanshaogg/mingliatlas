@@ -581,14 +581,14 @@ const animalSections: Partial<Record<string, KnowledgePageProps["sections"]>> = 
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-b border-ink-100 dark:border-white/5"><td className="py-2 pr-4">1952</td><td className="py-2 pr-4">Ren-Chen (壬辰)</td><td className="py-2 pr-4">Water Dragon</td><td className="py-2">Adaptive, strategic, depth-oriented</td></tr>
-                <tr className="border-b border-ink-100 dark:border-white/5"><td className="py-2 pr-4">1964</td><td className="py-2 pr-4">Jia-Chen (甲辰)</td><td className="py-2 pr-4">Wood Dragon</td><td className="py-2">Growth-oriented, visionary, expansive</td></tr>
+                <tr className="border-b border-ink-100 dark:border-white/5"><td className="py-2 pr-4"><Link href="/chinese-zodiac/dragon/1952" className={linkClass}>1952</Link></td><td className="py-2 pr-4">Ren-Chen (壬辰)</td><td className="py-2 pr-4">Water Dragon</td><td className="py-2">Adaptive, strategic, depth-oriented</td></tr>
+                <tr className="border-b border-ink-100 dark:border-white/5"><td className="py-2 pr-4"><Link href="/chinese-zodiac/dragon/1964" className={linkClass}>1964</Link></td><td className="py-2 pr-4">Jia-Chen (甲辰)</td><td className="py-2 pr-4">Wood Dragon</td><td className="py-2">Growth-oriented, visionary, expansive</td></tr>
                 <tr className="border-b border-ink-100 dark:border-white/5"><td className="py-2 pr-4"><Link href="/chinese-zodiac/dragon/1976" className={linkClass}>1976</Link></td><td className="py-2 pr-4">Bing-Chen (丙辰)</td><td className="py-2 pr-4">Fire Dragon</td><td className="py-2">Charismatic, expressive, action-driven</td></tr>
                 <tr className="border-b border-ink-100 dark:border-white/5"><td className="py-2 pr-4"><Link href="/chinese-zodiac/dragon/1988" className={linkClass}>1988</Link></td><td className="py-2 pr-4">Wu-Chen (戊辰)</td><td className="py-2 pr-4">Earth Dragon</td><td className="py-2">Stable, authoritative, grounded</td></tr>
                 <tr className="border-b border-ink-100 dark:border-white/5"><td className="py-2 pr-4"><Link href="/chinese-zodiac/dragon/2000" className={linkClass}>2000</Link></td><td className="py-2 pr-4">Geng-Chen (庚辰)</td><td className="py-2 pr-4">Metal Dragon</td><td className="py-2">Determined, precise, structured</td></tr>
                 <tr className="border-b border-ink-100 dark:border-white/5"><td className="py-2 pr-4"><Link href="/chinese-zodiac/dragon/2012" className={linkClass}>2012</Link></td><td className="py-2 pr-4">Ren-Chen (壬辰)</td><td className="py-2 pr-4">Water Dragon</td><td className="py-2">Adaptive, strategic, depth-oriented</td></tr>
                 <tr className="border-b border-ink-100 dark:border-white/5"><td className="py-2 pr-4"><Link href="/chinese-zodiac/dragon/2024" className={linkClass}>2024</Link></td><td className="py-2 pr-4">Jia-Chen (甲辰)</td><td className="py-2 pr-4">Wood Dragon</td><td className="py-2">Growth-oriented, visionary, expansive</td></tr>
-                <tr><td className="py-2 pr-4">2036</td><td className="py-2 pr-4">Bing-Chen (丙辰)</td><td className="py-2 pr-4">Fire Dragon</td><td className="py-2">Charismatic, expressive, action-driven</td></tr>
+                <tr><td className="py-2 pr-4"><Link href="/chinese-zodiac/dragon/2036" className={linkClass}>2036</Link></td><td className="py-2 pr-4">Bing-Chen (丙辰)</td><td className="py-2 pr-4">Fire Dragon</td><td className="py-2">Charismatic, expressive, action-driven</td></tr>
               </tbody>
             </table>
           </div>
@@ -626,7 +626,7 @@ const animalPages = animals.map((animal) =>
     slug: animal.slug,
     path: `/chinese-zodiac/${animal.slug}`,
     title: `Year of the ${animal.name}: Personality, Meaning & 2026 Horoscope`,
-    description: `Year of the ${animal.name} guide with personality traits, recent years, compatibility, career themes, and 2026 forecast notes.`,
+    description: `Year of the ${animal.name}: complete list of years, personality traits by Five Element type, compatibility chart with harmony triads and clash pairs, career guidance, and 2026 forecast. Includes free Bazi calculator.`,
     entityName: `Year of the ${animal.name}`,
     entityType: "DefinedTerm",
     subtitle: `${animal.name} personality, compatibility, years, career themes, and 2026 guidance.`,
@@ -1074,31 +1074,93 @@ function buildYearPage(animal: ZodiacAnimal, year: string, stemBranch: string, e
 }
 
 const dragonYears = [
+  { year: "1952", stemBranch: "Ren-Chen (壬辰)", elementLabel: "Water", elementDesc: "Water adds depth, strategy, adaptability, and intelligence. A Water Dragon year tends to be reflective, strategic, and philosophically inclined." },
+  { year: "1964", stemBranch: "Jia-Chen (甲辰)", elementLabel: "Wood", elementDesc: "Wood adds vision, growth, planning, and expansion. A Wood Dragon year tends to be forward-looking, idealistic, and institution-building." },
   { year: "1976", stemBranch: "Bing-Chen (丙辰)", elementLabel: "Fire", elementDesc: "Fire adds charisma, visibility, expressive warmth, and a drive for recognition. A Fire Dragon year tends to be action-oriented, publicly visible, and emotionally intense." },
   { year: "1988", stemBranch: "Wu-Chen (戊辰)", elementLabel: "Earth", elementDesc: "Earth adds stability, authority, practicality, and groundedness. An Earth Dragon year tends to be steady, structural, and focused on long-term foundations." },
   { year: "2000", stemBranch: "Geng-Chen (庚辰)", elementLabel: "Metal", elementDesc: "Metal adds precision, determination, structure, and a drive for quality. A Metal Dragon year tends to be disciplined, exacting, and systems-oriented." },
   { year: "2012", stemBranch: "Ren-Chen (壬辰)", elementLabel: "Water", elementDesc: "Water adds depth, strategy, adaptability, and intelligence. A Water Dragon year tends to be reflective, strategic, and philosophically inclined." },
   { year: "2024", stemBranch: "Jia-Chen (甲辰)", elementLabel: "Wood", elementDesc: "Wood adds vision, growth, planning, and expansion. A Wood Dragon year tends to be forward-looking, idealistic, and institution-building." },
+  { year: "2036", stemBranch: "Bing-Chen (丙辰)", elementLabel: "Fire", elementDesc: "Fire adds charisma, visibility, expressive warmth, and a drive for recognition. A Fire Dragon year tends to be action-oriented, publicly visible, and emotionally intense." },
 ];
 
 const ratYears = [
+  { year: "1996", stemBranch: "Bing-Zi (丙子)", elementLabel: "Fire", elementDesc: "Fire adds charisma, visibility, and expressive energy. A Fire Rat year tends to be socially vibrant, opportunity-rich, and emotionally intense." },
   { year: "2008", stemBranch: "Wu-Zi (戊子)", elementLabel: "Earth", elementDesc: "Earth adds stability, practicality, and grounded intelligence. An Earth Rat year tends to be methodical, strategic, and resource-conscious." },
   { year: "2020", stemBranch: "Geng-Zi (庚子)", elementLabel: "Metal", elementDesc: "Metal adds precision, resilience, and structural thinking. A Metal Rat year tends to be sharp, determined, and efficiency-focused." },
+  { year: "2032", stemBranch: "Ren-Zi (壬子)", elementLabel: "Water", elementDesc: "Water adds depth, strategy, and adaptability. A Water Rat year tends to be perceptive, reflective, and strategically fluid." },
 ];
 
 const tigerYears = [
+  { year: "1974", stemBranch: "Jia-Yin (甲寅)", elementLabel: "Wood", elementDesc: "Wood adds vision, expansion, and growth-oriented drive. A Wood Tiger year tends to be idealistic, pioneering, and institution-building." },
+  { year: "1998", stemBranch: "Wu-Yin (戊寅)", elementLabel: "Earth", elementDesc: "Earth adds stability, authority, and grounding. An Earth Tiger year tends to be steady, determined, and focused on long-term impact." },
   { year: "2010", stemBranch: "Geng-Yin (庚寅)", elementLabel: "Metal", elementDesc: "Metal adds decisiveness, structure, and a cutting edge. A Metal Tiger year tends to be bold, strategic, and authority-challenging." },
   { year: "2022", stemBranch: "Ren-Yin (壬寅)", elementLabel: "Water", elementDesc: "Water adds adaptability, depth, and strategic flow. A Water Tiger year tends to be perceptive, diplomatic, and psychologically nuanced." },
+];
+
+const oxYears = [
+  { year: "2021", stemBranch: "Xin-Chou (辛丑)", elementLabel: "Metal", elementDesc: "Metal adds precision, discipline, and structural integrity. A Metal Ox year tends to be methodical, quality-focused, and quietly productive." },
+];
+
+const rabbitYears = [
+  { year: "2023", stemBranch: "Gui-Mao (癸卯)", elementLabel: "Water", elementDesc: "Water adds depth, diplomacy, and strategic sensitivity. A Water Rabbit year tends to be perceptive, harmonious, and psychologically nuanced." },
+];
+
+const snakeYears = [
+  { year: "2025", stemBranch: "Yi-Si (乙巳)", elementLabel: "Wood", elementDesc: "Wood adds vision, growth, and adaptive planning. A Wood Snake year tends to be strategic, forward-looking, and quietly influential." },
+];
+
+const horseYears = [
+  { year: "2026", stemBranch: "Bing-Wu (丙午)", elementLabel: "Fire", elementDesc: "Fire adds intensity, visibility, and expansive energy. A Fire Horse year — the current year — tends to be action-oriented, publicly visible, and momentum-driven." },
+];
+
+const goatYears = [
+  { year: "2027", stemBranch: "Ding-Wei (丁未)", elementLabel: "Fire", elementDesc: "Fire adds warmth, visibility, and creative expression. A Fire Goat year tends to be artistically vibrant, community-focused, and emotionally rich." },
+];
+
+const monkeyYears = [
+  { year: "2016", stemBranch: "Bing-Shen (丙申)", elementLabel: "Fire", elementDesc: "Fire adds charisma, visibility, and inventive energy. A Fire Monkey year tends to be clever, opportunity-rich, and dynamically expressive." },
+  { year: "2028", stemBranch: "Wu-Shen (戊申)", elementLabel: "Earth", elementDesc: "Earth adds stability, practicality, and grounded strategy. An Earth Monkey year tends to be inventive, resourceful, and focused on turning clever ideas into durable systems." },
+];
+
+const roosterYears = [
+  { year: "2017", stemBranch: "Ding-You (丁酉)", elementLabel: "Fire", elementDesc: "Fire adds warmth, visibility, and confident expression. A Fire Rooster year tends to be precise, articulate, and publicly engaged." },
+];
+
+const dogYears = [
+  { year: "2018", stemBranch: "Wu-Xu (戊戌)", elementLabel: "Earth", elementDesc: "Earth adds stability, authority, and grounded integrity. An Earth Dog year tends to be loyal, justice-oriented, and community-building." },
+];
+
+const pigYears = [
+  { year: "2019", stemBranch: "Ji-Hai (己亥)", elementLabel: "Earth", elementDesc: "Earth adds stability, nurturing, and practical generosity. An Earth Pig year tends to be community-focused, comfortable, and materially grounded." },
 ];
 
 const dragonAnimal = animals.find(a => a.slug === "dragon")!;
 const ratAnimal = animals.find(a => a.slug === "rat")!;
 const tigerAnimal = animals.find(a => a.slug === "tiger")!;
+const oxAnimal = animals.find(a => a.slug === "ox")!;
+const rabbitAnimal = animals.find(a => a.slug === "rabbit")!;
+const snakeAnimal = animals.find(a => a.slug === "snake")!;
+const horseAnimal = animals.find(a => a.slug === "horse")!;
+const goatAnimal = animals.find(a => a.slug === "goat")!;
+const monkeyAnimal = animals.find(a => a.slug === "monkey")!;
+const roosterAnimal = animals.find(a => a.slug === "rooster")!;
+const dogAnimal = animals.find(a => a.slug === "dog")!;
+const pigAnimal = animals.find(a => a.slug === "pig")!;
 
 const yearPages: ZodiacContentPage[] = [
   ...dragonYears.map(y => buildYearPage(dragonAnimal, y.year, y.stemBranch, y.elementLabel, y.elementDesc)),
   ...ratYears.map(y => buildYearPage(ratAnimal, y.year, y.stemBranch, y.elementLabel, y.elementDesc)),
   ...tigerYears.map(y => buildYearPage(tigerAnimal, y.year, y.stemBranch, y.elementLabel, y.elementDesc)),
+  ...oxYears.map(y => buildYearPage(oxAnimal, y.year, y.stemBranch, y.elementLabel, y.elementDesc)),
+  ...rabbitYears.map(y => buildYearPage(rabbitAnimal, y.year, y.stemBranch, y.elementLabel, y.elementDesc)),
+  ...snakeYears.map(y => buildYearPage(snakeAnimal, y.year, y.stemBranch, y.elementLabel, y.elementDesc)),
+  ...horseYears.map(y => buildYearPage(horseAnimal, y.year, y.stemBranch, y.elementLabel, y.elementDesc)),
+  ...goatYears.map(y => buildYearPage(goatAnimal, y.year, y.stemBranch, y.elementLabel, y.elementDesc)),
+  ...monkeyYears.map(y => buildYearPage(monkeyAnimal, y.year, y.stemBranch, y.elementLabel, y.elementDesc)),
+  ...roosterYears.map(y => buildYearPage(roosterAnimal, y.year, y.stemBranch, y.elementLabel, y.elementDesc)),
+  ...dogYears.map(y => buildYearPage(dogAnimal, y.year, y.stemBranch, y.elementLabel, y.elementDesc)),
+  ...pigYears.map(y => buildYearPage(pigAnimal, y.year, y.stemBranch, y.elementLabel, y.elementDesc)),
 ];
 
 export const allZodiacPages = [overview, ...animalPages, compatibility, forecast2026, ...yearPages];
