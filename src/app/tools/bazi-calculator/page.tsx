@@ -29,24 +29,24 @@ const shareCardImage = buildShareCardUrl({
 });
 
 export const metadata: Metadata = {
-  title: "Free Bazi Calculator: Four Pillars Chart",
+  title: "Free Bazi Calculator: Generate Your Four Pillars & Day Master Chart",
   description:
-    "Calculate a deterministic Bazi Four Pillars chart with Day Master, Ten Gods, hidden stems, lunar date, and Five Element balance.",
+    "Free Bazi calculator — enter your birth date to get a complete Four Pillars chart with Day Master, Ten Gods, hidden stems, lunar date, and Five Element balance. Deterministic, no sign-up needed.",
   alternates: {
     canonical: "/tools/bazi-calculator",
   },
   openGraph: {
-    title: "Free Bazi Calculator: Four Pillars Chart",
+    title: "Free Bazi Calculator: Generate Your Four Pillars & Day Master Chart",
     description:
-      "Calculate a deterministic Bazi Four Pillars chart with Day Master, Ten Gods, hidden stems, lunar date, and Five Element balance.",
+      "Enter your birth date to get a complete Bazi Four Pillars chart with Day Master, Ten Gods, hidden stems, and Five Element balance.",
     url: "/tools/bazi-calculator",
     images: [shareCardImage],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free Bazi Calculator: Four Pillars Chart",
+    title: "Free Bazi Calculator: Generate Your Four Pillars & Day Master Chart",
     description:
-      "Calculate a deterministic Bazi Four Pillars chart with Day Master, Ten Gods, hidden stems, lunar date, and Five Element balance.",
+      "Enter your birth date to get a complete Bazi Four Pillars chart with Day Master, Ten Gods, hidden stems, and Five Element balance.",
     images: [shareCardImage],
   },
 };

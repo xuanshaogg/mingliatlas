@@ -1502,7 +1502,7 @@ const highIntentBlogPosts: BlogPost[] = [
     slug: "day-master-bazi-complete-guide",
     path: "/blog/day-master-bazi-complete-guide",
     title: "Day Master Is the Day Stem (Heavenly Stem) — Complete Guide to 10 Day Masters",
-    description: "Day master is the day stem — the heavenly stem of the day pillar. Complete Bazi guide to all 10 Day Masters (Jia, Yi, Bing, Ding, Wu, Ji, Geng, Xin, Ren, Gui): find your day master source, understand each type's personality, career fit, and relationship patterns. Includes free Bazi calculator.",
+    description: "Your Bazi day master IS the day stem (heavenly stem of the day pillar). Complete guide to all 10 Day Masters (Jia, Yi, Bing, Ding, Wu, Ji, Geng, Xin, Ren, Gui): find your day master source, personality, career, relationships. Free Bazi calculator.",
     category: "Bazi Guide",
     entityName: "Day Master Bazi Complete Guide",
     entityType: "BlogPosting",

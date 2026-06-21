@@ -14,8 +14,8 @@ export interface SitePage {
   lastModified: string;
 }
 
-const CONTENT_LAST_MODIFIED = "2026-05-23";
-const SITE_STRUCTURE_LAST_MODIFIED = "2026-05-24";
+const CONTENT_LAST_MODIFIED = "2026-06-21";
+const SITE_STRUCTURE_LAST_MODIFIED = "2026-06-21";
 
 function latestModified(dates: Array<string | undefined>): string {
   return dates.filter(Boolean).sort().at(-1) ?? CONTENT_LAST_MODIFIED;
@@ -30,7 +30,9 @@ const latestKnowledgeModified = latestModified([
   ...allFengShuiPages.map((page) => page.data.schema.dateModified),
 ]);
 
-const latestBlogModified = latestModified(allBlogPosts.map((post) => post.data.schema.dateModified));
+const latestBlogModified = latestModified(
+  allBlogPosts.map((post) => post.data.schema.dateModified)
+);
 const latestIndexModified = latestModified([
   latestKnowledgeModified,
   latestBlogModified,
@@ -55,7 +57,8 @@ export const generalPages: SitePage[] = [
   {
     title: "Privacy Policy",
     href: "/privacy",
-    description: "How this site handles analytics, cookies, contact messages, and privacy requests.",
+    description:
+      "How this site handles analytics, cookies, contact messages, and privacy requests.",
     section: "Legal",
     lastModified: CONTENT_LAST_MODIFIED,
   },
@@ -100,7 +103,8 @@ export const systemLandingPages: SitePage[] = [
   {
     title: "Free Bazi Calculator",
     href: "/tools/bazi-calculator",
-    description: "Generate a Four Pillars chart with Day Master, Ten Gods, hidden stems, and Five Element balance.",
+    description:
+      "Generate a Four Pillars chart with Day Master, Ten Gods, hidden stems, and Five Element balance.",
     section: "Tools",
     lastModified: SITE_STRUCTURE_LAST_MODIFIED,
   },
@@ -169,7 +173,8 @@ export const blogPages: SitePage[] = [
   {
     title: "Blog",
     href: "/blog",
-    description: "Practical Chinese metaphysics articles with source notes, examples, and learning paths.",
+    description:
+      "Practical Chinese metaphysics articles with source notes, examples, and learning paths.",
     section: "Blog",
     lastModified: latestBlogModified,
   },
