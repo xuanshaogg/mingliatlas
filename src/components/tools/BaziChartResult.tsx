@@ -6,9 +6,9 @@ import { trackEvent } from "@/lib/analytics";
 import { buildBaziShareParams } from "@/lib/share-card";
 
 const NEXT_READS = [
-  { href: "/bazi/what-is-bazi", label: "What Is Bazi", description: "Understand the Four Pillars system before reading a chart." },
-  { href: "/bazi/five-elements", label: "Five Elements", description: "Read the element balance in depth." },
+  { href: "/blog/day-master-bazi-complete-guide", label: "Your Day Master", description: "Read all 10 Day Masters — the day stem your chart is built around." },
   { href: "/bazi/ten-gods", label: "Ten Gods", description: "Decode the relationship roles around the Day Master." },
+  { href: "/bazi/five-elements", label: "Five Elements", description: "Read the element balance in depth." },
   { href: "/bazi/luck-pillars", label: "Luck Pillars", description: "See how timing cycles layer over the natal chart." },
 ];
 

@@ -19,9 +19,9 @@ import { SITE } from "@/lib/constants";
 import { buildFAQPageSchema, buildItemListSchema, JsonLd } from "@/lib/seo/jsonLd";
 
 export const metadata: Metadata = {
-  title: `Free Bazi Calculator & Chinese Zodiac Guide | Mingli Atlas`,
+  title: `Mingli Atlas — Free Bazi Calculator (Ming Li) & Chinese Zodiac Guide`,
   description:
-    "Free Bazi calculator, Chinese Zodiac compatibility chart, I Ching oracle, and beginner-friendly guides to Chinese metaphysics — Four Pillars, Ziwei Doushu, Feng Shui, and more.",
+    "Mingli Atlas (Ming Li) is a free Bazi calculator and Chinese metaphysics guide: build your Four Pillars and Day Master chart, read the Chinese Zodiac compatibility chart, cast the I Ching, and learn Ziwei Doushu and Feng Shui — no sign-up.",
   alternates: {
     canonical: "/",
   },
@@ -396,8 +396,9 @@ export default function Home() {
               Chinese metaphysics guides and free tools
             </h1>
             <p className="text-ink-700 dark:text-ink-200 mt-6 max-w-xl text-lg leading-8 text-pretty">
-              Learn Bazi, Ziwei Doushu, I Ching, Feng Shui, and Chinese Zodiac with clear
-              explanations, structured charts, and practical reflection tools.
+              Mingli Atlas (Ming Li, 命理) is a free Bazi calculator and guide to Chinese
+              metaphysics. Learn Bazi, Ziwei Doushu, I Ching, Feng Shui, and the Chinese Zodiac with
+              clear explanations, structured charts, and practical reflection tools.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">

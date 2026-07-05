@@ -93,7 +93,7 @@ const animals: ZodiacAnimal[] = [
   {
     slug: "dragon",
     datePublished: "2025-11-24",
-    dateModified: "2026-06-21",
+    dateModified: "2026-06-29",
     name: "Dragon",
     rank: "5th",
     branch: "Chen",
@@ -212,11 +212,26 @@ const animals: ZodiacAnimal[] = [
   },
 ];
 
-const zodiacLinks = animals.slice(0, 3).map((animal) => ({
-  title: `Year of the ${animal.name}`,
-  href: `/chinese-zodiac/${animal.slug}`,
-  description: `Explore ${animal.name} personality, compatibility, years, and 2026 themes.`,
-}));
+function animalLink(animal: ZodiacAnimal) {
+  return {
+    title: `Year of the ${animal.name}`,
+    href: `/chinese-zodiac/${animal.slug}`,
+    description: `Explore ${animal.name} personality, compatibility, years, and 2026 themes.`,
+  };
+}
+
+const zodiacLinks = animals.map(animalLink);
+
+// Sibling links spread internal link equity across all 12 animal pages
+// (prev + next in the 12-year cycle) instead of pointing only at the first
+// three signs. Improves crawl depth and ranking for high-impression pages
+// such as /chinese-zodiac/dragon.
+function siblingAnimalLinks(animal: ZodiacAnimal) {
+  const index = animals.findIndex((a) => a.slug === animal.slug);
+  const prev = animals[(index - 1 + animals.length) % animals.length];
+  const next = animals[(index + 1) % animals.length];
+  return [animalLink(prev), animalLink(next)];
+}
 
 function pageUrl(path: string): string {
   return `${SITE.url}${path}`;
@@ -262,6 +277,16 @@ const animalFaqs: Partial<Record<string, FAQ[]>> = {
         "Recent Dragon years are 1952, 1964, 1976, 1988, 2000, 2012, and 2024. Each Dragon year combines the Chen branch with a different Heavenly Stem, producing variations like Wood Dragon (2024), Water Dragon (2012), and Earth Dragon (1988). Check the Lunar New Year boundary if your birthday falls in late January or early February.",
     },
     {
+      question: "When is the next Year of the Dragon?",
+      answer:
+        "The next Year of the Dragon is 2036, which will be a Fire Dragon (Bing-Chen, 丙辰) year. The Dragon returns every 12 years, so after 2024 (Wood Dragon) the cycle continues with 2036, 2048 (Earth Dragon), and 2060 (Metal Dragon).",
+    },
+    {
+      question: "What does the Year of the Dragon mean?",
+      answer:
+        "The Year of the Dragon symbolizes power, ambition, transformation, and good fortune. The Dragon is the only mythical creature in the Chinese zodiac and is historically linked to imperial authority. Its Earthly Branch, Chen (辰), is Yang Earth in the late-spring transition, which is why Dragon years are associated with bold ventures, visibility, and rapid change.",
+    },
+    {
       question: "Is the Dragon considered the most powerful zodiac sign?",
       answer:
         "In cultural symbolism, yes — Dragons are associated with imperial power and considered auspicious in Chinese tradition. In Bazi, however, no animal is intrinsically stronger than another. The Chen branch carries hidden stems Wu (Earth), Yi (Wood), and Gui (Water), so its actual chart strength depends on seasonal context, the Day Master, and the surrounding pillars.",
@@ -275,6 +300,21 @@ const animalFaqs: Partial<Record<string, FAQ[]>> = {
       question: "What career paths suit Dragon zodiac people?",
       answer:
         "Dragons traditionally thrive in roles that combine vision and leadership: entrepreneurship, executive positions, creative direction, and high-stakes decision-making. The Chen branch's Earth element supports stable, structural work, while the hidden Yi Wood adds creative growth and hidden Gui Water adds strategic depth. Pair this with the full Bazi chart for accurate career guidance.",
+    },
+    {
+      question: "Is the Dragon a lucky zodiac sign?",
+      answer:
+        "Yes — the Dragon is traditionally considered the luckiest and most auspicious of the 12 Chinese zodiac signs. It is the only mythical creature in the cycle and has been linked to emperors, rain, and prosperity for over two thousand years. In many Chinese communities, birth rates rise in Dragon years because parents consider it fortunate. In Bazi, however, luck is read from the full chart and timing cycle, not the year animal alone.",
+    },
+    {
+      question: "What is a Water Dragon, and which years are Water Dragon years?",
+      answer:
+        "A Water Dragon combines the Chen branch with a Water Heavenly Stem (Ren, 壬). Recent Water Dragon years are 1952 and 2012, recurring every 60 years. The Water element softens the Dragon's Yang Earth base, adding adaptability, strategic thinking, and emotional depth, so Water Dragons are often described as more diplomatic and reflective than other Dragon types.",
+    },
+    {
+      question: "What is the lucky color and number for the Dragon?",
+      answer:
+        "Dragons are traditionally associated with lucky colors gold, silver, and grayish white, and lucky numbers 1, 6, and 7. Because the Dragon's branch (Chen) is Yang Earth, colors and elements that support Earth — earth tones and metal accents — are often considered favorable. These are cultural conventions; a personalized reading uses the favorable elements from your full Bazi chart.",
     },
   ],
   rat: [
@@ -869,13 +909,14 @@ const animalSections: Partial<Record<string, KnowledgePageProps["sections"]>> = 
       content: (
         <>
           <p>
-            Recent Years of the Dragon include 1952, 1964, 1976, 1988, 2000, 2012, and 2024. The
-            cycle repeats every 12 years. If you were born in January or early February, check the
+            Recent Years of the Dragon include 1940, 1952, 1964, 1976, 1988, 2000, 2012, and 2024,
+            with the next in 2036. The cycle repeats every 12 years. If you were born in January or early February, check the
             Lunar New Year boundary for that year — the zodiac year boundary and the Bazi solar-term
             boundary do not always coincide, and a few days can shift your sign.
           </p>
           <p>
-            In the Earthly Branch system, the Dragon corresponds to Chen (辰), the fifth branch.
+            In the <Link href="/bazi/earthly-branches" className={linkClass}>Earthly Branch</Link>{" "}
+            system, the Dragon corresponds to Chen (辰), the fifth branch.
             Chen governs the 7–9am window and the east-southeast direction. It is the third month of
             spring — the transitional point between spring and summer, when Wood energy begins to
             give way to Fire. This transitional quality is why Dragon energy in Bazi is associated
@@ -883,7 +924,9 @@ const animalSections: Partial<Record<string, KnowledgePageProps["sections"]>> = 
             simultaneously.
           </p>
           <p>
-            The Dragon year comes in five elemental versions: Wood Dragon (1964, 2024), Fire Dragon
+            The Dragon year comes in five elemental versions defined by the{" "}
+            <Link href="/bazi/five-elements" className={linkClass}>Five Elements</Link> (Wu Xing):
+            Wood Dragon (1964, 2024), Fire Dragon
             (1976, 2036), Earth Dragon (1988, 2048), Metal Dragon (2000, 2060), and Water Dragon
             (1952, 2012). A Wood Dragon year carries a different quality from a Metal Dragon year.
             The elemental version modifies the base sign's expression and the kinds of pressure or
@@ -905,7 +948,7 @@ const animalSections: Partial<Record<string, KnowledgePageProps["sections"]>> = 
             Dragon people often feel pulled in multiple directions simultaneously.
           </p>
           <p>
-            The Chen branch holds three hidden stems: Wu Earth (戊) as the main stem, Yi Wood (乙)
+            The Chen branch holds three <Link href="/bazi/heavenly-stems" className={linkClass}>hidden stems</Link>: Wu Earth (戊) as the main stem, Yi Wood (乙)
             as the middle stem, and Gui Water (癸) as the residual stem. This makes Chen one of the
             most complex branches in the system — it contains Earth's stability, Wood's growth
             drive, and Water's depth and intelligence. A Dragon person's chart can express very
@@ -968,14 +1011,16 @@ const animalSections: Partial<Record<string, KnowledgePageProps["sections"]>> = 
       ),
     },
     {
-      heading: "Dragon zodiac years — complete list with elements",
+      heading: "Year of the Dragon years list (1940–2036)",
       content: (
         <>
           <p>
             <strong>
-              The Dragon year repeats every 12 years, but each occurrence has a unique elemental
-              pairing.
+              Year of the Dragon years list: 1940, 1952, 1964, 1976, 1988, 2000, 2012, and 2024,
+              with the next Dragon year in 2036.
             </strong>{" "}
+            The Dragon year repeats every 12 years, but each occurrence has a unique elemental
+            pairing.{" "}
             The Heavenly Stem that rides above the Chen branch changes every cycle, producing five
             distinct Dragon types across a 60-year sexagenary cycle. Below is the complete list of
             recent and upcoming Dragon years with their stem-element combinations:
@@ -991,6 +1036,12 @@ const animalSections: Partial<Record<string, KnowledgePageProps["sections"]>> = 
                 </tr>
               </thead>
               <tbody>
+                <tr className="border-ink-100 border-b dark:border-white/5">
+                  <td className="py-2 pr-4">1940</td>
+                  <td className="py-2 pr-4">Geng-Chen (庚辰)</td>
+                  <td className="py-2 pr-4">Metal Dragon</td>
+                  <td className="py-2">Determined, precise, structured</td>
+                </tr>
                 <tr className="border-ink-100 border-b dark:border-white/5">
                   <td className="py-2 pr-4">
                     <Link href="/chinese-zodiac/dragon/1952" className={linkClass}>
@@ -1189,16 +1240,41 @@ const animalSections: Partial<Record<string, KnowledgePageProps["sections"]>> = 
   ],
 };
 
+// Per-animal SEO overrides for high-impression signs. Lets us tune the
+// title (CTR) and directAnswer (the snippet AI Overviews / featured results
+// quote) for signs that earn the most search impressions, without bloating
+// the generic builder. Dragon alone earns ~50% of all site impressions.
+const animalTitleOverrides: Partial<Record<string, string>> = {
+  dragon:
+    "Year of the Dragon: Years (1952–2024), Personality, Compatibility & 2026 Luck | Chinese Zodiac",
+};
+
+const animalDescriptionOverrides: Partial<Record<string, string>> = {
+  dragon:
+    "Year of the Dragon explained: full years list (1952, 1964, 1976, 1988, 2000, 2012, 2024), the five element types (Wood, Fire, Earth, Metal, Water Dragon), personality traits, compatibility and clash signs, lucky elements, and the 2026 forecast. Free Bazi calculator, no sign-up.",
+};
+
+const animalDirectAnswerOverrides: Partial<Record<string, string>> = {
+  dragon:
+    "The Year of the Dragon is the 5th sign of the Chinese zodiac, tied to the Earthly Branch Chen (辰) — Yang Earth. Recent Dragon years are 1952, 1964, 1976, 1988, 2000, 2012, and 2024, with the next in 2036. Dragons are traditionally described as charismatic, ambitious, and visionary. They are most compatible with Rat, Monkey, and Rooster, and clash with Dog. The Dragon is the only mythical animal in the cycle and is considered the most auspicious sign.",
+};
+
 const animalPages = animals.map((animal) =>
   buildPage({
     slug: animal.slug,
     path: `/chinese-zodiac/${animal.slug}`,
-    title: `Year of the ${animal.name} — Years List, Personality & 2026 Horoscope | Chinese Zodiac`,
-    description: `${animal.name} zodiac: years list (${animal.years}), Five Element personality types, compatibility triads & clash pairs, career guidance, and 2026 forecast. Includes free Bazi calculator.`,
+    title:
+      animalTitleOverrides[animal.slug] ??
+      `Year of the ${animal.name} — Years List, Personality & 2026 Horoscope | Chinese Zodiac`,
+    description:
+      animalDescriptionOverrides[animal.slug] ??
+      `${animal.name} zodiac: years list (${animal.years}), Five Element personality types, compatibility triads & clash pairs, career guidance, and 2026 forecast. Includes free Bazi calculator.`,
     entityName: `Year of the ${animal.name}`,
     entityType: "DefinedTerm",
     subtitle: `${animal.name} personality, compatibility, years, career themes, and 2026 guidance.`,
-    directAnswer: `People born in the Year of the ${animal.name} are known for being ${animal.traits}. According to Chinese zodiac tradition, ${animal.name} ranks ${animal.rank} in the 12-year cycle and belongs to the ${animal.element} branch context, governed by ${animal.polarity} energy in the Earthly Branch system.`,
+    directAnswer:
+      animalDirectAnswerOverrides[animal.slug] ??
+      `People born in the Year of the ${animal.name} are known for being ${animal.traits}. According to Chinese zodiac tradition, ${animal.name} ranks ${animal.rank} in the 12-year cycle and belongs to the ${animal.element} branch context, governed by ${animal.polarity} energy in the Earthly Branch system.`,
     breadcrumbs: breadcrumbs(animal.name, `/chinese-zodiac/${animal.slug}`),
     schema: {
       headline: "",
@@ -1233,15 +1309,17 @@ const animalPages = animals.map((animal) =>
     ],
     sections: animalSections[animal.slug] ?? [
       {
-        heading: `Years of the ${animal.name}`,
+        heading: `Year of the ${animal.name} years list`,
         content: (
           <>
             <p>
-              Recent Years of the {animal.name} include {animal.years}. The cycle repeats every 12
-              years, so the next Year of the {animal.name} follows 12 years after the most recent
-              one. If you were born in January or early February, check the Lunar New Year boundary
-              for that year before confirming your sign — the Chinese zodiac year does not always
-              align with January 1st.
+              <strong>
+                Year of the {animal.name} years list: {animal.years}.
+              </strong>{" "}
+              The cycle repeats every 12 years, so the next Year of the {animal.name} follows 12
+              years after the most recent one. If you were born in January or early February, check
+              the Lunar New Year boundary for that year before confirming your sign — the Chinese
+              zodiac year does not always align with January 1st.
             </p>
             <p>
               In Bazi, the year animal is only one of four pillars. The month, day, and hour pillars
@@ -1334,6 +1412,7 @@ const animalPages = animals.map((animal) =>
     ],
     faqs: faqs(animal),
     relatedLinks: [
+      ...siblingAnimalLinks(animal),
       {
         title: "Chinese Zodiac Compatibility",
         href: "/chinese-zodiac/compatibility",
@@ -1343,6 +1422,11 @@ const animalPages = animals.map((animal) =>
         title: "2026 Chinese Zodiac Forecast",
         href: "/chinese-zodiac/2026-forecast",
         description: "Read the year overview for all 12 animals.",
+      },
+      {
+        title: "Earthly Branches",
+        href: "/bazi/earthly-branches",
+        description: `The ${animal.branch} branch behind the ${animal.name} sign — hidden stems, season, and direction.`,
       },
       {
         title: "Bazi Overview",
@@ -1535,10 +1619,10 @@ const compatibility = buildPage({
           <p>
             If the question involves relationship timing or long-term decisions, continue into{" "}
             <Link
-              href="/bazi/relationships"
+              href="/bazi/ten-gods"
               className="text-brand-primary decoration-brand-primary/30 dark:text-gold-300 underline"
             >
-              Bazi relationships
+              Bazi Ten Gods
             </Link>{" "}
             so the year branch is checked against the full Four Pillars chart.
           </p>

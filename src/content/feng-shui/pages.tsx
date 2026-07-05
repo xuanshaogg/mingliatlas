@@ -57,6 +57,77 @@ const defaultFaqs: FAQ[] = [
   },
 ];
 
+// Per-topic FAQ overrides for Feng Shui pages that earn search impressions or
+// are core entity references. Pages without an override use defaultFaqs.
+const topicFaqs: Partial<Record<string, FAQ[]>> = {
+  "bagua-map": [
+    {
+      question: "What is the Bagua map in Feng Shui?",
+      answer:
+        "The Bagua (八卦) map is an eight-sided energy grid based on the eight trigrams of the I Ching. Each of the eight areas — plus the center — corresponds to a life theme (such as wealth, career, relationships, and health), a direction, and an element. It is laid over a floor plan to connect spaces with the life areas they influence.",
+    },
+    {
+      question: "How do I use the Bagua map on my home?",
+      answer:
+        "Align the map with your floor plan using one of two common methods: the compass method orients the grid to actual directions with a Luo Pan, while the BTB (Black Sect) method aligns the bottom edge with the wall containing the front door. Then read which rooms fall into which Bagua areas and adjust each space for its theme.",
+    },
+    {
+      question: "What are the nine areas of the Bagua map?",
+      answer:
+        "The nine zones are wealth and abundance, fame and reputation, love and relationships, family and health, the center (overall wellbeing), children and creativity, knowledge and self-cultivation, career and path, and helpful people and travel. Each ties to a direction, element, and color used to refine a space.",
+    },
+    {
+      question: "Should I use the compass Bagua or the BTB Bagua?",
+      answer:
+        "Use one method consistently. The compass Bagua aligns the eight areas to actual directions and is closer to classical directional practice; the BTB Bagua aligns the grid to the front-door wall and is simpler for apartment layouts. Mixing both on the same floor plan creates contradictory readings, so choose the method that matches the school you are following.",
+    },
+  ],
+  "qi-flow": [
+    {
+      question: "What is qi in Feng Shui?",
+      answer:
+        "Qi (氣) is the vital energy that moves through and around a space. Good Feng Shui aims for qi that flows smoothly and gathers gently, rather than rushing through in a straight line or stagnating in cluttered corners. Doors, hallways, light, and proportion all shape how qi moves through a home.",
+    },
+    {
+      question: "How do I improve qi flow in my home?",
+      answer:
+        "Keep entryways and pathways clear, avoid long straight runs from the front door to a back window (which let qi rush out), use light and mirrors to lift dark corners, clear clutter that traps stagnant qi, and arrange furniture so movement curves gently. The goal is steady circulation, not blockage or rush.",
+    },
+    {
+      question: "What blocks or disrupts qi flow?",
+      answer:
+        "Clutter, blocked doorways, sharp corners pointing at seating or beds (poison arrows), long straight corridors, and overly dark or cramped spaces all disrupt qi. Stagnant qi accumulates where air and movement do not reach; rushing qi occurs where a straight path lets energy move too fast to settle.",
+    },
+    {
+      question: "How can I tell if qi is rushing or stagnant?",
+      answer:
+        "Rushing qi usually appears where the eye and body move too quickly, such as a front door aligned directly with a back door, window, or long hallway. Stagnant qi feels heavy, dim, blocked, or unused, often in cluttered corners and rooms with poor circulation. A balanced space lets people move easily while still giving qi places to gather.",
+    },
+  ],
+  "five-elements": [
+    {
+      question: "How are the five elements used in Feng Shui?",
+      answer:
+        "The Five Elements (Wood, Fire, Earth, Metal, Water) appear in a space through color, material, shape, and direction. Feng Shui balances them using the generating cycle (Wood feeds Fire, Fire makes Earth, Earth holds Metal, Metal carries Water, Water grows Wood) and the controlling cycle, adding or reducing an element to harmonize a room.",
+    },
+    {
+      question: "What colors and shapes represent each element?",
+      answer:
+        "Wood is green and columnar shapes; Fire is red and triangular or pointed shapes; Earth is yellow and earth tones with flat, square shapes; Metal is white and grey with round shapes; Water is black and blue with wavy, irregular shapes. Introducing an element can be as simple as adjusting color, material, or form in a room.",
+    },
+    {
+      question: "How do I balance the five elements in a room?",
+      answer:
+        "First identify which element a room needs based on its direction and use, then add that element through color, material, or shape — and reduce any element that overwhelms the space. The aim is a supportive generating cycle, not equal amounts of all five; balance depends on the room's function and orientation.",
+    },
+    {
+      question: "Which Feng Shui element should I add first?",
+      answer:
+        "Start with the room's purpose and the element already dominating the space. A bedroom often benefits from calmer Earth or soft Wood support, while an office may need clearer Wood growth or Metal focus. Add one element at a time through color, material, shape, or lighting, then observe whether the room feels more usable and settled.",
+    },
+  ],
+};
+
 function pageUrl(path: string): string {
   return `${SITE.url}${path}`;
 }
@@ -211,10 +282,10 @@ const overview = buildPage({
 
 const topics: FengShuiTopic[] = [
   { slug: "what-is-feng-shui", datePublished: "2025-11-25", dateModified: "2026-02-05", label: "What Is Feng Shui", title: "What Is Feng Shui? Meaning and Method", description: "A clear definition of Feng Shui as spatial reading, environmental support, and practical layout logic.", statValue: "4,000+", statLabel: "Years of history", group: "Foundations" },
-  { slug: "qi-flow", datePublished: "2025-12-01", dateModified: "2026-02-08", label: "Qi Flow", title: "Qi Flow in Feng Shui: How Space Moves Energy", description: "How pathways, doors, clutter, light, and proportion affect the movement of qi through a space.", statValue: "1", statLabel: "Main flow", group: "Foundations" },
+  { slug: "qi-flow", datePublished: "2025-12-01", dateModified: "2026-06-29", label: "Qi Flow", title: "Qi Flow in Feng Shui: How Space Moves Energy", description: "How pathways, doors, clutter, light, and proportion affect the movement of qi through a space.", statValue: "1", statLabel: "Main flow", group: "Foundations" },
   { slug: "yin-yang-balance", datePublished: "2025-12-05", dateModified: "2026-02-10", label: "Yin-Yang Balance", title: "Yin-Yang Balance in Feng Shui", description: "How quiet and active qualities shape room function, comfort, and spatial rhythm.", statValue: "2", statLabel: "Core qualities", group: "Foundations" },
-  { slug: "five-elements", datePublished: "2025-12-10", dateModified: "2026-02-12", label: "Five Elements in Feng Shui", title: "Five Elements in Feng Shui: Wood, Fire, Earth, Metal, Water", description: "How the Five Elements appear through color, material, shape, direction, and room use.", statValue: "5", statLabel: "Elements", group: "Foundations" },
-  { slug: "bagua-map", datePublished: "2025-12-15", dateModified: "2026-02-15", label: "Bagua Map", title: "Bagua Map in Feng Shui: Eight Areas Explained", description: "How the eight trigram areas organize directions, life themes, and spatial relationships.", statValue: "8", statLabel: "Bagua areas", group: "Foundations" },
+  { slug: "five-elements", datePublished: "2025-12-10", dateModified: "2026-06-29", label: "Five Elements in Feng Shui", title: "Five Elements in Feng Shui: Wood, Fire, Earth, Metal, Water", description: "How the Five Elements appear through color, material, shape, direction, and room use.", statValue: "5", statLabel: "Elements", group: "Foundations" },
+  { slug: "bagua-map", datePublished: "2025-12-15", dateModified: "2026-06-29", label: "Bagua Map", title: "Bagua Map in Feng Shui: Eight Areas Explained", description: "How the eight trigram areas organize directions, life themes, and spatial relationships.", statValue: "8", statLabel: "Bagua areas", group: "Foundations" },
   { slug: "luo-pan-compass", datePublished: "2025-12-20", dateModified: "2026-02-18", label: "Luo Pan Compass", title: "Luo Pan Compass: Feng Shui Direction Tool", description: "The classical compass used to measure orientation and apply formula-based Feng Shui methods.", statValue: "24", statLabel: "Mountains", group: "Foundations" },
   { slug: "flying-stars", datePublished: "2025-12-28", dateModified: "2026-02-20", label: "Flying Stars", title: "Flying Stars Feng Shui: Timing and Space", description: "A time-based method that reads changing qi patterns across directions and building periods.", statValue: "9", statLabel: "Stars", group: "Foundations" },
   { slug: "eight-mansions", datePublished: "2026-01-05", dateModified: "2026-02-22", label: "Eight Mansions", title: "Eight Mansions Feng Shui: Directions and Personal Gua", description: "A directional method that connects personal gua numbers with favorable and challenging sectors.", statValue: "8", statLabel: "Directions", group: "Foundations" },
@@ -321,7 +392,7 @@ function createTopicPage(topic: FengShuiTopic): FengShuiContentPage {
         ),
       },
     ],
-    faqs: defaultFaqs,
+    faqs: topicFaqs[topic.slug] ?? defaultFaqs,
     relatedLinks,
     cta: cta(),
   });

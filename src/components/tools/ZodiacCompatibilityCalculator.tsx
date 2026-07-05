@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { HeartHandshake } from "lucide-react";
 import ShareCardControls from "@/components/tools/ShareCardControls";
@@ -12,6 +12,19 @@ export default function ZodiacCompatibilityCalculator() {
   const [first, setFirst] = useState<ZodiacSign>("rat");
   const [second, setSecond] = useState<ZodiacSign>("ox");
   const result = useMemo(() => calculateZodiacCompatibility(first, second), [first, second]);
+  const startedRef = useRef(false);
+
+  // The result is computed reactively as the two selects change, so each
+  // user selection is one completed comparison. Fire started once on the
+  // first interaction to mirror the funnel used by the other tools.
+  function handleSelect(setter: (sign: ZodiacSign) => void, value: ZodiacSign): void {
+    if (!startedRef.current) {
+      startedRef.current = true;
+      trackEvent("calculator_started", { tool: "zodiac" });
+    }
+    setter(value);
+    trackEvent("calculator_completed", { tool: "zodiac" });
+  }
 
   return (
     <div className="space-y-8">
@@ -32,7 +45,7 @@ export default function ZodiacCompatibilityCalculator() {
               <span className="text-sm font-medium text-ink-900 dark:text-paper">First sign</span>
               <select
                 value={first}
-                onChange={(event) => setFirst(event.target.value as ZodiacSign)}
+                onChange={(event) => handleSelect(setFirst, event.target.value as ZodiacSign)}
                 className="mt-2 h-11 w-full rounded-md border border-ink-200 bg-white px-3 text-sm text-ink-950 outline-none transition focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 dark:border-white/10 dark:bg-ink-950 dark:text-paper"
               >
                 {ZODIAC_SIGNS.map((sign) => (
@@ -46,7 +59,7 @@ export default function ZodiacCompatibilityCalculator() {
               <span className="text-sm font-medium text-ink-900 dark:text-paper">Second sign</span>
               <select
                 value={second}
-                onChange={(event) => setSecond(event.target.value as ZodiacSign)}
+                onChange={(event) => handleSelect(setSecond, event.target.value as ZodiacSign)}
                 className="mt-2 h-11 w-full rounded-md border border-ink-200 bg-white px-3 text-sm text-ink-950 outline-none transition focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 dark:border-white/10 dark:bg-ink-950 dark:text-paper"
               >
                 {ZODIAC_SIGNS.map((sign) => (

@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import StaticPage from "@/components/templates/StaticPage";
 import { JsonLd } from "@/lib/seo/jsonLd";
 import { AUTHOR, SITE } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "About",
-  description: "About mingliatlas, its editorial mission, content standards, and the team behind the site.",
+  title: "About Mingli Atlas (Ming Li) — Chinese Metaphysics Guides & Free Tools",
+  description:
+    "Mingli Atlas (Ming Li, 命理) explains Bazi, I Ching, Feng Shui, Ziwei Doushu, and the Chinese Zodiac from classical sources in plain English — with a free Bazi calculator and editorial standards you can check.",
   alternates: {
     canonical: "/about",
   },
@@ -96,8 +98,28 @@ export default function AboutPage() {
                   </li>
                 </ul>
                 <p className="mt-4">
-                  Each section includes both reference knowledge pages and free interactive tools such as
-                  the Bazi calculator and I Ching oracle.
+                  Each section includes both reference knowledge pages and free interactive tools. Start
+                  with the{" "}
+                  <Link href="/tools/bazi-calculator" className="font-medium underline">
+                    free Bazi calculator
+                  </Link>{" "}
+                  to build your Four Pillars chart and find your{" "}
+                  <Link href="/blog/day-master-bazi-complete-guide" className="font-medium underline">
+                    Day Master
+                  </Link>
+                  , read{" "}
+                  <Link href="/blog/what-is-bazi" className="font-medium underline">
+                    what Bazi is
+                  </Link>{" "}
+                  from the ground up, cast the{" "}
+                  <Link href="/tools/i-ching-oracle" className="font-medium underline">
+                    I Ching oracle
+                  </Link>
+                  , or explore the{" "}
+                  <Link href="/chinese-zodiac" className="font-medium underline">
+                    Chinese Zodiac
+                  </Link>{" "}
+                  signs and compatibility.
                 </p>
               </>
             ),

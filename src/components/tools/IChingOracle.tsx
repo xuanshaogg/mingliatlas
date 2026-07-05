@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { Coins, RotateCcw } from "lucide-react";
 import ShareCardControls from "@/components/tools/ShareCardControls";
@@ -18,6 +18,8 @@ export default function IChingOracle() {
     castIChingReading({ question: "Open reflection", coins: createCoinCast(20260523) }),
   );
 
+  const startedRef = useRef(false);
+
   const lineText = useMemo(
     () =>
       reading.lines
@@ -28,7 +30,15 @@ export default function IChingOracle() {
     [reading.lines],
   );
 
+  function markStarted(): void {
+    if (startedRef.current) return;
+    startedRef.current = true;
+    trackEvent("calculator_started", { tool: "i-ching" });
+  }
+
   function castReading(): void {
+    // Fallback: if the user casts without editing the prompt, still count as started.
+    markStarted();
     trackEvent("calculator_completed", { tool: "i-ching" });
     setReading(buildReading(question));
   }
@@ -36,6 +46,7 @@ export default function IChingOracle() {
   function resetReading(): void {
     setQuestion("What pattern should I pay attention to?");
     setReading(castIChingReading({ question: "Open reflection", coins: createCoinCast(20260523) }));
+    startedRef.current = false;
   }
 
   return (
@@ -56,7 +67,10 @@ export default function IChingOracle() {
             <span className="text-sm font-medium text-ink-900 dark:text-paper">Reflection prompt</span>
             <textarea
               value={question}
-              onChange={(event) => setQuestion(event.target.value)}
+              onChange={(event) => {
+                markStarted();
+                setQuestion(event.target.value);
+              }}
               className="mt-2 min-h-28 w-full rounded-md border border-ink-200 bg-white px-3 py-3 text-sm text-ink-950 outline-none transition focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 dark:border-white/10 dark:bg-ink-950 dark:text-paper"
             />
           </label>

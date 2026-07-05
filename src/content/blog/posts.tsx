@@ -15,26 +15,289 @@ export interface BlogPost {
 
 const linkClass = "text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300";
 
-const baseFaqs: FAQ[] = [
+// Dedicated FAQ set for the "What Is Bazi?" guide so its FAQPage structured
+// data covers the actual beginner queries (what bazi is, how to read it, how
+// it differs from the zodiac) instead of the generic site-wide disclaimers.
+const whatIsBaziFaqs: FAQ[] = [
   {
-    question: "Is this article fortune telling?",
+    question: "What is Bazi in simple terms?",
     answer:
-      "No. These articles explain symbolic systems, historical context, and practical reading methods. They are for education and self-reflection.",
+      "Bazi (八字), or the Four Pillars of Destiny, is a Chinese astrology system that converts your birth year, month, day, and hour into eight characters — one Heavenly Stem and one Earthly Branch per pillar. These eight characters map your elemental makeup and life patterns. It is read as a chart of tendencies and timing, not a fixed fortune.",
   },
   {
-    question: "Can I use this alongside Western astrology?",
+    question: "Why is Bazi called the Four Pillars of Destiny?",
     answer:
-      "Yes. Many readers compare systems side by side as different symbolic languages, then keep the rules separate before looking for overlap.",
+      "Each of the four pillars represents one unit of your birth moment: year, month, day, and hour. Every pillar carries one of the 10 Heavenly Stems and one of the 12 Earthly Branches, producing eight characters total (ba zi literally means \"eight characters\"). The day pillar's stem is your Day Master, the anchor of the whole reading.",
   },
   {
-    question: "Should I read the whole site in one sitting?",
+    question: "How is Bazi different from the Chinese zodiac?",
     answer:
-      "No. Start with one system and one question. That keeps the vocabulary clear and the interpretation grounded.",
+      "The Chinese zodiac uses only your birth-year animal — one of twelve signs. Bazi uses all four pillars (year, month, day, and hour), so it distinguishes between people born in the same zodiac year. Bazi is the fuller system; the zodiac animal is just the year branch within it.",
   },
   {
-    question: "Does this replace professional advice?",
+    question: "Do I need my exact birth time for Bazi?",
     answer:
-      "No. The articles are educational and should not replace medical, legal, financial, or mental health guidance.",
+      "The birth hour sets the hour pillar and helps locate the Day Master accurately, so an exact time gives the most complete chart. If you do not know your birth time, the year, month, and day pillars still provide a meaningful partial reading — many people start there and refine later.",
+  },
+  {
+    question: "Is Bazi the same as Chinese fortune telling?",
+    answer:
+      "Bazi is a structured analytical system rather than prediction by omen. It reads the balance and interaction of the Five Elements across your pillars to describe tendencies, strengths, and favorable timing. It is best used for self-understanding and planning, not as a fixed prophecy.",
+  },
+];
+
+// Dedicated FAQ sets for high-impression blog pages. Each replaces the generic
+// baseFaqs so the page's FAQPage structured data targets the queries it
+// actually ranks for, instead of repeating site-wide disclaimers.
+const zodiacCompatibilityFaqs: FAQ[] = [
+  {
+    question: "Which Chinese zodiac signs are most compatible?",
+    answer:
+      "The strongest matches come from the four three-harmony triads: Rat-Dragon-Monkey, Ox-Snake-Rooster, Tiger-Horse-Dog, and Rabbit-Goat-Pig. Signs within a triad share long-term values and goals. The six harmony pairs (such as Rat-Ox and Tiger-Pig) are also highly compatible and tend to balance each other day to day.",
+  },
+  {
+    question: "Which zodiac signs clash or are least compatible?",
+    answer:
+      "The six clash pairs are Rat-Horse, Ox-Goat, Tiger-Monkey, Rabbit-Rooster, Dragon-Dog, and Snake-Pig. Each pair sits directly opposite in the 12-branch cycle, so they differ in pace and temperament. A clash is not a verdict — it points to friction that clearer communication and complementary roles can manage.",
+  },
+  {
+    question: "How do I use a Chinese zodiac compatibility chart?",
+    answer:
+      "Find your sign on one axis and the other person's sign on the other; the cell shows whether the pair forms a triad, a harmony (six combination), a clash, or a harm relationship. Use it as a quick reference for relationship rhythm, then check both full Bazi charts for a deeper reading.",
+  },
+  {
+    question: "Is zodiac compatibility accurate for relationships?",
+    answer:
+      "Zodiac compatibility is a symbolic guide, not a prediction. The year-animal pairing describes general rhythm, but real compatibility depends on values, communication, and both people's complete Bazi charts. Treat the chart as a conversation starter rather than a final answer.",
+  },
+];
+
+const iChingReadingFaqs: FAQ[] = [
+  {
+    question: "How do you cast an I Ching hexagram?",
+    answer:
+      "Frame one clear question, then build six lines from bottom to top. The two common methods are the three-coin method (toss three coins six times) and the yarrow-stalk method (a longer traditional ritual). Each toss yields a yin or yang line, and some lines are \"changing\" lines that transform into their opposite.",
+  },
+  {
+    question: "What are changing lines in the I Ching?",
+    answer:
+      "Changing lines are the lines that come up as \"old\" yin or \"old\" yang during casting. They transform into their opposite, producing a second hexagram. You read the first hexagram as the present situation, the changing-line texts as the dynamic to watch, and the second hexagram as where things are heading.",
+  },
+  {
+    question: "How do I read the hexagram once I have it?",
+    answer:
+      "Read the hexagram's judgment and image first for the overall theme, then read any changing-line statements for specifics, then the resulting hexagram if there are changing lines. Keep your original question in view so the symbolism stays anchored to a concrete situation rather than drifting into generalities.",
+  },
+  {
+    question: "What is the best way for beginners to start with the I Ching?",
+    answer:
+      "Start with question framing — a focused, open question (\"how should I approach X?\") produces a far clearer reading than a yes/no one. Use the three-coin method for speed, read the hexagram judgment before the line texts, and keep a short journal so you can trace each interpretation back to the cast.",
+  },
+];
+
+const baziCareerFaqs: FAQ[] = [
+  {
+    question: "Can Bazi tell me what career to choose?",
+    answer:
+      "Bazi does not name one perfect job. It highlights patterns — your favorable elements, work style, and natural pacing — that point toward environments where you tend to thrive. The most useful career reading translates those patterns into the kind of work and team dynamics that fit you, not a single title.",
+  },
+  {
+    question: "Which Bazi elements relate to career and wealth?",
+    answer:
+      "Career direction is read mainly from the month pillar (your environment and season) and the Ten Gods around your Day Master — particularly the Officer/Authority stars for structure and the Wealth stars for resource handling. Whether an element helps depends on whether it is favorable for your specific chart balance.",
+  },
+  {
+    question: "How do I use my Day Master for career decisions?",
+    answer:
+      "Identify your Day Master and its favorable elements, then look for work that lets those elements express. A strong Day Master often benefits from output and wealth-oriented roles, while a weaker one benefits from supportive, resource-rich environments. Use it as a lens for fit and timing, alongside your real skills and interests.",
+  },
+];
+
+const dayMasterMeaningFaqs: FAQ[] = [
+  {
+    question: "What does the Day Master mean in Bazi?",
+    answer:
+      "The Day Master is the heavenly stem of your day pillar and represents the self — the anchor the rest of the chart is read against. It does not describe your whole identity alone; the surrounding stems, branches, Ten Gods, and timing cycle explain how that anchor behaves in context.",
+  },
+  {
+    question: "Is the Day Master the most important part of a Bazi chart?",
+    answer:
+      "It is the reference point, so in that sense it is central — every other element is interpreted in relation to it. But the month branch (season) and the overall element balance matter just as much for judging strength and favorable elements. The Day Master sets the question; the rest of the chart answers it.",
+  },
+  {
+    question: "What is the difference between the Day Master and the day pillar?",
+    answer:
+      "The day pillar has two parts: the heavenly stem on top and the earthly branch below. The Day Master is specifically the stem on top. The branch beneath (the \"day branch\") represents the spouse palace and adds context, but the stem is the self — the Day Master.",
+  },
+  {
+    question: "How do I find my Day Master?",
+    answer:
+      "Generate a Bazi chart from your birth year, month, day, and hour, then look at the heavenly stem on the day pillar. That stem is your Day Master. It will be one of the 10 Heavenly Stems — Jia, Yi, Bing, Ding, Wu, Ji, Geng, Xin, Ren, or Gui — and it becomes the reference point for reading the rest of the chart.",
+  },
+];
+
+// P2 dedicated FAQ sets — see note above. Each targets its page's real query.
+const zodiac2026Faqs: FAQ[] = [
+  {
+    question: "What is the Chinese zodiac animal for 2026?",
+    answer:
+      "2026 is the Year of the Fire Horse (Bing-Wu, 丙午). It begins at Chinese New Year in February 2026 and is governed by the Horse branch (Wu, 午), which carries Yang Fire energy. Fire Horse years are traditionally linked to high energy, bold action, and rapid momentum.",
+  },
+  {
+    question: "What does the Year of the Fire Horse mean for each zodiac sign?",
+    answer:
+      "The Horse year favors signs in harmony with Wu (Horse) — Tiger and Dog form its three-harmony triad, and Goat is its six-combination partner. The Rat sits opposite (Zi-Wu clash) and may feel more friction. Each sign's actual experience depends on its own branch relationship to the Horse and on the full Bazi chart.",
+  },
+  {
+    question: "Is a zodiac forecast for 2026 a literal prediction?",
+    answer:
+      "No. A yearly zodiac forecast is a symbolic overview built from the year branch and its relationship to each animal sign. It describes themes to watch, not fixed outcomes. For personal timing, read the year against your complete Four Pillars chart rather than the animal year alone.",
+  },
+];
+
+const baziVsWesternFaqs: FAQ[] = [
+  {
+    question: "What is the difference between Bazi and Western astrology?",
+    answer:
+      "Western astrology is built on planets, zodiac signs, houses, and aspects derived from the sky at your birth. Bazi is built on the Chinese calendar — Heavenly Stems, Earthly Branches, the Five Elements, and timing cycles drawn from your birth year, month, day, and hour. They are two different symbolic languages, not two versions of the same chart.",
+  },
+  {
+    question: "Which is more accurate, Bazi or Western astrology?",
+    answer:
+      "Neither is universally \"more accurate\" — they answer different questions. Western astrology maps psychological archetypes and life areas through houses; Bazi maps elemental balance and favorable timing. The more useful question is which framework fits what you want to understand right now.",
+  },
+  {
+    question: "Can I use Bazi and Western astrology together?",
+    answer:
+      "Yes. Many people read them side by side as complementary lenses, keeping each system's rules separate before looking for overlap. The risk is blending mechanics — a Bazi element and a Western planet are not interchangeable — so interpret each chart on its own terms first.",
+  },
+];
+
+const fiveElementsTestFaqs: FAQ[] = [
+  {
+    question: "What are the five elements in Chinese metaphysics?",
+    answer:
+      "The Five Elements (Wu Xing, 五行) are Wood, Fire, Earth, Metal, and Water. They are not physical substances but five modes of energy: Wood grows and initiates, Fire expresses and energizes, Earth stabilizes, Metal refines and cuts, and Water adapts and flows. They interact through generating and controlling cycles.",
+  },
+  {
+    question: "How do I find my dominant element?",
+    answer:
+      "Your elemental makeup comes from your full Bazi chart, especially your Day Master (day stem) and the balance of elements across the four pillars. A quick personality read can hint at your leading tendency, but the accurate version is calculated from your birth date and time, not a single quiz answer.",
+  },
+  {
+    question: "What does each element say about personality?",
+    answer:
+      "As a shorthand: Wood types tend to be growth-oriented and planning-driven; Fire types expressive and visible; Earth types steady and supportive; Metal types precise and principled; Water types adaptable and strategic. These are tendencies to reflect on, not fixed labels — most people blend several elements.",
+  },
+];
+
+const fireElementFaqs: FAQ[] = [
+  {
+    question: "What does the Fire element represent in Bazi?",
+    answer:
+      "Fire (火) represents visibility, expression, passion, and recognition. In Bazi it governs how openly energy is shown to the world. Yang Fire (Bing) is like the sun — broad and radiant; Yin Fire (Ding) is like a candle or lamp — focused and warm. Fire is generated by Wood and controlled by Water.",
+  },
+  {
+    question: "What happens if you have too much or too little Fire in your chart?",
+    answer:
+      "Abundant Fire can bring charisma and drive but also restlessness or burnout if unbalanced; weak or absent Fire can show up as low visibility or difficulty asserting presence. Whether Fire helps depends on your Day Master — for some charts Fire is favorable, for others it adds pressure. Balance is read from the whole chart.",
+  },
+  {
+    question: "How does the Fire element affect work and relationships?",
+    answer:
+      "In work, Fire supports visible, expressive, people-facing roles and leadership presence. In relationships, it adds warmth and expressiveness but benefits from grounding elements so it does not burn hot and fast. The practical use is noticing where you need more visibility versus more steadiness.",
+  },
+];
+
+const howToReadBaziFaqs: FAQ[] = [
+  {
+    question: "How do you read a Bazi chart step by step?",
+    answer:
+      "Start with the Day Master (the day stem) — that is you. Next read the month branch to judge the season and your Day Master's strength. Then map the Five Elements balance, identify the Ten Gods around the Day Master, and finally layer in the luck pillars for timing. Reading in that order keeps a complex chart manageable.",
+  },
+  {
+    question: "What should a beginner look at first in a Bazi chart?",
+    answer:
+      "Look at your Day Master element first, then whether the month branch supports or drains it. Those two facts — your day stem and your birth season — already tell you a great deal about the chart's core theme before you add Ten Gods, hidden stems, and timing.",
+  },
+  {
+    question: "Why does a Bazi chart feel overwhelming at first?",
+    answer:
+      "Because every character interacts with every other one, beginners often try to read everything at once. The fix is sequence: Day Master, then month branch, then element balance, then Ten Gods, then timing. Reading one layer at a time turns eight characters into a structured, traceable picture.",
+  },
+  {
+    question: "Do I need my exact birth time to read a Bazi chart?",
+    answer:
+      "An exact birth time gives the hour pillar, so it makes the chart more complete. You can still learn the core structure from the year, month, and day pillars, especially the Day Master and month branch. Treat a chart without the hour as a partial reading and avoid making strong timing claims from it.",
+  },
+];
+
+const iChingBeginnersFaqs: FAQ[] = [
+  {
+    question: "How do you ask the I Ching a good question?",
+    answer:
+      "Frame an open, situation-focused question such as \"How should I approach this decision?\" rather than a yes/no or fortune-telling question. The I Ching responds best to questions about approach, attitude, and timing, because the hexagrams describe dynamics rather than fixed outcomes.",
+  },
+  {
+    question: "Is the I Ching used for fortune telling?",
+    answer:
+      "Traditionally the I Ching is a book of changes used for structured reflection and decision context, not literal prediction. It offers a hexagram that mirrors the dynamics of your situation, helping you think through an approach. It works best as a reflective tool rather than a forecast.",
+  },
+  {
+    question: "What do I need to start using the I Ching?",
+    answer:
+      "You need a clear question and a casting method — three coins is the simplest. Cast six lines from bottom to top, find the resulting hexagram, and read its judgment and image. The online I Ching Oracle on this site handles the casting so you can focus on framing the question and reading the result.",
+  },
+  {
+    question: "Should beginners use coins, yarrow stalks, or an online oracle?",
+    answer:
+      "Coins are the easiest traditional method for beginners because they are quick and transparent. Yarrow stalks are slower and more ritualized. An online oracle is fine for learning if it shows the lines clearly and keeps the question visible; the important part is reading the hexagram thoughtfully rather than treating the result as instant fortune telling.",
+  },
+];
+
+const changingLinesFaqs: FAQ[] = [
+  {
+    question: "What are changing lines in the I Ching?",
+    answer:
+      "Changing lines are lines that come up as \"old\" yin (6) or \"old\" yang (9) when casting. They are unstable and transform into their opposite, generating a second hexagram. They mark the part of the situation that is actively shifting.",
+  },
+  {
+    question: "What do the numbers 6, 7, 8, and 9 mean in I Ching casting?",
+    answer:
+      "With the coin method each line totals 6, 7, 8, or 9. A 7 is stable (young) yang and an 8 is stable (young) yin — these do not change. A 9 is old yang and a 6 is old yin — these are changing lines that transform into the opposite, producing the second hexagram.",
+  },
+  {
+    question: "How do I read a hexagram that has changing lines?",
+    answer:
+      "Read the first hexagram as the present situation, then read the text of each changing line for the specific dynamic at play, then read the second (derived) hexagram as the direction things are moving toward. If there are no changing lines, you read only the single hexagram.",
+  },
+  {
+    question: "Do I read every changing line in an I Ching cast?",
+    answer:
+      "Yes, but keep the reading focused. Each changing line points to a moving part of the situation, so read them in line order and look for a shared theme rather than forcing separate predictions. When several lines change, the resulting hexagram becomes especially important because it shows the broader direction of change.",
+  },
+];
+
+const zodiacCompatibilityGuideFaqs: FAQ[] = [
+  {
+    question: "How does Chinese zodiac compatibility work?",
+    answer:
+      "Compatibility comes from relationships between the 12 Earthly Branches behind each animal: three-harmony triads (shared long-term values), six-harmony pairs (day-to-day balance), clashes (opposite branches), and harms (subtler friction). Your animal's branch position determines which signs harmonize or clash with you.",
+  },
+  {
+    question: "What are the three-harmony triads in the Chinese zodiac?",
+    answer:
+      "There are four triads: Rat-Dragon-Monkey (Water frame), Ox-Snake-Rooster (Metal frame), Tiger-Horse-Dog (Fire frame), and Rabbit-Goat-Pig (Wood frame). Signs in the same triad are spaced four years apart and tend to share goals and rhythm, making them strong long-term matches.",
+  },
+  {
+    question: "Do clashing zodiac signs mean a bad relationship?",
+    answer:
+      "No. A clash (opposite branches, such as Rat-Horse or Dragon-Dog) signals difference in pace and temperament, not doom. Many clash pairs work well when the contrast is channeled into complementary roles. Compatibility is a starting reference; values and communication matter more, and both full Bazi charts give the deeper picture.",
+  },
+  {
+    question: "Which Chinese zodiac signs are best for marriage compatibility?",
+    answer:
+      "Traditional marriage compatibility often favors six-harmony pairs and three-harmony triads, such as Rat-Ox, Tiger-Pig, Rabbit-Dog, Dragon-Rooster, Snake-Monkey, and Horse-Goat, plus the four triads. These pairings suggest easier rhythm, but marriage quality still depends on communication, values, timing, and the two full Bazi charts.",
   },
 ];
 
@@ -136,8 +399,8 @@ const seedPosts: BlogPost[] = [
   buildPage({
     slug: "what-is-bazi",
     path: "/blog/what-is-bazi",
-    title: "What Is Bazi? A Beginner's Guide to the Four Pillars",
-    description: "A beginner-friendly explanation of Bazi, the Four Pillars, and why it is more than a single zodiac sign.",
+    title: "What Is Bazi? Beginner's Guide to the Four Pillars of Destiny (八字)",
+    description: "Bazi (八字), the Four Pillars of Destiny, is a Chinese astrology system that maps your birth year, month, day, and hour into eight characters. Learn what Bazi is, how the Day Master works, and how it differs from a single zodiac sign — then build your chart with our free Bazi calculator.",
     category: "Bazi Guide",
     entityName: "What Is Bazi?",
     entityType: "BlogPosting",
@@ -145,7 +408,7 @@ const seedPosts: BlogPost[] = [
     directAnswer:
       "Bazi, or Four Pillars of Destiny, is a Chinese metaphysics system that reads a person's birth year, month, day, and hour as a structured chart of stems, branches, and elements. It is not a single-sign horoscope. It is a pattern language for timing, tendencies, and context.",
     breadcrumbs: breadcrumbs("What Is Bazi?", "/blog/what-is-bazi"),
-    schema: { headline: "", description: "", url: "", datePublished: "2025-12-02", dateModified: "2026-04-01" },
+    schema: { headline: "", description: "", url: "", datePublished: "2025-12-02", dateModified: "2026-06-29" },
     stats: [
       { value: "4", label: "Pillars", description: "Year, month, day, and hour make the full chart." },
       { value: "60", label: "Stem-branch pairs", description: "The sexagenary cycle organizes the calendar." },
@@ -235,7 +498,7 @@ const seedPosts: BlogPost[] = [
         ),
       },
     ],
-    faqs: baseFaqs,
+    faqs: whatIsBaziFaqs,
     relatedLinks: baziLinks,
     cta: {
       title: "Read the Bazi foundation next",
@@ -335,7 +598,7 @@ const seedPosts: BlogPost[] = [
         ),
       },
     ],
-    faqs: baseFaqs,
+    faqs: zodiac2026Faqs,
     relatedLinks: zodiacLinks,
     cta: {
       title: "Compare the forecast with the full zodiac hub",
@@ -445,7 +708,7 @@ const seedPosts: BlogPost[] = [
         ),
       },
     ],
-    faqs: baseFaqs,
+    faqs: baziVsWesternFaqs,
     relatedLinks: compareLinks,
     cta: {
       title: "Read the broader learning-center comparison",
@@ -545,7 +808,7 @@ const seedPosts: BlogPost[] = [
         ),
       },
     ],
-    faqs: baseFaqs,
+    faqs: baziCareerFaqs,
     relatedLinks: careerLinks,
     cta: {
       title: "Check your own chart with a birth date",
@@ -642,7 +905,7 @@ const seedPosts: BlogPost[] = [
         ),
       },
     ],
-    faqs: baseFaqs,
+    faqs: fiveElementsTestFaqs,
     relatedLinks: elementsLinks,
     cta: {
       title: "Learn the Five Elements in depth",
@@ -1044,7 +1307,7 @@ function createEditorialPost(seed: EditorialSeed): BlogPost {
         ),
       },
     ],
-    faqs: baseFaqs,
+    faqs: fireElementFaqs,
     relatedLinks: [
       { title: seed.primaryLabel, href: seed.primaryHref, description: "The canonical reference page for this topic — start here for the full definition and structure." },
       { title: "Beginner's Guide", href: "/learn/beginners-guide", description: "Return to the learning path if the vocabulary is new." },
@@ -1058,6 +1321,38 @@ function createEditorialPost(seed: EditorialSeed): BlogPost {
     },
   });
 }
+
+// Dedicated FAQ set for the Day Master guide. Replaces the generic baseFaqs so
+// the FAQPage structured data actually covers the high-impression queries this
+// page already ranks for (e.g. "bazi day master is the day stem source",
+// "how to find my day master", "strong vs weak day master").
+const dayMasterFaqs: FAQ[] = [
+  {
+    question: "Is the day master the day stem (the heavenly stem of the day pillar)?",
+    answer:
+      "Yes. The Day Master (日主, Ri Zhu) is the day stem — the Heavenly Stem on top of the day pillar in your Bazi chart. \"Day master source\" and \"day stem source\" both refer to the same thing: the day pillar's heavenly stem. This is the classical definition recorded in Yuan Hai Zi Ping (《渊海子平》).",
+  },
+  {
+    question: "How do I find my day master?",
+    answer:
+      "Generate your four pillars from your birth date, time, and place, then read the top character of the day pillar — that heavenly stem is your Day Master. The free Bazi calculator on this site identifies it for you instantly, so you do not need to consult a Ten Thousand Year calendar by hand.",
+  },
+  {
+    question: "How many day masters are there?",
+    answer:
+      "There are exactly 10 possible day masters, because there are 10 Heavenly Stems: Jia (Yang Wood), Yi (Yin Wood), Bing (Yang Fire), Ding (Yin Fire), Wu (Yang Earth), Ji (Yin Earth), Geng (Yang Metal), Xin (Yin Metal), Ren (Yang Water), and Gui (Yin Water).",
+  },
+  {
+    question: "What does a strong vs weak day master mean?",
+    answer:
+      "A Day Master is \"strong\" when supportive elements (the same element plus the element that produces it) are abundant in the chart, and \"weak\" when draining, controlling, or wealth elements dominate. Neither is good or bad on its own — the strength reading simply tells you which elements are favorable for balance.",
+  },
+  {
+    question: "Is the day master the same as my Chinese zodiac sign?",
+    answer:
+      "No. Your zodiac animal comes from the year branch, while the Day Master comes from the day stem. Two people born in the same zodiac year usually have different Day Masters, which is why Bazi gives a far more individual reading than the year animal alone.",
+  },
+];
 
 const highIntentBlogPosts: BlogPost[] = [
   buildPage({
@@ -1137,7 +1432,7 @@ const highIntentBlogPosts: BlogPost[] = [
         ),
       },
     ],
-    faqs: baseFaqs,
+    faqs: howToReadBaziFaqs,
     relatedLinks: baziLinks,
     cta: {
       title: "Generate your chart first",
@@ -1223,7 +1518,7 @@ const highIntentBlogPosts: BlogPost[] = [
         ),
       },
     ],
-    faqs: baseFaqs,
+    faqs: dayMasterMeaningFaqs,
     relatedLinks: baziLinks,
     cta: {
       title: "Find your Day Master",
@@ -1309,7 +1604,7 @@ const highIntentBlogPosts: BlogPost[] = [
         ),
       },
     ],
-    faqs: baseFaqs,
+    faqs: iChingBeginnersFaqs,
     relatedLinks: [
       { title: "I Ching Hub", href: "/i-ching", description: "Learn the full structure of hexagrams, trigrams, and lines." },
       { title: "Changing Lines", href: "/blog/changing-lines-i-ching", description: "Go deeper into moving-line interpretation." },
@@ -1399,7 +1694,7 @@ const highIntentBlogPosts: BlogPost[] = [
         ),
       },
     ],
-    faqs: baseFaqs,
+    faqs: changingLinesFaqs,
     relatedLinks: [
       { title: "Changing Lines Guide", href: "/i-ching/changing-lines", description: "Read the knowledge-page version of moving-line interpretation." },
       { title: "I Ching for Beginners", href: "/blog/i-ching-for-beginners", description: "Start with question framing before line interpretation." },
@@ -1489,7 +1784,7 @@ const highIntentBlogPosts: BlogPost[] = [
         ),
       },
     ],
-    faqs: baseFaqs,
+    faqs: zodiacCompatibilityGuideFaqs,
     relatedLinks: zodiacLinks,
     cta: {
       title: "Compare two zodiac signs",
@@ -1501,8 +1796,8 @@ const highIntentBlogPosts: BlogPost[] = [
   buildPage({
     slug: "day-master-bazi-complete-guide",
     path: "/blog/day-master-bazi-complete-guide",
-    title: "Day Master Is the Day Stem (Heavenly Stem) — Complete Guide to 10 Day Masters",
-    description: "Your Bazi day master IS the day stem (heavenly stem of the day pillar). Complete guide to all 10 Day Masters (Jia, Yi, Bing, Ding, Wu, Ji, Geng, Xin, Ren, Gui): find your day master source, personality, career, relationships. Free Bazi calculator.",
+    title: "Day Master in Bazi: Is the Day Stem (Heavenly Stem) — Guide to All 10 Day Masters",
+    description: "Your Bazi day master IS the day stem (heavenly stem of the day pillar). Find your day master source in seconds, then read all 10 Day Masters (Jia, Yi, Bing, Ding, Wu, Ji, Geng, Xin, Ren, Gui): personality, career, relationships, strong vs weak. Free Bazi calculator, no sign-up.",
     category: "Bazi Guide",
     entityName: "Day Master Bazi Complete Guide",
     entityType: "BlogPosting",
@@ -1510,15 +1805,15 @@ const highIntentBlogPosts: BlogPost[] = [
     directAnswer:
       "The Day Master is the day stem (the heavenly stem of the day pillar) in a Bazi chart. It represents the self and is the reference point for reading the rest of the four pillars. The day master source is the day pillar — specifically, the heavenly stem on top of your day pillar. There are 10 possible day masters (10 heavenly stems: Jia, Yi, Bing, Ding, Wu, Ji, Geng, Xin, Ren, Gui), and knowing yours is the first step to reading your Bazi chart.",
     breadcrumbs: breadcrumbs("Day Master Complete Guide", "/blog/day-master-bazi-complete-guide"),
-    schema: { headline: "", description: "", url: "", datePublished: "2026-04-20", dateModified: "2026-05-20" },
+    schema: { headline: "", description: "", url: "", datePublished: "2026-04-20", dateModified: "2026-06-29" },
     stats: [
       { value: "10", label: "Heavenly Stems", description: "Five elements expressed as yin or yang form the ten Day Master types." },
       { value: "4", label: "Pillars", description: "Year, month, day, and hour pillars frame the Day Master's context." },
       { value: "5", label: "Elements", description: "Wood, Fire, Earth, Metal, and Water shape every Day Master profile." },
     ],
     citations: [
-      { label: "Bazi tradition", source: "The Day Master is the Heavenly Stem of the day pillar and represents the self in Four Pillars analysis." },
-      { label: "Heavenly Stem theory", source: "Each element appears as a yang and yin stem, producing the ten Heavenly Stems." },
+      { label: "《渊海子平》Yuan Hai Zi Ping (Xu Sheng, Song Dynasty, ~1100 CE)", source: "The foundational Bazi text that establishes the day stem (Day Master) as the self and reference point of the Four Pillars." },
+      { label: "《三命通会》San Ming Tong Hui (Wan Minying, Ming Dynasty, ~1578 CE)", source: "Classical compendium detailing the ten Heavenly Stems and how each Day Master interacts with the other pillars." },
     ],
     sections: [
       {
@@ -1613,7 +1908,7 @@ const highIntentBlogPosts: BlogPost[] = [
         ),
       },
     ],
-    faqs: baseFaqs,
+    faqs: dayMasterFaqs,
     relatedLinks: baziLinks,
     cta: {
       title: "Find your Day Master",
@@ -1717,7 +2012,7 @@ const highIntentBlogPosts: BlogPost[] = [
         ),
       },
     ],
-    faqs: baseFaqs,
+    faqs: zodiacCompatibilityFaqs,
     relatedLinks: zodiacLinks,
     cta: {
       title: "Compare two zodiac signs",
@@ -1816,7 +2111,7 @@ const highIntentBlogPosts: BlogPost[] = [
         ),
       },
     ],
-    faqs: baseFaqs,
+    faqs: iChingReadingFaqs,
     relatedLinks: [
       { title: "I Ching hub", href: "/i-ching", description: "All hexagrams and core concepts in one place." },
       { title: "I Ching for Beginners", href: "/blog/i-ching-for-beginners", description: "Question framing before line interpretation." },
@@ -1978,6 +2273,8 @@ function createDayMasterPost(seed: DayMasterSeed): BlogPost {
       { title: "Day Master Complete Guide", href: "/blog/day-master-bazi-complete-guide", description: "Overview of all 10 Day Masters." },
       { title: "What Your Day Master Means", href: "/blog/day-master-meaning", description: "A shorter introduction to the Day Master." },
       { title: "Heavenly Stems Guide", href: "/bazi/heavenly-stems", description: "Complete guide to all 10 Heavenly Stems." },
+      { title: "Ten Gods", href: "/bazi/ten-gods", description: `How every other stem becomes a role relative to your ${seed.stemShort} Day Master.` },
+      { title: "Five Elements", href: "/bazi/five-elements", description: `The ${el} element relationships that shape the ${seed.stemShort} Day Master profile.` },
     ],
     cta: {
       title: "Find your Day Master",

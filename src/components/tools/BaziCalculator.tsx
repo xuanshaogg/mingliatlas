@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Calculator, RotateCcw } from "lucide-react";
 import BaziChartResult from "@/components/tools/BaziChartResult";
 import { calculateBaziChart, type BaziChart, type BaziChartInput } from "@/lib/bazi";
@@ -43,14 +43,23 @@ export default function BaziCalculator() {
   const [form, setForm] = useState<FormState>(DEFAULT_INPUT);
   const [chart, setChart] = useState<BaziChart>(() => buildDefaultChart());
   const [error, setError] = useState<string | null>(null);
+  const startedRef = useRef(false);
+
+  function markStarted(): void {
+    if (startedRef.current) return;
+    startedRef.current = true;
+    trackEvent("calculator_started", { tool: "bazi" });
+  }
 
   function updateForm<K extends keyof FormState>(key: K, value: FormState[K]): void {
+    markStarted();
     setForm((current) => ({ ...current, [key]: value }));
   }
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
-    trackEvent("calculator_started", { tool: "bazi" });
+    // Fallback: if the user submits defaults without editing, still count as started.
+    markStarted();
 
     try {
       const nextChart = calculateBaziChart(parseInput(form));
@@ -66,6 +75,7 @@ export default function BaziCalculator() {
     setForm(DEFAULT_INPUT);
     setChart(buildDefaultChart());
     setError(null);
+    startedRef.current = false;
   }
 
   return (

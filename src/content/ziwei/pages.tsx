@@ -57,6 +57,56 @@ const defaultFaqs: FAQ[] = [
   },
 ];
 
+// Per-topic FAQ overrides for Ziwei pages that already earn search impressions
+// (e.g. four-transformations ranks ~pos 4 for "ziwei four transformations").
+// Pages without an override fall back to defaultFaqs.
+const topicFaqs: Partial<Record<string, FAQ[]>> = {
+  "four-transformations": [
+    {
+      question: "What are the Four Transformations (Si Hua) in Ziwei Doushu?",
+      answer:
+        "The Four Transformations (四化, Si Hua) are four activations a Heavenly Stem assigns to specific stars: Hua Lu (化祿, prosperity and smooth flow), Hua Quan (化權, power and authority), Hua Ke (化科, reputation and support), and Hua Ji (化忌, obstruction and fixation). They show which stars are activated, supported, elevated, or complicated in a chart.",
+    },
+    {
+      question: "What does Hua Ji (化忌) mean in a Ziwei chart?",
+      answer:
+        "Hua Ji is the transformation of obstruction or attachment. It marks the star and palace where energy gets stuck, over-focused, or complicated. It is not purely negative — it shows where attention concentrates and where the most growth or friction tends to occur, depending on the rest of the chart.",
+    },
+    {
+      question: "How do the Four Transformations work with the birth-year stem?",
+      answer:
+        "The birth-year Heavenly Stem determines the natal Four Transformations: each of the 10 stems maps to a fixed set of four stars that receive Lu, Quan, Ke, and Ji. Decade and annual stems then add their own transformations on top, which is how Ziwei reads changing timing across life cycles.",
+    },
+    {
+      question: "Why are the Four Transformations important in Ziwei Doushu?",
+      answer:
+        "They are the dynamic layer of the chart. Palaces and stars describe a static structure; the transformations show what is actually activated and where energy moves. Many Ziwei schools read the Si Hua first because they reveal the chart's live themes and timing rather than fixed traits.",
+    },
+  ],
+  "major-stars": [
+    {
+      question: "What are the 14 major stars in Ziwei Doushu?",
+      answer:
+        "The 14 major stars are Ziwei, Tianji, Taiyang, Wuqu, Tiantong, Lianzhen, Tianfu, Taiyin, Tanlang, Jumen, Tianxiang, Tianliang, Qisha, and Pojun. They form the primary vocabulary of a Ziwei chart — each carries a core theme that shifts depending on the palace it occupies and the transformations acting on it.",
+    },
+    {
+      question: "Which major star is the most important in Ziwei?",
+      answer:
+        "Ziwei (the emperor star) is the namesake and anchor of the system, associated with leadership and centrality, but no star is universally most important. The decisive factor is which star sits in your Life Palace and how the Four Transformations activate the chart, not a fixed ranking of stars.",
+    },
+    {
+      question: "How do major stars differ from minor stars?",
+      answer:
+        "Major stars set the main theme and style of each palace; minor stars add nuance, triggers, and supporting detail. A reading starts with the 14 major stars to establish structure, then layers in minor stars for texture. Reading minor stars before the majors usually produces a confused interpretation.",
+    },
+    {
+      question: "How do I read the major star in my Life Palace?",
+      answer:
+        "The major star in the Life Palace gives the chart's central style: how the person approaches choices, pressure, visibility, and responsibility. Read that star first, then check its brightness, companion stars, opposite palace, and Four Transformations. A Life Palace star is important, but it is never interpreted alone.",
+    },
+  ],
+};
+
 function pageUrl(path: string): string {
   return `${SITE.url}${path}`;
 }
@@ -215,8 +265,8 @@ const topics: TopicInput[] = [
   { slug: "twelve-palaces", datePublished: "2025-12-20", dateModified: "2026-03-16", label: "Twelve Palaces", title: "The 12 Ziwei Palaces: Complete Beginner Guide", description: "The 12 life areas used in Purple Star Astrology chart reading.", statValue: "12", statLabel: "Palaces", group: "Introduction" },
   { slug: "life-palace", datePublished: "2025-12-25", dateModified: "2026-03-18", label: "Life Palace", title: "Life Palace in Ziwei Doushu: Meaning and Use", description: "The central palace for identity, direction, temperament, and chart emphasis.", statValue: "1", statLabel: "Chart anchor", group: "Introduction" },
   { slug: "body-palace", datePublished: "2026-01-02", dateModified: "2026-03-20", label: "Body Palace", title: "Body Palace in Ziwei Doushu: Action and Embodiment", description: "The palace showing how chart patterns become behavior, action, and lived experience.", statValue: "1", statLabel: "Action palace", group: "Introduction" },
-  { slug: "four-transformations", datePublished: "2026-01-08", dateModified: "2026-03-22", label: "Four Transformations", title: "Four Transformations (Si Hua) in Ziwei Doushu", description: "The transformation stars that show activation, support, pressure, and complication.", statValue: "4", statLabel: "Transformations", group: "Introduction" },
-  { slug: "major-stars", datePublished: "2026-01-14", dateModified: "2026-03-24", label: "Major Stars", title: "14 Major Stars in Ziwei Doushu: Overview", description: "The core star vocabulary used for most Ziwei chart interpretation.", statValue: "14", statLabel: "Major stars", group: "Introduction" },
+  { slug: "four-transformations", datePublished: "2026-01-08", dateModified: "2026-06-29", label: "Four Transformations", title: "Four Transformations (Si Hua) in Ziwei Doushu", description: "The transformation stars that show activation, support, pressure, and complication.", statValue: "4", statLabel: "Transformations", group: "Introduction" },
+  { slug: "major-stars", datePublished: "2026-01-14", dateModified: "2026-06-29", label: "Major Stars", title: "14 Major Stars in Ziwei Doushu: Overview", description: "The core star vocabulary used for most Ziwei chart interpretation.", statValue: "14", statLabel: "Major stars", group: "Introduction" },
   { slug: "minor-stars", datePublished: "2026-01-20", dateModified: "2026-03-26", label: "Minor Stars", title: "Minor Stars in Ziwei Doushu: Support and Detail", description: "Secondary stars add nuance, triggers, and supporting context to a chart.", statValue: "100+", statLabel: "Named stars", group: "Introduction" },
   { slug: "reading-chart", datePublished: "2026-01-26", dateModified: "2026-03-28", label: "Reading a Ziwei Chart", title: "How to Read a Ziwei Doushu Chart", description: "A beginner workflow for reading palaces, major stars, transformations, and cycles.", statValue: "4", statLabel: "Reading layers", group: "Introduction" },
   { slug: "ziwei-compatibility", datePublished: "2026-02-01", dateModified: "2026-03-30", label: "Ziwei Compatibility", title: "Ziwei Compatibility: Reading Relationship Palaces", description: "A relationship-focused guide using spouse palace, Life Palace, and timing context.", statValue: "2+", statLabel: "Charts compared", group: "Introduction" },
@@ -339,7 +389,7 @@ function createTopicPage(topic: TopicInput): ZiweiContentPage {
         ),
       },
     ],
-    faqs: defaultFaqs,
+    faqs: topicFaqs[topic.slug] ?? defaultFaqs,
     relatedLinks,
     cta: cta(),
   });

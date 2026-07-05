@@ -510,7 +510,7 @@ export const allLearnPages: LearnContentPage[] = [
               Start with <TermLink term="Bazi">Bazi</TermLink>. It reads the birth moment through <TermLink term="Heavenly Stems">Heavenly Stems</TermLink>, <TermLink term="Earthly Branches">Earthly Branches</TermLink>, elements, and timing cycles.
             </p>
             <p>
-              In <cite>Chinese calendar tradition</cite>, these symbols classify time. That makes Bazi a good fit for readers who want structured patterns rather than one-word labels.
+              In <cite>Chinese calendar tradition</cite>, these symbols classify time. That makes Bazi a good fit for readers who want structured patterns rather than one-word labels. Build a chart with the <Link href="/tools/bazi-calculator" className={linkClass}>free Bazi calculator</Link>, then read the <Link href="/blog/day-master-bazi-complete-guide" className={linkClass}>Day Master guide</Link> to interpret it.
             </p>
           </>
         ),
@@ -559,10 +559,10 @@ export const allLearnPages: LearnContentPage[] = [
     faqs: defaultFaqs,
     relatedLinks: systemRelatedLinks,
     cta: {
-      title: "Start with a tool or hub",
-      description: "Once you know the question, open the guide or calculator that matches that system.",
-      href: "/tools",
-      label: "Browse tools",
+      title: "Start with the free Bazi calculator",
+      description: "Most readers begin with Bazi. Build your Four Pillars chart, then branch into the system that fits your question.",
+      href: "/tools/bazi-calculator",
+      label: "Open Bazi calculator",
     },
   }),
   buildPage({

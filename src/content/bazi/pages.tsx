@@ -278,6 +278,7 @@ export const baziPages: BaziContentPage[] = [
       ...baziBaseLinks,
       { title: "Ten Gods", href: "/bazi/ten-gods", description: "Read relationship roles around the Day Master." },
       { title: "Luck Pillars", href: "/bazi/luck-pillars", description: "Understand how 10-year cycles change the chart environment." },
+      { title: "Day Master Complete Guide", href: "/blog/day-master-bazi-complete-guide", description: "The Day Master is the day stem (heavenly stem of the day pillar) — read all 10 Day Masters." },
       { title: "Day Master Series", href: "/blog/jia-wood-day-master", description: "Read dedicated guides for all 10 Day Master types." },
       { title: "Free Bazi Calculator", href: "/tools/bazi-calculator", description: "Generate a chart and follow the reading order." },
     ],
@@ -654,6 +655,7 @@ export const baziPages: BaziContentPage[] = [
       baziBaseLinks[0],
       baziBaseLinks[2],
       { title: "Ten Gods", href: "/bazi/ten-gods", description: "See how stems become relationship roles around the Day Master." },
+      { title: "Day Master Complete Guide", href: "/blog/day-master-bazi-complete-guide", description: "Your Day Master is one of these ten stems — read the full guide to all 10 Day Masters." },
     ],
     cta: cta(),
   }),
@@ -669,7 +671,7 @@ export const baziPages: BaziContentPage[] = [
     directAnswer:
       "The 12 Earthly Branches (Di Zhi 地支, also known as Kuar-di Zhi) are Zi, Chou, Yin, Mao, Chen, Si, Wu, Wei, Shen, You, Xu, and Hai. They are the terrestrial or earthly branches used in Bazi to represent months, hours, directions, zodiac animals, hidden stems, and relationship patterns such as combinations, clashes, harms, and punishments.",
     breadcrumbs: baziBreadcrumbs("Earthly Branches", "/bazi/earthly-branches"),
-    schema: { headline: "", description: "", url: "", datePublished: "2025-12-18", dateModified: "2026-01-25" },
+    schema: { headline: "", description: "", url: "", datePublished: "2025-12-18", dateModified: "2026-06-29" },
     stats: [
       { value: "12", label: "Branches", description: "One for each two-hour period and zodiac animal." },
       { value: "6", label: "Clashes", description: "Opposing branch pairs." },
@@ -780,6 +782,16 @@ export const baziPages: BaziContentPage[] = [
         question: "Why does the month branch have the most weight in a Bazi chart?",
         answer:
           "The month branch sets the season, which determines whether any given element is in season (strong) or out of season (weak). A Day Master's strength is assessed primarily against the month branch. Classical texts like Yuan Hai Zi Ping (渊海子平) consistently read the month branch first because it provides the environmental context that makes all other branch and stem readings meaningful.",
+      },
+      {
+        question: "What does Di Zhi (地支) mean in English?",
+        answer:
+          "Di Zhi (地支) translates as \"Earthly Branches\" — di means earth and zhi means branch. The twelve Di Zhi are the terrestrial half of the Chinese sexagenary cycle, paired with the ten Tian Gan (天干, Heavenly Stems). \"Kuar-di Zhi\" is an alternate romanization sometimes seen in search; it refers to the same 12 Earthly Branches.",
+      },
+      {
+        question: "What is the order of the 12 Earthly Branches?",
+        answer:
+          "The fixed order is Zi (子), Chou (丑), Yin (寅), Mao (卯), Chen (辰), Si (巳), Wu (午), Wei (未), Shen (申), You (酉), Xu (戌), and Hai (亥). This sequence runs from the Rat through the Pig and governs the 12 two-hour periods of the day, the 12 months, and the 12-year zodiac cycle.",
       },
     ],
     relatedLinks: [
@@ -896,6 +908,7 @@ const tenGodsPage = buildPage({
   ],
   relatedLinks: [
     { title: "Five Elements", href: "/bazi/five-elements", description: "The element relationships that define all Ten God roles." },
+    { title: "Day Master Complete Guide", href: "/blog/day-master-bazi-complete-guide", description: "Every Ten God role is read relative to your Day Master — the day stem of your chart." },
     { title: "Luck Pillars", href: "/bazi/luck-pillars", description: "See how Ten Gods shift across 10-year timing cycles." },
     { title: "Free Bazi Calculator", href: "/tools/bazi-calculator", description: "See your own Ten God distribution in one chart." },
   ],

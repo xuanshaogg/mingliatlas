@@ -8,6 +8,13 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/sitemap",
   },
+  // Navigation aid only: keep it crawlable (follow) so bots discover pages,
+  // but out of the index so it stops competing with real content pages for
+  // impressions (GSC 2026-07-05: /sitemap had 188 impressions, rank 16.8).
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 export default function HtmlSitemapPage() {
