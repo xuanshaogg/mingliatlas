@@ -4,6 +4,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/bazi/free-calculator",
+        destination: "https://mingliatlas.com/tools/bazi-calculator",
+        permanent: true,
+      },
+      {
         source: "/:path*",
         has: [
           {

@@ -46,6 +46,15 @@ function addAllZodiacYearRoutes(set, text) {
   }
 }
 
+function addTupleRoutes(set, text, listName, prefix) {
+  const start = text.indexOf(`const ${listName} = [`);
+  if (start === -1) return;
+
+  const end = text.indexOf("] as const", start);
+  const block = end === -1 ? text.slice(start) : text.slice(start, end);
+  addMatches(set, block, /\[\s*"([^"]+)"/g, prefix);
+}
+
 function collectPublishedRoutes() {
   const routes = new Set(staticRoutes);
 
@@ -61,7 +70,7 @@ function collectPublishedRoutes() {
     addMatches(routes, read(contentFile), /path:\s*"(\/[^"]+)"/g);
   }
 
-  addMatches(routes, read("src/content/bazi/pages.tsx"), /\["([^"]+)",\s*"[^"]+",\s*"[^"]+",\s*"[^"]+",\s*"[^"]+"\]/g, "/bazi/");
+  addTupleRoutes(routes, read("src/content/bazi/pages.tsx"), "briefTopics", "/bazi/");
   addMatches(routes, read("src/content/i-ching/pages.tsx"), /\{\s*slug:\s*"([^"]+)"/g, "/i-ching/");
   addMatches(routes, read("src/content/ziwei/pages.tsx"), /\{\s*slug:\s*"([^"]+)"/g, "/ziwei/");
   addMatches(

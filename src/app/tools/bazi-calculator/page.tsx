@@ -59,6 +59,7 @@ const breadcrumbs: Crumb[] = [
 
 const softwareSchema = buildWebApplicationSchema({
   name: "Free Bazi Calculator",
+  alternateName: ["Ming Li Bazi Calculator", "Four Pillars Calculator"],
   url: `${SITE.url}/tools/bazi-calculator`,
   description:
     "A browser-based Bazi calculator for Four Pillars, Day Master, Ten Gods, hidden stems, and Five Element balance.",
@@ -85,6 +86,16 @@ const baziCalculatorFaqs: FAQ[] = [
     question: "Is the result a fixed prediction?",
     answer:
       "No. The chart is a structured reference for self-reflection and learning. It should not replace practical judgment or professional advice.",
+  },
+  {
+    question: "How accurate is the Bazi calculator?",
+    answer:
+      "The same entered date and time always produce the same chart. This browser version uses the local civil date and time you enter; it does not automatically convert time zones, birthplace longitude, or true solar time. Verify births close to a day or two-hour boundary with a qualified practitioner.",
+  },
+  {
+    question: "Does Five Element balance show whether a chart is strong or weak?",
+    answer:
+      "Not by itself. Element counts are an overview. Day Master strength also depends on season, the month branch, root support, combinations, and the position of each stem and branch.",
   },
 ];
 
@@ -131,8 +142,8 @@ export default function BaziCalculatorPage() {
               Free Bazi Calculator
             </h1>
             <p className="mt-5 text-lg leading-8 text-ink-600 dark:text-ink-300">
-              Generate a deterministic Four Pillars chart from a birth date and time. The calculator returns the
-              Day Master, Ten Gods, hidden stems, lunar date, and Five Element balance without storing birth data.
+              Generate a deterministic Four Pillars chart from a birth date and local civil time. This Ming Li tool
+              returns the Day Master, Ten Gods, hidden stems, lunar date, and Five Element balance without storing birth data.
             </p>
             <div className="mt-8">
               <DirectAnswer answer="The free Bazi calculator creates a Four Pillars reference chart from the birth date and local civil birth time you enter. It separates deterministic chart calculation from interpretation, so the pillars stay stable while reading guidance remains educational." />
@@ -165,6 +176,30 @@ export default function BaziCalculatorPage() {
                 structured learning reference. For real-world decisions, combine chart reflection with practical
                 judgment and qualified professional advice where needed.
               </p>
+            </div>
+          </section>
+          <section className="mt-14 border-y border-ink-200 py-10 dark:border-white/10">
+            <div className="max-w-4xl">
+              <h2 className="text-2xl font-semibold tracking-tight text-ink-950 dark:text-paper">
+                Calculation method and limits
+              </h2>
+              <div className="mt-6 space-y-5 text-base leading-8 text-ink-700 dark:text-ink-200">
+                <p>
+                  The calculator converts the entered civil date and time into year, month, day, and hour stem-branch
+                  pillars, then derives the Day Master, hidden stems, Ten Gods, lunar date, and an element-count overview.
+                  Repeating the same inputs produces the same chart.
+                </p>
+                <p>
+                  The birthplace and time-zone fields are labels in this version; they do not automatically shift the
+                  entered hour or apply longitude-based true solar time. Births close to midnight, a two-hour branch
+                  boundary, daylight-saving changes, or a solar-term boundary deserve an independent check.
+                </p>
+                <p>
+                  Element percentages are not a complete strength judgment. Read them after the birth season, month
+                  branch, root support, combinations, and the placement of each symbol. The calculator constructs the
+                  chart; the linked guides explain how to interpret it without reducing the result to a single score.
+                </p>
+              </div>
             </div>
           </section>
           <section className="mt-14 rounded-lg border border-gold-300/70 bg-gold-50 p-6 dark:border-gold-500/30 dark:bg-gold-500/10">

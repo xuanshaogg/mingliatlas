@@ -16,7 +16,7 @@ import { allLearnPages } from "@/content/learn/pages";
 import { allZodiacPages } from "@/content/zodiac/pages";
 import { allZiweiPages } from "@/content/ziwei/pages";
 import { publishedSitePages } from "@/lib/content/sitePages";
-import { SITE } from "@/lib/constants";
+import { AUTHOR, SITE } from "@/lib/constants";
 import {
   buildArticleDefinedTermSchema,
   buildBreadcrumbListSchema,
@@ -52,6 +52,7 @@ const priorityContentQualityUrls = [
 const priorityBlogQualityUrls = [
   "/blog/how-to-read-a-bazi-chart",
   "/blog/day-master-meaning",
+  "/blog/ren-water-day-master",
   "/blog/i-ching-for-beginners",
   "/blog/changing-lines-i-ching",
   "/blog/chinese-zodiac-compatibility-guide",
@@ -60,7 +61,6 @@ const priorityBlogQualityUrls = [
 const priorityBaziQualityUrls = [
   "/bazi/ten-gods",
   "/bazi/luck-pillars",
-  "/bazi/free-calculator",
   "/bazi/career",
   "/bazi/relationships",
   "/bazi/health",
@@ -180,6 +180,7 @@ describe("GEO audit", () => {
     expect(uniqueHrefs.size).toBe(hrefs.length);
     expect(hrefs).toContain("/");
     expect(hrefs).toContain("/tools/bazi-calculator");
+    expect(hrefs).not.toContain("/bazi/free-calculator");
     expect(hrefs).toContain("/i-ching/hexagram-64");
   });
 
@@ -260,13 +261,16 @@ describe("GEO audit", () => {
   it("keeps XML sitemap entries canonical and stable", () => {
     const sitemapEntries = sitemap();
     const entriesByUrl = new Map(sitemapEntries.map((entry) => [entry.url, entry]));
+    const indexablePages = publishedSitePages.filter((page) => page.href !== "/sitemap");
 
-    expect(sitemapEntries.length).toBe(publishedSitePages.length);
+    expect(sitemapEntries.length).toBe(indexablePages.length);
     expect(entriesByUrl.size).toBe(sitemapEntries.length);
     expect(entriesByUrl.has(`${SITE.url}/contact/submit/success`)).toBe(false);
     expect(entriesByUrl.has(`${SITE.url}/subscribe/success`)).toBe(false);
+    expect(entriesByUrl.has(`${SITE.url}/sitemap`)).toBe(false);
+    expect(entriesByUrl.has(`${SITE.url}/bazi/free-calculator`)).toBe(false);
 
-    for (const page of publishedSitePages) {
+    for (const page of indexablePages) {
       const entry = entriesByUrl.get(`${SITE.url}${page.href}`);
 
       expect(entry, page.href).toBeDefined();
@@ -290,6 +294,9 @@ describe("GEO audit", () => {
     expect(fullLlms).toContain(`# ${SITE.name} Full Page Index`);
     expect(fullLlms).toContain("## Bazi");
     expect(fullLlms).toContain(`${SITE.url}/i-ching/hexagram-64`);
+    expect(llms).toContain(`${SITE.url}/blog/ren-water-day-master`);
+    expect(llms).toContain(`${SITE.url}/bazi/ten-gods`);
+    expect(llms).toContain(`${SITE.url}/bazi/luck-pillars`);
   });
 
   it("keeps RSS feed machine-readable for blog discovery", async () => {
@@ -314,6 +321,7 @@ describe("GEO audit", () => {
     ]);
     const applicationSchema = buildWebApplicationSchema({
       name: "Free Bazi Calculator",
+      alternateName: ["Ming Li Bazi Calculator"],
       description: "A browser-based Bazi chart calculator.",
       url: `${SITE.url}/tools/bazi-calculator`,
     });
@@ -340,6 +348,7 @@ describe("GEO audit", () => {
     expect(faqSchema["@type"]).toBe("FAQPage");
     expect(breadcrumbSchema["@type"]).toBe("BreadcrumbList");
     expect(applicationSchema["@type"]).toEqual(["WebApplication", "SoftwareApplication"]);
+    expect(applicationSchema.alternateName).toEqual(["Ming Li Bazi Calculator"]);
     expect(articleSchema.isPartOf).toMatchObject({ "@type": "WebSite", name: SITE.name });
     expect(articleSchema.about).toMatchObject({ "@type": "DefinedTerm", name: "Five Elements" });
     expect(articleSchema.citation).toEqual([
@@ -356,6 +365,85 @@ describe("GEO audit", () => {
         url: `${SITE.url}/bazi`,
       },
     ]);
+    expect(articleSchema.author).toMatchObject({
+      "@type": "Organization",
+      name: AUTHOR.name,
+      url: AUTHOR.url,
+    });
+  });
+
+  it("consolidates the retired Bazi calculator route", () => {
+    const config = sourceFile("next.config.ts");
+
+    expect(config).toContain('source: "/bazi/free-calculator"');
+    expect(config).toContain('destination: "https://mingliatlas.com/tools/bazi-calculator"');
+  });
+
+  it("keeps high-impression pages aligned with current search intent", () => {
+    const dragon = allZodiacPages.find((page) => page.path === "/chinese-zodiac/dragon");
+    const dayMaster = allBlogPosts.find((page) => page.path === "/blog/day-master-bazi-complete-guide");
+
+    expect(dragon?.title).toContain("1940–2036");
+    expect(dragon?.data.schema.dateModified).toBe("2026-07-12");
+    expect(dayMaster?.title).toContain("Classical Sources");
+    expect(dayMaster?.data.schema.dateModified).toBe("2026-07-12");
+    expect(dayMaster?.data.citations.every((citation) => Boolean(citation.url))).toBe(true);
+  });
+
+  it("keeps the second indexing batch concrete and source-backed", () => {
+    const tenGods = allBaziPages.find((page) => page.path === "/bazi/ten-gods");
+    const luckPillars = allBaziPages.find((page) => page.path === "/bazi/luck-pillars");
+    const renWater = allBlogPosts.find((page) => page.path === "/blog/ren-water-day-master");
+
+    expect(tenGods?.data.sections.some((section) => section.heading.includes("Jia Wood"))).toBe(true);
+    expect(tenGods?.data.schema.dateModified).toBe("2026-07-12");
+    expect(tenGods?.data.citations.every((citation) => Boolean(citation.url))).toBe(true);
+    expect(luckPillars?.data.sections.some((section) => section.heading.includes("Geng-Shen"))).toBe(true);
+    expect(luckPillars?.data.schema.dateModified).toBe("2026-07-12");
+    expect(sectionMarkup(luckPillars!)).toContain("does not generate Luck Pillars");
+    expect(renWater?.data.sections.some((section) => section.heading.includes("Ren Water vs Gui Water"))).toBe(true);
+    expect(renWater?.data.schema.dateModified).toBe("2026-07-12");
+    expect(renWater?.data.citations.every((citation) => Boolean(citation.url))).toBe(true);
+  });
+
+  it("keeps the third high-opportunity batch query-aligned and source-backed", () => {
+    const earthlyBranches = allBaziPages.find((page) => page.path === "/bazi/earthly-branches");
+    const compatibilityChart = allBlogPosts.find(
+      (page) => page.path === "/blog/chinese-zodiac-compatibility-chart",
+    );
+
+    expect(earthlyBranches?.title).toContain("12 Earthly Branches");
+    expect(earthlyBranches?.title).toContain("Hidden Stems");
+    expect(earthlyBranches?.data.schema.dateModified).toBe("2026-07-12");
+    expect(
+      earthlyBranches?.data.sections.some((section) =>
+        section.heading.includes("Earthly Branches reference table"),
+      ),
+    ).toBe(true);
+    expect(earthlyBranches?.data.citations.every((citation) => Boolean(citation.url))).toBe(true);
+
+    expect(compatibilityChart?.title).toContain("Chinese Zodiac Compatibility Chart");
+    expect(compatibilityChart?.title).toContain("All 12 Signs");
+    expect(compatibilityChart?.data.schema.dateModified).toBe("2026-07-12");
+    expect(
+      compatibilityChart?.data.sections.some((section) =>
+        section.heading.includes("compatibility chart for all 12 signs"),
+      ),
+    ).toBe(true);
+    expect(compatibilityChart?.data.citations.every((citation) => Boolean(citation.url))).toBe(true);
+  });
+
+  it("renders Day Master templates without interpolation artifacts", () => {
+    const dayMasterPages = allBlogPosts.filter((page) => /^(jia|yi|bing|ding|wu|ji|geng|xin|ren|gui)-.+-day-master$/.test(page.slug));
+
+    expect(dayMasterPages).toHaveLength(10);
+    for (const page of dayMasterPages) {
+      const markup = sectionMarkup(page);
+
+      expect(markup, page.path).not.toContain("$");
+      expect(inlineCitationSignalCount(markup), page.path).toBeGreaterThanOrEqual(2);
+      expect(page.data.citations.every((citation) => Boolean(citation.url)), page.path).toBe(true);
+    }
   });
 
   it("keeps tool pages covered by WebApplication schema", () => {

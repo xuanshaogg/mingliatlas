@@ -93,14 +93,14 @@ const animals: ZodiacAnimal[] = [
   {
     slug: "dragon",
     datePublished: "2025-11-24",
-    dateModified: "2026-06-29",
+    dateModified: "2026-07-12",
     name: "Dragon",
     rank: "5th",
     branch: "Chen",
     element: "Earth",
     polarity: "Yang",
     traits: "charismatic, ambitious, and visionary",
-    years: "1952, 1964, 1976, 1988, 2000, 2012, 2024",
+    years: "1940, 1952, 1964, 1976, 1988, 2000, 2012, 2024, 2036",
     compatible: "Rat, Monkey, Rooster",
     challenging: "Dog, Rabbit",
     famous: "Bruce Lee, Rihanna, Adele",
@@ -274,7 +274,7 @@ const animalFaqs: Partial<Record<string, FAQ[]>> = {
     {
       question: "What years are Year of the Dragon?",
       answer:
-        "Recent Dragon years are 1952, 1964, 1976, 1988, 2000, 2012, and 2024. Each Dragon year combines the Chen branch with a different Heavenly Stem, producing variations like Wood Dragon (2024), Water Dragon (2012), and Earth Dragon (1988). Check the Lunar New Year boundary if your birthday falls in late January or early February.",
+        "Dragon years include 1940, 1952, 1964, 1976, 1988, 2000, 2012, and 2024, with the next in 2036. Each combines the Chen branch with a different Heavenly Stem, producing variations such as Wood Dragon (2024), Water Dragon (2012), and Earth Dragon (1988). Check the Lunar New Year boundary for January or early-February births.",
     },
     {
       question: "When is the next Year of the Dragon?",
@@ -1246,17 +1246,17 @@ const animalSections: Partial<Record<string, KnowledgePageProps["sections"]>> = 
 // the generic builder. Dragon alone earns ~50% of all site impressions.
 const animalTitleOverrides: Partial<Record<string, string>> = {
   dragon:
-    "Year of the Dragon: Years (1952–2024), Personality, Compatibility & 2026 Luck | Chinese Zodiac",
+    "Year of the Dragon Years List (1940–2036), Elements & Traits",
 };
 
 const animalDescriptionOverrides: Partial<Record<string, string>> = {
   dragon:
-    "Year of the Dragon explained: full years list (1952, 1964, 1976, 1988, 2000, 2012, 2024), the five element types (Wood, Fire, Earth, Metal, Water Dragon), personality traits, compatibility and clash signs, lucky elements, and the 2026 forecast. Free Bazi calculator, no sign-up.",
+    "Dragon years list from 1940 through 2036, with Wood, Fire, Earth, Metal, and Water Dragon elements, personality traits, compatibility, and Lunar New Year boundaries.",
 };
 
 const animalDirectAnswerOverrides: Partial<Record<string, string>> = {
   dragon:
-    "The Year of the Dragon is the 5th sign of the Chinese zodiac, tied to the Earthly Branch Chen (辰) — Yang Earth. Recent Dragon years are 1952, 1964, 1976, 1988, 2000, 2012, and 2024, with the next in 2036. Dragons are traditionally described as charismatic, ambitious, and visionary. They are most compatible with Rat, Monkey, and Rooster, and clash with Dog. The Dragon is the only mythical animal in the cycle and is considered the most auspicious sign.",
+    "The Year of the Dragon is the fifth Chinese zodiac sign and corresponds to the Chen (辰) Earthly Branch. Dragon years include 1940, 1952, 1964, 1976, 1988, 2000, 2012, and 2024, with the next in 2036. Each year adds one of the Five Elements, and January or early-February births require a Lunar New Year boundary check.",
 };
 
 const animalPages = animals.map((animal) =>
@@ -1417,6 +1417,11 @@ const animalPages = animals.map((animal) =>
         title: "Chinese Zodiac Compatibility",
         href: "/chinese-zodiac/compatibility",
         description: "Compare harmony pairs, triangular groups, and clash pairs.",
+      },
+      {
+        title: "Chinese Zodiac Compatibility Chart",
+        href: "/blog/chinese-zodiac-compatibility-chart",
+        description: `Look up how the ${animal.name} pairs with all 12 signs across triads, harmony pairs, and clashes.`,
       },
       {
         title: "2026 Chinese Zodiac Forecast",

@@ -15,7 +15,7 @@ export interface SitePage {
 }
 
 const CONTENT_LAST_MODIFIED = "2026-06-21";
-const SITE_STRUCTURE_LAST_MODIFIED = "2026-06-21";
+const SITE_STRUCTURE_LAST_MODIFIED = "2026-07-12";
 
 function latestModified(dates: Array<string | undefined>): string {
   return dates.filter(Boolean).sort().at(-1) ?? CONTENT_LAST_MODIFIED;

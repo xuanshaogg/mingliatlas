@@ -38,6 +38,7 @@ interface ArticleSchemaInput {
 
 interface WebApplicationSchemaInput {
   name: string;
+  alternateName?: string[];
   description: string;
   url: string;
   applicationCategory?: string;
@@ -123,15 +124,10 @@ export function buildArticleDefinedTermSchema({
         }
       : {}),
     author: {
-      "@type": "Person",
+      "@type": "Organization",
       name: AUTHOR.name,
       url: AUTHOR.url,
-      jobTitle: AUTHOR.jobTitle,
-      worksFor: {
-        "@type": "Organization",
-        name: SITE.name,
-        url: SITE.url,
-      },
+      description: AUTHOR.description,
     },
     publisher: {
       "@type": "Organization",
@@ -148,6 +144,7 @@ export function buildArticleDefinedTermSchema({
 
 export function buildWebApplicationSchema({
   name,
+  alternateName,
   description,
   url,
   applicationCategory = "LifestyleApplication",
@@ -157,6 +154,7 @@ export function buildWebApplicationSchema({
     "@context": "https://schema.org",
     "@type": ["WebApplication", "SoftwareApplication"],
     name,
+    ...(alternateName?.length ? { alternateName } : {}),
     applicationCategory,
     operatingSystem: "Web",
     url,

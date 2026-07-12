@@ -662,24 +662,24 @@ export const baziPages: BaziContentPage[] = [
   buildPage({
     slug: "earthly-branches",
     path: "/bazi/earthly-branches",
-    title: "Earthly Branches (Di Zhi / Kuar-di Zhi / 地支): Complete Guide to the 12 Branches",
+    title: "12 Earthly Branches (Di Zhi): Meanings, Hidden Stems & Clashes",
     description:
-      "Earthly Branches (地支, also known as Di Zhi or Kuar-di Zhi) are the 12 terrestrial branches used in Bazi for months, hours, zodiac animals, hidden stems, and branch relationships. Complete guide with meanings and interactions.",
+      "A complete Earthly Branches reference for Zi through Hai, including zodiac animals, two-hour periods, hidden stems, seasons, combinations, clashes, harms, and punishments.",
     entityName: "Earthly Branches",
     entityType: "DefinedTerm",
     subtitle: "The seasonal foundation of Bazi pillars and hidden chart structure.",
     directAnswer:
-      "The 12 Earthly Branches (Di Zhi 地支, also known as Kuar-di Zhi) are Zi, Chou, Yin, Mao, Chen, Si, Wu, Wei, Shen, You, Xu, and Hai. They are the terrestrial or earthly branches used in Bazi to represent months, hours, directions, zodiac animals, hidden stems, and relationship patterns such as combinations, clashes, harms, and punishments.",
+      "The 12 Earthly Branches (Di Zhi 地支) are Zi, Chou, Yin, Mao, Chen, Si, Wu, Wei, Shen, You, Xu, and Hai. Each branch maps to a zodiac animal, two-hour period, season, direction, and hidden stems. In Bazi, branches also form combinations, harmony groups, clashes, harms, and punishments that modify the visible Heavenly Stems.",
     breadcrumbs: baziBreadcrumbs("Earthly Branches", "/bazi/earthly-branches"),
-    schema: { headline: "", description: "", url: "", datePublished: "2025-12-18", dateModified: "2026-06-29" },
+    schema: { headline: "", description: "", url: "", datePublished: "2025-12-18", dateModified: "2026-07-12" },
     stats: [
       { value: "12", label: "Branches", description: "One for each two-hour period and zodiac animal." },
       { value: "6", label: "Clashes", description: "Opposing branch pairs." },
       { value: "4", label: "Season groups", description: "Spring, summer, autumn, winter." },
     ],
     citations: [
-      { label: "Chinese calendrical tradition (干支历法)", source: "Branches organize months, hours, directions, and zodiac animals." },
-      { label: "《三命通会》San Ming Tong Hui (Ming Dynasty, ~1550 CE)", source: "Classical Bazi source for branch relations and hidden stems." },
+      { label: "《渊海子平》Yuan Hai Zi Ping (Song Dynasty, ~1100 CE)", source: "Classical Zi Ping source for reading branches through season, hidden stems, and the Day Master.", url: "https://zh.wikisource.org/wiki/%E6%B7%B5%E6%B5%B7%E5%AD%90%E5%B9%B3" },
+      { label: "《三命通会》San Ming Tong Hui (Ming Dynasty, ~1578 CE)", source: "Classical Bazi reference for branch relationships, combinations, clashes, and hidden stems.", url: "https://zh.wikisource.org/wiki/%E4%B8%89%E5%91%BD%E9%80%9A%E6%9C%83" },
     ],
     sections: [
       {
@@ -687,7 +687,7 @@ export const baziPages: BaziContentPage[] = [
         content: (
           <>
             <p>
-              The 12 Earthly Branches (Di Zhi 地支, also romanized as Kuar-di Zhi) are Zi (子), Chou (丑), Yin (寅), Mao (卯), Chen (辰), Si (巳), Wu (午), Wei (未), Shen (申), You (酉), Xu (戌), and Hai (亥). Each branch contains a season, direction, two-hour period, animal symbol, Chinese zodiac association, and one or more hidden stems. This layered structure is why <cite>Chinese calendrical tradition</cite> treats branches as far more than mascots — they are containers of seasonal energy that hold information invisible at the surface level.
+              The 12 Earthly Branches (Di Zhi 地支, also romanized as Kuar-di Zhi) are Zi (子), Chou (丑), Yin (寅), Mao (卯), Chen (辰), Si (巳), Wu (午), Wei (未), Shen (申), You (酉), Xu (戌), and Hai (亥). Each branch contains a season, direction, two-hour period, animal symbol, Chinese zodiac association, and one or more hidden stems. In <cite>Yuan Hai Zi Ping</cite>-based practice, branches are more than mascots: they are seasonal containers holding information invisible at the surface level.
             </p>
             <p>
               The hidden stems inside each branch are the most important feature for Bazi reading. Zi holds only Gui Water. Chou holds Ji Earth, Gui Water, and Xin Metal. Yin holds Jia Wood, Bing Fire, and Wu Earth. Each branch's hidden stems represent the energies stored within that seasonal container, and they can activate or be activated by stems and branches elsewhere in the chart. A chart that appears to lack a certain element at the surface level may hold it in hidden form inside a branch.
@@ -695,6 +695,42 @@ export const baziPages: BaziContentPage[] = [
             <p>
               The branch system has been used in Chinese timekeeping for over 3,000 years. Oracle bone inscriptions from the Shang dynasty already used the 12 branches to mark days and months. The association with zodiac animals developed later, probably during the Han dynasty, as a mnemonic device for a largely non-literate population. The animal names are cultural overlays on a technical calendar system.
             </p>
+          </>
+        ),
+      },
+      {
+        heading: "Earthly Branches reference table",
+        content: (
+          <>
+            <p>
+              The table below gives the fixed sequence, zodiac animal, clock period, and hidden stems for all 12 branches. The clock periods use local civil time as a practical reference; traditional true-solar-time adjustments can matter near a two-hour boundary.
+            </p>
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[46rem] border-collapse text-left text-sm">
+                <thead>
+                  <tr className="border-b border-ink-300 dark:border-white/20">
+                    <th className="py-3 pr-4">Branch</th>
+                    <th className="py-3 pr-4">Animal</th>
+                    <th className="py-3 pr-4">Two-hour period</th>
+                    <th className="py-3">Hidden stems</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-ink-200 dark:divide-white/10">
+                  <tr><td className="py-3 pr-4">Zi 子</td><td className="py-3 pr-4">Rat</td><td className="py-3 pr-4">23:00–01:00</td><td className="py-3">Gui Water</td></tr>
+                  <tr><td className="py-3 pr-4">Chou 丑</td><td className="py-3 pr-4">Ox</td><td className="py-3 pr-4">01:00–03:00</td><td className="py-3">Ji Earth, Gui Water, Xin Metal</td></tr>
+                  <tr><td className="py-3 pr-4">Yin 寅</td><td className="py-3 pr-4">Tiger</td><td className="py-3 pr-4">03:00–05:00</td><td className="py-3">Jia Wood, Bing Fire, Wu Earth</td></tr>
+                  <tr><td className="py-3 pr-4">Mao 卯</td><td className="py-3 pr-4">Rabbit</td><td className="py-3 pr-4">05:00–07:00</td><td className="py-3">Yi Wood</td></tr>
+                  <tr><td className="py-3 pr-4">Chen 辰</td><td className="py-3 pr-4">Dragon</td><td className="py-3 pr-4">07:00–09:00</td><td className="py-3">Wu Earth, Yi Wood, Gui Water</td></tr>
+                  <tr><td className="py-3 pr-4">Si 巳</td><td className="py-3 pr-4">Snake</td><td className="py-3 pr-4">09:00–11:00</td><td className="py-3">Bing Fire, Wu Earth, Geng Metal</td></tr>
+                  <tr><td className="py-3 pr-4">Wu 午</td><td className="py-3 pr-4">Horse</td><td className="py-3 pr-4">11:00–13:00</td><td className="py-3">Ding Fire, Ji Earth</td></tr>
+                  <tr><td className="py-3 pr-4">Wei 未</td><td className="py-3 pr-4">Goat</td><td className="py-3 pr-4">13:00–15:00</td><td className="py-3">Ji Earth, Ding Fire, Yi Wood</td></tr>
+                  <tr><td className="py-3 pr-4">Shen 申</td><td className="py-3 pr-4">Monkey</td><td className="py-3 pr-4">15:00–17:00</td><td className="py-3">Geng Metal, Ren Water, Wu Earth</td></tr>
+                  <tr><td className="py-3 pr-4">You 酉</td><td className="py-3 pr-4">Rooster</td><td className="py-3 pr-4">17:00–19:00</td><td className="py-3">Xin Metal</td></tr>
+                  <tr><td className="py-3 pr-4">Xu 戌</td><td className="py-3 pr-4">Dog</td><td className="py-3 pr-4">19:00–21:00</td><td className="py-3">Wu Earth, Xin Metal, Ding Fire</td></tr>
+                  <tr><td className="py-3 pr-4">Hai 亥</td><td className="py-3 pr-4">Pig</td><td className="py-3 pr-4">21:00–23:00</td><td className="py-3">Ren Water, Jia Wood</td></tr>
+                </tbody>
+              </table>
+            </div>
           </>
         ),
       },
@@ -807,24 +843,24 @@ export const baziPages: BaziContentPage[] = [
 const tenGodsPage = buildPage({
   slug: "ten-gods",
   path: "/bazi/ten-gods",
-  title: "The Ten Gods (Shi Shen): Bazi Relationship Stars",
+  title: "Ten Gods in Bazi: Complete Shi Shen Table & Meanings",
   description:
-    "The Ten Gods translate element relationships around the Day Master into practical roles such as resources, wealth, authority, output, and peers.",
+    "Learn all 10 Bazi Ten Gods with a Jia Wood mapping table, polarity rules, practical meanings, and examples for Resource, Output, Wealth, Authority, and Peer stars.",
   entityName: "Ten Gods",
   entityType: "DefinedTerm",
   subtitle: "How element relationships around the Day Master become practical life roles.",
   directAnswer:
-    "The Ten Gods (Shi Shen 十神) are ten relationship roles derived from how each element in a Bazi chart relates to the Day Master. They describe resources, expression, wealth, authority, and peers in both yin and yang forms, giving a practical language for career, relationships, and timing without reducing a person to a single label.",
+    "The Ten Gods (Shi Shen 十神) are 10 roles calculated from each stem's element and polarity relative to the Day Master. The five families are Resource, Peer, Output, Wealth, and Authority; each splits into direct and indirect forms. They describe chart relationships and timing themes, not fixed personality types or guaranteed events.",
   breadcrumbs: baziBreadcrumbs("Ten Gods", "/bazi/ten-gods"),
-  schema: { headline: "", description: "", url: "", datePublished: "2026-01-05", dateModified: "2026-02-15" },
+  schema: { headline: "", description: "", url: "", datePublished: "2026-01-05", dateModified: "2026-07-12" },
   stats: [
     { value: "10", label: "Relationship roles", description: "Five pairs, each with yin and yang expression." },
     { value: "5", label: "Base categories", description: "Resource, Output, Wealth, Authority, Peer." },
     { value: "1", label: "Day Master", description: "The anchor that defines all ten relationships." },
   ],
   citations: [
-    { label: "《渊海子平》Yuan Hai Zi Ping (Song Dynasty, ~1100 CE)", source: "Classical Bazi source for Day Master-centered chart reading." },
-    { label: "《三命通会》San Ming Tong Hui (Ming Dynasty, ~1550 CE)", source: "Ming dynasty synthesis of stems, branches, and Ten God roles." },
+    { label: "《渊海子平》Yuan Hai Zi Ping (Song Dynasty, ~1100 CE)", source: "Classical Zi Ping source for reading chart relationships from the day stem.", url: "https://zh.wikisource.org/wiki/%E6%B7%B5%E6%B5%B7%E5%AD%90%E5%B9%B3" },
+    { label: "《三命通会》San Ming Tong Hui (Ming Dynasty, ~1578 CE)", source: "Ming-dynasty synthesis of stem polarity, element relationships, and Ten God roles.", url: "https://zh.wikisource.org/wiki/%E4%B8%89%E5%91%BD%E9%80%9A%E6%9C%83" },
   ],
   sections: [
     {
@@ -835,7 +871,7 @@ const tenGodsPage = buildPage({
             Every stem and branch in a Bazi chart has a fixed relationship to the Day Master based on the Five Element generating and controlling cycles. <cite>Yuan Hai Zi Ping</cite> names these relationships: the element that generates the Day Master is a Resource star, the element the Day Master generates is an Output star, the element the Day Master controls is a Wealth star, the element that controls the Day Master is an Authority star, and the same element as the Day Master is a Peer star.
           </p>
           <p>
-            Each category splits into yin and yang, giving ten distinct roles. The same element can be a Direct Resource or an Indirect Resource depending on whether it shares the Day Master's polarity.
+            Each family splits by polarity, giving ten roles. For Resource, Wealth, and Officer stars, opposite polarity is the direct form and matching polarity is the indirect form. Output and Peer roles use their own paired names, so the calculation should follow the element relationship first and polarity second.
           </p>
         </>
       ),
@@ -845,7 +881,7 @@ const tenGodsPage = buildPage({
       content: (
         <>
           <p>
-            Direct Resource and Indirect Resource describe support, learning, and nurturing energy. Direct Output and Indirect Output (Eating God and Hurting Officer) describe creative expression, communication, and unconventional thinking. Direct Wealth and Indirect Wealth describe earned income and opportunistic gain. Direct Officer and Seven Killings describe structure, authority, and pressure. Rob Wealth and Friend describe peers, competition, and shared resources.
+            Direct Resource and Indirect Resource describe support, learning, and recovery. Eating God and Hurting Officer describe output, communication, and critique. Direct Wealth and Indirect Wealth describe managed and opportunistic resources. Direct Officer and Seven Killings describe rules, authority, and pressure. Friend and Rob Wealth describe peers, competition, and shared resources.
           </p>
           <p>
             In <cite>San Ming Tong Hui</cite>, the same Ten God can be useful or stressful depending on whether the Day Master is strong or weak, and whether the chart season supports or drains that energy.
@@ -853,9 +889,42 @@ const tenGodsPage = buildPage({
         </>
       ),
       stats: [
-        { value: "2", label: "Forms per category", description: "Direct (same polarity) and Indirect (opposite polarity)." },
+        { value: "2", label: "Forms per category", description: "Two polarity-based roles sit inside each of the five element relationships." },
         { value: "60", label: "Stem-branch pairs", description: "The calendar cycle that determines which Ten God appears where." },
       ],
+    },
+    {
+      heading: "Ten Gods table for a Jia Wood Day Master",
+      content: (
+        <>
+          <p>
+            A concrete example makes the rule easier to verify. For a Jia (甲, Yang Wood) Day Master, the same Wood element becomes Peer roles, Water becomes Resource, Fire becomes Output, Earth becomes Wealth, and Metal becomes Authority. Polarity decides the direct or indirect form.
+          </p>
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[44rem] border-collapse text-left text-sm">
+              <thead>
+                <tr className="border-b border-ink-300 dark:border-white/20">
+                  <th className="py-3 pr-4">Stem</th>
+                  <th className="py-3 pr-4">Element relation to Jia</th>
+                  <th className="py-3 pr-4">Ten God</th>
+                  <th className="py-3">Reading role</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-ink-200 dark:divide-white/10">
+                <tr><td className="py-3 pr-4">Jia 甲</td><td className="py-3 pr-4">Same element, same polarity</td><td className="py-3 pr-4">Friend</td><td className="py-3">Peers, self-direction</td></tr>
+                <tr><td className="py-3 pr-4">Yi 乙</td><td className="py-3 pr-4">Same element, opposite polarity</td><td className="py-3 pr-4">Rob Wealth</td><td className="py-3">Competition, shared resources</td></tr>
+                <tr><td className="py-3 pr-4">Ren 壬 / Gui 癸</td><td className="py-3 pr-4">Water produces Wood</td><td className="py-3 pr-4">Indirect / Direct Resource</td><td className="py-3">Learning, support, recovery</td></tr>
+                <tr><td className="py-3 pr-4">Bing 丙 / Ding 丁</td><td className="py-3 pr-4">Wood produces Fire</td><td className="py-3 pr-4">Eating God / Hurting Officer</td><td className="py-3">Expression, output, critique</td></tr>
+                <tr><td className="py-3 pr-4">Wu 戊 / Ji 己</td><td className="py-3 pr-4">Wood controls Earth</td><td className="py-3 pr-4">Indirect / Direct Wealth</td><td className="py-3">Resources, execution, responsibility</td></tr>
+                <tr><td className="py-3 pr-4">Geng 庚 / Xin 辛</td><td className="py-3 pr-4">Metal controls Wood</td><td className="py-3 pr-4">Seven Killings / Direct Officer</td><td className="py-3">Pressure, rules, authority</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Change the Day Master and every label changes. This is why a Ten God name cannot be assigned from an element alone: the reader must first identify the day stem, then compare element and polarity.
+          </p>
+        </>
+      ),
     },
     {
       heading: "Common beginner mistakes with Ten Gods",
@@ -905,11 +974,22 @@ const tenGodsPage = buildPage({
       answer:
         "The natal Ten Gods stay fixed. But Luck Pillars and annual stems bring new Ten God energies into the chart, activating different roles in different decades and years.",
     },
+    {
+      question: "How do I calculate the Ten Gods from my Day Master?",
+      answer:
+        "Identify the Day Master's element first. The same element is Peer, the element that produces it is Resource, the element it produces is Output, the element it controls is Wealth, and the element that controls it is Authority. Then compare yin-yang polarity to choose the direct or indirect form.",
+    },
+    {
+      question: "Which Ten God is most important in a chart?",
+      answer:
+        "There is no universal most important Ten God. Start with the month pillar, repeated visible and hidden roles, Day Master strength, and the current Luck Pillar. A role becomes important because of position, season, support, and timing rather than its name alone.",
+    },
   ],
   relatedLinks: [
     { title: "Five Elements", href: "/bazi/five-elements", description: "The element relationships that define all Ten God roles." },
     { title: "Day Master Complete Guide", href: "/blog/day-master-bazi-complete-guide", description: "Every Ten God role is read relative to your Day Master — the day stem of your chart." },
     { title: "Luck Pillars", href: "/bazi/luck-pillars", description: "See how Ten Gods shift across 10-year timing cycles." },
+    { title: "Ren Water Day Master", href: "/blog/ren-water-day-master", description: "See how the same five element relationships map around a Yang Water Day Master." },
     { title: "Free Bazi Calculator", href: "/tools/bazi-calculator", description: "See your own Ten God distribution in one chart." },
   ],
   cta: cta("See your Ten Gods in a live chart"),
@@ -918,24 +998,24 @@ const tenGodsPage = buildPage({
 const luckPillarsPage = buildPage({
   slug: "luck-pillars",
   path: "/bazi/luck-pillars",
-  title: "Luck Pillars (Da Yun): 10-Year Bazi Cycles",
+  title: "Luck Pillars (Da Yun): How 10-Year Bazi Cycles Work",
   description:
-    "Luck Pillars show 10-year timing cycles that interact with the natal Bazi chart and annual stem-branch patterns.",
+    "Learn how Bazi Luck Pillars are calculated, how each 10-year Da Yun interacts with the natal chart, and how to compare stems, branches, Ten Gods, and annual cycles.",
   entityName: "Luck Pillars",
   entityType: "DefinedTerm",
   subtitle: "How 10-year cycles activate different parts of your natal Bazi chart.",
   directAnswer:
-    "Luck Pillars (Da Yun 大运) are 10-year timing cycles in Bazi that run alongside the natal chart. Each pillar introduces a new stem and branch that activates, supports, or challenges the natal chart structure. They are calculated from the birth date and gender, and they show when different life themes are likely to become prominent.",
+    "Luck Pillars (Da Yun 大运) are 10-year stem-branch cycles read alongside the natal Bazi chart. Each cycle changes the element balance, Ten Gods, combinations, and clashes active around the Day Master. Traditional direction and starting-age rules use the birth chart and distance to a solar term, but the pillar must still be interpreted against the natal structure.",
   breadcrumbs: baziBreadcrumbs("Luck Pillars", "/bazi/luck-pillars"),
-  schema: { headline: "", description: "", url: "", datePublished: "2026-01-15", dateModified: "2026-02-28" },
+  schema: { headline: "", description: "", url: "", datePublished: "2026-01-15", dateModified: "2026-07-12" },
   stats: [
     { value: "10", label: "Years per pillar", description: "Each Da Yun runs for a full decade." },
     { value: "8", label: "Typical pillars", description: "Most people experience 7–9 Luck Pillars in a lifetime." },
-    { value: "5", label: "Starting age", description: "Varies by birth date and gender; typically between 1 and 10." },
+    { value: "1–10", label: "Typical starting age", description: "The exact start depends on the traditional solar-term calculation." },
   ],
   citations: [
-    { label: "《渊海子平》Yuan Hai Zi Ping (Song Dynasty, ~1100 CE)", source: "Classical Bazi source for Luck Pillar calculation and interpretation." },
-    { label: "《三命通会》San Ming Tong Hui (Ming Dynasty, ~1550 CE)", source: "Ming dynasty synthesis of natal chart and timing cycle interaction." },
+    { label: "《渊海子平》Yuan Hai Zi Ping (Song Dynasty, ~1100 CE)", source: "Classical Zi Ping source for sequencing Da Yun from the month pillar and solar-term distance.", url: "https://zh.wikisource.org/wiki/%E6%B7%B5%E6%B5%B7%E5%AD%90%E5%B9%B3" },
+    { label: "《三命通会》San Ming Tong Hui (Ming Dynasty, ~1578 CE)", source: "Ming-dynasty synthesis of natal structure, decade cycles, and annual timing interactions.", url: "https://zh.wikisource.org/wiki/%E4%B8%89%E5%91%BD%E9%80%9A%E6%9C%83" },
   ],
   sections: [
     {
@@ -964,9 +1044,25 @@ const luckPillarsPage = buildPage({
         </>
       ),
       stats: [
-        { value: "2", label: "Parts per pillar", description: "One stem (first 5 years) and one branch (last 5 years)." },
+        { value: "2", label: "Parts per pillar", description: "The stem and branch both remain active; some schools use a shifting-emphasis heuristic within the decade." },
         { value: "60", label: "Possible pillars", description: "The same 60 stem-branch pairs used in the natal chart." },
       ],
+    },
+    {
+      heading: "Worked example: Jia Wood entering a Geng-Shen pillar",
+      content: (
+        <>
+          <p>
+            Consider a hypothetical Jia Wood Day Master entering a Geng-Shen (庚申) Luck Pillar. Geng Metal is Seven Killings relative to Jia Wood, so the visible decade theme can involve stronger rules, competition, deadlines, or authority pressure. Shen also contains Geng Metal, Ren Water, and Wu Earth as hidden stems.
+          </p>
+          <p>
+            Those hidden stems add Authority, Resource, and Wealth roles to the same pillar. If the natal Jia Wood is weak and lacks Water support, Ren Water inside Shen may be useful while heavy Metal still requires careful pacing. If the natal Wood is already strong, the same Metal pressure can provide structure. The pillar name is identical, but the reading changes with the natal chart.
+          </p>
+          <p>
+            Use this order for any example: identify the new stem's Ten God, unpack the branch's hidden stems, check combinations and clashes with natal branches, then compare the added elements with the Day Master's seasonal strength. Only after those checks should annual cycles be layered on top.
+          </p>
+        </>
+      ),
     },
     {
       heading: "Common beginner mistakes with Luck Pillars",
@@ -989,7 +1085,7 @@ const luckPillarsPage = buildPage({
             Luck Pillars set the decade-level backdrop. Annual stems and branches (Tai Sui) add a yearly layer, and monthly branches add a shorter rhythm. Classical practice reads all three together: the natal chart provides the foundation, the Luck Pillar sets the decade theme, and the annual cycle shows when specific events are most likely to crystallize.
           </p>
           <p>
-            Use the <Link href="/tools/bazi-calculator" className={linkClass}>free calculator</Link> to see your current Luck Pillar alongside your natal chart, then read the <Link href="/bazi/ten-gods" className={linkClass}>Ten Gods guide</Link> to understand which roles are activated in your current decade.
+            Use the <Link href="/tools/bazi-calculator" className={linkClass}>free calculator</Link> to build the natal Four Pillars first, then read the <Link href="/bazi/ten-gods" className={linkClass}>Ten Gods guide</Link> before calculating Da Yun with a method that documents direction and starting-age rules. The current browser calculator does not generate Luck Pillars.
           </p>
         </>
       ),
@@ -1016,17 +1112,31 @@ const luckPillarsPage = buildPage({
       answer:
         "No. The same Luck Pillar stem and branch will interact differently with each natal chart. A pillar that strengthens one person's useful elements may create conflict in another person's chart.",
     },
+    {
+      question: "Does the Mingli Atlas Bazi calculator generate Luck Pillars?",
+      answer:
+        "Not currently. The browser calculator builds the natal year, month, day, and hour pillars, Day Master, hidden stems, Ten Gods, and element balance. Use that natal chart as the foundation, then calculate Da Yun separately with a method that shows direction and starting-age assumptions.",
+    },
+    {
+      question: "Are the stem and branch limited to five years each?",
+      answer:
+        "Both remain part of the full 10-year pillar. Some schools give the stem more emphasis earlier and the branch more emphasis later, but this is an interpretive heuristic rather than a rule that switches one component off after five years.",
+    },
   ],
   relatedLinks: [
     { title: "Ten Gods", href: "/bazi/ten-gods", description: "Understand which roles a Luck Pillar activates in your chart." },
     { title: "Five Elements", href: "/bazi/five-elements", description: "The element relationships that determine pillar quality." },
-    { title: "Free Bazi Calculator", href: "/tools/bazi-calculator", description: "See your current Luck Pillar alongside your natal chart." },
+    { title: "Free Bazi Calculator", href: "/tools/bazi-calculator", description: "Build the natal Four Pillars that every Luck Pillar must be compared against." },
   ],
-  cta: cta("See your current Luck Pillar"),
+  cta: {
+    title: "Build the natal chart first",
+    description: "Generate the Four Pillars and Day Master that a Luck Pillar must be compared against. The current calculator does not calculate Da Yun.",
+    href: "/tools/bazi-calculator",
+    label: "Open the Bazi calculator",
+  },
 });
 
 const briefTopics = [
-  ["free-calculator", "Free Bazi Calculator: Four Pillars Chart Tool", "A Bazi calculator converts birth date, time, and place into Four Pillars, elements, Day Master, and luck-cycle structure.", "4", "Birth inputs"],
   ["celebrity/elon-musk", "Elon Musk Bazi Case Study", "A celebrity Bazi case study compares public life patterns with chart structure for education and cultural context.", "1", "Case study"],
   ["celebrity/taylor-swift", "Taylor Swift Bazi Case Study", "A celebrity Bazi case study uses public birth data cautiously to illustrate Day Master, elements, and timing themes.", "1", "Case study"],
   ["career", "Bazi Career Analysis: Choosing Work by Element Pattern", "Bazi career analysis links useful elements, Ten Gods, and chart structure to work environments and decision patterns.", "5", "Career signals"],
@@ -1037,7 +1147,6 @@ const briefTopics = [
 ] as const;
 
 const briefLabelOverrides: Record<string, string> = {
-  "free-calculator": "Bazi Calculator",
   career: "Bazi Career Analysis",
   relationships: "Bazi Relationship Analysis",
   health: "Bazi Health Tendencies",
@@ -1057,9 +1166,7 @@ const generatedBriefPages = briefTopics.map(([slug, title, description, statValu
     entityName: label,
     entityType: slug === "glossary" ? "DefinedTermSet" : "DefinedTerm",
     subtitle: "A focused Bazi guide built with answer-first structure and structured data.",
-    directAnswer: slug === "free-calculator"
-      ? "A Bazi calculator converts a birth date and local birth time into the Four Pillars: year, month, day, and hour. A useful calculator should show the Day Master, Ten Gods, hidden stems, Five Element balance, and timing context while keeping interpretation educational rather than deterministic."
-      : `${label} in Bazi is a focused topic that only makes sense inside the full Four Pillars chart. It explains how a specific symbol, cycle, or relationship changes the Day Master reading, then points you back to season, element balance, and timing before any conclusion.`,
+    directAnswer: `${label} in Bazi is a focused topic that only makes sense inside the full Four Pillars chart. It explains how a specific symbol, cycle, or relationship changes the Day Master reading, then points you back to season, element balance, and timing before any conclusion.`,
     breadcrumbs: baziBreadcrumbs(label, path),
     schema: { headline: "", description: "", url: "" },
     stats: [
@@ -1076,25 +1183,12 @@ const generatedBriefPages = briefTopics.map(([slug, title, description, statValu
         heading: `What ${label} means in Bazi`,
         content: (
           <>
-            {slug === "free-calculator" ? (
-              <>
-                <p>
-                  A Bazi calculator is a chart-construction tool, not an automatic destiny verdict. It turns a birth date and local civil birth time into 4 pillars and 8 characters, then displays the Day Master, Ten Gods, hidden stems, and Five Element balance. According to <cite>Yuan Hai Zi Ping</cite>, those chart parts only become meaningful when read against the Day Master and the birth season.
-                </p>
-                <p>
-                  The calculator is useful because it removes the most error-prone first step: converting ordinary calendar data into the stem-branch system. Once the chart is visible, the reader can slow down and ask better questions: which element anchors the self, which branch sets the season, which Ten Gods are visible, and what support or pressure appears around the chart.
-                </p>
-              </>
-            ) : (
-              <>
-                <p>
-                  {description} According to <cite>Yuan Hai Zi Ping</cite>, the value of a symbol comes from its position in a full chart, not from a stand-alone label.
-                </p>
-                <p>
-                  Use the term as a map marker: it tells you where to look next, not where to stop.
-                </p>
-              </>
-            )}
+            <p>
+              {description} According to <cite>Yuan Hai Zi Ping</cite>, the value of a symbol comes from its position in a full chart, not from a stand-alone label.
+            </p>
+            <p>
+              Use the term as a map marker: it tells you where to look next, not where to stop.
+            </p>
           </>
         ),
       },
@@ -1102,74 +1196,26 @@ const generatedBriefPages = briefTopics.map(([slug, title, description, statValu
         heading: "How to read it in the chart",
         content: (
           <>
-            {slug === "free-calculator" ? (
-              <>
-                <p>
-                  Start with the Day Master, then read the month branch for season. After that, compare visible stems, hidden stems, and Five Element balance. In <cite>San Ming Tong Hui</cite>, relationships between parts carry more weight than isolated symbols, so a calculator result should be read as a connected structure.
-                </p>
-                <p>
-                  Next, check the Ten Gods around the Day Master. A Wealth star, Resource star, or Authority star does not mean the same thing for every chart; it changes according to Day Master strength, season, and timing. Finally, compare the natal chart with Luck Pillars and annual influences before treating a theme as active.
-                </p>
-              </>
-            ) : (
-              <>
-                <p>
-                  Read the Day Master first, then check season, element balance, and the pillar that carries the topic. In <cite>San Ming Tong Hui</cite>, relationships between parts carry more weight than isolated symbols.
-                </p>
-                <p>
-                  If the topic is timing-related, compare it with the natal chart and any relevant Luck Pillars before deciding what it means in practice.
-                </p>
-              </>
-            )}
+            <p>
+              Read the Day Master first, then check season, element balance, and the pillar that carries the topic. In <cite>San Ming Tong Hui</cite>, relationships between parts carry more weight than isolated symbols.
+            </p>
+            <p>
+              If the topic is timing-related, compare it with the natal chart and any relevant Luck Pillars before deciding what it means in practice.
+            </p>
           </>
         ),
         stats: [{ value: "3", label: "Context layers", description: "Day Master, season, and timing should stay together." }],
       },
-      ...(slug === "free-calculator"
-        ? [
-            {
-              heading: "What the calculator should show",
-              content: (
-                <>
-                  <p>
-                    A strong Four Pillars calculator should show the year, month, day, and hour pillars in both Heavenly Stem and Earthly Branch form. It should also show hidden stems inside each branch, because many important chart relationships are not visible in the top row. The Day Master should be clearly marked, since it is the reference point for the entire chart.
-                  </p>
-                  <p>
-                    The tool should also show the Ten Gods for visible and hidden stems. This makes the chart easier to read because it translates raw elements into relationship roles: Resource, Peer, Output, Wealth, and Authority. Element balance is useful as a first overview, but it should not be treated as the whole reading.
-                  </p>
-                </>
-              ),
-              stats: [
-                { value: "8", label: "Visible characters", description: "Four stems plus four branches." },
-                { value: "10", label: "Ten Gods", description: "Relationship roles around the Day Master." },
-                { value: "5", label: "Elements", description: "Wood, Fire, Earth, Metal, and Water." },
-              ],
-            },
-          ]
-        : []),
       {
         heading: "Common beginner mistakes",
         content: (
           <>
-            {slug === "free-calculator" ? (
-              <>
-                <p>
-                  The first mistake is reading the year animal as the whole result. The calculator may show Dragon, Tiger, or Rat in the year branch, but that is only one of four branches. The Day Master and month branch usually matter more for a serious Bazi reading.
-                </p>
-                <p>
-                  The second mistake is treating element percentages as a quick personality test. Element balance is useful, but it must be checked against season, Day Master strength, combinations, and timing. The third mistake is expecting a calculator to replace interpretation. A calculator builds the chart; a careful reader still has to connect the parts.
-                </p>
-              </>
-            ) : (
-              <>
-                <p>
-                  Do not flatten a symbol into a personality label or a promise. A chart topic becomes useful only when it stays connected to the surrounding stems, branches, and calendar context.
-                </p>
-                <p>
-                  When the meaning is unclear, return to <cite>Chinese calendar tradition</cite> and reread the same topic inside the full time structure.
-                </p>
-              </>
-            )}
+            <p>
+              Do not flatten a symbol into a personality label or a promise. A chart topic becomes useful only when it stays connected to the surrounding stems, branches, and calendar context.
+            </p>
+            <p>
+              When the meaning is unclear, return to <cite>Chinese calendar tradition</cite> and reread the same topic inside the full time structure.
+            </p>
           </>
         ),
       },

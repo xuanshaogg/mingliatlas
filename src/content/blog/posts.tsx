@@ -355,6 +355,8 @@ function buildPage(input: Omit<BlogPost, "data"> & KnowledgePageProps): BlogPost
 const baziLinks = [
   { title: "What Is Bazi?", href: "/bazi/what-is-bazi", description: "Start with the basic Four Pillars overview." },
   { title: "Five Elements", href: "/bazi/five-elements", description: "Learn the shared vocabulary behind the system." },
+  { title: "Ten Gods", href: "/bazi/ten-gods", description: "Map every stem to a relationship role around the Day Master." },
+  { title: "Luck Pillars", href: "/bazi/luck-pillars", description: "Add the 10-year timing layer after the natal chart is clear." },
   { title: "Free Bazi Calculator", href: "/tools/bazi-calculator", description: "Move from reading to a structured chart." },
 ];
 
@@ -1796,24 +1798,24 @@ const highIntentBlogPosts: BlogPost[] = [
   buildPage({
     slug: "day-master-bazi-complete-guide",
     path: "/blog/day-master-bazi-complete-guide",
-    title: "Day Master in Bazi: Is the Day Stem (Heavenly Stem) — Guide to All 10 Day Masters",
-    description: "Your Bazi day master IS the day stem (heavenly stem of the day pillar). Find your day master source in seconds, then read all 10 Day Masters (Jia, Yi, Bing, Ding, Wu, Ji, Geng, Xin, Ren, Gui): personality, career, relationships, strong vs weak. Free Bazi calculator, no sign-up.",
+    title: "Day Master in Bazi: The Day Stem Explained with Classical Sources",
+    description: "The Bazi Day Master is the heavenly stem of the day pillar. Learn how to find it, read all 10 Day Masters, judge strength, and check the classical sources.",
     category: "Bazi Guide",
     entityName: "Day Master Bazi Complete Guide",
     entityType: "BlogPosting",
     subtitle: "A practical, non-fatalistic walkthrough of the Day Master concept and the ten Heavenly Stems in Bazi.",
     directAnswer:
-      "The Day Master is the day stem (the heavenly stem of the day pillar) in a Bazi chart. It represents the self and is the reference point for reading the rest of the four pillars. The day master source is the day pillar — specifically, the heavenly stem on top of your day pillar. There are 10 possible day masters (10 heavenly stems: Jia, Yi, Bing, Ding, Wu, Ji, Geng, Xin, Ren, Gui), and knowing yours is the first step to reading your Bazi chart.",
+      "The Day Master is the heavenly stem of the day pillar in a Bazi chart. It represents the self and becomes the reference point for the other stems, branches, and Ten Gods. Classical sources such as Yuan Hai Zi Ping and San Ming Tong Hui establish this day-stem method. Your Day Master is one of the 10 Heavenly Stems.",
     breadcrumbs: breadcrumbs("Day Master Complete Guide", "/blog/day-master-bazi-complete-guide"),
-    schema: { headline: "", description: "", url: "", datePublished: "2026-04-20", dateModified: "2026-06-29" },
+    schema: { headline: "", description: "", url: "", datePublished: "2026-04-20", dateModified: "2026-07-12" },
     stats: [
       { value: "10", label: "Heavenly Stems", description: "Five elements expressed as yin or yang form the ten Day Master types." },
       { value: "4", label: "Pillars", description: "Year, month, day, and hour pillars frame the Day Master's context." },
       { value: "5", label: "Elements", description: "Wood, Fire, Earth, Metal, and Water shape every Day Master profile." },
     ],
     citations: [
-      { label: "《渊海子平》Yuan Hai Zi Ping (Xu Sheng, Song Dynasty, ~1100 CE)", source: "The foundational Bazi text that establishes the day stem (Day Master) as the self and reference point of the Four Pillars." },
-      { label: "《三命通会》San Ming Tong Hui (Wan Minying, Ming Dynasty, ~1578 CE)", source: "Classical compendium detailing the ten Heavenly Stems and how each Day Master interacts with the other pillars." },
+      { label: "《渊海子平》Yuan Hai Zi Ping (Xu Sheng, Song Dynasty, ~1100 CE)", source: "Classical Zi Ping source for treating the day stem as the self-reference point in Four Pillars analysis.", url: "https://zh.wikisource.org/wiki/%E6%B7%B5%E6%B5%B7%E5%AD%90%E5%B9%B3" },
+      { label: "《三命通会》San Ming Tong Hui (Wan Minying, Ming Dynasty, ~1578 CE)", source: "Ming-dynasty compendium covering the ten Heavenly Stems and their relationships across the four pillars.", url: "https://zh.wikisource.org/wiki/%E4%B8%89%E5%91%BD%E9%80%9A%E6%9C%83" },
     ],
     sections: [
       {
@@ -1824,7 +1826,7 @@ const highIntentBlogPosts: BlogPost[] = [
               <strong>Day master is the day stem — the heavenly stem of the day pillar.</strong> In a <TermLink term="Bazi">Bazi</TermLink> chart, the Day Master is the Heavenly Stem of the day pillar (also called the &quot;day master source&quot; or &quot;day stem source&quot;). It is the reference point that the rest of the chart is read against.
             </p>
             <p>
-              According to <cite>Bazi tradition</cite>, the Day Master represents the self. Other stems and branches are read in relation to it as supporters, resources, output, wealth, or pressure.
+              In <cite>Yuan Hai Zi Ping</cite> and the later <cite>San Ming Tong Hui</cite> synthesis, the day stem is the self-reference point. Other stems and branches are read in relation to it as resource, peer, output, wealth, or authority roles.
             </p>
           </>
         ),
@@ -1920,8 +1922,8 @@ const highIntentBlogPosts: BlogPost[] = [
   buildPage({
     slug: "chinese-zodiac-compatibility-chart",
     path: "/blog/chinese-zodiac-compatibility-chart",
-    title: "Chinese Zodiac Compatibility Chart: Triads, Harmony Pairs & Clashes",
-    description: "Complete Chinese zodiac compatibility chart with triads, harmony pairs, and clash pairs for all 12 animal signs. Compare Rat, Dragon, Monkey and more.",
+    title: "Chinese Zodiac Compatibility Chart: All 12 Signs, Triads & Clashes",
+    description: "Compare all 12 Chinese zodiac signs in one chart, including three-harmony triads, six harmony pairs, clash pairs, and links to detailed sign compatibility.",
     category: "Zodiac Guide",
     entityName: "Chinese Zodiac Compatibility Chart",
     entityType: "BlogPosting",
@@ -1929,15 +1931,15 @@ const highIntentBlogPosts: BlogPost[] = [
     directAnswer:
       "A Chinese zodiac compatibility chart maps how the 12 animal signs interact through three-harmony triads, six harmony pairs, and six clash pairs. The chart is a quick reference, not a verdict: harmony pairs share rhythm, triads share long-term values, and clashes signal differences in pace that benefit from clearer communication.",
     breadcrumbs: breadcrumbs("Compatibility Chart", "/blog/chinese-zodiac-compatibility-chart"),
-    schema: { headline: "", description: "", url: "", datePublished: "2026-04-22", dateModified: "2026-05-20" },
+    schema: { headline: "", description: "", url: "", datePublished: "2026-04-22", dateModified: "2026-07-12" },
     stats: [
       { value: "12", label: "Animal signs", description: "Rat, Ox, Tiger, Rabbit, Dragon, Snake, Horse, Goat, Monkey, Rooster, Dog, Pig." },
       { value: "4", label: "Three-harmony triads", description: "Each triad groups three signs that share a long-term affinity." },
       { value: "6", label: "Clash pairs", description: "Each animal has one opposing sign across the 12-branch cycle." },
     ],
     citations: [
-      { label: "Earthly Branch tradition", source: "Branch combinations, three-harmony groups, and clash pairs structure zodiac relationship patterns." },
-      { label: "Chinese calendar tradition", source: "The 12 animals correspond to the 12 earthly branches in the lunar-solar calendar." },
+      { label: "《渊海子平》Yuan Hai Zi Ping (Song Dynasty, ~1100 CE)", source: "Classical Zi Ping reference for reading Earthly Branch combinations and clashes in chart context.", url: "https://zh.wikisource.org/wiki/%E6%B7%B5%E6%B5%B7%E5%AD%90%E5%B9%B3" },
+      { label: "《三命通会》San Ming Tong Hui (Ming Dynasty, ~1578 CE)", source: "Classical reference for branch harmony groups, six combinations, clashes, and transformation conditions.", url: "https://zh.wikisource.org/wiki/%E4%B8%89%E5%91%BD%E9%80%9A%E6%9C%83" },
     ],
     sections: [
       {
@@ -1948,7 +1950,46 @@ const highIntentBlogPosts: BlogPost[] = [
               The <TermLink term="Chinese Zodiac">Chinese Zodiac</TermLink> chart compares two animals through three lenses: three-harmony triads (long-term affinity), six harmony pairs (everyday rhythm), and six clash pairs (contrasting pace).
             </p>
             <p>
-              According to <cite>Earthly Branch tradition</cite>, these are branch relationship patterns. They describe interaction tendencies, not fixed outcomes.
+              In <cite>Yuan Hai Zi Ping</cite> and <cite>San Ming Tong Hui</cite>, these are Earthly Branch relationship patterns. They describe interaction conditions inside a larger chart, not fixed relationship outcomes.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Chinese zodiac compatibility chart for all 12 signs",
+        content: (
+          <>
+            <p>
+              Use this as a lookup table: the triad column shows the other two signs in the same three-harmony group, the harmony column shows the six-combination partner, and the clash column shows the branch directly opposite in the 12-sign cycle.
+            </p>
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[44rem] border-collapse text-left text-sm">
+                <thead>
+                  <tr className="border-b border-ink-300 dark:border-white/20">
+                    <th className="py-3 pr-4">Sign</th>
+                    <th className="py-3 pr-4">Triad partners</th>
+                    <th className="py-3 pr-4">Harmony pair</th>
+                    <th className="py-3">Clash pair</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-ink-200 dark:divide-white/10">
+                  <tr><td className="py-3 pr-4">Rat</td><td className="py-3 pr-4">Dragon, Monkey</td><td className="py-3 pr-4">Ox</td><td className="py-3">Horse</td></tr>
+                  <tr><td className="py-3 pr-4">Ox</td><td className="py-3 pr-4">Snake, Rooster</td><td className="py-3 pr-4">Rat</td><td className="py-3">Goat</td></tr>
+                  <tr><td className="py-3 pr-4">Tiger</td><td className="py-3 pr-4">Horse, Dog</td><td className="py-3 pr-4">Pig</td><td className="py-3">Monkey</td></tr>
+                  <tr><td className="py-3 pr-4">Rabbit</td><td className="py-3 pr-4">Goat, Pig</td><td className="py-3 pr-4">Dog</td><td className="py-3">Rooster</td></tr>
+                  <tr><td className="py-3 pr-4">Dragon</td><td className="py-3 pr-4">Rat, Monkey</td><td className="py-3 pr-4">Rooster</td><td className="py-3">Dog</td></tr>
+                  <tr><td className="py-3 pr-4">Snake</td><td className="py-3 pr-4">Ox, Rooster</td><td className="py-3 pr-4">Monkey</td><td className="py-3">Pig</td></tr>
+                  <tr><td className="py-3 pr-4">Horse</td><td className="py-3 pr-4">Tiger, Dog</td><td className="py-3 pr-4">Goat</td><td className="py-3">Rat</td></tr>
+                  <tr><td className="py-3 pr-4">Goat</td><td className="py-3 pr-4">Rabbit, Pig</td><td className="py-3 pr-4">Horse</td><td className="py-3">Ox</td></tr>
+                  <tr><td className="py-3 pr-4">Monkey</td><td className="py-3 pr-4">Rat, Dragon</td><td className="py-3 pr-4">Snake</td><td className="py-3">Tiger</td></tr>
+                  <tr><td className="py-3 pr-4">Rooster</td><td className="py-3 pr-4">Ox, Snake</td><td className="py-3 pr-4">Dragon</td><td className="py-3">Rabbit</td></tr>
+                  <tr><td className="py-3 pr-4">Dog</td><td className="py-3 pr-4">Tiger, Horse</td><td className="py-3 pr-4">Rabbit</td><td className="py-3">Dragon</td></tr>
+                  <tr><td className="py-3 pr-4">Pig</td><td className="py-3 pr-4">Rabbit, Goat</td><td className="py-3 pr-4">Tiger</td><td className="py-3">Snake</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>
+              A harmony or triad does not guarantee compatibility, and a clash does not predict failure. The table describes branch geometry; communication, shared values, and the two complete Bazi charts provide the human context.
             </p>
           </>
         ),
@@ -2013,7 +2054,11 @@ const highIntentBlogPosts: BlogPost[] = [
       },
     ],
     faqs: zodiacCompatibilityFaqs,
-    relatedLinks: zodiacLinks,
+    relatedLinks: [
+      ...zodiacLinks,
+      { title: "Earthly Branches", href: "/bazi/earthly-branches", description: "Read the branch combinations and clashes behind the animal signs." },
+      { title: "Year of the Dragon", href: "/chinese-zodiac/dragon", description: "Open the site's highest-impression zodiac sign guide." },
+    ],
     cta: {
       title: "Compare two zodiac signs",
       description: "Use the compatibility tool, then return to the chart for context.",
@@ -2164,7 +2209,10 @@ function createDayMasterPost(seed: DayMasterSeed): BlogPost {
   const stemCharacter = seed.stemFull.match(/\(([^)]+)\)/)?.[1] ?? seed.stemShort;
   const stemLabel = `${seed.stemShort} ${seed.element}`;
   const stemWithCharacter = `${stemLabel} (${stemCharacter})`;
-  const title = `${stemLabel} Day Master (${stemCharacter}): Personality, Career & Relationships`;
+  const isRenWater = seed.slug === "ren-water-day-master";
+  const title = isRenWater
+    ? "Ren Water Day Master (壬): Meaning, Strength & Career in Bazi"
+    : `${stemLabel} Day Master (${stemCharacter}): Personality, Career & Relationships`;
   const el = seed.element.toLowerCase();
   const polarityAdv = seed.polarity === "Yang"
     ? "outward-moving, initiating energy — these individuals tend to lead, act visibly, and create structure"
@@ -2184,52 +2232,112 @@ function createDayMasterPost(seed: DayMasterSeed): BlogPost {
     slug: seed.slug,
     path,
     title,
-    description: `${stemWithCharacter} is the ${seed.polarity} ${seed.element} Day Master (${seed.imageDesc.split(" —")[0]}). Learn about ${stemLabel} personality, career paths, relationships, and elemental strengths in Bazi.`,
+    description: isRenWater
+      ? "Ren Water (壬) is the Yang Water Day Master. Learn its ocean-and-river image, strong vs weak chart conditions, Ten God element map, career themes, and difference from Gui Water."
+      : `${stemWithCharacter} is the ${seed.polarity} ${seed.element} Day Master (${seed.imageDesc.split(" —")[0]}). Learn about ${stemLabel} personality, career paths, relationships, and elemental strengths in Bazi.`,
     category: "Bazi Guide",
     entityName: `${stemLabel} Day Master`,
     entityType: "BlogPosting",
     subtitle: `A complete guide to the ${stemWithCharacter} Day Master — the ${el} ${seed.polarity.toLowerCase()} expression in Bazi.`,
-    directAnswer: `${stemWithCharacter} is the ${seed.polarity} ${seed.element} Heavenly Stem. As the ${stemLabel} Day Master, it represents ${seed.imageDesc}. ${seed.stemShort} Day Master people tend to be ${seed.traits}. The full chart — season, month pillar, Ten Gods, and Luck Pillars — determines how this energy expresses across life areas.`,
+    directAnswer: isRenWater
+      ? "Ren Water (壬) is the Yang Water Day Master, traditionally compared with an ocean or great river. Its strength is strategic movement, scale, and adaptability; its risk is dispersion without channels. Metal is Resource, Wood is Output, Fire is Wealth, and Earth is Authority relative to Ren. Season and the full chart decide whether those roles support or pressure it."
+      : `${stemWithCharacter} is the ${seed.polarity} ${seed.element} Heavenly Stem. As the ${stemLabel} Day Master, it represents ${seed.imageDesc}. ${seed.stemShort} Day Master people tend to be ${seed.traits}. The full chart — season, month pillar, Ten Gods, and Luck Pillars — determines how this energy expresses across life areas.`,
     breadcrumbs: breadcrumbs(`${stemLabel} Day Master`, path),
-    schema: { headline: "", description: "", url: "", datePublished: "2026-05-01", dateModified: "2026-06-05" },
+    schema: { headline: "", description: "", url: "", datePublished: "2026-05-01", dateModified: isRenWater ? "2026-07-12" : "2026-06-05" },
     stats: [
       { value: seed.element, label: "Element", description: `${seed.polarity} expression of the ${el} element.` },
       { value: seed.polarity, label: "Polarity", description: seed.polarity === "Yang" ? "Outward-moving, active expression." : "Inward-moving, receptive expression." },
       { value: seed.seasonStrong.split(" ")[0], label: "Strong season", description: `${seed.stemShort} is strongest in ${seed.seasonStrong}.` },
     ],
-    citations: [
-      { label: "Classical Four Pillars practice", source: "The Day Master anchors the Bazi chart. All elements and Ten Gods are read relative to it." },
-      { label: "Heavenly Stem theory", source: `${seed.stemShort} (${stemCharacter}) is one of 10 Heavenly Stems combining ${el} with ${seed.polarity.toLowerCase()} polarity.` },
-    ],
+    citations: isRenWater
+      ? [
+          { label: "《渊海子平》Yuan Hai Zi Ping (Song Dynasty, ~1100 CE)", source: "Classical Zi Ping source for reading the day stem and seasonal strength.", url: "https://zh.wikisource.org/wiki/%E6%B7%B5%E6%B5%B7%E5%AD%90%E5%B9%B3" },
+          { label: "《三命通会》San Ming Tong Hui (Ming Dynasty, ~1578 CE)", source: "Classical stem relationship reference for Ren Water, Ding combination, and element roles.", url: "https://zh.wikisource.org/wiki/%E4%B8%89%E5%91%BD%E9%80%9A%E6%9C%83" },
+        ]
+      : [
+          { label: "《渊海子平》Yuan Hai Zi Ping (Song Dynasty, ~1100 CE)", source: "Classical Zi Ping source for reading the day stem as the chart's self-reference point.", url: "https://zh.wikisource.org/wiki/%E6%B7%B5%E6%B5%B7%E5%AD%90%E5%B9%B3" },
+          { label: "《三命通会》San Ming Tong Hui (Ming Dynasty, ~1578 CE)", source: `${seed.stemShort} (${stemCharacter}) is one of 10 Heavenly Stems combining ${el} with ${seed.polarity.toLowerCase()} polarity.`, url: "https://zh.wikisource.org/wiki/%E4%B8%89%E5%91%BD%E9%80%9A%E6%9C%83" },
+        ],
     sections: [
       {
         heading: `What ${stemLabel} means as a Day Master`,
         content: (
           <>
             <p>
-              <strong>${stemWithCharacter} is ${seed.imageDesc}.</strong> In classical Bazi, each Heavenly Stem carries a natural image. ${seed.stemShort} is the ${seed.polarity.toLowerCase()} expression of the ${seed.element} element, with ${polarityAdv}.
+              <strong>{stemWithCharacter} is {seed.imageDesc}.</strong> In <cite>Yuan Hai Zi Ping</cite>-based Four Pillars practice, each Heavenly Stem carries a natural image. {seed.stemShort} is the {seed.polarity.toLowerCase()} expression of the {seed.element} element, with {polarityAdv}.
             </p>
             <p>
-              ${stemLabel} Day Masters are ${seed.traits}. Their strength: ${seed.strengthDesc}. Their challenge: ${seed.weaknessDesc}. The full chart determines whether these express as strengths or pressures.
+              {stemLabel} Day Masters are {seed.traits}. Their strength: {seed.strengthDesc}. Their challenge: {seed.weaknessDesc}. The full chart determines whether these express as strengths or pressures.
             </p>
             <p>
-              In Five Element theory, ${generatingDesc} These relationships shape how ${seed.stemShort} interacts with other Day Masters.
+              In Five Element theory, {generatingDesc} These relationships shape how {seed.stemShort} interacts with other Day Masters.
             </p>
           </>
         ),
       },
+      ...(isRenWater
+        ? [
+            {
+              heading: "Ren Water element map and Ten God roles",
+              content: (
+                <>
+                  <p>
+                    Ren is Yang Water, so the other elements become roles according to how they produce, match, drain, control, or are controlled by Water. This map is more precise than treating "Water personality" as a complete reading.
+                  </p>
+                  <div className="overflow-x-auto">
+                    <table className="w-full min-w-[40rem] border-collapse text-left text-sm">
+                      <thead>
+                        <tr className="border-b border-ink-300 dark:border-white/20">
+                          <th className="py-3 pr-4">Element around Ren</th>
+                          <th className="py-3 pr-4">Relationship</th>
+                          <th className="py-3">Bazi role</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-ink-200 dark:divide-white/10">
+                        <tr><td className="py-3 pr-4">Metal</td><td className="py-3 pr-4">Produces Water</td><td className="py-3">Resource: learning, support, recovery</td></tr>
+                        <tr><td className="py-3 pr-4">Water</td><td className="py-3 pr-4">Same element</td><td className="py-3">Peer: networks, competition, shared direction</td></tr>
+                        <tr><td className="py-3 pr-4">Wood</td><td className="py-3 pr-4">Produced by Water</td><td className="py-3">Output: ideas, communication, movement</td></tr>
+                        <tr><td className="py-3 pr-4">Fire</td><td className="py-3 pr-4">Controlled by Water</td><td className="py-3">Wealth: execution, resources, visible results</td></tr>
+                        <tr><td className="py-3 pr-4">Earth</td><td className="py-3 pr-4">Controls Water</td><td className="py-3">Authority: boundaries, rules, responsibility</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p>
+                    A Ren chart with abundant Water and Metal may need Wood, Fire, or well-placed Earth to direct its scale. A Ren chart born in a hot, dry season may instead need Metal and Water support. The useful element depends on season and the full chart, not the Day Master name alone.
+                  </p>
+                </>
+              ),
+            },
+            {
+              heading: "Ren Water vs Gui Water: ocean and rain",
+              content: (
+                <>
+                  <p>
+                    Ren and Gui are both Water Day Masters, but their polarity changes expression. Ren is Yang Water: large-scale, visible, mobile, and inclined to connect distant points like a river or ocean current. Gui is Yin Water: fine-grained, penetrating, receptive, and compared with rain, mist, dew, or an underground spring.
+                  </p>
+                  <p>
+                    The comparison is not "strong Ren versus weak Gui." A focused Gui chart can be more persistent than a scattered Ren chart, while a well-channeled Ren chart can coordinate complexity that would overwhelm a narrower approach. Check the month branch, roots, and surrounding Ten Gods before deciding how the Water quality behaves.
+                  </p>
+                  <p>
+                    Ren combines with Ding Fire. Traditional transformation rules require supporting season and chart conditions, so the presence of Ren and Ding does not automatically mean a successful combination or a fixed relationship result.
+                  </p>
+                </>
+              ),
+            },
+          ]
+        : []),
       {
         heading: `Personality, career, and relationships for ${seed.stemShort} ${seed.element}`,
         content: (
           <>
             <p>
-              ${seed.stemShort} ${seed.element} Day Masters tend toward ${polarityAdv}. Career direction maps to ${el}: ${careerDesc}.
+              {seed.stemShort} {seed.element} Day Masters tend toward {polarityAdv}. Career direction maps to {el}: {careerDesc}.
             </p>
             <p>
-              In relationships, ${seed.stemShort} ${seed.polarity === "Yang" ? "tends to be direct and initiative-taking — expressing needs openly and valuing partners who match that clarity" : "tends to be thoughtful and selective — building trust gradually and valuing depth over speed"}. The spouse palace (day pillar branch) provides more specific relationship detail than the Day Master alone.
+              In relationships, {seed.stemShort} {seed.polarity === "Yang" ? "tends to be direct and initiative-taking — expressing needs openly and valuing partners who match that clarity" : "tends to be thoughtful and selective — building trust gradually and valuing depth over speed"}. The spouse palace (day pillar branch) provides more specific relationship detail than the Day Master alone.
             </p>
             <p>
-              ${seed.stemShort} forms a Heavenly Stem combination with ${seed.combineStem}. When both appear, they can transform toward a new element with seasonal support, significantly shifting chart dynamics.
+              In <cite>San Ming Tong Hui</cite>, {seed.stemShort} forms a Heavenly Stem combination with {seed.combineStem}. A transformation reading still requires seasonal and chart support; the pair alone does not guarantee a change of element.
             </p>
           </>
         ),
@@ -2239,10 +2347,10 @@ function createDayMasterPost(seed: DayMasterSeed): BlogPost {
         content: (
           <>
             <p>
-              <strong>Read your Day Master reflectively, not prescriptively.</strong> ${stemWithCharacter} describes a baseline temperament. The season, month pillar, Ten Gods, and Luck Pillars determine real-life expression.
+              <strong>Read your Day Master reflectively, not prescriptively.</strong> {stemWithCharacter} describes a baseline temperament. The season, month pillar, Ten Gods, and Luck Pillars determine real-life expression.
             </p>
             <p>
-              ${seed.stemShort} is strongest in ${seed.seasonStrong} and weakest in ${seed.seasonWeak}. A ${seed.stemShort} born in-season reads very differently from one born off-season. The month branch is always the first context check after the Day Master.
+              {seed.stemShort} is strongest in {seed.seasonStrong} and weakest in {seed.seasonWeak}. A {seed.stemShort} born in-season reads very differently from one born off-season. The month branch is always the first context check after the Day Master.
             </p>
             <p>
               Generate your <Link href="/tools/bazi-calculator" className={linkClass}>Bazi chart</Link>, then read the <Link href="/blog/day-master-bazi-complete-guide" className={linkClass}>complete Day Master guide</Link> or explore the <Link href="/bazi" className={linkClass}>Bazi hub</Link> for the full system.
@@ -2268,6 +2376,20 @@ function createDayMasterPost(seed: DayMasterSeed): BlogPost {
         question: `Which stems combine with ${seed.stemShort}?`,
         answer: `${stemWithCharacter} forms a combination with ${seed.combineStem}. This describes attraction and potential transformation — supportive or intense depending on chart context.`,
       },
+      ...(isRenWater
+        ? [
+            {
+              question: "What is the difference between Ren Water and Gui Water?",
+              answer:
+                "Ren is Yang Water and is compared with oceans or great rivers: broad, mobile, and visible. Gui is Yin Water and is compared with rain, mist, or springs: subtle, penetrating, and receptive. Neither is better; season, roots, and the full chart determine how each Water stem behaves.",
+            },
+            {
+              question: "What elements balance a Ren Water Day Master?",
+              answer:
+                "There is no universal balancing element. Strong winter Ren Water may benefit from Wood, Fire, or well-placed Earth that gives movement direction. Weak summer Ren Water may need Metal and Water support. The month branch, roots, combinations, and surrounding Ten Gods must be checked first.",
+            },
+          ]
+        : []),
     ],
     relatedLinks: [
       { title: "Day Master Complete Guide", href: "/blog/day-master-bazi-complete-guide", description: "Overview of all 10 Day Masters." },
@@ -2275,6 +2397,9 @@ function createDayMasterPost(seed: DayMasterSeed): BlogPost {
       { title: "Heavenly Stems Guide", href: "/bazi/heavenly-stems", description: "Complete guide to all 10 Heavenly Stems." },
       { title: "Ten Gods", href: "/bazi/ten-gods", description: `How every other stem becomes a role relative to your ${seed.stemShort} Day Master.` },
       { title: "Five Elements", href: "/bazi/five-elements", description: `The ${el} element relationships that shape the ${seed.stemShort} Day Master profile.` },
+      ...(isRenWater
+        ? [{ title: "Gui Water Day Master", href: "/blog/gui-water-day-master", description: "Compare Yang Water's ocean image with Yin Water's rain and mist expression." }]
+        : []),
     ],
     cta: {
       title: "Find your Day Master",

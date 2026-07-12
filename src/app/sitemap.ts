@@ -26,9 +26,10 @@ function priorityFor(page: SitePage): number {
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = SITE.url;
 
-  // Keep this list limited to routes with real page files so the sitemap never
-  // advertises URLs that currently resolve to the 404 page.
-  const staticRoutes: MetadataRoute.Sitemap = publishedSitePages.map((page) => ({
+  // noindex utility pages stay available to people but do not belong in the
+  // XML sitemap that asks search engines to index canonical content.
+  const indexablePages = publishedSitePages.filter((page) => page.href !== "/sitemap");
+  const staticRoutes: MetadataRoute.Sitemap = indexablePages.map((page) => ({
     url: `${baseUrl}${page.href}`,
     lastModified: page.lastModified,
     changeFrequency: changeFrequencyFor(page),
