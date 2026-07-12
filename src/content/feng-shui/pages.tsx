@@ -207,8 +207,8 @@ const overview = buildPage({
     { value: "5", label: "Elements", description: "Wood, Fire, Earth, Metal, and Water." },
   ],
   citations: [
-    { label: "Form School tradition", source: "Classical Feng Shui focus on landform, flow, and environmental support." },
-    { label: "Compass School tradition", source: "Classical methods using direction, Luo Pan readings, and formula systems." },
+    { label: "Ole Bruun, An Introduction to Feng Shui", source: "Academic overview of Feng Shui history, practice, and environmental reasoning.", url: "https://books.google.com/books?q=Ole+Bruun+An+Introduction+to+Feng+Shui" },
+    { label: "Stephen Skinner, Guide to the Feng Shui Compass", source: "Reference for Luo Pan structure and compass-school terminology.", url: "https://books.google.com/books?q=Stephen+Skinner+Guide+to+the+Feng+Shui+Compass" },
   ],
   sections: [
     {
@@ -301,6 +301,23 @@ const topics: FengShuiTopic[] = [
   { slug: "office/wealth-corner", datePublished: "2026-02-25", dateModified: "2026-03-20", label: "Office Wealth Corner", title: "Office Wealth Corner Feng Shui: Practical Use", description: "How to think about wealth areas responsibly through order, use, and symbolic clarity.", statValue: "1", statLabel: "Focus area", group: "Office" },
 ];
 
+function observationGuide(topic: FengShuiTopic): string {
+  if (topic.group === "Home") {
+    return `For ${topic.label}, trace one normal day through the room: entry, movement, the main activity, rest, storage, and exit. Note where furniture, glare, noise, or competing uses interrupt that sequence. This turns the page topic into observable design evidence rather than a symbolic checklist.`;
+  }
+  if (topic.group === "Office") {
+    return `For ${topic.label}, observe arrival, focused work, collaboration, decision making, and circulation separately. Check whether sightlines, seating support, noise, signage, and shared paths help each activity or force people into avoidable friction.`;
+  }
+  return `For ${topic.label}, record the actual inputs before making an adjustment: orientation, door and window locations, daylight, movement paths, fixed structures, and the room's intended use. These observations show whether the concept explains a real condition or is being applied only as a label.`;
+}
+
+function applicationGuide(topic: FengShuiTopic): string {
+  if (topic.group === "Foundations") {
+    return `Test ${topic.label} with one reversible change at a time, then observe movement, comfort, light, and use over several days. A foundational concept is useful when it clarifies why the space functions better, not merely when it adds more symbols.`;
+  }
+  return `Prioritize the physical job of ${topic.label.toLowerCase()}: remove the clearest obstruction, strengthen the main activity position, and keep frequently used paths easy. Add directional or Five Element adjustments only after that practical layer works.`;
+}
+
 function createTopicPage(topic: FengShuiTopic): FengShuiContentPage {
   const path = `/feng-shui/${topic.slug}`;
 
@@ -314,15 +331,15 @@ function createTopicPage(topic: FengShuiTopic): FengShuiContentPage {
     subtitle: `${topic.group} guide for practical Feng Shui study.`,
     directAnswer: `${topic.label} is a ${topic.group.toLowerCase()} topic in Feng Shui. ${topic.description} Read it first through visible conditions: entrance quality, movement paths, light, proportion, support, and how people use the space each day. Directional formulas, Bagua areas, and Five Element adjustments work best after the physical room already supports calm function.`,
     breadcrumbs: breadcrumbs(topic.label, path),
-    schema: { headline: "", description: "", url: "", datePublished: topic.datePublished, dateModified: topic.dateModified },
+    schema: { headline: "", description: "", url: "", datePublished: topic.datePublished, dateModified: "2026-07-12" },
     stats: [
       { value: topic.statValue, label: topic.statLabel, description: "A practical anchor for this Feng Shui topic." },
       { value: "8", label: "Bagua directions", description: "Many methods use eight directional areas." },
       { value: "5", label: "Elements", description: "Material, color, shape, and use can express element qualities." },
     ],
     citations: [
-      { label: "Form School tradition", source: "Classical Feng Shui focus on landform, qi flow, and environmental support." },
-      { label: "Compass School tradition", source: "Classical Feng Shui methods using direction and Luo Pan measurement." },
+      { label: "Ole Bruun, An Introduction to Feng Shui", source: "Academic overview of Feng Shui history, practice, and environmental reasoning.", url: "https://books.google.com/books?q=Ole+Bruun+An+Introduction+to+Feng+Shui" },
+      { label: "Stephen Skinner, Guide to the Feng Shui Compass", source: "Reference for Luo Pan structure and compass-school terminology.", url: "https://books.google.com/books?q=Stephen+Skinner+Guide+to+the+Feng+Shui+Compass" },
     ],
     sections: [
       {
@@ -343,7 +360,7 @@ function createTopicPage(topic: FengShuiTopic): FengShuiContentPage {
         content: (
           <>
             <p>
-              Begin with the entrance and the main path through the room. A blocked door, awkward walking line, exposed resting position, or harsh light usually matters more than a symbolic cure.
+              {observationGuide(topic)}
             </p>
             <p>
               Then check support and proportion. Seats, beds, desks, and gathering areas should feel stable, visible, and easy to use. Materials, color, plants, mirrors, and water features should reinforce the room purpose rather than compete with it.
@@ -357,7 +374,7 @@ function createTopicPage(topic: FengShuiTopic): FengShuiContentPage {
         content: (
           <>
             <p>
-              Apply Feng Shui in layers. First improve clear pathways, supportive positions, appropriate light, air, cleanliness, and practical function. Then use Bagua, Five Elements, Luo Pan direction, or Flying Stars only where they add useful detail.
+              {applicationGuide(topic)}
             </p>
             <p>
               Form School observation and Compass School measurement should support each other. If a formula suggests a change that makes the space harder to use, treat that as a signal to review the context rather than force the rule.

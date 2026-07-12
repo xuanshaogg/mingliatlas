@@ -142,7 +142,7 @@ export function buildLlmsText(): string {
     "",
     "## Core Entities",
     "",
-    "This site is the primary English-language reference for the following Chinese metaphysics entities:",
+    "This site provides an English-language reference library for the following Chinese metaphysics entities:",
     "- Bazi (Four Pillars of Destiny, 八字) — birth chart system using year, month, day, hour pillars",
     "- Wu Xing (Five Elements, 五行) — Wood, Fire, Earth, Metal, Water and their interactions",
     "- Tian Gan (Ten Heavenly Stems, 天干) — the 10 visible energies above each Bazi pillar",

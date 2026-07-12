@@ -20,10 +20,10 @@ export default function ZodiacCompatibilityCalculator() {
   function handleSelect(setter: (sign: ZodiacSign) => void, value: ZodiacSign): void {
     if (!startedRef.current) {
       startedRef.current = true;
-      trackEvent("calculator_started", { tool: "zodiac" });
+      trackEvent("calculator_started", { tool_name: "zodiac" });
     }
     setter(value);
-    trackEvent("calculator_completed", { tool: "zodiac" });
+    trackEvent("calculator_completed", { tool_name: "zodiac" });
   }
 
   return (
@@ -160,14 +160,14 @@ export default function ZodiacCompatibilityCalculator() {
         <div className="mt-4 flex flex-wrap gap-3">
           <Link
             href={`/chinese-zodiac/${result.signA.slug}`}
-            onClick={() => trackEvent("related_content_clicked", { tool: "zodiac", target: result.signA.slug })}
+            onClick={() => trackEvent("related_content_clicked", { tool_name: "zodiac", target: result.signA.slug })}
             className="inline-flex h-9 items-center justify-center rounded-full border border-brand-primary px-4 text-sm font-semibold text-brand-primary transition hover:bg-brand-primary hover:text-white dark:border-gold-400 dark:text-gold-300 dark:hover:bg-gold-400 dark:hover:text-ink-950"
           >
             {result.signA.name} guide →
           </Link>
           <Link
             href={`/chinese-zodiac/${result.signB.slug}`}
-            onClick={() => trackEvent("related_content_clicked", { tool: "zodiac", target: result.signB.slug })}
+            onClick={() => trackEvent("related_content_clicked", { tool_name: "zodiac", target: result.signB.slug })}
             className="inline-flex h-9 items-center justify-center rounded-full border border-ink-200 px-4 text-sm font-semibold text-ink-700 transition hover:border-brand-primary hover:text-brand-primary dark:border-white/10 dark:text-ink-300 dark:hover:border-gold-400 dark:hover:text-gold-300"
           >
             {result.signB.name} guide →

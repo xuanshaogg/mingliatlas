@@ -135,6 +135,27 @@ export default function BaziChartResult({ chart }: BaziChartResultProps) {
         </div>
       </div>
 
+      <section className="border-y border-brand-200 bg-brand-50 px-1 py-5 dark:border-gold-500/30 dark:bg-gold-500/10 sm:px-5">
+        <div className="flex flex-wrap items-center justify-between gap-5">
+          <div className="flex items-start gap-3">
+            <Mail className="mt-1 h-5 w-5 flex-none text-brand-primary dark:text-gold-300" aria-hidden="true" />
+            <div>
+              <h2 className="text-base font-semibold text-ink-950 dark:text-paper">Keep learning from your chart</h2>
+              <p className="mt-1 text-sm leading-6 text-ink-600 dark:text-ink-300">
+                Get one concise Bazi concept or chart-reading prompt each week. No predictions or spam.
+              </p>
+            </div>
+          </div>
+          <Link
+            href="/subscribe"
+            onClick={() => trackEvent("subscribe_clicked", { tool_name: "bazi", source: "chart_summary" })}
+            className="inline-flex h-11 flex-none items-center justify-center rounded-full bg-brand-primary px-6 text-sm font-semibold text-white transition hover:bg-brand-800 dark:bg-gold-400 dark:text-ink-950 dark:hover:bg-gold-300"
+          >
+            Get the weekly note
+          </Link>
+        </div>
+      </section>
+
       <ShareCardControls tool="bazi" params={buildBaziShareParams(chart)} label="bazi-share-card" />
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
@@ -192,7 +213,7 @@ export default function BaziChartResult({ chart }: BaziChartResultProps) {
             <Link
               key={item.href}
               href={item.href}
-              onClick={() => trackEvent("related_content_clicked", { tool: "bazi", target: item.href })}
+              onClick={() => trackEvent("related_content_clicked", { tool_name: "bazi", target: item.href })}
               className="group rounded-lg border border-ink-200 p-4 transition hover:border-brand-primary dark:border-white/10 dark:hover:border-gold-400"
             >
               <p className="font-semibold text-ink-950 group-hover:text-brand-primary dark:text-paper dark:group-hover:text-gold-300">
@@ -204,28 +225,6 @@ export default function BaziChartResult({ chart }: BaziChartResultProps) {
         </div>
       </section>
 
-      <section className="rounded-lg border border-brand-200 bg-brand-50 p-6 dark:border-gold-500/30 dark:bg-gold-500/10">
-        <div className="flex flex-wrap items-start justify-between gap-6">
-          <div className="flex items-start gap-4">
-            <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-brand-primary text-white dark:bg-gold-400 dark:text-ink-950">
-              <Mail className="h-5 w-5" aria-hidden="true" />
-            </span>
-            <div>
-              <h2 className="text-lg font-semibold text-ink-950 dark:text-paper">Get a weekly Bazi learning note</h2>
-              <p className="mt-1 text-sm leading-6 text-ink-600 dark:text-ink-300">
-                One short email each week — a concept, a chart pattern, or a reflection prompt. No predictions, no spam.
-              </p>
-            </div>
-          </div>
-          <Link
-            href="/subscribe"
-            onClick={() => trackEvent("subscribe_clicked", { tool: "bazi", source: "chart_result" })}
-            className="inline-flex h-11 flex-none items-center justify-center rounded-full bg-brand-primary px-6 text-sm font-semibold text-white transition hover:bg-brand-800 dark:bg-gold-400 dark:text-ink-950 dark:hover:bg-gold-300"
-          >
-            Subscribe free
-          </Link>
-        </div>
-      </section>
     </section>
   );
 }

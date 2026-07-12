@@ -19,7 +19,7 @@ export default function ContactSuccessPage() {
       <p className="text-sm font-semibold uppercase tracking-[0.24em] text-brand-primary dark:text-gold-300">Contact</p>
       <h1 className="mt-4 text-4xl font-semibold tracking-tight text-ink-950 dark:text-paper">Message received</h1>
       <p className="mt-4 text-lg leading-8 text-ink-600 dark:text-ink-300">
-        Thanks for reaching out. The contact endpoint is live and now returns a confirmation page after submission.
+        Thanks for reaching out. Your message has been saved for editorial review.
       </p>
       <Link href="/contact" className="mt-8 rounded-full bg-brand-primary px-5 py-3 text-sm font-semibold text-white">
         Back to contact

@@ -179,15 +179,15 @@ const overview = buildPage({
   directAnswer:
     "Ziwei Doushu, often translated as Purple Star Astrology, is a Chinese metaphysics system that places major stars into 12 life palaces. It studies personality, relationships, career, wealth, health tendencies, and timing through palace structure rather than only stems and branches. A careful reading checks the Life Palace, major stars, Four Transformations, and decade cycles before drawing conclusions.",
   breadcrumbs: breadcrumbs("Overview", "/ziwei"),
-  schema: { headline: "", description: "", url: "", datePublished: "2025-12-05", dateModified: "2026-03-10" },
+  schema: { headline: "", description: "", url: "", datePublished: "2025-12-05", dateModified: "2026-07-12" },
   stats: [
     { value: "12", label: "Palaces", description: "Life areas such as career, wealth, spouse, and health." },
     { value: "14", label: "Major stars", description: "Core star vocabulary for chart interpretation." },
     { value: "4", label: "Transformations", description: "Si Hua dynamics used in many schools." },
   ],
   citations: [
-    { label: "Ziwei Doushu Quan Shu", source: "Classical source tradition for Purple Star Astrology methods." },
-    { label: "Chinese calendar tradition", source: "Ziwei chart construction depends on lunar date and birth hour." },
+    { label: "Ziwei Doushu Quan Shu", source: "Classical source tradition for Purple Star Astrology methods.", url: "https://zh.wikisource.org/wiki/%E7%B4%AB%E5%BE%AE%E6%96%97%E6%95%B8%E5%85%A8%E6%9B%B8" },
+    { label: "Hong Kong Observatory: Gregorian-Lunar Calendar Conversion", source: "Reference tables for checking the lunar calendar dates used in chart construction.", url: "https://www.hko.gov.hk/en/gts/time/conversion.htm" },
   ],
   sections: [
     {
@@ -298,6 +298,26 @@ const topics: TopicInput[] = [
   { slug: "palaces/parents-palace", label: "Parents Palace", title: "Parents Palace in Ziwei Doushu", description: "The palace for parents, elders, authority figures, and early support patterns.", statValue: "1", statLabel: "Elder palace", group: "Palaces" },
 ];
 
+function chartFunctionGuide(topic: TopicInput): string {
+  if (topic.group === "Major Stars") {
+    return `For ${topic.label}, first record the palace it occupies, its opposite palace, companion major stars, relevant minor stars, and any Four Transformation attached to it. Only then translate its core keywords into behavior; the same star can lead, support, question, protect, or disrupt depending on that structure.`;
+  }
+  if (topic.group === "Palaces") {
+    return `For ${topic.label}, begin with the major stars seated there, then compare the opposite palace and the two linked three-harmony palaces. This shows whether the life-area theme is directly emphasized, supported from elsewhere, or mainly activated during a decade or annual cycle.`;
+  }
+  return `Use ${topic.label} as a reading step rather than a standalone result. Identify which chart layer the concept belongs to, what birth-time assumptions it depends on, and which palace, star, transformation, or timing layer must be checked next.`;
+}
+
+function comparisonGuide(topic: TopicInput): string {
+  if (topic.group === "Major Stars") {
+    return `Compare ${topic.label} across at least two palace contexts before assigning a fixed meaning. A star associated with visibility in the Career Palace, for example, raises a different question from the same star in the Spouse or Fortune Palace.`;
+  }
+  if (topic.group === "Palaces") {
+    return `Compare the natal condition of ${topic.label} with the active decade palace. This separates a long-running life-area pattern from a temporary period when that palace receives more attention or pressure.`;
+  }
+  return `Compare the output of ${topic.label} with the Life Palace, Body Palace, and current decade cycle. If those layers disagree, preserve the difference instead of forcing them into a single personality label.`;
+}
+
 function createTopicPage(topic: TopicInput): ZiweiContentPage {
   const path = `/ziwei/${topic.slug}`;
 
@@ -311,15 +331,15 @@ function createTopicPage(topic: TopicInput): ZiweiContentPage {
     subtitle: `${topic.group} guide for Purple Star Astrology students.`,
     directAnswer: `${topic.label} is a ${topic.group.toLowerCase()} concept in Ziwei Doushu. ${topic.description} Read it through the full chart structure: palace position, major stars, minor stars, Four Transformations, decade cycles, and birth-hour confidence. A single palace or star can describe a theme, but it should not become a fixed verdict about a person.`,
     breadcrumbs: breadcrumbs(topic.label, path),
-    schema: { headline: "", description: "", url: "", datePublished: topic.datePublished, dateModified: topic.dateModified },
+    schema: { headline: "", description: "", url: "", datePublished: topic.datePublished, dateModified: "2026-07-12" },
     stats: [
       { value: topic.statValue, label: topic.statLabel, description: "A practical anchor for this Ziwei topic." },
       { value: "12", label: "Palaces", description: "Every topic is interpreted through palace position." },
       { value: "14", label: "Major stars", description: "Core stars provide the first layer of meaning." },
     ],
     citations: [
-      { label: "Ziwei Doushu Quan Shu", source: "Classical source tradition for palace and star interpretation." },
-      { label: "Chinese lunar calendar practice", source: "Ziwei chart construction depends on lunar date and birth hour." },
+      { label: "Ziwei Doushu Quan Shu", source: "Classical source tradition for palace and star interpretation.", url: "https://zh.wikisource.org/wiki/%E7%B4%AB%E5%BE%AE%E6%96%97%E6%95%B8%E5%85%A8%E6%9B%B8" },
+      { label: "Hong Kong Observatory: Gregorian-Lunar Calendar Conversion", source: "Reference tables for checking the lunar calendar dates used in chart construction.", url: "https://www.hko.gov.hk/en/gts/time/conversion.htm" },
     ],
     sections: [
       {
@@ -340,7 +360,7 @@ function createTopicPage(topic: TopicInput): ZiweiContentPage {
         content: (
           <>
             <p>
-              First identify whether the topic is describing a palace, a star, a transformation, or a comparison method. Palaces show life areas, major stars show style and emphasis, minor stars add detail, and Four Transformations show activation, support, pressure, or complication.
+              {chartFunctionGuide(topic)}
             </p>
             <p>
               Then locate the topic in relation to the Life Palace, Body Palace, and relevant life-area palace. The same star can read differently in career, spouse, wealth, or health contexts, especially when decade cycles activate a different palace.
@@ -354,7 +374,7 @@ function createTopicPage(topic: TopicInput): ZiweiContentPage {
         content: (
           <>
             <p>
-              Compare the main palace with its opposite palace, the three-harmony structure, and the active decade cycle before drawing conclusions. This helps separate a central chart theme from a temporary timing emphasis.
+              {comparisonGuide(topic)}
             </p>
             <p>
               Also compare Ziwei findings with <Link href="/bazi" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Bazi</Link> when the question depends on element balance, seasonal strength, or stem-branch timing. The systems can support each other, but they should not be collapsed into one method.

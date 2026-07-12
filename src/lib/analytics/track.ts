@@ -1,11 +1,10 @@
 export type AnalyticsEventName =
-  | "bazi_calculator_use"
-  | "ziwei_calculator_use"
-  | "iching_oracle_use"
-  | "ai_chat_message"
-  | "zodiac_compatibility_use"
-  | "email_subscribe"
-  | "share_tool_result"
+  | "calculator_started"
+  | "calculator_completed"
+  | "share_card_clicked"
+  | "ai_interpretation_requested"
+  | "subscribe_clicked"
+  | "related_content_clicked"
   | "page_scroll_75";
 
 export interface AnalyticsEventProperties {

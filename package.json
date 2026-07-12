@@ -5,7 +5,7 @@
   "packageManager": "pnpm@11.2.2",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "eslint",
     "test": "vitest",
@@ -13,9 +13,10 @@
     "test:calendar": "vitest __tests__/calendar",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
-    "audit:links": "node scripts/audit-links.mjs",
+    "audit:links": "tsx scripts/audit-links.mjs",
     "audit:local": "node scripts/audit-local-site.mjs",
-    "audit:current-content": "node scripts/audit-current-content.mjs"
+    "audit:current-content": "node scripts/audit-current-content.mjs",
+    "db:migrate": "prisma migrate deploy"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -57,6 +58,7 @@
     "prettier": "^3.8.3",
     "prettier-plugin-tailwindcss": "^0.8.0",
     "tailwindcss": "^4.3.0",
+    "tsx": "^4.23.0",
     "typescript": "^5",
     "vitest": "^4.1.7"
   }

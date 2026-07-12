@@ -61,6 +61,10 @@ export default function Footer() {
             Get practical explainers on Chinese metaphysics, seasonal cycles, and new free tools.
           </p>
           <form className="mt-5 flex gap-2" action="/api/subscribe" method="post">
+            <div className="absolute left-[-9999px]" aria-hidden="true">
+              <label htmlFor="footer-website">Website</label>
+              <input id="footer-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+            </div>
             <label htmlFor="footer-email" className="sr-only">
               Email address
             </label>

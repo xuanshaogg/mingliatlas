@@ -123,7 +123,7 @@ const animals: ZodiacAnimal[] = [
   {
     slug: "horse",
     datePublished: "2025-12-02",
-    dateModified: "2026-02-01",
+    dateModified: "2026-07-12",
     name: "Horse",
     rank: "7th",
     branch: "Wu",
@@ -512,6 +512,7 @@ const overview = buildPage({
       label: "《尔雅·释天》(Erya, Han Dynasty)",
       source:
         "Early Chinese lexicon recording the 12 Earthly Branches and their animal correspondences.",
+      url: "https://zh.wikisource.org/wiki/%E7%88%BE%E9%9B%85/%E9%87%8B%E5%A4%A9",
     },
     {
       label: "Martin Palmer, T'ung Shu: The Ancient Chinese Almanac (1986)",
@@ -1281,7 +1282,7 @@ const animalPages = animals.map((animal) =>
       description: "",
       url: "",
       datePublished: animal.datePublished,
-      dateModified: animal.dateModified,
+      dateModified: "2026-07-12",
     },
     stats: [
       {
@@ -1300,11 +1301,13 @@ const animalPages = animals.map((animal) =>
       {
         label: "《尔雅·释天》(Erya, Han Dynasty)",
         source: `${animal.name} corresponds to the ${animal.branch} branch in the 12-branch cycle.`,
+        url: "https://zh.wikisource.org/wiki/%E7%88%BE%E9%9B%85/%E9%87%8B%E5%A4%A9",
       },
       {
         label: "Martin Palmer, T'ung Shu: The Ancient Chinese Almanac (1986)",
         source:
           "Animal years and compatibility groups are preserved in traditional Chinese almanac practice.",
+        url: "https://www.hko.gov.hk/en/gts/time/conversion.htm",
       },
     ],
     sections: animalSections[animal.slug] ?? [
@@ -1468,7 +1471,7 @@ const compatibility = buildPage({
     description: "",
     url: "",
     datePublished: "2026-01-05",
-    dateModified: "2026-02-15",
+    dateModified: "2026-07-12",
   },
   stats: [
     {
@@ -1483,11 +1486,13 @@ const compatibility = buildPage({
     {
       label: "《尔雅·释天》(Erya, Han Dynasty)",
       source: "Compatibility derives from relationships among the 12 Earthly Branches.",
+      url: "https://zh.wikisource.org/wiki/%E7%88%BE%E9%9B%85/%E9%87%8B%E5%A4%A9",
     },
     {
       label: "Martin Palmer, T'ung Shu: The Ancient Chinese Almanac (1986)",
       source:
         "Harmony and clash signs are used in relationship and date-selection contexts in traditional almanac practice.",
+      url: "https://www.hko.gov.hk/en/gts/time/conversion.htm",
     },
   ],
   sections: [
@@ -1662,7 +1667,7 @@ const forecast2026 = buildPage({
     description: "",
     url: "",
     datePublished: "2026-01-15",
-    dateModified: "2026-02-20",
+    dateModified: "2026-07-12",
   },
   stats: [
     { value: "2026", label: "Forecast year", description: "A Horse-year planning cycle." },
@@ -1681,10 +1686,12 @@ const forecast2026 = buildPage({
     {
       label: "《尔雅·释天》(Erya, Han Dynasty)",
       source: "Yearly animal forecasts derive from the 12-branch cycle.",
+      url: "https://zh.wikisource.org/wiki/%E7%88%BE%E9%9B%85/%E9%87%8B%E5%A4%A9",
     },
     {
       label: "Joey Yap, Bazi: The Destiny Code (2007)",
       source: "Annual energy is best read against a complete natal chart for better context.",
+      url: "https://books.google.com/books?q=Joey+Yap+Bazi+The+Destiny+Code",
     },
   ],
   sections: [
@@ -1903,7 +1910,7 @@ function buildYearPage(
       description: "",
       url: "",
       datePublished: "2026-05-01",
-      dateModified: "2026-06-05",
+      dateModified: "2026-07-12",
     },
     stats: [
       {
@@ -1926,10 +1933,12 @@ function buildYearPage(
       {
         label: "Chinese zodiac tradition",
         source: `${year} is a ${animal.name} year in the 12-year cycle with a ${elementLabel} Heavenly Stem modifier.`,
+        url: "https://www.hko.gov.hk/en/gts/time/conversion.htm",
       },
       {
         label: "Earthly Branch tradition",
         source: `${animal.name} corresponds to the ${animal.branch} branch, which governs specific two-hour time periods and seasonal qualities.`,
+        url: "https://zh.wikisource.org/wiki/%E7%88%BE%E9%9B%85/%E9%87%8B%E5%A4%A9",
       },
     ],
     sections: [

@@ -129,10 +129,10 @@ export default function AboutPage() {
             content: (
               <>
                 <p>
-                  Every page on mingliatlas is written by researchers who work directly from classical
-                  source texts — including the <em>Yuan Hai Zi Ping</em> (渊海子平), the <em>San Ming Tong Hui</em> (三命通会),
-                  the Wilhelm/Baynes translation of the I Ching, and peer-reviewed sinology journals — and
-                  cross-referenced against contemporary practitioners such as Joey Yap and Alfred Huang.
+                  Pages are compiled and edited from named classical works, published translations,
+                  historical references, and contemporary practitioner material. AI-assisted drafting may
+                  support the workflow, but published pages are reviewed for terminology, internal
+                  consistency, source attribution, and reader safety.
                 </p>
                 <p>
                   Our editorial standards:
@@ -188,11 +188,12 @@ export default function AboutPage() {
               <p>
                 Knowledge pages are reviewed on a rolling basis. When classical scholarship, new
                 practitioner consensus, or reader corrections indicate that a page needs revision, we
-                update it and refresh the <code>dateModified</code> timestamp in the page metadata.
+                update it and refresh the <code>dateModified</code> timestamp in the page metadata when the
+                revision materially changes the page.
                 If you believe a factual error exists on any page, please use the{" "}
                 <a href="/contact" className="font-medium underline">contact form</a> to reach us with
-                the specific claim and the source you believe is more accurate. We respond to all
-                substantive corrections within seven business days.
+                the specific claim and the source you believe is more accurate. Submissions are saved for
+                editorial review and assessed as capacity allows.
               </p>
             ),
           },

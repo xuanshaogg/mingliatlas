@@ -1,47 +1,47 @@
 # Audit Summary — Content Quality Baseline
 
-Generated: 2026-05-26
+Generated: 2026-07-12
 
 ## Discovery Results
 
 | Item | Value |
 |------|-------|
 | Content files scanned | 7 |
-| Analyzed content pages | 114 |
-| Average quality score | 75 |
-| High-risk pages | 75 |
-| Priority pages needing work | 19 |
+| Analyzed content pages | 113 |
+| Average quality score | 69 |
+| High-risk pages | 81 |
+| Priority pages needing work | 18 |
 | sitePages.ts exists | true |
 | termMap.ts (camelCase) | true |
 | term-map.ts (kebab-case) | true |
 
 ## Section Summary
 
-- Bazi: 15 pages, 6 priority, average score 84, 1 high-risk
-- Blog: 33 pages, 0 priority, average score 76, 20 high-risk
-- Chinese Zodiac: 3 pages, 3 priority, average score 69, 0 high-risk
-- Feng Shui: 19 pages, 3 priority, average score 72, 18 high-risk
+- Bazi: 14 pages, 5 priority, average score 75, 7 high-risk
+- Blog: 33 pages, 0 priority, average score 65, 20 high-risk
+- Chinese Zodiac: 3 pages, 3 priority, average score 71, 0 high-risk
+- Feng Shui: 19 pages, 3 priority, average score 70, 18 high-risk
 - I Ching: 1 pages, 1 priority, average score 76, 0 high-risk
-- Learn: 6 pages, 2 priority, average score 74, 0 high-risk
-- Ziwei: 37 pages, 4 priority, average score 71, 36 high-risk
+- Learn: 6 pages, 2 priority, average score 75, 0 high-risk
+- Ziwei: 37 pages, 4 priority, average score 69, 36 high-risk
 
 ## Top Action Items
 
-- /feng-shui/home/bedroom (Feng Shui, C/64): expand — word count 455/1200; high template risk
-- /feng-shui/home/front-door (Feng Shui, C/64): expand — word count 455/1200; high template risk
-- /ziwei/major-stars (Ziwei, C/64): expand — word count 438/1200; high template risk
-- /ziwei/twelve-palaces (Ziwei, C/64): expand — word count 439/1200; high template risk
-- /ziwei/ziwei-vs-bazi (Ziwei, C/64): expand — word count 438/1200; high template risk
-- /chinese-zodiac/compatibility (Chinese Zodiac, C/66): expand — word count 739/1200
-- /chinese-zodiac (Chinese Zodiac, C/68): expand — word count 1039/1500
-- /learn/which-system (Learn, B/70): expand — word count 324/1200
-- /chinese-zodiac/2026-forecast (Chinese Zodiac, B/72): expand — word count 924/1200
-- /feng-shui/home/kitchen (Feng Shui, B/72): expand — word count 453/650; high template risk
-- /feng-shui/office/company-entrance (Feng Shui, B/72): expand — word count 453/650; high template risk
-- /feng-shui/office/meeting-room (Feng Shui, B/72): expand — word count 453/650; high template risk
-- /feng-shui/yin-yang-balance (Feng Shui, B/72): expand — word count 453/650; high template risk
-- /ziwei/body-palace (Ziwei, B/72): expand — word count 441/650; high template risk
-- /ziwei/four-transformations (Ziwei, B/72): expand — word count 438/650; high template risk
+- /blog/bedroom-feng-shui-rest (Blog, C/63): expand — word count 640/800; high template risk
+- /blog/earthly-branches-hidden-stems (Blog, C/63): expand — word count 638/800; high template risk
+- /blog/eight-trigrams-meaning (Blog, C/63): expand — word count 644/800; high template risk
+- /blog/feng-shui-home-basics (Blog, C/63): expand — word count 642/800; high template risk
+- /blog/fire-element-visibility (Blog, C/63): expand — word count 638/800; high template risk
+- /blog/front-door-feng-shui (Blog, C/63): expand — word count 644/800; high template risk
+- /blog/heavenly-stems-beginner-guide (Blog, C/63): expand — word count 643/800; high template risk
+- /blog/hexagram-1-creative-modern-reading (Blog, C/63): expand — word count 639/800; high template risk
+- /blog/hexagram-2-receptive-modern-reading (Blog, C/63): expand — word count 639/800; high template risk
+- /blog/how-to-cast-i-ching-coins (Blog, C/63): expand — word count 643/800; high template risk
+- /blog/luck-pillars-life-cycles (Blog, C/63): expand — word count 640/800; high template risk
+- /blog/office-desk-feng-shui (Blog, C/63): expand — word count 642/800; high template risk
+- /blog/rat-and-horse-clash (Blog, C/63): expand — word count 642/800; high template risk
+- /blog/ten-gods-bazi-relationships (Blog, C/63): expand — word count 641/800; high template risk
+- /blog/wood-element-career-style (Blog, C/63): expand — word count 640/800; high template risk
 
 ## Notes
 

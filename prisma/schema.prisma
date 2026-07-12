@@ -125,6 +125,22 @@ model Subscriber {
   @@index([verified])
 }
 
+/// Messages submitted through the public contact form
+model ContactMessage {
+  id         String   @id @default(cuid())
+  name       String
+  email      String
+  message    String   @db.Text
+  status     String   @default("new")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  resolvedAt DateTime?
+
+  @@index([email])
+  @@index([status])
+  @@index([createdAt])
+}
+
 /// Registered users (reserved for Phase 2 auth)
 model User {
   id          String    @id @default(cuid())

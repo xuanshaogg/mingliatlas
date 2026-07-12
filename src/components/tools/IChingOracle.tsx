@@ -33,13 +33,13 @@ export default function IChingOracle() {
   function markStarted(): void {
     if (startedRef.current) return;
     startedRef.current = true;
-    trackEvent("calculator_started", { tool: "i-ching" });
+    trackEvent("calculator_started", { tool_name: "i-ching" });
   }
 
   function castReading(): void {
     // Fallback: if the user casts without editing the prompt, still count as started.
     markStarted();
-    trackEvent("calculator_completed", { tool: "i-ching" });
+    trackEvent("calculator_completed", { tool_name: "i-ching" });
     setReading(buildReading(question));
   }
 
@@ -148,7 +148,7 @@ export default function IChingOracle() {
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
               href={`/i-ching/hexagram-${reading.primary.number}`}
-              onClick={() => trackEvent("related_content_clicked", { tool: "i-ching", target: `hexagram-${reading.primary.number}` })}
+              onClick={() => trackEvent("related_content_clicked", { tool_name: "i-ching", target: `hexagram-${reading.primary.number}` })}
               className="inline-flex h-9 items-center justify-center rounded-full border border-brand-primary px-4 text-sm font-semibold text-brand-primary transition hover:bg-brand-primary hover:text-white dark:border-gold-400 dark:text-gold-300 dark:hover:bg-gold-400 dark:hover:text-ink-950"
             >
               Read Hexagram {reading.primary.number} in full →
@@ -156,7 +156,7 @@ export default function IChingOracle() {
             {reading.relating ? (
               <Link
                 href={`/i-ching/hexagram-${reading.relating.number}`}
-                onClick={() => { const n = reading.relating?.number; if (n) trackEvent("related_content_clicked", { tool: "i-ching", target: `hexagram-${n}` }); }}
+                onClick={() => { const n = reading.relating?.number; if (n) trackEvent("related_content_clicked", { tool_name: "i-ching", target: `hexagram-${n}` }); }}
                 className="inline-flex h-9 items-center justify-center rounded-full border border-ink-200 px-4 text-sm font-semibold text-ink-700 transition hover:border-brand-primary hover:text-brand-primary dark:border-white/10 dark:text-ink-300 dark:hover:border-gold-400 dark:hover:text-gold-300"
               >
                 Relating: Hexagram {reading.relating.number} →

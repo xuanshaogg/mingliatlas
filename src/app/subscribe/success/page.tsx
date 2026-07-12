@@ -23,7 +23,7 @@ export default function SubscribeSuccessPage() {
         Subscription received
       </h1>
       <p className="mt-4 text-lg leading-8 text-ink-600 dark:text-ink-300">
-        The newsletter form is connected and now returns a confirmation page.
+        Your email has been added to the update list. You can unsubscribe from any future message.
       </p>
       <Link href="/subscribe" className="mt-8 rounded-full bg-brand-primary px-5 py-3 text-sm font-semibold text-white">
         Back to subscribe

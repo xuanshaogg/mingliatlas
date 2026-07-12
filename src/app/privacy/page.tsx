@@ -3,7 +3,7 @@ import StaticPage from "@/components/templates/StaticPage";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "Privacy policy covering analytics, cookies, advertising, and contact form data.",
+  description: "Privacy policy covering analytics, contact messages, subscriptions, and technical logs.",
   alternates: {
     canonical: "/privacy",
   },
@@ -14,7 +14,7 @@ export default function PrivacyPage() {
     <StaticPage
       eyebrow="Legal"
       title="Privacy Policy"
-      description="This policy explains how the site handles analytics, cookies, advertising, and contact submissions."
+      description="This policy explains how the site handles analytics, contact submissions, newsletter subscriptions, and technical logs."
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Privacy", href: "/privacy" },
@@ -24,7 +24,7 @@ export default function PrivacyPage() {
           heading: "Data we collect",
           content: (
             <p>
-              We may collect basic analytics, contact form submissions, and technical logs needed to keep the site secure and functional. We do not intentionally collect sensitive personal data.
+              We collect basic usage analytics, contact messages that you choose to submit, newsletter email addresses, and technical logs needed to keep the site secure and functional. We do not intentionally collect birth details through the contact or subscription forms, and the Bazi calculator runs in the browser without storing birth data.
             </p>
           ),
         },
@@ -32,37 +32,19 @@ export default function PrivacyPage() {
           heading: "Cookies and analytics",
           content: (
             <p>
-              Analytics may be provided by Vercel Analytics, Speed Insights, Plausible, or GA4 depending on the environment variables configured for the deployment. We use cookies to measure site performance and understand how visitors use our content. You may disable cookies in your browser settings at any time; however, some site features may not function correctly without them.
+              The site currently uses Vercel Analytics, Speed Insights, and Google Analytics 4 to measure performance and understand aggregate usage. These services may process device, referral, and interaction data and may use cookies or similar browser storage. You can restrict analytics through browser privacy controls or supported consent settings.
             </p>
           ),
         },
         {
-          heading: "Advertising",
+          heading: "Contact messages and subscriptions",
           content: (
             <>
               <p>
-                We use Google AdSense to display advertisements on this site. Google AdSense uses cookies and similar tracking technologies to serve ads that are relevant to your interests based on your browsing activity across websites that use Google services.
+                Contact messages are stored so the editorial team can review and respond to the request. Newsletter email addresses are stored to provide site updates. We retain these records only while they are operationally useful or legally required.
               </p>
               <p className="mt-4">
-                Google, as a third-party vendor, uses cookies to serve ads on our site. Google&apos;s use of advertising cookies enables it and its partners to serve ads to our users based on their visit to our site and/or other sites on the Internet. You may opt out of personalised advertising by visiting{" "}
-                <a
-                  href="https://www.google.com/settings/ads"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline"
-                >
-                  Google Ads Settings
-                </a>{" "}
-                or by visiting{" "}
-                <a
-                  href="https://www.aboutads.info/choices/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline"
-                >
-                  www.aboutads.info
-                </a>
-                .
+                The site does not currently display personalized advertising. If advertising is introduced, this policy and any required consent controls will be updated before that data processing begins.
               </p>
             </>
           ),
@@ -72,19 +54,17 @@ export default function PrivacyPage() {
           content: (
             <>
               <p>
-                This site may use the following third-party services, each of which may collect data under their own privacy policies:
+                The current deployment uses the following infrastructure and analytics providers, each operating under its own privacy terms:
               </p>
               <ul className="mt-3 list-disc pl-5 space-y-1">
                 <li>
-                  <strong>Google AdSense</strong> — advertising delivery and measurement (
-                  <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="underline">Google Privacy Policy</a>
-                  )
+                  <strong>Google Analytics / GA4</strong> — aggregate site traffic and interaction analysis
                 </li>
                 <li>
-                  <strong>Google Analytics / GA4</strong> — aggregated site traffic analysis
+                  <strong>Vercel</strong> — hosting, page performance, and aggregate visit counts
                 </li>
                 <li>
-                  <strong>Vercel Analytics</strong> — page performance and visit counts
+                  <strong>Supabase</strong> — database infrastructure for contact messages and subscriptions
                 </li>
               </ul>
               <p className="mt-4">

@@ -1,30 +1,50 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { contactSubmissionSchema, parseFormBody } from "@/lib/forms/submissions";
+import { getPrisma } from "@/lib/prisma";
+import {
+  checkRateLimit,
+  getClientIdentifier,
+  isSameOriginRequest,
+  readLimitedBody,
+} from "@/lib/security/request";
 
-function isValidEmail(value: string): boolean {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-}
-
-async function readFormData(request: NextRequest): Promise<FormData | null> {
-  try {
-    return await request.formData();
-  } catch {
-    return null;
-  }
+function errorRedirect(request: NextRequest, error: string, retryAfter?: number): NextResponse {
+  const destination = new URL("/contact", request.url);
+  destination.searchParams.set("error", error);
+  const response = NextResponse.redirect(destination, 303);
+  if (retryAfter) response.headers.set("Retry-After", String(retryAfter));
+  return response;
 }
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
-  const formData = await readFormData(request);
-  const name = String(formData?.get("name") ?? "").trim();
-  const email = String(formData?.get("email") ?? "").trim();
-  const message = String(formData?.get("message") ?? "").trim();
+  if (!isSameOriginRequest(request)) return errorRedirect(request, "invalid");
 
-  if (name.length < 2 || !isValidEmail(email) || message.length < 10) {
-    const invalidDestination = new URL("/contact", request.url);
-    invalidDestination.searchParams.set("error", "invalid");
-    return NextResponse.redirect(invalidDestination, 303);
+  const rateLimit = checkRateLimit("contact", getClientIdentifier(request), {
+    limit: 5,
+    windowMs: 10 * 60_000,
+  });
+  if (!rateLimit.allowed) return errorRedirect(request, "rate_limited", rateLimit.retryAfterSeconds);
+
+  const rawBody = await readLimitedBody(request, 12 * 1024);
+  const parsed = contactSubmissionSchema.safeParse(rawBody === null ? null : parseFormBody(rawBody));
+
+  if (!parsed.success) return errorRedirect(request, "invalid");
+
+  // Honeypot submissions receive a neutral success response without reaching storage.
+  if (parsed.data.website) return NextResponse.redirect(new URL("/contact/submit/success", request.url), 303);
+
+  try {
+    await getPrisma().contactMessage.create({
+      data: {
+        name: parsed.data.name,
+        email: parsed.data.email,
+        message: parsed.data.message,
+      },
+    });
+  } catch (error) {
+    console.error("Contact submission storage failed", error);
+    return errorRedirect(request, "unavailable");
   }
 
-  const destination = new URL("/contact/submit/success", request.url);
-
-  return NextResponse.redirect(destination, 303);
+  return NextResponse.redirect(new URL("/contact/submit/success", request.url), 303);
 }

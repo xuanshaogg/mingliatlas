@@ -32,7 +32,7 @@ const playfair = Playfair_Display({
 
 const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
 const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
-const adsenseId = process.env.NEXT_PUBLIC_ADSENSE_ID;
+const isVercelDeployment = process.env.VERCEL === "1";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -110,14 +110,6 @@ export default function RootLayout({
             strategy="afterInteractive"
           />
         ) : null}
-        {adsenseId ? (
-          <Script
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseId}`}
-            strategy="afterInteractive"
-            crossOrigin="anonymous"
-          />
-        ) : null}
         {gaMeasurementId ? (
           <>
             <Script
@@ -141,8 +133,8 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer />
         <ScrollDepthTracker />
-        <Analytics />
-        <SpeedInsights />
+        {isVercelDeployment ? <Analytics /> : null}
+        {isVercelDeployment ? <SpeedInsights /> : null}
       </body>
     </html>
   );

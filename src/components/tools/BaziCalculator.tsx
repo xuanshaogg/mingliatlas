@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import { Calculator, RotateCcw } from "lucide-react";
 import BaziChartResult from "@/components/tools/BaziChartResult";
 import { calculateBaziChart, type BaziChart, type BaziChartInput } from "@/lib/bazi";
@@ -19,6 +19,10 @@ const DEFAULT_INPUT: FormState = {
   timezone: "Local civil time",
   gender: "not-specified",
 };
+
+interface BaziCalculatorProps {
+  mobileIntro?: ReactNode;
+}
 
 function parseInput(state: FormState): BaziChartInput {
   const [year, month, day] = state.birthDate.split("-").map(Number);
@@ -39,7 +43,7 @@ function buildDefaultChart(): BaziChart {
   return calculateBaziChart(parseInput(DEFAULT_INPUT));
 }
 
-export default function BaziCalculator() {
+export default function BaziCalculator({ mobileIntro }: BaziCalculatorProps) {
   const [form, setForm] = useState<FormState>(DEFAULT_INPUT);
   const [chart, setChart] = useState<BaziChart>(() => buildDefaultChart());
   const [error, setError] = useState<string | null>(null);
@@ -48,7 +52,7 @@ export default function BaziCalculator() {
   function markStarted(): void {
     if (startedRef.current) return;
     startedRef.current = true;
-    trackEvent("calculator_started", { tool: "bazi" });
+    trackEvent("calculator_started", { tool_name: "bazi" });
   }
 
   function updateForm<K extends keyof FormState>(key: K, value: FormState[K]): void {
@@ -65,7 +69,7 @@ export default function BaziCalculator() {
       const nextChart = calculateBaziChart(parseInput(form));
       setChart(nextChart);
       setError(null);
-      trackEvent("calculator_completed", { tool: "bazi" });
+      trackEvent("calculator_completed", { tool_name: "bazi" });
     } catch (chartError) {
       setError(chartError instanceof Error ? chartError.message : "Unable to calculate this chart.");
     }
@@ -83,7 +87,7 @@ export default function BaziCalculator() {
       <section className="grid gap-6 lg:grid-cols-[24rem_minmax(0,1fr)]">
         <form
           onSubmit={handleSubmit}
-          className="rounded-lg border border-ink-200 bg-white p-6 dark:border-white/10 dark:bg-white/5"
+          className="order-1 rounded-lg border border-ink-200 bg-white p-5 dark:border-white/10 dark:bg-white/5 sm:p-6 lg:order-1"
         >
           <div className="flex items-center gap-3">
             <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-primary text-white dark:bg-gold-400 dark:text-ink-950">
@@ -95,8 +99,8 @@ export default function BaziCalculator() {
             </div>
           </div>
 
-          <div className="mt-6 space-y-5">
-            <label className="block">
+          <div className="mt-5 grid grid-cols-2 gap-3 sm:mt-6 sm:gap-5">
+            <label className="block min-w-0">
               <span className="text-sm font-medium text-ink-900 dark:text-paper">Birth date</span>
               <input
                 type="date"
@@ -109,7 +113,7 @@ export default function BaziCalculator() {
               />
             </label>
 
-            <label className="block">
+            <label className="block min-w-0">
               <span className="text-sm font-medium text-ink-900 dark:text-paper">Birth time</span>
               <input
                 type="time"
@@ -120,34 +124,41 @@ export default function BaziCalculator() {
               />
             </label>
 
-            <label className="block">
-              <span className="text-sm font-medium text-ink-900 dark:text-paper">Birthplace or time zone note</span>
-              <input
-                type="text"
-                value={form.timezone}
-                onChange={(event) => updateForm("timezone", event.target.value)}
-                placeholder="Example: New York local time"
-                className="mt-2 h-11 w-full rounded-md border border-ink-200 bg-white px-3 text-sm text-ink-950 outline-none transition focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 dark:border-white/10 dark:bg-ink-950 dark:text-paper"
-              />
-              <span className="mt-2 block text-xs leading-5 text-ink-500 dark:text-ink-400">
-                Enter the birth time as local civil time at the birthplace. This note labels the chart; it does not
-                convert time zones.
-              </span>
-            </label>
-
-            <label className="block">
-              <span className="text-sm font-medium text-ink-900 dark:text-paper">Gender (optional)</span>
-              <select
-                value={form.gender}
-                onChange={(event) => updateForm("gender", event.target.value as FormState["gender"])}
-                className="mt-2 h-11 w-full rounded-md border border-ink-200 bg-white px-3 text-sm text-ink-950 outline-none transition focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 dark:border-white/10 dark:bg-ink-950 dark:text-paper"
-              >
-                <option value="not-specified">Not specified</option>
-                <option value="female">Female</option>
-                <option value="male">Male</option>
-              </select>
-            </label>
           </div>
+
+          <details className="mt-5 border-t border-ink-100 pt-4 dark:border-white/10">
+            <summary className="cursor-pointer text-sm font-semibold text-brand-primary dark:text-gold-300">
+              Optional chart labels
+            </summary>
+            <div className="mt-4 space-y-5">
+              <label className="block">
+                <span className="text-sm font-medium text-ink-900 dark:text-paper">Birthplace or time zone note</span>
+                <input
+                  type="text"
+                  value={form.timezone}
+                  onChange={(event) => updateForm("timezone", event.target.value)}
+                  placeholder="Example: New York local time"
+                  className="mt-2 h-11 w-full rounded-md border border-ink-200 bg-white px-3 text-sm text-ink-950 outline-none transition focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 dark:border-white/10 dark:bg-ink-950 dark:text-paper"
+                />
+                <span className="mt-2 block text-xs leading-5 text-ink-500 dark:text-ink-400">
+                  Enter local civil time. This note labels the chart and does not convert time zones.
+                </span>
+              </label>
+
+              <label className="block">
+                <span className="text-sm font-medium text-ink-900 dark:text-paper">Gender (optional)</span>
+                <select
+                  value={form.gender}
+                  onChange={(event) => updateForm("gender", event.target.value as FormState["gender"])}
+                  className="mt-2 h-11 w-full rounded-md border border-ink-200 bg-white px-3 text-sm text-ink-950 outline-none transition focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 dark:border-white/10 dark:bg-ink-950 dark:text-paper"
+                >
+                  <option value="not-specified">Not specified</option>
+                  <option value="female">Female</option>
+                  <option value="male">Male</option>
+                </select>
+              </label>
+            </div>
+          </details>
 
           {error ? (
             <p className="mt-5 rounded-md border border-brand-200 bg-brand-50 px-3 py-2 text-sm text-brand-900 dark:border-brand-500/30 dark:bg-brand-500/10 dark:text-brand-100">
@@ -173,7 +184,9 @@ export default function BaziCalculator() {
           </div>
         </form>
 
-        <div className="self-start rounded-lg border border-ink-200 bg-paper-100 p-6 dark:border-white/10 dark:bg-ink-900">
+        {mobileIntro ? <div className="order-2 lg:hidden">{mobileIntro}</div> : null}
+
+        <div className="order-3 self-start rounded-lg border border-ink-200 bg-paper-100 p-6 dark:border-white/10 dark:bg-ink-900 lg:order-2">
           <h2 className="text-xl font-semibold tracking-tight text-ink-950 dark:text-paper">What this calculator returns</h2>
           <div className="mt-5 grid gap-4 text-sm leading-6 text-ink-700 dark:text-ink-200 md:grid-cols-2">
             <p>Four Gan-Zhi pillars for year, month, day, and hour from the local civil date-time you enter.</p>

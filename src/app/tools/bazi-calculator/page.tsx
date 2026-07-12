@@ -131,26 +131,30 @@ export default function BaziCalculatorPage() {
           buildBreadcrumbListSchema(breadcrumbs),
         ]}
       />
-      <main className="bg-paper px-4 py-10 dark:bg-ink-950 sm:px-6 lg:px-8">
+      <main className="bg-paper px-4 py-6 dark:bg-ink-950 sm:px-6 sm:py-10 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <Breadcrumbs items={breadcrumbs} />
-          <header className="mt-10 max-w-4xl">
+          <header className="mt-6 max-w-4xl sm:mt-10">
             <p className="text-sm font-semibold uppercase tracking-[0.24em] text-brand-primary dark:text-gold-300">
               Tools
             </p>
-            <h1 className="mt-4 text-balance text-4xl font-semibold tracking-tight text-ink-950 dark:text-paper sm:text-5xl">
+            <h1 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-ink-950 dark:text-paper sm:mt-4 sm:text-5xl">
               Free Bazi Calculator
             </h1>
-            <p className="mt-5 text-lg leading-8 text-ink-600 dark:text-ink-300">
+            <p className="mt-3 text-base leading-7 text-ink-600 dark:text-ink-300 sm:mt-5 sm:text-lg sm:leading-8">
               Generate a deterministic Four Pillars chart from a birth date and local civil time. This Ming Li tool
               returns the Day Master, Ten Gods, hidden stems, lunar date, and Five Element balance without storing birth data.
             </p>
-            <div className="mt-8">
+            <div className="mt-8 hidden lg:block">
               <DirectAnswer answer="The free Bazi calculator creates a Four Pillars reference chart from the birth date and local civil birth time you enter. It separates deterministic chart calculation from interpretation, so the pillars stay stable while reading guidance remains educational." />
             </div>
           </header>
-          <div className="mt-10">
-            <BaziCalculator />
+          <div className="mt-6 sm:mt-10">
+            <BaziCalculator
+              mobileIntro={
+                <DirectAnswer answer="The free Bazi calculator creates a Four Pillars reference chart from the birth date and local civil birth time you enter. It separates deterministic chart calculation from interpretation, so the pillars stay stable while reading guidance remains educational." />
+              }
+            />
           </div>
           <section className="mt-14 grid gap-8 lg:grid-cols-3">
             <div className="rounded-lg border border-ink-200 bg-white p-6 dark:border-white/10 dark:bg-white/5">
@@ -198,6 +202,17 @@ export default function BaziCalculatorPage() {
                   Element percentages are not a complete strength judgment. Read them after the birth season, month
                   branch, root support, combinations, and the placement of each symbol. The calculator constructs the
                   chart; the linked guides explain how to interpret it without reducing the result to a single score.
+                </p>
+                <p className="text-sm leading-7 text-ink-600 dark:text-ink-300">
+                  Method references: the calendar conversion uses the open-source{" "}
+                  <a href="https://github.com/6tail/lunar-typescript" target="_blank" rel="noopener noreferrer" className="font-medium text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">
+                    lunar-typescript library
+                  </a>
+                  . Lunar New Year boundary checks can also be compared with the{" "}
+                  <a href="https://www.hko.gov.hk/en/gts/time/conversion.htm" target="_blank" rel="noopener noreferrer" className="font-medium text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">
+                    Hong Kong Observatory conversion tables
+                  </a>
+                  . These references document calendar mechanics; interpretive guidance remains educational.
                 </p>
               </div>
             </div>

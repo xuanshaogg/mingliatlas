@@ -1,14 +1,14 @@
 const baseUrl = process.env.AUDIT_BASE_URL ?? "http://localhost:3107";
 
 const htmlPages = [
-  { path: "/", expectedTitle: "mingliatlas", expectedH1: "Chinese metaphysics guides and free tools", minJsonLd: 3 },
+  { path: "/", expectedTitle: "Mingli Atlas", expectedH1: "Chinese metaphysics guides and free tools", minJsonLd: 3 },
   { path: "/tools", expectedTitle: "Tools", expectedH1: "Free tools", minJsonLd: 2 },
   { path: "/tools/bazi-calculator", expectedTitle: "Free Bazi Calculator", expectedH1: "Free Bazi Calculator", minJsonLd: 3 },
   { path: "/tools/i-ching-oracle", expectedTitle: "Free I Ching Oracle", expectedH1: "Free I Ching Oracle", minJsonLd: 3 },
   { path: "/tools/zodiac-compatibility", expectedTitle: "Chinese Zodiac Compatibility", expectedH1: "Chinese Zodiac Compatibility Calculator", minJsonLd: 3 },
   { path: "/bazi", expectedTitle: "Bazi", expectedH1: "Bazi (Four Pillars of Destiny): Complete Guide", minJsonLd: 3 },
   { path: "/bazi/what-is-bazi", expectedTitle: "What Is Bazi", expectedH1: "What Is Bazi? Four Pillars of Destiny Explained", minJsonLd: 3 },
-  { path: "/bazi/ten-gods", expectedTitle: "Ten Gods", expectedH1: "The Ten Gods (Shi Shen): Bazi Relationship Stars", minJsonLd: 3 },
+  { path: "/bazi/ten-gods", expectedTitle: "Ten Gods", expectedH1: "Ten Gods in Bazi: Complete Shi Shen Table & Meanings", minJsonLd: 3 },
   { path: "/i-ching", expectedTitle: "I Ching", expectedH1: "I Ching (Book of Changes): Complete Guide", minJsonLd: 3 },
   { path: "/i-ching/hexagram-64", expectedTitle: "Hexagram 64", expectedH1: "Hexagram 64: Before Completion (未济)", minJsonLd: 3 },
   { path: "/feng-shui", expectedTitle: "Feng Shui", expectedH1: "Feng Shui: Complete Beginner Guide", minJsonLd: 3 },
