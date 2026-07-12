@@ -21,6 +21,7 @@ function shouldIgnore(href) {
     href.startsWith("/rss.xml") ||
     href.startsWith("/sitemap.xml") ||
     href.startsWith("/llms") ||
+    href.startsWith("/unsubscribe") ||
     href.startsWith("/logo") ||
     href.startsWith("/_next/")
   );

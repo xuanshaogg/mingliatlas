@@ -10,6 +10,7 @@ export interface SolarDate {
   month: number;
   day: number;
   hour: number;
+  minute?: number;
 }
 
 export interface LunarDate {
@@ -28,7 +29,7 @@ export interface LunarDate {
  * @returns Lunar date with gan-zhi information
  */
 export function solarToLunar(date: SolarDate): LunarDate {
-  const solar = Solar.fromYmdHms(date.year, date.month, date.day, date.hour, 0, 0);
+  const solar = Solar.fromYmdHms(date.year, date.month, date.day, date.hour, date.minute ?? 0, 0);
   const lunar = solar.getLunar();
   const month = lunar.getMonth();
 

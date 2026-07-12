@@ -78,7 +78,7 @@ export function sanitizeShareText(value: string, maxLength = SUMMARY_MAX_LENGTH)
 }
 
 export function buildBaziShareParams(chart: BaziChart): Record<string, string | number> {
-  return {
+  const params: Record<string, string | number> = {
     y: chart.input.year,
     m: chart.input.month,
     d: chart.input.day,
@@ -87,6 +87,13 @@ export function buildBaziShareParams(chart: BaziChart): Record<string, string | 
     g: chart.input.gender ?? "not-specified",
     tz: chart.input.timezone,
   };
+
+  if (chart.input.timeBasis === "true-solar" && chart.input.longitude !== undefined) {
+    params.tb = "true-solar";
+    params.lon = chart.input.longitude;
+  }
+
+  return params;
 }
 
 export function buildIChingShareParams(reading: IChingReading): Record<string, string | number> {
@@ -112,14 +119,16 @@ function shapeBaziShareCard(searchParams: URLSearchParams): ShareCardData {
   const minute = parseIntegerParam(searchParams, "min") ?? 0;
   const genderParam = sanitizeShareText(searchParams.get("g") ?? "not-specified", 20);
   const gender = ALLOWED_GENDERS.has(genderParam) ? (genderParam as "female" | "male" | "not-specified") : "not-specified";
-  const timezone = sanitizeShareText(searchParams.get("tz") ?? "Local civil time", 48) || "Local civil time";
+  const timezone = sanitizeShareText(searchParams.get("tz") ?? "Local civil time", 80) || "Local civil time";
+  const timeBasis = searchParams.get("tb") === "true-solar" ? "true-solar" : "civil";
+  const longitude = parseDecimalParam(searchParams, "lon");
 
   if (year === undefined || month === undefined || day === undefined || hour === undefined) {
     return buildFallbackCard("Bazi Share Card", "Add a birth date and time to generate a Four Pillars preview.");
   }
 
   try {
-    const chart = calculateBaziChart({ year, month, day, hour, minute, gender, timezone });
+    const chart = calculateBaziChart({ year, month, day, hour, minute, gender, timezone, timeBasis, longitude });
     const pillars = chart.pillars.map((pillar) => pillar.ganZhi).join(" · ");
 
     return {
@@ -231,6 +240,16 @@ function parseIntegerParam(searchParams: URLSearchParams, key: string): number |
 
   const parsed = Number(value);
   return Number.isSafeInteger(parsed) ? parsed : undefined;
+}
+
+function parseDecimalParam(searchParams: URLSearchParams, key: string): number | undefined {
+  const value = searchParams.get(key);
+  if (!value || !/^-?\d+(?:\.\d+)?$/.test(value)) {
+    return undefined;
+  }
+
+  const parsed = Number(value);
+  return Number.isFinite(parsed) && parsed >= -180 && parsed <= 180 ? parsed : undefined;
 }
 
 function parseLineList(value: string | null): number[] {

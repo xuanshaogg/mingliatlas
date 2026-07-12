@@ -5,10 +5,12 @@ import {
   solarToLunar,
   type GanZhiPillar,
 } from "@/lib/calendar";
+import { Solar } from "lunar-typescript";
 
 export type FiveElement = "Wood" | "Fire" | "Earth" | "Metal" | "Water";
 export type YinYang = "Yang" | "Yin";
 export type PillarKey = "year" | "month" | "day" | "hour";
+export type BaziTimeBasis = "civil" | "true-solar";
 
 export interface StemMeta {
   chinese: string;
@@ -66,10 +68,54 @@ export interface BaziChartInput {
   minute?: number;
   timezone?: string;
   gender?: "female" | "male" | "not-specified";
+  birthplace?: string;
+  longitude?: number;
+  timeBasis?: BaziTimeBasis;
+}
+
+export interface BaziEffectiveTime {
+  year: number;
+  month: number;
+  day: number;
+  hour: number;
+  minute: number;
+}
+
+export interface BaziCalculationDetails {
+  basis: BaziTimeBasis;
+  civilTime: BaziEffectiveTime;
+  effectiveTime: BaziEffectiveTime;
+  correctionMinutes: number;
+  timezoneOffsetMinutes?: number;
+  warnings: string[];
+}
+
+export interface BaziLuckPillar {
+  index: number;
+  ganZhi: string;
+  startYear: number;
+  endYear: number;
+  startAge: number;
+  endAge: number;
+  stem: StemMeta;
+  branch: BranchMeta;
+  stemTenGod: TenGod;
 }
 
 export interface BaziChart {
-  input: Required<Omit<BaziChartInput, "gender">> & Pick<BaziChartInput, "gender">;
+  input: {
+    year: number;
+    month: number;
+    day: number;
+    hour: number;
+    minute: number;
+    timezone: string;
+    gender: "female" | "male" | "not-specified";
+    birthplace: string;
+    longitude?: number;
+    timeBasis: BaziTimeBasis;
+  };
+  calculation: BaziCalculationDetails;
   pillars: BaziChartPillar[];
   dayMaster: StemMeta;
   lunarDate: {
@@ -85,6 +131,9 @@ export interface BaziChart {
   missingElements: FiveElement[];
   readingHighlights: string[];
   notices: string[];
+  luckPillars: BaziLuckPillar[];
+  luckPillarDirection?: "forward" | "reverse";
+  luckPillarStart?: string;
 }
 
 const ELEMENTS: FiveElement[] = ["Wood", "Fire", "Earth", "Metal", "Water"];
@@ -204,16 +253,41 @@ export function calculateBaziChart(input: BaziChartInput): BaziChart {
   const minute = input.minute ?? 0;
   const timezone = input.timezone?.trim() || "Local civil time";
   const gender = input.gender ?? "not-specified";
-  const ganZhi = calculateGanZhi(input.year, input.month, input.day, input.hour);
-  const lunarDate = solarToLunar({ year: input.year, month: input.month, day: input.day, hour: input.hour });
+  const birthplace = input.birthplace?.trim() || "";
+  const timeBasis = input.timeBasis ?? "civil";
+  const effective = resolveEffectiveTime({
+    year: input.year,
+    month: input.month,
+    day: input.day,
+    hour: input.hour,
+    minute,
+    timezone,
+    longitude: input.longitude,
+    timeBasis,
+  });
+  const ganZhi = calculateGanZhi(effective.year, effective.month, effective.day, effective.hour, effective.minute);
+  const lunarDate = solarToLunar(effective);
   const dayMaster = getStemMeta(ganZhi.day.stem);
   const pillars = buildPillars(ganZhi, dayMaster.chinese);
   const elementBalance = calculateElementBalance(pillars);
   const dominantElement = [...elementBalance].sort((a, b) => b.score - a.score)[0];
   const missingElements = elementBalance.filter((score) => score.score === 0).map((score) => score.element);
+  const luck = buildLuckPillars(effective, gender, dayMaster.chinese);
 
   return {
-    input: { ...input, minute, timezone, gender },
+    input: {
+      year: input.year,
+      month: input.month,
+      day: input.day,
+      hour: input.hour,
+      minute,
+      timezone,
+      gender,
+      birthplace,
+      longitude: input.longitude,
+      timeBasis,
+    },
+    calculation: effective.details,
     pillars,
     dayMaster,
     lunarDate: {
@@ -229,11 +303,178 @@ export function calculateBaziChart(input: BaziChartInput): BaziChart {
     missingElements,
     readingHighlights: buildReadingHighlights(dayMaster, dominantElement, elementBalance, pillars),
     notices: [
-      "This chart uses deterministic Gan-Zhi and lunar calendar conversion for the local civil birth time you enter.",
-      "Enter the birth time already adjusted to the birthplace's local civil time; the time-zone field labels the chart and does not convert time.",
+      "This chart uses deterministic Gan-Zhi and lunar calendar conversion for the entered birth time.",
+      timeBasis === "true-solar"
+        ? `True solar time correction applied: ${formatCorrection(effective.details.correctionMinutes)}.`
+        : "Civil time is used as entered. For births close to a time or solar-term boundary, compare both methods.",
+      "The time-zone field identifies the civil clock used. It does not geocode the birthplace or infer longitude.",
       "AI interpretation is intentionally separate from the deterministic chart so generated guidance cannot change the calculated pillars.",
     ],
+    luckPillars: luck.pillars,
+    luckPillarDirection: luck.direction,
+    luckPillarStart: luck.start,
   };
+}
+
+function buildLuckPillars(
+  effective: BaziEffectiveTime,
+  gender: BaziChartInput["gender"],
+  dayStem: string,
+): { pillars: BaziLuckPillar[]; direction?: "forward" | "reverse"; start?: string } {
+  if (gender === "not-specified" || !gender) {
+    return { pillars: [] };
+  }
+
+  const solar = Solar.fromYmdHms(effective.year, effective.month, effective.day, effective.hour, effective.minute, 0);
+  const eightChar = solar.getLunar().getEightChar();
+  const yun = eightChar.getYun(gender === "male" ? 1 : 0, 1);
+  const pillars = yun
+    .getDaYun(9)
+    .filter((pillar) => pillar.getIndex() > 0)
+    .slice(0, 8)
+    .map((pillar) => {
+      const ganZhi = pillar.getGanZhi();
+      const stem = ganZhi.slice(0, 1);
+      const branch = ganZhi.slice(1, 2);
+      return {
+        index: pillar.getIndex(),
+        ganZhi,
+        startYear: pillar.getStartYear(),
+        endYear: pillar.getEndYear(),
+        startAge: pillar.getStartAge(),
+        endAge: pillar.getEndAge(),
+        stem: getStemMeta(stem),
+        branch: getBranchMeta(branch),
+        stemTenGod: calculateTenGod(dayStem, stem),
+      };
+    });
+
+  return {
+    pillars,
+    direction: yun.isForward() ? "forward" : "reverse",
+    start: yun.getStartSolar().toYmd(),
+  };
+}
+
+function resolveEffectiveTime(input: {
+  year: number;
+  month: number;
+  day: number;
+  hour: number;
+  minute: number;
+  timezone: string;
+  longitude?: number;
+  timeBasis: BaziTimeBasis;
+}): { year: number; month: number; day: number; hour: number; minute: number; details: BaziCalculationDetails } {
+  const civilTime = {
+    year: input.year,
+    month: input.month,
+    day: input.day,
+    hour: input.hour,
+    minute: input.minute,
+  };
+  const warnings = collectBoundaryWarnings(civilTime);
+
+  if (input.timeBasis === "civil") {
+    return { ...civilTime, details: { basis: "civil", civilTime, effectiveTime: civilTime, correctionMinutes: 0, warnings } };
+  }
+
+  if (input.longitude === undefined || !Number.isFinite(input.longitude) || input.longitude < -180 || input.longitude > 180) {
+    throw new Error("True solar time requires a birthplace longitude from -180 to 180 degrees.");
+  }
+
+  const timezoneOffsetMinutes = getTimezoneOffsetMinutes(input.timezone, civilTime);
+  if (timezoneOffsetMinutes === undefined) {
+    throw new Error("True solar time requires a valid IANA time zone such as Asia/Shanghai or America/New_York.");
+  }
+
+  const dayOfYear = Math.floor((Date.UTC(input.year, input.month - 1, input.day) - Date.UTC(input.year, 0, 1)) / 86_400_000) + 1;
+  const radians = (2 * Math.PI * (dayOfYear - 81)) / 365;
+  const equationOfTime = 9.87 * Math.sin(2 * radians) - 7.53 * Math.cos(radians) - 1.5 * Math.sin(radians);
+  const standardMeridian = (timezoneOffsetMinutes / 60) * 15;
+  const correctionMinutes = Math.round(4 * (input.longitude - standardMeridian) + equationOfTime);
+  const adjusted = new Date(Date.UTC(input.year, input.month - 1, input.day, input.hour, input.minute) + correctionMinutes * 60_000);
+  const effectiveTime = {
+    year: adjusted.getUTCFullYear(),
+    month: adjusted.getUTCMonth() + 1,
+    day: adjusted.getUTCDate(),
+    hour: adjusted.getUTCHours(),
+    minute: adjusted.getUTCMinutes(),
+  };
+
+  warnings.push(
+    `The chart uses an estimated true solar correction based on ${input.longitude.toFixed(2)}° longitude and the civil offset at the entered time.`,
+  );
+  warnings.push(...collectBoundaryWarnings(effectiveTime));
+
+  return {
+    ...effectiveTime,
+    details: { basis: "true-solar", civilTime, effectiveTime, correctionMinutes, timezoneOffsetMinutes, warnings: [...new Set(warnings)] },
+  };
+}
+
+function getTimezoneOffsetMinutes(timezone: string, local: BaziEffectiveTime): number | undefined {
+  if (!timezone || timezone === "Local civil time") return undefined;
+
+  try {
+    const formatter = new Intl.DateTimeFormat("en-CA", {
+      timeZone: timezone,
+      hourCycle: "h23",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    const desired = Date.UTC(local.year, local.month - 1, local.day, local.hour, local.minute);
+    let candidate = desired;
+    let offset = 0;
+    for (let attempt = 0; attempt < 3; attempt += 1) {
+      const parts = Object.fromEntries(formatter.formatToParts(new Date(candidate)).map((part) => [part.type, part.value]));
+      const asUtc = Date.UTC(
+        Number(parts.year),
+        Number(parts.month) - 1,
+        Number(parts.day),
+        Number(parts.hour),
+        Number(parts.minute),
+      );
+      offset = Math.round((asUtc - candidate) / 60_000);
+      candidate = desired - offset * 60_000;
+    }
+    return offset;
+  } catch {
+    return undefined;
+  }
+}
+
+function collectBoundaryWarnings(time: BaziEffectiveTime): string[] {
+  const warnings: string[] = [];
+  const minutes = time.hour * 60 + time.minute;
+  const nearestHourBoundary = Math.min(...Array.from({ length: 12 }, (_, index) => Math.abs(minutes - (index * 120 + 60))));
+  if (nearestHourBoundary <= 20) {
+    warnings.push("This birth time is within 20 minutes of a traditional two-hour branch boundary; a small time correction may change the Hour Pillar.");
+  }
+
+  try {
+    const solar = Solar.fromYmdHms(time.year, time.month, time.day, time.hour, time.minute, 0);
+    const lunar = solar.getLunar();
+    const previous = lunar.getPrevJie().getSolar();
+    const next = lunar.getNextJie().getSolar();
+    const distance = Math.min(solar.subtractMinute(previous), next.subtractMinute(solar));
+    if (distance <= 24 * 60) {
+      warnings.push("This birth time is within 24 hours of a solar-term boundary; compare the result with a qualified practitioner if the Month Pillar matters.");
+    }
+  } catch {
+    // Boundary warnings are supplemental and must never block a chart.
+  }
+
+  return warnings;
+}
+
+function formatCorrection(minutes: number): string {
+  const sign = minutes >= 0 ? "+" : "−";
+  const absolute = Math.abs(minutes);
+  return `${sign}${absolute} minutes`;
 }
 
 function buildPillars(ganZhi: Record<PillarKey, GanZhiPillar>, dayStem: string): BaziChartPillar[] {
@@ -323,6 +564,14 @@ function validateChartInput(input: BaziChartInput): void {
 
   if (input.minute !== undefined && (!Number.isInteger(input.minute) || input.minute < 0 || input.minute > 59)) {
     throw new Error("Birth minute must be from 0 to 59.");
+  }
+
+  if (input.birthplace && input.birthplace.trim().length > 80) {
+    throw new Error("Birthplace note must be 80 characters or fewer.");
+  }
+
+  if (input.longitude !== undefined && (!Number.isFinite(input.longitude) || input.longitude < -180 || input.longitude > 180)) {
+    throw new Error("Birthplace longitude must be between -180 and 180 degrees.");
   }
 }
 

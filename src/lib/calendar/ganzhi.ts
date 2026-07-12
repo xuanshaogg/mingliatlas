@@ -46,9 +46,10 @@ export function calculateGanZhi(
   year: number,
   month: number,
   day: number,
-  hour: number
+  hour: number,
+  minute = 0,
 ): GanZhi {
-  const solar = Solar.fromYmdHms(year, month, day, hour, 0, 0);
+  const solar = Solar.fromYmdHms(year, month, day, hour, minute, 0);
   const lunar = solar.getLunar();
 
   return {

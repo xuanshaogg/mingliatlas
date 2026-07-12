@@ -49,4 +49,53 @@ describe("Bazi chart calculation", () => {
       "Birth day is not valid",
     );
   });
+
+  it("adds traditional luck pillars when gender is provided", () => {
+    const chart = calculateBaziChart({
+      year: 1990,
+      month: 1,
+      day: 1,
+      hour: 12,
+      gender: "female",
+      timezone: "Asia/Shanghai",
+    });
+
+    expect(chart.luckPillarDirection).toBe("forward");
+    expect(chart.luckPillars.slice(0, 3).map((pillar) => pillar.ganZhi)).toEqual(["丁丑", "戊寅", "己卯"]);
+    expect(chart.luckPillars[0].startYear).toBe(1991);
+    expect(chart.luckPillarStart).toBe("1991-06-21");
+  });
+
+  it("keeps luck pillars empty when the direction rule is underspecified", () => {
+    const chart = calculateBaziChart({ year: 1990, month: 1, day: 1, hour: 12 });
+
+    expect(chart.luckPillars).toEqual([]);
+    expect(chart.luckPillarDirection).toBeUndefined();
+  });
+
+  it("applies true solar time correction and preserves the calculation details", () => {
+    const chart = calculateBaziChart({
+      year: 1990,
+      month: 1,
+      day: 1,
+      hour: 12,
+      timezone: "Asia/Shanghai",
+      longitude: 121.47,
+      timeBasis: "true-solar",
+    });
+
+    expect(chart.calculation.basis).toBe("true-solar");
+    expect(chart.calculation.timezoneOffsetMinutes).toBe(480);
+    expect(chart.calculation.correctionMinutes).toBe(2);
+    expect(chart.calculation.effectiveTime.minute).toBe(2);
+  });
+
+  it("requires a valid timezone and longitude for true solar time", () => {
+    expect(() =>
+      calculateBaziChart({ year: 1990, month: 1, day: 1, hour: 12, timeBasis: "true-solar", longitude: 121.47 }),
+    ).toThrow("valid IANA time zone");
+    expect(() =>
+      calculateBaziChart({ year: 1990, month: 1, day: 1, hour: 12, timezone: "Asia/Shanghai", timeBasis: "true-solar" }),
+    ).toThrow("requires a birthplace longitude");
+  });
 });

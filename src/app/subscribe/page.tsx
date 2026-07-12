@@ -70,7 +70,7 @@ export default async function SubscribePage({ searchParams }: SubscribePageProps
         </form>
 
         <p className="mt-6 text-sm leading-6 text-ink-500 dark:text-ink-400">
-          We store your email only for site updates. Already subscribed? Explore the knowledge base or return <Link href="/" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">home</Link>.
+          We store your email only for site updates. You can <Link href="/unsubscribe" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">unsubscribe at any time</Link>, or return <Link href="/" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">home</Link>.
         </p>
       </div>
     </main>

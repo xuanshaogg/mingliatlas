@@ -3,6 +3,7 @@ import {
   contactSubmissionSchema,
   parseFormBody,
   subscriberSubmissionSchema,
+  unsubscribeSubmissionSchema,
 } from "../../src/lib/forms/submissions";
 
 describe("public form submissions", () => {
@@ -29,5 +30,9 @@ describe("public form submissions", () => {
       email: "reader@example.com",
       website: "",
     });
+  });
+
+  it("uses the same normalized email contract for unsubscribe requests", () => {
+    expect(unsubscribeSubmissionSchema.parse({ email: " Reader@Example.com ", website: "" }).email).toBe("reader@example.com");
   });
 });

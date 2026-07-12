@@ -23,11 +23,12 @@ export default function SubscribeSuccessPage() {
         Subscription received
       </h1>
       <p className="mt-4 text-lg leading-8 text-ink-600 dark:text-ink-300">
-        Your email has been added to the update list. You can unsubscribe from any future message.
+        Your email has been added to the update list. You can remove it from the list at any time.
       </p>
-      <Link href="/subscribe" className="mt-8 rounded-full bg-brand-primary px-5 py-3 text-sm font-semibold text-white">
-        Back to subscribe
-      </Link>
+      <div className="mt-8 flex flex-wrap gap-3">
+        <Link href="/unsubscribe" className="rounded-full border border-ink-200 px-5 py-3 text-sm font-semibold text-ink-800 dark:border-white/10 dark:text-ink-200">Unsubscribe</Link>
+        <Link href="/subscribe" className="rounded-full bg-brand-primary px-5 py-3 text-sm font-semibold text-white">Back to subscribe</Link>
+      </div>
     </main>
   );
 }

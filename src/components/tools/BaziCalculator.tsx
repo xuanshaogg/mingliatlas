@@ -1,9 +1,9 @@
 "use client";
 
 import { useRef, useState, type ReactNode } from "react";
-import { Calculator, RotateCcw } from "lucide-react";
+import { Calculator, Clock3, MapPin, RotateCcw, SunMedium } from "lucide-react";
 import BaziChartResult from "@/components/tools/BaziChartResult";
-import { calculateBaziChart, type BaziChart, type BaziChartInput } from "@/lib/bazi";
+import { calculateBaziChart, type BaziChart, type BaziChartInput, type BaziTimeBasis } from "@/lib/bazi";
 import { trackEvent } from "@/lib/analytics";
 
 interface FormState {
@@ -11,6 +11,9 @@ interface FormState {
   birthTime: string;
   timezone: string;
   gender: "female" | "male" | "not-specified";
+  birthplace: string;
+  longitude: string;
+  timeBasis: BaziTimeBasis;
 }
 
 const DEFAULT_INPUT: FormState = {
@@ -18,6 +21,9 @@ const DEFAULT_INPUT: FormState = {
   birthTime: "12:00",
   timezone: "Local civil time",
   gender: "not-specified",
+  birthplace: "",
+  longitude: "",
+  timeBasis: "civil",
 };
 
 interface BaziCalculatorProps {
@@ -27,6 +33,7 @@ interface BaziCalculatorProps {
 function parseInput(state: FormState): BaziChartInput {
   const [year, month, day] = state.birthDate.split("-").map(Number);
   const [hour, minute] = state.birthTime.split(":").map(Number);
+  const longitude = state.longitude.trim() ? Number(state.longitude) : undefined;
 
   return {
     year,
@@ -36,6 +43,9 @@ function parseInput(state: FormState): BaziChartInput {
     minute,
     timezone: state.timezone,
     gender: state.gender,
+    birthplace: state.birthplace,
+    longitude,
+    timeBasis: state.timeBasis,
   };
 }
 
@@ -128,22 +138,92 @@ export default function BaziCalculator({ mobileIntro }: BaziCalculatorProps) {
 
           <details className="mt-5 border-t border-ink-100 pt-4 dark:border-white/10">
             <summary className="cursor-pointer text-sm font-semibold text-brand-primary dark:text-gold-300">
-              Optional chart labels
+              Precision settings
             </summary>
             <div className="mt-4 space-y-5">
               <label className="block">
-                <span className="text-sm font-medium text-ink-900 dark:text-paper">Birthplace or time zone note</span>
+                <span className="flex items-center gap-2 text-sm font-medium text-ink-900 dark:text-paper">
+                  <MapPin className="h-4 w-4 text-brand-primary dark:text-gold-300" aria-hidden="true" />
+                  Birthplace note
+                </span>
                 <input
                   type="text"
+                  value={form.birthplace}
+                  onChange={(event) => updateForm("birthplace", event.target.value)}
+                  placeholder="Example: New York"
+                  maxLength={80}
+                  className="mt-2 h-11 w-full rounded-md border border-ink-200 bg-white px-3 text-sm text-ink-950 outline-none transition focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 dark:border-white/10 dark:bg-ink-950 dark:text-paper"
+                />
+              </label>
+
+              <label className="block">
+                <span className="flex items-center gap-2 text-sm font-medium text-ink-900 dark:text-paper">
+                  <Clock3 className="h-4 w-4 text-brand-primary dark:text-gold-300" aria-hidden="true" />
+                  IANA time zone
+                </span>
+                <input
+                  type="text"
+                  list="bazi-time-zones"
                   value={form.timezone}
                   onChange={(event) => updateForm("timezone", event.target.value)}
-                  placeholder="Example: New York local time"
+                  placeholder="Example: America/New_York"
+                  maxLength={80}
                   className="mt-2 h-11 w-full rounded-md border border-ink-200 bg-white px-3 text-sm text-ink-950 outline-none transition focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 dark:border-white/10 dark:bg-ink-950 dark:text-paper"
                 />
                 <span className="mt-2 block text-xs leading-5 text-ink-500 dark:text-ink-400">
-                  Enter local civil time. This note labels the chart and does not convert time zones.
+                  Use an IANA name when applying true solar time. Civil time itself is always read as the local clock time you entered.
                 </span>
               </label>
+
+              <div>
+                <span className="flex items-center gap-2 text-sm font-medium text-ink-900 dark:text-paper">
+                  <SunMedium className="h-4 w-4 text-brand-primary dark:text-gold-300" aria-hidden="true" />
+                  Time basis
+                </span>
+                <div className="mt-2 grid grid-cols-2 gap-2" role="group" aria-label="Time basis">
+                  {([
+                    ["civil", "Civil time"],
+                    ["true-solar", "True solar time"],
+                  ] as const).map(([value, label]) => (
+                    <button
+                      key={value}
+                      type="button"
+                      aria-pressed={form.timeBasis === value}
+                      onClick={() => updateForm("timeBasis", value)}
+                      className={`min-h-11 rounded-md border px-3 text-sm font-semibold transition ${
+                        form.timeBasis === value
+                          ? "border-brand-primary bg-brand-primary text-white dark:border-gold-400 dark:bg-gold-400 dark:text-ink-950"
+                          : "border-ink-200 text-ink-700 hover:border-brand-primary hover:text-brand-primary dark:border-white/10 dark:text-ink-200 dark:hover:border-gold-300 dark:hover:text-gold-200"
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+                <p className="mt-2 text-xs leading-5 text-ink-500 dark:text-ink-400">
+                  Civil time is the default. True solar time uses longitude and the time-zone offset to correct the entered clock time.
+                </p>
+              </div>
+
+              {form.timeBasis === "true-solar" ? (
+                <label className="block">
+                  <span className="text-sm font-medium text-ink-900 dark:text-paper">Birthplace longitude</span>
+                  <input
+                    type="number"
+                    min={-180}
+                    max={180}
+                    step={0.01}
+                    value={form.longitude}
+                    onChange={(event) => updateForm("longitude", event.target.value)}
+                    placeholder="Example: -74.01"
+                    className="mt-2 h-11 w-full rounded-md border border-ink-200 bg-white px-3 text-sm text-ink-950 outline-none transition focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 dark:border-white/10 dark:bg-ink-950 dark:text-paper"
+                    required
+                  />
+                  <span className="mt-2 block text-xs leading-5 text-ink-500 dark:text-ink-400">
+                    East longitudes are positive and west longitudes are negative. The result will show the exact correction applied.
+                  </span>
+                </label>
+              ) : null}
 
               <label className="block">
                 <span className="text-sm font-medium text-ink-900 dark:text-paper">Gender (optional)</span>
@@ -159,6 +239,23 @@ export default function BaziCalculator({ mobileIntro }: BaziCalculatorProps) {
               </label>
             </div>
           </details>
+
+          <datalist id="bazi-time-zones">
+            <option value="Asia/Shanghai" />
+            <option value="Asia/Hong_Kong" />
+            <option value="Asia/Taipei" />
+            <option value="Asia/Tokyo" />
+            <option value="Asia/Singapore" />
+            <option value="Asia/Kolkata" />
+            <option value="Europe/London" />
+            <option value="Europe/Paris" />
+            <option value="America/New_York" />
+            <option value="America/Chicago" />
+            <option value="America/Denver" />
+            <option value="America/Los_Angeles" />
+            <option value="Australia/Sydney" />
+            <option value="Pacific/Auckland" />
+          </datalist>
 
           {error ? (
             <p className="mt-5 rounded-md border border-brand-200 bg-brand-50 px-3 py-2 text-sm text-brand-900 dark:border-brand-500/30 dark:bg-brand-500/10 dark:text-brand-100">

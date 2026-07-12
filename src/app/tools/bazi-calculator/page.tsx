@@ -62,20 +62,20 @@ const softwareSchema = buildWebApplicationSchema({
   alternateName: ["Ming Li Bazi Calculator", "Four Pillars Calculator"],
   url: `${SITE.url}/tools/bazi-calculator`,
   description:
-    "A browser-based Bazi calculator for Four Pillars, Day Master, Ten Gods, hidden stems, and Five Element balance.",
-  featureList: ["Four Pillars chart", "Day Master", "Ten Gods", "hidden stems", "Five Element balance"],
+    "A browser-based Bazi calculator for Four Pillars, Day Master, Ten Gods, hidden stems, Five Element balance, and traditional Luck Pillars.",
+  featureList: ["Four Pillars chart", "Day Master", "Ten Gods", "hidden stems", "Five Element balance", "10-year Luck Pillars", "optional true solar time"],
 });
 
 const baziCalculatorFaqs: FAQ[] = [
   {
     question: "What does the free Bazi calculator show?",
     answer:
-      "It shows the year, month, day, and hour pillars, the Day Master, Ten Gods, hidden stems, lunar date, Five Element balance, and deterministic reading cues.",
+      "It shows the year, month, day, and hour pillars, the Day Master, Ten Gods, hidden stems, lunar date, Five Element balance, deterministic reading cues, and traditional 10-year Luck Pillars when a gender direction rule is selected.",
   },
   {
     question: "Should I enter local time or convert to another time zone?",
     answer:
-      "Enter the birth time as local civil time at the birthplace. The time-zone note labels the chart and does not convert the date or hour.",
+      "Enter the birth time as the local civil clock time at the birthplace. Civil time is the default. For an optional true solar time calculation, enter an IANA time zone and the birthplace longitude; the result shows the correction applied.",
   },
   {
     question: "Does the calculator save my birth details?",
@@ -90,7 +90,7 @@ const baziCalculatorFaqs: FAQ[] = [
   {
     question: "How accurate is the Bazi calculator?",
     answer:
-      "The same entered date and time always produce the same chart. This browser version uses the local civil date and time you enter; it does not automatically convert time zones, birthplace longitude, or true solar time. Verify births close to a day or two-hour boundary with a qualified practitioner.",
+      "The same entered details always produce the same deterministic chart. Civil time is read exactly as entered. True solar time is an optional estimated correction using longitude, the entered time zone, and the equation of time. Births close to midnight, a two-hour branch boundary, daylight-saving change, or solar-term boundary should be independently checked.",
   },
   {
     question: "Does Five Element balance show whether a chart is strong or weak?",
@@ -105,9 +105,9 @@ const baziHowToSchema = buildHowToSchema({
   url: `${SITE.url}/tools/bazi-calculator`,
   steps: [
     "Enter the birth date and the birth time as local civil time at the birthplace.",
-    "Add an optional birthplace or time-zone note so the chart label stays clear.",
-    "Calculate the Four Pillars chart and review the Day Master, Ten Gods, and hidden stems.",
-    "Use the Five Element balance and reading cues as learning context, not as a fixed prediction.",
+    "Optionally add an IANA time zone and longitude to apply an estimated true solar time correction.",
+    "Calculate the Four Pillars chart and review the Day Master, Ten Gods, hidden stems, and Luck Pillars if selected.",
+    "Use the Five Element balance, timing cycles, and reading cues as learning context, not as a fixed prediction.",
   ],
 });
 
@@ -194,9 +194,10 @@ export default function BaziCalculatorPage() {
                   Repeating the same inputs produces the same chart.
                 </p>
                 <p>
-                  The birthplace and time-zone fields are labels in this version; they do not automatically shift the
-                  entered hour or apply longitude-based true solar time. Births close to midnight, a two-hour branch
-                  boundary, daylight-saving changes, or a solar-term boundary deserve an independent check.
+                  Civil time is used exactly as entered. The optional true solar mode applies an estimated longitude
+                  correction and shows the effective time in the result. The correction does not geocode a birthplace,
+                  and births close to midnight, a two-hour branch boundary, daylight-saving changes, or a solar-term
+                  boundary deserve an independent check.
                 </p>
                 <p>
                   Element percentages are not a complete strength judgment. Read them after the birth season, month

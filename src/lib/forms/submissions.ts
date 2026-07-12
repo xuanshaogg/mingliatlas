@@ -14,6 +14,11 @@ export const subscriberSubmissionSchema = z.object({
   website: z.string().max(200).optional().default(""),
 });
 
+export const unsubscribeSubmissionSchema = z.object({
+  email: emailSchema,
+  website: z.string().max(200).optional().default(""),
+});
+
 export function parseFormBody(body: string): Record<string, string> {
   return Object.fromEntries(new URLSearchParams(body));
 }

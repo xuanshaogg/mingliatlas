@@ -16,7 +16,8 @@
     "audit:links": "tsx scripts/audit-links.mjs",
     "audit:local": "node scripts/audit-local-site.mjs",
     "audit:current-content": "node scripts/audit-current-content.mjs",
-    "db:migrate": "prisma migrate deploy"
+    "db:migrate": "prisma migrate deploy",
+    "ops:report": "tsx scripts/operations-report.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
