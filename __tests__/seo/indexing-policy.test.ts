@@ -82,6 +82,17 @@ describe("indexing policy", () => {
     expect(metadata.robots).toEqual({ index: false, follow: true });
   });
 
+  it("maps named zodiac bibliography to relevant source records", () => {
+    const citations = resolveCitationUrls<{ label: string; url?: string }>([
+      { label: "Martin Palmer, T'ung Shu: The Ancient Chinese Almanac (1986)" },
+      { label: "Wolfram Eberhard, A Dictionary of Chinese Symbols (1986)" },
+    ]);
+
+    expect(citations.every((citation) => citation.url?.startsWith("https://books.google.com/"))).toBe(
+      true
+    );
+  });
+
   it("permanently consolidates the duplicate What Is Bazi article", async () => {
     const redirects = await nextConfig.redirects?.();
     expect(redirects).toEqual(

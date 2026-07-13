@@ -29,6 +29,14 @@ const CITATION_URL_RULES: Array<{ match: RegExp; url: string }> = [
     url: "https://www.hko.gov.hk/en/gts/time/conversion.htm",
   },
   {
+    match: /Martin Palmer|T['’]?ung Shu/i,
+    url: "https://books.google.com/books?q=Martin+Palmer+Tung+Shu+Ancient+Chinese+Almanac",
+  },
+  {
+    match: /Wolfram Eberhard|Dictionary of Chinese Symbols/i,
+    url: "https://books.google.com/books?q=Wolfram+Eberhard+Dictionary+of+Chinese+Symbols",
+  },
+  {
     match: /Classical Four Pillars practice|Xu Ziping/i,
     url: "https://zh.wikisource.org/wiki/%E6%B7%B5%E6%B5%B7%E5%AD%90%E5%B9%B3",
   },

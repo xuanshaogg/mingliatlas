@@ -1416,7 +1416,7 @@ const animalPages = animals.map((animal) =>
         label: "Martin Palmer, T'ung Shu: The Ancient Chinese Almanac (1986)",
         source:
           "Animal years and compatibility groups are preserved in traditional Chinese almanac practice.",
-        url: "https://www.hko.gov.hk/en/gts/time/conversion.htm",
+        url: "https://books.google.com/books?q=Martin+Palmer+Tung+Shu+Ancient+Chinese+Almanac",
       },
     ],
     sections: animalSections[animal.slug] ?? [
@@ -1601,7 +1601,7 @@ const compatibility = buildPage({
       label: "Martin Palmer, T'ung Shu: The Ancient Chinese Almanac (1986)",
       source:
         "Harmony and clash signs are used in relationship and date-selection contexts in traditional almanac practice.",
-      url: "https://www.hko.gov.hk/en/gts/time/conversion.htm",
+      url: "https://books.google.com/books?q=Martin+Palmer+Tung+Shu+Ancient+Chinese+Almanac",
     },
   ],
   sections: [
