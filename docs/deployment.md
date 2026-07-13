@@ -32,10 +32,12 @@ Node.js 22 is used because the current local OpenClaw runtime and Next.js 16 sta
 
 - GitHub repository: `https://github.com/xuanshaogg/mingliatlas`
 - Vercel project: `mingliatlascom/mingliatlas`
-- Vercel production deployment: `dpl_B86YpJaW1chms9oYghkymeJ7UQH4`
+- Vercel production deployment: `dpl_4738GJBzHexBUkESyc9CMQTE2DCF`
 - Production URL: `https://mingliatlas.com`
 - WWW URL: `https://www.mingliatlas.com`
 - Vercel fallback URL: `https://mingliatlas.vercel.app`
+- Immutable deployment URL: `https://mingliatlas-7obbc5092-mingliatlascom.vercel.app`
+- Deployment status verified on 2026-07-13: `Ready`
 - Cloudflare DNS:
   - `A @ 76.76.21.21`
   - `CNAME www cname.vercel-dns.com`
@@ -54,10 +56,19 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=
 NEXT_PUBLIC_SITE_URL=
 ```
 
-### Future / Optional
+### Optional
 
 ```bash
-OPENAI_API_KEY=
+NEXT_PUBLIC_PLAUSIBLE_DOMAIN=
+NEXT_PUBLIC_GA_MEASUREMENT_ID=
+AI_PROVIDER_BASE_URL=
+AI_PROVIDER_API_KEY=
+AI_PROVIDER_MODEL=
+AI_INTERPRETATION_ENABLED=false
+RESEND_API_KEY=
+EMAIL_FROM=
+CONTACT_NOTIFICATION_EMAIL=
+SUBSCRIPTION_TOKEN_SECRET=
 ```
 
 ## GitHub Secrets / Variables
@@ -97,7 +108,9 @@ For production, run migrations in a controlled release step before or during dep
 - The initial Prisma schema was applied to Supabase on 2026-05-24 and `pnpm exec prisma migrate status` reports the database schema is up to date.
 - Runtime `DATABASE_URL` uses a dedicated `mingliatlas_app` Postgres role through Supabase pooler, not the Supabase owner password.
 
-## Current Blockers
+## Current Limitations
 
 - Preview environment variables and PR preview deployment comments still need GitHub/Vercel integration verification.
-- AI interpretation now has a production DeepSeek provider. RAG/source-corpus retrieval is still pending.
+- AI interpretation is intentionally disabled in production. `/api/ai/interpret` returns HTTP 503 while deterministic calculator results remain available.
+- Resend variables are configured in production, but a real mailbox delivery test was not sent during the 2026-07-13 acceptance pass.
+- Authentication, saved charts, and an editorial CMS are represented in the data model but do not yet have public application flows.

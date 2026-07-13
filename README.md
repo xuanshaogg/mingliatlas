@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# mingliatlas
 
-## Getting Started
+English-language Chinese metaphysics reference site and deterministic tool suite for Bazi, Ziwei Doushu, I Ching, Feng Shui, and the Chinese Zodiac.
 
-First, run the development server:
+- Production: <https://mingliatlas.com>
+- Framework: Next.js 16 App Router, React 19, TypeScript, Tailwind CSS 4
+- Data: Supabase PostgreSQL through Prisma 7
+- Email: Resend transactional email
+- Hosting: Vercel
+- Package manager: pnpm 11
+
+The complete architecture, current indexing policy, delivery history, production state, verification results, and maintenance workflow are recorded in [docs/PROJECT-ARCHITECTURE-AND-DELIVERY-2026-07-13.md](docs/PROJECT-ARCHITECTURE-AND-DELIVERY-2026-07-13.md).
+
+Operational and deployment references:
+
+- [docs/OPERATIONS.md](docs/OPERATIONS.md)
+- [docs/deployment.md](docs/deployment.md)
+- [docs/analytics.md](docs/analytics.md)
+
+## Local development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install --frozen-lockfile
+cp .env.example .env.local
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Only database-backed routes require `DATABASE_URL`. Never commit `.env.local`, API keys, database credentials, or signed subscription links.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Required checks
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm test -- --run
+pnpm exec tsc --noEmit
+pnpm lint
+pnpm build
+pnpm audit:links
+```
 
-## Learn More
+After starting the production build locally, run:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+AUDIT_BASE_URL=http://localhost:3000 pnpm audit:local
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The AI interpretation endpoint is intentionally disabled in production. The three core tools remain fully functional because their results are calculated locally with deterministic code.
