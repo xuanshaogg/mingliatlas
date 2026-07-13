@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Mail } from "lucide-react";
+import TrackedForm from "@/components/analytics/TrackedForm";
 import { footerNavigation, primaryNavigation, SITE } from "@/lib/constants";
 
 export default function Footer() {
@@ -60,7 +61,14 @@ export default function Footer() {
           <p className="mt-4 text-sm leading-6 text-ink-300">
             Get practical explainers on Chinese metaphysics, seasonal cycles, and new free tools.
           </p>
-          <form className="mt-5 flex gap-2" action="/api/subscribe" method="post">
+          <TrackedForm
+            className="mt-5 flex gap-2"
+            action="/api/subscribe"
+            method="post"
+            eventName="subscribe_requested"
+            properties={{ source: "footer" }}
+          >
+            <input type="hidden" name="source" value="footer" />
             <div className="absolute left-[-9999px]" aria-hidden="true">
               <label htmlFor="footer-website">Website</label>
               <input id="footer-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
@@ -84,7 +92,7 @@ export default function Footer() {
             >
               <Mail className="h-4 w-4" aria-hidden="true" />
             </button>
-          </form>
+          </TrackedForm>
         </div>
       </div>
 

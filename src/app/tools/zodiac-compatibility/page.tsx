@@ -93,7 +93,7 @@ const zodiacHowToSchema = buildHowToSchema({
 
 const relatedLinks = [
   { title: "Chinese Zodiac", href: "/chinese-zodiac", description: "Learn the 12 animal cycle and yearly context." },
-  { title: "Zodiac Compatibility Guide", href: "/chinese-zodiac/compatibility", description: "Read harmony, triads, and clash pairs in detail." },
+  { title: "Zodiac Compatibility Guide", href: "/blog/chinese-zodiac-compatibility-chart", description: "Read harmony, triads, and clash pairs in detail." },
   { title: "Bazi Relationships", href: "/bazi/relationships", description: "Compare zodiac context with a deeper Four Pillars approach." },
 ];
 

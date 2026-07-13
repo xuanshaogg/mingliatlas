@@ -367,7 +367,7 @@ const zodiacLinks = [
 ];
 
 const compareLinks = [
-  { title: "What Is Bazi?", href: "/blog/what-is-bazi", description: "Return to the Four Pillars foundation." },
+  { title: "What Is Bazi?", href: "/bazi/what-is-bazi", description: "Return to the Four Pillars foundation." },
   { title: "Chinese vs Western Astrology", href: "/learn/chinese-vs-western-astrology", description: "Read the broader learning-center comparison." },
   { title: "Bazi Overview", href: "/bazi", description: "Go deeper into the main Bazi knowledge hub." },
 ];
@@ -1277,7 +1277,7 @@ function createEditorialPost(seed: EditorialSeed): BlogPost {
               Compare the topic with at least one foundation page before treating it as advice. The same symbolic word can shift meaning across systems: an element in Bazi describes chart relationships, an element in Feng Shui can describe material or directional qualities, and an image in the I Ching describes a changing situation.
             </p>
             <p>
-              This comparison is what keeps the article useful for GEO and human readers. It gives AI systems clear entity relationships and gives readers a way to verify the claim inside the site structure instead of accepting an isolated paragraph.
+              Use the linked foundation to check the entity, rule, and calculation behind the claim. A comparison is useful when it shows which facts are shared across systems and which conclusions belong only to the method used on this page.
             </p>
           </>
         ),
@@ -1798,24 +1798,54 @@ const highIntentBlogPosts: BlogPost[] = [
   buildPage({
     slug: "day-master-bazi-complete-guide",
     path: "/blog/day-master-bazi-complete-guide",
-    title: "Day Master in Bazi: The Day Stem Explained with Classical Sources",
-    description: "The Bazi Day Master is the heavenly stem of the day pillar. Learn how to find it, read all 10 Day Masters, judge strength, and check the classical sources.",
+    title: "Bazi Day Master: Day Stem Meaning & Classical Sources",
+    description:
+      "The Bazi Day Master is the heavenly stem of the day pillar. Learn how to find it, read all 10 Day Masters, judge strength, and check the classical sources.",
     category: "Bazi Guide",
     entityName: "Day Master Bazi Complete Guide",
     entityType: "BlogPosting",
-    subtitle: "A practical, non-fatalistic walkthrough of the Day Master concept and the ten Heavenly Stems in Bazi.",
+    subtitle:
+      "A practical, non-fatalistic walkthrough of the Day Master concept and the ten Heavenly Stems in Bazi.",
     directAnswer:
       "The Day Master is the heavenly stem of the day pillar in a Bazi chart. It represents the self and becomes the reference point for the other stems, branches, and Ten Gods. Classical sources such as Yuan Hai Zi Ping and San Ming Tong Hui establish this day-stem method. Your Day Master is one of the 10 Heavenly Stems.",
     breadcrumbs: breadcrumbs("Day Master Complete Guide", "/blog/day-master-bazi-complete-guide"),
-    schema: { headline: "", description: "", url: "", datePublished: "2026-04-20", dateModified: "2026-07-12" },
+    schema: {
+      headline: "",
+      description: "",
+      url: "",
+      datePublished: "2026-04-20",
+      dateModified: "2026-07-13",
+    },
     stats: [
-      { value: "10", label: "Heavenly Stems", description: "Five elements expressed as yin or yang form the ten Day Master types." },
-      { value: "4", label: "Pillars", description: "Year, month, day, and hour pillars frame the Day Master's context." },
-      { value: "5", label: "Elements", description: "Wood, Fire, Earth, Metal, and Water shape every Day Master profile." },
+      {
+        value: "10",
+        label: "Heavenly Stems",
+        description: "Five elements expressed as yin or yang form the ten Day Master types.",
+      },
+      {
+        value: "4",
+        label: "Pillars",
+        description: "Year, month, day, and hour pillars frame the Day Master's context.",
+      },
+      {
+        value: "5",
+        label: "Elements",
+        description: "Wood, Fire, Earth, Metal, and Water shape every Day Master profile.",
+      },
     ],
     citations: [
-      { label: "《渊海子平》Yuan Hai Zi Ping (Xu Sheng, Song Dynasty, ~1100 CE)", source: "Classical Zi Ping source for treating the day stem as the self-reference point in Four Pillars analysis.", url: "https://zh.wikisource.org/wiki/%E6%B7%B5%E6%B5%B7%E5%AD%90%E5%B9%B3" },
-      { label: "《三命通会》San Ming Tong Hui (Wan Minying, Ming Dynasty, ~1578 CE)", source: "Ming-dynasty compendium covering the ten Heavenly Stems and their relationships across the four pillars.", url: "https://zh.wikisource.org/wiki/%E4%B8%89%E5%91%BD%E9%80%9A%E6%9C%83" },
+      {
+        label: "《渊海子平》Yuan Hai Zi Ping (Xu Sheng, Song Dynasty, ~1100 CE)",
+        source:
+          "Classical Zi Ping source for treating the day stem as the self-reference point in Four Pillars analysis.",
+        url: "https://zh.wikisource.org/wiki/%E6%B7%B5%E6%B5%B7%E5%AD%90%E5%B9%B3",
+      },
+      {
+        label: "《三命通会》San Ming Tong Hui (Wan Minying, Ming Dynasty, ~1578 CE)",
+        source:
+          "Ming-dynasty compendium covering the ten Heavenly Stems and their relationships across the four pillars.",
+        url: "https://zh.wikisource.org/wiki/%E4%B8%89%E5%91%BD%E9%80%9A%E6%9C%83",
+      },
     ],
     sections: [
       {
@@ -1823,10 +1853,15 @@ const highIntentBlogPosts: BlogPost[] = [
         content: (
           <>
             <p>
-              <strong>Day master is the day stem — the heavenly stem of the day pillar.</strong> In a <TermLink term="Bazi">Bazi</TermLink> chart, the Day Master is the Heavenly Stem of the day pillar (also called the &quot;day master source&quot; or &quot;day stem source&quot;). It is the reference point that the rest of the chart is read against.
+              <strong>Day master is the day stem — the heavenly stem of the day pillar.</strong> In
+              a <TermLink term="Bazi">Bazi</TermLink> chart, the Day Master is the Heavenly Stem of
+              the day pillar (also called the &quot;day master source&quot; or &quot;day stem
+              source&quot;). It is the reference point that the rest of the chart is read against.
             </p>
             <p>
-              In <cite>Yuan Hai Zi Ping</cite> and the later <cite>San Ming Tong Hui</cite> synthesis, the day stem is the self-reference point. Other stems and branches are read in relation to it as resource, peer, output, wealth, or authority roles.
+              In <cite>Yuan Hai Zi Ping</cite> and the later <cite>San Ming Tong Hui</cite>{" "}
+              synthesis, the day stem is the self-reference point. Other stems and branches are read
+              in relation to it as resource, peer, output, wealth, or authority roles.
             </p>
           </>
         ),
@@ -1836,39 +1871,101 @@ const highIntentBlogPosts: BlogPost[] = [
         content: (
           <>
             <p>
-              The five elements each appear in yang and yin form: Yang Wood (Jia) and Yin Wood (Yi); Yang Fire (Bing) and Yin Fire (Ding); Yang Earth (Wu) and Yin Earth (Ji); Yang Metal (Geng) and Yin Metal (Xin); Yang Water (Ren) and Yin Water (Gui).
+              The five elements each appear in yang and yin form: Yang Wood (Jia) and Yin Wood (Yi);
+              Yang Fire (Bing) and Yin Fire (Ding); Yang Earth (Wu) and Yin Earth (Ji); Yang Metal
+              (Geng) and Yin Metal (Xin); Yang Water (Ren) and Yin Water (Gui).
             </p>
             <p>
-              Each Day Master has a recognizable temperament pattern. Read the dedicated guides for each type:
+              Each Day Master has a recognizable temperament pattern. Read the dedicated guides for
+              each type:
             </p>
-            <ul className="list-disc pl-6 space-y-1">
-              <li><Link href="/blog/jia-wood-day-master" className={linkClass}>Jia Wood (Yang Wood) Day Master — the tall tree</Link></li>
-              <li><Link href="/blog/yi-wood-day-master" className={linkClass}>Yi Wood (Yin Wood) Day Master — the flowering vine</Link></li>
-              <li><Link href="/blog/bing-fire-day-master" className={linkClass}>Bing Fire (Yang Fire) Day Master — the sun</Link></li>
-              <li><Link href="/blog/ding-fire-day-master" className={linkClass}>Ding Fire (Yin Fire) Day Master — the candle flame</Link></li>
-              <li><Link href="/blog/wu-earth-day-master" className={linkClass}>Wu Earth (Yang Earth) Day Master — the mountain</Link></li>
-              <li><Link href="/blog/ji-earth-day-master" className={linkClass}>Ji Earth (Yin Earth) Day Master — the cultivated soil</Link></li>
-              <li><Link href="/blog/geng-metal-day-master" className={linkClass}>Geng Metal (Yang Metal) Day Master — the axe</Link></li>
-              <li><Link href="/blog/xin-metal-day-master" className={linkClass}>Xin Metal (Yin Metal) Day Master — the refined blade</Link></li>
-              <li><Link href="/blog/ren-water-day-master" className={linkClass}>Ren Water (Yang Water) Day Master — the ocean</Link></li>
-              <li><Link href="/blog/gui-water-day-master" className={linkClass}>Gui Water (Yin Water) Day Master — the mist</Link></li>
+            <ul className="list-disc space-y-1 pl-6">
+              <li>
+                <Link href="/blog/jia-wood-day-master" className={linkClass}>
+                  Jia Wood (Yang Wood) Day Master — the tall tree
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog/yi-wood-day-master" className={linkClass}>
+                  Yi Wood (Yin Wood) Day Master — the flowering vine
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog/bing-fire-day-master" className={linkClass}>
+                  Bing Fire (Yang Fire) Day Master — the sun
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog/ding-fire-day-master" className={linkClass}>
+                  Ding Fire (Yin Fire) Day Master — the candle flame
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog/wu-earth-day-master" className={linkClass}>
+                  Wu Earth (Yang Earth) Day Master — the mountain
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog/ji-earth-day-master" className={linkClass}>
+                  Ji Earth (Yin Earth) Day Master — the cultivated soil
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog/geng-metal-day-master" className={linkClass}>
+                  Geng Metal (Yang Metal) Day Master — the axe
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog/xin-metal-day-master" className={linkClass}>
+                  Xin Metal (Yin Metal) Day Master — the refined blade
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog/ren-water-day-master" className={linkClass}>
+                  Ren Water (Yang Water) Day Master — the ocean
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog/gui-water-day-master" className={linkClass}>
+                  Gui Water (Yin Water) Day Master — the mist
+                </Link>
+              </li>
             </ul>
             <p>
-              Each Day Master has a recognizable temperament pattern. Yang Wood is steady and structural; Yin Wood is adaptive and relational. Yang Fire is expansive; Yin Fire is focused. The yin/yang distinction matters as much as the element itself.
+              Each Day Master has a recognizable temperament pattern. Yang Wood is steady and
+              structural; Yin Wood is adaptive and relational. Yang Fire is expansive; Yin Fire is
+              focused. The yin/yang distinction matters as much as the element itself.
             </p>
           </>
         ),
-        stats: [{ value: "10", label: "Day Master types", description: "Five elements x yin/yang = ten distinct Day Master profiles." }],
+        stats: [
+          {
+            value: "10",
+            label: "Day Master types",
+            description: "Five elements x yin/yang = ten distinct Day Master profiles.",
+          },
+        ],
       },
       {
         heading: "Strong vs. weak Day Master",
         content: (
           <>
             <p>
-              A Day Master is described as strong when supportive elements (same element + producing element) are abundant, and weak when draining or controlling elements dominate. Neither is good or bad on its own.
+              A Day Master is described as strong when supportive elements (same element + producing
+              element) are abundant, and weak when draining or controlling elements dominate.
+              Neither is good or bad on its own.
             </p>
             <p>
-              The strength reading tells you which elements are <em>favorable</em> for balance. A strong Day Master usually benefits from output, wealth, or officer elements; a weak one benefits from resource or peer elements.
+              The strength reading tells you which elements are <em>favorable</em> for balance. A
+              strong Day Master usually benefits from output, wealth, or officer elements; a weak
+              one benefits from resource or peer elements.
+            </p>
+            <p>
+              Strength cannot be judged by counting elements alone. Start with the month branch and
+              season, then check whether the Day Master has roots in the branches, support from
+              Resource or Peer stems, and pressure from Output, Wealth, or Authority. Combinations
+              and hidden stems can change how much support is actually available, so a single
+              element count is only a preliminary observation.
             </p>
           </>
         ),
@@ -1878,10 +1975,24 @@ const highIntentBlogPosts: BlogPost[] = [
         content: (
           <>
             <p>
-              Start with the <Link href="/tools/bazi-calculator" className={linkClass}>Bazi calculator</Link> to find your Day Master. Then read the <Link href="/blog/day-master-meaning" className={linkClass}>Day Master meaning overview</Link> for a faster summary, or the <Link href="/bazi" className={linkClass}>Bazi hub</Link> for the full system.
+              Start with the{" "}
+              <Link href="/tools/bazi-calculator" className={linkClass}>
+                Bazi calculator
+              </Link>{" "}
+              to find your Day Master. Then read the{" "}
+              <Link href="/blog/day-master-meaning" className={linkClass}>
+                Day Master meaning overview
+              </Link>{" "}
+              for a faster summary, or the{" "}
+              <Link href="/bazi" className={linkClass}>
+                Bazi hub
+              </Link>{" "}
+              for the full system.
             </p>
             <p>
-              The healthiest use is reflective: identify which elements you naturally lean on, and notice which ones you may be neglecting in environment, relationships, or daily routine.
+              The healthiest use is reflective: identify which elements you naturally lean on, and
+              notice which ones you may be neglecting in environment, relationships, or daily
+              routine.
             </p>
           </>
         ),
@@ -1891,20 +2002,35 @@ const highIntentBlogPosts: BlogPost[] = [
         content: (
           <>
             <p>
-              <strong>Q: Is Day Master the same as the day stem?</strong><br />
-              Yes. The Day Master (日主, Ri Zhu) is the day stem (日干, Ri Gan) — the heavenly stem of the day pillar in your Bazi chart. The two terms are used interchangeably in modern and classical Bazi practice.
+              <strong>Q: Is Day Master the same as the day stem?</strong>
+              <br />
+              Yes. The Day Master (日主, Ri Zhu) is the day stem (日干, Ri Gan) — the heavenly stem
+              of the day pillar in your Bazi chart. The two terms are used interchangeably in modern
+              and classical Bazi practice.
             </p>
             <p>
-              <strong>Q: What is the day master in Bazi?</strong><br />
-              The Day Master is the heavenly stem of your day pillar. It represents the self — the anchor around which every other symbol in the chart is interpreted. Your day master determines which of the Ten Gods each other stem becomes in relation to you.
+              <strong>Q: What is the day master in Bazi?</strong>
+              <br />
+              The Day Master is the heavenly stem of your day pillar. It represents the self — the
+              anchor around which every other symbol in the chart is interpreted. Your day master
+              determines which of the Ten Gods each other stem becomes in relation to you.
             </p>
             <p>
-              <strong>Q: Where can I find my day master source?</strong><br />
-              Your day master source is your day pillar — specifically, the heavenly stem at the top of your day pillar. Use our <Link href="/tools/bazi-calculator" className={linkClass}>Bazi calculator</Link> to generate your full four pillars chart and identify your day master instantly.
+              <strong>Q: Where can I find my day master source?</strong>
+              <br />
+              Your day master source is your day pillar — specifically, the heavenly stem at the top
+              of your day pillar. Use our{" "}
+              <Link href="/tools/bazi-calculator" className={linkClass}>
+                Bazi calculator
+              </Link>{" "}
+              to generate your full four pillars chart and identify your day master instantly.
             </p>
             <p>
-              <strong>Q: Is day master the same as the heavenly stem of the day pillar?</strong><br />
-              Yes. The day master is the heavenly stem of the day pillar. This is the classical definition from Yuan Hai Zi Ping (《渊海子平》). The day stem on top of the day pillar is the Day Master — it is that simple.
+              <strong>Q: Is day master the same as the heavenly stem of the day pillar?</strong>
+              <br />
+              Yes. The day master is the heavenly stem of the day pillar. This is the classical
+              definition from Yuan Hai Zi Ping (《渊海子平》). The day stem on top of the day pillar
+              is the Day Master — it is that simple.
             </p>
           </>
         ),
@@ -1922,24 +2048,55 @@ const highIntentBlogPosts: BlogPost[] = [
   buildPage({
     slug: "chinese-zodiac-compatibility-chart",
     path: "/blog/chinese-zodiac-compatibility-chart",
-    title: "Chinese Zodiac Compatibility Chart: All 12 Signs, Triads & Clashes",
-    description: "Compare all 12 Chinese zodiac signs in one chart, including three-harmony triads, six harmony pairs, clash pairs, and links to detailed sign compatibility.",
+    title: "Chinese Zodiac Compatibility Chart: All 12 Signs",
+    description:
+      "Compare all 12 Chinese zodiac signs in one chart, including three-harmony triads, six harmony pairs, clash pairs, and links to detailed sign compatibility.",
     category: "Zodiac Guide",
     entityName: "Chinese Zodiac Compatibility Chart",
     entityType: "BlogPosting",
-    subtitle: "A reference chart for comparing any two of the 12 zodiac signs through branch relationship patterns.",
+    subtitle:
+      "A reference chart for comparing any two of the 12 zodiac signs through branch relationship patterns.",
     directAnswer:
       "A Chinese zodiac compatibility chart maps how the 12 animal signs interact through three-harmony triads, six harmony pairs, and six clash pairs. The chart is a quick reference, not a verdict: harmony pairs share rhythm, triads share long-term values, and clashes signal differences in pace that benefit from clearer communication.",
     breadcrumbs: breadcrumbs("Compatibility Chart", "/blog/chinese-zodiac-compatibility-chart"),
-    schema: { headline: "", description: "", url: "", datePublished: "2026-04-22", dateModified: "2026-07-12" },
+    schema: {
+      headline: "",
+      description: "",
+      url: "",
+      datePublished: "2026-04-22",
+      dateModified: "2026-07-13",
+    },
     stats: [
-      { value: "12", label: "Animal signs", description: "Rat, Ox, Tiger, Rabbit, Dragon, Snake, Horse, Goat, Monkey, Rooster, Dog, Pig." },
-      { value: "4", label: "Three-harmony triads", description: "Each triad groups three signs that share a long-term affinity." },
-      { value: "6", label: "Clash pairs", description: "Each animal has one opposing sign across the 12-branch cycle." },
+      {
+        value: "12",
+        label: "Animal signs",
+        description:
+          "Rat, Ox, Tiger, Rabbit, Dragon, Snake, Horse, Goat, Monkey, Rooster, Dog, Pig.",
+      },
+      {
+        value: "4",
+        label: "Three-harmony triads",
+        description: "Each triad groups three signs that share a long-term affinity.",
+      },
+      {
+        value: "6",
+        label: "Clash pairs",
+        description: "Each animal has one opposing sign across the 12-branch cycle.",
+      },
     ],
     citations: [
-      { label: "《渊海子平》Yuan Hai Zi Ping (Song Dynasty, ~1100 CE)", source: "Classical Zi Ping reference for reading Earthly Branch combinations and clashes in chart context.", url: "https://zh.wikisource.org/wiki/%E6%B7%B5%E6%B5%B7%E5%AD%90%E5%B9%B3" },
-      { label: "《三命通会》San Ming Tong Hui (Ming Dynasty, ~1578 CE)", source: "Classical reference for branch harmony groups, six combinations, clashes, and transformation conditions.", url: "https://zh.wikisource.org/wiki/%E4%B8%89%E5%91%BD%E9%80%9A%E6%9C%83" },
+      {
+        label: "《渊海子平》Yuan Hai Zi Ping (Song Dynasty, ~1100 CE)",
+        source:
+          "Classical Zi Ping reference for reading Earthly Branch combinations and clashes in chart context.",
+        url: "https://zh.wikisource.org/wiki/%E6%B7%B5%E6%B5%B7%E5%AD%90%E5%B9%B3",
+      },
+      {
+        label: "《三命通会》San Ming Tong Hui (Ming Dynasty, ~1578 CE)",
+        source:
+          "Classical reference for branch harmony groups, six combinations, clashes, and transformation conditions.",
+        url: "https://zh.wikisource.org/wiki/%E4%B8%89%E5%91%BD%E9%80%9A%E6%9C%83",
+      },
     ],
     sections: [
       {
@@ -1947,10 +2104,14 @@ const highIntentBlogPosts: BlogPost[] = [
         content: (
           <>
             <p>
-              The <TermLink term="Chinese Zodiac">Chinese Zodiac</TermLink> chart compares two animals through three lenses: three-harmony triads (long-term affinity), six harmony pairs (everyday rhythm), and six clash pairs (contrasting pace).
+              The <TermLink term="Chinese Zodiac">Chinese Zodiac</TermLink> chart compares two
+              animals through three lenses: three-harmony triads (long-term affinity), six harmony
+              pairs (everyday rhythm), and six clash pairs (contrasting pace).
             </p>
             <p>
-              In <cite>Yuan Hai Zi Ping</cite> and <cite>San Ming Tong Hui</cite>, these are Earthly Branch relationship patterns. They describe interaction conditions inside a larger chart, not fixed relationship outcomes.
+              In <cite>Yuan Hai Zi Ping</cite> and <cite>San Ming Tong Hui</cite>, these are Earthly
+              Branch relationship patterns. They describe interaction conditions inside a larger
+              chart, not fixed relationship outcomes.
             </p>
           </>
         ),
@@ -1960,36 +2121,100 @@ const highIntentBlogPosts: BlogPost[] = [
         content: (
           <>
             <p>
-              Use this as a lookup table: the triad column shows the other two signs in the same three-harmony group, the harmony column shows the six-combination partner, and the clash column shows the branch directly opposite in the 12-sign cycle.
+              Use this as a lookup table: the triad column shows the other two signs in the same
+              three-harmony group, the harmony column shows the six-combination partner, and the
+              clash column shows the branch directly opposite in the 12-sign cycle.
             </p>
             <div className="overflow-x-auto">
               <table className="w-full min-w-[44rem] border-collapse text-left text-sm">
                 <thead>
-                  <tr className="border-b border-ink-300 dark:border-white/20">
+                  <tr className="border-ink-300 border-b dark:border-white/20">
                     <th className="py-3 pr-4">Sign</th>
                     <th className="py-3 pr-4">Triad partners</th>
                     <th className="py-3 pr-4">Harmony pair</th>
                     <th className="py-3">Clash pair</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-ink-200 dark:divide-white/10">
-                  <tr><td className="py-3 pr-4">Rat</td><td className="py-3 pr-4">Dragon, Monkey</td><td className="py-3 pr-4">Ox</td><td className="py-3">Horse</td></tr>
-                  <tr><td className="py-3 pr-4">Ox</td><td className="py-3 pr-4">Snake, Rooster</td><td className="py-3 pr-4">Rat</td><td className="py-3">Goat</td></tr>
-                  <tr><td className="py-3 pr-4">Tiger</td><td className="py-3 pr-4">Horse, Dog</td><td className="py-3 pr-4">Pig</td><td className="py-3">Monkey</td></tr>
-                  <tr><td className="py-3 pr-4">Rabbit</td><td className="py-3 pr-4">Goat, Pig</td><td className="py-3 pr-4">Dog</td><td className="py-3">Rooster</td></tr>
-                  <tr><td className="py-3 pr-4">Dragon</td><td className="py-3 pr-4">Rat, Monkey</td><td className="py-3 pr-4">Rooster</td><td className="py-3">Dog</td></tr>
-                  <tr><td className="py-3 pr-4">Snake</td><td className="py-3 pr-4">Ox, Rooster</td><td className="py-3 pr-4">Monkey</td><td className="py-3">Pig</td></tr>
-                  <tr><td className="py-3 pr-4">Horse</td><td className="py-3 pr-4">Tiger, Dog</td><td className="py-3 pr-4">Goat</td><td className="py-3">Rat</td></tr>
-                  <tr><td className="py-3 pr-4">Goat</td><td className="py-3 pr-4">Rabbit, Pig</td><td className="py-3 pr-4">Horse</td><td className="py-3">Ox</td></tr>
-                  <tr><td className="py-3 pr-4">Monkey</td><td className="py-3 pr-4">Rat, Dragon</td><td className="py-3 pr-4">Snake</td><td className="py-3">Tiger</td></tr>
-                  <tr><td className="py-3 pr-4">Rooster</td><td className="py-3 pr-4">Ox, Snake</td><td className="py-3 pr-4">Dragon</td><td className="py-3">Rabbit</td></tr>
-                  <tr><td className="py-3 pr-4">Dog</td><td className="py-3 pr-4">Tiger, Horse</td><td className="py-3 pr-4">Rabbit</td><td className="py-3">Dragon</td></tr>
-                  <tr><td className="py-3 pr-4">Pig</td><td className="py-3 pr-4">Rabbit, Goat</td><td className="py-3 pr-4">Tiger</td><td className="py-3">Snake</td></tr>
+                <tbody className="divide-ink-200 divide-y dark:divide-white/10">
+                  <tr>
+                    <td className="py-3 pr-4">Rat</td>
+                    <td className="py-3 pr-4">Dragon, Monkey</td>
+                    <td className="py-3 pr-4">Ox</td>
+                    <td className="py-3">Horse</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 pr-4">Ox</td>
+                    <td className="py-3 pr-4">Snake, Rooster</td>
+                    <td className="py-3 pr-4">Rat</td>
+                    <td className="py-3">Goat</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 pr-4">Tiger</td>
+                    <td className="py-3 pr-4">Horse, Dog</td>
+                    <td className="py-3 pr-4">Pig</td>
+                    <td className="py-3">Monkey</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 pr-4">Rabbit</td>
+                    <td className="py-3 pr-4">Goat, Pig</td>
+                    <td className="py-3 pr-4">Dog</td>
+                    <td className="py-3">Rooster</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 pr-4">Dragon</td>
+                    <td className="py-3 pr-4">Rat, Monkey</td>
+                    <td className="py-3 pr-4">Rooster</td>
+                    <td className="py-3">Dog</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 pr-4">Snake</td>
+                    <td className="py-3 pr-4">Ox, Rooster</td>
+                    <td className="py-3 pr-4">Monkey</td>
+                    <td className="py-3">Pig</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 pr-4">Horse</td>
+                    <td className="py-3 pr-4">Tiger, Dog</td>
+                    <td className="py-3 pr-4">Goat</td>
+                    <td className="py-3">Rat</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 pr-4">Goat</td>
+                    <td className="py-3 pr-4">Rabbit, Pig</td>
+                    <td className="py-3 pr-4">Horse</td>
+                    <td className="py-3">Ox</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 pr-4">Monkey</td>
+                    <td className="py-3 pr-4">Rat, Dragon</td>
+                    <td className="py-3 pr-4">Snake</td>
+                    <td className="py-3">Tiger</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 pr-4">Rooster</td>
+                    <td className="py-3 pr-4">Ox, Snake</td>
+                    <td className="py-3 pr-4">Dragon</td>
+                    <td className="py-3">Rabbit</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 pr-4">Dog</td>
+                    <td className="py-3 pr-4">Tiger, Horse</td>
+                    <td className="py-3 pr-4">Rabbit</td>
+                    <td className="py-3">Dragon</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 pr-4">Pig</td>
+                    <td className="py-3 pr-4">Rabbit, Goat</td>
+                    <td className="py-3 pr-4">Tiger</td>
+                    <td className="py-3">Snake</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
             <p>
-              A harmony or triad does not guarantee compatibility, and a clash does not predict failure. The table describes branch geometry; communication, shared values, and the two complete Bazi charts provide the human context.
+              A harmony or triad does not guarantee compatibility, and a clash does not predict
+              failure. The table describes branch geometry; communication, shared values, and the
+              two complete Bazi charts provide the human context.
             </p>
           </>
         ),
@@ -1999,19 +2224,36 @@ const highIntentBlogPosts: BlogPost[] = [
         content: (
           <>
             <p>
-              <strong>Chinese zodiac triads</strong> (three-harmony groups, or 三合 sān hé) are the four groups of three animal signs that share long-term affinity. The four triads are:
+              <strong>Chinese zodiac triads</strong> (three-harmony groups, or 三合 sān hé) are the
+              four groups of three animal signs that share long-term affinity. The four triads are:
             </p>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>Rat — Dragon — Monkey</strong> (Water frame)</li>
-              <li><strong>Ox — Snake — Rooster</strong> (Metal frame)</li>
-              <li><strong>Tiger — Horse — Dog</strong> (Fire frame)</li>
-              <li><strong>Rabbit — Goat — Pig</strong> (Wood frame)</li>
+            <ul className="list-disc space-y-2 pl-6">
+              <li>
+                <strong>Rat — Dragon — Monkey</strong> (Water frame)
+              </li>
+              <li>
+                <strong>Ox — Snake — Rooster</strong> (Metal frame)
+              </li>
+              <li>
+                <strong>Tiger — Horse — Dog</strong> (Fire frame)
+              </li>
+              <li>
+                <strong>Rabbit — Goat — Pig</strong> (Wood frame)
+              </li>
             </ul>
             <p>
-              Signs inside the same Chinese zodiac triad tend to share a long-term sense of values and direction. These groups are read from the Earthly Branch relationships: when three branches from the same trine appear in a chart, they create a strong elemental frame.
+              Signs inside the same Chinese zodiac triad tend to share a long-term sense of values
+              and direction. These groups are read from the Earthly Branch relationships: when three
+              branches from the same trine appear in a chart, they create a strong elemental frame.
             </p>
             <p>
-              Triads are most useful for friendships, family dynamics, and long-running collaborations where stability matters more than instant chemistry. For quick relationship checks, our <Link href="/tools/zodiac-compatibility" className={linkClass}>zodiac compatibility tool</Link> can compare any two signs.
+              Triads are most useful for friendships, family dynamics, and long-running
+              collaborations where stability matters more than instant chemistry. For quick
+              relationship checks, our{" "}
+              <Link href="/tools/zodiac-compatibility" className={linkClass}>
+                zodiac compatibility tool
+              </Link>{" "}
+              can compare any two signs.
             </p>
           </>
         ),
@@ -2021,10 +2263,13 @@ const highIntentBlogPosts: BlogPost[] = [
         content: (
           <>
             <p>
-              The six harmony (Liu He) pairs are Rat-Ox, Tiger-Pig, Rabbit-Dog, Dragon-Rooster, Snake-Monkey, and Horse-Goat. These pairs often find an easier daily rhythm and complementary energy.
+              The six harmony (Liu He) pairs are Rat-Ox, Tiger-Pig, Rabbit-Dog, Dragon-Rooster,
+              Snake-Monkey, and Horse-Goat. These pairs often find an easier daily rhythm and
+              complementary energy.
             </p>
             <p>
-              Harmony pairs tend to feel cooperative, but they still need shared values to thrive long term.
+              Harmony pairs tend to feel cooperative, but they still need shared values to thrive
+              long term.
             </p>
           </>
         ),
@@ -2034,10 +2279,39 @@ const highIntentBlogPosts: BlogPost[] = [
         content: (
           <>
             <p>
-              The six clash pairs are Rat-Horse, Ox-Goat, Tiger-Monkey, Rabbit-Rooster, Dragon-Dog, and Snake-Pig. Each is exactly six positions apart in the 12-branch cycle.
+              The six clash pairs are Rat-Horse, Ox-Goat, Tiger-Monkey, Rabbit-Rooster, Dragon-Dog,
+              and Snake-Pig. Each is exactly six positions apart in the 12-branch cycle.
             </p>
             <p>
-              A clash signals differences in pace and priority. It often produces growth when both sides communicate openly, and friction when they do not.
+              A clash signals differences in pace and priority. It often produces growth when both
+              sides communicate openly, and friction when they do not.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "What best match and worst match labels leave out",
+        content: (
+          <>
+            <p>
+              A “best match” label usually points to a harmony pair or a shared triad. It does not
+              compare communication, values, life stage, or the month, day, and hour branches in
+              either person&apos;s chart. Two people with a year-sign harmony can still have
+              demanding branch interactions elsewhere, while a year-sign clash can be balanced by
+              compatible Day Masters and shared real-world priorities.
+            </p>
+            <p>
+              Use the chart to identify the type of conversation a pair may need. Harmony pairs
+              benefit from making implicit cooperation explicit. Triad partners can test whether
+              their shared direction also works in daily life. Clash pairs should discuss pace,
+              independence, decision authority, and how conflict is repaired. Those questions are
+              more useful than a percentage score with no calculation behind it.
+            </p>
+            <p>
+              For a deeper comparison, record both complete birth dates and use Bazi to compare Day
+              Masters, spouse palaces, branch combinations, current Luck Pillars, and the seasonal
+              strength of each chart. The year animals remain a quick cultural reference; they
+              should not be promoted into a complete relationship diagnosis.
             </p>
           </>
         ),
@@ -2047,7 +2321,19 @@ const highIntentBlogPosts: BlogPost[] = [
         content: (
           <>
             <p>
-              Use the <Link href="/tools/zodiac-compatibility" className={linkClass}>compatibility tool</Link> to compare any two signs, then read the <Link href="/blog/chinese-zodiac-compatibility-guide" className={linkClass}>compatibility guide</Link> for context. For deeper readings, compare full <Link href="/bazi" className={linkClass}>Bazi</Link> charts.
+              Use the{" "}
+              <Link href="/tools/zodiac-compatibility" className={linkClass}>
+                compatibility tool
+              </Link>{" "}
+              to compare any two signs, then read the{" "}
+              <Link href="/blog/chinese-zodiac-compatibility-guide" className={linkClass}>
+                compatibility guide
+              </Link>{" "}
+              for context. For deeper readings, compare full{" "}
+              <Link href="/bazi" className={linkClass}>
+                Bazi
+              </Link>{" "}
+              charts.
             </p>
           </>
         ),
@@ -2056,8 +2342,16 @@ const highIntentBlogPosts: BlogPost[] = [
     faqs: zodiacCompatibilityFaqs,
     relatedLinks: [
       ...zodiacLinks,
-      { title: "Earthly Branches", href: "/bazi/earthly-branches", description: "Read the branch combinations and clashes behind the animal signs." },
-      { title: "Year of the Dragon", href: "/chinese-zodiac/dragon", description: "Open the site's highest-impression zodiac sign guide." },
+      {
+        title: "Earthly Branches",
+        href: "/bazi/earthly-branches",
+        description: "Read the branch combinations and clashes behind the animal signs.",
+      },
+      {
+        title: "Year of the Dragon",
+        href: "/chinese-zodiac/dragon",
+        description: "Open the site's highest-impression zodiac sign guide.",
+      },
     ],
     cta: {
       title: "Compare two zodiac signs",
@@ -2070,23 +2364,56 @@ const highIntentBlogPosts: BlogPost[] = [
     slug: "i-ching-beginners-reading-guide",
     path: "/blog/i-ching-beginners-reading-guide",
     title: "How to Cast and Read an I Ching Hexagram: A Beginner's Reading Guide",
-    description: "A step-by-step beginner guide to casting an I Ching hexagram, reading the lines, and interpreting changing lines without overcomplicating the practice.",
+    description:
+      "A step-by-step beginner guide to casting an I Ching hexagram, reading the lines, and interpreting changing lines without overcomplicating the practice.",
     category: "I Ching Guide",
     entityName: "I Ching Beginners Reading Guide",
     entityType: "BlogPosting",
-    subtitle: "A practical walkthrough from question framing to hexagram interpretation, written for first-time readers.",
+    subtitle:
+      "A practical walkthrough from question framing to hexagram interpretation, written for first-time readers.",
     directAnswer:
       "To read an I Ching hexagram, frame a clear question, cast six lines using coins or yarrow stalks, identify the resulting hexagram and any changing lines, and read the hexagram statement together with the line texts. Beginners benefit from focusing on question framing first, since a vague question produces a vague reading.",
-    breadcrumbs: breadcrumbs("I Ching Beginners Reading Guide", "/blog/i-ching-beginners-reading-guide"),
-    schema: { headline: "", description: "", url: "", datePublished: "2026-04-25", dateModified: "2026-05-20" },
+    breadcrumbs: breadcrumbs(
+      "I Ching Beginners Reading Guide",
+      "/blog/i-ching-beginners-reading-guide"
+    ),
+    schema: {
+      headline: "",
+      description: "",
+      url: "",
+      datePublished: "2026-04-25",
+      dateModified: "2026-07-13",
+    },
     stats: [
-      { value: "64", label: "Hexagrams", description: "Each hexagram is a unique six-line configuration." },
-      { value: "6", label: "Lines per cast", description: "A reading produces six stacked yin or yang lines." },
-      { value: "3", label: "Coins", description: "The most common modern casting method uses three coins per line." },
+      {
+        value: "64",
+        label: "Hexagrams",
+        description: "Each hexagram is a unique six-line configuration.",
+      },
+      {
+        value: "6",
+        label: "Lines per cast",
+        description: "A reading produces six stacked yin or yang lines.",
+      },
+      {
+        value: "3",
+        label: "Coins",
+        description: "The most common modern casting method uses three coins per line.",
+      },
     ],
     citations: [
-      { label: "I Ching tradition", source: "The Book of Changes uses 64 hexagrams built from six lines and changing-line dynamics." },
-      { label: "Coin method tradition", source: "Three-coin casting is a widely used modern alternative to yarrow stalk divination." },
+      {
+        label: "Richard Wilhelm & Cary Baynes, The I Ching or Book of Changes (1950)",
+        source:
+          "Standard English translation covering hexagram Judgments, Images, and changing-line texts.",
+        url: "https://books.google.com/books?q=Wilhelm+Baynes+I+Ching+Book+of+Changes",
+      },
+      {
+        label: "Alfred Huang, The Complete I Ching (2004)",
+        source:
+          "Modern complete translation with casting guidance and commentary for all 64 hexagrams.",
+        url: "https://books.google.com/books?q=Alfred+Huang+The+Complete+I+Ching",
+      },
     ],
     sections: [
       {
@@ -2094,11 +2421,12 @@ const highIntentBlogPosts: BlogPost[] = [
         content: (
           <>
             <p>
-              The <TermLink term="I Ching">I Ching</TermLink> answers questions in proportion to the clarity of the question. Avoid yes/no framing for situational readings; ask &ldquo;what attitude best serves this situation?&rdquo; or &ldquo;what is the dynamic at play?&rdquo;
+              The <TermLink term="I Ching">I Ching</TermLink> answers questions in proportion to the
+              clarity of the question. Avoid yes/no framing for situational readings; ask
+              &ldquo;what attitude best serves this situation?&rdquo; or &ldquo;what is the dynamic
+              at play?&rdquo;
             </p>
-            <p>
-              Beginners often jump to casting too quickly. The question is half the reading.
-            </p>
+            <p>Beginners often jump to casting too quickly. The question is half the reading.</p>
           </>
         ),
       },
@@ -2107,24 +2435,37 @@ const highIntentBlogPosts: BlogPost[] = [
         content: (
           <>
             <p>
-              The simplest method uses three coins. Assign 3 to heads and 2 to tails, then sum the three coins for each line. A total of 6 is changing yin, 7 is stable yang, 8 is stable yin, and 9 is changing yang. Cast six times, building the hexagram from the bottom up.
+              The simplest method uses three coins. Assign 3 to heads and 2 to tails, then sum the
+              three coins for each line. A total of 6 is changing yin, 7 is stable yang, 8 is stable
+              yin, and 9 is changing yang. Cast six times, building the hexagram from the bottom up.
             </p>
             <p>
-              According to <cite>Coin method tradition</cite>, this method preserves the same probability balance as yarrow stalks for most practical purposes.
+              The three-coin method is easy to reproduce, but its moving-line probabilities differ
+              from the traditional yarrow-stalk method. Record which method you used instead of
+              treating casts from the two methods as statistically identical.
             </p>
           </>
         ),
-        stats: [{ value: "6-9", label: "Line totals", description: "6 and 9 are changing lines; 7 and 8 are stable lines." }],
+        stats: [
+          {
+            value: "6-9",
+            label: "Line totals",
+            description: "6 and 9 are changing lines; 7 and 8 are stable lines.",
+          },
+        ],
       },
       {
         heading: "Step 3: identify the hexagram",
         content: (
           <>
             <p>
-              Read the hexagram from the bottom line to the top. Look up the resulting figure in the 64-hexagram set to find its name, judgment, and image. This is your primary hexagram.
+              Read the hexagram from the bottom line to the top. Look up the resulting figure in the
+              64-hexagram set to find its name, judgment, and image. This is your primary hexagram.
             </p>
             <p>
-              According to <cite>I Ching tradition</cite>, the judgment describes the situation and the image suggests an attitude or response.
+              In the <cite>Wilhelm-Baynes translation</cite>, the Judgment frames the situation and
+              the Image turns the trigram relationship into an example of conduct. Compare another
+              named translation when one English phrase appears unusually decisive.
             </p>
           </>
         ),
@@ -2134,10 +2475,16 @@ const highIntentBlogPosts: BlogPost[] = [
         content: (
           <>
             <p>
-              If any lines were 6 or 9, they are changing lines. Read each changing-line text in order from bottom to top, then flip those lines to derive a second hexagram. The second hexagram describes where the situation is moving.
+              If any lines were 6 or 9, they are changing lines. Read each changing-line text in
+              order from bottom to top, then flip those lines to derive a second hexagram. The
+              second hexagram describes where the situation is moving.
             </p>
             <p>
-              Read the <Link href="/blog/changing-lines-i-ching" className={linkClass}>changing lines guide</Link> for a deeper walkthrough.
+              Read the{" "}
+              <Link href="/blog/changing-lines-i-ching" className={linkClass}>
+                changing lines guide
+              </Link>{" "}
+              for a deeper walkthrough.
             </p>
           </>
         ),
@@ -2147,10 +2494,63 @@ const highIntentBlogPosts: BlogPost[] = [
         content: (
           <>
             <p>
-              The healthiest reading is reflective. Ask what the hexagram and changing lines suggest about your <em>attitude</em>, not what will happen. The I Ching is most useful as a mirror for decision-making.
+              The healthiest reading is reflective. Ask what the hexagram and changing lines suggest
+              about your <em>attitude</em>, not what will happen. The I Ching is most useful as a
+              mirror for decision-making.
             </p>
             <p>
-              Cast a real reading with the <Link href="/tools/i-ching-oracle" className={linkClass}>I Ching oracle</Link>, or browse the <Link href="/i-ching" className={linkClass}>I Ching hub</Link> for deeper study.
+              Cast a real reading with the{" "}
+              <Link href="/tools/i-ching-oracle" className={linkClass}>
+                I Ching oracle
+              </Link>
+              , or browse the{" "}
+              <Link href="/i-ching" className={linkClass}>
+                I Ching hub
+              </Link>{" "}
+              for deeper study.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Step 6: turn the reading into a reviewable action",
+        content: (
+          <>
+            <p>
+              Write the result in three lines: the present pattern, the changing pressure, and one
+              action you can review. If the primary hexagram emphasizes waiting and a moving line
+              warns against premature movement, the action might be to gather one missing fact
+              before a named date. This is more useful than writing that the future is simply
+              favorable or unfavorable.
+            </p>
+            <p>
+              Keep the original question, six numeric line values, primary hexagram, moving lines,
+              relating hexagram, translation used, and decision made. Revisit the note after the
+              relevant event or time window. A journal separates a specific interpretation from
+              hindsight and helps reveal whether the reading improved judgment.
+            </p>
+            <p>
+              Do not recast immediately because the answer feels difficult. First check whether the
+              question combined several issues or asked for certainty that the situation cannot
+              provide. Clarify the decision in ordinary language and reread the same cast. Repeated
+              casting for a preferred answer usually removes the discipline that makes the method
+              useful.
+            </p>
+            <p>
+              For medical, legal, financial, or safety decisions, treat the hexagram as a reflection
+              prompt and use qualified professional advice for the decision itself. The I Ching can
+              help name assumptions and tradeoffs; it cannot verify facts or replace domain
+              expertise.
+            </p>
+            <p>
+              End by naming what would make you reconsider the interpretation. New information, a
+              changed deadline, or another person&apos;s decision may alter the situation the
+              hexagram described. A review condition keeps the reading responsive to reality instead
+              of turning a symbolic snapshot into a permanent instruction.
+            </p>
+            <p>
+              That final check turns the reading into a documented decision process rather than a
+              claim of certainty.
             </p>
           </>
         ),
@@ -2158,10 +2558,26 @@ const highIntentBlogPosts: BlogPost[] = [
     ],
     faqs: iChingReadingFaqs,
     relatedLinks: [
-      { title: "I Ching hub", href: "/i-ching", description: "All hexagrams and core concepts in one place." },
-      { title: "I Ching for Beginners", href: "/blog/i-ching-for-beginners", description: "Question framing before line interpretation." },
-      { title: "Changing Lines Guide", href: "/blog/changing-lines-i-ching", description: "How to read 6 and 9 lines and the derived hexagram." },
-      { title: "I Ching Oracle", href: "/tools/i-ching-oracle", description: "Cast a digital reading with one click." },
+      {
+        title: "I Ching hub",
+        href: "/i-ching",
+        description: "All hexagrams and core concepts in one place.",
+      },
+      {
+        title: "I Ching for Beginners",
+        href: "/blog/i-ching-for-beginners",
+        description: "Question framing before line interpretation.",
+      },
+      {
+        title: "Changing Lines Guide",
+        href: "/blog/changing-lines-i-ching",
+        description: "How to read 6 and 9 lines and the derived hexagram.",
+      },
+      {
+        title: "I Ching Oracle",
+        href: "/tools/i-ching-oracle",
+        description: "Cast a digital reading with one click.",
+      },
     ],
     cta: {
       title: "Cast your first reading",

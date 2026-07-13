@@ -108,7 +108,7 @@ export default function AboutPage() {
                     Day Master
                   </Link>
                   , read{" "}
-                  <Link href="/blog/what-is-bazi" className="font-medium underline">
+                  <Link href="/bazi/what-is-bazi" className="font-medium underline">
                     what Bazi is
                   </Link>{" "}
                   from the ground up, cast the{" "}

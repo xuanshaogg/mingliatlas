@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AUTHOR, SITE } from "@/lib/constants";
+import { isIndexablePath } from "@/lib/content/indexing";
 
 interface PageMetadataInput {
   title: string;
@@ -15,11 +16,17 @@ interface PageMetadataInput {
 }
 
 export function buildKnowledgePageMetadata(page: PageMetadataInput): Metadata {
+  const indexable = isIndexablePath(page.path);
+
   return {
     title: page.title,
     description: page.description,
     alternates: {
       canonical: page.path,
+    },
+    robots: {
+      index: indexable,
+      follow: true,
     },
     openGraph: {
       title: page.title,

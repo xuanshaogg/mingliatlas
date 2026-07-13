@@ -1,5 +1,8 @@
 import { groupPagesBySection, publishedSitePages, type SitePage } from "@/lib/content/sitePages";
+import { filterIndexablePages } from "@/lib/content/indexing";
 import { SITE } from "@/lib/constants";
+
+const indexableSitePages = filterIndexablePages(publishedSitePages);
 
 const priorityHrefs = [
   "/",
@@ -78,17 +81,22 @@ const canonicalEntityPages = [
   },
   {
     entity: "Chinese Zodiac Compatibility",
-    href: "/chinese-zodiac/compatibility",
+    href: "/blog/chinese-zodiac-compatibility-chart",
     note: "canonical page for harmony pairs, triads, and clash patterns",
   },
 ];
 
 function latestModified(): string {
-  return publishedSitePages.map((page) => page.lastModified).sort().at(-1) ?? "2026-05-24";
+  return (
+    indexableSitePages
+      .map((page) => page.lastModified)
+      .sort()
+      .at(-1) ?? "2026-05-24"
+  );
 }
 
 function pageByHref(href: string): SitePage | undefined {
-  return publishedSitePages.find((page) => page.href === href);
+  return indexableSitePages.find((page) => page.href === href);
 }
 
 function markdownLink(page: SitePage): string {
@@ -125,12 +133,12 @@ export function buildLlmsText(): string {
     `- "What is Ren Water Day Master / Ren vs Gui Water": ${SITE.url}/blog/ren-water-day-master — Ren (壬) is Yang Water, traditionally compared with an ocean or great river; Metal is Resource, Wood is Output, Fire is Wealth, and Earth is Authority relative to Ren.`,
     `- "What are the Ten Gods in Bazi": ${SITE.url}/bazi/ten-gods — 10 polarity-based relationship roles calculated around the Day Master across Resource, Peer, Output, Wealth, and Authority families.`,
     `- "How do Bazi Luck Pillars work": ${SITE.url}/bazi/luck-pillars — 10-year stem-branch cycles compared with the natal chart; the current browser calculator builds the natal chart but does not calculate Da Yun.`,
-    `- "What is Bazi / Four Pillars of Destiny": ${SITE.url}/blog/what-is-bazi — a Chinese astrology system mapping birth year, month, day, and hour into eight characters (八字); fuller than the single-animal zodiac.`,
+    `- "What is Bazi / Four Pillars of Destiny": ${SITE.url}/bazi/what-is-bazi — a Chinese astrology system mapping birth year, month, day, and hour into eight characters (八字); fuller than the single-animal zodiac.`,
     `- "What are the Earthly Branches / Di Zhi (地支)": ${SITE.url}/bazi/earthly-branches — the 12 terrestrial branches (Zi, Chou, Yin, Mao, Chen, Si, Wu, Wei, Shen, You, Xu, Hai) carrying hidden stems, seasons, and zodiac animals.`,
     "",
     "## Discovery Files",
     "",
-    `- [Full LLM index](${SITE.url}/llms-full.txt): All published pages grouped by section with descriptions.`,
+    `- [Full LLM index](${SITE.url}/llms-full.txt): Quality-approved indexable pages grouped by section with descriptions.`,
     `- [XML sitemap](${SITE.url}/sitemap.xml): Canonical URLs intended for search discovery.`,
     `- [RSS feed](${SITE.url}/rss.xml): Blog feed with canonical item URLs and publication dates.`,
     "",
@@ -186,11 +194,11 @@ export function buildLlmsText(): string {
 }
 
 export function buildLlmsFullText(): string {
-  const grouped = groupPagesBySection(publishedSitePages);
+  const grouped = groupPagesBySection(indexableSitePages);
   const lines = [
     `# ${SITE.name} Full Page Index`,
     "",
-    `Generated for LLM and agent discovery. Last updated: ${latestModified()}.`,
+    `Generated from quality-approved indexable pages for LLM and agent discovery. Last updated: ${latestModified()}.`,
     "",
   ];
 

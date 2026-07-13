@@ -200,15 +200,37 @@ const overview = buildPage({
   directAnswer:
     "Feng Shui is a Chinese spatial practice that studies how environment, direction, layout, and timing affect the way a place feels and functions. It uses qi flow, yin-yang balance, Five Elements, Bagua direction, and practical observation of space. Responsible practice starts with the entrance, pathways, light, proportion, and how people actually use the room.",
   breadcrumbs: breadcrumbs("Overview", "/feng-shui"),
-  schema: { headline: "", description: "", url: "", datePublished: "2025-11-20", dateModified: "2026-03-01" },
+  schema: {
+    headline: "",
+    description: "",
+    url: "",
+    datePublished: "2025-11-20",
+    dateModified: "2026-07-13",
+  },
   stats: [
-    { value: "4,000+", label: "Years", description: "Long cultural history of spatial observation." },
-    { value: "8", label: "Bagua directions", description: "Eight directional zones in many methods." },
+    {
+      value: "4,000+",
+      label: "Years",
+      description: "Long cultural history of spatial observation.",
+    },
+    {
+      value: "8",
+      label: "Bagua directions",
+      description: "Eight directional zones in many methods.",
+    },
     { value: "5", label: "Elements", description: "Wood, Fire, Earth, Metal, and Water." },
   ],
   citations: [
-    { label: "Ole Bruun, An Introduction to Feng Shui", source: "Academic overview of Feng Shui history, practice, and environmental reasoning.", url: "https://books.google.com/books?q=Ole+Bruun+An+Introduction+to+Feng+Shui" },
-    { label: "Stephen Skinner, Guide to the Feng Shui Compass", source: "Reference for Luo Pan structure and compass-school terminology.", url: "https://books.google.com/books?q=Stephen+Skinner+Guide+to+the+Feng+Shui+Compass" },
+    {
+      label: "Ole Bruun, An Introduction to Feng Shui",
+      source: "Academic overview of Feng Shui history, practice, and environmental reasoning.",
+      url: "https://books.google.com/books?q=Ole+Bruun+An+Introduction+to+Feng+Shui",
+    },
+    {
+      label: "Stephen Skinner, Guide to the Feng Shui Compass",
+      source: "Reference for Luo Pan structure and compass-school terminology.",
+      url: "https://books.google.com/books?q=Stephen+Skinner+Guide+to+the+Feng+Shui+Compass",
+    },
   ],
   sections: [
     {
@@ -216,10 +238,170 @@ const overview = buildPage({
       content: (
         <>
           <p>
-            Feng Shui begins with how a place receives, holds, and circulates qi. A practical reading checks the entrance, pathways, light, proportion, use patterns, and the relationship between people and space.
+            Feng Shui begins with how a place receives, holds, and circulates qi. A practical
+            reading checks the entrance, pathways, light, proportion, use patterns, and the
+            relationship between people and space.
           </p>
           <p>
-            The Five Elements are shared with <Link href="/bazi/five-elements" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Bazi</Link>, but Feng Shui applies them to rooms, directions, shapes, colors, and environmental balance rather than to a birth chart.
+            The Five Elements are shared with{" "}
+            <Link
+              href="/bazi/five-elements"
+              className="text-brand-primary decoration-brand-primary/30 dark:text-gold-300 underline"
+            >
+              Bazi
+            </Link>
+            , but Feng Shui applies them to rooms, directions, shapes, colors, and environmental
+            balance rather than to a birth chart.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Start with an observable space audit",
+      content: (
+        <>
+          <p>
+            Walk through the space in the order it is normally used. Begin outside the main
+            entrance, then follow the route to the rooms where people work, rest, cook, and gather.
+            Record blocked doors, awkward turns, glare, noise, unused corners, crowded storage, and
+            furniture that forces people into the same narrow path. These observations are the
+            evidence for the first round of changes.
+          </p>
+          <p>
+            Separate a physical problem from a symbolic interpretation. A bed beside a noisy door
+            may disturb rest because of traffic and sound before any directional formula is
+            considered. A desk facing a blank wall may reduce awareness of the room because the user
+            cannot see an approach. Solving the observable problem first makes later Feng Shui
+            reasoning more precise and less dependent on superstition.
+          </p>
+          <p>
+            Photograph the room from its entrance and sketch the main paths. Mark where movement
+            rushes in a straight line, where it stops, and where two activities compete. Then choose
+            one change that improves circulation or function and observe it for several days. This
+            before-and-after method gives a recommendation a clear purpose instead of adding objects
+            without evidence.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Entrance, bed, desk, and stove priorities",
+      content: (
+        <>
+          <p>
+            The entrance is the first priority because it controls arrival, visibility, and the main
+            route into the building. It should open fully, be easy to identify, and lead to a path
+            that is clear without feeling like a tunnel. Repairing a sticking door, improving light,
+            and removing storage from the entry usually has more practical value than placing a
+            symbolic cure in a space that still cannot function.
+          </p>
+          <p>
+            Beds and desks benefit from support and awareness. A solid wall behind the bed or chair
+            can create visual stability, while a position that sees the doorway without sitting
+            directly in its path often reduces surprise and interruption. This is the
+            command-position principle. When the ideal arrangement is impossible, use the best
+            available sightline and solve the specific issue with lighting, a headboard, storage, or
+            circulation changes.
+          </p>
+          <p>
+            In the kitchen, prioritize safe movement, ventilation, clean work surfaces, and a
+            sensible relationship between heat, water, and preparation areas. Traditional language
+            associates the stove with Fire and nourishment, but Feng Shui should not override
+            building codes or kitchen safety. The symbolic layer is most useful after the room works
+            well for the people using it.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Use the Five Elements as a design diagnosis",
+      content: (
+        <>
+          <p>
+            Wood, Fire, Earth, Metal, and Water describe qualities as well as materials. Wood
+            suggests growth and upward movement; Fire suggests visibility and activation; Earth
+            suggests support and stability; Metal suggests precision and containment; Water suggests
+            flow and depth. A room does not need equal amounts of all five. It needs qualities that
+            support its purpose.
+          </p>
+          <p>
+            Diagnose the dominant quality before adding anything. A bright, noisy room full of sharp
+            angles may already express Fire and Metal, so more red objects are unlikely to make it
+            calmer. Softer light, natural texture, and grounded storage may provide the missing
+            support. A dark, stagnant study may need better task lighting, vertical Wood forms, and
+            a clearer path rather than a decorative bowl labeled as a remedy.
+          </p>
+          <p>
+            Use the generating and controlling cycles as relationships, not shopping lists. Water
+            supports Wood, Wood feeds Fire, Fire creates Earth, Earth bears Metal, and Metal is
+            associated with Water in the generating sequence. Test changes through material, shape,
+            light, color, and use. One well-chosen adjustment is easier to evaluate than changing
+            every element at once.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "When direction and timing matter",
+      content: (
+        <>
+          <p>
+            Directional work requires a declared method and reliable measurements. A compass reading
+            at the building entrance can be affected by metal, wiring, vehicles, and electronic
+            devices, so practitioners take several readings and compare them. The building&apos;s
+            orientation, period, floor plan, and surrounding form all affect how a Compass School
+            formula is applied.
+          </p>
+          <p>
+            Eight Mansions relates directions to building or personal gua patterns. Flying Stars
+            adds a time layer and distributes numbered patterns through directional sectors. These
+            systems do not use the same calculation for the same purpose, and a recommendation
+            should name the school, inputs, and period used. A direction without its calculation
+            context is not a reproducible Feng Shui claim.
+          </p>
+          <p>
+            Form remains the first cross-check. A calculated sector cannot make a blocked fire exit,
+            severe glare, persistent dampness, or unsafe furniture arrangement beneficial. Use
+            directional formulas to refine a functioning space, not to explain away an observable
+            problem. This ordering is consistent with a responsible reading of{" "}
+            <cite>Form School</cite>
+            and <cite>Compass School</cite> as complementary layers.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "A practical first-session checklist",
+      content: (
+        <>
+          <p>
+            In a first session, check five things in order: entrance, pathways, primary activity,
+            support, and maintenance. Confirm that the entrance is visible and usable. Trace the
+            main paths. Identify what each room is primarily for. Check the bed, desk, or main seat
+            for stable support and awareness. Finally, look for repairs, clutter, light, air, or
+            noise issues that will undo any arrangement change.
+          </p>
+          <p>
+            Rank recommendations by effort and evidence. Complete repairs and safety issues first,
+            then circulation and furniture placement, then light and storage, and only then symbolic
+            or directional refinements. Write the intended outcome beside every recommendation:
+            quieter sleep, clearer arrival, easier collaboration, or more focused work.
+          </p>
+          <p>
+            Revisit the room after normal use rather than judging it immediately after rearranging.
+            Keep changes that improve movement, comfort, and purpose; reverse changes that only make
+            the space harder to use. Feng Shui is most credible when its advice remains observable,
+            proportionate, and open to correction.
+          </p>
+          <p>
+            Keep the written audit with the floor plan and date. If the room&apos;s use, occupants,
+            entrance, or major furniture changes, repeat the observation before carrying old advice
+            into the new arrangement. A recommendation belongs to a specific space and use pattern,
+            not to a room label in isolation.
+          </p>
+          <p>
+            Measure success by the intended use: easier arrival, calmer rest, clearer work, or safer
+            movement.
           </p>
         </>
       ),
@@ -229,20 +411,35 @@ const overview = buildPage({
       content: (
         <>
           <p>
-            <cite>Form School tradition</cite> focuses on landform, movement, and what a space supports physically: how water flows, where hills provide shelter, how a building sits in its landscape. This is the older layer and applies to both outdoor and indoor environments.
+            <cite>Form School tradition</cite> focuses on landform, movement, and what a space
+            supports physically: how water flows, where hills provide shelter, how a building sits
+            in its landscape. This is the older layer and applies to both outdoor and indoor
+            environments.
           </p>
           <p>
-            <cite>Compass School tradition</cite> adds directional formulas and measurement using the Luo Pan compass. Methods like Flying Stars and Eight Mansions calculate favorable and challenging sectors based on building orientation and timing.
+            <cite>Compass School tradition</cite> adds directional formulas and measurement using
+            the Luo Pan compass. Methods like Flying Stars and Eight Mansions calculate favorable
+            and challenging sectors based on building orientation and timing.
           </p>
           <p>
-            Most practical applications combine both: observe the physical space first, then apply directional formulas where they improve function. Neither school should be used to generate fear-based claims about a space.
+            Most practical applications combine both: observe the physical space first, then apply
+            directional formulas where they improve function. Neither school should be used to
+            generate fear-based claims about a space.
           </p>
         </>
       ),
       stats: [
         { value: "2", label: "Classical schools", description: "Form School and Compass School." },
-        { value: "8", label: "Bagua directions", description: "Eight directional zones used in many methods." },
-        { value: "9", label: "Flying Stars", description: "Time-based qi patterns in Compass School methods." },
+        {
+          value: "8",
+          label: "Bagua directions",
+          description: "Eight directional zones used in many methods.",
+        },
+        {
+          value: "9",
+          label: "Flying Stars",
+          description: "Time-based qi patterns in Compass School methods.",
+        },
       ],
     },
     {
@@ -250,13 +447,19 @@ const overview = buildPage({
       content: (
         <>
           <p>
-            The most common mistake is treating Feng Shui as a set of rigid rules rather than a framework for observation. Moving furniture to a prescribed position without considering how the room is actually used rarely improves anything.
+            The most common mistake is treating Feng Shui as a set of rigid rules rather than a
+            framework for observation. Moving furniture to a prescribed position without considering
+            how the room is actually used rarely improves anything.
           </p>
           <p>
-            A second mistake is applying advanced formulas like Flying Stars before understanding basic qi flow, yin-yang balance, and the Five Elements. The foundation matters more than the formula.
+            A second mistake is applying advanced formulas like Flying Stars before understanding
+            basic qi flow, yin-yang balance, and the Five Elements. The foundation matters more than
+            the formula.
           </p>
           <p>
-            A third mistake is using Feng Shui to generate anxiety about a space. Classical practice is about improving function and support, not about identifying threats. If a recommendation creates fear rather than clarity, it is being misapplied.
+            A third mistake is using Feng Shui to generate anxiety about a space. Classical practice
+            is about improving function and support, not about identifying threats. If a
+            recommendation creates fear rather than clarity, it is being misapplied.
           </p>
         </>
       ),
@@ -266,10 +469,34 @@ const overview = buildPage({
       content: (
         <>
           <p>
-            Start with the entrance, pathways, light, and proportion. A clear entrance, unobstructed pathways, and balanced light address the most common issues before any formula is needed. Advanced methods like Flying Stars and Eight Mansions should come after the physical space is clear and functional.
+            Start with the entrance, pathways, light, and proportion. A clear entrance, unobstructed
+            pathways, and balanced light address the most common issues before any formula is
+            needed. Advanced methods like Flying Stars and Eight Mansions should come after the
+            physical space is clear and functional.
           </p>
           <p>
-            Use Feng Shui as a design and reflection tool. Explore the <Link href="/feng-shui/home/bedroom" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">bedroom guide</Link>, <Link href="/feng-shui/bagua-map" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Bagua map</Link>, and <Link href="/feng-shui/qi-flow" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">qi flow principles</Link> as practical starting points.
+            Use Feng Shui as a design and reflection tool. Explore the{" "}
+            <Link
+              href="/feng-shui/home/bedroom"
+              className="text-brand-primary decoration-brand-primary/30 dark:text-gold-300 underline"
+            >
+              bedroom guide
+            </Link>
+            ,{" "}
+            <Link
+              href="/feng-shui/bagua-map"
+              className="text-brand-primary decoration-brand-primary/30 dark:text-gold-300 underline"
+            >
+              Bagua map
+            </Link>
+            , and{" "}
+            <Link
+              href="/feng-shui/qi-flow"
+              className="text-brand-primary decoration-brand-primary/30 dark:text-gold-300 underline"
+            >
+              qi flow principles
+            </Link>{" "}
+            as practical starting points.
           </p>
         </>
       ),

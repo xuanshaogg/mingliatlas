@@ -1,9 +1,11 @@
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { publishedSitePages } from "../src/lib/content/sitePages.ts";
+import { filterIndexablePages } from "../src/lib/content/indexing.ts";
 
 const projectRoot = fileURLToPath(new URL("..", import.meta.url));
 const publishedRoutes = new Set(publishedSitePages.map((page) => page.href));
+const indexableRoutes = new Set(filterIndexablePages(publishedSitePages).map((page) => page.href));
 
 function read(relativePath) {
   return readFileSync(new URL(relativePath, `file://${projectRoot}/`), "utf8");
@@ -70,5 +72,5 @@ if (missing.length > 0) {
 }
 
 console.log(
-  `Internal link audit passed: ${publishedRoutes.size} published routes (${publishedRoutes.size - 1} sitemap-indexed), ${sourceFiles.length} source files scanned.`,
+  `Internal link audit passed: ${publishedRoutes.size} published routes, ${indexableRoutes.size} indexable routes, ${sourceFiles.length} source files scanned.`,
 );

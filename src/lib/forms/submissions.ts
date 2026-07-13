@@ -11,6 +11,7 @@ export const contactSubmissionSchema = z.object({
 
 export const subscriberSubmissionSchema = z.object({
   email: emailSchema,
+  source: z.enum(["footer", "subscribe_page", "knowledge_page", "bazi_chart", "unknown"]).optional().default("unknown"),
   website: z.string().max(200).optional().default(""),
 });
 

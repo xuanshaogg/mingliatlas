@@ -4,6 +4,8 @@ export type AnalyticsEventName =
   | "share_card_clicked"
   | "ai_interpretation_requested"
   | "subscribe_clicked"
+  | "subscribe_requested"
+  | "subscribe_confirmed"
   | "related_content_clicked"
   | "page_scroll_75";
 

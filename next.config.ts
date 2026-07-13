@@ -35,6 +35,16 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/blog/what-is-bazi",
+        destination: "https://mingliatlas.com/bazi/what-is-bazi",
+        permanent: true,
+      },
+      {
+        source: "/chinese-zodiac/compatibility",
+        destination: "https://mingliatlas.com/blog/chinese-zodiac-compatibility-chart",
+        permanent: true,
+      },
+      {
         source: "/:path*",
         has: [
           {

@@ -179,15 +179,37 @@ const overview = buildPage({
   directAnswer:
     "Ziwei Doushu, often translated as Purple Star Astrology, is a Chinese metaphysics system that places major stars into 12 life palaces. It studies personality, relationships, career, wealth, health tendencies, and timing through palace structure rather than only stems and branches. A careful reading checks the Life Palace, major stars, Four Transformations, and decade cycles before drawing conclusions.",
   breadcrumbs: breadcrumbs("Overview", "/ziwei"),
-  schema: { headline: "", description: "", url: "", datePublished: "2025-12-05", dateModified: "2026-07-12" },
+  schema: {
+    headline: "",
+    description: "",
+    url: "",
+    datePublished: "2025-12-05",
+    dateModified: "2026-07-13",
+  },
   stats: [
-    { value: "12", label: "Palaces", description: "Life areas such as career, wealth, spouse, and health." },
-    { value: "14", label: "Major stars", description: "Core star vocabulary for chart interpretation." },
+    {
+      value: "12",
+      label: "Palaces",
+      description: "Life areas such as career, wealth, spouse, and health.",
+    },
+    {
+      value: "14",
+      label: "Major stars",
+      description: "Core star vocabulary for chart interpretation.",
+    },
     { value: "4", label: "Transformations", description: "Si Hua dynamics used in many schools." },
   ],
   citations: [
-    { label: "Ziwei Doushu Quan Shu", source: "Classical source tradition for Purple Star Astrology methods.", url: "https://zh.wikisource.org/wiki/%E7%B4%AB%E5%BE%AE%E6%96%97%E6%95%B8%E5%85%A8%E6%9B%B8" },
-    { label: "Hong Kong Observatory: Gregorian-Lunar Calendar Conversion", source: "Reference tables for checking the lunar calendar dates used in chart construction.", url: "https://www.hko.gov.hk/en/gts/time/conversion.htm" },
+    {
+      label: "Ziwei Doushu Quan Shu",
+      source: "Classical source tradition for Purple Star Astrology methods.",
+      url: "https://zh.wikisource.org/wiki/%E7%B4%AB%E5%BE%AE%E6%96%97%E6%95%B8%E5%85%A8%E6%9B%B8",
+    },
+    {
+      label: "Hong Kong Observatory: Gregorian-Lunar Calendar Conversion",
+      source: "Reference tables for checking the lunar calendar dates used in chart construction.",
+      url: "https://www.hko.gov.hk/en/gts/time/conversion.htm",
+    },
   ],
   sections: [
     {
@@ -195,10 +217,168 @@ const overview = buildPage({
       content: (
         <>
           <p>
-            Purple Star Astrology organizes a birth chart into 12 palaces. Each palace describes a life area: career, wealth, relationships, health, travel, and more. Major stars placed in those palaces show style, pressure, support, and timing patterns.
+            Purple Star Astrology organizes a birth chart into 12 palaces. Each palace describes a
+            life area: career, wealth, relationships, health, travel, and more. Major stars placed
+            in those palaces show style, pressure, support, and timing patterns.
           </p>
           <p>
-            Compared with <Link href="/bazi" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Bazi</Link>, Ziwei gives a more visual palace map. Bazi emphasizes element balance and stem-branch relationships. Ziwei emphasizes star placement, palace interactions, and the Four Transformations that activate different life areas across time.
+            Compared with{" "}
+            <Link
+              href="/bazi"
+              className="text-brand-primary decoration-brand-primary/30 dark:text-gold-300 underline"
+            >
+              Bazi
+            </Link>
+            , Ziwei gives a more visual palace map. Bazi emphasizes element balance and stem-branch
+            relationships. Ziwei emphasizes star placement, palace interactions, and the Four
+            Transformations that activate different life areas across time.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "What is needed to construct a Ziwei chart",
+      content: (
+        <>
+          <p>
+            A chart begins with birth date, birth time, location, sex or the polarity convention
+            used by the school, and a calendar conversion method. The date is mapped into the
+            Chinese calendar, and the birth-hour branch helps place the Life and Body Palaces. From
+            there, the chart method determines the Five Element Bureau and places the major stars,
+            supporting stars, and timing cycles around the 12 palaces.
+          </p>
+          <p>
+            Birth-hour confidence is therefore part of the result, not a minor footnote. A two-hour
+            branch boundary can change palace placement, and daylight-saving or historical time-zone
+            errors can shift the recorded local time. When the hour is approximate, compare
+            candidate charts and label the reading provisional instead of presenting one layout as
+            certain.
+          </p>
+          <p>
+            Calendar assumptions should also be visible. A reproducible chart names the Gregorian
+            date, converted lunar date, hour branch, and calculation school. Conversion tables from
+            the
+            <cite>Hong Kong Observatory</cite> can verify the calendar layer, while the placement
+            rules must still be checked against the Ziwei system being used.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Read the 12 palaces as a connected system",
+      content: (
+        <>
+          <p>
+            The 12 palaces cover Life, Siblings, Spouse, Children, Wealth, Health, Travel, Friends
+            or Servants, Career, Property, Fortune, and Parents. English labels vary by school, but
+            the structure is relational: no palace is read as an isolated box. The Life Palace
+            establishes the chart&apos;s central orientation, while the Body Palace shows where
+            patterns become more visible through action and lived emphasis.
+          </p>
+          <p>
+            Start with the opposite palace because it forms a major interpretive axis. Life and
+            Travel, Career and Spouse, Wealth and Fortune, and the other oppositions show how an
+            internal theme meets its external counterpart. Then inspect the two palaces in the trine
+            relationship. This four-palace frame is often more informative than collecting keywords
+            from the focal palace alone.
+          </p>
+          <p>
+            Palace names describe questions, not guaranteed events. The Wealth Palace can address
+            resource habits and earning style without promising an income level. The Health Palace
+            can describe stress patterns and areas for caution but cannot diagnose illness.
+            Translate each palace into a bounded question and keep medical, legal, and financial
+            decisions with the appropriate professionals.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Major stars, supporting stars, and condition",
+      content: (
+        <>
+          <p>
+            The 14 major stars provide the main vocabulary of a chart, but a star name is only the
+            beginning. Its palace, brightness or condition rules, companions, opposite palace, trine
+            support, and transformations determine how the theme is expressed. Ziwei in the Life
+            Palace and Ziwei in the Career Palace should not be reduced to the same leadership
+            label.
+          </p>
+          <p>
+            Supporting and challenging stars modify the major pattern. Some add assistance,
+            visibility, movement, delay, or friction; their importance depends on the school and the
+            question being read. Establish the major-star and palace structure before adding minor
+            stars. Otherwise a long list of names can create detail without producing a coherent
+            interpretation.
+          </p>
+          <p>
+            Write interpretations as conditional relationships: “This star in this palace tends to
+            emphasize this response, especially when this transformation or supporting group is
+            active.” That sentence preserves chart logic and makes the evidence traceable. Fixed
+            personality claims usually hide the palace and timing context that would allow another
+            reader to verify the conclusion.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Four Transformations and timing layers",
+      content: (
+        <>
+          <p>
+            The Four Transformations, or Si Hua, are commonly translated as Luminosity or Prosperity
+            (Hua Lu), Authority (Hua Quan), Recognition or Distinction (Hua Ke), and Obstruction
+            (Hua Ji). They show how particular stars become activated through the heavenly stem used
+            by the calculation. Translation and assignment rules can vary, so a reading should name
+            its school rather than treating one table as universal.
+          </p>
+          <p>
+            Lu, Quan, and Ke are not automatic rewards, and Ji is not an automatic disaster. A
+            transformation describes the kind of attention or pressure moving through a star and
+            palace. Authority can bring responsibility as well as control; Recognition can bring
+            evaluation as well as visibility; Obstruction can identify the place where repetition,
+            attachment, or unfinished work demands care.
+          </p>
+          <p>
+            Natal structure is then compared with decade and annual layers. The natal chart
+            describes the persistent baseline; a decade cycle changes which palace network is
+            emphasized; an annual layer narrows the timing further. Do not let a single annual
+            signal erase the natal pattern. Ask what is activated, how long the layer lasts, and
+            which real-life evidence would confirm that the theme is active.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "A beginner reading order",
+      content: (
+        <>
+          <p>
+            Use the same order for every chart. First verify the birth inputs and note uncertainty.
+            Second identify the Life Palace, Body Palace, Five Element Bureau, and major-star
+            structure. Third read the focal palace with its opposite and trine palaces. Fourth add
+            Four Transformations and only then supporting stars. Fifth compare the natal pattern
+            with the relevant decade and annual layer.
+          </p>
+          <p>
+            Summarize the result in three parts: stable pattern, current activation, and practical
+            response. A stable pattern might describe how responsibility is approached. The current
+            activation names the palace and transformation receiving attention. The practical
+            response identifies a behavior, boundary, or planning question that can be reviewed
+            against actual experience.
+          </p>
+          <p>
+            Keep contradictory signals instead of forcing a single label. A chart can show
+            visibility in Career and reserve in Fortune, or strong responsibility with periods of
+            hesitation. Those tensions are often the useful part of a palace-based system. The goal
+            is a structured account of context and timing, not a verdict that claims to explain the
+            entire person.
+          </p>
+          <p>
+            Save the chart settings with the interpretation: calendar conversion, hour branch,
+            school, and timing layer. When two readings disagree, compare those inputs before
+            debating star meanings. A conclusion that can be traced back to its palace network and
+            calculation is more useful than a confident statement whose chart assumptions are
+            hidden.
           </p>
         </>
       ),
@@ -208,17 +388,35 @@ const overview = buildPage({
       content: (
         <>
           <p>
-            Both systems use the Chinese calendar and birth time, but they ask different questions. Bazi reads stems, branches, and element balance to understand personality patterns and decade timing. Ziwei reads star placement across 12 palaces to understand life-area themes and transformation cycles.
+            Both systems use the Chinese calendar and birth time, but they ask different questions.
+            Bazi reads stems, branches, and element balance to understand personality patterns and
+            decade timing. Ziwei reads star placement across 12 palaces to understand life-area
+            themes and transformation cycles.
           </p>
           <p>
-            Bazi is often described as more element-focused and analytical. Ziwei is often described as more visual and palace-based. Neither is more accurate; they are different lenses. Many practitioners use both together: Bazi for element and timing structure, Ziwei for palace-level life-area detail.
+            Bazi is often described as more element-focused and analytical. Ziwei is often described
+            as more visual and palace-based. Neither is more accurate; they are different lenses.
+            Many practitioners use both together: Bazi for element and timing structure, Ziwei for
+            palace-level life-area detail.
           </p>
         </>
       ),
       stats: [
-        { value: "12", label: "Palaces", description: "Life areas such as career, wealth, spouse, and health." },
-        { value: "14", label: "Major stars", description: "Core star vocabulary for chart interpretation." },
-        { value: "4", label: "Transformations", description: "Si Hua dynamics used in many schools." },
+        {
+          value: "12",
+          label: "Palaces",
+          description: "Life areas such as career, wealth, spouse, and health.",
+        },
+        {
+          value: "14",
+          label: "Major stars",
+          description: "Core star vocabulary for chart interpretation.",
+        },
+        {
+          value: "4",
+          label: "Transformations",
+          description: "Si Hua dynamics used in many schools.",
+        },
       ],
     },
     {
@@ -226,13 +424,20 @@ const overview = buildPage({
       content: (
         <>
           <p>
-            The most common mistake is reading a single star as a fixed personality label. The same star behaves differently depending on which palace it occupies, which other stars accompany it, and which transformations are active. A star that looks challenging in one palace can be productive in another.
+            The most common mistake is reading a single star as a fixed personality label. The same
+            star behaves differently depending on which palace it occupies, which other stars
+            accompany it, and which transformations are active. A star that looks challenging in one
+            palace can be productive in another.
           </p>
           <p>
-            A second mistake is ignoring the birth hour. Ziwei chart placement is sensitive to birth hour. A wrong hour can move the Life Palace and change the entire chart structure. If the birth hour is uncertain, the chart should be treated with caution.
+            A second mistake is ignoring the birth hour. Ziwei chart placement is sensitive to birth
+            hour. A wrong hour can move the Life Palace and change the entire chart structure. If
+            the birth hour is uncertain, the chart should be treated with caution.
           </p>
           <p>
-            A third mistake is treating Ziwei as a fixed destiny map. Like Bazi, it describes patterns and tendencies, not guaranteed outcomes. The best use is to understand recurring themes and timing, then make better-informed choices.
+            A third mistake is treating Ziwei as a fixed destiny map. Like Bazi, it describes
+            patterns and tendencies, not guaranteed outcomes. The best use is to understand
+            recurring themes and timing, then make better-informed choices.
           </p>
         </>
       ),
@@ -242,13 +447,32 @@ const overview = buildPage({
       content: (
         <>
           <p>
-            Start with the 12 palaces, then learn the 14 major stars, then the Four Transformations. After that, study how stars behave differently by palace and how decade cycles activate different life areas.
+            Start with the 12 palaces, then learn the 14 major stars, then the Four Transformations.
+            After that, study how stars behave differently by palace and how decade cycles activate
+            different life areas.
           </p>
           <p>
-            <cite>Ziwei Doushu Quan Shu</cite> emphasizes palace structure and star placement, while <cite>Chinese calendar tradition</cite> provides the birth-time frame used to build the chart. Read the two systems together when you want both character patterns and timing context.
+            <cite>Ziwei Doushu Quan Shu</cite> emphasizes palace structure and star placement, while{" "}
+            <cite>Chinese calendar tradition</cite> provides the birth-time frame used to build the
+            chart. Read the two systems together when you want both character patterns and timing
+            context.
           </p>
           <p>
-            Compare Ziwei with <Link href="/bazi" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Bazi</Link> using the <Link href="/learn/which-system" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">which system guide</Link> to decide where to focus your study first.
+            Compare Ziwei with{" "}
+            <Link
+              href="/bazi"
+              className="text-brand-primary decoration-brand-primary/30 dark:text-gold-300 underline"
+            >
+              Bazi
+            </Link>{" "}
+            using the{" "}
+            <Link
+              href="/learn/which-system"
+              className="text-brand-primary decoration-brand-primary/30 dark:text-gold-300 underline"
+            >
+              which system guide
+            </Link>{" "}
+            to decide where to focus your study first.
           </p>
         </>
       ),

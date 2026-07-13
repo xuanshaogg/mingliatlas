@@ -9,8 +9,13 @@ import { createSubscriptionToken, readSubscriptionToken } from "../../src/lib/su
 
 describe("public form submissions", () => {
   it("normalizes valid subscription emails", () => {
-    const parsed = subscriberSubmissionSchema.parse({ email: " Reader@Example.com ", website: "" });
+    const parsed = subscriberSubmissionSchema.parse({ email: " Reader@Example.com ", source: "footer", website: "" });
     expect(parsed.email).toBe("reader@example.com");
+    expect(parsed.source).toBe("footer");
+  });
+
+  it("rejects untrusted subscription source labels", () => {
+    expect(subscriberSubmissionSchema.safeParse({ email: "reader@example.com", source: "<script>" }).success).toBe(false);
   });
 
   it("rejects invalid and oversized contact fields", () => {

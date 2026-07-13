@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { publishedSitePages, type SitePage } from "@/lib/content/sitePages";
+import { filterIndexablePages } from "@/lib/content/indexing";
 import { SITE } from "@/lib/constants";
 
 type SitemapEntry = MetadataRoute.Sitemap[number];
@@ -25,10 +26,7 @@ function priorityFor(page: SitePage): number {
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = SITE.url;
-
-  // noindex utility pages stay available to people but do not belong in the
-  // XML sitemap that asks search engines to index canonical content.
-  const indexablePages = publishedSitePages.filter((page) => page.href !== "/sitemap");
+  const indexablePages = filterIndexablePages(publishedSitePages);
   const staticRoutes: MetadataRoute.Sitemap = indexablePages.map((page) => ({
     url: `${baseUrl}${page.href}`,
     lastModified: page.lastModified,

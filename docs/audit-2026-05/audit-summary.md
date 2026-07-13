@@ -1,6 +1,6 @@
 # Audit Summary — Content Quality Baseline
 
-Generated: 2026-07-12
+Generated: 2026-07-13
 
 ## Discovery Results
 
@@ -8,9 +8,9 @@ Generated: 2026-07-12
 |------|-------|
 | Content files scanned | 7 |
 | Analyzed content pages | 113 |
-| Average quality score | 69 |
+| Average quality score | 70 |
 | High-risk pages | 81 |
-| Priority pages needing work | 18 |
+| Priority pages needing work | 13 |
 | sitePages.ts exists | true |
 | termMap.ts (camelCase) | true |
 | term-map.ts (kebab-case) | true |
@@ -19,9 +19,9 @@ Generated: 2026-07-12
 
 - Bazi: 14 pages, 5 priority, average score 75, 7 high-risk
 - Blog: 33 pages, 0 priority, average score 65, 20 high-risk
-- Chinese Zodiac: 3 pages, 3 priority, average score 71, 0 high-risk
+- Chinese Zodiac: 3 pages, 3 priority, average score 75, 0 high-risk
 - Feng Shui: 19 pages, 3 priority, average score 70, 18 high-risk
-- I Ching: 1 pages, 1 priority, average score 76, 0 high-risk
+- I Ching: 1 pages, 1 priority, average score 92, 0 high-risk
 - Learn: 6 pages, 2 priority, average score 75, 0 high-risk
 - Ziwei: 37 pages, 4 priority, average score 69, 36 high-risk
 

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { allBlogPosts } from "@/content/blog/posts";
+import { isIndexablePath } from "@/lib/content/indexing";
 import { SITE } from "@/lib/constants";
 
 export const dynamic = "force-static";
@@ -19,12 +20,13 @@ function rssDate(date: string | undefined): string {
 }
 
 export function GET(): NextResponse {
-  const latestPostDate = allBlogPosts
+  const indexablePosts = allBlogPosts.filter((post) => isIndexablePath(post.path));
+  const latestPostDate = indexablePosts
     .map((post) => post.data.schema.dateModified ?? post.data.schema.datePublished)
     .filter(Boolean)
     .sort()
     .at(-1);
-  const items = allBlogPosts
+  const items = indexablePosts
     .map(
       (post) => `
         <item>

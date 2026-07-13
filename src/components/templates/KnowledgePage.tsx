@@ -5,8 +5,10 @@ import DirectAnswer from "@/components/shared/DirectAnswer";
 import ExpertQuote, { type Quote } from "@/components/shared/ExpertQuote";
 import FAQSection, { type FAQ } from "@/components/shared/FAQSection";
 import InfoCard, { type Statistic } from "@/components/shared/InfoCard";
+import NewsletterSignup from "@/components/subscriptions/NewsletterSignup";
 import RelatedContent from "@/components/shared/RelatedContent";
 import type { RelatedLink } from "@/components/shared/RelatedLinks";
+import { resolveCitationUrls } from "@/lib/content/citations";
 import { SITE } from "@/lib/constants";
 import {
   buildArticleDefinedTermSchema,
@@ -119,6 +121,7 @@ export default function KnowledgePage({
   cta,
   ogImage,
 }: KnowledgePageProps) {
+  const resolvedCitations = resolveCitationUrls(citations);
   const articleSchema = schema.jsonLd ??
     buildArticleDefinedTermSchema({
       headline: schema.headline,
@@ -130,7 +133,7 @@ export default function KnowledgePage({
       datePublished: schema.datePublished,
       dateModified: schema.dateModified,
       image: schema.image ?? ogImage,
-      citations,
+      citations: resolvedCitations,
       mentions: relatedLinks.map((link) => ({
         name: link.title,
         url: link.href,
@@ -170,6 +173,7 @@ export default function KnowledgePage({
             <FAQSection faqs={faqs} />
             <RelatedContent links={relatedLinks} />
             <CTABanner {...cta} />
+            <NewsletterSignup />
             <p className="mt-8 text-sm leading-6 text-ink-500 dark:text-ink-400">
               For entertainment and self-reflection purposes.
             </p>
@@ -181,7 +185,7 @@ export default function KnowledgePage({
                 Sources
               </h2>
               <ul className="mt-4 space-y-3 text-sm leading-6 text-ink-600 dark:text-ink-300">
-                {citations.map((citation) => (
+                {resolvedCitations.map((citation) => (
                   <li key={`${citation.label}-${citation.source}`}>
                     {citation.url ? (
                       <a href={citation.url} className="font-medium text-brand-primary underline decoration-brand-primary/30 transition hover:decoration-brand-primary dark:text-gold-300">

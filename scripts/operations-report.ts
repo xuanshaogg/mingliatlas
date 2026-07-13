@@ -4,7 +4,9 @@ import { getPrisma } from "@/lib/prisma";
 config({ path: ".env.local", quiet: true });
 config({ path: ".env", quiet: true });
 
-const windowDays = Number(process.argv[2] ?? 7);
+const rawWindowDays = process.argv.slice(2).find((argument) => argument !== "--");
+const parsedWindowDays = Number(rawWindowDays ?? 7);
+const windowDays = Number.isFinite(parsedWindowDays) ? parsedWindowDays : 7;
 const since = new Date(Date.now() - Math.max(1, Math.min(windowDays, 90)) * 86_400_000);
 const prisma = getPrisma();
 

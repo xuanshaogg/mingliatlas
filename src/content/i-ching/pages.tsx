@@ -212,15 +212,28 @@ const overview = buildPage({
   directAnswer:
     "The I Ching, or Book of Changes, is a Chinese classic built around 64 hexagrams. Each hexagram is made from six yin or yang lines. Readers use it to examine change, timing, tension, and possible responses to a question in a specific moment. A careful reading compares the primary hexagram, changing lines, and the question itself before drawing a practical conclusion.",
   breadcrumbs: breadcrumbs("Overview", "/i-ching"),
-  schema: { headline: "", description: "", url: "", datePublished: "2025-11-10", dateModified: "2026-01-20" },
+  schema: {
+    headline: "",
+    description: "",
+    url: "",
+    datePublished: "2025-11-10",
+    dateModified: "2026-07-13",
+  },
   stats: [
     { value: "64", label: "Hexagrams", description: "The complete Book of Changes structure." },
     { value: "8", label: "Trigrams", description: "Three-line building blocks of hexagrams." },
     { value: "6", label: "Lines", description: "Every hexagram has six line positions." },
   ],
   citations: [
-    { label: "Richard Wilhelm & Cary Baynes, The I Ching or Book of Changes (1950)", source: "Standard English translation of the I Ching, including the Ten Wings commentaries." },
-    { label: "Alfred Huang, The Complete I Ching (2004)", source: "Modern English reference covering all 64 hexagrams with classical and contemporary interpretation." },
+    {
+      label: "Richard Wilhelm & Cary Baynes, The I Ching or Book of Changes (1950)",
+      source: "Standard English translation of the I Ching, including the Ten Wings commentaries.",
+    },
+    {
+      label: "Alfred Huang, The Complete I Ching (2004)",
+      source:
+        "Modern English reference covering all 64 hexagrams with classical and contemporary interpretation.",
+    },
   ],
   sections: [
     {
@@ -228,10 +241,177 @@ const overview = buildPage({
       content: (
         <>
           <p>
-            A reading begins with a question and a cast. The six lines form a primary hexagram. If old yin or old yang lines appear, they change and create a relating hexagram that shows the direction of movement.
+            A reading begins with a question and a cast. The six lines form a primary hexagram. If
+            old yin or old yang lines appear, they change and create a relating hexagram that shows
+            the direction of movement.
           </p>
           <p>
-            Unlike natal systems such as <Link href="/bazi" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Bazi</Link>, the I Ching focuses on a specific question, moment, or decision context rather than a fixed birth chart. The same person can receive different hexagrams on different days because the question and timing change.
+            Unlike natal systems such as{" "}
+            <Link
+              href="/bazi"
+              className="text-brand-primary decoration-brand-primary/30 dark:text-gold-300 underline"
+            >
+              Bazi
+            </Link>
+            , the I Ching focuses on a specific question, moment, or decision context rather than a
+            fixed birth chart. The same person can receive different hexagrams on different days
+            because the question and timing change.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Anatomy of a hexagram",
+      content: (
+        <>
+          <p>
+            A hexagram is read from the bottom line upward. The lower three lines form the inner
+            trigram and the upper three lines form the outer trigram. The pair creates a
+            relationship between inner conditions and outward circumstances: Water below Thunder,
+            for example, describes a different pattern from Thunder below Water even though the same
+            two trigrams are present.
+          </p>
+          <p>
+            Line position adds another layer. The first line often concerns beginnings and immediate
+            action; the second and fifth positions are central to their trigrams; the top line often
+            shows a pattern reaching its limit. These are reading conventions, not automatic
+            definitions. A line text still has to be interpreted through the hexagram&apos;s
+            Judgment, Image, trigram relationship, and the question that produced the cast.
+          </p>
+          <p>
+            The primary hexagram names the present pattern. Its Judgment gives a compact
+            orientation, while the Image turns the trigram relationship into an example of conduct.
+            Changing line texts identify the parts of the situation under pressure. Reading these
+            layers in order prevents one dramatic phrase from being separated from the structure
+            that gives it meaning.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Three-coin casting method step by step",
+      content: (
+        <>
+          <p>
+            In the common three-coin method, write the question before casting and use the same side
+            assignment for all six throws. Each throw produces a value from six through nine. Six is
+            old yin, seven is young yang, eight is young yin, and nine is old yang. Record the first
+            throw as the bottom line and continue upward until all six positions are complete.
+          </p>
+          <p>
+            Young yin and young yang remain stable. Old yin changes into yang, and old yang changes
+            into yin. The original six lines create the primary hexagram; changing every old line
+            creates the relating hexagram. Keeping the numeric record matters because a simple
+            drawing of the primary figure does not show which lines were moving.
+          </p>
+          <p>
+            Before reading commentary, restate the question in plain language and name the decision
+            that is actually available. Questions such as “What should I understand about accepting
+            this role during the next six months?” give the text a clearer frame than “Will
+            everything work out?” The{" "}
+            <Link
+              href="/i-ching/how-to-cast"
+              className="text-brand-primary decoration-brand-primary/30 dark:text-gold-300 underline"
+            >
+              casting guide
+            </Link>{" "}
+            explains the mechanics, and the{" "}
+            <Link
+              href="/tools/i-ching-oracle"
+              className="text-brand-primary decoration-brand-primary/30 dark:text-gold-300 underline"
+            >
+              browser oracle
+            </Link>{" "}
+            preserves the six-line result for review.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "How to read changing lines",
+      content: (
+        <>
+          <p>
+            Begin with the primary hexagram before opening the changing lines. Summarize its central
+            tension in one sentence, then read only the lines that actually moved. Ask what changes
+            at that position: an early impulse, an inner response, a public role, a decision point,
+            or a pattern nearing completion. Finally, compare the relating hexagram as a direction
+            of movement rather than a guaranteed final outcome.
+          </p>
+          <p>
+            With one moving line, that line usually provides a focused point of attention. With
+            several moving lines, look for a shared theme before trying to combine every sentence
+            literally. Schools and translations use different priority rules when many lines move,
+            so the method should be stated instead of presented as universal. Consistency is more
+            useful than changing rules after seeing an uncomfortable result.
+          </p>
+          <p>
+            A practical interpretation ends with an observable response. If the reading emphasizes
+            waiting, define what evidence would make action timely. If it emphasizes repair, name
+            the relationship, process, or assumption that needs attention. This turns symbolic
+            language into a testable next step while leaving room for circumstances to change.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "A repeatable reading workflow",
+      content: (
+        <>
+          <p>
+            Use a five-pass workflow: question, structure, text, change, and action. First record
+            the exact question and time. Second identify the primary hexagram, its upper and lower
+            trigrams, and every moving line. Third read the Judgment, Image, and relevant line texts
+            in one translation. Fourth compare the relating hexagram and note what has shifted.
+            Fifth write one action, one caution, and one condition to monitor.
+          </p>
+          <p>
+            Keep the first interpretation short enough to revisit. A useful journal entry contains
+            the cast, the words that seemed most relevant, the decision made, and what happened
+            later. Over time this reveals whether interpretations were specific and grounded or
+            merely broad enough to fit anything. Review improves reading skill more reliably than
+            casting more often.
+          </p>
+          <p>
+            When the answer seems contradictory, check the question before blaming the text. A
+            question may combine two decisions, hide the available choice, or ask for certainty
+            where only a tradeoff exists. Rewrite the practical issue without casting again, then
+            see whether the original hexagram becomes clearer in that frame.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Texts, translations, and source discipline",
+      content: (
+        <>
+          <p>
+            The earliest textual layer is commonly called the <cite>Zhouyi</cite>: hexagram names,
+            Judgments, and line statements. The commentarial materials known as the{" "}
+            <cite>Ten Wings</cite>
+            developed the philosophical vocabulary used in later readings. Modern editions differ in
+            how they translate terse characters, reconstruct historical images, and blend the core
+            text with those later commentaries.
+          </p>
+          <p>
+            For serious study, compare at least two named translations and keep track of which one
+            supplied a phrase. Wilhelm-Baynes offers an influential commentarial reading; Alfred
+            Huang provides another complete modern interpretation. Differences are useful evidence
+            because they show where an English keyword is an editorial choice rather than the only
+            possible meaning of the Chinese text.
+          </p>
+          <p>
+            Do not combine isolated quotations from several editions into a single supposedly
+            classical verdict. Cite the edition, preserve uncertainty, and separate the received
+            text from a modern practical interpretation. That source discipline makes an I Ching
+            answer easier for readers to verify.
+          </p>
+          <p>
+            Record Chinese terms when they materially affect the interpretation, especially a
+            hexagram name or disputed line phrase. A transliteration, literal gloss, and chosen
+            English rendering let readers see where interpretation begins. This small source note is
+            more useful than presenting a polished English sentence as though every edition says
+            exactly the same thing.
           </p>
         </>
       ),
@@ -241,17 +421,34 @@ const overview = buildPage({
       content: (
         <>
           <p>
-            The I Ching differs from Bazi and Ziwei in one key way: it is question-based rather than birth-based. Bazi reads a fixed natal chart to understand personality and timing cycles. The I Ching responds to a specific moment and question. Feng Shui reads spatial environment. The I Ching reads the pattern of change in a situation.
+            The I Ching differs from Bazi and Ziwei in one key way: it is question-based rather than
+            birth-based. Bazi reads a fixed natal chart to understand personality and timing cycles.
+            The I Ching responds to a specific moment and question. Feng Shui reads spatial
+            environment. The I Ching reads the pattern of change in a situation.
           </p>
           <p>
-            This makes the I Ching useful alongside natal systems. A Bazi chart can show a decade of pressure; the I Ching can help frame a specific decision within that decade. Use them as complementary lenses, not competing answers.
+            This makes the I Ching useful alongside natal systems. A Bazi chart can show a decade of
+            pressure; the I Ching can help frame a specific decision within that decade. Use them as
+            complementary lenses, not competing answers.
           </p>
         </>
       ),
       stats: [
-        { value: "64", label: "Hexagrams", description: "Each describes a distinct pattern of change." },
-        { value: "384", label: "Line positions", description: "64 hexagrams multiplied by 6 lines." },
-        { value: "8", label: "Trigrams", description: "Three-line building blocks that combine into hexagrams." },
+        {
+          value: "64",
+          label: "Hexagrams",
+          description: "Each describes a distinct pattern of change.",
+        },
+        {
+          value: "384",
+          label: "Line positions",
+          description: "64 hexagrams multiplied by 6 lines.",
+        },
+        {
+          value: "8",
+          label: "Trigrams",
+          description: "Three-line building blocks that combine into hexagrams.",
+        },
       ],
     },
     {
@@ -259,13 +456,19 @@ const overview = buildPage({
       content: (
         <>
           <p>
-            The most common mistake is treating the hexagram as a fixed answer. A hexagram describes a pattern and a direction of movement, not a guaranteed outcome. The same hexagram can mean different things depending on the question, the changing lines, and the context.
+            The most common mistake is treating the hexagram as a fixed answer. A hexagram describes
+            a pattern and a direction of movement, not a guaranteed outcome. The same hexagram can
+            mean different things depending on the question, the changing lines, and the context.
           </p>
           <p>
-            Another mistake is casting multiple times for the same question hoping for a better result. Classical practice casts once, reads carefully, and sits with the image before acting. Repeated casting for the same question usually produces confusion rather than clarity.
+            Another mistake is casting multiple times for the same question hoping for a better
+            result. Classical practice casts once, reads carefully, and sits with the image before
+            acting. Repeated casting for the same question usually produces confusion rather than
+            clarity.
           </p>
           <p>
-            A third mistake is skipping the question. The I Ching works best when the question is specific and honest. Vague questions produce vague readings.
+            A third mistake is skipping the question. The I Ching works best when the question is
+            specific and honest. Vague questions produce vague readings.
           </p>
         </>
       ),
@@ -275,13 +478,32 @@ const overview = buildPage({
       content: (
         <>
           <p>
-            The classic is read through <cite>Ten Wings tradition</cite> and the <cite>King Wen sequence</cite>, which organize image, judgment, and line movement. A responsible reading keeps the question specific, then compares the primary and relating hexagrams before turning the result into action.
+            The classic is read through <cite>Ten Wings tradition</cite> and the{" "}
+            <cite>King Wen sequence</cite>, which organize image, judgment, and line movement. A
+            responsible reading keeps the question specific, then compares the primary and relating
+            hexagrams before turning the result into action.
           </p>
           <p>
-            Use the I Ching to sharpen reflection and timing. It should not replace professional advice, medical judgment, or personal responsibility. The best use is to clarify what you already sense, not to outsource a decision entirely.
+            Use the I Ching to sharpen reflection and timing. It should not replace professional
+            advice, medical judgment, or personal responsibility. The best use is to clarify what
+            you already sense, not to outsource a decision entirely.
           </p>
           <p>
-            Start with the <Link href="/tools/i-ching-oracle" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">free oracle tool</Link>, then explore individual <Link href="/i-ching/sixty-four-hexagrams" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">hexagram pages</Link> to understand the images more deeply.
+            Start with the{" "}
+            <Link
+              href="/tools/i-ching-oracle"
+              className="text-brand-primary decoration-brand-primary/30 dark:text-gold-300 underline"
+            >
+              free oracle tool
+            </Link>
+            , then explore individual{" "}
+            <Link
+              href="/i-ching/sixty-four-hexagrams"
+              className="text-brand-primary decoration-brand-primary/30 dark:text-gold-300 underline"
+            >
+              hexagram pages
+            </Link>{" "}
+            to understand the images more deeply.
           </p>
         </>
       ),

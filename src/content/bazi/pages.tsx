@@ -140,15 +140,15 @@ export const baziPages: BaziContentPage[] = [
     directAnswer:
       "Bazi, also known as the Four Pillars of Destiny, is a Chinese metaphysical system that analyzes a person's birth date and time through year, month, day, and hour pillars. It reveals personality patterns, useful strengths, recurring challenges, and 10-year life cycles without treating them as fixed outcomes.",
     breadcrumbs: baziBreadcrumbs("Overview", "/bazi"),
-    schema: { headline: "", description: "", url: "", datePublished: "2025-12-01", dateModified: "2026-03-15" },
+    schema: { headline: "", description: "", url: "", datePublished: "2025-12-01", dateModified: "2026-07-13" },
     stats: [
       { value: "4", label: "Pillars", description: "Year, month, day, and hour." },
       { value: "8", label: "Characters", description: "Four stems plus four branches." },
       { value: "60", label: "Cycle pairs", description: "The Jia Zi stem-branch cycle." },
     ],
     citations: [
-      { label: "《渊海子平》Yuan Hai Zi Ping (Song Dynasty, ~1100 CE)", source: "Classical source associated with Zi Ping Bazi methods." },
-      { label: "《三命通会》San Ming Tong Hui (Ming Dynasty, ~1550 CE)", source: "Ming dynasty synthesis of stems, branches, and chart rules." },
+      { label: "《渊海子平》Yuan Hai Zi Ping (Song Dynasty, ~1100 CE)", source: "Classical source associated with Zi Ping Bazi methods.", url: "https://zh.wikisource.org/wiki/%E6%B7%B5%E6%B5%B7%E5%AD%90%E5%B9%B3" },
+      { label: "《三命通会》San Ming Tong Hui (Ming Dynasty, ~1550 CE)", source: "Ming dynasty synthesis of stems, branches, and chart rules.", url: "https://zh.wikisource.org/wiki/%E4%B8%89%E5%91%BD%E9%80%9A%E6%9C%83" },
       { label: "Joey Yap, Bazi: The Destiny Code (2007)", source: "Modern English-language reference that introduces Four Pillars logic to contemporary readers." },
     ],
     sections: [
@@ -296,7 +296,7 @@ export const baziPages: BaziContentPage[] = [
     directAnswer:
       "Bazi, also known as the Four Pillars of Destiny, is a Chinese metaphysical system that analyzes a person's birth date and time to reveal a life blueprint. It studies personality, strengths, challenges, and life cycles through 4 pillars, 8 characters, and the 60-pair stem-branch calendar.",
     breadcrumbs: baziBreadcrumbs("What Is Bazi", "/bazi/what-is-bazi"),
-    schema: { headline: "", description: "", url: "", datePublished: "2025-12-05", dateModified: "2026-02-10" },
+    schema: { headline: "", description: "", url: "", datePublished: "2025-12-05", dateModified: "2026-07-13" },
     stats: [
       { value: "1,200+", label: "Years", description: "A mature tradition from Tang and Song development." },
       { value: "4", label: "Pillars", description: "Year, month, day, and hour." },
@@ -386,7 +386,7 @@ export const baziPages: BaziContentPage[] = [
               It can also help separate structure from story. A chart may show strong Output stars, but that does not automatically mean someone should become an artist; it means expression, production, teaching, or problem-solving may be important channels. A chart may show strong Authority stars, but that does not guarantee status; it points to pressure, standards, responsibility, or rule systems that need careful handling.
             </p>
             <p>
-              For a more beginner-friendly walkthrough, read the <Link href="/blog/what-is-bazi" className={linkClass}>What Is Bazi blog post</Link> — it covers the same foundation in a more conversational style before you dive into the full Bazi knowledge hub.
+              For a practical next step, use the <Link href="/tools/bazi-calculator" className={linkClass}>free Bazi calculator</Link> to generate the four pillars, then return to this guide to identify the Day Master, seasonal context, and relationships between stems and branches.
             </p>
           </>
         ),

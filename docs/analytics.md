@@ -17,13 +17,14 @@ Leave either variable unset to skip loading that provider's script.
 
 Use `trackAnalyticsEvent` from `src/lib/analytics/track.ts` for these events:
 
-- `bazi_calculator_use`
-- `ziwei_calculator_use`
-- `iching_oracle_use`
-- `ai_chat_message`
-- `zodiac_compatibility_use`
-- `email_subscribe`
-- `share_tool_result`
+- `calculator_started`
+- `calculator_completed`
+- `share_card_clicked`
+- `ai_interpretation_requested`
+- `subscribe_clicked`
+- `subscribe_requested`
+- `subscribe_confirmed`
+- `related_content_clicked`
 - `page_scroll_75`
 
 `page_scroll_75` is tracked automatically once per page load by `ScrollDepthTracker`.

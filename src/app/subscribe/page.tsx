@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import TrackedForm from "@/components/analytics/TrackedForm";
 
 export const metadata: Metadata = {
   title: "Subscribe",
   description: "Subscribe to the mingliatlas newsletter.",
   alternates: {
     canonical: "/subscribe",
+  },
+  robots: {
+    index: false,
+    follow: true,
   },
 };
 
@@ -32,7 +37,14 @@ export default async function SubscribePage({ searchParams }: SubscribePageProps
           Get practical explainers on Chinese metaphysics, seasonal cycles, and new free tools.
         </p>
 
-        <form className="mt-10 grid gap-4 rounded-[1.25rem] border border-ink-200 bg-white p-6 dark:border-white/10 dark:bg-white/5" action="/api/subscribe" method="post">
+        <TrackedForm
+          className="mt-10 grid gap-4 rounded-[1.25rem] border border-ink-200 bg-white p-6 dark:border-white/10 dark:bg-white/5"
+          action="/api/subscribe"
+          method="post"
+          eventName="subscribe_requested"
+          properties={{ source: "subscribe_page" }}
+        >
+          <input type="hidden" name="source" value="subscribe_page" />
           {hasValidationError ? (
             <p role="alert" className="rounded-lg border border-brand-200 bg-brand-50 px-4 py-3 text-sm leading-6 text-brand-900 dark:border-brand-500/30 dark:bg-brand-500/10 dark:text-brand-100">
               Please enter a valid email address before subscribing.
@@ -67,7 +79,7 @@ export default async function SubscribePage({ searchParams }: SubscribePageProps
           <button type="submit" className="inline-flex w-fit rounded-full bg-brand-primary px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-700">
             Subscribe
           </button>
-        </form>
+        </TrackedForm>
 
         <p className="mt-6 text-sm leading-6 text-ink-500 dark:text-ink-400">
           We store your email only for site updates. You can <Link href="/unsubscribe" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">unsubscribe at any time</Link>, or return <Link href="/" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">home</Link>.

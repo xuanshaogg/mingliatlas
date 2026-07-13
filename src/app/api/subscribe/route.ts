@@ -38,8 +38,12 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const existing = await prisma.subscriber.findUnique({ where: { email: parsed.data.email } });
     const subscriber = await prisma.subscriber.upsert({
       where: { email: parsed.data.email },
-      create: { email: parsed.data.email },
-      update: { subscribedAt: new Date(), unsubscribedAt: null },
+      create: { email: parsed.data.email, preferences: { source: parsed.data.source } },
+      update: {
+        subscribedAt: new Date(),
+        unsubscribedAt: null,
+        preferences: { source: parsed.data.source },
+      },
     });
 
     if (!subscriber.verified) {

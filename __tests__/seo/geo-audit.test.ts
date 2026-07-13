@@ -15,6 +15,7 @@ import { allIChingPages } from "@/content/i-ching/pages";
 import { allLearnPages } from "@/content/learn/pages";
 import { allZodiacPages } from "@/content/zodiac/pages";
 import { allZiweiPages } from "@/content/ziwei/pages";
+import { filterIndexablePages } from "@/lib/content/indexing";
 import { publishedSitePages } from "@/lib/content/sitePages";
 import { AUTHOR, SITE } from "@/lib/constants";
 import {
@@ -110,8 +111,8 @@ function sharesEntityToken(title: string, entityName: string): boolean {
       (titleToken) =>
         titleToken === entityToken ||
         titleToken.startsWith(entityToken.slice(0, 4)) ||
-        entityToken.startsWith(titleToken.slice(0, 4)),
-    ),
+        entityToken.startsWith(titleToken.slice(0, 4))
+    )
   );
 }
 
@@ -135,23 +136,42 @@ function inlineCitationSignalCount(markup: string): number {
   return Math.max(citeTagCount, sourceNameCount);
 }
 
-function qualitySignals(page: { data: { sections: Array<{ content: ReactNode; stats?: unknown[]; quotes?: unknown[] }> } }) {
+function qualitySignals(page: {
+  data: { sections: Array<{ content: ReactNode; stats?: unknown[]; quotes?: unknown[] }> };
+}) {
   const markup = sectionMarkup(page);
   const totalSectionStats = page.data.sections.reduce(
     (count, section) => count + (section.stats?.length ?? 0),
-    0,
+    0
   );
   const totalQuotes = page.data.sections.reduce(
     (count, section) => count + (section.quotes?.length ?? 0),
-    0,
+    0
   );
 
   return { markup, totalSectionStats, totalQuotes };
 }
 
-function expectPriorityQuality(page: { title: string; description: string; path: string; data: { directAnswer: string; sections: Array<{ content: ReactNode; stats?: unknown[]; quotes?: unknown[] }>; stats: unknown[]; faqs: unknown[]; relatedLinks: unknown[]; citations: unknown[]; schema: { url: string; datePublished?: string; dateModified?: string } } }, path: string) {
+function expectPriorityQuality(
+  page: {
+    title: string;
+    description: string;
+    path: string;
+    data: {
+      directAnswer: string;
+      sections: Array<{ content: ReactNode; stats?: unknown[]; quotes?: unknown[] }>;
+      stats: unknown[];
+      faqs: unknown[];
+      relatedLinks: unknown[];
+      citations: unknown[];
+      schema: { url: string; datePublished?: string; dateModified?: string };
+    };
+  },
+  path: string
+) {
   const { markup, totalSectionStats, totalQuotes } = qualitySignals(page);
-  const pageText = `${page.title} ${page.description} ${page.data.directAnswer} ${markup}`.toLowerCase();
+  const pageText =
+    `${page.title} ${page.description} ${page.data.directAnswer} ${markup}`.toLowerCase();
 
   expect(wordCount(page.data.directAnswer), path).toBeGreaterThanOrEqual(40);
   expect(wordCount(page.data.directAnswer), path).toBeLessThanOrEqual(75);
@@ -167,7 +187,9 @@ function expectPriorityQuality(page: { title: string; description: string; path:
   expect(page.data.schema.dateModified, path).toMatch(/^\d{4}-\d{2}-\d{2}$/);
 
   for (const phrase of placeholderPhrases) {
-    expect(pageText, `${path} contains placeholder phrase: ${phrase}`).not.toContain(phrase.toLowerCase());
+    expect(pageText, `${path} contains placeholder phrase: ${phrase}`).not.toContain(
+      phrase.toLowerCase()
+    );
   }
 }
 
@@ -261,7 +283,7 @@ describe("GEO audit", () => {
   it("keeps XML sitemap entries canonical and stable", () => {
     const sitemapEntries = sitemap();
     const entriesByUrl = new Map(sitemapEntries.map((entry) => [entry.url, entry]));
-    const indexablePages = publishedSitePages.filter((page) => page.href !== "/sitemap");
+    const indexablePages = filterIndexablePages(publishedSitePages);
 
     expect(sitemapEntries.length).toBe(indexablePages.length);
     expect(entriesByUrl.size).toBe(sitemapEntries.length);
@@ -303,7 +325,7 @@ describe("GEO audit", () => {
     const rss = await getRssFeed().text();
 
     expect(rss).toContain('<atom:link href="');
-    expect(rss).toContain("<guid isPermaLink=\"true\">");
+    expect(rss).toContain('<guid isPermaLink="true">');
     expect(rss).toContain("<pubDate>");
     expect(rss).toContain("<lastBuildDate>");
   });
@@ -381,12 +403,14 @@ describe("GEO audit", () => {
 
   it("keeps high-impression pages aligned with current search intent", () => {
     const dragon = allZodiacPages.find((page) => page.path === "/chinese-zodiac/dragon");
-    const dayMaster = allBlogPosts.find((page) => page.path === "/blog/day-master-bazi-complete-guide");
+    const dayMaster = allBlogPosts.find(
+      (page) => page.path === "/blog/day-master-bazi-complete-guide"
+    );
 
     expect(dragon?.title).toContain("1940–2036");
     expect(dragon?.data.schema.dateModified).toBe("2026-07-12");
     expect(dayMaster?.title).toContain("Classical Sources");
-    expect(dayMaster?.data.schema.dateModified).toBe("2026-07-12");
+    expect(dayMaster?.data.schema.dateModified).toBe("2026-07-13");
     expect(dayMaster?.data.citations.every((citation) => Boolean(citation.url))).toBe(true);
   });
 
@@ -395,13 +419,19 @@ describe("GEO audit", () => {
     const luckPillars = allBaziPages.find((page) => page.path === "/bazi/luck-pillars");
     const renWater = allBlogPosts.find((page) => page.path === "/blog/ren-water-day-master");
 
-    expect(tenGods?.data.sections.some((section) => section.heading.includes("Jia Wood"))).toBe(true);
+    expect(tenGods?.data.sections.some((section) => section.heading.includes("Jia Wood"))).toBe(
+      true
+    );
     expect(tenGods?.data.schema.dateModified).toBe("2026-07-12");
     expect(tenGods?.data.citations.every((citation) => Boolean(citation.url))).toBe(true);
-    expect(luckPillars?.data.sections.some((section) => section.heading.includes("Geng-Shen"))).toBe(true);
+    expect(
+      luckPillars?.data.sections.some((section) => section.heading.includes("Geng-Shen"))
+    ).toBe(true);
     expect(luckPillars?.data.schema.dateModified).toBe("2026-07-12");
     expect(sectionMarkup(luckPillars!)).toContain("does not generate Luck Pillars");
-    expect(renWater?.data.sections.some((section) => section.heading.includes("Ren Water vs Gui Water"))).toBe(true);
+    expect(
+      renWater?.data.sections.some((section) => section.heading.includes("Ren Water vs Gui Water"))
+    ).toBe(true);
     expect(renWater?.data.schema.dateModified).toBe("2026-07-12");
     expect(renWater?.data.citations.every((citation) => Boolean(citation.url))).toBe(true);
   });
@@ -409,7 +439,7 @@ describe("GEO audit", () => {
   it("keeps the third high-opportunity batch query-aligned and source-backed", () => {
     const earthlyBranches = allBaziPages.find((page) => page.path === "/bazi/earthly-branches");
     const compatibilityChart = allBlogPosts.find(
-      (page) => page.path === "/blog/chinese-zodiac-compatibility-chart",
+      (page) => page.path === "/blog/chinese-zodiac-compatibility-chart"
     );
 
     expect(earthlyBranches?.title).toContain("12 Earthly Branches");
@@ -417,24 +447,28 @@ describe("GEO audit", () => {
     expect(earthlyBranches?.data.schema.dateModified).toBe("2026-07-12");
     expect(
       earthlyBranches?.data.sections.some((section) =>
-        section.heading.includes("Earthly Branches reference table"),
-      ),
+        section.heading.includes("Earthly Branches reference table")
+      )
     ).toBe(true);
     expect(earthlyBranches?.data.citations.every((citation) => Boolean(citation.url))).toBe(true);
 
     expect(compatibilityChart?.title).toContain("Chinese Zodiac Compatibility Chart");
     expect(compatibilityChart?.title).toContain("All 12 Signs");
-    expect(compatibilityChart?.data.schema.dateModified).toBe("2026-07-12");
+    expect(compatibilityChart?.data.schema.dateModified).toBe("2026-07-13");
     expect(
       compatibilityChart?.data.sections.some((section) =>
-        section.heading.includes("compatibility chart for all 12 signs"),
-      ),
+        section.heading.includes("compatibility chart for all 12 signs")
+      )
     ).toBe(true);
-    expect(compatibilityChart?.data.citations.every((citation) => Boolean(citation.url))).toBe(true);
+    expect(compatibilityChart?.data.citations.every((citation) => Boolean(citation.url))).toBe(
+      true
+    );
   });
 
   it("renders Day Master templates without interpolation artifacts", () => {
-    const dayMasterPages = allBlogPosts.filter((page) => /^(jia|yi|bing|ding|wu|ji|geng|xin|ren|gui)-.+-day-master$/.test(page.slug));
+    const dayMasterPages = allBlogPosts.filter((page) =>
+      /^(jia|yi|bing|ding|wu|ji|geng|xin|ren|gui)-.+-day-master$/.test(page.slug)
+    );
 
     expect(dayMasterPages).toHaveLength(10);
     for (const page of dayMasterPages) {
@@ -442,7 +476,10 @@ describe("GEO audit", () => {
 
       expect(markup, page.path).not.toContain("$");
       expect(inlineCitationSignalCount(markup), page.path).toBeGreaterThanOrEqual(2);
-      expect(page.data.citations.every((citation) => Boolean(citation.url)), page.path).toBe(true);
+      expect(
+        page.data.citations.every((citation) => Boolean(citation.url)),
+        page.path
+      ).toBe(true);
     }
   });
 

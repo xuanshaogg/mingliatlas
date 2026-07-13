@@ -492,7 +492,7 @@ const overview = buildPage({
     description: "",
     url: "",
     datePublished: "2025-11-05",
-    dateModified: "2026-02-01",
+    dateModified: "2026-07-13",
   },
   stats: [
     { value: "12", label: "Animals", description: "One for each Earthly Branch." },
@@ -523,6 +523,12 @@ const overview = buildPage({
       label: "Wolfram Eberhard, A Dictionary of Chinese Symbols (1986)",
       source:
         "Reference for animal symbolism and cultural meanings in the Chinese zodiac tradition.",
+    },
+    {
+      label: "Hong Kong Observatory: Gregorian-Lunar Calendar Conversion",
+      source:
+        "Official conversion tables used to verify Lunar New Year dates and Gregorian-lunar boundaries.",
+      url: "https://www.hko.gov.hk/en/gts/time/conversion.htm",
     },
   ],
   sections: [
@@ -601,13 +607,110 @@ const overview = buildPage({
       ],
     },
     {
+      heading: "The 12 animals and their Earthly Branches",
+      content: (
+        <>
+          <p>
+            The animal sequence is a memorable label for the 12 Earthly Branches. The branch carries
+            the calendar position, season, direction, yin-yang polarity, and elemental context used
+            in Bazi. The animal adds cultural imagery, but the branch is the technical unit that
+            interacts through combinations, clashes, harms, punishments, and seasonal strength.
+          </p>
+          <ul>
+            <li>
+              <strong>Rat, Zi:</strong> Yang Water, north, and the center of winter.
+            </li>
+            <li>
+              <strong>Ox, Chou:</strong> Yin Earth, north-northeast, and late winter.
+            </li>
+            <li>
+              <strong>Tiger, Yin:</strong> Yang Wood, east-northeast, and early spring.
+            </li>
+            <li>
+              <strong>Rabbit, Mao:</strong> Yin Wood, east, and the center of spring.
+            </li>
+            <li>
+              <strong>Dragon, Chen:</strong> Yang Earth, east-southeast, and late spring.
+            </li>
+            <li>
+              <strong>Snake, Si:</strong> Yin Fire, south-southeast, and early summer.
+            </li>
+            <li>
+              <strong>Horse, Wu:</strong> Yang Fire, south, and the center of summer.
+            </li>
+            <li>
+              <strong>Goat, Wei:</strong> Yin Earth, south-southwest, and late summer.
+            </li>
+            <li>
+              <strong>Monkey, Shen:</strong> Yang Metal, west-southwest, and early autumn.
+            </li>
+            <li>
+              <strong>Rooster, You:</strong> Yin Metal, west, and the center of autumn.
+            </li>
+            <li>
+              <strong>Dog, Xu:</strong> Yang Earth, west-northwest, and late autumn.
+            </li>
+            <li>
+              <strong>Pig, Hai:</strong> Yin Water, north-northwest, and early winter.
+            </li>
+          </ul>
+          <p>
+            These correspondences explain why compatibility is more than matching personality
+            traits. Rat and Horse form a clash because Zi and Wu occupy opposite seasonal and
+            directional positions. Rabbit and Rooster do the same through Mao and You. The pattern
+            describes a structural contrast; the full chart determines whether that contrast is
+            disruptive, motivating, or balanced by other branches.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Animal signs, elements, and the 60-year cycle",
+      content: (
+        <>
+          <p>
+            Every zodiac year combines one of 10 Heavenly Stems with one of 12 Earthly Branches. The
+            pair advances together and returns after 60 combinations. Because each animal appears
+            every 12 years, it cycles through Wood, Fire, Earth, Metal, and Water versions; the same
+            stem-branch year returns once every 60 years.
+          </p>
+          <p>
+            The year element comes from the Heavenly Stem, not from the branch&apos;s own element. A
+            Dragon year always uses the Chen Earth branch, but 2024 was Jia Chen, commonly called
+            Wood Dragon, because Jia is a Wood stem. A person can therefore have a Wood Dragon year
+            pillar while the Dragon branch still contains its own Earth-centered hidden-stem
+            structure.
+          </p>
+          <p>
+            Use the year sign for a broad cultural and calendar answer. For a personal reading,
+            generate all four pillars with the{" "}
+            <Link
+              href="/tools/bazi-calculator"
+              className="text-brand-primary decoration-brand-primary/30 dark:text-gold-300 underline"
+            >
+              Bazi calculator
+            </Link>{" "}
+            and identify the Day Master, month branch, hidden stems, and current luck cycle. That
+            larger structure explains why people born in the same zodiac year do not share one fixed
+            personality or forecast.
+          </p>
+          <p>
+            When quoting a zodiac year, include both parts of the pair where possible: 2026 is Bing
+            Wu, not only “Horse,” and 2024 is Jia Chen, not only “Dragon.” The stem-branch name
+            preserves the element, polarity, and 60-year position that an animal-only label removes.
+          </p>
+        </>
+      ),
+    },
+    {
       heading: "2026 is the Year of the Horse",
       content: (
         <>
           <p>
-            2026 is widely discussed as a Horse year. For Bazi purposes, yearly energy should be
-            checked against solar-term timing and the full chart, especially for people born near
-            the Lunar New Year boundary.
+            2026 is Bing Wu, the Fire Horse year. For popular zodiac use, the year begins at Lunar
+            New Year on February 17, 2026. Four Pillars schools commonly change the year pillar at
+            Li Chun, around February 4, so dates in the first half of February require the method
+            and time zone to be stated.
           </p>
           <p>
             Horse symbolism emphasizes movement, visibility, independence, and Fire expression.
@@ -650,9 +753,9 @@ const overview = buildPage({
             boundary, do not guess.
           </p>
           <p>
-            This matters for GEO because answer engines tend to compress details. The page needs to
-            state clearly that January and early February births require boundary checking so
-            summaries do not confidently assign the wrong sign.
+            A lookup should therefore return both the animal and the boundary rule it used. Stating
+            the method is the only reliable way to explain why two reputable calendars can assign a
+            different year pillar to the same early-February birth.
           </p>
         </>
       ),
@@ -911,27 +1014,32 @@ const animalSections: Partial<Record<string, KnowledgePageProps["sections"]>> = 
         <>
           <p>
             Recent Years of the Dragon include 1940, 1952, 1964, 1976, 1988, 2000, 2012, and 2024,
-            with the next in 2036. The cycle repeats every 12 years. If you were born in January or early February, check the
-            Lunar New Year boundary for that year — the zodiac year boundary and the Bazi solar-term
-            boundary do not always coincide, and a few days can shift your sign.
+            with the next in 2036. The cycle repeats every 12 years. If you were born in January or
+            early February, check the Lunar New Year boundary for that year — the zodiac year
+            boundary and the Bazi solar-term boundary do not always coincide, and a few days can
+            shift your sign.
           </p>
           <p>
-            In the <Link href="/bazi/earthly-branches" className={linkClass}>Earthly Branch</Link>{" "}
-            system, the Dragon corresponds to Chen (辰), the fifth branch.
-            Chen governs the 7–9am window and the east-southeast direction. It is the third month of
-            spring — the transitional point between spring and summer, when Wood energy begins to
-            give way to Fire. This transitional quality is why Dragon energy in Bazi is associated
-            with transformation, ambition, and the capacity to hold multiple energies
-            simultaneously.
+            In the{" "}
+            <Link href="/bazi/earthly-branches" className={linkClass}>
+              Earthly Branch
+            </Link>{" "}
+            system, the Dragon corresponds to Chen (辰), the fifth branch. Chen governs the 7–9am
+            window and the east-southeast direction. It is the third month of spring — the
+            transitional point between spring and summer, when Wood energy begins to give way to
+            Fire. This transitional quality is why Dragon energy in Bazi is associated with
+            transformation, ambition, and the capacity to hold multiple energies simultaneously.
           </p>
           <p>
             The Dragon year comes in five elemental versions defined by the{" "}
-            <Link href="/bazi/five-elements" className={linkClass}>Five Elements</Link> (Wu Xing):
-            Wood Dragon (1964, 2024), Fire Dragon
-            (1976, 2036), Earth Dragon (1988, 2048), Metal Dragon (2000, 2060), and Water Dragon
-            (1952, 2012). A Wood Dragon year carries a different quality from a Metal Dragon year.
-            The elemental version modifies the base sign's expression and the kinds of pressure or
-            support the year brings to each animal sign.
+            <Link href="/bazi/five-elements" className={linkClass}>
+              Five Elements
+            </Link>{" "}
+            (Wu Xing): Wood Dragon (1964, 2024), Fire Dragon (1976, 2036), Earth Dragon (1988,
+            2048), Metal Dragon (2000, 2060), and Water Dragon (1952, 2012). A Wood Dragon year
+            carries a different quality from a Metal Dragon year. The elemental version modifies the
+            base sign's expression and the kinds of pressure or support the year brings to each
+            animal sign.
           </p>
         </>
       ),
@@ -949,12 +1057,15 @@ const animalSections: Partial<Record<string, KnowledgePageProps["sections"]>> = 
             Dragon people often feel pulled in multiple directions simultaneously.
           </p>
           <p>
-            The Chen branch holds three <Link href="/bazi/heavenly-stems" className={linkClass}>hidden stems</Link>: Wu Earth (戊) as the main stem, Yi Wood (乙)
-            as the middle stem, and Gui Water (癸) as the residual stem. This makes Chen one of the
-            most complex branches in the system — it contains Earth's stability, Wood's growth
-            drive, and Water's depth and intelligence. A Dragon person's chart can express very
-            differently depending on which hidden stem is activated by the luck cycle or annual
-            branch.
+            The Chen branch holds three{" "}
+            <Link href="/bazi/heavenly-stems" className={linkClass}>
+              hidden stems
+            </Link>
+            : Wu Earth (戊) as the main stem, Yi Wood (乙) as the middle stem, and Gui Water (癸) as
+            the residual stem. This makes Chen one of the most complex branches in the system — it
+            contains Earth's stability, Wood's growth drive, and Water's depth and intelligence. A
+            Dragon person's chart can express very differently depending on which hidden stem is
+            activated by the luck cycle or annual branch.
           </p>
           <p>
             The Dragon is the only mythological animal in the 12-sign cycle, which reflects its
@@ -1021,10 +1132,9 @@ const animalSections: Partial<Record<string, KnowledgePageProps["sections"]>> = 
               with the next Dragon year in 2036.
             </strong>{" "}
             The Dragon year repeats every 12 years, but each occurrence has a unique elemental
-            pairing.{" "}
-            The Heavenly Stem that rides above the Chen branch changes every cycle, producing five
-            distinct Dragon types across a 60-year sexagenary cycle. Below is the complete list of
-            recent and upcoming Dragon years with their stem-element combinations:
+            pairing. The Heavenly Stem that rides above the Chen branch changes every cycle,
+            producing five distinct Dragon types across a 60-year sexagenary cycle. Below is the
+            complete list of recent and upcoming Dragon years with their stem-element combinations:
           </p>
           <div className="mt-4 overflow-x-auto">
             <table className="w-full border-collapse text-sm">
@@ -1246,8 +1356,7 @@ const animalSections: Partial<Record<string, KnowledgePageProps["sections"]>> = 
 // quote) for signs that earn the most search impressions, without bloating
 // the generic builder. Dragon alone earns ~50% of all site impressions.
 const animalTitleOverrides: Partial<Record<string, string>> = {
-  dragon:
-    "Year of the Dragon Years List (1940–2036), Elements & Traits",
+  dragon: "Year of the Dragon: Years 1940–2036 & Elements",
 };
 
 const animalDescriptionOverrides: Partial<Record<string, string>> = {
@@ -1418,7 +1527,7 @@ const animalPages = animals.map((animal) =>
       ...siblingAnimalLinks(animal),
       {
         title: "Chinese Zodiac Compatibility",
-        href: "/chinese-zodiac/compatibility",
+        href: "/blog/chinese-zodiac-compatibility-chart",
         description: "Compare harmony pairs, triangular groups, and clash pairs.",
       },
       {
@@ -1599,8 +1708,9 @@ const compatibility = buildPage({
             difference.
           </p>
           <p>
-            This approach makes the compatibility page useful for both humans and answer engines
-            because it connects the entity, the rule, and the interpretation in the same passage.
+            Keep the branch rule beside the interpretation so the conclusion remains traceable. “Rat
+            and Horse clash” names the rule; “agree on pace and independence” translates that rule
+            into a behavior the two people can actually discuss.
           </p>
         </>
       ),
@@ -1660,14 +1770,14 @@ const forecast2026 = buildPage({
   entityType: "DefinedTerm",
   subtitle: "A Fire Horse year overview for all 12 signs, updated for 2026 planning.",
   directAnswer:
-    "The 2026 Chinese zodiac year is widely associated with the Horse, a sign linked with movement, visibility, independence, and Fire energy. Each animal sign experiences the year differently, but the most responsible reading combines general zodiac themes with a complete Bazi chart.",
+    "2026 is the Bing Wu Fire Horse year. The cultural zodiac year begins at Lunar New Year on February 17, while many Bazi schools change the year pillar at Li Chun around February 4. Horse and Fire themes emphasize movement, visibility, and independence, but a personal forecast still requires the full birth chart.",
   breadcrumbs: breadcrumbs("2026 Forecast", "/chinese-zodiac/2026-forecast"),
   schema: {
     headline: "",
     description: "",
     url: "",
     datePublished: "2026-01-15",
-    dateModified: "2026-07-12",
+    dateModified: "2026-07-13",
   },
   stats: [
     { value: "2026", label: "Forecast year", description: "A Horse-year planning cycle." },
@@ -1692,6 +1802,11 @@ const forecast2026 = buildPage({
       label: "Joey Yap, Bazi: The Destiny Code (2007)",
       source: "Annual energy is best read against a complete natal chart for better context.",
       url: "https://books.google.com/books?q=Joey+Yap+Bazi+The+Destiny+Code",
+    },
+    {
+      label: "Hong Kong Observatory: Gregorian-Lunar Calendar Conversion",
+      source: "Official 2026 calendar conversion table confirming Lunar New Year on February 17.",
+      url: "https://www.hko.gov.hk/en/gts/time/calendar/pdf/files/2026e.pdf",
     },
   ],
   sections: [
@@ -1816,27 +1931,56 @@ const forecast2026 = buildPage({
       ),
     },
     {
-      heading: "Update note for time-sensitive content",
+      heading: "2026 date boundaries and a quarterly planning rhythm",
       content: (
         <>
           <p>
-            This page is a 2026 planning overview and should be reviewed quarterly. Public forecast
-            pages need fresh examples, dates, and internal links as the year approaches.
+            The cultural Year of the Horse begins at Lunar New Year on February 17, 2026. Many Bazi
+            schools use Li Chun, around February 4, as the year-pillar boundary. Someone born
+            between those dates may therefore be described as a Snake in a Lunar New Year zodiac
+            calendar and a Horse in a solar-term Four Pillars calculation. State the boundary before
+            assigning the sign.
           </p>
           <p>
-            The page should also be rechecked around Lunar New Year and Li Chun because those are
-            the dates readers use to decide which year cycle applies. Keeping these boundaries
-            visible improves both content quality and answer-engine reliability.
+            Use January and early February to close unfinished commitments and choose a small number
+            of priorities. From Lunar New Year through spring, the Horse theme favors starting
+            visible work, but each commitment should have a time limit and a clear owner. Movement
+            is useful when it advances a selected direction, not when it multiplies obligations.
           </p>
           <p>
-            Forecast content ages faster than evergreen definitions. A good editorial process should
-            refresh examples, add date-specific notes, and verify internal links as 2026 approaches
-            and again after the year begins.
+            During summer, review pace, spending, and recovery because seasonal Fire can reinforce
+            the Fire Horse image. This is symbolic planning guidance rather than a health
+            prediction. The practical questions are whether the schedule is sustainable, whether
+            high-visibility work is producing results, and which commitments can be reduced before
+            they compete for attention.
           </p>
           <p>
-            This review cadence also helps answer engines: a clear modified date, current-year
-            language, and consistent links to the zodiac hub and Bazi calculator make the page
-            easier to trust and cite.
+            In autumn, consolidate what the earlier momentum created. Document repeatable processes,
+            strengthen financial boundaries, and decide which relationships or projects deserve a
+            longer cycle. In winter, compare the year&apos;s actual outcomes with the original plan
+            instead of treating a general forecast as proof after the fact.
+          </p>
+          <p>
+            For each quarter, record one desired movement, one pacing limit, and one observable
+            review date. Then compare those choices with the full Bazi chart if personal timing
+            matters. This keeps the annual animal theme broad and useful without claiming that
+            everyone born under one sign will experience the same events.
+          </p>
+          <p>
+            Horse-year relationships also need context. Rat forms the direct Zi-Wu clash, Goat forms
+            a six-harmony pair with Horse, and Tiger-Horse-Dog form a Fire triad. These are branch
+            relationships, not rankings of who will have a good year. Check which branches already
+            exist in the natal chart and whether the arriving Horse completes, supports, or
+            pressures a larger pattern before drawing a personal conclusion.
+          </p>
+          <p>
+            If no birth time is available, keep the reading at year-sign level and say so. Missing
+            hour data limits palace and timing detail; inventing precision does not improve the
+            forecast.
+          </p>
+          <p>
+            Recheck the plan when work, relationship, or health circumstances materially change
+            during the year.
           </p>
         </>
       ),
@@ -1865,7 +2009,7 @@ const forecast2026 = buildPage({
           <p>
             For relationship questions during the year, pair this page with the{" "}
             <Link
-              href="/chinese-zodiac/compatibility"
+              href="/blog/chinese-zodiac-compatibility-chart"
               className="text-brand-primary decoration-brand-primary/30 dark:text-gold-300 underline"
             >
               compatibility guide
@@ -2068,7 +2212,7 @@ function buildYearPage(
       },
       {
         title: "Chinese Zodiac Compatibility",
-        href: "/chinese-zodiac/compatibility",
+        href: "/blog/chinese-zodiac-compatibility-chart",
         description: "Compare harmony pairs, triangular groups, and clash pairs.",
       },
       {

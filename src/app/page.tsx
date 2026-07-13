@@ -178,7 +178,7 @@ const learningPaths = [
 const posts = [
   {
     title: "What Is Bazi? A Beginner's Guide to the Four Pillars",
-    href: "/blog/what-is-bazi",
+    href: "/bazi/what-is-bazi",
     category: "Bazi Guide",
     excerpt:
       "A practical introduction to year, month, day, and hour pillars for readers new to Chinese metaphysics.",
@@ -191,11 +191,11 @@ const posts = [
       "The Day Master is the day stem (heavenly stem of day pillar). Complete guide to the 10 Heavenly Stems and your Bazi day master source.",
   },
   {
-    title: "Jia Wood Day Master: The Tall Tree — Personality & Meaning",
-    href: "/blog/jia-wood-day-master",
+    title: "Ren Water Day Master (壬): Meaning, Strength & Career in Bazi",
+    href: "/blog/ren-water-day-master",
     category: "Bazi Guide",
     excerpt:
-      "Jia Wood (甲) is the Yang Wood Day Master — the tall tree. A complete guide to Jia Wood personality, career, relationships, and elemental strengths.",
+      "Learn how Ren Water is read through season, strength, Ten Gods, useful elements, career patterns, and complete-chart context.",
   },
   {
     title: "Chinese Zodiac Compatibility Chart: Triads, Harmony Pairs & Clashes",
@@ -205,25 +205,25 @@ const posts = [
       "A complete compatibility chart with triads, harmony pairs, and clash pairs for all 12 animal signs.",
   },
   {
-    title: "Chinese Zodiac 2026 Forecast: What to Expect for All 12 Animals",
-    href: "/blog/chinese-zodiac-2026-forecast",
+    title: "2026 Chinese Zodiac Forecast: Year of the Fire Horse",
+    href: "/chinese-zodiac/2026-forecast",
     category: "Yearly Forecast",
     excerpt:
-      "A structured year overview that treats the zodiac as context rather than a literal prediction machine.",
+      "Plan around Fire Horse themes, exact year boundaries, all 12 signs, and full-chart context.",
   },
   {
-    title: "Bazi vs Western Astrology: Which System Is More Accurate?",
-    href: "/blog/bazi-vs-western-astrology",
-    category: "Comparison",
+    title: "How to Cast and Read an I Ching Hexagram",
+    href: "/blog/i-ching-beginners-reading-guide",
+    category: "I Ching Guide",
     excerpt:
-      "A side-by-side comparison of symbolic systems without flattening either into the other.",
+      "A six-step beginner workflow for questions, coin casting, changing lines, interpretation, and review.",
   },
   {
-    title: "How to Read a Bazi Chart Without Getting Overwhelmed",
-    href: "/blog/how-to-read-a-bazi-chart",
-    category: "Bazi Guide",
+    title: "The Five Elements (Wu Xing): A Complete Guide",
+    href: "/bazi/five-elements",
+    category: "Bazi Foundation",
     excerpt:
-      "A step-by-step reading order for turning a Four Pillars chart into useful questions about timing and tendencies.",
+      "Understand Wood, Fire, Earth, Metal, and Water through generating, controlling, and seasonal relationships.",
   },
 ];
 
@@ -419,7 +419,7 @@ export default function Home() {
 
             <div className="border-brand-primary text-ink-700 dark:text-ink-200 mt-8 max-w-xl border-l-2 bg-white/70 px-4 py-3 text-sm leading-6 shadow-sm dark:bg-white/5">
               <strong className="text-ink-950 dark:text-paper">Quick answer:</strong> start with{" "}
-              <Link href="/blog/what-is-bazi" className="font-semibold underline">
+              <Link href="/bazi/what-is-bazi" className="font-semibold underline">
                 What Is Bazi
               </Link>{" "}
               and Five Elements, then use Bazi for birth-chart structure, I Ching for decisions, and
