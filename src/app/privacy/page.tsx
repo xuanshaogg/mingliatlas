@@ -41,7 +41,7 @@ export default function PrivacyPage() {
           content: (
             <>
               <p>
-                Contact messages are stored so the editorial team can review and respond to the request. Newsletter email addresses are stored to provide site updates. We retain these records only while they are operationally useful or legally required.
+                Contact messages are stored so the editorial team can review and respond to the request. When configured, a transactional email provider sends a notification to the editorial inbox and uses the submitted address only as a reply-to address. Newsletter email addresses are stored to provide site updates; subscriptions use a signed confirmation link and signed unsubscribe links. We retain these records only while they are operationally useful or legally required.
               </p>
               <p className="mt-4">
                 The site does not currently display personalized advertising. If advertising is introduced, this policy and any required consent controls will be updated before that data processing begins.
@@ -65,6 +65,9 @@ export default function PrivacyPage() {
                 </li>
                 <li>
                   <strong>Supabase</strong> — database infrastructure for contact messages and subscriptions
+                </li>
+                <li>
+                  <strong>Resend</strong> — transactional subscription confirmations, welcome emails, contact notifications, and delivery events when email delivery is enabled
                 </li>
               </ul>
               <p className="mt-4">

@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { parseFormBody, unsubscribeSubmissionSchema } from "@/lib/forms/submissions";
 import { getPrisma } from "@/lib/prisma";
+import { readSubscriptionToken } from "@/lib/subscriptions/token";
 import {
   checkRateLimit,
   getClientIdentifier,
@@ -40,4 +41,23 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
   // Always show the same result for known and unknown addresses.
   return redirect(request, "done");
+}
+
+export async function GET(request: NextRequest): Promise<NextResponse> {
+  const rateLimit = checkRateLimit("unsubscribe-token", getClientIdentifier(request), {
+    limit: 10,
+    windowMs: 10 * 60_000,
+  });
+  if (!rateLimit.allowed) return redirect(request, "rate_limited");
+
+  const email = readSubscriptionToken(new URL(request.url).searchParams.get("token"), "unsubscribe");
+  if (!email) return redirect(request, "unavailable");
+
+  try {
+    await getPrisma().subscriber.updateMany({ where: { email }, data: { unsubscribedAt: new Date() } });
+    return redirect(request, "done");
+  } catch (error) {
+    console.error("Subscription removal failed", error);
+    return redirect(request, "unavailable");
+  }
 }

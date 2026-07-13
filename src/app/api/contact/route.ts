@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { contactSubmissionSchema, parseFormBody } from "@/lib/forms/submissions";
 import { getPrisma } from "@/lib/prisma";
+import { escapeHtml, sendEmail } from "@/lib/email/resend";
 import {
   checkRateLimit,
   getClientIdentifier,
@@ -41,6 +42,16 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         message: parsed.data.message,
       },
     });
+
+    const notificationEmail = process.env.CONTACT_NOTIFICATION_EMAIL?.trim();
+    if (notificationEmail) {
+      await sendEmail({
+        to: notificationEmail,
+        replyTo: parsed.data.email,
+        subject: `New mingliatlas contact message from ${parsed.data.name}`,
+        html: `<p><strong>Name:</strong> ${escapeHtml(parsed.data.name)}</p><p><strong>Email:</strong> ${escapeHtml(parsed.data.email)}</p><p><strong>Message:</strong></p><p>${escapeHtml(parsed.data.message).replace(/\n/g, "<br />")}</p>`,
+      });
+    }
   } catch (error) {
     console.error("Contact submission storage failed", error);
     return errorRedirect(request, "unavailable");
