@@ -8,8 +8,9 @@ import { SITE } from "@/lib/constants";
 import { buildFAQPageSchema, buildItemListSchema, JsonLd } from "@/lib/seo/jsonLd";
 
 export const metadata: Metadata = {
-  title: "Tools",
-  description: "Free calculators and guided workflows for Bazi, Chinese Zodiac, I Ching, and Chinese metaphysics.",
+  title: "Free Bazi, I Ching & Zodiac Tools",
+  description:
+    "Free browser tools for Chinese metaphysics: a Bazi Four Pillars calculator, an I Ching coin oracle, and a Chinese zodiac compatibility checker.",
   alternates: {
     canonical: "/tools",
   },
@@ -82,10 +83,10 @@ export default function ToolsPage() {
   return (
     <>
       <JsonLd data={[itemListSchema, buildFAQPageSchema(toolsFaqs)]} />
-      <main className="bg-paper px-4 py-12 dark:bg-ink-950 sm:px-6 lg:px-8">
+      <main className="atlas-tool-shell bg-paper px-4 py-12 dark:bg-ink-950 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-brand-primary dark:text-gold-300">Tools</p>
-          <h1 className="mt-4 text-4xl font-semibold tracking-tight text-ink-950 dark:text-paper sm:text-5xl">
+          <h1 className="mt-4 font-display text-5xl tracking-tight text-ink-950 dark:text-paper sm:text-6xl">
             Free tools
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-ink-600 dark:text-ink-300">
@@ -95,7 +96,7 @@ export default function ToolsPage() {
             <DirectAnswer answer="The free tools turn Chinese metaphysics concepts into practical workflows: calculate a Bazi chart, cast an I Ching hexagram, or compare two Chinese zodiac signs. Use them as structured learning aids before reading deeper guides." />
           </div>
 
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
+          <div className="mt-10 grid border-y border-ink-200 md:grid-cols-3">
             {tools.map((tool) => {
               const Icon = tool.icon;
 
@@ -103,17 +104,17 @@ export default function ToolsPage() {
                 <Link
                   key={tool.href}
                   href={tool.href}
-                  className="rounded-lg border border-ink-200 bg-white p-6 transition hover:border-brand-gold dark:border-white/10 dark:bg-white/5"
+                  className="group border-b border-ink-200 bg-white p-6 transition hover:bg-paper-100 md:border-b-0 md:border-r md:last:border-r-0 dark:border-white/10 dark:bg-white/5"
                 >
                   <div className="flex items-center justify-between gap-4">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-50 text-brand-primary dark:bg-gold-500/10 dark:text-gold-300">
+                    <span className="flex h-10 w-10 items-center justify-center border border-brand-200 bg-brand-50 text-brand-primary dark:bg-gold-500/10 dark:text-gold-300">
                       <Icon className="h-5 w-5" aria-hidden="true" />
                     </span>
-                    <span className="rounded-full bg-gold-100 px-3 py-1 text-xs font-semibold text-gold-800 dark:bg-gold-500/15 dark:text-gold-200">
+                    <span className="border border-gold-300 bg-gold-50 px-3 py-1 text-xs font-semibold text-gold-800 dark:bg-gold-500/15 dark:text-gold-200">
                       {tool.status}
                     </span>
                   </div>
-                  <h2 className="mt-5 text-2xl font-semibold tracking-tight text-ink-950 dark:text-paper">
+                  <h2 className="mt-5 font-display text-3xl tracking-tight text-ink-950 dark:text-paper">
                     {tool.title}
                   </h2>
                   <p className="mt-3 text-sm leading-6 text-ink-600 dark:text-ink-300">{tool.description}</p>

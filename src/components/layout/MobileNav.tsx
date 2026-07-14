@@ -20,7 +20,7 @@ export default function MobileNav({ children, triggerLabel }: MobileNavProps) {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-ink-200 text-ink-800 transition hover:border-brand-gold hover:text-brand-primary dark:border-white/10 dark:text-paper"
+        className="inline-flex h-10 w-10 items-center justify-center border border-ink-300 text-ink-800 transition hover:border-brand-primary hover:text-brand-primary"
         aria-label={triggerLabel}
         aria-expanded={open}
       >

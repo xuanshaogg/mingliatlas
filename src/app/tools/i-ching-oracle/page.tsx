@@ -107,14 +107,14 @@ export default function IChingOraclePage() {
           buildBreadcrumbListSchema(breadcrumbs),
         ]}
       />
-      <main className="bg-paper px-4 py-10 dark:bg-ink-950 sm:px-6 lg:px-8">
+      <main className="atlas-tool-shell bg-paper px-4 py-10 dark:bg-ink-950 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <Breadcrumbs items={breadcrumbs} />
           <header className="mt-10 max-w-4xl">
             <p className="text-sm font-semibold uppercase tracking-[0.24em] text-brand-primary dark:text-gold-300">
               Tools
             </p>
-            <h1 className="mt-4 text-balance text-4xl font-semibold tracking-tight text-ink-950 dark:text-paper sm:text-5xl">
+            <h1 className="mt-4 text-balance font-display text-5xl tracking-tight text-ink-950 dark:text-paper sm:text-6xl">
               Free I Ching Oracle
             </h1>
             <p className="mt-5 text-lg leading-8 text-ink-600 dark:text-ink-300">

@@ -20,7 +20,7 @@ interface InfoCardProps {
 
 export function Stat({ value, label, description }: StatProps) {
   return (
-    <div className="rounded-lg border border-ink-200 bg-white p-4 dark:border-white/10 dark:bg-white/5">
+    <div className="border-t border-ink-300 bg-white px-1 py-4 dark:border-white/10 dark:bg-white/5">
       <p className="text-3xl font-semibold text-brand-primary dark:text-gold-300">{value}</p>
       <p className="mt-1 text-sm font-semibold text-ink-900 dark:text-paper">{label}</p>
       {description ? <p className="mt-2 text-sm leading-6 text-ink-600 dark:text-ink-300">{description}</p> : null}
@@ -30,7 +30,7 @@ export function Stat({ value, label, description }: StatProps) {
 
 export default function InfoCard({ title = "Quick Facts", stats, children }: InfoCardProps) {
   return (
-    <aside className="rounded-lg border border-ink-200 bg-paper-100 p-5 dark:border-white/10 dark:bg-white/5">
+    <aside className="border-y border-ink-300 bg-paper-100 p-5 dark:border-white/10 dark:bg-white/5">
       <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-brand-primary dark:text-gold-300">
         {title}
       </h2>

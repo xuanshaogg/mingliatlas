@@ -131,14 +131,14 @@ export default function BaziCalculatorPage() {
           buildBreadcrumbListSchema(breadcrumbs),
         ]}
       />
-      <main className="bg-paper px-4 py-6 dark:bg-ink-950 sm:px-6 sm:py-10 lg:px-8">
+      <main className="atlas-tool-shell bg-paper px-4 py-6 dark:bg-ink-950 sm:px-6 sm:py-10 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <Breadcrumbs items={breadcrumbs} />
           <header className="mt-6 max-w-4xl sm:mt-10">
             <p className="text-sm font-semibold uppercase tracking-[0.24em] text-brand-primary dark:text-gold-300">
               Tools
             </p>
-            <h1 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-ink-950 dark:text-paper sm:mt-4 sm:text-5xl">
+            <h1 className="mt-3 text-balance font-display text-5xl tracking-tight text-ink-950 dark:text-paper sm:mt-4 sm:text-6xl">
               Free Bazi Calculator
             </h1>
             <p className="mt-3 text-base leading-7 text-ink-600 dark:text-ink-300 sm:mt-5 sm:text-lg sm:leading-8">
@@ -158,7 +158,7 @@ export default function BaziCalculatorPage() {
           </div>
           <section className="mt-14 grid gap-8 lg:grid-cols-3">
             <div className="rounded-lg border border-ink-200 bg-white p-6 dark:border-white/10 dark:bg-white/5">
-              <h2 className="text-xl font-semibold tracking-tight text-ink-950 dark:text-paper">What the chart calculates</h2>
+              <h2 className="font-display text-2xl tracking-tight text-ink-950 dark:text-paper">What the chart calculates</h2>
               <p className="mt-3 text-sm leading-7 text-ink-600 dark:text-ink-300">
                 The calculator maps a birth date and local civil time into the Chinese stem-branch calendar. It returns
                 the year, month, day, and hour pillars, then marks the Day Master from the day stem so the rest of the
@@ -166,7 +166,7 @@ export default function BaziCalculatorPage() {
               </p>
             </div>
             <div className="rounded-lg border border-ink-200 bg-white p-6 dark:border-white/10 dark:bg-white/5">
-              <h2 className="text-xl font-semibold tracking-tight text-ink-950 dark:text-paper">How to read it first</h2>
+              <h2 className="font-display text-2xl tracking-tight text-ink-950 dark:text-paper">How to read it first</h2>
               <p className="mt-3 text-sm leading-7 text-ink-600 dark:text-ink-300">
                 Start with the Day Master, then check the month branch for season, visible stems for expression, hidden
                 stems for stored energy, and Ten Gods for relationship roles. Element balance is a helpful overview,
@@ -174,7 +174,7 @@ export default function BaziCalculatorPage() {
               </p>
             </div>
             <div className="rounded-lg border border-ink-200 bg-white p-6 dark:border-white/10 dark:bg-white/5">
-              <h2 className="text-xl font-semibold tracking-tight text-ink-950 dark:text-paper">What it should not do</h2>
+              <h2 className="font-display text-2xl tracking-tight text-ink-950 dark:text-paper">What it should not do</h2>
               <p className="mt-3 text-sm leading-7 text-ink-600 dark:text-ink-300">
                 A Bazi chart is not a medical, legal, financial, or mental health diagnosis. Use the result as a
                 structured learning reference. For real-world decisions, combine chart reflection with practical
@@ -184,7 +184,7 @@ export default function BaziCalculatorPage() {
           </section>
           <section className="mt-14 border-y border-ink-200 py-10 dark:border-white/10">
             <div className="max-w-4xl">
-              <h2 className="text-2xl font-semibold tracking-tight text-ink-950 dark:text-paper">
+              <h2 className="font-display text-3xl tracking-tight text-ink-950 dark:text-paper">
                 Calculation method and limits
               </h2>
               <div className="mt-6 space-y-5 text-base leading-8 text-ink-700 dark:text-ink-200">
@@ -219,7 +219,7 @@ export default function BaziCalculatorPage() {
             </div>
           </section>
           <section className="mt-14 rounded-lg border border-gold-300/70 bg-gold-50 p-6 dark:border-gold-500/30 dark:bg-gold-500/10">
-            <h2 className="text-2xl font-semibold tracking-tight text-ink-950 dark:text-paper">
+            <h2 className="font-display text-3xl tracking-tight text-ink-950 dark:text-paper">
               Recommended Bazi reading order
             </h2>
             <ol className="mt-5 grid gap-4 text-sm leading-7 text-ink-700 dark:text-ink-200 md:grid-cols-2">

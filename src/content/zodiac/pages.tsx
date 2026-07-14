@@ -1148,7 +1148,11 @@ const animalSections: Partial<Record<string, KnowledgePageProps["sections"]>> = 
               </thead>
               <tbody>
                 <tr className="border-ink-100 border-b dark:border-white/5">
-                  <td className="py-2 pr-4">1940</td>
+                  <td className="py-2 pr-4">
+                    <Link href="/chinese-zodiac/dragon/1940" className={linkClass}>
+                      1940
+                    </Link>
+                  </td>
                   <td className="py-2 pr-4">Geng-Chen (庚辰)</td>
                   <td className="py-2 pr-4">Metal Dragon</td>
                   <td className="py-2">Determined, precise, structured</td>
@@ -1375,10 +1379,10 @@ const animalPages = animals.map((animal) =>
     path: `/chinese-zodiac/${animal.slug}`,
     title:
       animalTitleOverrides[animal.slug] ??
-      `Year of the ${animal.name} — Years List, Personality & 2026 Horoscope | Chinese Zodiac`,
+      `Year of the ${animal.name}: Traits & 2026 Horoscope`,
     description:
       animalDescriptionOverrides[animal.slug] ??
-      `${animal.name} zodiac: years list (${animal.years}), Five Element personality types, compatibility triads & clash pairs, career guidance, and 2026 forecast. Includes free Bazi calculator.`,
+      `Year of the ${animal.name}: full years list (${animal.years}), personality traits, compatibility matches and clashes, plus the 2026 forecast.`,
     entityName: `Year of the ${animal.name}`,
     entityType: "DefinedTerm",
     subtitle: `${animal.name} personality, compatibility, years, career themes, and 2026 guidance.`,
@@ -2226,6 +2230,13 @@ function buildYearPage(
 }
 
 const dragonYears = [
+  {
+    year: "1940",
+    stemBranch: "Geng-Chen (庚辰)",
+    elementLabel: "Metal",
+    elementDesc:
+      "Metal adds precision, determination, structure, and a drive for quality. A Metal Dragon year tends to be disciplined, exacting, and systems-oriented.",
+  },
   {
     year: "1952",
     stemBranch: "Ren-Chen (壬辰)",

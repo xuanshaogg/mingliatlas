@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import StaticPage from "@/components/templates/StaticPage";
 
 export const metadata: Metadata = {
-  title: "Contact",
-  description: "Contact mingliatlas for content corrections, partnerships, or support.",
+  title: "Contact Mingli Atlas",
+  description:
+    "Get in touch with the Mingli Atlas team for content corrections, partnership inquiries, feedback on the free tools, or general support questions.",
   alternates: {
     canonical: "/contact",
   },

@@ -75,8 +75,8 @@ function SectionBlock({ section, level = 2 }: { section: Section; level?: 2 | 3 
       <HeadingTag
         className={
           level === 2
-            ? "text-3xl font-semibold tracking-tight text-ink-950 dark:text-paper"
-            : "text-2xl font-semibold tracking-tight text-ink-950 dark:text-paper"
+            ? "font-display text-4xl tracking-tight text-ink-950 dark:text-paper"
+            : "font-display text-3xl tracking-tight text-ink-950 dark:text-paper"
         }
       >
         {section.heading}
@@ -84,8 +84,8 @@ function SectionBlock({ section, level = 2 }: { section: Section; level?: 2 | 3 
       <div className="mt-4 space-y-5 text-base leading-8 text-ink-700 dark:text-ink-200">{section.content}</div>
       {section.stats?.length ? (
         <div className="mt-6 grid gap-3 sm:grid-cols-3">
-          {section.stats.map((stat) => (
-            <div key={`${section.heading}-${stat.value}-${stat.label}`} className="rounded-lg border border-ink-200 bg-white p-4 dark:border-white/10 dark:bg-white/5">
+          {section.stats.map((stat, statIndex) => (
+            <div key={`${section.heading}-${stat.value}-${stat.label}-${statIndex}`} className="border-t border-ink-300 bg-white p-4 dark:border-white/10 dark:bg-white/5">
               <p className="text-2xl font-semibold text-brand-primary dark:text-gold-300">{stat.value}</p>
               <p className="mt-1 text-sm font-semibold text-ink-900 dark:text-paper">{stat.label}</p>
               {stat.description ? <p className="mt-2 text-sm leading-6 text-ink-600 dark:text-ink-300">{stat.description}</p> : null}
@@ -93,8 +93,8 @@ function SectionBlock({ section, level = 2 }: { section: Section; level?: 2 | 3 
           ))}
         </div>
       ) : null}
-      {section.quotes?.map((quote) => (
-        <div key={`${quote.author}-${quote.text}`} className="mt-6">
+      {section.quotes?.map((quote, quoteIndex) => (
+        <div key={`${section.heading}-${quote.author}-${quoteIndex}`} className="mt-6">
           <ExpertQuote quote={quote} />
         </div>
       ))}
@@ -143,8 +143,8 @@ export default function KnowledgePage({
   return (
     <>
       <JsonLd data={[articleSchema, buildFAQPageSchema(faqs), buildBreadcrumbListSchema(breadcrumbs)]} />
-      <article className="bg-paper dark:bg-ink-950">
-        <header className="border-b border-ink-200 bg-[linear-gradient(135deg,#fdfbf7_0%,#f7efe3_55%,#fff_100%)] px-4 py-10 dark:border-white/10 dark:bg-[linear-gradient(135deg,#10101f_0%,#1a1a2e_70%,#111110_100%)] sm:px-6 lg:px-8">
+      <article className="atlas-knowledge-shell bg-paper dark:bg-ink-950">
+        <header className="border-b border-ink-200 bg-paper-100 px-4 py-10 dark:border-white/10 dark:bg-ink-900 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl">
             <Breadcrumbs items={breadcrumbs} />
             <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-start">
@@ -152,7 +152,7 @@ export default function KnowledgePage({
                 <p className="text-sm font-semibold uppercase tracking-[0.25em] text-brand-primary dark:text-gold-300">
                   {entityType}
                 </p>
-                <h1 className="mt-4 text-balance text-4xl font-semibold tracking-tight text-ink-950 dark:text-paper sm:text-5xl lg:text-6xl">
+                <h1 className="mt-4 max-w-4xl text-balance font-display text-5xl tracking-tight text-ink-950 dark:text-paper sm:text-6xl lg:text-7xl">
                   {title}
                 </h1>
                 {subtitle ? <p className="mt-5 text-xl leading-8 text-ink-600 dark:text-ink-300">{subtitle}</p> : null}
@@ -167,8 +167,8 @@ export default function KnowledgePage({
 
         <div className="mx-auto grid max-w-7xl gap-12 px-4 py-14 sm:px-6 lg:grid-cols-[minmax(0,1fr)_18rem] lg:px-8">
           <div>
-            {sections.map((section) => (
-              <SectionBlock key={section.heading} section={section} />
+            {sections.map((section, sectionIndex) => (
+              <SectionBlock key={`${section.heading}-${sectionIndex}`} section={section} />
             ))}
             <FAQSection faqs={faqs} />
             <RelatedContent links={relatedLinks} />
@@ -180,7 +180,7 @@ export default function KnowledgePage({
           </div>
 
           <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
-            <div className="rounded-lg border border-ink-200 bg-white p-5 dark:border-white/10 dark:bg-white/5">
+            <div className="border-t border-ink-300 bg-white p-5 dark:border-white/10 dark:bg-white/5">
               <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-brand-primary dark:text-gold-300">
                 Sources
               </h2>
@@ -199,7 +199,7 @@ export default function KnowledgePage({
                 ))}
               </ul>
             </div>
-            <div className="rounded-lg border border-gold-300/70 bg-gold-50 p-5 text-sm leading-6 text-ink-700 dark:border-gold-500/30 dark:bg-gold-500/10 dark:text-ink-200">
+            <div className="border-l-2 border-brand-primary bg-paper-100 p-5 text-sm leading-6 text-ink-700 dark:border-gold-300 dark:bg-gold-500/10 dark:text-ink-200">
               <p className="font-semibold text-ink-950 dark:text-paper">About {SITE.name}</p>
               <p className="mt-2">We translate classical Chinese metaphysics into clear, modern guidance for structured self-knowledge.</p>
             </div>

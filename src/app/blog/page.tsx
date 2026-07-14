@@ -4,8 +4,9 @@ import { ArrowRight, BookOpen } from "lucide-react";
 import { allBlogPosts } from "@/content/blog/posts";
 
 export const metadata: Metadata = {
-  title: "Blog",
-  description: "Articles on Bazi, I Ching, Ziwei Doushu, Feng Shui, Chinese zodiac, and comparative metaphysics.",
+  title: "Bazi, I Ching & Chinese Zodiac Guides",
+  description:
+    "Practical articles on Bazi (Four Pillars), I Ching readings, Ziwei Doushu, Feng Shui, and Chinese zodiac — clear guides that skip the jargon.",
   alternates: {
     canonical: "/blog",
   },

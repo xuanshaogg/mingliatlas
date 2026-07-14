@@ -83,11 +83,11 @@ export default function Footer() {
               required
               autoComplete="email"
               placeholder="you@example.com"
-              className="min-w-0 flex-1 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm text-white placeholder:text-ink-400 outline-none ring-gold-400 transition focus:ring-2"
+            className="min-w-0 flex-1 border border-white/15 bg-white/10 px-4 py-2 text-sm text-white placeholder:text-ink-400 outline-none ring-gold-400 transition focus:ring-2"
             />
             <button
               type="submit"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gold-400 text-ink-950 transition hover:bg-gold-300"
+              className="inline-flex h-10 w-10 items-center justify-center bg-gold-400 text-ink-950 transition hover:bg-gold-300"
               aria-label="Subscribe"
             >
               <Mail className="h-4 w-4" aria-hidden="true" />

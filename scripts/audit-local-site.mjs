@@ -1,7 +1,7 @@
 const baseUrl = process.env.AUDIT_BASE_URL ?? "http://localhost:3107";
 
 const htmlPages = [
-  { path: "/", expectedTitle: "Mingli Atlas", expectedH1: "Chinese metaphysics guides and free tools", minJsonLd: 3 },
+  { path: "/", expectedTitle: "Mingli Atlas", expectedH1: "Understand the pattern before you make the move.", minJsonLd: 3 },
   { path: "/tools", expectedTitle: "Tools", expectedH1: "Free tools", minJsonLd: 2 },
   { path: "/tools/bazi-calculator", expectedTitle: "Free Bazi Calculator", expectedH1: "Free Bazi Calculator", minJsonLd: 3 },
   { path: "/tools/i-ching-oracle", expectedTitle: "Free I Ching Oracle", expectedH1: "Free I Ching Oracle", minJsonLd: 3 },

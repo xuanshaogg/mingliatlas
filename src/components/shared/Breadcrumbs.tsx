@@ -18,7 +18,7 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
           const isLast = index === items.length - 1;
 
           return (
-            <li key={item.href} className="flex items-center gap-2">
+            <li key={`${item.href}-${index}`} className="flex items-center gap-2">
               {index > 0 ? <ChevronRight className="h-3.5 w-3.5 text-ink-400" aria-hidden="true" /> : null}
               {isLast ? (
                 <span aria-current="page" className="font-medium text-ink-900 dark:text-paper">

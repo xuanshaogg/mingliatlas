@@ -17,7 +17,7 @@
   --text-hero--font-weight: 700;
 
   /* Brand: deep red primary scale for logo, CTA, links, and strong brand surfaces. */
-  --color-brand-primary: #8b0000;
+  --color-brand-primary: #a52a1c;
   --color-brand-50: #fdf8f6;
   --color-brand-100: #f9e8e4;
   --color-brand-200: #f0c5bc;
@@ -25,29 +25,29 @@
   --color-brand-400: #d87d6c;
   --color-brand-500: #c95a44;
   --color-brand-600: #a8402e;
-  --color-brand-700: #8b0000;
-  --color-brand-800: #6b0000;
-  --color-brand-900: #4a0000;
-  --color-brand-950: #2f0000;
+  --color-brand-700: #8f2117;
+  --color-brand-800: #741a13;
+  --color-brand-900: #56140f;
+  --color-brand-950: #35100d;
 
   /* Gold: accent scale for highlights, dividers, focus rings, and dark-background details. */
-  --color-brand-gold: #c9a84c;
+  --color-brand-gold: #b68c42;
   --color-gold-50: #fdf8ea;
   --color-gold-100: #f7edcf;
   --color-gold-200: #ecd99e;
   --color-gold-300: #dfc46e;
   --color-gold-400: #d4b460;
-  --color-gold-500: #c9a84c;
-  --color-gold-600: #b89335;
+  --color-gold-500: #b68c42;
+  --color-gold-600: #9b7433;
   --color-gold-700: #8f6f27;
   --color-gold-800: #624c1c;
   --color-gold-900: #3d3015;
 
   /* Paper: warm neutral backgrounds for pages, cards, and soft section contrast. */
-  --color-paper: #fdfbf7;
-  --color-paper-50: #fdfbf7;
-  --color-paper-100: #f5f0e5;
-  --color-paper-200: #ebe0cc;
+  --color-paper: #f7f7f3;
+  --color-paper-50: #fbfbf8;
+  --color-paper-100: #eeeeea;
+  --color-paper-200: #dfdfd7;
 
   /* Ink: cool dark neutrals for text, borders, and dark mode surfaces. */
   --color-ink-50: #f7f7fb;
@@ -57,10 +57,10 @@
   --color-ink-400: #8f90aa;
   --color-ink-500: #6d6e88;
   --color-ink-600: #565771;
-  --color-ink-700: #3a3a50;
-  --color-ink-800: #2a2a40;
-  --color-ink-900: #1a1a2e;
-  --color-ink-950: #10101f;
+  --color-ink-700: #3f3f46;
+  --color-ink-800: #27272a;
+  --color-ink-900: #18181b;
+  --color-ink-950: #111113;
 
   /* Five Elements supporting accent: Wood, reserved for diagrams and element-specific UI. */
   --color-accent: #2d5a27;
@@ -74,8 +74,8 @@
 }
 
 :root {
-  --background: #fdfbf7;
-  --foreground: #1a1a2e;
+  --background: #f7f7f3;
+  --foreground: #18181b;
 }
 
 .dark {
@@ -86,6 +86,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
+  font-feature-settings: "ss01" 1, "cv11" 1;
 }
 
 * {
@@ -94,4 +95,104 @@ body {
 
 a {
   text-underline-offset: 4px;
+}
+
+::selection {
+  background: #c9a84c;
+  color: #1a1a2e;
+}
+
+.hero-reveal {
+  animation: hero-reveal 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.home-reveal {
+  animation: home-reveal 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-reveal-delay {
+  animation-delay: 90ms;
+}
+
+.home-reveal-delay {
+  animation-delay: 90ms;
+}
+
+.hero-reveal-delay-2 {
+  animation-delay: 180ms;
+}
+
+.home-reveal-delay-2 {
+  animation-delay: 180ms;
+}
+
+.hero-reveal-delay-3 {
+  animation-delay: 270ms;
+}
+
+.home-reveal-delay-3 {
+  animation-delay: 270ms;
+}
+
+.atlas-plate {
+  animation: plate-in 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.atlas-ring {
+  animation: atlas-turn 28s linear infinite;
+}
+
+.atlas-tool-shell .rounded-lg,
+.atlas-tool-shell .rounded-md,
+.atlas-tool-shell .rounded-full,
+.atlas-knowledge-shell .rounded-lg {
+  border-radius: 0.125rem;
+}
+
+@keyframes hero-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes home-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes plate-in {
+  from {
+    opacity: 0;
+    transform: translateX(24px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes atlas-turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-reveal,
+  .home-reveal,
+  .atlas-plate,
+  .atlas-ring {
+    animation: none;
+  }
 }

@@ -19,7 +19,7 @@ export default function RelatedLinks({ links }: RelatedLinksProps) {
           <p className="text-sm font-semibold uppercase tracking-[0.22em] text-brand-primary dark:text-gold-300">
             Further Reading
           </p>
-          <h2 id="related-links-heading" className="mt-2 text-3xl font-semibold tracking-tight text-ink-950 dark:text-paper">
+          <h2 id="related-links-heading" className="mt-2 font-display text-4xl tracking-tight text-ink-950 dark:text-paper">
             Related guides
           </h2>
         </div>
@@ -29,7 +29,7 @@ export default function RelatedLinks({ links }: RelatedLinksProps) {
           <Link
             key={link.href}
             href={link.href}
-            className="group rounded-lg border border-ink-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-brand-gold hover:shadow-lg dark:border-white/10 dark:bg-white/5"
+            className="group border-t border-ink-200 bg-white px-1 py-5 transition hover:border-brand-primary dark:border-white/10 dark:bg-white/5"
           >
             <h3 className="text-lg font-semibold leading-7 text-ink-950 dark:text-paper">{link.title}</h3>
             <p className="mt-2 text-sm leading-6 text-ink-600 dark:text-ink-300">{link.description}</p>
