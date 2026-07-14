@@ -101,9 +101,9 @@ export default function Home() {
         <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[42%] border-l border-ink-200 lg:block" />
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-10 sm:px-8 sm:py-14 lg:grid-cols-[1.02fr_0.98fr] lg:gap-12 lg:px-10 lg:py-12">
           <div className="relative z-10 max-w-2xl">
-            <p className="home-reveal text-sm font-semibold uppercase tracking-[0.22em] text-brand-primary">{SITE.name} / a modern knowledge atlas</p>
-            <h1 className="home-reveal home-reveal-delay mt-6 max-w-2xl font-display text-5xl leading-[0.96] tracking-[-0.035em] text-ink-950 sm:text-7xl lg:text-[5rem]">Understand the pattern before you make the move.</h1>
-            <p className="home-reveal home-reveal-delay-2 mt-7 max-w-xl text-base leading-7 text-ink-600 sm:text-lg sm:leading-8">Explore Bazi, Ziwei Doushu, I Ching, Feng Shui, and Chinese Zodiac through clear explanations, structured tools, and cultural context.</p>
+            <p className="home-reveal text-sm font-semibold uppercase tracking-[0.22em] text-brand-primary">Free Bazi, I Ching &amp; Chinese Zodiac tools</p>
+            <h1 className="home-reveal home-reveal-delay mt-6 max-w-2xl font-display text-5xl leading-[0.96] tracking-normal text-ink-950 sm:text-7xl lg:text-[5rem]">Mingli Atlas</h1>
+            <p className="home-reveal home-reveal-delay-2 mt-7 max-w-xl text-base leading-7 text-ink-600 sm:text-lg sm:leading-8">Build a free Four Pillars chart, find your Day Master, compare Chinese zodiac signs, or cast the I Ching with clear English guidance and no sign-up.</p>
             <div className="home-reveal home-reveal-delay-3 mt-9 flex flex-col gap-3 sm:flex-row">
               <Link href="/tools/bazi-calculator" className="group inline-flex items-center justify-center bg-brand-primary px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-brand-700">Build your Bazi chart <ArrowUpRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" /></Link>
               <Link href="/learn/beginners-guide" className="inline-flex items-center justify-center border border-ink-300 px-6 py-3.5 text-sm font-semibold text-ink-800 transition hover:border-brand-primary hover:text-brand-primary">Start with the basics</Link>

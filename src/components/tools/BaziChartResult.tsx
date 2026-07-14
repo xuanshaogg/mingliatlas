@@ -5,15 +5,9 @@ import type { BaziChart, BaziChartPillar, ElementScore } from "@/lib/bazi";
 import { trackEvent } from "@/lib/analytics";
 import { buildBaziShareParams } from "@/lib/share-card";
 
-const NEXT_READS = [
-  { href: "/blog/day-master-bazi-complete-guide", label: "Your Day Master", description: "Read all 10 Day Masters — the day stem your chart is built around." },
-  { href: "/bazi/ten-gods", label: "Ten Gods", description: "Decode the relationship roles around the Day Master." },
-  { href: "/bazi/five-elements", label: "Five Elements", description: "Read the element balance in depth." },
-  { href: "/bazi/luck-pillars", label: "Luck Pillars", description: "See how timing cycles layer over the natal chart." },
-];
-
 interface BaziChartResultProps {
   chart: BaziChart;
+  isSample?: boolean;
 }
 
 function formatTime(hour: number, minute: number): string {
@@ -91,8 +85,19 @@ function ElementBar({ element }: { element: ElementScore }) {
   );
 }
 
-export default function BaziChartResult({ chart }: BaziChartResultProps) {
+export default function BaziChartResult({ chart, isSample = false }: BaziChartResultProps) {
   const currentYear = new Date().getFullYear();
+  const dayMasterLabel = `${chart.dayMaster.pinyin} ${chart.dayMaster.element}`;
+  const nextReads = [
+    {
+      href: `/blog/${chart.dayMaster.pinyin.toLowerCase()}-${chart.dayMaster.element.toLowerCase()}-day-master`,
+      label: `${dayMasterLabel} Day Master`,
+      description: `Start with the dedicated guide for the ${dayMasterLabel} day stem in this chart.`,
+    },
+    { href: "/bazi/ten-gods", label: "Ten Gods", description: "Decode the relationship roles around the Day Master." },
+    { href: "/bazi/five-elements", label: "Five Elements", description: "Read the element balance in depth." },
+    { href: "/bazi/luck-pillars", label: "Luck Pillars", description: "See how timing cycles layer over the natal chart." },
+  ];
 
   return (
     <section className="space-y-8" aria-live="polite">
@@ -101,14 +106,15 @@ export default function BaziChartResult({ chart }: BaziChartResultProps) {
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-primary dark:text-gold-300">
-                Chart Summary
+                {isSample ? "Sample Chart" : "Your Chart"}
               </p>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink-950 dark:text-paper">
-                {chart.dayMaster.name} Day Master
+                {dayMasterLabel} Day Master
               </h2>
               <p className="mt-3 max-w-2xl text-sm leading-6 text-ink-600 dark:text-ink-300">
-                Four Pillars generated from the local civil birth time you entered. Use this as a structured chart
-                reference before any interpretive reading.
+                {isSample
+                  ? "This example uses the default birth details above. Enter your own date and time, then calculate to generate your chart."
+                  : "Four Pillars generated from the local civil birth time you entered. Use this as a structured chart reference before any interpretive reading."}
               </p>
             </div>
             <div className="rounded-lg bg-brand-50 px-4 py-3 text-sm text-brand-900 dark:bg-gold-500/10 dark:text-gold-200">
@@ -171,6 +177,43 @@ export default function BaziChartResult({ chart }: BaziChartResultProps) {
           </p>
         </div>
       </div>
+
+      <section className="border-y border-brand-200 bg-brand-50 px-1 py-6 dark:border-gold-500/30 dark:bg-gold-500/10 sm:px-5">
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-primary dark:text-gold-300">
+          {isSample ? "Example reading path" : "Your next reading"}
+        </p>
+        <h2 className="mt-2 text-2xl font-semibold tracking-tight text-ink-950 dark:text-paper">
+          Start with the {dayMasterLabel} Day Master
+        </h2>
+        <p className="mt-2 max-w-3xl text-sm leading-6 text-ink-600 dark:text-ink-300">
+          Read the day stem first, then use Ten Gods, Five Elements, and Luck Pillars to add context in that order.
+        </p>
+        <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+          {nextReads.map((item, index) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={() =>
+                trackEvent("related_content_clicked", {
+                  tool_name: "bazi",
+                  target: item.href,
+                  day_master: dayMasterLabel,
+                })
+              }
+              className={`group rounded-lg border bg-white p-4 transition dark:bg-white/5 ${
+                index === 0
+                  ? "border-brand-primary dark:border-gold-400"
+                  : "border-ink-200 hover:border-brand-primary dark:border-white/10 dark:hover:border-gold-400"
+              }`}
+            >
+              <p className="font-semibold text-ink-950 group-hover:text-brand-primary dark:text-paper dark:group-hover:text-gold-300">
+                {index + 1}. {item.label}
+              </p>
+              <p className="mt-1 text-sm leading-5 text-ink-500 dark:text-ink-400">{item.description}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
 
       <section className="border-y border-brand-200 bg-brand-50 px-1 py-5 dark:border-gold-500/30 dark:bg-gold-500/10 sm:px-5">
         <div className="flex flex-wrap items-center justify-between gap-5">
@@ -295,28 +338,6 @@ export default function BaziChartResult({ chart }: BaziChartResultProps) {
         <p className="mt-5 text-sm leading-6 text-ink-500 dark:text-ink-400">
           For entertainment and self-reflection purposes.
         </p>
-      </section>
-
-      <section className="rounded-lg border border-ink-200 bg-white p-6 dark:border-white/10 dark:bg-white/5">
-        <h2 className="text-2xl font-semibold tracking-tight text-ink-950 dark:text-paper">Read next</h2>
-        <p className="mt-2 text-sm leading-6 text-ink-600 dark:text-ink-300">
-          Deepen your understanding of the chart you just calculated.
-        </p>
-        <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-          {NEXT_READS.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => trackEvent("related_content_clicked", { tool_name: "bazi", target: item.href })}
-              className="group rounded-lg border border-ink-200 p-4 transition hover:border-brand-primary dark:border-white/10 dark:hover:border-gold-400"
-            >
-              <p className="font-semibold text-ink-950 group-hover:text-brand-primary dark:text-paper dark:group-hover:text-gold-300">
-                {item.label}
-              </p>
-              <p className="mt-1 text-sm leading-5 text-ink-500 dark:text-ink-400">{item.description}</p>
-            </Link>
-          ))}
-        </div>
       </section>
 
     </section>

@@ -408,7 +408,13 @@ describe("GEO audit", () => {
     );
 
     expect(dragon?.title).toContain("1940–2036");
-    expect(dragon?.data.schema.dateModified).toBe("2026-07-12");
+    expect(dragon?.title).toContain("Years List");
+    expect(dragon?.data.schema.dateModified).toBe("2026-07-14");
+    expect(
+      allZodiacPages
+        .filter((page) => page.data.stats.some((stat) => stat.label === "Cycle rank"))
+        .every((page) => page.title.includes("Years List"))
+    ).toBe(true);
     expect(dayMaster?.title).toContain("Classical Sources");
     expect(dayMaster?.data.schema.dateModified).toBe("2026-07-13");
     expect(dayMaster?.data.citations.every((citation) => Boolean(citation.url))).toBe(true);

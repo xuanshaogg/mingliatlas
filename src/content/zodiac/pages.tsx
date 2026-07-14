@@ -1360,7 +1360,7 @@ const animalSections: Partial<Record<string, KnowledgePageProps["sections"]>> = 
 // quote) for signs that earn the most search impressions, without bloating
 // the generic builder. Dragon alone earns ~50% of all site impressions.
 const animalTitleOverrides: Partial<Record<string, string>> = {
-  dragon: "Year of the Dragon: Years 1940–2036 & Elements",
+  dragon: "Year of the Dragon Years List: 1940–2036 & Elements",
 };
 
 const animalDescriptionOverrides: Partial<Record<string, string>> = {
@@ -1379,7 +1379,7 @@ const animalPages = animals.map((animal) =>
     path: `/chinese-zodiac/${animal.slug}`,
     title:
       animalTitleOverrides[animal.slug] ??
-      `Year of the ${animal.name}: Traits & 2026 Horoscope`,
+      `Year of the ${animal.name}: Years List, Traits & Compatibility`,
     description:
       animalDescriptionOverrides[animal.slug] ??
       `Year of the ${animal.name}: full years list (${animal.years}), personality traits, compatibility matches and clashes, plus the 2026 forecast.`,
@@ -1395,7 +1395,7 @@ const animalPages = animals.map((animal) =>
       description: "",
       url: "",
       datePublished: animal.datePublished,
-      dateModified: "2026-07-12",
+      dateModified: "2026-07-14",
     },
     stats: [
       {

@@ -56,8 +56,10 @@ function buildDefaultChart(): BaziChart {
 export default function BaziCalculator({ mobileIntro }: BaziCalculatorProps) {
   const [form, setForm] = useState<FormState>(DEFAULT_INPUT);
   const [chart, setChart] = useState<BaziChart>(() => buildDefaultChart());
+  const [hasCalculated, setHasCalculated] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const startedRef = useRef(false);
+  const resultRef = useRef<HTMLDivElement>(null);
 
   function markStarted(): void {
     if (startedRef.current) return;
@@ -78,8 +80,20 @@ export default function BaziCalculator({ mobileIntro }: BaziCalculatorProps) {
     try {
       const nextChart = calculateBaziChart(parseInput(form));
       setChart(nextChart);
+      setHasCalculated(true);
       setError(null);
       trackEvent("calculator_completed", { tool_name: "bazi" });
+
+      requestAnimationFrame(() => {
+        const result = resultRef.current;
+        if (!result) return;
+
+        result.focus({ preventScroll: true });
+        result.scrollIntoView({
+          behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+          block: "start",
+        });
+      });
     } catch (chartError) {
       setError(chartError instanceof Error ? chartError.message : "Unable to calculate this chart.");
     }
@@ -88,6 +102,7 @@ export default function BaziCalculator({ mobileIntro }: BaziCalculatorProps) {
   function resetForm(): void {
     setForm(DEFAULT_INPUT);
     setChart(buildDefaultChart());
+    setHasCalculated(false);
     setError(null);
     startedRef.current = false;
   }
@@ -294,7 +309,9 @@ export default function BaziCalculator({ mobileIntro }: BaziCalculatorProps) {
         </div>
       </section>
 
-      <BaziChartResult chart={chart} />
+      <div ref={resultRef} tabIndex={-1} className="scroll-mt-24 outline-none">
+        <BaziChartResult chart={chart} isSample={!hasCalculated} />
+      </div>
     </div>
   );
 }
