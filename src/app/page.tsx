@@ -17,9 +17,9 @@ import { SITE } from "@/lib/constants";
 import { buildFAQPageSchema, buildItemListSchema, JsonLd } from "@/lib/seo/jsonLd";
 
 export const metadata: Metadata = {
-  title: `Mingli Atlas — Free Bazi Calculator (Ming Li) & Chinese Zodiac Guide`,
+  title: `Mingli Meaning & Free Bazi Calculator | Mingli Atlas`,
   description:
-    "Mingli Atlas (Ming Li) is a free Bazi calculator and Chinese metaphysics guide: build your Four Pillars and Day Master chart, read the Chinese Zodiac compatibility chart, cast the I Ching, and learn Ziwei Doushu and Feng Shui — no sign-up.",
+    "Mingli (ming li, 命理) means life-pattern principles. Mingli Atlas explains Bazi, Chinese Zodiac, I Ching, Ziwei Doushu, and Feng Shui with free tools.",
   alternates: { canonical: "/" },
 };
 
@@ -45,6 +45,12 @@ const searchIntentLinks = [
   { title: "Chinese zodiac compatibility chart", href: "/blog/chinese-zodiac-compatibility-chart", description: "Compare harmony pairs, triads, and clash pairs across all 12 animal signs." },
 ];
 
+const mingliMeaningPoints = [
+  { label: "Ming", value: "命", description: "life, fate, timing, and the conditions a chart describes." },
+  { label: "Li", value: "理", description: "principle, pattern, structure, and the logic used to read those conditions." },
+  { label: "Mingli", value: "命理", description: "the study of life patterns through systems such as Bazi, Ziwei Doushu, and the zodiac calendar." },
+];
+
 const posts = [
   { title: "What Is Bazi? A Beginner's Guide to the Four Pillars", href: "/bazi/what-is-bazi", category: "Bazi guide", excerpt: "A practical introduction to year, month, day, and hour pillars for readers new to Chinese metaphysics." },
   { title: "Day Master Is the Day Stem — Complete Guide", href: "/blog/day-master-bazi-complete-guide", category: "Bazi guide", excerpt: "Learn how the Day Master is read through season, strength, Ten Gods, and useful elements." },
@@ -52,6 +58,7 @@ const posts = [
 ];
 
 const homepageFaqs = [
+  { question: "What does Mingli mean?", answer: "Mingli, often written Ming Li, is 命理 in Chinese. Ming means life, fate, or timing; li means principle or pattern. In practice, mingli refers to Chinese life-pattern analysis systems such as Bazi, Ziwei Doushu, and zodiac calendar reading." },
   { question: "What should I start with if I am new to Chinese metaphysics?", answer: "Start with the beginner guide for yin-yang, Five Elements, and zodiac basics. If you want something personalized quickly, the Bazi calculator is the clearest first tool because it turns a birth date into a concrete chart structure." },
   { question: "What is the difference between Bazi, I Ching, and Chinese Zodiac?", answer: "Bazi is a birth-chart system based on year, month, day, and hour pillars. I Ching is a question-based reflection system built around hexagrams and changing lines. Chinese Zodiac is the 12-animal cycle and works best as cultural context rather than a full chart-reading substitute." },
   { question: "Can I use the free tools without knowing any Chinese terms?", answer: "Yes. The site explains core terms like Day Master, Ten Gods, trigrams, and harmony pairs in plain English and links deeper guides from the tool results so you can learn only the terms relevant to your question." },
@@ -122,6 +129,33 @@ export default function Home() {
               <ArrowRight className="h-4 w-4 flex-none text-brand-primary transition-transform group-hover:translate-x-1" aria-hidden="true" />
             </Link>
           ))}
+        </div>
+      </section>
+
+      <section className="border-b border-ink-200 bg-paper px-5 py-14 sm:px-8 lg:px-10 lg:py-16" aria-labelledby="mingli-meaning">
+        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-primary">Mingli meaning</p>
+            <h2 id="mingli-meaning" className="mt-4 max-w-lg font-display text-4xl leading-tight text-ink-950 sm:text-5xl">
+              Mingli means life-pattern principles.
+            </h2>
+          </div>
+          <div>
+            <p className="max-w-3xl text-base leading-8 text-ink-650">
+              Mingli, also searched as Ming Li, is the Chinese term 命理. It describes the
+              principles used to read timing, temperament, and recurring life patterns through Bazi,
+              Ziwei Doushu, the Chinese zodiac calendar, and related classical systems.
+            </p>
+            <div className="mt-8 grid gap-5 sm:grid-cols-3">
+              {mingliMeaningPoints.map((point) => (
+                <div key={point.label} className="border-l border-ink-200 pl-4">
+                  <p className="font-mono text-xs uppercase tracking-[0.16em] text-brand-primary">{point.label}</p>
+                  <p className="mt-3 font-serif text-4xl text-ink-950">{point.value}</p>
+                  <p className="mt-3 text-sm leading-6 text-ink-600">{point.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
