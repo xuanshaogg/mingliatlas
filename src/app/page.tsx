@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import FAQSection from "@/components/shared/FAQSection";
 import { SITE } from "@/lib/constants";
-import { buildFAQPageSchema, buildItemListSchema, JsonLd } from "@/lib/seo/jsonLd";
+import { buildDefinedTermSchema, buildFAQPageSchema, buildItemListSchema, JsonLd } from "@/lib/seo/jsonLd";
 
 export const metadata: Metadata = {
   title: `Mingli Meaning & Free Bazi Calculator | Mingli Atlas`,
@@ -71,6 +71,17 @@ const featuredToolsSchema = buildItemListSchema({
   items: toolPaths.map((tool) => ({ name: tool.title, description: tool.description, url: `${SITE.url}${tool.href}` })),
 });
 const homepageFaqSchema = buildFAQPageSchema(homepageFaqs);
+const mingliEntitySchema = buildDefinedTermSchema({
+  name: "Mingli (命理)",
+  alternateName: ["Ming Li", "Chinese life-pattern principles"],
+  description:
+    "Mingli (命理), also written Ming Li, means life-pattern principles: the study of timing, temperament, and recurring patterns through Bazi and related Chinese metaphysics systems.",
+  url: SITE.url,
+  definedTermSet: {
+    name: "Mingli Atlas Chinese Metaphysics Glossary",
+    url: `${SITE.url}/bazi/glossary`,
+  },
+});
 const searchIntentSchema = buildItemListSchema({
   name: "Popular Chinese Metaphysics Searches",
   description: "High-intent entry points for Bazi, Chinese zodiac years, Dragon zodiac, and compatibility.",
@@ -102,6 +113,7 @@ export default function Home() {
     <>
       <JsonLd data={featuredToolsSchema} />
       <JsonLd data={homepageFaqSchema} />
+      <JsonLd data={mingliEntitySchema} />
       <JsonLd data={searchIntentSchema} />
 
       <section className="relative overflow-hidden border-b border-ink-200 bg-paper">
@@ -146,6 +158,12 @@ export default function Home() {
               principles used to read timing, temperament, and recurring life patterns through Bazi,
               Ziwei Doushu, the Chinese zodiac calendar, and related classical systems.
             </p>
+            <Link
+              href="/bazi/glossary"
+              className="mt-5 inline-flex items-center text-sm font-semibold text-brand-primary underline decoration-brand-300 underline-offset-8 transition hover:text-brand-700"
+            >
+              Explore the Chinese metaphysics glossary <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+            </Link>
             <div className="mt-8 grid gap-5 sm:grid-cols-3">
               {mingliMeaningPoints.map((point) => (
                 <div key={point.label} className="border-l border-ink-200 pl-4">

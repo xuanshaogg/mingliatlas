@@ -21,6 +21,7 @@ import { AUTHOR, SITE } from "@/lib/constants";
 import {
   buildArticleDefinedTermSchema,
   buildBreadcrumbListSchema,
+  buildDefinedTermSchema,
   buildFAQPageSchema,
   buildWebApplicationSchema,
 } from "@/lib/seo/jsonLd";
@@ -310,6 +311,8 @@ describe("GEO audit", () => {
     expect(llms).toContain(`${SITE.url}/llms-full.txt`);
     expect(llms).toContain(`${SITE.url}/tools/bazi-calculator`);
     expect(llms).toContain("## Core Entities");
+    expect(llms).toContain("Mingli (Ming Li, 命理)");
+    expect(llms).toContain("What does Mingli / Ming Li mean");
     expect(llms).toContain("## Canonical Entity Pages");
     expect(llms).toContain(`${SITE.url}/bazi/five-elements`);
     expect(llms).toContain("## Citation Policy");
@@ -366,11 +369,33 @@ describe("GEO audit", () => {
         },
       ],
     });
+    const definedTermSchema = buildDefinedTermSchema({
+      name: "Mingli (命理)",
+      alternateName: ["Ming Li", "Chinese life-pattern principles"],
+      description: "A framework for reading timing and recurring life patterns.",
+      url: SITE.url,
+      definedTermSet: {
+        name: "Mingli Atlas Chinese Metaphysics Glossary",
+        url: `${SITE.url}/bazi/glossary`,
+      },
+    });
 
     expect(faqSchema["@type"]).toBe("FAQPage");
     expect(breadcrumbSchema["@type"]).toBe("BreadcrumbList");
     expect(applicationSchema["@type"]).toEqual(["WebApplication", "SoftwareApplication"]);
     expect(applicationSchema.alternateName).toEqual(["Ming Li Bazi Calculator"]);
+    expect(definedTermSchema).toMatchObject({
+      "@type": "DefinedTerm",
+      "@id": `${SITE.url}#mingli`,
+      name: "Mingli (命理)",
+      alternateName: ["Ming Li", "Chinese life-pattern principles"],
+      url: SITE.url,
+      inDefinedTermSet: {
+        "@type": "DefinedTermSet",
+        name: "Mingli Atlas Chinese Metaphysics Glossary",
+        url: `${SITE.url}/bazi/glossary`,
+      },
+    });
     expect(articleSchema.isPartOf).toMatchObject({ "@type": "WebSite", name: SITE.name });
     expect(articleSchema.about).toMatchObject({ "@type": "DefinedTerm", name: "Five Elements" });
     expect(articleSchema.citation).toEqual([

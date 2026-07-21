@@ -63,6 +63,17 @@ interface HowToSchemaInput {
   steps: string[];
 }
 
+interface DefinedTermSchemaInput {
+  name: string;
+  description: string;
+  url: string;
+  alternateName?: string | string[];
+  definedTermSet?: {
+    name: string;
+    url: string;
+  };
+}
+
 export function JsonLd({ data }: JsonLdProps) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />;
 }
@@ -220,6 +231,35 @@ export function buildFAQPageSchema(faqs: FAQ[]): JsonLdNode {
         text: faq.answer,
       },
     })),
+  };
+}
+
+export function buildDefinedTermSchema({
+  name,
+  description,
+  url,
+  alternateName,
+  definedTermSet,
+}: DefinedTermSchemaInput): JsonLdNode {
+  const termId = name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "DefinedTerm",
+    "@id": `${url}#${termId}`,
+    name,
+    ...(alternateName ? { alternateName } : {}),
+    description,
+    url,
+    ...(definedTermSet
+      ? {
+          inDefinedTermSet: {
+            "@type": "DefinedTermSet",
+            name: definedTermSet.name,
+            url: definedTermSet.url,
+          },
+        }
+      : {}),
   };
 }
 
