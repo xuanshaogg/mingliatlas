@@ -16,6 +16,7 @@ export interface SitePage {
 
 const CONTENT_LAST_MODIFIED = "2026-06-21";
 const SITE_STRUCTURE_LAST_MODIFIED = "2026-07-12";
+const CORE_INDEXING_LAST_MODIFIED = "2026-08-03";
 
 function latestModified(dates: Array<string | undefined>): string {
   return dates.filter(Boolean).sort().at(-1) ?? CONTENT_LAST_MODIFIED;
@@ -106,14 +107,14 @@ export const systemLandingPages: SitePage[] = [
     description:
       "Generate a Four Pillars chart with Day Master, Ten Gods, hidden stems, and Five Element balance.",
     section: "Tools",
-    lastModified: SITE_STRUCTURE_LAST_MODIFIED,
+    lastModified: CORE_INDEXING_LAST_MODIFIED,
   },
   {
     title: "I Ching Oracle",
     href: "/tools/i-ching-oracle",
     description: "Cast a six-line hexagram with changing lines and reflective guidance.",
     section: "Tools",
-    lastModified: SITE_STRUCTURE_LAST_MODIFIED,
+    lastModified: CORE_INDEXING_LAST_MODIFIED,
   },
   {
     title: "Zodiac Compatibility Calculator",
@@ -193,7 +194,7 @@ export const publishedSitePages: SitePage[] = [
     href: "/",
     description: "Chinese metaphysics guides and free tools for Western readers.",
     section: "Home",
-    lastModified: SITE_STRUCTURE_LAST_MODIFIED,
+    lastModified: CORE_INDEXING_LAST_MODIFIED,
   },
   ...blogPages,
   ...knowledgePages,

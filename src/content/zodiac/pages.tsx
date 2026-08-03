@@ -254,7 +254,7 @@ function cta(
     description:
       options.description ??
       "Use the zodiac pages with a full Bazi chart to understand both yearly symbolism and deeper Four Pillars structure.",
-    href: options.href ?? "/chinese-zodiac/compatibility",
+    href: options.href ?? "/tools/zodiac-compatibility",
     label: options.label ?? "Check compatibility",
   };
 }
@@ -492,7 +492,7 @@ const overview = buildPage({
     description: "",
     url: "",
     datePublished: "2025-11-05",
-    dateModified: "2026-07-13",
+    dateModified: "2026-08-03",
   },
   stats: [
     { value: "12", label: "Animals", description: "One for each Earthly Branch." },
@@ -598,6 +598,23 @@ const overview = buildPage({
             practical behavior it suggests. "Rat and Horse clash" is thin by itself. "Rat and Horse
             can experience a pacing clash, so the relationship benefits from clearer agreements
             around independence and timing" is a more useful interpretation.
+          </p>
+          <p>
+            Use the{" "}
+            <Link
+              href="/tools/zodiac-compatibility"
+              className="text-brand-primary decoration-brand-primary/30 dark:text-gold-300 underline"
+            >
+              zodiac compatibility calculator
+            </Link>{" "}
+            for a direct two-sign comparison, then check the{" "}
+            <Link
+              href="/blog/chinese-zodiac-compatibility-chart"
+              className="text-brand-primary decoration-brand-primary/30 dark:text-gold-300 underline"
+            >
+              complete compatibility chart
+            </Link>{" "}
+            for the harmony, triad, and clash structure behind the result.
           </p>
         </>
       ),

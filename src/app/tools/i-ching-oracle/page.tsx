@@ -30,14 +30,16 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Free I Ching Oracle",
-    description: "Cast a browser-based I Ching hexagram with changing lines and reflective guidance.",
+    description:
+      "Cast a browser-based I Ching hexagram with changing lines and reflective guidance.",
     url: "/tools/i-ching-oracle",
     images: [shareCardImage],
   },
   twitter: {
     card: "summary_large_image",
     title: "Free I Ching Oracle",
-    description: "Cast a browser-based I Ching hexagram with changing lines and reflective guidance.",
+    description:
+      "Cast a browser-based I Ching hexagram with changing lines and reflective guidance.",
     images: [shareCardImage],
   },
 };
@@ -51,7 +53,8 @@ const breadcrumbs: Crumb[] = [
 const softwareSchema = buildWebApplicationSchema({
   name: "Free I Ching Oracle",
   url: `${SITE.url}/tools/i-ching-oracle`,
-  description: "A browser-based I Ching oracle for six-line hexagram casting and reflective interpretation.",
+  description:
+    "A browser-based I Ching oracle for six-line hexagram casting and reflective interpretation.",
   featureList: ["six-line casting", "changing lines", "primary hexagram", "relating hexagram"],
 });
 
@@ -80,7 +83,8 @@ const iChingOracleFaqs: FAQ[] = [
 
 const iChingHowToSchema = buildHowToSchema({
   name: "How to use the free I Ching oracle",
-  description: "Ask a clear question, cast six lines, review the primary hexagram, and compare changing lines.",
+  description:
+    "Ask a clear question, cast six lines, review the primary hexagram, and compare changing lines.",
   url: `${SITE.url}/tools/i-ching-oracle`,
   steps: [
     "Write or hold one clear question about a current situation.",
@@ -91,9 +95,26 @@ const iChingHowToSchema = buildHowToSchema({
 });
 
 const relatedLinks = [
-  { title: "What Is the I Ching?", href: "/i-ching/what-is-i-ching", description: "Learn the Book of Changes before casting." },
-  { title: "Changing Lines", href: "/i-ching/changing-lines", description: "Understand how moving lines shape a reading." },
-  { title: "64 Hexagrams", href: "/i-ching/sixty-four-hexagrams", description: "Browse the full hexagram structure." },
+  {
+    title: "I Ching Overview",
+    href: "/i-ching",
+    description: "Learn the Book of Changes before casting.",
+  },
+  {
+    title: "How to Cast",
+    href: "/i-ching/how-to-cast",
+    description: "Follow the six-line casting method step by step.",
+  },
+  {
+    title: "Eight Trigrams",
+    href: "/i-ching/eight-trigrams",
+    description: "Understand the upper and lower figures inside every result.",
+  },
+  {
+    title: "64 Hexagrams",
+    href: "/i-ching/sixty-four-hexagrams",
+    description: "Browse the full hexagram structure.",
+  },
 ];
 
 export default function IChingOraclePage() {
@@ -107,19 +128,19 @@ export default function IChingOraclePage() {
           buildBreadcrumbListSchema(breadcrumbs),
         ]}
       />
-      <main className="atlas-tool-shell bg-paper px-4 py-10 dark:bg-ink-950 sm:px-6 lg:px-8">
+      <main className="atlas-tool-shell bg-paper dark:bg-ink-950 px-4 py-10 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <Breadcrumbs items={breadcrumbs} />
           <header className="mt-10 max-w-4xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-brand-primary dark:text-gold-300">
+            <p className="text-brand-primary dark:text-gold-300 text-sm font-semibold tracking-[0.24em] uppercase">
               Tools
             </p>
-            <h1 className="mt-4 text-balance font-display text-5xl tracking-tight text-ink-950 dark:text-paper sm:text-6xl">
+            <h1 className="font-display text-ink-950 dark:text-paper mt-4 text-5xl tracking-tight text-balance sm:text-6xl">
               Free I Ching Oracle
             </h1>
-            <p className="mt-5 text-lg leading-8 text-ink-600 dark:text-ink-300">
-              Cast a six-line hexagram locally in your browser. The result shows the primary hexagram, changing
-              lines, and relating hexagram when change is present.
+            <p className="text-ink-600 dark:text-ink-300 mt-5 text-lg leading-8">
+              Cast a six-line hexagram locally in your browser. The result shows the primary
+              hexagram, changing lines, and relating hexagram when change is present.
             </p>
             <div className="mt-8">
               <DirectAnswer answer="The free I Ching oracle casts a six-line hexagram for a specific question and shows how changing lines move the reading toward a relating hexagram. Use it to clarify a situation and choose a better next question or action." />

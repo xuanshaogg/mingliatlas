@@ -1,22 +1,126 @@
 const baseUrl = process.env.AUDIT_BASE_URL ?? "http://localhost:3107";
 
 const htmlPages = [
-  { path: "/", expectedTitle: "Mingli Atlas", expectedH1: "Mingli Atlas", minJsonLd: 3 },
+  {
+    path: "/",
+    expectedTitle: "Mingli Atlas",
+    expectedH1: "Mingli Atlas",
+    minJsonLd: 3,
+    requiredLinks: [
+      "/tools/bazi-calculator",
+      "/bazi",
+      "/bazi/what-is-bazi",
+      "/bazi/five-elements",
+      "/i-ching",
+      "/tools/i-ching-oracle",
+      "/chinese-zodiac",
+    ],
+  },
   { path: "/tools", expectedTitle: "Tools", expectedH1: "Free tools", minJsonLd: 2 },
-  { path: "/tools/bazi-calculator", expectedTitle: "Free Bazi Calculator", expectedH1: "Free Bazi Calculator", minJsonLd: 3 },
-  { path: "/tools/i-ching-oracle", expectedTitle: "Free I Ching Oracle", expectedH1: "Free I Ching Oracle", minJsonLd: 3 },
-  { path: "/tools/zodiac-compatibility", expectedTitle: "Chinese Zodiac Compatibility", expectedH1: "Chinese Zodiac Compatibility Calculator", minJsonLd: 3 },
-  { path: "/bazi", expectedTitle: "Bazi", expectedH1: "Bazi (Four Pillars of Destiny): Complete Guide", minJsonLd: 3 },
-  { path: "/bazi/what-is-bazi", expectedTitle: "What Is Bazi", expectedH1: "What Is Bazi? Four Pillars of Destiny Explained", minJsonLd: 3 },
-  { path: "/bazi/ten-gods", expectedTitle: "Ten Gods", expectedH1: "Ten Gods in Bazi: Complete Shi Shen Table & Meanings", minJsonLd: 3 },
-  { path: "/i-ching", expectedTitle: "I Ching", expectedH1: "I Ching (Book of Changes): Complete Guide", minJsonLd: 3 },
-  { path: "/i-ching/hexagram-64", expectedTitle: "Hexagram 64", expectedH1: "Hexagram 64: Before Completion (未济)", minJsonLd: 3 },
-  { path: "/feng-shui", expectedTitle: "Feng Shui", expectedH1: "Feng Shui: Complete Beginner Guide", minJsonLd: 3 },
-  { path: "/ziwei", expectedTitle: "Ziwei", expectedH1: "Ziwei Doushu: Purple Star Astrology Guide", minJsonLd: 3 },
-  { path: "/chinese-zodiac", expectedTitle: "Chinese Zodiac", expectedH1: "Chinese Zodiac: 12 Animal Signs, Meanings, and 2026 Guide", minJsonLd: 3 },
-  { path: "/learn/beginners-guide", expectedTitle: "Beginner", expectedH1: "Chinese Metaphysics Beginner's Guide", minJsonLd: 3 },
-  { path: "/search?q=bazi", expectedTitle: "Search", expectedH1: "Search the knowledge base", minJsonLd: 2 },
-  { path: "/sitemap", expectedTitle: "HTML Sitemap", expectedH1: "Site map", minJsonLd: 2 },
+  {
+    path: "/tools/bazi-calculator",
+    expectedTitle: "Free Bazi Calculator",
+    expectedH1: "Free Bazi Calculator",
+    minJsonLd: 3,
+    requiredLinks: ["/bazi", "/bazi/what-is-bazi", "/bazi/five-elements"],
+  },
+  {
+    path: "/tools/i-ching-oracle",
+    expectedTitle: "Free I Ching Oracle",
+    expectedH1: "Free I Ching Oracle",
+    minJsonLd: 3,
+    requiredLinks: ["/i-ching", "/i-ching/how-to-cast", "/i-ching/sixty-four-hexagrams"],
+  },
+  {
+    path: "/tools/zodiac-compatibility",
+    expectedTitle: "Chinese Zodiac Compatibility",
+    expectedH1: "Chinese Zodiac Compatibility Calculator",
+    minJsonLd: 3,
+  },
+  {
+    path: "/bazi",
+    expectedTitle: "Bazi",
+    expectedH1: "Bazi (Four Pillars of Destiny): Complete Guide",
+    minJsonLd: 3,
+    requiredLinks: ["/bazi/what-is-bazi", "/bazi/five-elements", "/tools/bazi-calculator"],
+  },
+  {
+    path: "/bazi/what-is-bazi",
+    expectedTitle: "What Is Bazi",
+    expectedH1: "What Is Bazi? Four Pillars of Destiny Explained",
+    minJsonLd: 3,
+    requiredLinks: ["/bazi", "/bazi/five-elements", "/tools/bazi-calculator"],
+  },
+  {
+    path: "/bazi/five-elements",
+    expectedTitle: "Five Elements",
+    expectedH1: "The Five Elements (Wu Xing): A Complete Guide",
+    minJsonLd: 3,
+    requiredLinks: ["/bazi", "/tools/bazi-calculator"],
+  },
+  {
+    path: "/bazi/ten-gods",
+    expectedTitle: "Ten Gods",
+    expectedH1: "Ten Gods in Bazi: Complete Shi Shen Table & Meanings",
+    minJsonLd: 3,
+  },
+  {
+    path: "/i-ching",
+    expectedTitle: "I Ching",
+    expectedH1: "I Ching (Book of Changes): Complete Guide",
+    minJsonLd: 3,
+    requiredLinks: ["/i-ching/eight-trigrams", "/i-ching/how-to-cast", "/tools/i-ching-oracle"],
+  },
+  {
+    path: "/i-ching/hexagram-64",
+    expectedTitle: "Hexagram 64",
+    expectedH1: "Hexagram 64: Before Completion (未济)",
+    minJsonLd: 3,
+  },
+  {
+    path: "/feng-shui",
+    expectedTitle: "Feng Shui",
+    expectedH1: "Feng Shui: Complete Beginner Guide",
+    minJsonLd: 3,
+  },
+  {
+    path: "/ziwei",
+    expectedTitle: "Ziwei",
+    expectedH1: "Ziwei Doushu: Purple Star Astrology Guide",
+    minJsonLd: 3,
+  },
+  {
+    path: "/chinese-zodiac",
+    expectedTitle: "Chinese Zodiac",
+    expectedH1: "Chinese Zodiac: 12 Animal Signs, Meanings, and 2026 Guide",
+    minJsonLd: 3,
+    requiredLinks: [
+      "/chinese-zodiac/dragon",
+      "/tools/zodiac-compatibility",
+      "/tools/bazi-calculator",
+    ],
+  },
+  {
+    path: "/learn/beginners-guide",
+    expectedTitle: "Beginner",
+    expectedH1: "Chinese Metaphysics Beginner's Guide",
+    minJsonLd: 3,
+    allowNoindex: true,
+  },
+  {
+    path: "/search?q=bazi",
+    expectedTitle: "Search",
+    expectedH1: "Search the knowledge base",
+    minJsonLd: 2,
+    allowNoindex: true,
+  },
+  {
+    path: "/sitemap",
+    expectedTitle: "HTML Sitemap",
+    expectedH1: "Site map",
+    minJsonLd: 2,
+    allowNoindex: true,
+  },
 ];
 
 const machineFiles = [
@@ -39,7 +143,18 @@ const machineFiles = [
   {
     path: "/sitemap.xml",
     expectedContentType: "xml",
-    requiredText: ["<urlset", "https://mingliatlas.com/", "https://mingliatlas.com/tools/bazi-calculator", "https://mingliatlas.com/i-ching/hexagram-64"],
+    requiredText: [
+      "<urlset",
+      "https://mingliatlas.com/",
+      "https://mingliatlas.com/tools/bazi-calculator",
+      "https://mingliatlas.com/bazi",
+      "https://mingliatlas.com/bazi/what-is-bazi",
+      "https://mingliatlas.com/bazi/five-elements",
+      "https://mingliatlas.com/i-ching",
+      "https://mingliatlas.com/tools/i-ching-oracle",
+      "https://mingliatlas.com/chinese-zodiac",
+      "https://mingliatlas.com/i-ching/hexagram-64",
+    ],
   },
   {
     path: "/llms.txt",
@@ -57,12 +172,16 @@ const machineFiles = [
   {
     path: "/llms-full.txt",
     expectedContentType: "text/plain",
-    requiredText: ["# mingliatlas Full Page Index", "## Bazi", "https://mingliatlas.com/i-ching/hexagram-64"],
+    requiredText: [
+      "# mingliatlas Full Page Index",
+      "## Bazi",
+      "https://mingliatlas.com/i-ching/hexagram-64",
+    ],
   },
   {
     path: "/rss.xml",
     expectedContentType: "application/rss+xml",
-    requiredText: ["<rss", "<atom:link", "<guid isPermaLink=\"true\">", "<lastBuildDate>"],
+    requiredText: ["<rss", "<atom:link", '<guid isPermaLink="true">', "<lastBuildDate>"],
   },
 ];
 
@@ -109,11 +228,26 @@ for (const page of htmlPages) {
   const h1 = stripTags(extract(text, /<h1[^>]*>([\s\S]*?)<\/h1>/i));
   const jsonLdCount = countJsonLd(text);
   const canonical = extract(text, /<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)["']/i);
+  const robotsTag = text.match(/<meta[^>]+name=["']robots["'][^>]*>/i)?.[0] ?? "";
+  const expectedCanonical = new URL(page.path.split("?")[0], "https://mingliatlas.com").href;
 
   if (!title.includes(page.expectedTitle)) fail(`${page.path} title mismatch: ${title}`);
   if (h1 !== page.expectedH1) fail(`${page.path} h1 mismatch: ${h1}`);
-  if (jsonLdCount < page.minJsonLd) fail(`${page.path} JSON-LD count ${jsonLdCount} below ${page.minJsonLd}`);
+  if (jsonLdCount < page.minJsonLd)
+    fail(`${page.path} JSON-LD count ${jsonLdCount} below ${page.minJsonLd}`);
   if (!canonical) fail(`${page.path} missing canonical link`);
+  if (canonical.replace(/\/$/, "") !== expectedCanonical.replace(/\/$/, "")) {
+    fail(`${page.path} canonical mismatch: ${canonical}`);
+  }
+  if (/noindex/i.test(robotsTag) && !page.allowNoindex) {
+    fail(`${page.path} unexpectedly contains noindex`);
+  }
+
+  for (const requiredLink of page.requiredLinks ?? []) {
+    if (!text.includes(`href="${requiredLink}"`) && !text.includes(`href='${requiredLink}'`)) {
+      fail(`${page.path} missing priority internal link: ${requiredLink}`);
+    }
+  }
 
   console.log(`PASS html ${page.path} | h1=${h1} | jsonLd=${jsonLdCount}`);
 }
@@ -122,7 +256,8 @@ for (const file of machineFiles) {
   const { response, text } = await fetchText(file.path);
   const contentType = response.headers.get("content-type") ?? "";
   if (response.status !== 200) fail(`${file.path} expected 200, got ${response.status}`);
-  if (!contentType.includes(file.expectedContentType)) fail(`${file.path} expected ${file.expectedContentType}, got ${contentType}`);
+  if (!contentType.includes(file.expectedContentType))
+    fail(`${file.path} expected ${file.expectedContentType}, got ${contentType}`);
 
   for (const required of file.requiredText) {
     if (!text.includes(required)) fail(`${file.path} missing required text: ${required}`);

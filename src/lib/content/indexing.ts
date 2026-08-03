@@ -39,6 +39,19 @@ const INDEXABLE_PATH_LIST = [
 
 export const INDEXABLE_PATHS: readonly string[] = INDEXABLE_PATH_LIST;
 
+// First recovery cohort after the 2026-07-24 GSC coverage snapshot showed
+// 27 sitemap URLs as "Discovered - currently not indexed". Keep this list
+// small enough to monitor URL by URL before expanding to the next cluster.
+export const INDEXING_PRIORITY_PATHS = [
+  "/tools/bazi-calculator",
+  "/bazi",
+  "/bazi/what-is-bazi",
+  "/bazi/five-elements",
+  "/i-ching",
+  "/tools/i-ching-oracle",
+  "/chinese-zodiac",
+] as const;
+
 const indexablePathSet = new Set<string>(INDEXABLE_PATH_LIST);
 
 function normalizePath(path: string): string {

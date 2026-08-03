@@ -7,7 +7,7 @@ import { allIChingPages } from "@/content/i-ching/pages";
 import { allLearnPages } from "@/content/learn/pages";
 import { allZodiacPages } from "@/content/zodiac/pages";
 import { allZiweiPages } from "@/content/ziwei/pages";
-import { INDEXABLE_PATHS, isIndexablePath } from "@/lib/content/indexing";
+import { INDEXABLE_PATHS, INDEXING_PRIORITY_PATHS, isIndexablePath } from "@/lib/content/indexing";
 import { resolveCitationUrls } from "@/lib/content/citations";
 import { publishedSitePages } from "@/lib/content/sitePages";
 import { SITE } from "@/lib/constants";
@@ -39,6 +39,16 @@ describe("indexing policy", () => {
     const sitemapPaths = sitemap().map((entry) => new URL(entry.url).pathname);
     expect(new Set(sitemapPaths)).toEqual(new Set(INDEXABLE_PATHS));
     expect(sitemapPaths.length).toBeLessThan(publishedSitePages.length / 2);
+  });
+
+  it("keeps the first indexing-recovery cohort approved and in the sitemap", () => {
+    const sitemapPaths = new Set(sitemap().map((entry) => new URL(entry.url).pathname));
+
+    expect(INDEXING_PRIORITY_PATHS).toHaveLength(7);
+    for (const path of INDEXING_PRIORITY_PATHS) {
+      expect(isIndexablePath(path), path).toBe(true);
+      expect(sitemapPaths.has(path), path).toBe(true);
+    }
   });
 
   it("keeps high-opportunity pages indexable and utility pages out", () => {
@@ -88,9 +98,9 @@ describe("indexing policy", () => {
       { label: "Wolfram Eberhard, A Dictionary of Chinese Symbols (1986)" },
     ]);
 
-    expect(citations.every((citation) => citation.url?.startsWith("https://books.google.com/"))).toBe(
-      true
-    );
+    expect(
+      citations.every((citation) => citation.url?.startsWith("https://books.google.com/"))
+    ).toBe(true);
   });
 
   it("permanently consolidates the duplicate What Is Bazi article", async () => {

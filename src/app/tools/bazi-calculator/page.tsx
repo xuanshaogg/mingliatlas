@@ -63,7 +63,15 @@ const softwareSchema = buildWebApplicationSchema({
   url: `${SITE.url}/tools/bazi-calculator`,
   description:
     "A browser-based Bazi calculator for Four Pillars, Day Master, Ten Gods, hidden stems, Five Element balance, and traditional Luck Pillars.",
-  featureList: ["Four Pillars chart", "Day Master", "Ten Gods", "hidden stems", "Five Element balance", "10-year Luck Pillars", "optional true solar time"],
+  featureList: [
+    "Four Pillars chart",
+    "Day Master",
+    "Ten Gods",
+    "hidden stems",
+    "Five Element balance",
+    "10-year Luck Pillars",
+    "optional true solar time",
+  ],
 });
 
 const baziCalculatorFaqs: FAQ[] = [
@@ -101,7 +109,8 @@ const baziCalculatorFaqs: FAQ[] = [
 
 const baziHowToSchema = buildHowToSchema({
   name: "How to use the free Bazi calculator",
-  description: "Enter birth details, calculate the chart, review the pillars, and read the element balance responsibly.",
+  description:
+    "Enter birth details, calculate the chart, review the pillars, and read the element balance responsibly.",
   url: `${SITE.url}/tools/bazi-calculator`,
   steps: [
     "Enter the birth date and the birth time as local civil time at the birthplace.",
@@ -112,12 +121,41 @@ const baziHowToSchema = buildHowToSchema({
 });
 
 const relatedLinks = [
-  { title: "What Is Bazi?", href: "/bazi/what-is-bazi", description: "Understand the Four Pillars before reading a chart." },
-  { title: "The Five Elements", href: "/bazi/five-elements", description: "Learn Wood, Fire, Earth, Metal, and Water in Bazi." },
-  { title: "Ten Gods", href: "/bazi/ten-gods", description: "Decode the relationship roles around the Day Master." },
-  { title: "Heavenly Stems", href: "/bazi/heavenly-stems", description: "Read the visible stem layer shown in each pillar." },
-  { title: "Earthly Branches", href: "/bazi/earthly-branches", description: "Understand branches, hidden stems, and seasonal context." },
-  { title: "Luck Pillars", href: "/bazi/luck-pillars", description: "Add the 10-year timing layer after the natal chart." },
+  {
+    title: "Bazi Overview",
+    href: "/bazi",
+    description: "Follow the complete reading order after generating the chart.",
+  },
+  {
+    title: "What Is Bazi?",
+    href: "/bazi/what-is-bazi",
+    description: "Understand the Four Pillars before reading a chart.",
+  },
+  {
+    title: "The Five Elements",
+    href: "/bazi/five-elements",
+    description: "Learn Wood, Fire, Earth, Metal, and Water in Bazi.",
+  },
+  {
+    title: "Ten Gods",
+    href: "/bazi/ten-gods",
+    description: "Decode the relationship roles around the Day Master.",
+  },
+  {
+    title: "Heavenly Stems",
+    href: "/bazi/heavenly-stems",
+    description: "Read the visible stem layer shown in each pillar.",
+  },
+  {
+    title: "Earthly Branches",
+    href: "/bazi/earthly-branches",
+    description: "Understand branches, hidden stems, and seasonal context.",
+  },
+  {
+    title: "Luck Pillars",
+    href: "/bazi/luck-pillars",
+    description: "Add the 10-year timing layer after the natal chart.",
+  },
 ];
 
 export default function BaziCalculatorPage() {
@@ -131,19 +169,20 @@ export default function BaziCalculatorPage() {
           buildBreadcrumbListSchema(breadcrumbs),
         ]}
       />
-      <main className="atlas-tool-shell bg-paper px-4 py-6 dark:bg-ink-950 sm:px-6 sm:py-10 lg:px-8">
+      <main className="atlas-tool-shell bg-paper dark:bg-ink-950 px-4 py-6 sm:px-6 sm:py-10 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <Breadcrumbs items={breadcrumbs} />
           <header className="mt-6 max-w-4xl sm:mt-10">
-            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-brand-primary dark:text-gold-300">
+            <p className="text-brand-primary dark:text-gold-300 text-sm font-semibold tracking-[0.24em] uppercase">
               Tools
             </p>
-            <h1 className="mt-3 text-balance font-display text-5xl tracking-tight text-ink-950 dark:text-paper sm:mt-4 sm:text-6xl">
+            <h1 className="font-display text-ink-950 dark:text-paper mt-3 text-5xl tracking-tight text-balance sm:mt-4 sm:text-6xl">
               Free Bazi Calculator
             </h1>
-            <p className="mt-3 text-base leading-7 text-ink-600 dark:text-ink-300 sm:mt-5 sm:text-lg sm:leading-8">
-              Generate a deterministic Four Pillars chart from a birth date and local civil time. This Ming Li tool
-              returns the Day Master, Ten Gods, hidden stems, lunar date, and Five Element balance without storing birth data.
+            <p className="text-ink-600 dark:text-ink-300 mt-3 text-base leading-7 sm:mt-5 sm:text-lg sm:leading-8">
+              Generate a deterministic Four Pillars chart from a birth date and local civil time.
+              This Ming Li tool returns the Day Master, Ten Gods, hidden stems, lunar date, and Five
+              Element balance without storing birth data.
             </p>
             <div className="mt-8 hidden lg:block">
               <DirectAnswer answer="The free Bazi calculator creates a Four Pillars reference chart from the birth date and local civil birth time you enter. It separates deterministic chart calculation from interpretation, so the pillars stay stable while reading guidance remains educational." />
@@ -157,78 +196,117 @@ export default function BaziCalculatorPage() {
             />
           </div>
           <section className="mt-14 grid gap-8 lg:grid-cols-3">
-            <div className="rounded-lg border border-ink-200 bg-white p-6 dark:border-white/10 dark:bg-white/5">
-              <h2 className="font-display text-2xl tracking-tight text-ink-950 dark:text-paper">What the chart calculates</h2>
-              <p className="mt-3 text-sm leading-7 text-ink-600 dark:text-ink-300">
-                The calculator maps a birth date and local civil time into the Chinese stem-branch calendar. It returns
-                the year, month, day, and hour pillars, then marks the Day Master from the day stem so the rest of the
-                chart can be read in relation to that anchor.
+            <div className="border-ink-200 rounded-lg border bg-white p-6 dark:border-white/10 dark:bg-white/5">
+              <h2 className="font-display text-ink-950 dark:text-paper text-2xl tracking-tight">
+                What the chart calculates
+              </h2>
+              <p className="text-ink-600 dark:text-ink-300 mt-3 text-sm leading-7">
+                The calculator maps a birth date and local civil time into the Chinese stem-branch
+                calendar. It returns the year, month, day, and hour pillars, then marks the Day
+                Master from the day stem so the rest of the chart can be read in relation to that
+                anchor.
               </p>
             </div>
-            <div className="rounded-lg border border-ink-200 bg-white p-6 dark:border-white/10 dark:bg-white/5">
-              <h2 className="font-display text-2xl tracking-tight text-ink-950 dark:text-paper">How to read it first</h2>
-              <p className="mt-3 text-sm leading-7 text-ink-600 dark:text-ink-300">
-                Start with the Day Master, then check the month branch for season, visible stems for expression, hidden
-                stems for stored energy, and Ten Gods for relationship roles. Element balance is a helpful overview,
-                but it should be read after season and Day Master context.
+            <div className="border-ink-200 rounded-lg border bg-white p-6 dark:border-white/10 dark:bg-white/5">
+              <h2 className="font-display text-ink-950 dark:text-paper text-2xl tracking-tight">
+                How to read it first
+              </h2>
+              <p className="text-ink-600 dark:text-ink-300 mt-3 text-sm leading-7">
+                Start with the Day Master, then check the month branch for season, visible stems for
+                expression, hidden stems for stored energy, and Ten Gods for relationship roles.
+                Element balance is a helpful overview, but it should be read after season and Day
+                Master context.
               </p>
             </div>
-            <div className="rounded-lg border border-ink-200 bg-white p-6 dark:border-white/10 dark:bg-white/5">
-              <h2 className="font-display text-2xl tracking-tight text-ink-950 dark:text-paper">What it should not do</h2>
-              <p className="mt-3 text-sm leading-7 text-ink-600 dark:text-ink-300">
-                A Bazi chart is not a medical, legal, financial, or mental health diagnosis. Use the result as a
-                structured learning reference. For real-world decisions, combine chart reflection with practical
-                judgment and qualified professional advice where needed.
+            <div className="border-ink-200 rounded-lg border bg-white p-6 dark:border-white/10 dark:bg-white/5">
+              <h2 className="font-display text-ink-950 dark:text-paper text-2xl tracking-tight">
+                What it should not do
+              </h2>
+              <p className="text-ink-600 dark:text-ink-300 mt-3 text-sm leading-7">
+                A Bazi chart is not a medical, legal, financial, or mental health diagnosis. Use the
+                result as a structured learning reference. For real-world decisions, combine chart
+                reflection with practical judgment and qualified professional advice where needed.
               </p>
             </div>
           </section>
-          <section className="mt-14 border-y border-ink-200 py-10 dark:border-white/10">
+          <section className="border-ink-200 mt-14 border-y py-10 dark:border-white/10">
             <div className="max-w-4xl">
-              <h2 className="font-display text-3xl tracking-tight text-ink-950 dark:text-paper">
+              <h2 className="font-display text-ink-950 dark:text-paper text-3xl tracking-tight">
                 Calculation method and limits
               </h2>
-              <div className="mt-6 space-y-5 text-base leading-8 text-ink-700 dark:text-ink-200">
+              <div className="text-ink-700 dark:text-ink-200 mt-6 space-y-5 text-base leading-8">
                 <p>
-                  The calculator converts the entered civil date and time into year, month, day, and hour stem-branch
-                  pillars, then derives the Day Master, hidden stems, Ten Gods, lunar date, and an element-count overview.
-                  Repeating the same inputs produces the same chart.
+                  The calculator converts the entered civil date and time into year, month, day, and
+                  hour stem-branch pillars, then derives the Day Master, hidden stems, Ten Gods,
+                  lunar date, and an element-count overview. Repeating the same inputs produces the
+                  same chart.
                 </p>
                 <p>
-                  Civil time is used exactly as entered. The optional true solar mode applies an estimated longitude
-                  correction and shows the effective time in the result. The correction does not geocode a birthplace,
-                  and births close to midnight, a two-hour branch boundary, daylight-saving changes, or a solar-term
-                  boundary deserve an independent check.
+                  Civil time is used exactly as entered. The optional true solar mode applies an
+                  estimated longitude correction and shows the effective time in the result. The
+                  correction does not geocode a birthplace, and births close to midnight, a two-hour
+                  branch boundary, daylight-saving changes, or a solar-term boundary deserve an
+                  independent check.
                 </p>
                 <p>
-                  Element percentages are not a complete strength judgment. Read them after the birth season, month
-                  branch, root support, combinations, and the placement of each symbol. The calculator constructs the
-                  chart; the linked guides explain how to interpret it without reducing the result to a single score.
+                  Element percentages are not a complete strength judgment. Read them after the
+                  birth season, month branch, root support, combinations, and the placement of each
+                  symbol. The calculator constructs the chart; the linked guides explain how to
+                  interpret it without reducing the result to a single score.
                 </p>
-                <p className="text-sm leading-7 text-ink-600 dark:text-ink-300">
+                <p className="text-ink-600 dark:text-ink-300 text-sm leading-7">
                   Method references: the calendar conversion uses the open-source{" "}
-                  <a href="https://github.com/6tail/lunar-typescript" target="_blank" rel="noopener noreferrer" className="font-medium text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">
+                  <a
+                    href="https://github.com/6tail/lunar-typescript"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-brand-primary decoration-brand-primary/30 dark:text-gold-300 font-medium underline"
+                  >
                     lunar-typescript library
                   </a>
                   . Lunar New Year boundary checks can also be compared with the{" "}
-                  <a href="https://www.hko.gov.hk/en/gts/time/conversion.htm" target="_blank" rel="noopener noreferrer" className="font-medium text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">
+                  <a
+                    href="https://www.hko.gov.hk/en/gts/time/conversion.htm"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-brand-primary decoration-brand-primary/30 dark:text-gold-300 font-medium underline"
+                  >
                     Hong Kong Observatory conversion tables
                   </a>
-                  . These references document calendar mechanics; interpretive guidance remains educational.
+                  . These references document calendar mechanics; interpretive guidance remains
+                  educational.
                 </p>
               </div>
             </div>
           </section>
-          <section className="mt-14 rounded-lg border border-gold-300/70 bg-gold-50 p-6 dark:border-gold-500/30 dark:bg-gold-500/10">
-            <h2 className="font-display text-3xl tracking-tight text-ink-950 dark:text-paper">
+          <section className="border-gold-300/70 bg-gold-50 dark:border-gold-500/30 dark:bg-gold-500/10 mt-14 rounded-lg border p-6">
+            <h2 className="font-display text-ink-950 dark:text-paper text-3xl tracking-tight">
               Recommended Bazi reading order
             </h2>
-            <ol className="mt-5 grid gap-4 text-sm leading-7 text-ink-700 dark:text-ink-200 md:grid-cols-2">
-              <li><strong>1. Day Master:</strong> find the self-reference point in the day stem.</li>
-              <li><strong>2. Month branch:</strong> check season and element strength before judging balance.</li>
-              <li><strong>3. Stems and branches:</strong> compare visible expression with hidden stored energy.</li>
-              <li><strong>4. Ten Gods:</strong> translate elements into resource, peer, output, wealth, and authority roles.</li>
-              <li><strong>5. Luck Pillars:</strong> add 10-year timing only after the natal chart is clear.</li>
-              <li><strong>6. Practical reflection:</strong> connect chart themes to lived choices without treating them as fixed outcomes.</li>
+            <ol className="text-ink-700 dark:text-ink-200 mt-5 grid gap-4 text-sm leading-7 md:grid-cols-2">
+              <li>
+                <strong>1. Day Master:</strong> find the self-reference point in the day stem.
+              </li>
+              <li>
+                <strong>2. Month branch:</strong> check season and element strength before judging
+                balance.
+              </li>
+              <li>
+                <strong>3. Stems and branches:</strong> compare visible expression with hidden
+                stored energy.
+              </li>
+              <li>
+                <strong>4. Ten Gods:</strong> translate elements into resource, peer, output,
+                wealth, and authority roles.
+              </li>
+              <li>
+                <strong>5. Luck Pillars:</strong> add 10-year timing only after the natal chart is
+                clear.
+              </li>
+              <li>
+                <strong>6. Practical reflection:</strong> connect chart themes to lived choices
+                without treating them as fixed outcomes.
+              </li>
             </ol>
           </section>
           <FAQSection faqs={baziCalculatorFaqs} />
