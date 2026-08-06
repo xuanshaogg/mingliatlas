@@ -81,6 +81,31 @@ describe("indexing policy", () => {
     }
   });
 
+  it("keeps high-impression search snippets aligned with observed queries", () => {
+    const dragon = allZodiacPages.find((page) => page.path === "/chinese-zodiac/dragon");
+    const dayMaster = allBlogPosts.find(
+      (page) => page.path === "/blog/day-master-bazi-complete-guide"
+    );
+    const compatibility = allBlogPosts.find(
+      (page) => page.path === "/blog/chinese-zodiac-compatibility-chart"
+    );
+
+    expect(dragon?.title).toBe("Year of the Dragon: Complete Years List (1940–2036)");
+    expect(dragon?.data.directAnswer).toMatch(
+      /^Dragon years are 1940, 1952, 1964, 1976, 1988, 2000, 2012, and 2024;/
+    );
+    expect(dragon?.data.schema.dateModified).toBe("2026-08-07");
+
+    expect(dayMaster?.title).toBe("Bazi Day Master Is the Day Stem: Meaning & Sources");
+    expect(dayMaster?.data.directAnswer).toMatch(
+      /^Yes\. In Bazi, the Day Master is the heavenly stem/
+    );
+    expect(dayMaster?.data.schema.dateModified).toBe("2026-08-07");
+
+    expect(compatibility?.title).toBe("Chinese Zodiac Compatibility Chart: Triads & Clashes");
+    expect(compatibility?.data.schema.dateModified).toBe("2026-08-07");
+  });
+
   it("marks non-approved knowledge pages noindex while preserving follow", () => {
     const metadata = buildKnowledgePageMetadata({
       title: "Thin draft",

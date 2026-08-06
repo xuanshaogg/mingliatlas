@@ -101,6 +101,27 @@ const htmlPages = [
     ],
   },
   {
+    path: "/chinese-zodiac/dragon",
+    expectedTitle: "Year of the Dragon: Complete Years List (1940–2036)",
+    expectedH1: "Year of the Dragon: Complete Years List (1940–2036)",
+    minJsonLd: 3,
+    requiredLinks: ["/tools/bazi-calculator", "/bazi/five-elements"],
+  },
+  {
+    path: "/blog/day-master-bazi-complete-guide",
+    expectedTitle: "Bazi Day Master Is the Day Stem: Meaning & Sources",
+    expectedH1: "Bazi Day Master Is the Day Stem: Meaning & Sources",
+    minJsonLd: 3,
+    requiredLinks: ["/tools/bazi-calculator", "/bazi"],
+  },
+  {
+    path: "/blog/chinese-zodiac-compatibility-chart",
+    expectedTitle: "Chinese Zodiac Compatibility Chart: Triads & Clashes",
+    expectedH1: "Chinese Zodiac Compatibility Chart: Triads & Clashes",
+    minJsonLd: 3,
+    requiredLinks: ["/tools/zodiac-compatibility", "/chinese-zodiac"],
+  },
+  {
     path: "/learn/beginners-guide",
     expectedTitle: "Beginner",
     expectedH1: "Chinese Metaphysics Beginner's Guide",

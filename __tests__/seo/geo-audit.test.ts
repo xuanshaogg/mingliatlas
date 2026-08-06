@@ -434,14 +434,15 @@ describe("GEO audit", () => {
 
     expect(dragon?.title).toContain("1940–2036");
     expect(dragon?.title).toContain("Years List");
-    expect(dragon?.data.schema.dateModified).toBe("2026-07-14");
+    expect(dragon?.data.schema.dateModified).toBe("2026-08-07");
     expect(
       allZodiacPages
         .filter((page) => page.data.stats.some((stat) => stat.label === "Cycle rank"))
         .every((page) => page.title.includes("Years List"))
     ).toBe(true);
-    expect(dayMaster?.title).toContain("Classical Sources");
-    expect(dayMaster?.data.schema.dateModified).toBe("2026-07-13");
+    expect(dayMaster?.title).toContain("Is the Day Stem");
+    expect(dayMaster?.title).toContain("Sources");
+    expect(dayMaster?.data.schema.dateModified).toBe("2026-08-07");
     expect(dayMaster?.data.citations.every((citation) => Boolean(citation.url))).toBe(true);
   });
 
@@ -484,8 +485,8 @@ describe("GEO audit", () => {
     expect(earthlyBranches?.data.citations.every((citation) => Boolean(citation.url))).toBe(true);
 
     expect(compatibilityChart?.title).toContain("Chinese Zodiac Compatibility Chart");
-    expect(compatibilityChart?.title).toContain("All 12 Signs");
-    expect(compatibilityChart?.data.schema.dateModified).toBe("2026-07-13");
+    expect(compatibilityChart?.title).toContain("Triads & Clashes");
+    expect(compatibilityChart?.data.schema.dateModified).toBe("2026-08-07");
     expect(
       compatibilityChart?.data.sections.some((section) =>
         section.heading.includes("compatibility chart for all 12 signs")

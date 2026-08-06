@@ -1798,7 +1798,7 @@ const highIntentBlogPosts: BlogPost[] = [
   buildPage({
     slug: "day-master-bazi-complete-guide",
     path: "/blog/day-master-bazi-complete-guide",
-    title: "Bazi Day Master: Day Stem Meaning & Classical Sources",
+    title: "Bazi Day Master Is the Day Stem: Meaning & Sources",
     description:
       "The Bazi Day Master is the heavenly stem of the day pillar. Learn how to find it, read all 10 Day Masters, judge strength, and check the classical sources.",
     category: "Bazi Guide",
@@ -1807,14 +1807,14 @@ const highIntentBlogPosts: BlogPost[] = [
     subtitle:
       "A practical, non-fatalistic walkthrough of the Day Master concept and the ten Heavenly Stems in Bazi.",
     directAnswer:
-      "The Day Master is the heavenly stem of the day pillar in a Bazi chart. It represents the self and becomes the reference point for the other stems, branches, and Ten Gods. Classical sources such as Yuan Hai Zi Ping and San Ming Tong Hui establish this day-stem method. Your Day Master is one of the 10 Heavenly Stems.",
+      "Yes. In Bazi, the Day Master is the heavenly stem of the day pillar—the day stem, not the whole day pillar. It represents the self and becomes the reference point for the other stems, branches, and Ten Gods. Classical sources including Yuan Hai Zi Ping and San Ming Tong Hui establish this method; every chart has one of 10 possible Day Masters.",
     breadcrumbs: breadcrumbs("Day Master Complete Guide", "/blog/day-master-bazi-complete-guide"),
     schema: {
       headline: "",
       description: "",
       url: "",
       datePublished: "2026-04-20",
-      dateModified: "2026-07-13",
+      dateModified: "2026-08-07",
     },
     stats: [
       {
@@ -2048,7 +2048,7 @@ const highIntentBlogPosts: BlogPost[] = [
   buildPage({
     slug: "chinese-zodiac-compatibility-chart",
     path: "/blog/chinese-zodiac-compatibility-chart",
-    title: "Chinese Zodiac Compatibility Chart: All 12 Signs",
+    title: "Chinese Zodiac Compatibility Chart: Triads & Clashes",
     description:
       "Compare all 12 Chinese zodiac signs in one chart, including three-harmony triads, six harmony pairs, clash pairs, and links to detailed sign compatibility.",
     category: "Zodiac Guide",
@@ -2064,7 +2064,7 @@ const highIntentBlogPosts: BlogPost[] = [
       description: "",
       url: "",
       datePublished: "2026-04-22",
-      dateModified: "2026-07-13",
+      dateModified: "2026-08-07",
     },
     stats: [
       {

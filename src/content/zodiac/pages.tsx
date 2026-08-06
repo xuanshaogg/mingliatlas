@@ -1377,17 +1377,21 @@ const animalSections: Partial<Record<string, KnowledgePageProps["sections"]>> = 
 // quote) for signs that earn the most search impressions, without bloating
 // the generic builder. Dragon alone earns ~50% of all site impressions.
 const animalTitleOverrides: Partial<Record<string, string>> = {
-  dragon: "Year of the Dragon Years List: 1940–2036 & Elements",
+  dragon: "Year of the Dragon: Complete Years List (1940–2036)",
 };
 
 const animalDescriptionOverrides: Partial<Record<string, string>> = {
   dragon:
-    "Dragon years list from 1940 through 2036, with Wood, Fire, Earth, Metal, and Water Dragon elements, personality traits, compatibility, and Lunar New Year boundaries.",
+    "Find your Dragon year in the complete 1940–2036 list, then compare Wood, Fire, Earth, Metal, and Water Dragons, personality, compatibility, and New Year boundaries.",
 };
 
 const animalDirectAnswerOverrides: Partial<Record<string, string>> = {
   dragon:
-    "The Year of the Dragon is the fifth Chinese zodiac sign and corresponds to the Chen (辰) Earthly Branch. Dragon years include 1940, 1952, 1964, 1976, 1988, 2000, 2012, and 2024, with the next in 2036. Each year adds one of the Five Elements, and January or early-February births require a Lunar New Year boundary check.",
+    "Dragon years are 1940, 1952, 1964, 1976, 1988, 2000, 2012, and 2024; the next Year of the Dragon is 2036. Dragon is the fifth Chinese zodiac sign and corresponds to the Chen (辰) Earthly Branch. Each occurrence adds one of the Five Elements, while January or early-February births require a Lunar New Year boundary check.",
+};
+
+const animalDateModifiedOverrides: Partial<Record<string, string>> = {
+  dragon: "2026-08-07",
 };
 
 const animalPages = animals.map((animal) =>
@@ -1412,7 +1416,7 @@ const animalPages = animals.map((animal) =>
       description: "",
       url: "",
       datePublished: animal.datePublished,
-      dateModified: "2026-07-14",
+      dateModified: animalDateModifiedOverrides[animal.slug] ?? "2026-07-14",
     },
     stats: [
       {
