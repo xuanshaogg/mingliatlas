@@ -1,6 +1,6 @@
 # Analytics and Monitoring
 
-This project supports Plausible Analytics as the primary traffic analytics tool, GA4 as a backup, and Vercel Analytics + Speed Insights for Vercel-hosted page and performance metrics.
+This project supports Plausible Analytics, GA4, and Vercel Analytics for traffic and custom-event measurement, plus Speed Insights for Vercel-hosted performance metrics.
 
 ## Local configuration
 
@@ -29,6 +29,8 @@ Use `trackAnalyticsEvent` from `src/lib/analytics/track.ts` for these events:
 
 `page_scroll_75` is tracked automatically once per page load by `ScrollDepthTracker`.
 
+Each event is sent to every provider available in the browser. Vercel custom events are always wired on Vercel deployments; Plausible and GA4 remain conditional on their public environment variables.
+
 ## Setup checklist
 
 ### Plausible
@@ -48,6 +50,7 @@ Use `trackAnalyticsEvent` from `src/lib/analytics/track.ts` for these events:
 
 - Enable Web Analytics in the Vercel project dashboard.
 - Confirm page view data appears after deployment.
+- Confirm `calculator_completed`, `related_content_clicked`, and `subscribe_clicked` appear under custom events after exercising the Bazi calculator journey.
 
 ### Vercel Speed Insights
 
