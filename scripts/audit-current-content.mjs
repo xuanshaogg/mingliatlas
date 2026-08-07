@@ -115,6 +115,53 @@ function countMatches(text, pattern) {
   return (text.match(pattern) ?? []).length;
 }
 
+function escapeRegex(value) {
+  return value.replace(/[.*+?^$(){}|[\]\\]/g, "\\$&");
+}
+
+function reusableFaqCount(expression, source) {
+  const identifiers = [...expression.matchAll(/\b([A-Za-z][A-Za-z0-9_]*)\b/g)]
+    .map((match) => match[1])
+    .filter((name) => !["faqs", "null", "undefined"].includes(name));
+
+  for (const identifier of identifiers) {
+    const escaped = escapeRegex(identifier);
+    const arrayMatch = source.match(
+      new RegExp(
+        "(?:const|let)\\s+" +
+          escaped +
+          "\\s*(?::[\\s\\S]{0,160}?)?=\\s*\\[([\\s\\S]*?)\\];",
+        "m",
+      ),
+    );
+    const count = countMatches(arrayMatch?.[1] ?? "", /question:\s*"/g);
+    if (count > 0) return count;
+  }
+
+  const factoryCall = expression.match(/^\s*([A-Za-z][A-Za-z0-9_]*)\(([^)]*)\)/);
+  if (!factoryCall) return 0;
+
+  const [, factoryName, argumentsText] = factoryCall;
+  if (!argumentsText.trim()) {
+    const escapedFactoryName = escapeRegex(factoryName);
+    const noArgumentReturn = source.match(
+      new RegExp(
+        "function\\s+" +
+          escapedFactoryName +
+          "\\([^)]*\\)[\\s\\S]*?if\\s*\\(![A-Za-z][A-Za-z0-9_]*\\)\\s*\\{\\s*return\\s*\\[([\\s\\S]*?)\\];",
+        "m",
+      ),
+    );
+    const count = countMatches(noArgumentReturn?.[1] ?? "", /question:\s*"/g);
+    if (count > 0) return count;
+  }
+
+  // Factory-backed content pages are required by the runtime GEO test to expose
+  // at least four FAQs. Use that conservative floor when the selected branch
+  // cannot be resolved statically from the source expression.
+  return 4;
+}
+
 function stringField(block, name) {
   const quoted = block.match(new RegExp(`${name}\\s*:\\s*"([^"]*)"`, "m"));
   if (quoted) return quoted[1];
@@ -215,11 +262,13 @@ function slugRowsFromArray(src, section, prefix, arrayName) {
 
 function analyzePage(page) {
   const block = page.sourceBlock;
+  const source = page.fileSource ?? block;
   const type = pageType(page.path, page.section);
   const priority = priorityPaths.has(page.path);
   const minimum = minimumWords(type, priority);
   const directAnswer = stringField(block, "directAnswer");
-  const citationLabels = [...block.matchAll(/label:\s*"([^"]+)"/g)]
+  const citationsArray = block.match(/citations:\s*\[([\s\S]*?)\],\s*sections:/)?.[1] ?? "";
+  const citationLabels = [...citationsArray.matchAll(/label:\s*"([^"]+)"/g)]
     .map((match) => match[1])
     .filter((label) => !["Home", "Bazi", "Blog", "Tools", "I Ching", "Feng Shui", "Ziwei", "Chinese Zodiac", "Learn"].includes(label));
   const genericCitationCount = citationLabels.filter((label) =>
@@ -228,9 +277,8 @@ function analyzePage(page) {
   const sectionsArray = block.match(/sections:\s*\[([\s\S]*?)\],\s*faqs:/)?.[1] ?? "";
   const relatedArray = block.match(/relatedLinks:\s*\[([\s\S]*?)\],\s*cta:/)?.[1] ?? "";
   const faqsValue = block.match(/faqs:\s*([^,\n]+)/)?.[1] ?? "";
-  const faqCount = faqsValue.includes("defaultFaqs") || faqsValue.includes("baseFaqs")
-    ? 4
-    : countMatches(block, /question:\s*"/g);
+  const inlineFaqCount = countMatches(block, /question:\s*"/g);
+  const faqCount = inlineFaqCount || reusableFaqCount(faqsValue, source);
   const statsCount = countMatches(block, /value:\s*"/g);
   const internalLinkCount = countMatches(block, /href="\/[^"]+"/g) + countMatches(block, /href:\s*"\/[^"]+"/g);
   const sectionCount = countMatches(sectionsArray, /heading:\s*/g);
@@ -279,6 +327,7 @@ const pages = [];
 
 for (const file of contentFiles) {
   const src = await readSrc(file.rel);
+  const pageStartIndex = pages.length;
   const buildBlocks = extractBlocks(src, /buildPage\(\{/g);
 
   for (const block of buildBlocks) {
@@ -341,6 +390,10 @@ for (const file of contentFiles) {
 
   if (file.section === "Chinese Zodiac") {
     pages.push(...slugRowsFromArray(src, file.section, file.prefix, "animals"));
+  }
+
+  for (const page of pages.slice(pageStartIndex)) {
+    page.fileSource = src;
   }
 }
 

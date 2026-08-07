@@ -24,6 +24,12 @@ async function artifactContents(directory: string): Promise<Map<string, string>>
   );
 }
 
+function parseCsvRow(row: string): string[] {
+  return [...row.matchAll(/"((?:[^"]|"")*)"(?:,|$)/g)].map((match) =>
+    match[1].replace(/""/g, '"'),
+  );
+}
+
 describe("current-content audit CLI", () => {
   it("is read-only unless write mode is explicit", async () => {
     const before = await artifactContents(trackedAuditDir);
@@ -46,6 +52,17 @@ describe("current-content audit CLI", () => {
       );
       const names = (await readdir(outputDir)).sort();
       const qualityBaseline = await readFile(join(outputDir, "content-quality-baseline.csv"), "utf8");
+      const qualityLines = qualityBaseline.split("\n");
+      const qualityHeader = parseCsvRow(qualityLines[0]);
+      const qualityByPath = new Map(
+        qualityLines.slice(1).map((row) => {
+          const values = parseCsvRow(row);
+          return [
+            values[qualityHeader.indexOf("path")],
+            Object.fromEntries(qualityHeader.map((field, index) => [field, values[index]])),
+          ] as const;
+        }),
+      );
       const learnRow = qualityBaseline
         .split("\n")
         .find((row) => row.startsWith('"/learn","Learn"'));
@@ -56,6 +73,19 @@ describe("current-content audit CLI", () => {
       expect(learnRow).toContain('"/learn","Learn","hub","no"');
       expect(learnRows).toHaveLength(6);
       expect(learnRows.every((row) => row.endsWith('"92","A","monitor"'))).toBe(true);
+      expect(qualityByPath.get("/chinese-zodiac")).toMatchObject({
+        faqs: "5",
+        citations: "4",
+        score: "92",
+        grade: "A",
+        action: "monitor",
+      });
+      expect(qualityByPath.get("/blog/i-ching-beginners-reading-guide")).toMatchObject({
+        faqs: "4",
+        citations: "2",
+        score: "88",
+        grade: "A",
+      });
       expect(await readFile(join(outputDir, "audit-summary.md"), "utf8")).toContain(
         "# Audit Summary — Content Quality Baseline",
       );

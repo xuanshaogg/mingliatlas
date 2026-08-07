@@ -150,6 +150,12 @@ Vercel remains stable at 107 visitors, 213 page views, and 66% bounce rate over 
 
 The About page is an indexable company/entity route with 123 GSC impressions, two clicks, 1.6% CTR, and average position 9.5 in the 28-day URL report. Its search snippet is already above the current CTR guardrail, so the refresh leaves the title and description unchanged and strengthens the page's GEO trust layer instead: named source records now expose direct URLs, the visible source map links to the source-evaluation guide, and calendar-sensitive readers get a reproducible calculator plus Hong Kong Observatory conversion workflow. The Organization JSON-LD now identifies the editorial team, links all three anchor works, and carries dateModified 2026-08-07; the About route is also covered by the local production audit. This is a site-quality improvement, not a new indexing or title experiment.
 
+### Indexable quality-gate calibration
+
+The source audit previously treated reusable FAQ expressions and named FAQ arrays as zero questions, while counting unrelated label fields from stats and navigation as citations. That combination mislabeled the Chinese Zodiac hub as 80/B even though its runtime page exposes five FAQs and four source records. The audit now resolves reusable FAQ arrays and factories conservatively and counts citation labels only inside the citation block. Regression tests cover both the Zodiac factory and a named blog FAQ array.
+
+After recalculation, /chinese-zodiac is 92/A with 1,536 estimated words, five FAQs, four citations, and the existing title and direct answer unchanged. Of the 15 indexable content pages represented by the source audit, 12 now grade A. The remaining three B pages are /bazi/heavenly-stems, /bazi/ten-gods, and /bazi/luck-pillars, all members of active recovery cohort B; preserve them through the observation window instead of changing content to satisfy an audit score. The sitewide average changed from 71 to 69 because citation inflation was removed, not because published content regressed. Keep the 74 high-risk staged/generated pages outside the indexing allowlist and use the corrected metrics for future quality batches.
+
 The engagement evidence supports improving the existing result-to-guide continuation before adding more newsletter surface area. Related reading has measurable use, while the seven-day subscription funnel has no activity.
 
 ### Engagement experiment A — one primary result guide
