@@ -16,6 +16,7 @@
     "audit:links": "tsx scripts/audit-links.mjs",
     "audit:local": "node scripts/audit-local-site.mjs",
     "audit:current-content": "node scripts/audit-current-content.mjs",
+    "audit:current-content:write": "node scripts/audit-current-content.mjs --write",
     "db:migrate": "prisma migrate deploy",
     "ops:report": "tsx scripts/operations-report.ts"
   },

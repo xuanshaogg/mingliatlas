@@ -1,9 +1,23 @@
 import { existsSync } from "node:fs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
-import { join } from "node:path";
+import { join, relative, resolve } from "node:path";
 
 const ROOT = process.cwd();
-const outDir = join(ROOT, "docs/audit-2026-05");
+const args = process.argv.slice(2);
+const writeReports = args.includes("--write");
+const outputDirIndex = args.indexOf("--output-dir");
+
+if (outputDirIndex >= 0 && (!args[outputDirIndex + 1] || args[outputDirIndex + 1].startsWith("--"))) {
+  throw new Error("--output-dir requires a path");
+}
+
+if (outputDirIndex >= 0 && !writeReports) {
+  throw new Error("--output-dir can only be used with --write");
+}
+
+const outputDirArg = outputDirIndex >= 0 ? args[outputDirIndex + 1] : "docs/audit-2026-05";
+const outDir = resolve(ROOT, outputDirArg);
+const displayOutDir = relative(ROOT, outDir) || ".";
 
 const contentFiles = [
   { section: "Bazi", rel: "src/content/bazi/pages.tsx", prefix: "/bazi" },
@@ -451,8 +465,6 @@ for (const [section, stats] of [...bySection.entries()].sort()) {
   ]);
 }
 
-await mkdir(outDir, { recursive: true });
-
 const outputs = {
   "content-quality-baseline.csv": qualityRows,
   "priority-action-list.csv": priorityRows,
@@ -460,11 +472,6 @@ const outputs = {
   "intent-gap-list.csv": intentRows,
   "section-quality-summary.csv": summaryRows,
 };
-
-for (const [name, rows] of Object.entries(outputs)) {
-  await writeFile(join(outDir, name), csv(rows), "utf8");
-  console.log(`✅ docs/audit-2026-05/${name} (${rows.length - 1} data rows)`);
-}
 
 const totalPages = analyzed.length;
 const averageScore = Math.round(analyzed.reduce((sum, page) => sum + page.score, 0) / totalPages);
@@ -503,5 +510,21 @@ ${priorityRows.slice(1, 16).map(([path, section, _title, score, grade, action, r
 - \`term-map.ts\` currently re-exports \`termMap.ts\`; keep it as a compatibility wrapper unless imports are consolidated.
 `;
 
-await writeFile(join(outDir, "audit-summary.md"), md, "utf8");
-console.log("✅ docs/audit-2026-05/audit-summary.md updated");
+if (writeReports) {
+  await mkdir(outDir, { recursive: true });
+
+  for (const [name, rows] of Object.entries(outputs)) {
+    await writeFile(join(outDir, name), csv(rows), "utf8");
+    console.log(`✅ ${join(displayOutDir, name)} (${rows.length - 1} data rows)`);
+  }
+
+  await writeFile(join(outDir, "audit-summary.md"), md, "utf8");
+  console.log(`✅ ${join(displayOutDir, "audit-summary.md")} updated`);
+} else {
+  console.log("Content audit (read-only)");
+  console.log(`Analyzed content pages: ${totalPages}`);
+  console.log(`Average quality score: ${averageScore}`);
+  console.log(`High-risk pages: ${highRiskPages.length}`);
+  console.log(`Priority pages needing work: ${priorityNeedsWork.length}`);
+  console.log('No files written. Run "pnpm audit:current-content:write" to refresh the tracked audit artifacts.');
+}
