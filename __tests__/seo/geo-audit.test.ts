@@ -273,6 +273,24 @@ describe("GEO audit", () => {
     expect(isIndexablePath(page.path)).toBe(false);
   });
 
+  it("keeps the beginner path substantive while staging it outside the index", () => {
+    const page = allLearnPages.find((candidate) => candidate.path === "/learn/beginners-guide");
+
+    expect(page).toBeDefined();
+    if (!page) return;
+
+    const markup = sectionMarkup(page);
+    const pageText = `${page.title} ${page.description} ${page.data.directAnswer} ${markup}`;
+    const resolvedCitations = resolveCitationUrls(page.data.citations);
+
+    expect(wordCount(pageText)).toBeGreaterThanOrEqual(1100);
+    expect(page.data.sections).toHaveLength(8);
+    expect(page.data.relatedLinks).toHaveLength(4);
+    expect(resolvedCitations).toHaveLength(5);
+    expect(resolvedCitations.every((citation) => Boolean(citation.url))).toBe(true);
+    expect(isIndexablePath(page.path)).toBe(false);
+  });
+
   it("keeps the Bazi expansion batch in the content-quality slice", () => {
     for (const path of priorityBaziQualityUrls) {
       const page = knowledgePages.find((candidate) => candidate.path === path);

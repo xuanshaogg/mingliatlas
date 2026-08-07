@@ -116,6 +116,8 @@ The same-day quality pass upgraded `/learn/resources` into a source-evaluation g
 
 The internal decision hub `/learn/which-system` was also upgraded because it is a shared CTA destination and appeared in URL Inspection as a discovery source for `/bazi/heavenly-stems`. Its new comparison matrix separates five systems by question, required input, output, missing-data constraints, and first exercise. The audit now estimates 1,267 words and scores it 92/A, up from 341 words and 74/B. It also remains `noindex, follow`; stronger internal navigation value is not permission to expand the current indexing cohort.
 
+The core `/learn/beginners-guide` now provides a four-week sequence for shared vocabulary, calendar boundaries, one-system selection, a bounded first exercise, tool verification, source notes, and stopping conditions. The audit estimates 1,289 words and scores it 92/A, up from 559 words and 75/B. It remains `noindex, follow` alongside the other staged Learn pages; the cluster is being made quality-ready before any future indexing decision, not used to bypass cohort B measurement.
+
 The engagement evidence supports improving the existing result-to-guide continuation before adding more newsletter surface area. Related reading has measurable use, while the seven-day subscription funnel has no activity.
 
 ### Engagement experiment A — one primary result guide

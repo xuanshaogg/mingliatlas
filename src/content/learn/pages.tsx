@@ -37,6 +37,7 @@ const beginnerRelatedLinks: RelatedLink[] = [
   { title: "Five Elements", href: "/bazi/five-elements", description: "Learn Wood, Fire, Earth, Metal, and Water before deeper chart reading." },
   { title: "What Is Bazi?", href: "/bazi/what-is-bazi", description: "See how stems, branches, and four pillars become a chart." },
   { title: "Which System Should You Learn?", href: "/learn/which-system", description: "Choose a path after the beginner vocabulary is clear." },
+  { title: "Books & Source Guide", href: "/learn/resources", description: "Learn how to verify texts, translations, teachers, communities, and calculators." },
 ];
 
 const comparisonRelatedLinks: RelatedLink[] = [
@@ -230,98 +231,172 @@ export const allLearnPages: LearnContentPage[] = [
   buildPage({
     slug: "beginners-guide",
     path: "/learn/beginners-guide",
-    title: "Chinese Metaphysics Beginner's Guide",
-    description: "A beginner-friendly guide to Chinese metaphysics, major systems, decision tree, and free tools.",
+    title: "Chinese Metaphysics Beginner's Guide: A Four-Week Path",
+    description: "A four-week beginner path through yin-yang, Five Elements, stems, branches, Bazi, I Ching, Feng Shui, source checks, and tools.",
     entityName: "Chinese Metaphysics Beginner Guide",
     entityType: "Article",
-    subtitle: "A practical first path through Chinese metaphysics vocabulary, systems, and tools.",
+    subtitle: "A paced introduction that separates shared vocabulary, calendar structure, system choice, first practice, and source verification.",
     directAnswer:
-      "A Chinese metaphysics beginner should first learn yin-yang, the Five Elements, the 12 zodiac animals, and the stems-and-branches calendar. After that, choose a system by question: Bazi for life patterns, I Ching for decisions, Feng Shui for space, and Ziwei Doushu for detailed chart analysis.",
+      "Begin Chinese metaphysics in four stages: learn yin-yang and the Five Elements; map the 10 Heavenly Stems, 12 Earthly Branches, and calendar boundaries; choose one system that matches your question; then complete one documented practice before adding tools or another tradition. Keep calculation, source text, commentary, and personal interpretation in separate notes so mistakes remain visible and correctable.",
     breadcrumbs: breadcrumbs("Beginner's Guide", "/learn/beginners-guide"),
-    schema: { headline: "", description: "", url: "", datePublished: "2025-12-10", dateModified: "2026-03-22" },
+    schema: { headline: "", description: "", url: "", datePublished: "2025-12-10", dateModified: "2026-08-07" },
     stats: [
-      { value: "5", label: "Core concepts", description: "Yin-yang, Five Elements, stems, branches, and cycles." },
-      { value: "12", label: "Zodiac branches", description: "The animal cycle is one layer of a larger calendar." },
-      { value: "4", label: "Starter paths", description: "Personality, decisions, space, and chart detail." },
+      { value: "4", label: "Learning weeks", description: "Foundation, calendar, one system, then verification." },
+      { value: "5", label: "Phases", description: "Wood, Fire, Earth, Metal, and Water describe processes of change." },
+      { value: "22", label: "Calendar symbols", description: "10 Heavenly Stems and 12 Earthly Branches." },
     ],
     citations: [
-      { label: "Chinese calendar tradition", source: "Stems, branches, solar terms, and zodiac signs share one calendar foundation." },
-      { label: "I Ching", source: "The Book of Changes models decision reflection through structured symbols." },
+      {
+        label: "Hong Kong Observatory Chinese calendar conversion tables",
+        source: "A stable reference for Gregorian, lunar, stem-branch, and solar-term calendar data.",
+        url: "https://www.hko.gov.hk/en/gts/time/conversion.htm",
+      },
+      { label: "Yuan Hai Zi Ping (渊海子平)", source: "A foundational text in the Four Pillars / Zi Ping textual tradition." },
+      { label: "San Ming Tong Hui (三命通会)", source: "A Ming-dynasty compilation preserving terminology and methods from multiple fate-calculation traditions." },
+      { label: "Zhouyi (周易 / I Ching)", source: "The received Changes text containing 64 hexagram statements and line texts." },
+      { label: "Wolfram Eberhard, A Dictionary of Chinese Symbols", source: "A secondary reference for checking cultural associations without turning them into chart rules." },
     ],
     sections: [
       {
-        heading: "Start with the shared vocabulary",
+        heading: "Before week one: set scope and ground rules",
         content: (
           <>
             <p>
-              Begin with <TermLink term="Five Elements">Five Elements</TermLink>, yin-yang, and the stem-branch calendar. According to <cite>Chinese calendar tradition</cite>, the same timekeeping language supports zodiac years, Bazi pillars, solar terms, and many date-selection methods.
+              Chinese metaphysics is a family of systems, not one universal chart. Decide whether you are studying cultural history, symbolic vocabulary, a birth-chart method, a decision text, or an environment. Write that scope at the top of your notebook. It prevents a Bazi rule, an I Ching image, and a Feng Shui observation from merging simply because an English translation uses the same word.
             </p>
             <p>
-              Do not rush into interpretation. A beginner who knows what Wood, Fire, Earth, Metal, Water, stems, and branches mean will understand later guides much faster. The same patience appears in the <cite>I Ching</cite>, where symbols are read through situation and change rather than one-word answers.
+              Use the material for education and structured reflection, not medical, legal, financial, or mental-health decisions. Do not use a reading to diagnose another person, remove consent, or claim certainty about an outcome. Record unknown birth times, ambiguous calendar boundaries, translation choices, and school differences instead of hiding them behind confident language.
             </p>
           </>
         ),
       },
       {
-        heading: "Which system answers which question",
+        heading: "Week one: learn yin-yang and the Five Phases as relationships",
         content: (
           <>
             <p>
-              Each Chinese metaphysics system is designed for a different kind of question. Choosing the right system first saves a lot of confusion.
+              Begin with yin and yang as relational qualities: inward and outward, receptive and active, cooling and warming, consolidating and expanding. They are not moral teams and nothing is permanently yin or yang in every context. Ask, “Relative to what?” before assigning the label.
             </p>
             <p>
-              <strong>Bazi (Four Pillars)</strong> answers: What are my recurring patterns, strengths, and timing cycles? It reads a natal chart built from birth year, month, day, and hour.
+              Then learn <TermLink term="Five Elements">Wu Xing / the Five Phases</TermLink> as Wood, Fire, Earth, Metal, and Water processes. Memorize the generating sequence—Wood feeds Fire, Fire produces Earth, Earth bears Metal, Metal supports Water, and Water nourishes Wood—and the controlling sequence—Wood regulates Earth, Earth contains Water, Water controls Fire, Fire melts Metal, and Metal cuts Wood. These sequences describe relationships, not a five-word personality quiz.
             </p>
             <p>
-              <strong>I Ching</strong> answers: What is the pattern in this specific situation right now? It responds to a question cast in the present moment, not a fixed birth chart.
-            </p>
-            <p>
-              <strong>Feng Shui</strong> answers: How does this space support or hinder the people in it? It reads environment, direction, layout, and qi flow.
-            </p>
-            <p>
-              <strong>Ziwei Doushu</strong> answers: What are the detailed life-area themes in my natal chart? It uses 12 palaces and 14 major stars for a more granular chart map.
-            </p>
-            <p>
-              <strong>Chinese Zodiac</strong> answers: What is the cultural symbolism of my birth year? It is the most accessible entry point but the least detailed system.
+              Make five cards. On each card record the Chinese character, pinyin, yin/yang expressions, season, direction, generating relationship, controlling relationship, and one source. Avoid memorizing color, organ, career, emotion, and personality lists all at once; correspondence tables belong to particular contexts and traditions.
             </p>
           </>
         ),
-        stats: [
-          { value: "5", label: "Core systems", description: "Each designed for a different kind of question." },
-          { value: "1", label: "Question first", description: "The clearest path begins with what you want to learn." },
-        ],
+        stats: [{ value: "2", label: "Core cycles", description: "Generating and controlling relationships organize the Five Phases." }],
       },
       {
-        heading: "Common beginner mistakes",
+        heading: "Week one: map stems, branches, and calendar boundaries",
         content: (
           <>
             <p>
-              The most common mistake is reducing a person to one label: one zodiac animal, one element, or one star. Every system uses multiple layers. A zodiac animal is one branch in a four-pillar chart. An element is one of five in a balance. A star is one of fourteen in a palace map.
+              Next map the 10 <TermLink term="Heavenly Stems">Heavenly Stems</TermLink> and 12 <TermLink term="Earthly Branches">Earthly Branches</TermLink>. A stem combines one phase with yin or yang. A branch carries seasonal and time-cycle functions; its zodiac animal is a memorable cultural label, not its complete technical meaning. Practice writing the sequences in order before studying combinations, clashes, hidden stems, or Ten Gods.
             </p>
             <p>
-              A second mistake is mixing system rules. Bazi and Western astrology use different grammars. Reading a Bazi Day Master as a Western sun sign produces confusion, not insight. Keep each system's rules separate until you understand both independently.
+              Use the <cite>Hong Kong Observatory Chinese calendar conversion tables</cite> to compare Gregorian dates, lunar dates, stem-branch years, and solar terms. Notice that Lunar New Year and the solar-term boundary used by some Bazi conventions are different questions. A January or February birth can be assigned incorrectly when a resource says only “Chinese year” without naming its boundary.
             </p>
             <p>
-              A third mistake is treating any reading as a fixed outcome. Chinese metaphysics describes patterns and tendencies, not guaranteed events. The best use is to understand recurring themes and make better-informed choices.
+              Build a one-page calendar glossary with Gregorian date, lunar date, solar terms, stem, branch, zodiac animal, and time zone. Mark which facts are calculated and which meanings are interpretive. This page becomes the reference you check whenever a chart or article appears to disagree.
             </p>
           </>
         ),
       },
       {
-        heading: "Use tools after the terms make sense",
+        heading: "Week two: choose one system by question and input",
         content: (
           <>
             <p>
-              Tools are most helpful after you know what they are calculating. Try the <Link href="/tools/bazi-calculator" className={linkClass}>Bazi calculator</Link> after reading the Four Pillars overview, or the <Link href="/tools/i-ching-oracle" className={linkClass}>I Ching oracle</Link> after learning how questions work.
+              Choose <TermLink term="Bazi">Bazi</TermLink> for recurring birth-chart patterns and timing; Ziwei Doushu for a detailed palace-and-star natal chart; <TermLink term="I Ching">I Ching</TermLink> for one present decision; <TermLink term="Feng Shui">Feng Shui</TermLink> for a real environment; or the <TermLink term="Chinese Zodiac">Chinese Zodiac</TermLink> for broad birth-year cultural context. The <Link href="/learn/which-system" className={linkClass}>system selection guide</Link> compares the input and output of all five.
             </p>
             <p>
-              Record what the tool shows, then return to the guide pages to understand the terms in context. If a claim removes agency, reduces a person to one label, or makes you afraid to act, step back and return to the fundamentals.
+              Let missing information narrow the choice. Bazi and Ziwei benefit from an accurate birth time; I Ching needs one well-framed current question; Feng Shui needs access to the actual space; zodiac basics need a correctly bounded year. Do not invent a birth hour, orientation, moving line, or school rule to complete a method whose required input is absent.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Week three: complete one bounded practice",
+        content: (
+          <>
+            <p>
+              Keep the first exercise small enough to verify. For Bazi, label the four pillars, identify the Day Master, and map the Five Element relationships without forecasting. For I Ching, write one open question, cast once, and separate the primary hexagram, moving lines, and relating hexagram. For Feng Shui, sketch one room and mark entry, movement, main activity, support, light, and obstacles before using formulas.
+            </p>
+            <p>
+              For Ziwei, learn the twelve palace names and locate the major stars before interpreting life events. For the zodiac, verify one birth-year boundary, branch, stem, and element pairing, then compare the broad cultural description with the fuller branch page. A finished, sourced exercise teaches more than browsing fifty disconnected meanings.
+            </p>
+            <p>
+              Textual anchors such as <cite>Yuan Hai Zi Ping (渊海子平)</cite>, <cite>San Ming Tong Hui (三命通会)</cite>, and the <cite>Zhouyi (周易 / I Ching)</cite> are not quick manuals. Use them to check terminology and structure alongside a transparent beginner explanation. Preserve quotation, commentary, and your inference as separate notebook blocks.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Week three: use tools only after you can name the output",
+        content: (
+          <>
+            <p>
+              A calculator is useful when you understand the structure it calculates. Before opening the <Link href="/tools/bazi-calculator" className={linkClass}>Bazi calculator</Link>, be able to name year, month, day, and hour pillars and explain that the Day Master is the day stem. After generating a chart, record the input date, time, time zone, displayed pillars, and any boundary assumptions; then use the guide links instead of treating the result card as a verdict.
+            </p>
+            <p>
+              Before using the <Link href="/tools/i-ching-oracle" className={linkClass}>I Ching oracle</Link>, write the question and know how six lines form a hexagram. Before using the <Link href="/tools/zodiac-compatibility" className={linkClass}>zodiac compatibility tool</Link>, understand harmony groups and clashes as branch relationships, not proof that two people will succeed or fail. Reproduce one output in another reference when possible.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Week four: verify sources and build a reusable notebook",
+        content: (
+          <>
+            <p>
+              For each important claim, record the system, Chinese term, pinyin, working translation, source layer, exact quotation or calculation, your paraphrase, one example, and the limit of the claim. Compare at least one independent source. <cite>Wolfram Eberhard&apos;s A Dictionary of Chinese Symbols</cite> can help check cultural associations, but a cultural association does not become a Bazi, Ziwei, or Feng Shui rule without system-specific evidence.
+            </p>
+            <p>
+              Use the <Link href="/learn/resources" className={linkClass}>books and source evaluation guide</Link> to distinguish primary text, translation, calculation reference, teacher rule, and modern analogy. Date your notes and keep corrections rather than deleting them. A visible correction trail is a sign that the method is becoming more precise, not that the study failed.
+            </p>
+            <p>
+              End the week by explaining one concept without reading: define it, name its system, show the input or structure, cite a source, give an example, and state what it cannot establish. If any step is missing, review that layer before starting a second tradition.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Common mistakes and stopping conditions",
+        content: (
+          <>
+            <p>
+              Avoid reducing a person to one animal, element, Day Master, star, or hexagram. Avoid mixing Bazi and Western astrology terms before each chart has been read by its own grammar. Avoid recasting, changing birth inputs, or switching schools until a preferred answer appears. Avoid teachers or communities that use fear, guaranteed outcomes, secret-rule pressure, or unverifiable case studies.
+            </p>
+            <p>
+              Stop a session when the interpretation becomes more certain than the data, when a claim affects health, money, law, safety, or another person&apos;s consent, or when the method replaces observation and professional evidence. Return to the calculation, source, and stated limit. The goal of the first month is not prediction; it is learning to produce a clear, reproducible, and appropriately bounded explanation.
             </p>
           </>
         ),
       },
     ],
-    faqs: defaultFaqs,
+    faqs: [
+      {
+        question: "What should I learn first in Chinese metaphysics?",
+        answer:
+          "Learn yin-yang as a relationship, the Five Phase generating and controlling cycles, then the 10 Heavenly Stems and 12 Earthly Branches. Check calendar boundaries before assigning zodiac or pillar labels. Only after that should you choose Bazi, Ziwei, I Ching, Feng Shui, or zodiac study by question and available input.",
+      },
+      {
+        question: "How long does it take to learn the basics?",
+        answer:
+          "Four focused weeks are enough to build a reliable foundation and complete one bounded exercise, not to master a tradition. Spend the first week on shared vocabulary and calendar structure, the second choosing one method, the third practicing once, and the fourth checking sources and explaining the limits of what you learned.",
+      },
+      {
+        question: "Do I need my exact birth time to begin?",
+        answer:
+          "No. You can learn shared vocabulary, calendar basics, zodiac context, I Ching question framing, and observable Feng Shui form without a birth time. A complete Bazi or Ziwei natal chart is more sensitive to missing time data, so label the omission and avoid precise claims instead of guessing an hour.",
+      },
+      {
+        question: "When should a beginner use a calculator or oracle?",
+        answer:
+          "Use a tool after you can name its inputs, output structure, and one way to verify the calculation. Record the settings and result, then return to documented guide pages. A tool can reproduce a chart or casting, but it cannot prove that a personality, timing, relationship, or decision claim follows from it.",
+      },
+    ],
     relatedLinks: beginnerRelatedLinks,
     cta: cta("Compare the main systems next"),
   }),
