@@ -124,7 +124,7 @@ const htmlPages = [
   {
     path: "/learn/beginners-guide",
     expectedTitle: "Beginner",
-    expectedH1: "Chinese Metaphysics Beginner's Guide",
+    expectedH1: "Chinese Metaphysics Beginner's Guide: A Four-Week Path",
     minJsonLd: 3,
     allowNoindex: true,
   },
