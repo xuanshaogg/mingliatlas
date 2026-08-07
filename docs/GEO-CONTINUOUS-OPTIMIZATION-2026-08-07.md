@@ -94,7 +94,23 @@ Seven-day engagement events:
 - `page_scroll_75`: 15 events from 13 users.
 - No `subscribe_clicked`, `subscribe_requested`, or `subscribe_confirmed` event was recorded in this seven-day window.
 
-For the trailing 28 days through 2026-08-06, 405 users generated 963 calculator completions from 207 users, 80 related-content clicks from 43 users, 208 share-card clicks from 71 users, two subscription clicks from two users, one subscription request, and one confirmed subscriber. These events currently combine all tools; register the existing `tool_name`, `target`, and `source` parameters as GA4 custom dimensions before making tool-specific conversion claims.
+For the trailing 28 days through 2026-08-06, 405 users generated 963 calculator completions from 207 users, 80 related-content clicks from 43 users, 208 share-card clicks from 71 users, two subscription clicks from two users, one subscription request, and one confirmed subscriber. This pre-registration baseline combines all tools; because custom dimensions are not retroactive, do not make tool-specific conversion claims from this window.
+
+### Same-day measurement readiness checkpoint
+
+The 2026-08-07 follow-up did not add another complete GSC day: Search Console remains current through 2026-08-04, so the 7-day and 28-day search baselines are unchanged. Do not interpret same-day traffic as a result of the new snippets or indexing requests.
+
+Vercel's rolling windows moved modestly during the day:
+
+- Seven days: 107 visitors, 213 page views, and 66% bounce rate, compared with 103, 191, and 69% at the initial checkpoint.
+- Thirty days: 609 visitors, 1,255 page views, and 67% bounce rate, compared with 605, 1,233, and 68% at the initial checkpoint.
+- The 30-day referrer mix is stable: Google 131 visitors, ChatGPT 63, Bing 22, DuckDuckGo 14, and Copilot three. The change is too small and the windows overlap, so it is confirmation of direction rather than a new experiment result.
+
+The GA4 property is now linked to the verified `sc-domain:mingliatlas.com` Search Console property and the production website stream. Event-scoped custom dimensions are registered for `tool_name`, `target`, `source`, `link_rank`, `result_state`, `day_master`, and `action`. These definitions apply only to events collected after registration on 2026-08-07; wait 24–48 hours for processing before using the new breakdowns.
+
+Desktop Speed Insights now reports RES 92 from 194 data points, FCP 2.66s, LCP 2.70s, INP 72ms, CLS 0.01, FID 16ms, and TTFB 0.99s. The Bazi calculator has RES 90 from 49 route data points, LCP 2.76s, and TTFB 0.78s. Its mobile path remains healthy at RES 99, LCP 1.37s, INP 144ms, CLS 0.09, and TTFB 0.75s. The desktop LCP signal is now large enough to watch seriously, but this same-day checkpoint overlaps the original window; wait for the next independent seven-day review before opening a performance change.
+
+The HTML `/sitemap` route shows 538 historical 28-day impressions, 0 clicks, and average position 16.3, but it is already `noindex, follow`. Treat that as a recrawl lag, not a snippet opportunity; keep its discovery links intact and do not optimize it for clicks.
 
 The engagement evidence supports improving the existing result-to-guide continuation before adding more newsletter surface area. Related reading has measurable use, while the seven-day subscription funnel has no activity.
 
@@ -107,7 +123,7 @@ Launched on 2026-08-07 for the Bazi calculator result path only. The chart-speci
 - Initial success threshold: at least 25% after a minimum of 25 calculator-completion users. Do not judge the experiment before both conditions are met.
 - Guardrails: calculator completions must not fall by more than 10%, mobile route RES must remain at least 95, and no new layout-shift regression may appear.
 - Build guardrail: the JavaScript referenced by the generated calculator HTML increased from 320,851 to 320,991 gzip bytes (+140 bytes, 0.04%), so the experiment does not materially increase the initial transfer budget.
-- Attribution: the primary and secondary links continue to emit `related_content_clicked`; `source`, `link_rank`, and `result_state` distinguish placement once those parameters are registered as GA4 custom dimensions.
+- Attribution: the primary and secondary links continue to emit `related_content_clicked`; use `source`, `link_rank`, and `result_state` on post-registration events to distinguish placement.
 
 ## Phased plan after indexing recovery
 
@@ -117,7 +133,9 @@ Launched on 2026-08-07 for the Bazi calculator result path only. The chart-speci
 - Do not resubmit the seven recovered URLs unless Google reports a new indexing or canonical problem.
 - Hold cohort B unchanged after its 2026-08-07 submissions. On 2026-08-10, recheck only `/bazi/luck-pillars` and `/ziwei` to confirm Google now recognizes them; on 2026-08-14 and 2026-08-21, inspect all six URLs individually.
 - Record GSC page/query deltas after 7 and 14 days, but make the first success/failure decision only after the full 14-day hold.
-- Use GA4 to confirm `calculator_completed`, `related_content_clicked`, and the subscription funnel before adding any new retention component. Vercel's Hobby dashboard cannot expose custom events.
+- From 2026-08-09 onward, use the newly registered GA4 dimensions to split `calculator_completed`, `related_content_clicked`, `primary_guide_clicked`, and `share_card_clicked` by tool and placement. Do not mix pre-registration events into dimension-level rates.
+- Use GA4 to confirm the subscription funnel before adding any new retention component. Vercel's Hobby dashboard cannot expose custom events.
+- At the 2026-08-14 review, open a narrow calculator performance experiment only if desktop LCP remains above 2.5s with at least 25 route data points and TTFB remains at or below 0.8s. Preserve the current mobile result path and do not run the change before the CTR and indexing checkpoints can be separated analytically.
 
 #### Cohort B decision rules
 
