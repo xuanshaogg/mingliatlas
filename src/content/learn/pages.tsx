@@ -1,6 +1,5 @@
 import Link from "next/link";
 import type { KnowledgePageProps } from "@/components/templates/KnowledgePage";
-import type { FAQ } from "@/components/shared/FAQSection";
 import type { RelatedLink } from "@/components/shared/RelatedLinks";
 import TermLink from "@/components/shared/TermLink";
 import { SITE } from "@/lib/constants";
@@ -44,15 +43,59 @@ const beginnerRelatedLinks: RelatedLink[] = [
 ];
 
 const comparisonRelatedLinks: RelatedLink[] = [
-  { title: "Bazi Overview", href: "/bazi", description: "Read the calendar-based Chinese chart framework." },
-  { title: "Chinese Zodiac", href: "/chinese-zodiac", description: "Compare zodiac signs with Western sun-sign language carefully." },
-  { title: "Bazi vs Western Astrology", href: "/blog/bazi-vs-western-astrology", description: "Read the editorial comparison for search-intent context." },
+  {
+    title: "Bazi Overview",
+    href: "/bazi",
+    description: "Read the calendar-based Chinese chart framework.",
+  },
+  {
+    title: "Chinese Zodiac",
+    href: "/chinese-zodiac",
+    description: "Compare zodiac signs with Western sun-sign language carefully.",
+  },
+  {
+    title: "Bazi vs Western Astrology",
+    href: "/blog/bazi-vs-western-astrology",
+    description: "Read the editorial comparison for search-intent context.",
+  },
+  {
+    title: "Which System Should You Learn?",
+    href: "/learn/which-system",
+    description: "Match the question and available input to one Chinese system before comparing traditions.",
+  },
+  {
+    title: "Books & Source Guide",
+    href: "/learn/resources",
+    description: "Check primary texts, translations, calendar data, and calculation tools.",
+  },
 ];
 
 const misconceptionRelatedLinks: RelatedLink[] = [
-  { title: "Beginner's Guide", href: "/learn/beginners-guide", description: "Start with the calm learning path before advanced claims." },
-  { title: "Common Bazi Basics", href: "/bazi/what-is-bazi", description: "See why a chart is more than one sign or element." },
-  { title: "Chinese Zodiac Compatibility", href: "/blog/chinese-zodiac-compatibility-guide", description: "Learn relationship language without reducing people to signs." },
+  {
+    title: "Beginner's Guide",
+    href: "/learn/beginners-guide",
+    description: "Start with the calm learning path before advanced claims.",
+  },
+  {
+    title: "Common Bazi Basics",
+    href: "/bazi/what-is-bazi",
+    description: "See why a chart is more than one sign or element.",
+  },
+  {
+    title: "Chinese Zodiac Compatibility",
+    href: "/blog/chinese-zodiac-compatibility-guide",
+    description: "Learn relationship language without reducing people to signs.",
+  },
+  {
+    title: "How to Cast the I Ching",
+    href: "/i-ching/how-to-cast",
+    description: "Separate question, casting structure, moving lines, and interpretation.",
+  },
+  {
+    title: "Books & Source Guide",
+    href: "/learn/resources",
+    description: "Use a reproducible checklist for texts, teachers, communities, and tools.",
+  },
 ];
 
 const systemRelatedLinks: RelatedLink[] = [
@@ -67,29 +110,6 @@ const resourceRelatedLinks: RelatedLink[] = [
   { title: "What Is Bazi?", href: "/bazi/what-is-bazi", description: "Apply the source-checking method to a documented Four Pillars overview." },
   { title: "I Ching", href: "/i-ching", description: "See how a classical text, hexagram structure, and modern practice fit together." },
   { title: "Five Elements", href: "/bazi/five-elements", description: "Compare a shared Chinese term across calendar, Bazi, and change traditions." },
-];
-
-const defaultFaqs: FAQ[] = [
-  {
-    question: "Where should a beginner start with Chinese metaphysics?",
-    answer:
-      "Start with the Five Elements, then learn the Chinese zodiac and Bazi basics. This gives you enough vocabulary to understand deeper systems without getting lost.",
-  },
-  {
-    question: "Is Chinese metaphysics only about personality?",
-    answer:
-      "No. Some systems focus on personality and timing, while others focus on space, decisions, calendars, or symbolic reflection.",
-  },
-  {
-    question: "Can I combine Chinese and Western systems?",
-    answer:
-      "Yes. Many readers compare systems as different symbolic languages. Keep the rules separate first, then look for useful overlaps.",
-  },
-  {
-    question: "Are these pages professional advice?",
-    answer:
-      "No. They are for education, entertainment, and self-reflection. They should not replace medical, legal, financial, or mental health advice.",
-  },
 ];
 
 function pageUrl(path: string): string {
@@ -484,76 +504,219 @@ export const allLearnPages: LearnContentPage[] = [
     slug: "chinese-vs-western-astrology",
     path: "/learn/chinese-vs-western-astrology",
     title: "Chinese vs Western Astrology: Key Differences",
-    description: "Compare Chinese metaphysics and Western astrology through zodiac signs, planets, houses, Bazi, Ten Gods, and chart logic.",
+    description: "Compare Chinese astrology and Western astrology by calculation, chart structure, zodiac role, timing methods, required birth data, and responsible use.",
     entityName: "Chinese and Western Astrology Comparison",
     entityType: "Article",
-    subtitle: "A side-by-side guide that respects both systems instead of forcing them into one vocabulary.",
-    directAnswer:
-      "Chinese and Western astrology use different symbolic languages. Western astrology centers on planets, signs, aspects, and houses. Chinese systems use stems, branches, Five Elements, zodiac animals, palaces, and cycles. They can complement each other when each system is read by its own rules and compared by use case.",
+    subtitle: "A calculation-first comparison that keeps Chinese calendar systems and Western planetary astrology in their own technical languages.",
+    directAnswer: "Chinese and Western astrology classify the same birth moment with different systems. Western astrology maps planets into zodiac signs, houses, and aspects. Bazi maps year, month, day, and hour into Heavenly Stems and Earthly Branches, then reads the Day Master, Five Phase relationships, and timing cycles. Compare completed readings by question; do not translate one system's symbols directly into the other.",
     breadcrumbs: breadcrumbs("Chinese vs Western Astrology", "/learn/chinese-vs-western-astrology"),
-    schema: { headline: "", description: "", url: "", datePublished: "2025-12-18", dateModified: "2026-03-24" },
+    schema: {
+      headline: "",
+      description: "",
+      url: "",
+      datePublished: "2025-12-18",
+      dateModified: "2026-08-07",
+    },
     stats: [
-      { value: "2", label: "Symbolic languages", description: "Planetary chart logic and Chinese calendar logic." },
-      { value: "12", label: "Signs or branches", description: "Both use 12-part cycles, but not the same way." },
-      { value: "4", label: "Bazi pillars", description: "Chinese chart reading uses year, month, day, and hour." },
+      {
+        value: "2",
+        label: "Calculation grammars",
+        description: "Planetary positions and Chinese stem-branch time classification.",
+      },
+      {
+        value: "12 ≠ 12",
+        label: "Different cycles",
+        description: "Western signs and Earthly Branches are not equivalent symbol sets.",
+      },
+      {
+        value: "4",
+        label: "Bazi pillars",
+        description: "Year, month, day, and hour each receive a stem and branch.",
+      },
+      {
+        value: "10 + 12",
+        label: "Chinese time symbols",
+        description: "Heavenly Stems and Earthly Branches combine into the 60-cycle.",
+      },
     ],
     citations: [
-      { label: "Chinese calendar tradition", source: "Bazi and zodiac systems use stems, branches, and seasonal timing." },
-      { label: "Western astrology tradition", source: "Western charts use planets, signs, houses, and aspects as the core grammar." },
+      {
+        label: "Hong Kong Observatory Chinese calendar conversion tables",
+        source: "A reference for checking Gregorian dates, lunar dates, solar terms, and stem-branch calendar labels.",
+        url: "https://www.hko.gov.hk/en/gts/time/conversion.htm",
+      },
+      {
+        label: "Yuan Hai Zi Ping (渊海子平)",
+        source: "A foundational source in the Four Pillars / Zi Ping textual tradition.",
+      },
+      {
+        label: "San Ming Tong Hui (三命通会)",
+        source: "A Ming-dynasty compilation preserving Four Pillars terminology and methods.",
+      },
+      {
+        label: "Ptolemy, Tetrabiblos",
+        source: "A primary source for the inherited Hellenistic framework of planets, signs, aspects, and terrestrial topics.",
+        url: "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Ptolemy/Tetrabiblos/home.html",
+      },
+      {
+        label: "Swiss Ephemeris documentation",
+        source: "Technical documentation for reproducible planetary positions, time scales, and house calculations.",
+        url: "https://www.astro.com/swisseph/swephinfo_e.htm",
+      },
     ],
     sections: [
       {
-        heading: "The root difference",
+        heading: "Start with the question, not the shared word astrology",
         content: (
           <>
             <p>
-              Western astrology begins with the sky-based chart: planets, signs, houses, and aspects. Chinese systems such as <TermLink term="Bazi">Bazi</TermLink> begin with the calendar: stems, branches, elements, and cycles.
+              “Chinese astrology” is an umbrella label, not one chart. It may refer to the <TermLink term="Chinese Zodiac">Chinese Zodiac</TermLink>, <TermLink term="Bazi">Bazi</TermLink>, Ziwei Doushu, or another calendar-based tradition. Western astrology also contains natal, mundane, electional, horary, tropical, and sidereal branches. A useful comparison must name the specific methods instead of treating two large families as single personality systems.
+            </p>
+            <p>This guide uses Bazi as the main Chinese chart example and a conventional Western natal chart as the Western example. Ask the same bounded question of both—such as how each chart organizes temperament or timing—then let each system show its own calculation and evidence. Similar wording at the interpretation stage does not prove that the underlying symbols are interchangeable.</p>
+          </>
+        ),
+      },
+      {
+        heading: "The calculation starts in different places",
+        content: (
+          <>
+            <p>
+              A Western natal chart calculates the apparent positions of the Sun, Moon, planets, and selected points for a date, time, and place. Those positions are expressed through zodiac longitude, placed into houses by a declared house system, and related through angular aspects. A reproducible chart therefore states its zodiac convention, ephemeris, coordinates, time zone, daylight-saving treatment, and house system. The <cite>Swiss Ephemeris documentation</cite> illustrates why these settings are calculation inputs rather than cosmetic preferences.
             </p>
             <p>
-              In <cite>Chinese calendar tradition</cite>, the birth moment is classified through time cycles. In Western astrology, the birth moment is mapped through planetary positions.
+              Bazi classifies the same moment into four pillars—year, month, day, and hour—each containing a <TermLink term="Heavenly Stems">Heavenly Stem</TermLink> and <TermLink term="Earthly Branches">Earthly Branch</TermLink>. Interpretation is organized around the day stem or Day Master, Five Phase relationships, Ten Gods, seasonal context, combinations, clashes, and timing cycles. <cite>Yuan Hai Zi Ping (渊海子平)</cite> and <cite>San Ming Tong Hui (三命通会)</cite> belong to this textual lineage; they are not planetary ephemerides.
+            </p>
+          </>
+        ),
+        stats: [
+          {
+            value: "8",
+            label: "Bazi characters",
+            description: "Four stems and four branches form the familiar Eight Characters.",
+          },
+        ],
+      },
+      {
+        heading: "Why twelve zodiac signs are not twelve zodiac animals",
+        content: (
+          <>
+            <p>
+              Western zodiac signs divide the ecliptic into twelve sign sectors. The Sun sign describes the Sun&apos;s zodiac position, while the Moon, planets, angles, houses, and aspects supply other chart information. <cite>Ptolemy&apos;s Tetrabiblos</cite> is one historical witness to a planetary and sign-based grammar, although modern Western schools differ in technique and interpretation.
+            </p>
+            <p>The twelve Chinese zodiac animals are memorable names associated with the twelve Earthly Branches. Branches can label years, months, days, and two-hour periods and carry seasonal and relational functions beyond the animal image. A birth-year animal is therefore not the Chinese equivalent of a Western Sun sign. Both are popular entry points, but both become misleading when detached from their wider chart.</p>
+            <p>
+              Calendar boundaries matter. Lunar New Year is important for the public zodiac calendar, while some Bazi conventions use the solar term Start of Spring for the year pillar and solar terms for month pillars. Use the <cite>Hong Kong Observatory Chinese calendar conversion tables</cite> to distinguish Gregorian, lunar, solar-term, and stem-branch labels before comparing a January or February birth.
             </p>
           </>
         ),
       },
       {
-        heading: "Why the zodiac comparison can mislead",
+        heading: "Do not force chart components into a one-to-one dictionary",
         content: (
           <>
-            <p>
-              A Western sun sign and a <TermLink term="Chinese Zodiac">Chinese Zodiac</TermLink> year animal are both popular entry points, but they do not carry the same technical role. The zodiac animal is one branch within a wider stem-branch calendar.
-            </p>
-            <p>
-              <cite>Western astrology tradition</cite> reads the sun sign inside a chart that also includes the moon, rising sign, aspects, and houses.
-            </p>
-          </>
-        ),
-        stats: [{ value: "1", label: "Sign is not enough", description: "Both systems need the wider chart context." }],
-      },
-      {
-        heading: "How to use both responsibly",
-        content: (
-          <>
-            <p>
-              Keep one notebook page for each system. Write Bazi observations in Chinese calendar terms, then write Western observations in planet-and-house terms. Compare themes only after both readings are complete.
-            </p>
-            <p>
-              If both systems point to similar practical questions, treat that as a useful reflection prompt rather than a command.
-            </p>
+            <p>A Day Master is not a Sun sign: it is the Heavenly Stem of the day pillar and the reference point used to classify other stems and branches through the Ten Gods. Ten Gods are not planets; they name relationships such as resource, output, wealth, authority, and peers relative to the Day Master. Five Phases are not the four classical Western elements plus an extra substance; they describe a Chinese relationship system with generating and controlling cycles.</p>
+            <p>Western planets, signs, houses, and aspects also perform different jobs. A planet is commonly read as an actor or function, a sign as its style, a house as a field of experience, and an aspect as an angular relationship, but schools qualify those shorthand descriptions. Ziwei palaces may resemble houses at the level of “life areas,” yet Ziwei&apos;s stars, palace arrangement, transformations, and timing rules still require their own grammar.</p>
+            <p>Translation should preserve role rather than chase resemblance. When two symbols sound similar, record their formal input, position in the chart, relationships, timing behavior, and source. If those five columns differ, keep the terms separate even when a modern interpretation produces a similar theme.</p>
           </>
         ),
       },
       {
-        heading: "Which one should you learn first?",
+        heading: "Timing methods also answer different questions",
+        content: (
+          <>
+            <p>Bazi timing commonly layers Luck Pillars and annual or shorter stem-branch cycles over the natal structure. The result is read through changing seasonal strength, element relationships, Ten Gods, combinations, and clashes. A timing statement should identify the natal feature, the arriving cycle, the rule connecting them, and the uncertainty introduced by birth-time or school conventions.</p>
+            <p>Western astrologers may use transits, secondary progressions, solar returns, profections, directions, or other techniques. A transit compares a current planetary position with the natal chart; it is not a Luck Pillar translated into planetary language. Before comparing forecasts, make each reading name its technique, interval, triggering rule, and claimed scope. Agreement in a broad phrase such as “career change” is weaker evidence than a clearly documented calculation.</p>
+          </>
+        ),
+      },
+      {
+        heading: "Birth data, missing data, and reproducibility",
+        content: (
+          <>
+            <p>Both systems benefit from an accurate date, time, place, and time-zone history, but missing inputs affect them differently. Without a reliable birth time, a Western Ascendant and houses may change, while the Bazi hour pillar is unknown and a day boundary may need review. Do not silently choose noon, invent an hour, or present a rectified time as observed fact.</p>
+            <p>
+              Save the raw input and settings before reading. For Bazi, record the civil time, time zone, calendar conversion, solar-term convention, four pillars, and whether solar-time adjustment is used. For Western astrology, record coordinates, time scale, zodiac, house system, node calculation, and ephemeris. The{" "}
+              <Link href="/tools/bazi-calculator" className={linkClass}>
+                Bazi calculator
+              </Link>{" "}
+              can provide a reproducible practice chart, but its displayed result remains a calculation to verify rather than an interpretive authority.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "A safe method for comparing both readings",
+        content: (
+          <>
+            <ol className="list-decimal space-y-3 pl-6">
+              <li>
+                <strong>Fix one question.</strong> Compare temperament, timing, or decision support—not “which chart is true.”
+              </li>
+              <li>
+                <strong>Verify both calculations.</strong> Preserve inputs, boundary rules, chart settings, and missing data.
+              </li>
+              <li>
+                <strong>Finish each reading separately.</strong> Use only its native components and named sources.
+              </li>
+              <li>
+                <strong>Label claim strength.</strong> Separate calculated structure, traditional rule, modern analogy, and personal inference.
+              </li>
+              <li>
+                <strong>Compare at the question level.</strong> Note convergences, contradictions, and what neither method can establish.
+              </li>
+            </ol>
+            <p>A convergence can become a reflection prompt: look for observable examples, counterexamples, and practical choices. It should not become double certainty. Two symbolic systems can repeat a vague theme because the language is broad, the interpreter selected matching details, or the question invited the same concern. Keep consent and professional evidence ahead of either reading when health, law, finance, safety, or another person is involved.</p>
+          </>
+        ),
+      },
+      {
+        heading: "Which system should you learn first?",
         content: (
           <>
             <p>
-              Choose <Link href="/bazi" className={linkClass}>Bazi</Link> if you want Chinese calendar logic, element balance, and timing cycles. Choose Western astrology if you want planetary archetypes and house topics. If you are unsure, use the <Link href="/learn/which-system" className={linkClass}>system selector</Link> first.
+              Choose{" "}
+              <Link href="/bazi" className={linkClass}>
+                Bazi
+              </Link>{" "}
+              if you want to learn stems, branches, Five Phase relationships, the Day Master, and Chinese calendar timing. Begin with{" "}
+              <Link href="/bazi/what-is-bazi" className={linkClass}>
+                What Is Bazi
+              </Link>{" "}
+              and verify one four-pillar chart before studying Luck Pillars. Choose Western astrology if planetary motion, signs, aspects, and house topics are the language you want to investigate; use a source that declares its zodiac and house conventions.
+            </p>
+            <p>
+              If your real question is about one present decision or one physical environment, neither natal system may be the best first tool. The{" "}
+              <Link href="/learn/which-system" className={linkClass}>
+                Chinese system selector
+              </Link>{" "}
+              compares Bazi, Ziwei, I Ching, Feng Shui, and zodiac by input and output. Whichever route you choose, the{" "}
+              <Link href="/learn/resources" className={linkClass}>
+                source evaluation guide
+              </Link>{" "}
+              provides the same rule: reproduce the structure, name the source layer, show an example, and state a limit before combining traditions.
             </p>
           </>
         ),
       },
     ],
-    faqs: defaultFaqs,
+    faqs: [
+      {
+        question: "Is a Chinese zodiac animal the same as a Western Sun sign?",
+        answer: "No. A Western Sun sign is the Sun's zodiac position inside a planetary chart. A Chinese zodiac animal names one Earthly Branch, usually presented through the birth year, inside a larger stem-branch calendar. Both are simplified public entry points; neither represents the complete technical chart.",
+      },
+      {
+        question: "Is the Bazi Day Master equivalent to the Sun sign?",
+        answer: "No. The Day Master is the Heavenly Stem of the Bazi day pillar and the reference used to classify other chart relationships through the Ten Gods. The Western Sun is a calculated planetary position read by sign, house, aspects, and technique. Similar personality language does not make their chart functions identical.",
+      },
+      {
+        question: "Can I use Chinese and Western astrology together?",
+        answer: "Yes, after completing each calculation and interpretation separately. Ask both systems the same bounded question, preserve their settings and source rules, then compare conclusions rather than symbols. Treat agreement as a prompt to examine observable evidence, not as doubled proof or a reason to override professional advice.",
+      },
+      {
+        question: "Which birth details do both systems need?",
+        answer: "Both benefit from an accurate date, civil time, place, and historical time zone. Bazi additionally needs declared calendar and solar-term boundary conventions; a Western chart needs an ephemeris, zodiac convention, coordinates, and usually a house system. If the time is unknown, state which components cannot be calculated reliably.",
+      },
+    ],
     relatedLinks: comparisonRelatedLinks,
     cta: cta("Pick the system that fits your question"),
   }),
@@ -561,79 +724,207 @@ export const allLearnPages: LearnContentPage[] = [
     slug: "common-misconceptions",
     path: "/learn/common-misconceptions",
     title: "Common Misconceptions About Chinese Metaphysics",
-    description: "Clarify common misconceptions about Bazi, Feng Shui, Chinese zodiac, prediction, and traditional knowledge.",
+    description: "Correct common misconceptions about Bazi, Feng Shui, I Ching, Chinese zodiac, Five Elements, calendar boundaries, prediction, and traditional sources.",
     entityName: "Chinese Metaphysics Misconceptions",
     entityType: "Article",
-    subtitle: "A calm guide to what Chinese metaphysics does and does not claim.",
-    directAnswer:
-      "The most common misconception is that Chinese metaphysics is only about fixed outcomes. In practice, Bazi is a personality and life-pattern analysis tool, Feng Shui studies spatial influence, the zodiac is one calendar layer, and I Ching readings work best as structured reflection rather than certainty.",
+    subtitle: "A source-led guide to what Chinese metaphysics calculates, what it interprets, and what it cannot establish.",
+    directAnswer: "Chinese metaphysics is not one fortune-telling system, and no single animal, element, pillar, star, object, or hexagram determines a person or event. Bazi and Ziwei are natal-chart traditions, I Ching addresses a present situation, Feng Shui evaluates an environment, and the zodiac is a broad Earthly Branch layer. Good practice verifies inputs, names sources and conventions, separates calculation from interpretation, and preserves uncertainty and agency.",
     breadcrumbs: breadcrumbs("Common Misconceptions", "/learn/common-misconceptions"),
-    schema: { headline: "", description: "", url: "", datePublished: "2026-01-05", dateModified: "2026-03-26" },
+    schema: {
+      headline: "",
+      description: "",
+      url: "",
+      datePublished: "2026-01-05",
+      dateModified: "2026-08-07",
+    },
     stats: [
-      { value: "5", label: "Systems", description: "Each system has its own rules and scope." },
-      { value: "1", label: "Animal sign", description: "A zodiac sign is never the whole person." },
-      { value: "4", label: "Reading layers", description: "Symbol, context, timing, and practical choice." },
+      {
+        value: "5",
+        label: "Distinct systems",
+        description: "Bazi, Ziwei, I Ching, Feng Shui, and zodiac use different inputs.",
+      },
+      {
+        value: "1 / 8",
+        label: "Year-branch scope",
+        description: "One zodiac branch is only part of a full Bazi Eight Characters chart.",
+      },
+      {
+        value: "4",
+        label: "Evidence layers",
+        description: "Input, calculation, source rule, and interpretation should remain visible.",
+      },
+      {
+        value: "0",
+        label: "Guaranteed outcomes",
+        description: "Symbolic methods do not remove uncertainty, consent, or practical evidence.",
+      },
     ],
     citations: [
-      { label: "Chinese calendar tradition", source: "Zodiac animals belong to a larger stem-branch calendar system." },
-      { label: "I Ching", source: "The Book of Changes frames change through symbolic situations and moving lines." },
+      {
+        label: "Hong Kong Observatory Chinese calendar conversion tables",
+        source: "A reference for distinguishing Gregorian, lunar, solar-term, and stem-branch calendar labels.",
+        url: "https://www.hko.gov.hk/en/gts/time/conversion.htm",
+      },
+      {
+        label: "Yuan Hai Zi Ping (渊海子平)",
+        source: "A foundational text in the Four Pillars / Zi Ping tradition.",
+      },
+      {
+        label: "San Ming Tong Hui (三命通会)",
+        source: "A historical compilation that demonstrates the depth and variation of fate-calculation methods.",
+      },
+      {
+        label: "Zhouyi (周易 / I Ching)",
+        source: "The received Changes text containing hexagram and line statements rather than a universal yes-or-no code.",
+      },
+      {
+        label: "Wolfram Eberhard, A Dictionary of Chinese Symbols",
+        source: "A secondary reference for checking cultural associations without turning every symbol into a chart rule.",
+      },
     ],
     sections: [
       {
-        heading: "Misconception 1: one sign explains everything",
+        heading: "Misconception 1: one animal, element, or pillar explains a person",
         content: (
           <>
             <p>
-              The <TermLink term="Chinese Zodiac">Chinese Zodiac</TermLink> is a helpful entry point, but it is only one layer. According to <cite>Chinese calendar tradition</cite>, each year belongs to a wider cycle of branches, stems, elements, and seasonal context.
+              The{" "}
+              <Link href="/chinese-zodiac" className={linkClass}>
+                Chinese Zodiac
+              </Link>{" "}
+              is a useful cultural entry point, but a year animal names one Earthly Branch. A full <TermLink term="Bazi">Bazi</TermLink> chart contains four stems and four branches assigned to the year, month, day, and hour. It then evaluates the Day Master, seasonal context, Five Phase relationships, Ten Gods, combinations, clashes, and timing layers. One animal is not a compressed version of that structure.
             </p>
             <p>
-              A complete Chinese reading never needs to flatten someone into a single animal, element, or keyword.
+              The same limit applies to a Day Master, “missing element,” Ziwei star, palace, or favorable symbol. Each is a component whose meaning depends on position and relationships. <cite>Yuan Hai Zi Ping (渊海子平)</cite> and <cite>San Ming Tong Hui (三命通会)</cite> preserve rule systems, not five-word identity labels. Use a single symbol to open a question, never to close an explanation about a whole person.
             </p>
           </>
         ),
       },
       {
-        heading: "Misconception 2: Feng Shui is only decor",
+        heading: "Misconception 2: the Chinese calendar is simply the lunar calendar",
         content: (
           <>
+            <p>Chinese date labels can involve the Gregorian civil calendar, a lunisolar calendar, 24 solar terms, Heavenly Stems, Earthly Branches, and school-specific boundaries. Lunar New Year is not automatically the boundary used for every Bazi year or month pillar. January and February births are especially easy to misclassify when a website says only “Chinese year” without stating whether it means Lunar New Year, Start of Spring, or another rule.</p>
             <p>
-              <TermLink term="Feng Shui">Feng Shui</TermLink> is not just about objects or colors. A practical reading starts with flow, support, light, use, and the relationship between people and place.
-            </p>
-            <p>
-              Decor can support a space, but function and layout matter first.
+              The <cite>Hong Kong Observatory Chinese calendar conversion tables</cite> let a reader compare Gregorian dates, lunar dates, solar terms, and stem-branch labels. A transparent calculator should also state its time zone and boundary convention. When two charts disagree, check date conversion and settings before treating the disagreement as a mysterious school secret.
             </p>
           </>
         ),
-        stats: [{ value: "3", label: "First checks", description: "Flow, support, and function before decorative fixes." }],
+        stats: [
+          {
+            value: "24",
+            label: "Solar terms",
+            description: "Seasonal markers matter alongside lunar and civil dates.",
+          },
+        ],
       },
       {
-        heading: "Misconception 3: I Ching gives yes-or-no certainty",
+        heading: "Misconception 3: Five Elements are literal ingredients or fixed types",
         content: (
           <>
+            <p>“Five Elements” is the familiar translation of Wu Xing, but Wood, Fire, Earth, Metal, and Water function as phases, processes, and relationship categories in many Chinese systems. The generating and controlling cycles describe how categories support or regulate one another in context. They are not material quantities hidden inside the body, and they do not form a universal personality test.</p>
             <p>
-              The <TermLink term="I Ching">I Ching</TermLink> is stronger as a decision mirror than as a shortcut. A reading describes a situation, its changing lines, and the direction of change.
-            </p>
-            <p>
-              The classical <cite>I Ching</cite> works through images and judgments, so careful question framing matters more than asking for a one-word answer.
+              A chart that contains little visible Metal does not automatically require metal jewelry, a white room, or a Metal career. A practitioner must first establish the system, chart structure, seasonal condition, hidden stems, relevant relationships, and the rule connecting diagnosis to recommendation. <cite>Wolfram Eberhard&apos;s A Dictionary of Chinese Symbols</cite> can help check broad associations, but a cultural association is not automatically a Bazi, medicine, or Feng Shui rule.
             </p>
           </>
         ),
       },
       {
-        heading: "Misconception 4: traditional means unchangeable",
+        heading: "Misconception 4: Bazi or Ziwei fixes an unavoidable future",
+        content: (
+          <>
+            <p>Natal systems begin from fixed birth data, but an interpretation is not the same thing as an unavoidable event. Bazi timing relates natal structure to Luck Pillars and shorter cycles; Ziwei uses palaces, stars, transformations, and timing layers. Both require choices about technique, birth-time accuracy, and interpretive scope. A reader should state the pattern and conditions that produced a conclusion instead of announcing a guaranteed outcome.</p>
+            <p>Use timing language to frame questions such as what deserves preparation, which constraint is visible, and what evidence would confirm or contradict the reading. Do not use it to diagnose illness, promise wealth, set fear-based deadlines, decide a legal matter, or remove another person&apos;s consent. When the claim becomes more certain than the input and observable evidence, return to the calculation and narrow it.</p>
+          </>
+        ),
+      },
+      {
+        heading: "Misconception 5: Feng Shui is decoration or a magic object",
         content: (
           <>
             <p>
-              Traditional systems can be studied with a modern, practical tone. The goal is to understand patterns, name tradeoffs, and make better choices within real constraints.
+              <Link href="/feng-shui" className={linkClass}>
+                Feng Shui
+              </Link>{" "}
+              is often marketed through colors, figurines, mirrors, crystals, or “cures,” but a grounded site review begins with the actual environment. It observes external form, approach, entrance, movement, support, light, noise, hazards, orientation, room function, and how people use the space. A decorative object cannot repair unsafe circulation, blocked access, poor ventilation, missing support, or a room that contradicts its purpose.
             </p>
+            <p>Different Feng Shui schools add different calculations, so name the method before applying a formula. Start with a floor plan, compass procedure, photographs, use case, and observable constraint. Make ordinary design and safety improvements first; then document any traditional adjustment and its intended mechanism. If the result cannot be distinguished from decluttering, better lighting, or changed behavior, say so rather than crediting the object alone.</p>
+          </>
+        ),
+        stats: [
+          {
+            value: "4",
+            label: "First site checks",
+            description: "Form, movement, support, and actual use precede symbolic objects.",
+          },
+        ],
+      },
+      {
+        heading: "Misconception 6: I Ching supplies a certain yes or no",
+        content: (
+          <>
             <p>
-              If a page sounds like it removes judgment or agency, it is probably using the system poorly.
+              The <TermLink term="I Ching">I Ching</TermLink> organizes a present situation through a primary hexagram, its judgment and image, moving-line text when present, and sometimes a relating hexagram. The received <cite>Zhouyi (周易 / I Ching)</cite> does not provide a universal table in which every hexagram permanently means yes or no. Question wording, casting method, moving lines, translation, and context all affect the reading.
             </p>
+            <p>Ask one open, decision-relevant question; record it before casting; cast once; and separate text from commentary and personal inference. A reading can expose assumptions, tradeoffs, timing, and a direction of change. It cannot verify a medical diagnosis, another person&apos;s hidden intention, a legal fact, or a guaranteed result. For factual questions, investigate the facts directly.</p>
+          </>
+        ),
+      },
+      {
+        heading: "Misconception 7: tradition is one unchanged rulebook",
+        content: (
+          <>
+            <p>Chinese metaphysical traditions developed across periods, regions, texts, commentaries, and teaching lineages. Shared terms do not remove differences in calculation or emphasis. A rule attributed to “ancient Chinese wisdom” is not traceable until the author names a text, passage, edition, translation, or school and shows how the source supports the modern claim.</p>
+            <p>
+              Primary texts are essential anchors, but age alone does not validate every application. Preserve the original wording, historical commentary, teaching convention, modern analogy, and your inference as separate layers. Compare at least one independent source and note disagreements. The{" "}
+              <Link href="/learn/resources" className={linkClass}>
+                source evaluation guide
+              </Link>{" "}
+              provides a checklist for books, teachers, communities, calendar references, and calculators.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Misconception 8: a calculator or fluent AI explanation proves the result",
+        content: (
+          <>
+            <p>
+              A calculator can consistently convert an input into pillars, branches, a hexagram, or another structure, but it can still use a different time zone, solar-time adjustment, day boundary, ephemeris, school convention, or hidden default. Save the input and settings, compare one independent reference, and distinguish a calculation difference from an interpretation difference. The{" "}
+              <Link href="/tools/bazi-calculator" className={linkClass}>
+                Bazi calculator
+              </Link>{" "}
+              is a practice aid, not an authority over the source tradition.
+            </p>
+            <p>AI can summarize terminology and organize notes, but fluent prose can invent a citation, merge systems, or turn an association into a rule. Verify named sources, dates, quotations, and calculations outside the generated answer. A reliable page makes its chain visible: input → calculation → named rule → example → limit. If one link is missing, reduce confidence instead of increasing certainty through repetition.</p>
+            <ul className="list-disc space-y-2 pl-6">
+              <li>Prefer reproducible inputs and declared conventions over secret settings.</li>
+              <li>Prefer named sources and exact claims over appeals to age or lineage.</li>
+              <li>Prefer examples and counterexamples over universal personality labels.</li>
+              <li>Prefer bounded reflection over medical, legal, financial, or deterministic advice.</li>
+            </ul>
           </>
         ),
       },
     ],
-    faqs: defaultFaqs,
+    faqs: [
+      {
+        question: "Is Chinese metaphysics the same as fortune telling?",
+        answer: "No single label covers the whole field. Bazi and Ziwei organize natal data, I Ching frames a present situation, Feng Shui studies an environment, and the zodiac provides broad calendar symbolism. Each can be used predictively by some schools, but a responsible explanation names its method, evidence, uncertainty, and practical limits.",
+      },
+      {
+        question: "Does a missing Bazi element mean I must add that element?",
+        answer: "No. Visible absence alone does not establish what a chart needs. Seasonal strength, hidden stems, combinations, the Day Master, Five Phase relationships, and the practitioner's school all affect the analysis. Objects, colors, careers, and health claims require an additional rule that should be stated and verified rather than assumed.",
+      },
+      {
+        question: "Can Feng Shui objects change my luck?",
+        answer: "An object should not replace observable site analysis or ordinary safety and design work. Begin with external form, entrance, movement, support, light, noise, room function, and actual use. If a school recommends a symbolic adjustment, document the method and intended mechanism without promising a guaranteed life outcome.",
+      },
+      {
+        question: "How can I check a Chinese metaphysics claim?",
+        answer: "Record the exact input, calculation, Chinese term, working translation, named text or school rule, example, and limit. Reproduce the structure with an independent source and keep quotation, commentary, analogy, and personal inference separate. If a claim affects health, law, finance, safety, or consent, use direct professional evidence instead.",
+      },
+    ],
     relatedLinks: misconceptionRelatedLinks,
     cta: cta("Choose a grounded learning path"),
   }),

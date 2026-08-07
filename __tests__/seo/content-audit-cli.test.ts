@@ -49,10 +49,13 @@ describe("current-content audit CLI", () => {
       const learnRow = qualityBaseline
         .split("\n")
         .find((row) => row.startsWith('"/learn","Learn"'));
+      const learnRows = qualityBaseline.split("\n").filter((row) => row.startsWith('"/learn'));
 
       expect(output).toContain("audit-summary.md updated");
       expect(names).toEqual([...trackedArtifacts].sort());
       expect(learnRow).toContain('"/learn","Learn","hub","no"');
+      expect(learnRows).toHaveLength(6);
+      expect(learnRows.every((row) => row.endsWith('"92","A","monitor"'))).toBe(true);
       expect(await readFile(join(outputDir, "audit-summary.md"), "utf8")).toContain(
         "# Audit Summary — Content Quality Baseline",
       );

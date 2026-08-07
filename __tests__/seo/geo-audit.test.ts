@@ -309,6 +309,44 @@ describe("GEO audit", () => {
     expect(isIndexablePath(page.path)).toBe(false);
   });
 
+  it("keeps the comparison and misconception guides substantive while staging them", () => {
+    const expectations = [
+      {
+        path: "/learn/chinese-vs-western-astrology",
+        requiredText: "do not force chart components into a one-to-one dictionary",
+      },
+      {
+        path: "/learn/common-misconceptions",
+        requiredText: "a calculator or fluent AI explanation proves the result",
+      },
+    ];
+
+    for (const expectation of expectations) {
+      const page = allLearnPages.find((candidate) => candidate.path === expectation.path);
+
+      expect(page, expectation.path).toBeDefined();
+      if (!page) continue;
+
+      const markup = sectionMarkup(page);
+      const headingText = page.data.sections.map((section) => section.heading).join(" ");
+      const pageText = `${page.title} ${page.description} ${page.data.directAnswer} ${markup}`;
+      const resolvedCitations = resolveCitationUrls(page.data.citations);
+
+      expect(wordCount(pageText), expectation.path).toBeGreaterThanOrEqual(1100);
+      expect(page.data.sections, expectation.path).toHaveLength(8);
+      expect(page.data.relatedLinks, expectation.path).toHaveLength(5);
+      expect(resolvedCitations, expectation.path).toHaveLength(5);
+      expect(
+        resolvedCitations.every((citation) => Boolean(citation.url)),
+        expectation.path
+      ).toBe(true);
+      expect(`${headingText} ${pageText}`.toLowerCase(), expectation.path).toContain(
+        expectation.requiredText.toLowerCase()
+      );
+      expect(isIndexablePath(page.path), expectation.path).toBe(false);
+    }
+  });
+
   it("keeps the Bazi expansion batch in the content-quality slice", () => {
     for (const path of priorityBaziQualityUrls) {
       const page = knowledgePages.find((candidate) => candidate.path === path);

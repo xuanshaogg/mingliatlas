@@ -98,6 +98,7 @@ function stripJsx(text) {
     .replace(/<em\b[^>]*>([\s\S]*?)<\/em>/g, "$1")
     .replace(/<strong\b[^>]*>([\s\S]*?)<\/strong>/g, "$1")
     .replace(/<[^>]+>/g, " ")
+    .replace(/\{\s*["']\s+["']\s*\}/g, " ")
     .replace(/[{}]/g, " ")
     .replace(/&rsquo;/g, "'")
     .replace(/&ldquo;|&rdquo;/g, '"')

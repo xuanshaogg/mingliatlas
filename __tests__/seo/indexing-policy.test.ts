@@ -101,6 +101,8 @@ describe("indexing policy", () => {
       "/chinese-zodiac/compatibility",
       "/learn",
       "/learn/beginners-guide",
+      "/learn/chinese-vs-western-astrology",
+      "/learn/common-misconceptions",
       "/learn/which-system",
       "/learn/resources",
       "/privacy",
