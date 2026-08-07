@@ -141,7 +141,7 @@ function extractBlocks(src, startPattern) {
 
 function pageType(path, section) {
   if (section === "Blog") return "blog";
-  if (path === "/bazi" || path === "/i-ching" || path === "/feng-shui" || path === "/ziwei" || path === "/chinese-zodiac") {
+  if (path === "/bazi" || path === "/i-ching" || path === "/feng-shui" || path === "/ziwei" || path === "/chinese-zodiac" || path === "/learn") {
     return "hub";
   }
   if (path.startsWith("/tools/") || path.endsWith("/free-calculator")) return "tool";

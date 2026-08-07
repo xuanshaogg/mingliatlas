@@ -45,9 +45,14 @@ describe("current-content audit CLI", () => {
         { cwd: root, encoding: "utf8" },
       );
       const names = (await readdir(outputDir)).sort();
+      const qualityBaseline = await readFile(join(outputDir, "content-quality-baseline.csv"), "utf8");
+      const learnRow = qualityBaseline
+        .split("\n")
+        .find((row) => row.startsWith('"/learn","Learn"'));
 
       expect(output).toContain("audit-summary.md updated");
       expect(names).toEqual([...trackedArtifacts].sort());
+      expect(learnRow).toContain('"/learn","Learn","hub","no"');
       expect(await readFile(join(outputDir, "audit-summary.md"), "utf8")).toContain(
         "# Audit Summary — Content Quality Baseline",
       );

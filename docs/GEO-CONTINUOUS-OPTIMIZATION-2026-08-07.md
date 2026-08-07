@@ -118,6 +118,8 @@ The internal decision hub `/learn/which-system` was also upgraded because it is 
 
 The core `/learn/beginners-guide` now provides a four-week sequence for shared vocabulary, calendar boundaries, one-system selection, a bounded first exercise, tool verification, source notes, and stopping conditions. The audit estimates 1,289 words and scores it 92/A, up from 559 words and 75/B. It remains `noindex, follow` alongside the other staged Learn pages; the cluster is being made quality-ready before any future indexing decision, not used to bypass cohort B measurement.
 
+The `/learn` entry page now acts as a real topic hub for the staged cluster: it defines the umbrella scope, shared stem-branch foundation, five system outputs, recommended site route, traceable practice loop, and quality boundaries. After correcting the audit to classify `/learn` as a hub, it measures 1,081 words against a 1,000-word minimum and scores 92/A, up from 353 words and 75/B. The hub and its three core child guides are now quality-ready but remain `noindex, follow` until cohort B satisfies the expansion gate.
+
 The engagement evidence supports improving the existing result-to-guide continuation before adding more newsletter surface area. Related reading has measurable use, while the seven-day subscription funnel has no activity.
 
 ### Engagement experiment A — one primary result guide
