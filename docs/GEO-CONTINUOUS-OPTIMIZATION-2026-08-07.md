@@ -146,6 +146,10 @@ The 28-day URL scan does not justify opening a fourth snippet experiment. The ho
 
 Vercel remains stable at 107 visitors, 213 page views, and 66% bounce rate over seven days, with seven visitors to Earthly Branches; the 30-day view remains 609 visitors, 1,255 page views, 67% bounce rate, and 77 Earthly Branches visitors. GA4 still processes through 2026-08-06 and therefore cannot yet evaluate the newly registered dimensions or the result-guide experiment. Desktop Speed Insights is also unchanged at RES 92, LCP 2.70s, and TTFB 0.99s from 194 data points. Preserve the current experiments and wait for an independent data window rather than changing another title, direct answer, or performance path today.
 
+### About entity trust refresh — demand-backed, snippet-neutral
+
+The About page is an indexable company/entity route with 123 GSC impressions, two clicks, 1.6% CTR, and average position 9.5 in the 28-day URL report. Its search snippet is already above the current CTR guardrail, so the refresh leaves the title and description unchanged and strengthens the page's GEO trust layer instead: named source records now expose direct URLs, the visible source map links to the source-evaluation guide, and calendar-sensitive readers get a reproducible calculator plus Hong Kong Observatory conversion workflow. The Organization JSON-LD now identifies the editorial team, links all three anchor works, and carries dateModified 2026-08-07; the About route is also covered by the local production audit. This is a site-quality improvement, not a new indexing or title experiment.
+
 The engagement evidence supports improving the existing result-to-guide continuation before adding more newsletter surface area. Related reading has measurable use, while the seven-day subscription funnel has no activity.
 
 ### Engagement experiment A — one primary result guide

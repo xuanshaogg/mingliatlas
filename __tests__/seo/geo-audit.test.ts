@@ -4,6 +4,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import sitemap from "@/app/sitemap";
+import AboutPage from "@/app/about/page";
 import { GET as getLlmsFullTxt } from "@/app/llms-full.txt/route";
 import { GET as getLlmsTxt } from "@/app/llms.txt/route";
 import robots from "@/app/robots";
@@ -206,6 +207,20 @@ describe("GEO audit", () => {
     expect(hrefs).toContain("/tools/bazi-calculator");
     expect(hrefs).not.toContain("/bazi/free-calculator");
     expect(hrefs).toContain("/i-ching/hexagram-64");
+  });
+
+  it("keeps the About entity page source-backed and reproducible", () => {
+    const markup = renderToStaticMarkup(createElement(AboutPage));
+
+    expect(AUTHOR.sources).toHaveLength(3);
+    expect(AUTHOR.sources.every((source) => source.url?.startsWith("https://"))).toBe(true);
+    expect(markup).toContain('href="/learn/resources"');
+    expect(markup).toContain('href="/tools/bazi-calculator"');
+    expect(markup).toContain("Hong Kong Observatory calendar conversion tables");
+    expect(markup).toContain(
+      "https://zh.wikisource.org/wiki/%E6%B7%B5%E6%B5%B7%E5%AD%90%E5%B9%B3"
+    );
+    expect(markup).toContain('"dateModified":"2026-08-07"');
   });
 
   it("keeps knowledge pages in answer-first GEO shape", () => {

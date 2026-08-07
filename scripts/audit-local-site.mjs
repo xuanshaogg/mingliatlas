@@ -16,6 +16,13 @@ const htmlPages = [
       "/chinese-zodiac",
     ],
   },
+  {
+    path: "/about",
+    expectedTitle: "About Mingli Atlas (Ming Li)",
+    expectedH1: "About mingliatlas",
+    minJsonLd: 3,
+    requiredLinks: ["/tools/bazi-calculator", "/learn/resources"],
+  },
   { path: "/tools", expectedTitle: "Tools", expectedH1: "Free tools", minJsonLd: 2 },
   {
     path: "/tools/bazi-calculator",

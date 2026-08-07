@@ -30,14 +30,17 @@ export const AUTHOR = {
     {
       label: "Yuan Hai Zi Ping (渊海子平)",
       note: "Song-dynasty Zi Ping classic, c. 1100 CE — Day Master tradition in Bazi.",
+      url: "https://zh.wikisource.org/wiki/%E6%B7%B5%E6%B5%B7%E5%AD%90%E5%B9%B3",
     },
     {
       label: "San Ming Tong Hui (三命通会)",
       note: "Ming-dynasty compendium, c. 1550 CE — stem-branch relationships and chart structure.",
+      url: "https://zh.wikisource.org/wiki/%E4%B8%89%E5%91%BD%E9%80%9A%E4%BC%9A",
     },
     {
       label: "I Ching, Wilhelm/Baynes translation",
       note: "Standard English reference translation of the Book of Changes.",
+      url: "https://books.google.com/books?q=Wilhelm+Baynes+I+Ching",
     },
   ],
 };

@@ -15,6 +15,7 @@ export interface SitePage {
 }
 
 const CONTENT_LAST_MODIFIED = "2026-06-21";
+const ABOUT_LAST_MODIFIED = "2026-08-07";
 const SITE_STRUCTURE_LAST_MODIFIED = "2026-07-12";
 const CORE_INDEXING_LAST_MODIFIED = "2026-08-03";
 
@@ -46,7 +47,7 @@ export const generalPages: SitePage[] = [
     href: "/about",
     description: "Mission, editorial standards, and the educational scope of mingliatlas.",
     section: "Company",
-    lastModified: CONTENT_LAST_MODIFIED,
+    lastModified: ABOUT_LAST_MODIFIED,
   },
   {
     title: "Contact",

@@ -4,6 +4,8 @@ import StaticPage from "@/components/templates/StaticPage";
 import { JsonLd } from "@/lib/seo/jsonLd";
 import { AUTHOR, SITE } from "@/lib/constants";
 
+const ABOUT_LAST_MODIFIED = "2026-08-07";
+
 export const metadata: Metadata = {
   title: "About Mingli Atlas (Ming Li) — Chinese Metaphysics Guides & Free Tools",
   description:
@@ -16,6 +18,7 @@ export const metadata: Metadata = {
 const editorialTeamSchema = {
   "@context": "https://schema.org" as const,
   "@type": "Organization" as const,
+  "@id": [SITE.url, "/about#editorial-team"].join(""),
   name: AUTHOR.name,
   url: AUTHOR.url,
   description: AUTHOR.description,
@@ -30,7 +33,9 @@ const editorialTeamSchema = {
     "@type": "CreativeWork",
     name: entry.label,
     description: entry.note,
+    url: entry.url,
   })),
+  dateModified: ABOUT_LAST_MODIFIED,
 };
 
 export default function AboutPage() {
@@ -160,6 +165,57 @@ export default function AboutPage() {
                   A strong knowledge page should not rely on a single generic tradition label. When a page covers a
                   core entity such as Bazi, Wu Xing, I Ching, Feng Shui, Ziwei Doushu, or the Chinese Zodiac, we aim
                   to include named sources and clear boundaries around interpretation.
+                </p>
+              </>
+            ),
+          },
+          {
+            heading: "Source map and reproducibility",
+            content: (
+              <>
+                <p>
+                  The three anchor texts below are starting points, not a claim that every school of
+                  practice reads them identically. Open the source records, compare the terminology,
+                  and use the{" "}
+                  <Link href="/learn/resources" className="font-medium underline">
+                    source-evaluation guide
+                  </Link>{" "}
+                  to separate a classical rule, a translation choice, a modern explanation, and an
+                  editorial inference.
+                </p>
+                <ul className="mt-3 list-disc space-y-2 pl-6">
+                  {AUTHOR.sources.map((source) => (
+                    <li key={source.label}>
+                      <a
+                        href={source.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="font-medium underline"
+                      >
+                        {source.label}
+                      </a>
+                      {" — "}
+                      {source.note}
+                    </li>
+                  ))}
+                </ul>
+                <p>
+                  For calendar-sensitive work, reproduce the displayed pillars with the{" "}
+                  <Link href="/tools/bazi-calculator" className="font-medium underline">
+                    Bazi calculator
+                  </Link>{" "}
+                  and record the civil date, local time, place, time zone, and solar-term convention.
+                  Compare close boundaries with the{" "}
+                  <a
+                    href="https://www.hko.gov.hk/en/gts/time/conversion.htm"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-medium underline"
+                  >
+                    Hong Kong Observatory calendar conversion tables
+                  </a>
+                  . If two conventions produce different pillars, preserve both inputs before making
+                  an interpretive comparison.
                 </p>
               </>
             ),
