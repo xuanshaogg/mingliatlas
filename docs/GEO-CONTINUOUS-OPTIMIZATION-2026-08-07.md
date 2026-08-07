@@ -322,3 +322,7 @@ Speed Insights identifies a desktop-only quality gap on the same 7-day window: R
 The global layout was therefore optimized without touching content or indexing policy: Inter and Playfair remain the initial font preloads, while the below-the-fold Cormorant and Geist Mono fonts now load on demand. The production build confirms that the homepage emits two, rather than four, font preloads. Recheck Speed Insights after the next meaningful 7-day sample; the acceptance target remains desktop RES ≥ 90, LCP < 2.5 s, and TTFB < 0.8 s while preserving mobile RES ≥ 95.
 
 The Vercel project overview was checked after pushing commit `32baa88`. It still offers “Connect Git” and identifies production source `3b725e7`, so the performance change is present on GitHub but not yet deployed to `mingliatlas.com`. Do not attribute a future Speed Insights change to this optimization until Vercel is connected to the repository or an authorized production deployment is run; no project upload or deployment-setting change was made during this checkpoint.
+
+### Incremental performance dashboard check — 2026-08-07 23:08 CST
+
+The Vercel Analytics 7-day window advanced to 2026-07-31 23:00 through the current 2026-08-07 snapshot: 115 visitors (+49%), 227 page views (+24%), and 66% bounce rate (+4%). The Bazi calculator remains the leading page at 43 visitors, followed by the homepage at 19 and Dragon at 9. Search Console has not processed a new complete day, and the production Speed Insights values remain unchanged because the active deployment is still `3b725e7`.
