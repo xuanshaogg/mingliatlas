@@ -19,6 +19,25 @@ Vercel Web Analytics reports:
 
 The seven-page indexing recovery cohort submitted on 2026-08-03 is now fully indexed in Google: the Bazi calculator, Bazi hub, What Is Bazi, Five Elements, I Ching hub, I Ching Oracle, and Chinese Zodiac hub all returned "URL is on Google" during this review. Do not resubmit them; shift the next sprint from discovery work to CTR and engagement quality.
 
+### Indexing recovery cohort B — submitted 2026-08-07
+
+The aggregate Page indexing report is not current enough to drive URL-level decisions: it still reports data through 2026-07-24, with 24 indexed and 34 not indexed URLs, including 27 marked "Discovered — currently not indexed." Use individual URL Inspection results for this cohort until the aggregate report catches up.
+
+The current published inventory contains 244 routes and 36 index-eligible routes. A quality-gate audit found no finished page that should be added to the index allowlist now. `/learn/resources` is the nearest candidate at a score of 79, but its 299 words remain below the 650-word minimum, so it stays excluded until it provides materially more standalone value.
+
+`/bazi/earthly-branches` returned "URL is on Google" and was excluded from submission. The six URLs below returned 200, appear in the production sitemap, declare a self-referencing canonical and `index, follow`, expose six JSON-LD blocks, and have 13–23 source-level internal links each. All six indexing requests were accepted into Google's priority crawl queue on 2026-08-07 without a quota error.
+
+| URL | Latest URL Inspection state before submission | Action |
+| --- | --- | --- |
+| `/tools/zodiac-compatibility` | Discovered — currently not indexed | Request accepted |
+| `/bazi/heavenly-stems` | Discovered — currently not indexed | Request accepted |
+| `/bazi/ten-gods` | Discovered — currently not indexed | Request accepted |
+| `/bazi/luck-pillars` | Google does not know this URL | Request accepted; discovery watch |
+| `/feng-shui` | Discovered — currently not indexed | Request accepted |
+| `/ziwei` | Google does not know this URL | Request accepted; discovery watch |
+
+Do not resubmit these URLs merely because the state is unchanged; Search Console explicitly notes that repeat requests do not alter queue order or priority. Keep the allowlist and sitemap stable while this batch is measured.
+
 ### 1. Improve search-result CTR on pages that already rank
 
 - `/chinese-zodiac/dragon`: 2,984 impressions and 0 clicks in 28 days. The query `year of the dragon years list` averaged position 9.6 over 28 days and 8.4 over 7 days, but earned no clicks. Replace the repetitive title, lead with the exact years answer, and preserve the detailed cited content.
@@ -96,8 +115,17 @@ Launched on 2026-08-07 for the Bazi calculator result path only. The chart-speci
 
 - Keep the three 2026-08-07 snippet experiments unchanged for 14 days: Dragon years, Day Master/day stem, and Zodiac Compatibility triads/clashes.
 - Do not resubmit the seven recovered URLs unless Google reports a new indexing or canonical problem.
+- Hold cohort B unchanged after its 2026-08-07 submissions. On 2026-08-10, recheck only `/bazi/luck-pillars` and `/ziwei` to confirm Google now recognizes them; on 2026-08-14 and 2026-08-21, inspect all six URLs individually.
 - Record GSC page/query deltas after 7 and 14 days, but make the first success/failure decision only after the full 14-day hold.
 - Use GA4 to confirm `calculator_completed`, `related_content_clicked`, and the subscription funnel before adding any new retention component. Vercel's Hobby dashboard cannot expose custom events.
+
+#### Cohort B decision rules
+
+- Discovery gate, 2026-08-10: if `/bazi/luck-pillars` or `/ziwei` still returns "Google does not know this URL," verify the submitted sitemap is healthy and run a live URL test. Do not rewrite the page or refresh `lastmod` without a real content change.
+- First cohort check, 2026-08-14: record each URL as indexed, crawled but not indexed, discovered but not indexed, or unknown. A move from unknown to any recognized state counts as discovery progress, not indexing success.
+- Decision check, 2026-08-21: target at least four of six indexed and all six recognized by Google. If an unknown URL persists, add two or three contextually relevant links from already-indexed hub or guide pages, then request indexing once after that material discovery-path change.
+- For URLs that remain discovered or crawled but not indexed on 2026-08-21, compare their unique answer coverage, query demand, and overlap with indexed pages before changing content. Consolidate a genuinely duplicative page; strengthen a useful but thin page; do not use bulk resubmission as the remedy.
+- Do not start a third recovery batch or expand the 36-route allowlist before cohort B reaches at least four indexed URLs, unless the 28-day review on 2026-09-04 shows a clear technical cause affecting the wider site.
 
 ### Phase 2 — select no more than three evidence-backed experiments
 
