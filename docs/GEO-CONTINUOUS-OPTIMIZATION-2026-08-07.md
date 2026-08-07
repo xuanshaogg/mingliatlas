@@ -138,6 +138,14 @@ The next content refresh targets `/bazi/earthly-branches`, an already indexed pa
 
 The refresh adds two named references, cautious historical language, stable links into the Bazi learning path, and a six-step reproducible reading sequence. The read-only audit now estimates 1,525 words across six sections and scores the page 92/A, up from 1,225 words and 88/A. Its exact title and direct answer are held stable so the change measures content depth and GEO traceability rather than starting a new snippet experiment. The page remains `index, follow`, in the 36-route allowlist and XML Sitemap, and outside recovery cohort B; do not resubmit it because URL Inspection already reports that it is on Google.
 
+### Post-deployment traffic decision — 2026-08-07 11:05 CST
+
+The newest complete Search Console day is still 2026-08-04, so the seven-day and 28-day baselines remain unchanged. The rolling 24-hour report advanced from 588 to 627 impressions while holding at one click, 0.2% CTR, and average position 15.8. `/i-ching` still owns the click from 25 impressions; the largest zero-click pages in this directional window are Dragon at 178 impressions, the homepage at 89, the Chinese Zodiac hub at 64, the compatibility article at 54, and the Day Master article at 48.
+
+The 28-day URL scan does not justify opening a fourth snippet experiment. The homepage and About page already clear the CTR guardrail at 1.8% and 1.6%. The three pages that materially exceed 100 impressions with weak CTR are the existing frozen experiments, while the HTML Sitemap is intentionally `noindex, follow`. `/chinese-zodiac` is the nearest new candidate at 97 impressions, 0% CTR, and position 16.3, but it remains below the 100-impression decision threshold; `/bazi/earthly-branches` has 67 impressions at position 12.0 and has just received the quality-only refresh above.
+
+Vercel remains stable at 107 visitors, 213 page views, and 66% bounce rate over seven days, with seven visitors to Earthly Branches; the 30-day view remains 609 visitors, 1,255 page views, 67% bounce rate, and 77 Earthly Branches visitors. GA4 still processes through 2026-08-06 and therefore cannot yet evaluate the newly registered dimensions or the result-guide experiment. Desktop Speed Insights is also unchanged at RES 92, LCP 2.70s, and TTFB 0.99s from 194 data points. Preserve the current experiments and wait for an independent data window rather than changing another title, direct answer, or performance path today.
+
 The engagement evidence supports improving the existing result-to-guide continuation before adding more newsletter surface area. Related reading has measurable use, while the seven-day subscription funnel has no activity.
 
 ### Engagement experiment A — one primary result guide
