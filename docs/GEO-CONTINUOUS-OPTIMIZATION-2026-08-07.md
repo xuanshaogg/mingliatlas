@@ -60,6 +60,25 @@ The mobile aggregate cards currently show no value, even though the route table 
 
 These results do not support a broad mobile or calculator redesign.
 
+## GA4 engagement baseline
+
+GA4 is the production source of truth for custom events because Vercel's current Hobby plan does not expose custom-event reporting.
+
+For 2026-07-31 through 2026-08-06, GA4 reports 80 total users, 78 active users, 86 sessions, 132 page views, and 77 new users. Acquisition was led by 46 Direct sessions, 18 AI Assistant sessions, and 15 Organic Search sessions. ChatGPT accounted for 15 active users, compared with eight from Google and three from Bing. The Bazi calculator remained the leading page with 44 views, followed by the homepage with 22 and the Dragon page with five.
+
+Seven-day engagement events:
+
+- `calculator_completed`: 38 events from 21 users.
+- `calculator_started`: 30 events from 23 users.
+- `related_content_clicked`: six events from three users, or 3.75% of the 80 users in the event report.
+- `share_card_clicked`: ten events from four users.
+- `page_scroll_75`: 15 events from 13 users.
+- No `subscribe_clicked`, `subscribe_requested`, or `subscribe_confirmed` event was recorded in this seven-day window.
+
+For the trailing 28 days through 2026-08-06, 405 users generated 963 calculator completions from 207 users, 80 related-content clicks from 43 users, 208 share-card clicks from 71 users, two subscription clicks from two users, one subscription request, and one confirmed subscriber. These events currently combine all tools; register the existing `tool_name`, `target`, and `source` parameters as GA4 custom dimensions before making tool-specific conversion claims.
+
+The engagement evidence supports improving the existing result-to-guide continuation before adding more newsletter surface area. Related reading has measurable use, while the seven-day subscription funnel has no activity.
+
 ## Phased plan after indexing recovery
 
 ### Phase 1 — hold and measure through 2026-08-21
@@ -67,7 +86,7 @@ These results do not support a broad mobile or calculator redesign.
 - Keep the three 2026-08-07 snippet experiments unchanged for 14 days: Dragon years, Day Master/day stem, and Zodiac Compatibility triads/clashes.
 - Do not resubmit the seven recovered URLs unless Google reports a new indexing or canonical problem.
 - Record GSC page/query deltas after 7 and 14 days, but make the first success/failure decision only after the full 14-day hold.
-- Confirm `calculator_completed`, `related_content_clicked`, and `subscribe_clicked` counts in Vercel Analytics before adding any new retention component; the production event adapter now sends the same event taxonomy to Vercel, GA4, and Plausible when configured.
+- Use GA4 to confirm `calculator_completed`, `related_content_clicked`, and the subscription funnel before adding any new retention component. Vercel's Hobby dashboard cannot expose custom events.
 
 ### Phase 2 — select no more than three evidence-backed experiments
 
@@ -83,7 +102,7 @@ These results do not support a broad mobile or calculator redesign.
 
 ## Measurement cadence and decision rules
 
-- Every 7 days: record GSC 7-day clicks, impressions, CTR, average position, and the top ten pages and queries; record Vercel visitors, page views, bounce rate, top pages, and AI/search referrers.
+- Every 7 days: record GSC clicks, impressions, CTR, average position, and the top ten pages and queries; record Vercel visitors, page views, bounce rate, top pages, and AI/search referrers; record GA4 acquisition channels and the user counts for calculator, related-reading, share, and subscription events.
 - Every 28 days: compare against this baseline and select at most three snippet/content experiments.
 - Prioritize URLs with at least 100 impressions, positions 5–20, and CTR below 1%.
 - Hold title and answer changes for 14 days unless indexing or rendering is broken; avoid daily rewrites that prevent attribution.
@@ -97,6 +116,7 @@ These results do not support a broad mobile or calculator redesign.
 - Raise sitewide 7-day CTR from 0.6% toward 0.9% while maintaining or improving average position.
 - Earn the first clicks for the Dragon years cluster without losing its top-ten query positions.
 - Reduce 7-day bounce rate from 69% toward 65% by improving result-to-guide continuation rather than adding intrusive prompts.
+- Raise the seven-day share of users triggering `related_content_clicked` from 3.75% toward 8% before expanding newsletter promotion.
 - Keep AI referrers at or above 10% of measured visitors and monitor whether ChatGPT/Copilot traffic grows after citation-focused pages are refreshed.
 - Keep desktop RES at or above 90 while moving LCP below 2.5s and TTFB below 0.8s on decision-grade samples.
 - Preserve the current route-level mobile RES of at least 95 on the homepage, Bazi calculator, and blog template.

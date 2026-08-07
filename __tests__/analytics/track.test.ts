@@ -1,18 +1,9 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 
-const { vercelTrackMock } = vi.hoisted(() => ({
-  vercelTrackMock: vi.fn(),
-}));
-
-vi.mock("@vercel/analytics", () => ({
-  track: vercelTrackMock,
-}));
-
 import {
   trackAnalyticsEvent,
   trackGtagEvent,
   trackPlausibleEvent,
-  trackVercelEvent,
 } from "@/lib/analytics/track";
 
 function installBrowserWindow() {
@@ -34,7 +25,7 @@ afterEach(() => {
 });
 
 describe("analytics event tracking", () => {
-  it("sends a custom event and its flat properties to every configured provider", () => {
+  it("sends a custom event and its flat properties to every configured event provider", () => {
     const { plausible, gtag } = installBrowserWindow();
     const properties = {
       tool_name: "bazi",
@@ -47,7 +38,6 @@ describe("analytics event tracking", () => {
 
     expect(plausible).toHaveBeenCalledWith("calculator_completed", { props: properties });
     expect(gtag).toHaveBeenCalledWith("event", "calculator_completed", properties);
-    expect(vercelTrackMock).toHaveBeenCalledWith("calculator_completed", properties);
   });
 
   it("allows each provider adapter to be called independently", () => {
@@ -55,16 +45,14 @@ describe("analytics event tracking", () => {
 
     trackPlausibleEvent("related_content_clicked", { target: "/bazi" });
     trackGtagEvent("subscribe_clicked", { source: "chart_summary" });
-    trackVercelEvent("page_scroll_75");
 
     expect(plausible).toHaveBeenCalledOnce();
     expect(gtag).toHaveBeenCalledOnce();
-    expect(vercelTrackMock).toHaveBeenCalledWith("page_scroll_75", undefined);
   });
 
   it("does not emit events during server rendering", () => {
-    trackAnalyticsEvent("calculator_started", { tool_name: "bazi" });
-
-    expect(vercelTrackMock).not.toHaveBeenCalled();
+    expect(() =>
+      trackAnalyticsEvent("calculator_started", { tool_name: "bazi" }),
+    ).not.toThrow();
   });
 });

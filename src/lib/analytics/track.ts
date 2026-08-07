@@ -1,5 +1,3 @@
-import { track as trackVercel } from "@vercel/analytics";
-
 export type AnalyticsEventName =
   | "calculator_started"
   | "calculator_completed"
@@ -52,22 +50,10 @@ export function trackGtagEvent(
   window.gtag("event", eventName, properties);
 }
 
-export function trackVercelEvent(
-  eventName: AnalyticsEventName,
-  properties?: AnalyticsEventProperties,
-): void {
-  if (typeof window === "undefined") {
-    return;
-  }
-
-  trackVercel(eventName, properties);
-}
-
 export function trackAnalyticsEvent(
   eventName: AnalyticsEventName,
   properties?: AnalyticsEventProperties,
 ): void {
   trackPlausibleEvent(eventName, properties);
   trackGtagEvent(eventName, properties);
-  trackVercelEvent(eventName, properties);
 }

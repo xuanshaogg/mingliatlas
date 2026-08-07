@@ -1,6 +1,6 @@
 # Analytics and Monitoring
 
-This project supports Plausible Analytics, GA4, and Vercel Analytics for traffic and custom-event measurement, plus Speed Insights for Vercel-hosted performance metrics.
+This project supports Plausible Analytics and GA4 for custom-event measurement, Vercel Analytics for traffic measurement, and Speed Insights for Vercel-hosted performance metrics.
 
 ## Local configuration
 
@@ -29,7 +29,7 @@ Use `trackAnalyticsEvent` from `src/lib/analytics/track.ts` for these events:
 
 `page_scroll_75` is tracked automatically once per page load by `ScrollDepthTracker`.
 
-Each event is sent to every provider available in the browser. Vercel custom events are always wired on Vercel deployments; Plausible and GA4 remain conditional on their public environment variables.
+Each event is sent to Plausible and GA4 when the corresponding public environment variable is configured. The production GA4 stream is configured and currently receives the event taxonomy below. Vercel page views remain enabled, but its custom-event report is unavailable on the current Hobby plan.
 
 ## Setup checklist
 
@@ -50,7 +50,13 @@ Each event is sent to every provider available in the browser. Vercel custom eve
 
 - Enable Web Analytics in the Vercel project dashboard.
 - Confirm page view data appears after deployment.
-- Confirm `calculator_completed`, `related_content_clicked`, and `subscribe_clicked` appear under custom events after exercising the Bazi calculator journey.
+- Do not use its custom-event section as the engagement source of truth while the project remains on Hobby; the dashboard requires a Pro team for that feature.
+
+### Production source of truth
+
+- Use GA4 Events for `calculator_completed`, `related_content_clicked`, `share_card_clicked`, and the subscription funnel.
+- Register `tool_name`, `target`, and `source` as event-scoped custom dimensions before comparing individual tools or destinations in GA4 reports.
+- Treat Vercel and GA4 visitor totals as separate measurement systems because their attribution, consent, and blocker behavior differ.
 
 ### Vercel Speed Insights
 
