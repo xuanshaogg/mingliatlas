@@ -6,8 +6,7 @@ const indexableSitePages = filterIndexablePages(publishedSitePages);
 
 const priorityHrefs = [
   "/",
-  "/learn/beginners-guide",
-  "/learn/which-system",
+  "/about",
   "/bazi",
   "/tools/bazi-calculator",
   "/blog/day-master-bazi-complete-guide",
@@ -28,6 +27,11 @@ const canonicalEntityPages = [
     entity: "Mingli (Ming Li, 命理)",
     href: "/",
     note: "primary definition page for life-pattern principles and the relationship among Bazi, I Ching, Feng Shui, Ziwei Doushu, and the Chinese Zodiac",
+  },
+  {
+    entity: "Mingli Atlas Editorial Team",
+    href: "/about",
+    note: "editorial methods, named source map, review workflow, correction path, and reproducibility policy",
   },
   {
     entity: "Bazi (Four Pillars of Destiny, 八字)",

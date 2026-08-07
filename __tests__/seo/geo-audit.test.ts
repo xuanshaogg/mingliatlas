@@ -463,10 +463,18 @@ describe("GEO audit", () => {
     expect(llms).toContain("Mingli (Ming Li, 命理)");
     expect(llms).toContain("What does Mingli / Ming Li mean");
     expect(llms).toContain("## Canonical Entity Pages");
+    expect(llms).toContain(SITE.url + "/about");
+    expect(llms).toContain("editorial methods, named source map");
     expect(llms).toContain(`${SITE.url}/bazi/five-elements`);
     expect(llms).toContain("## Citation Policy");
     expect(fullLlms).toContain(`# ${SITE.name} Full Page Index`);
     expect(fullLlms).toContain("## Bazi");
+    const fullIndexPaths = [...fullLlms.matchAll(/^- \[[^\]]+\]\((https?:\/\/[^)]+)\):/gm)]
+      .map((match) => new URL(match[1]).pathname);
+    const expectedIndexPaths = filterIndexablePages(publishedSitePages).map((page) => page.href);
+
+    expect(fullIndexPaths).toHaveLength(expectedIndexPaths.length);
+    expect(new Set(fullIndexPaths)).toEqual(new Set(expectedIndexPaths));
     expect(fullLlms).toContain(`${SITE.url}/i-ching/hexagram-64`);
     expect(llms).toContain(`${SITE.url}/blog/ren-water-day-master`);
     expect(llms).toContain(`${SITE.url}/bazi/ten-gods`);
@@ -480,6 +488,15 @@ describe("GEO audit", () => {
     expect(rss).toContain('<guid isPermaLink="true">');
     expect(rss).toContain("<pubDate>");
     expect(rss).toContain("<lastBuildDate>");
+
+    const rssPaths = [...rss.matchAll(/<guid isPermaLink="true">([^<]+)<\/guid>/g)]
+      .map((match) => new URL(match[1]).pathname);
+    const expectedBlogPaths = allBlogPosts
+      .filter((post) => isIndexablePath(post.path))
+      .map((post) => post.path);
+
+    expect(rssPaths).toHaveLength(expectedBlogPaths.length);
+    expect(new Set(rssPaths)).toEqual(new Set(expectedBlogPaths));
   });
 
   it("builds schema required by the GEO matrix", () => {

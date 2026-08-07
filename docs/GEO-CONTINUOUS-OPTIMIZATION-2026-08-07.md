@@ -156,6 +156,10 @@ The source audit previously treated reusable FAQ expressions and named FAQ array
 
 After recalculation, /chinese-zodiac is 92/A with 1,536 estimated words, five FAQs, four citations, and the existing title and direct answer unchanged. Of the 15 indexable content pages represented by the source audit, 12 now grade A. The remaining three B pages are /bazi/heavenly-stems, /bazi/ten-gods, and /bazi/luck-pillars, all members of active recovery cohort B; preserve them through the observation window instead of changing content to satisfy an audit score. The sitewide average changed from 71 to 69 because citation inflation was removed, not because published content regressed. Keep the 74 high-risk staged/generated pages outside the indexing allowlist and use the corrected metrics for future quality batches.
 
+### Machine-discovery set parity
+
+The AI discovery audit confirms that llms-full.txt, XML Sitemap, and RSS now expose only their intended quality-approved sets: llms-full.txt must equal the 36-route indexable registry exactly, and RSS must equal the indexable blog subset exactly. The short llms.txt entrypoint now points agents to the About editorial team, named source map, review workflow, and reproducibility policy, while noindex Learn paths are no longer configured as priority entries. This keeps the GEO trust layer discoverable without allowing the 74 staged/generated high-risk pages to compete in machine-readable discovery files.
+
 The engagement evidence supports improving the existing result-to-guide continuation before adding more newsletter surface area. Related reading has measurable use, while the seven-day subscription funnel has no activity.
 
 ### Engagement experiment A — one primary result guide
