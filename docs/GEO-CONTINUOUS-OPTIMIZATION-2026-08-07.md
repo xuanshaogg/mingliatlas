@@ -156,6 +156,8 @@ The source audit previously treated reusable FAQ expressions and named FAQ array
 
 After recalculation, /chinese-zodiac is 92/A with 1,536 estimated words, five FAQs, four citations, and the existing title and direct answer unchanged. Of the 15 indexable content pages represented by the source audit, 12 now grade A. The remaining three B pages are /bazi/heavenly-stems, /bazi/ten-gods, and /bazi/luck-pillars, all members of active recovery cohort B; preserve them through the observation window instead of changing content to satisfy an audit score. The sitewide average changed from 71 to 69 because citation inflation was removed, not because published content regressed. Keep the 74 high-risk staged/generated pages outside the indexing allowlist and use the corrected metrics for future quality batches.
 
+The read-only audit CLI now reports the indexable subset separately: 15 content pages, average quality score 87, and three pages below A. This prevents the 74 high-risk staged/generated pages from obscuring the quality signal used for indexing decisions; the full-site average remains useful for backlog management, while the indexable average is the decision metric for new cohorts.
+
 ### Machine-discovery set parity
 
 The AI discovery audit confirms that llms-full.txt, XML Sitemap, and RSS now expose only their intended quality-approved sets: llms-full.txt must equal the 36-route indexable registry exactly, and RSS must equal the indexable blog subset exactly. The short llms.txt entrypoint now points agents to the About editorial team, named source map, review workflow, and reproducibility policy, while noindex Learn paths are no longer configured as priority entries. This keeps the GEO trust layer discoverable without allowing the 74 staged/generated high-risk pages to compete in machine-readable discovery files.
@@ -225,3 +227,85 @@ Launched on 2026-08-07 for the Bazi calculator result path only. The chart-speci
 - Keep AI referrers at or above 10% of measured visitors and monitor whether ChatGPT/Copilot traffic grows after citation-focused pages are refreshed.
 - Keep desktop RES at or above 90 while moving LCP below 2.5s and TTFB below 0.8s on decision-grade samples.
 - Preserve the current route-level mobile RES of at least 95 on the homepage, Bazi calculator, and blog template.
+
+### Live dashboard checkpoint — 2026-08-07 11:46 CST
+
+The signed-in production dashboards were rechecked after the initial same-day checkpoint. Search Console's performance report was refreshed 7.5 hours earlier and still has 2026-08-04 as its latest complete day:
+
+- Seven days (2026-07-29 through 2026-08-04): 13 clicks, 2,298 impressions, 0.6% CTR, average position 17.4.
+- Twenty-eight days (2026-07-08 through 2026-08-04): 38 clicks, 6,990 impressions, 0.5% CTR, average position 18.9.
+- The current 28-day page leaders are the homepage (36 clicks / 1,962 impressions), About (2 / 123), the compatibility chart (1 / 604), Dragon (0 / 2,984), the Day Master guide (0 / 554), and the intentionally noindex HTML sitemap (0 / 538). Chinese Zodiac is the nearest new CTR candidate at 97 impressions and zero clicks, still below the 100-impression gate.
+- The aggregate indexing report remains a lagging snapshot through 2026-07-24: 24 indexed, 34 not indexed, with 27 in “Discovered — currently not indexed,” four excluded by noindex, three redirects, and zero “Crawled — currently not indexed.” Use URL Inspection for the submitted cohort instead of treating those aggregate counts as current URL states.
+
+Vercel Analytics now shows the exact production windows:
+
+- Seven days (2026-07-31 through 2026-08-07): 107 visitors (+39%), 213 page views (+16%), and 66% bounce rate (+4%). The leading pages were `/tools/bazi-calculator` (42 visitors), `/` (18), `/bazi/earthly-branches` (7), and `/chinese-zodiac/dragon` (7). Referrers were Google 23, Bing 3, ChatGPT 3, DuckDuckGo 3, and Ecosia 1.
+- Thirty days (2026-07-08 through 2026-08-07): 609 visitors (+189%), 1,255 page views (+241%), and 67% bounce rate (-5%). The leading pages were the Bazi calculator (361), homepage (106), Earthly Branches (77), Ten Gods (30), Luck Pillars (29), Day Master guide (23), and Dragon (22). Referrers were Google 131, ChatGPT 63, Bing 22, DuckDuckGo 14, Yahoo 4, Copilot 3, and Ecosia 2. Devices were 51% mobile, 48% desktop, and 1% tablet.
+- Vercel's Hobby dashboard still exposes no custom-event counts; GA4 remains the source of truth for calculator and reading-path events.
+
+Most importantly, individual URL Inspection now reports **“URL is on Google” for all six Cohort B URLs**: `/tools/zodiac-compatibility`, `/bazi/heavenly-stems`, `/bazi/ten-gods`, `/bazi/luck-pillars`, `/feng-shui`, and `/ziwei`. This achieves the cohort target early (6/6 indexed and recognized), but the pages remain frozen through 2026-08-21 so the indexing result and the existing CTR experiments retain a clean observation window. Do not resubmit them.
+
+The next decision therefore changes from recovery to post-index quality:
+
+1. Keep the three existing snippet experiments unchanged through 2026-08-21; do not open a fourth title experiment while the current candidates are still being attributed.
+2. On 2026-08-14 and 2026-08-21, record query/page deltas for the six newly indexed URLs. A newly indexed page with no impressions is a crawl success but not yet a demand signal.
+3. After the freeze, shortlist at most three new experiments from pages with at least 100 impressions, positions 5–20, and CTR below 1%. If no new page clears that gate, improve the calculator result-to-guide path and citation/source traceability instead of expanding the indexable registry.
+4. Keep the 36-route Sitemap/LLM registry and six staged Learn pages unchanged until the post-index review confirms that adding another cohort will not dilute the quality or discovery signal.
+
+### Post-index demand check — 2026-08-07 11:51 CST
+
+The filtered Search Console report still has no newer complete day and confirms that indexing has not yet become meaningful search demand for most of Cohort B. In the 28-day window through 2026-08-04:
+
+- `/feng-shui`: 0 clicks, 6 impressions, average position 3.0.
+- `/ziwei`: 0 clicks, 6 impressions, average position 3.0.
+- `/tools/zodiac-compatibility`, `/bazi/heavenly-stems`, `/bazi/ten-gods`, and `/bazi/luck-pillars`: 0 clicks and 0 impressions in the filtered report.
+- The six impressions for both Feng Shui and Ziwei came from the same two branded queries (`mingli bazi` and `bazi mingli`), so this is an early discovery signal, not enough evidence for a title or direct-answer change.
+
+Decision: keep all six newly indexed pages stable through 2026-08-21. At the next review, treat impressions from non-branded, page-specific queries as the demand signal for any post-index CTR experiment; do not optimize against six branded impressions or expand the registry solely because URL Inspection is green.
+
+### Post-freeze quality shortlist
+
+The quality audit and traffic split identify two content-depth candidates for the first post-freeze review. These are not title experiments and must not be edited before 2026-08-21:
+
+1. `/bazi/ten-gods`: 841 estimated words against the 1,200-word priority minimum, 81/B, 30 Vercel visitors in 30 days, and no GSC impressions. If the direct/AI traffic persists, strengthen the page with a reproducible Day-Master-to-Ten-Gods lookup workflow, one worked relationship example, and direct source URLs while preserving its title and direct answer.
+2. `/bazi/luck-pillars`: 768 estimated words against the 1,200-word priority minimum, 79/B, 29 Vercel visitors in 30 days, and no GSC impressions. If the traffic persists, add an explicit input/boundary checklist, one worked cycle example, calculator limitations, and direct source URLs without changing the current snippet.
+
+`/bazi/heavenly-stems` is lower priority at 1,028 words and 84/B; it already clears the normal knowledge-page word floor and has only five visitors in the current seven-day Vercel table with no GSC impressions. `/feng-shui` (88/A) and `/ziwei` (86/A) already clear the quality grade and have only six branded impressions each, so neither needs a content or snippet change now. `/chinese-zodiac` remains 92/A and stays below the CTR experiment gate at 97 impressions.
+
+This shortlist keeps the next quality work tied to observed use rather than to audit score alone. Re-run the quality and traffic checks on 2026-08-21 and proceed with at most one of the two depth refreshes at a time so its effect remains attributable.
+
+The prepared acceptance gate for whichever page wins on 2026-08-21 is:
+
+- add at least 350 words of unique, non-predictive explanation;
+- add one worked calculation/reading example and one explicit input or boundary checklist;
+- retain at least two direct classical-source URLs and add only contextually relevant internal links;
+- keep the existing title, direct answer, canonical, JSON-LD type, and index registry stable;
+- update `dateModified` only with the real content change and require the content audit to reach 85/A or better;
+- run the focused SEO tests, full test suite, lint, build, link audit, and production audit before any deployment or one-time reinspection request.
+
+### Incremental dashboard check — 2026-08-07 11:58 CST
+
+Search Console refreshed again (5.5 hours ago) but still reports 2026-08-04 as the latest complete day. The 7-day, 28-day, query, and page metrics are unchanged. Vercel's 2026-07-31–2026-08-07 window is also unchanged at 107 visitors, 213 page views, and 66% bounce rate. This is a no-change checkpoint: keep the current experiments and post-index freeze intact rather than treating a dashboard refresh as new evidence.
+
+### Live dashboard delta — 2026-08-07 22:39 CST
+
+Search Console has now processed one additional complete day through 2026-08-05. The latest windows are:
+
+- Seven days (2026-07-30 through 2026-08-05): 14 clicks, 2,359 impressions, 0.6% CTR, average position 17.3.
+- Twenty-eight days (2026-07-09 through 2026-08-05): 41 clicks, 7,197 impressions, 0.6% CTR, average position 18.6.
+- Page leaders in the new 28-day table are the homepage (37 clicks / 2,046 impressions), About (2 / 127), the compatibility chart (1 / 604), Bazi Calculator (1 / 37), and I Ching beginners (1 / 6). Dragon remains the largest zero-click page (3,035 impressions), followed by the Day Master guide (564) and the HTML sitemap (544).
+- `/chinese-zodiac` crossed the CTR eligibility threshold at 102 impressions, 0 clicks, and average position 16.4. The visible query rows only expose four branded impressions (`mingli bazi` and `bazi mingli`), so intent is not yet sufficiently clear for an immediate title change.
+
+Vercel also moved modestly: the seven-day window is 113 visitors, 225 page views, and 65% bounce rate; the 30-day window is 615 visitors, 1,267 page views, and 67% bounce rate. The 30-day top pages are Bazi Calculator (362), homepage (106), Earthly Branches (78), Ten Gods (30), Luck Pillars (29), Day Master guide (23), and Dragon (23). ChatGPT reached 64 visitors in the 30-day referrer list.
+
+Decision update: keep the three existing snippet experiments and Cohort B freeze intact through 2026-08-21, but add `/chinese-zodiac` to the next-review shortlist. If it still has 100+ impressions and position 5–20 at review time, use the query mix to choose between a narrowly scoped snippet test and a snippet-neutral source/answer refresh; do not change it solely because it crossed 100 impressions once.
+
+### Final same-day verification — 2026-08-07 22:51 CST
+
+The signed-in Search Console report was checked again at the end of the day. It still shows 2026-08-05 as the latest complete performance date and the same 7-day (14 clicks / 2,359 impressions / 0.6% CTR / position 17.3) and 28-day (41 / 7,197 / 0.6% / 18.6) totals. The `/chinese-zodiac` page remains at 102 impressions, zero clicks, position 16.4, with only the branded queries `mingli bazi` and `bazi mingli` visible.
+
+The indexing report remains the 2026-07-24 aggregate snapshot (24 indexed, 34 not indexed: 27 discovered but not indexed, four noindex, three redirects, and zero crawled-but-not-indexed). This lagging aggregate is consistent with the successful 2026-08-03 sitemap read of all 36 submitted URLs; it is not evidence that another recovery submission is needed. Keep the 36-route Sitemap/LLM registry, the six-page Learn noindex boundary, the three snippet experiments, and Cohort B unchanged through 2026-08-21.
+
+This is a no-change checkpoint. At the next review, compare non-branded query growth and page-specific impressions for Cohort B and `/chinese-zodiac`; use those signals to select at most one content-depth refresh or one narrow snippet test.
+
+The same dashboard surfaced a short-term lift for `/blog/chinese-zodiac-compatibility-chart` (258 impressions, one click, average position 11.3 for 2026-07-27 through 2026-08-02). Its visible query mix is page-specific (`chinese zodiac compatibility chart`, `chinese zodiac triads`, `triangle of affinity`, and related chart variants), which is a stronger demand signal than the branded-only `/chinese-zodiac` rows; nevertheless, the page remains frozen until 2026-08-21 so the existing experiment can be evaluated without a content confounder.

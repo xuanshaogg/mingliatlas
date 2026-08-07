@@ -74,6 +74,7 @@ describe("current-content audit CLI", () => {
       expect(learnRows).toHaveLength(6);
       expect(learnRows.every((row) => row.endsWith('"92","A","monitor"'))).toBe(true);
       expect(qualityByPath.get("/chinese-zodiac")).toMatchObject({
+        indexable: "yes",
         faqs: "5",
         citations: "4",
         score: "92",
@@ -81,14 +82,17 @@ describe("current-content audit CLI", () => {
         action: "monitor",
       });
       expect(qualityByPath.get("/blog/i-ching-beginners-reading-guide")).toMatchObject({
+        indexable: "yes",
         faqs: "4",
         citations: "2",
         score: "88",
         grade: "A",
       });
-      expect(await readFile(join(outputDir, "audit-summary.md"), "utf8")).toContain(
-        "# Audit Summary — Content Quality Baseline",
-      );
+      const summary = await readFile(join(outputDir, "audit-summary.md"), "utf8");
+      expect(summary).toContain("# Audit Summary — Content Quality Baseline");
+      expect(summary).toContain("| Indexable content pages | 15 |");
+      expect(summary).toContain("| Indexable average quality score | 87 |");
+      expect(summary).toContain("| Indexable pages below A | 3 |");
     } finally {
       await rm(outputDir, { recursive: true, force: true });
     }

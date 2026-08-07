@@ -90,6 +90,14 @@ async function readSrc(rel) {
   return readFile(join(ROOT, rel), "utf8").catch(() => "");
 }
 
+const indexingSource = await readSrc("src/lib/content/indexing.ts");
+const indexablePathBlock = indexingSource.match(
+  /const INDEXABLE_PATH_LIST = \[([\s\S]*?)\] as const;/,
+)?.[1] ?? "";
+const indexablePaths = new Set(
+  [...indexablePathBlock.matchAll(/"([^"]+)"/g)].map((match) => match[1]),
+);
+
 function stripJsx(text) {
   return text
     .replace(/<Link\b[^>]*>([\s\S]*?)<\/Link>/g, "$1")
@@ -313,6 +321,7 @@ function analyzePage(page) {
 
   return {
     ...metrics,
+    indexable: indexablePaths.has(page.path),
     score,
     grade: qualityGrade(score),
     action:
@@ -412,6 +421,7 @@ const qualityRows = [[
   "section",
   "type",
   "priority",
+  "indexable",
   "title",
   "wordCount",
   "minimumWords",
@@ -437,6 +447,7 @@ for (const page of analyzed) {
     page.section,
     page.type,
     page.priority ? "yes" : "no",
+    page.indexable ? "yes" : "no",
     page.title,
     page.wordCount,
     page.minimumWords,
@@ -531,6 +542,11 @@ const totalPages = analyzed.length;
 const averageScore = Math.round(analyzed.reduce((sum, page) => sum + page.score, 0) / totalPages);
 const highRiskPages = analyzed.filter((page) => page.templateRisk === "high" || page.grade === "D");
 const priorityNeedsWork = analyzed.filter((page) => page.priority && page.action !== "monitor");
+const indexablePages = analyzed.filter((page) => page.indexable);
+const indexableAverage = indexablePages.length
+  ? Math.round(indexablePages.reduce((sum, page) => sum + page.score, 0) / indexablePages.length)
+  : 0;
+const indexableBelowA = indexablePages.filter((page) => page.grade !== "A");
 
 const md = `# Audit Summary — Content Quality Baseline
 
@@ -545,6 +561,9 @@ Generated: ${new Date().toISOString().slice(0, 10)}
 | Average quality score | ${averageScore} |
 | High-risk pages | ${highRiskPages.length} |
 | Priority pages needing work | ${priorityNeedsWork.length} |
+| Indexable content pages | ${indexablePages.length} |
+| Indexable average quality score | ${indexableAverage} |
+| Indexable pages below A | ${indexableBelowA.length} |
 | sitePages.ts exists | ${sitePagesExists} |
 | termMap.ts (camelCase) | ${termMapCamelExists} |
 | term-map.ts (kebab-case) | ${termMapKebabExists} |
@@ -580,5 +599,8 @@ if (writeReports) {
   console.log(`Average quality score: ${averageScore}`);
   console.log(`High-risk pages: ${highRiskPages.length}`);
   console.log(`Priority pages needing work: ${priorityNeedsWork.length}`);
+  console.log(`Indexable content pages: ${indexablePages.length}`);
+  console.log(`Indexable average quality score: ${indexableAverage}`);
+  console.log(`Indexable pages below A: ${indexableBelowA.length}`);
   console.log('No files written. Run "pnpm audit:current-content:write" to refresh the tracked audit artifacts.');
 }

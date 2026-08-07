@@ -52,8 +52,9 @@ export const INDEXING_RECOVERY_COHORT_A_PATHS = [
   "/chinese-zodiac",
 ] as const;
 
-// Cohort B was submitted on 2026-08-07. Keep these paths indexable and in the
-// XML sitemap while their discovery, crawl, and indexing states are reviewed.
+// Cohort B was submitted and all six URLs were confirmed indexed on
+// 2026-08-07. Keep these paths stable and in the XML sitemap through the
+// post-index observation window ending 2026-08-21.
 export const INDEXING_RECOVERY_COHORT_B_PATHS = [
   "/tools/zodiac-compatibility",
   "/bazi/heavenly-stems",
