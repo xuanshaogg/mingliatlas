@@ -41,7 +41,13 @@ Node.js 22 is used because the current local OpenClaw runtime and Next.js 16 sta
 - Cloudflare DNS:
   - `A @ 76.76.21.21`
   - `CNAME www cname.vercel-dns.com`
-  - Both records were left as DNS only for Vercel validation.
+- Both records were left as DNS only for Vercel validation.
+
+### Deployment wiring checkpoint — 2026-08-07
+
+The Vercel project `mingliatlascom/mingliatlas` is currently **not connected to a Git repository**. The dashboard still reports production source `3b725e7`, while the latest verified optimization commits (`32baa88` for deferred font preloads and `ba2ff84` for the GEO checkpoint) exist on `origin/main` but have not reached `mingliatlas.com`.
+
+Before treating the performance experiment as live, connect the project in **Project Settings → Git → GitHub** to `xuanshaogg/mingliatlas`, keep `main` as the production branch, and verify that the resulting deployment source is the pushed commit. After deployment, check the production HTML for two font preloads, confirm `/llms-full.txt` still exposes 36 routes, and wait for a complete Speed Insights 7-day sample before judging the RES/LCP/TTFB change. Do not submit another sitemap or alter the indexing registry as part of this deployment wiring step.
 
 ## Environment Variables
 
