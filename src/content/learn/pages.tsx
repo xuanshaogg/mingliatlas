@@ -55,6 +55,8 @@ const systemRelatedLinks: RelatedLink[] = [
   { title: "Bazi", href: "/bazi", description: "Choose Bazi for personality patterns, timing, and Four Pillars structure." },
   { title: "I Ching", href: "/i-ching", description: "Choose I Ching for reflective decisions and symbolic change." },
   { title: "Feng Shui", href: "/feng-shui", description: "Choose Feng Shui for space, flow, support, and environmental context." },
+  { title: "Ziwei Doushu", href: "/ziwei", description: "Choose Ziwei for a detailed palace-and-star natal chart." },
+  { title: "Chinese Zodiac", href: "/chinese-zodiac", description: "Choose the zodiac for a simple cultural entry into the branch cycle." },
 ];
 
 const resourceRelatedLinks: RelatedLink[] = [
@@ -484,85 +486,187 @@ export const allLearnPages: LearnContentPage[] = [
     slug: "which-system",
     path: "/learn/which-system",
     title: "Which Chinese Metaphysics System Should You Learn?",
-    description: "Choose between Bazi, Ziwei Doushu, I Ching, Feng Shui, and Chinese zodiac based on your question and learning style.",
+    description: "Compare Bazi, Ziwei Doushu, I Ching, Feng Shui, and Chinese zodiac by question, required input, output, and learning commitment.",
     entityName: "Chinese Metaphysics System Selection",
     entityType: "Article",
-    subtitle: "A practical chooser for matching the system to your question instead of starting everywhere at once.",
+    subtitle: "A decision guide for matching one system to the question, information, and type of answer you actually have.",
     directAnswer:
-      "Choose Bazi if you want personality and timing patterns, Ziwei Doushu if you want detailed palace-based chart structure, I Ching if you want decision reflection, Feng Shui if you want to study space, and Chinese zodiac if you want a simple cultural entry point into the calendar cycle.",
+      "Choose by question and required input: Bazi for birth-chart patterns and timing, Ziwei Doushu for detailed life-area structure, I Ching for one present decision, Feng Shui for a physical environment, and Chinese zodiac for cultural year-sign context. If you lack a reliable birth time, begin with I Ching, Feng Shui, or zodiac basics rather than forcing a precise natal chart.",
     breadcrumbs: breadcrumbs("Which System", "/learn/which-system"),
-    schema: { headline: "", description: "", url: "", datePublished: "2026-01-15", dateModified: "2026-03-28" },
+    schema: { headline: "", description: "", url: "", datePublished: "2026-01-15", dateModified: "2026-08-07" },
     stats: [
       { value: "5", label: "System choices", description: "Bazi, Ziwei, I Ching, Feng Shui, and Zodiac." },
-      { value: "4", label: "Bazi pillars", description: "A birth chart starts with year, month, day, and hour." },
-      { value: "64", label: "I Ching outcomes", description: "Hexagrams describe situations and change." },
+      { value: "3", label: "Input types", description: "Birth data, a present question, or a physical space." },
+      { value: "1", label: "First decision", description: "Choose the question before choosing the system." },
     ],
     citations: [
-      { label: "Chinese calendar tradition", source: "Bazi, zodiac, and timing methods share stems, branches, and cycles." },
-      { label: "I Ching", source: "A classical decision text built around hexagrams, lines, and change." },
+      {
+        label: "Hong Kong Observatory Chinese calendar conversion tables",
+        source: "A stable reference for Gregorian, lunar, stem-branch, and solar-term calendar data.",
+        url: "https://www.hko.gov.hk/en/gts/time/conversion.htm",
+      },
+      { label: "Yuan Hai Zi Ping (渊海子平)", source: "A foundational text in the Four Pillars / Zi Ping textual tradition." },
+      { label: "Zhouyi (周易 / I Ching)", source: "The received Changes text containing 64 hexagram statements and line texts." },
+      { label: "Martin Palmer, T'ung Shu: The Ancient Chinese Almanac", source: "A secondary reference for Chinese almanac concepts and calendar customs." },
+      { label: "Wolfram Eberhard, A Dictionary of Chinese Symbols", source: "A cultural-symbol reference useful for checking broad associations without turning them into chart rules." },
     ],
     sections: [
       {
-        heading: "If your question is about self-knowledge",
+        heading: "Choose the question before the tradition",
         content: (
           <>
             <p>
-              Start with <TermLink term="Bazi">Bazi</TermLink>. It reads the birth moment through <TermLink term="Heavenly Stems">Heavenly Stems</TermLink>, <TermLink term="Earthly Branches">Earthly Branches</TermLink>, elements, and timing cycles.
+              The systems overlap in vocabulary, but they do not answer the same question. A birth chart describes a fixed starting pattern; an I Ching reading responds to a present question; Feng Shui evaluates a place; and the zodiac supplies a broad calendar layer. Starting with the method you heard about first often creates a mismatch between the information you have and the answer you want.
             </p>
             <p>
-              In <cite>Chinese calendar tradition</cite>, these symbols classify time. That makes Bazi a good fit for readers who want structured patterns rather than one-word labels. Build a chart with the <Link href="/tools/bazi-calculator" className={linkClass}>free Bazi calculator</Link>, then read the <Link href="/blog/day-master-bazi-complete-guide" className={linkClass}>Day Master guide</Link> to interpret it.
+              Write one neutral sentence before choosing: “I want to understand a recurring personal pattern,” “I need perspective on this decision,” or “I want to improve how this room supports its actual use.” Then list the reliable inputs you possess. The best first system is the one whose inputs and output match that sentence without inventing missing data.
             </p>
           </>
         ),
       },
       {
-        heading: "If your question is about a decision",
+        heading: "System comparison matrix",
         content: (
           <>
             <p>
-              Choose <TermLink term="I Ching">I Ching</TermLink> when you need to clarify a decision, transition, or relationship between forces. It is especially helpful when the question can be phrased as, “What is the situation, and how is it changing?”
+              Use this matrix to narrow the field. “Output” means the structure the method can responsibly provide, not a guaranteed prediction.
+            </p>
+            <div className="overflow-x-auto">
+              <table className="min-w-[52rem] border-collapse text-left text-sm leading-6">
+                <thead>
+                  <tr className="border-b border-ink-200 dark:border-white/10">
+                    <th scope="col" className="px-3 py-3 font-semibold">System</th>
+                    <th scope="col" className="px-3 py-3 font-semibold">Best-fit question</th>
+                    <th scope="col" className="px-3 py-3 font-semibold">Required input</th>
+                    <th scope="col" className="px-3 py-3 font-semibold">Typical output</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-ink-200/70 dark:border-white/10"><th scope="row" className="px-3 py-3 font-semibold">Bazi</th><td className="px-3 py-3">What patterns and timing cycles recur?</td><td className="px-3 py-3">Birth date, preferably exact time and place</td><td className="px-3 py-3">Four Pillars, Day Master, relationships, timing layers</td></tr>
+                  <tr className="border-b border-ink-200/70 dark:border-white/10"><th scope="row" className="px-3 py-3 font-semibold">Ziwei Doushu</th><td className="px-3 py-3">How are life areas organized in a detailed natal chart?</td><td className="px-3 py-3">Accurate birth date and time; school conventions</td><td className="px-3 py-3">Twelve palaces, stars, transformations, timing</td></tr>
+                  <tr className="border-b border-ink-200/70 dark:border-white/10"><th scope="row" className="px-3 py-3 font-semibold">I Ching</th><td className="px-3 py-3">What is happening in this situation and how is it changing?</td><td className="px-3 py-3">One present, open question and a casting</td><td className="px-3 py-3">Primary hexagram, moving lines, relating pattern</td></tr>
+                  <tr className="border-b border-ink-200/70 dark:border-white/10"><th scope="row" className="px-3 py-3 font-semibold">Feng Shui</th><td className="px-3 py-3">How does this environment support its occupants and use?</td><td className="px-3 py-3">A real space, orientation, layout, occupants, goals</td><td className="px-3 py-3">Form, flow, support, orientation, practical changes</td></tr>
+                  <tr><th scope="row" className="px-3 py-3 font-semibold">Chinese Zodiac</th><td className="px-3 py-3">What is the cultural meaning of this birth-year branch?</td><td className="px-3 py-3">Birth year, with Lunar New Year boundary checked</td><td className="px-3 py-3">Animal branch, element-year context, broad relationships</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </>
+        ),
+        stats: [{ value: "5", label: "Different outputs", description: "A chart, a situation, a place, or cultural context are not interchangeable." }],
+      },
+      {
+        heading: "Choose Bazi or Ziwei for natal-chart study",
+        content: (
+          <>
+            <p>
+              Choose <TermLink term="Bazi">Bazi</TermLink> when you want a compact framework built from year, month, day, and hour pillars. It organizes the birth moment through <TermLink term="Heavenly Stems">Heavenly Stems</TermLink>, <TermLink term="Earthly Branches">Earthly Branches</TermLink>, the Day Master, Five Element relationships, and later timing cycles. The <cite>Hong Kong Observatory Chinese calendar conversion tables</cite> are useful for checking calendar boundaries, while <cite>Yuan Hai Zi Ping (渊海子平)</cite> anchors the historical Four Pillars vocabulary.
             </p>
             <p>
-              The <cite>I Ching</cite> uses 64 hexagrams and moving lines to describe a pattern of change.
+              Choose <TermLink term="Ziwei Doushu">Ziwei Doushu</TermLink> if you prefer a more granular visual map of twelve life palaces, major stars, auxiliary stars, transformations, and timing. It usually has a steeper vocabulary curve and greater sensitivity to birth-time and school conventions. A detailed diagram is not automatically more accurate; it is simply a different grammar with more named components.
+            </p>
+            <p>
+              If you are undecided, begin with the <Link href="/tools/bazi-calculator" className={linkClass}>Bazi calculator</Link> and the <Link href="/blog/day-master-bazi-complete-guide" className={linkClass}>Day Master guide</Link>. Move to Ziwei only if you specifically want palace-based life-area study and can verify the birth time. Do not blend a Bazi Ten God with a Ziwei star merely because their English descriptions sound similar.
             </p>
           </>
         ),
-        stats: [{ value: "6", label: "Lines", description: "Every hexagram is built from six line positions." }],
       },
       {
-        heading: "If your question is about space",
+        heading: "Choose I Ching for one present situation",
         content: (
           <>
             <p>
-              Choose <TermLink term="Feng Shui">Feng Shui</TermLink> when the question is about a home, office, desk, door, bedroom, or surrounding environment. Start with flow and support before advanced formulas.
+              Choose <TermLink term="I Ching">I Ching</TermLink> when the question can be stated as, “What is the pattern in this situation, and how is it changing?” The received <cite>Zhouyi (周易 / I Ching)</cite> contains 64 hexagram statements and line texts. A reading connects a cast structure to that specific question; it is not a permanent personality chart and it does not require a birth time.
             </p>
             <p>
-              For a practical first step, read the <Link href="/feng-shui" className={linkClass}>Feng Shui hub</Link> and observe how the space is actually used.
+              Use one open question, provide the context that makes the choice meaningful, and avoid repeatedly recasting until an answer feels comfortable. Start with <Link href="/i-ching/how-to-cast" className={linkClass}>how to cast</Link>, then use the <Link href="/tools/i-ching-oracle" className={linkClass}>I Ching oracle</Link> and read the primary and relating hexagrams separately. If you want a fixed life-pattern profile instead, choose Bazi or Ziwei.
             </p>
           </>
         ),
       },
       {
-        heading: "If your question is about chart detail",
+        heading: "Choose Feng Shui for a real environment",
         content: (
           <>
             <p>
-              Choose <TermLink term="Ziwei Doushu">Ziwei Doushu</TermLink> if you want a palace-based chart with stars, life areas, and timing layers. It asks for more study, but it rewards readers who like structured detail.
+              Choose <TermLink term="Feng Shui">Feng Shui</TermLink> when the subject is a home, office, bedroom, entrance, desk, site, or surrounding landform. The method begins with a place and the people using it. Photographs, a plan, compass orientation, movement paths, light, noise, furniture, and the room&apos;s actual purpose are more relevant inputs than a birth chart alone.
             </p>
             <p>
-              If you want something simpler first, use the zodiac as cultural context, then come back to a full chart system later.
+              Start with observable Form School questions: Can people enter and move comfortably? Is the main seat supported? Does the layout fit the work or rest expected there? Only then add compass or timing formulas whose school and measurements are declared. <cite>Martin Palmer&apos;s T&apos;ung Shu</cite> provides useful almanac context, but calendar customs are not a substitute for observing the site. Read the <Link href="/feng-shui" className={linkClass}>Feng Shui hub</Link> before buying symbolic cures.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Choose the Chinese zodiac as an entry layer",
+        content: (
+          <>
+            <p>
+              Choose the <TermLink term="Chinese Zodiac">Chinese Zodiac</TermLink> when you want the cultural symbolism of a birth-year Earthly Branch or a simple introduction to the 12-year cycle. Check the Lunar New Year boundary before assigning an animal to a January or February birth. Then add the Heavenly Stem and element-year pairing instead of treating every Dragon, Rat, or Tiger year as identical.
+            </p>
+            <p>
+              The zodiac is accessible, but it is intentionally broad. <cite>Wolfram Eberhard&apos;s A Dictionary of Chinese Symbols</cite> can help check cultural associations, while the <Link href="/chinese-zodiac" className={linkClass}>Chinese Zodiac hub</Link> connects animals back to the branches. Use Bazi when you need month, day, hour, Day Master, or timing detail; do not ask year-sign compatibility to decide a relationship.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Let missing data change the choice",
+        content: (
+          <>
+            <p>
+              A reliable birth date with no birth hour can still support limited calendar and Bazi study, but the hour pillar is missing and some boundary cases require location or time-zone care. Ziwei is often more sensitive to the birth hour. State the uncertainty rather than guessing an hour from personality descriptions. If the date itself is approximate, avoid a precise natal chart.
+            </p>
+            <p>
+              I Ching does not repair missing birth data; it answers a different kind of present question. Feng Shui does not require birth data to begin with form and function, but advanced schools may add occupant or timing information. Zodiac basics need only a correctly bounded birth year. The easiest available input is not always the best method, but it should limit what you claim.
+            </p>
+            <p>
+              Use one system long enough to learn its grammar before combining methods. Keep a note of inputs, calculation conventions, source, interpretation, and uncertainty. Compare systems only after each has produced its own answer; otherwise shared words such as “element,” “palace,” or “energy” can conceal different rules.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Run a small learning experiment before committing",
+        content: (
+          <>
+            <p>
+              Spend one week on the shared vocabulary: yin-yang, Five Elements, stems, branches, and calendar boundaries. In week two, choose one system and complete one bounded exercise. Build and annotate one Bazi chart; cast and journal one I Ching question; map one room&apos;s movement and support; label one Ziwei chart without predicting; or research one zodiac branch using two sources.
+            </p>
+            <p>
+              At the end, ask three questions: Can I reproduce the input and structure? Can I explain where the interpretation comes from? Did the method help me describe tradeoffs without removing agency? If the answer is no, review the <Link href="/learn/resources" className={linkClass}>source evaluation guide</Link> before buying a longer course or adding another system.
             </p>
           </>
         ),
       },
     ],
-    faqs: defaultFaqs,
+    faqs: [
+      {
+        question: "Should I learn Bazi or Ziwei Doushu first?",
+        answer:
+          "Learn Bazi first if you want a smaller core vocabulary and a chart organized around four pillars, the Day Master, elements, and relationship roles. Choose Ziwei first if you specifically want twelve palaces and star-based life-area detail. Both benefit from an accurate birth time, but Ziwei is usually less forgiving when the hour is uncertain.",
+      },
+      {
+        question: "Which Chinese metaphysics system is easiest for beginners?",
+        answer:
+          "The Chinese zodiac is the easiest cultural entry point, but it gives the broadest answer. I Ching can be started without birth data, yet careful question framing and line interpretation take practice. Bazi offers a structured next step after calendar basics. Easy access should not be confused with shallow or guaranteed interpretation.",
+      },
+      {
+        question: "What should I use if I do not know my birth time?",
+        answer:
+          "Use zodiac and calendar basics, begin a limited Bazi study that explicitly omits the hour pillar, ask one present question with I Ching, or study the observable form of a real space through Feng Shui. Do not invent a birth hour to make a precise Bazi or Ziwei chart appear complete.",
+      },
+      {
+        question: "Can I study Bazi, I Ching, Feng Shui, and Ziwei together?",
+        answer:
+          "Yes, but learn them sequentially. Give each method its own question, inputs, calculation rules, source notes, and output. Compare the finished answers afterward. Mixing vocabulary before learning each grammar makes similarities look stronger than they are and makes errors difficult to trace.",
+      },
+    ],
     relatedLinks: systemRelatedLinks,
     cta: {
-      title: "Start with the free Bazi calculator",
-      description: "Most readers begin with Bazi. Build your Four Pillars chart, then branch into the system that fits your question.",
-      href: "/tools/bazi-calculator",
-      label: "Open Bazi calculator",
+      title: "Verify the next source you use",
+      description: "After choosing a system, learn how to compare primary texts, translations, reference data, teachers, communities, and calculators.",
+      href: "/learn/resources",
+      label: "Open the source guide",
     },
   }),
   buildPage({

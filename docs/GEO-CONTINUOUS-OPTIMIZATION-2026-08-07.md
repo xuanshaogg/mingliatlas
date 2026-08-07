@@ -114,6 +114,8 @@ The HTML `/sitemap` route shows 538 historical 28-day impressions, 0 clicks, and
 
 The same-day quality pass upgraded `/learn/resources` into a source-evaluation guide covering primary texts, translations, calendar references, claim verification, teachers, communities, and calculator reproducibility. The read-only audit now estimates 1,083 words and scores it 92/A, up from 299 words and 79/B. Keep it `noindex, follow` despite the improvement: content readiness does not override the cohort B gate, and the page should not enter a third recovery batch before the indexing decision rules below are satisfied.
 
+The internal decision hub `/learn/which-system` was also upgraded because it is a shared CTA destination and appeared in URL Inspection as a discovery source for `/bazi/heavenly-stems`. Its new comparison matrix separates five systems by question, required input, output, missing-data constraints, and first exercise. The audit now estimates 1,267 words and scores it 92/A, up from 341 words and 74/B. It also remains `noindex, follow`; stronger internal navigation value is not permission to expand the current indexing cohort.
+
 The engagement evidence supports improving the existing result-to-guide continuation before adding more newsletter surface area. Related reading has measurable use, while the seven-day subscription funnel has no activity.
 
 ### Engagement experiment A — one primary result guide
