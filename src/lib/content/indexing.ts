@@ -39,10 +39,10 @@ const INDEXABLE_PATH_LIST = [
 
 export const INDEXABLE_PATHS: readonly string[] = INDEXABLE_PATH_LIST;
 
-// First recovery cohort after the 2026-07-24 GSC coverage snapshot showed
-// 27 sitemap URLs as "Discovered - currently not indexed". Keep this list
-// small enough to monitor URL by URL before expanding to the next cluster.
-export const INDEXING_PRIORITY_PATHS = [
+// Cohort A was submitted on 2026-08-03 after the 2026-07-24 GSC coverage
+// snapshot showed 27 sitemap URLs as "Discovered - currently not indexed".
+// All seven URLs were confirmed indexed on 2026-08-07.
+export const INDEXING_RECOVERY_COHORT_A_PATHS = [
   "/tools/bazi-calculator",
   "/bazi",
   "/bazi/what-is-bazi",
@@ -51,6 +51,22 @@ export const INDEXING_PRIORITY_PATHS = [
   "/tools/i-ching-oracle",
   "/chinese-zodiac",
 ] as const;
+
+// Cohort B was submitted on 2026-08-07. Keep these paths indexable and in the
+// XML sitemap while their discovery, crawl, and indexing states are reviewed.
+export const INDEXING_RECOVERY_COHORT_B_PATHS = [
+  "/tools/zodiac-compatibility",
+  "/bazi/heavenly-stems",
+  "/bazi/ten-gods",
+  "/bazi/luck-pillars",
+  "/feng-shui",
+  "/ziwei",
+] as const;
+
+export const ACTIVE_INDEXING_RECOVERY_PATHS = INDEXING_RECOVERY_COHORT_B_PATHS;
+
+// Backward-compatible operational name: it always points at the active cohort.
+export const INDEXING_PRIORITY_PATHS = ACTIVE_INDEXING_RECOVERY_PATHS;
 
 const indexablePathSet = new Set<string>(INDEXABLE_PATH_LIST);
 

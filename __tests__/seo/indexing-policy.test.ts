@@ -7,7 +7,14 @@ import { allIChingPages } from "@/content/i-ching/pages";
 import { allLearnPages } from "@/content/learn/pages";
 import { allZodiacPages } from "@/content/zodiac/pages";
 import { allZiweiPages } from "@/content/ziwei/pages";
-import { INDEXABLE_PATHS, INDEXING_PRIORITY_PATHS, isIndexablePath } from "@/lib/content/indexing";
+import {
+  ACTIVE_INDEXING_RECOVERY_PATHS,
+  INDEXABLE_PATHS,
+  INDEXING_PRIORITY_PATHS,
+  INDEXING_RECOVERY_COHORT_A_PATHS,
+  INDEXING_RECOVERY_COHORT_B_PATHS,
+  isIndexablePath,
+} from "@/lib/content/indexing";
 import { resolveCitationUrls } from "@/lib/content/citations";
 import { publishedSitePages } from "@/lib/content/sitePages";
 import { SITE } from "@/lib/constants";
@@ -44,11 +51,35 @@ describe("indexing policy", () => {
   it("keeps the first indexing-recovery cohort approved and in the sitemap", () => {
     const sitemapPaths = new Set(sitemap().map((entry) => new URL(entry.url).pathname));
 
-    expect(INDEXING_PRIORITY_PATHS).toHaveLength(7);
-    for (const path of INDEXING_PRIORITY_PATHS) {
+    expect(INDEXING_RECOVERY_COHORT_A_PATHS).toHaveLength(7);
+    for (const path of INDEXING_RECOVERY_COHORT_A_PATHS) {
       expect(isIndexablePath(path), path).toBe(true);
       expect(sitemapPaths.has(path), path).toBe(true);
     }
+  });
+
+  it("keeps the active second recovery cohort approved and in the sitemap", () => {
+    const sitemapPaths = new Set(sitemap().map((entry) => new URL(entry.url).pathname));
+
+    expect(INDEXING_RECOVERY_COHORT_B_PATHS).toHaveLength(6);
+    expect(ACTIVE_INDEXING_RECOVERY_PATHS).toBe(INDEXING_RECOVERY_COHORT_B_PATHS);
+    expect(INDEXING_PRIORITY_PATHS).toBe(ACTIVE_INDEXING_RECOVERY_PATHS);
+    for (const path of ACTIVE_INDEXING_RECOVERY_PATHS) {
+      expect(isIndexablePath(path), path).toBe(true);
+      expect(sitemapPaths.has(path), path).toBe(true);
+    }
+  });
+
+  it("keeps recovery cohorts distinct and excludes already-indexed audit controls", () => {
+    const cohortA = new Set<string>(INDEXING_RECOVERY_COHORT_A_PATHS);
+    const allRecoveryPaths = [
+      ...INDEXING_RECOVERY_COHORT_A_PATHS,
+      ...INDEXING_RECOVERY_COHORT_B_PATHS,
+    ];
+
+    expect(new Set(allRecoveryPaths).size).toBe(allRecoveryPaths.length);
+    expect(INDEXING_RECOVERY_COHORT_B_PATHS.every((path) => !cohortA.has(path))).toBe(true);
+    expect(allRecoveryPaths).not.toContain("/bazi/earthly-branches");
   });
 
   it("keeps high-opportunity pages indexable and utility pages out", () => {
