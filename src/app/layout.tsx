@@ -93,6 +93,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       className={`${inter.variable} ${cormorant.variable} ${playfair.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
     >
       <head>

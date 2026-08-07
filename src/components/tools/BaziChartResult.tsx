@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CalendarDays, Clock3, Info, Mail, ShieldCheck, SunMedium } from "lucide-react";
+import { ArrowRight, CalendarDays, Clock3, Info, Mail, ShieldCheck, SunMedium } from "lucide-react";
 import ShareCardControls from "@/components/tools/ShareCardControls";
 import type { BaziChart, BaziChartPillar, ElementScore } from "@/lib/bazi";
 import { trackEvent } from "@/lib/analytics";
@@ -98,6 +98,24 @@ export default function BaziChartResult({ chart, isSample = false }: BaziChartRe
     { href: "/bazi/five-elements", label: "Five Elements", description: "Read the element balance in depth." },
     { href: "/bazi/luck-pillars", label: "Luck Pillars", description: "See how timing cycles layer over the natal chart." },
   ];
+  const [primaryRead, ...secondaryReads] = nextReads;
+
+  function trackReadingClick(item: (typeof nextReads)[number], index: number): void {
+    const properties = {
+      tool_name: "bazi",
+      target: item.href,
+      day_master: dayMasterLabel,
+      source: index === 0 ? "result_primary" : "result_secondary",
+      link_rank: index + 1,
+      result_state: isSample ? "sample" : "calculated",
+    };
+
+    trackEvent("related_content_clicked", properties);
+
+    if (index === 0) {
+      trackEvent("primary_guide_clicked", properties);
+    }
+  }
 
   return (
     <section className="space-y-8" aria-live="polite">
@@ -178,40 +196,71 @@ export default function BaziChartResult({ chart, isSample = false }: BaziChartRe
         </div>
       </div>
 
-      <section className="border-y border-brand-200 bg-brand-50 px-1 py-6 dark:border-gold-500/30 dark:bg-gold-500/10 sm:px-5">
+      <section className="border-y border-brand-200 bg-brand-50 px-4 py-6 dark:border-gold-500/30 dark:bg-gold-500/10 sm:px-5">
         <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-primary dark:text-gold-300">
           {isSample ? "Example reading path" : "Your next reading"}
         </p>
         <h2 className="mt-2 text-2xl font-semibold tracking-tight text-ink-950 dark:text-paper">
-          Start with the {dayMasterLabel} Day Master
+          Your chart starts with the {dayMasterLabel} Day Master
         </h2>
         <p className="mt-2 max-w-3xl text-sm leading-6 text-ink-600 dark:text-ink-300">
           Read the day stem first, then use Ten Gods, Five Elements, and Luck Pillars to add context in that order.
         </p>
-        <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-          {nextReads.map((item, index) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() =>
-                trackEvent("related_content_clicked", {
-                  tool_name: "bazi",
-                  target: item.href,
-                  day_master: dayMasterLabel,
-                })
-              }
-              className={`group rounded-lg border bg-white p-4 transition dark:bg-white/5 ${
-                index === 0
-                  ? "border-brand-primary dark:border-gold-400"
-                  : "border-ink-200 hover:border-brand-primary dark:border-white/10 dark:hover:border-gold-400"
-              }`}
-            >
-              <p className="font-semibold text-ink-950 group-hover:text-brand-primary dark:text-paper dark:group-hover:text-gold-300">
-                {index + 1}. {item.label}
-              </p>
-              <p className="mt-1 text-sm leading-5 text-ink-500 dark:text-ink-400">{item.description}</p>
-            </Link>
-          ))}
+        <div className="mt-5 grid gap-4 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
+          <Link
+            data-content-role="primary-guide"
+            href={primaryRead.href}
+            onClick={() => trackReadingClick(primaryRead, 0)}
+            className="group flex min-h-40 flex-col justify-between rounded-lg bg-brand-primary p-5 text-white transition-colors hover:bg-brand-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 dark:bg-gold-400 dark:text-ink-950 dark:hover:bg-gold-300 dark:focus-visible:ring-gold-300 dark:focus-visible:ring-offset-ink-950 sm:p-6"
+          >
+            <span>
+              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-white/75 dark:text-ink-700">
+                Recommended first · Step 1
+              </span>
+              <span className="mt-3 block text-xl font-semibold tracking-tight sm:text-2xl">
+                Read your {primaryRead.label} guide
+              </span>
+              <span className="mt-2 block max-w-xl text-sm leading-6 text-white/80 dark:text-ink-800">
+                {primaryRead.description}
+              </span>
+            </span>
+            <span className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-semibold">
+              Open your Day Master guide
+              <ArrowRight
+                className="h-4 w-4 transition-transform group-hover:translate-x-1 motion-reduce:transform-none"
+                aria-hidden="true"
+              />
+            </span>
+          </Link>
+
+          <ol className="grid gap-2 sm:grid-cols-3 lg:grid-cols-1" start={2}>
+            {secondaryReads.map((item, secondaryIndex) => {
+              const index = secondaryIndex + 1;
+
+              return (
+                <li key={item.href}>
+                  <Link
+                    prefetch={false}
+                    href={item.href}
+                    onClick={() => trackReadingClick(item, index)}
+                    className="group flex h-full min-h-11 items-start gap-3 rounded-lg border border-ink-200 bg-white p-3 transition-colors hover:border-brand-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 dark:border-white/10 dark:bg-white/5 dark:hover:border-gold-400 dark:focus-visible:ring-gold-300 dark:focus-visible:ring-offset-ink-950"
+                  >
+                    <span className="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-brand-50 text-xs font-semibold text-brand-primary dark:bg-gold-500/15 dark:text-gold-300">
+                      {index + 1}
+                    </span>
+                    <span>
+                      <span className="block font-semibold text-ink-950 group-hover:text-brand-primary dark:text-paper dark:group-hover:text-gold-300">
+                        {item.label}
+                      </span>
+                      <span className="mt-1 block text-sm leading-5 text-ink-500 dark:text-ink-400">
+                        {item.description}
+                      </span>
+                    </span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ol>
         </div>
       </section>
 

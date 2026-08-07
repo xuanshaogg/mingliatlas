@@ -79,6 +79,17 @@ For the trailing 28 days through 2026-08-06, 405 users generated 963 calculator 
 
 The engagement evidence supports improving the existing result-to-guide continuation before adding more newsletter surface area. Related reading has measurable use, while the seven-day subscription funnel has no activity.
 
+### Engagement experiment A — one primary result guide
+
+Launched on 2026-08-07 for the Bazi calculator result path only. The chart-specific Day Master guide is the single high-emphasis next step; Ten Gods, Five Elements, and Luck Pillars remain available as ordered secondary links. The experiment does not add a module, move the subscription prompt, or change any search snippet.
+
+- Baseline: `related_content_clicked` recorded six events from three users in the seven days through 2026-08-06.
+- Primary measure: unique users triggering the new `primary_guide_clicked` event divided directionally by unique users triggering `calculator_completed` over the same full seven-day window.
+- Initial success threshold: at least 25% after a minimum of 25 calculator-completion users. Do not judge the experiment before both conditions are met.
+- Guardrails: calculator completions must not fall by more than 10%, mobile route RES must remain at least 95, and no new layout-shift regression may appear.
+- Build guardrail: the JavaScript referenced by the generated calculator HTML increased from 320,851 to 320,991 gzip bytes (+140 bytes, 0.04%), so the experiment does not materially increase the initial transfer budget.
+- Attribution: the primary and secondary links continue to emit `related_content_clicked`; `source`, `link_rank`, and `result_state` distinguish placement once those parameters are registered as GA4 custom dimensions.
+
 ## Phased plan after indexing recovery
 
 ### Phase 1 — hold and measure through 2026-08-21

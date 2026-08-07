@@ -6,6 +6,7 @@ export type AnalyticsEventName =
   | "subscribe_clicked"
   | "subscribe_requested"
   | "subscribe_confirmed"
+  | "primary_guide_clicked"
   | "related_content_clicked"
   | "page_scroll_75";
 

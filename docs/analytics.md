@@ -24,6 +24,7 @@ Use `trackAnalyticsEvent` from `src/lib/analytics/track.ts` for these events:
 - `subscribe_clicked`
 - `subscribe_requested`
 - `subscribe_confirmed`
+- `primary_guide_clicked`
 - `related_content_clicked`
 - `page_scroll_75`
 
@@ -54,7 +55,7 @@ Each event is sent to Plausible and GA4 when the corresponding public environmen
 
 ### Production source of truth
 
-- Use GA4 Events for `calculator_completed`, `related_content_clicked`, `share_card_clicked`, and the subscription funnel.
+- Use GA4 Events for `calculator_completed`, `primary_guide_clicked`, `related_content_clicked`, `share_card_clicked`, and the subscription funnel.
 - Register `tool_name`, `target`, and `source` as event-scoped custom dimensions before comparing individual tools or destinations in GA4 reports.
 - Treat Vercel and GA4 visitor totals as separate measurement systems because their attribution, consent, and blocker behavior differ.
 
