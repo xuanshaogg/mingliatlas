@@ -59,6 +59,13 @@ const htmlPages = [
     requiredLinks: ["/bazi", "/tools/bazi-calculator"],
   },
   {
+    path: "/bazi/earthly-branches",
+    expectedTitle: "12 Earthly Branches (Di Zhi): Meanings, Hidden Stems & Clashes",
+    expectedH1: "12 Earthly Branches (Di Zhi): Meanings, Hidden Stems & Clashes",
+    minJsonLd: 3,
+    requiredLinks: ["/tools/bazi-calculator", "/bazi/what-is-bazi", "/bazi/five-elements"],
+  },
+  {
     path: "/bazi/ten-gods",
     expectedTitle: "Ten Gods",
     expectedH1: "Ten Gods in Bazi: Complete Shi Shen Table & Meanings",

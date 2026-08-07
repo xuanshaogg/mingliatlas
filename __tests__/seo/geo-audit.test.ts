@@ -358,6 +358,30 @@ describe("GEO audit", () => {
     }
   });
 
+  it("keeps the Earthly Branches guide substantive, traceable, and indexable", () => {
+    const page = allBaziPages.find((candidate) => candidate.path === "/bazi/earthly-branches");
+
+    expect(page).toBeDefined();
+    if (!page) return;
+
+    const markup = sectionMarkup(page);
+    const pageText = `${page.title} ${page.description} ${page.data.directAnswer} ${markup}`;
+    const resolvedCitations = resolveCitationUrls(page.data.citations);
+
+    expect(page.title).toBe(
+      "12 Earthly Branches (Di Zhi): Meanings, Hidden Stems & Clashes"
+    );
+    expect(wordCount(pageText)).toBeGreaterThanOrEqual(1400);
+    expect(page.data.sections).toHaveLength(6);
+    expect(resolvedCitations).toHaveLength(4);
+    expect(resolvedCitations.every((citation) => Boolean(citation.url))).toBe(true);
+    expect(markup).toContain('href="/tools/bazi-calculator"');
+    expect(markup).toContain('href="/bazi/what-is-bazi"');
+    expect(markup).toContain('href="/bazi/five-elements"');
+    expect(isIndexablePath(page.path)).toBe(true);
+    expect(page.data.schema.dateModified).toBe("2026-08-07");
+  });
+
   it("keeps priority blog pages in the content-quality slice", () => {
     for (const path of priorityBlogQualityUrls) {
       const page = allBlogPosts.find((candidate) => candidate.path === path);
@@ -586,7 +610,7 @@ describe("GEO audit", () => {
 
     expect(earthlyBranches?.title).toContain("12 Earthly Branches");
     expect(earthlyBranches?.title).toContain("Hidden Stems");
-    expect(earthlyBranches?.data.schema.dateModified).toBe("2026-07-12");
+    expect(earthlyBranches?.data.schema.dateModified).toBe("2026-08-07");
     expect(
       earthlyBranches?.data.sections.some((section) =>
         section.heading.includes("Earthly Branches reference table")

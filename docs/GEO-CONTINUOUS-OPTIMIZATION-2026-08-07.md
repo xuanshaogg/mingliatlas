@@ -132,6 +132,12 @@ The `/learn` entry page now acts as a real topic hub for the staged cluster: it 
 
 The final two Learn guides are now quality-ready as well. `/learn/chinese-vs-western-astrology` separates calculation foundations, the two different twelve-part cycles, chart components, timing methods, birth-data requirements, and a safe comparison workflow; the audit estimates 1,328 words and 92/A, up from 318 words and 75/B. `/learn/common-misconceptions` now addresses single-symbol reduction, calendar boundaries, Five Phase literalism, deterministic natal claims, decorative Feng Shui, yes/no I Ching use, source-layer confusion, and unverified calculator or AI output; it measures 1,269 words and 92/A, up from 303 words and 71/B. All six Learn pages now score 92/A and remain `noindex, follow`, outside the XML Sitemap and 36-route allowlist. The production audit covers the full six-page cluster so future changes cannot silently alter its canonical, H1, links, structured data, or staging status.
 
+### Earthly Branches quality refresh — demand-led selection
+
+The next content refresh targets `/bazi/earthly-branches`, an already indexed page with observable demand: Search Console reports 67 impressions in the current comparison window, and Vercel reports 77 visitors over 30 days. The two alternatives did not clear the same evidence threshold: `/blog/i-ching-beginners-reading-guide` has only five impressions at average position 34.4, while `/chinese-zodiac/2026-forecast` has no impressions. Improving the proven route is therefore more useful than expanding low-demand pages or creating another indexing variable.
+
+The refresh adds two named references, cautious historical language, stable links into the Bazi learning path, and a six-step reproducible reading sequence. The read-only audit now estimates 1,525 words across six sections and scores the page 92/A, up from 1,225 words and 88/A. Its exact title and direct answer are held stable so the change measures content depth and GEO traceability rather than starting a new snippet experiment. The page remains `index, follow`, in the 36-route allowlist and XML Sitemap, and outside recovery cohort B; do not resubmit it because URL Inspection already reports that it is on Google.
+
 The engagement evidence supports improving the existing result-to-guide continuation before adding more newsletter surface area. Related reading has measurable use, while the seven-day subscription funnel has no activity.
 
 ### Engagement experiment A — one primary result guide

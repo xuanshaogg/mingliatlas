@@ -1152,7 +1152,7 @@ export const baziPages: BaziContentPage[] = [
       description: "",
       url: "",
       datePublished: "2025-12-18",
-      dateModified: "2026-07-12",
+      dateModified: "2026-08-07",
     },
     stats: [
       {
@@ -1176,6 +1176,18 @@ export const baziPages: BaziContentPage[] = [
           "Classical Bazi reference for branch relationships, combinations, clashes, and hidden stems.",
         url: "https://zh.wikisource.org/wiki/%E4%B8%89%E5%91%BD%E9%80%9A%E6%9C%83",
       },
+      {
+        label: "Hong Kong Observatory Chinese calendar conversion tables",
+        source:
+          "Reference tables for Gregorian, lunar, stem-branch, and solar-term calendar labels.",
+        url: "https://www.hko.gov.hk/en/gts/time/conversion.htm",
+      },
+      {
+        label: "David W. Pankenier, Astrology and Cosmology in Early China",
+        source:
+          "A scholarly history of early Chinese calendrical, astronomical, and cosmological systems.",
+        url: "https://books.google.com/books?q=David+Pankenier+Astrology+and+Cosmology+in+Early+China",
+      },
     ],
     sections: [
       {
@@ -1186,7 +1198,7 @@ export const baziPages: BaziContentPage[] = [
               The 12 Earthly Branches (Di Zhi 地支, also romanized as Kuar-di Zhi) are Zi (子), Chou
               (丑), Yin (寅), Mao (卯), Chen (辰), Si (巳), Wu (午), Wei (未), Shen (申), You (酉),
               Xu (戌), and Hai (亥). Each branch contains a season, direction, two-hour period,
-              animal symbol, Chinese zodiac association, and one or more hidden stems. In{" "}
+              animal symbol, <Link href="/chinese-zodiac" className={linkClass}>Chinese zodiac</Link> association, and one or more hidden stems. In{" "}
               <cite>Yuan Hai Zi Ping</cite>-based practice, branches are more than mascots: they are
               seasonal containers holding information invisible at the surface level.
             </p>
@@ -1199,11 +1211,13 @@ export const baziPages: BaziContentPage[] = [
               the surface level may hold it in hidden form inside a branch.
             </p>
             <p>
-              The branch system has been used in Chinese timekeeping for over 3,000 years. Oracle
-              bone inscriptions from the Shang dynasty already used the 12 branches to mark days and
-              months. The association with zodiac animals developed later, probably during the Han
-              dynasty, as a mnemonic device for a largely non-literate population. The animal names
-              are cultural overlays on a technical calendar system.
+              The branch names appear in Shang-period oracle-bone records as part of early Chinese
+              calendrical notation. Animal correspondences are historically later, and their exact
+              origin remains debated rather than reducible to one invention story. <cite>David W.
+              Pankenier&apos;s Astrology and Cosmology in Early China</cite> provides historical
+              context for the calendar and cosmological systems behind the familiar animal layer.
+              In a Bazi reading, the animal remains a mnemonic for a branch whose technical roles
+              come from season, time, hidden stems, and relationships.
             </p>
           </>
         ),
@@ -1214,9 +1228,10 @@ export const baziPages: BaziContentPage[] = [
           <>
             <p>
               The table below gives the fixed sequence, zodiac animal, clock period, and hidden
-              stems for all 12 branches. The clock periods use local civil time as a practical
-              reference; traditional true-solar-time adjustments can matter near a two-hour
-              boundary.
+              stems for all 12 branches. Compare the sequence with the <cite>Hong Kong Observatory
+              Chinese calendar conversion tables</cite>. The clock periods use local civil time as
+              a practical reference; a declared true-solar-time convention can matter near a
+              two-hour boundary.
             </p>
             <div className="overflow-x-auto">
               <table className="w-full min-w-[46rem] border-collapse text-left text-sm">
@@ -1389,12 +1404,13 @@ export const baziPages: BaziContentPage[] = [
         content: (
           <>
             <p>
-              Branches matter because they hold season, direction, animals, and hidden stems. They
-              can strengthen, dilute, or redirect what the visible stem appears to do on its own. A
-              Jia Wood Day Master sitting on a Zi Water branch is supported by its resource element
-              from below — the branch nourishes the stem. The same Jia Wood sitting on a Shen Metal
-              branch faces its controlling element from below, which creates a different dynamic
-              entirely.
+              Branches matter because they hold season, direction, animals, hidden stems, and
+              context for <Link href="/bazi/five-elements" className={linkClass}>Five Phase
+              relationships</Link>. They can strengthen, dilute, or redirect what the visible stem
+              appears to do on its own. A Jia Wood Day Master sitting on a Zi Water branch is
+              supported by its resource element from below — the branch nourishes the stem. The
+              same Jia Wood sitting on a Shen Metal branch faces its controlling element from
+              below, which creates a different dynamic entirely.
             </p>
             <p>
               Reading branches requires checking the month branch first, because the month branch
@@ -1406,12 +1422,70 @@ export const baziPages: BaziContentPage[] = [
             <p>
               A branch reading becomes much clearer when you compare it with the full stem-branch
               sequence around it, check for combinations and clashes, and identify which hidden
-              stems are likely to activate based on the luck cycle and annual branches. This is why
-              Bazi practitioners spend more time on branches than on stems — the visible layer is
-              only the beginning of the chart's information.
+              stems are likely to activate based on the luck cycle and annual branches. The visible
+              layer is therefore only the beginning of the chart&apos;s information; every conclusion
+              should show which branch, hidden stem, seasonal condition, and relationship supports
+              it.
             </p>
           </>
         ),
+      },
+      {
+        heading: "A reproducible Earthly Branch reading sequence",
+        content: (
+          <>
+            <p>
+              Read branches in a fixed order so that a memorable animal or clash does not outrun
+              the chart. Preserve the birth input, time-zone assumption, calculated pillars, and
+              source rule beside every conclusion. The following sequence keeps structure,
+              interpretation, and uncertainty visible.
+            </p>
+            <ol className="list-decimal space-y-3 pl-6">
+              <li>
+                <strong>Verify the four pillars.</strong> Generate a practice chart with the{" "}
+                <Link href="/tools/bazi-calculator" className={linkClass}>Bazi calculator</Link>,
+                then record the date, civil time, place, time zone, and displayed pillars.
+              </li>
+              <li>
+                <strong>Name each layer.</strong> Use the{" "}
+                <Link href="/bazi/what-is-bazi" className={linkClass}>Four Pillars overview</Link>
+                to distinguish the year, month, day, and hour branch before assigning meaning.
+              </li>
+              <li>
+                <strong>Begin with the month branch.</strong> Establish the season and ask which
+                visible and hidden elements receive support from it.
+              </li>
+              <li>
+                <strong>List hidden stems.</strong> Write the main and secondary stems inside every
+                branch before deciding that an element is absent.
+              </li>
+              <li>
+                <strong>Check relationships conditionally.</strong> Mark combinations, harmony
+                groups, clashes, harms, and punishments, then test whether season and the rest of
+                the chart support the proposed effect.
+              </li>
+              <li>
+                <strong>State the limit.</strong> Separate the calculated structure, the classical
+                rule, the worked example, and the inference; do not turn one branch relationship
+                into a guaranteed event.
+              </li>
+            </ol>
+            <p>
+              Reproduce one chart in an independent calendar reference when a day or hour boundary
+              is close. If the two structures disagree, resolve the conversion convention before
+              comparing interpretations. A traceable reading is more useful than a confident list
+              of animal traits because another reader can inspect every step and identify where a
+              different school or missing input changes the result.
+            </p>
+          </>
+        ),
+        stats: [
+          {
+            value: "6",
+            label: "Reading steps",
+            description: "Verify, label, season, hidden stems, relationships, and limits.",
+          },
+        ],
       },
     ],
     faqs: [
