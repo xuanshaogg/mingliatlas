@@ -1,4 +1,8 @@
 const baseUrl = process.env.AUDIT_BASE_URL ?? "http://localhost:3107";
+const expectedFontPreloads = Number(process.env.AUDIT_EXPECT_FONT_PRELOADS ?? "0");
+const expectedSitemapUrls = Number(process.env.AUDIT_EXPECT_SITEMAP_URLS ?? "0");
+const expectedLlmRoutes = Number(process.env.AUDIT_EXPECT_LLM_ROUTES ?? "0");
+const expectedRssItems = Number(process.env.AUDIT_EXPECT_RSS_ITEMS ?? "0");
 
 const htmlPages = [
   {
@@ -337,6 +341,18 @@ for (const page of htmlPages) {
     }
   }
 
+  if (page.path === "/" && expectedFontPreloads > 0) {
+    const fontPreloadCount = (
+      text.match(/<link\b(?=[^>]*rel=["']preload["'])(?=[^>]*\.woff2)[^>]*>/gi) ?? []
+    ).length;
+    if (fontPreloadCount !== expectedFontPreloads) {
+      fail(
+        `${page.path} expected ${expectedFontPreloads} font preloads, got ${fontPreloadCount}`,
+      );
+    }
+    console.log(`PASS performance ${page.path} | fontPreloads=${fontPreloadCount}`);
+  }
+
   console.log(`PASS html ${page.path} | h1=${h1} | jsonLd=${jsonLdCount}`);
 }
 
@@ -349,6 +365,25 @@ for (const file of machineFiles) {
 
   for (const required of file.requiredText) {
     if (!text.includes(required)) fail(`${file.path} missing required text: ${required}`);
+  }
+
+  const expectedCountByPath = {
+    "/sitemap.xml": expectedSitemapUrls,
+    "/llms-full.txt": expectedLlmRoutes,
+    "/rss.xml": expectedRssItems,
+  };
+  const expectedCount = expectedCountByPath[file.path] ?? 0;
+  if (expectedCount > 0) {
+    const countRegexByPath = {
+      "/sitemap.xml": /<loc>/g,
+      "/llms-full.txt": /^- \[[^\]]+\]\(https:\/\/mingliatlas\.com(?:\/[^)]*)?\):/gm,
+      "/rss.xml": /<guid isPermaLink="true">/g,
+    };
+    const observedCount = (text.match(countRegexByPath[file.path]) ?? []).length;
+    if (observedCount !== expectedCount) {
+      fail(`${file.path} expected ${expectedCount} entries, got ${observedCount}`);
+    }
+    console.log(`PASS count ${file.path} | entries=${observedCount}`);
   }
 
   console.log(`PASS machine ${file.path} | content-type=${contentType}`);

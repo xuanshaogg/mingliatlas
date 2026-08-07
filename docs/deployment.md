@@ -49,6 +49,19 @@ The Vercel project `mingliatlascom/mingliatlas` is currently **not connected to 
 
 Before treating the performance experiment as live, connect the project in **Project Settings → Git → GitHub** to `xuanshaogg/mingliatlas`, keep `main` as the production branch, and verify that the resulting deployment source is the pushed commit. After deployment, check the production HTML for two font preloads, confirm `/llms-full.txt` still exposes 36 routes, and wait for a complete Speed Insights 7-day sample before judging the RES/LCP/TTFB change. Do not submit another sitemap or alter the indexing registry as part of this deployment wiring step.
 
+The repeatable strict acceptance command is:
+
+```bash
+AUDIT_BASE_URL=https://mingliatlas.com \
+AUDIT_EXPECT_FONT_PRELOADS=2 \
+AUDIT_EXPECT_SITEMAP_URLS=36 \
+AUDIT_EXPECT_LLM_ROUTES=36 \
+AUDIT_EXPECT_RSS_ITEMS=4 \
+node scripts/audit-local-site.mjs
+```
+
+The same command passed against the new local production build on 2026-08-07; it currently reports the live domain's older four-font deployment until the Vercel Git connection is established.
+
 ## Environment Variables
 
 Configure the same variable names in Vercel Production and Preview environments. Use different Supabase projects or database branches for Preview if possible.
