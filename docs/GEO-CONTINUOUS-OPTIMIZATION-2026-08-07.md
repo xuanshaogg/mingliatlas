@@ -309,3 +309,14 @@ The indexing report remains the 2026-07-24 aggregate snapshot (24 indexed, 34 no
 This is a no-change checkpoint. At the next review, compare non-branded query growth and page-specific impressions for Cohort B and `/chinese-zodiac`; use those signals to select at most one content-depth refresh or one narrow snippet test.
 
 The same dashboard surfaced a short-term lift for `/blog/chinese-zodiac-compatibility-chart` (258 impressions, one click, average position 11.3 for 2026-07-27 through 2026-08-02). Its visible query mix is page-specific (`chinese zodiac compatibility chart`, `chinese zodiac triads`, `triangle of affinity`, and related chart variants), which is a stronger demand signal than the branded-only `/chinese-zodiac` rows; nevertheless, the page remains frozen until 2026-08-21 so the existing experiment can be evaluated without a content confounder.
+
+### Performance checkpoint and low-risk optimization — 2026-08-07 23:04 CST
+
+Vercel Analytics now reports the exact local-time windows:
+
+- Last 7 days (2026-07-31 22:00 through 2026-08-07 22:59): 114 visitors (+48%), 226 page views (+23%), and 66% bounce rate (+4%). The leading pages are `/tools/bazi-calculator` (43), `/` (18), `/chinese-zodiac/dragon` (9), `/bazi/earthly-branches` (8), and `/bazi/heavenly-stems` (6). Referrers include Google (23), DuckDuckGo (5), ChatGPT (4), Bing (3), and Ecosia (1).
+- Last 30 days (2026-07-08 22:00 through 2026-08-07 22:59): 616 visitors (+192%), 1,268 page views (+245%), and 67% bounce rate (-5%). The leading pages are the Bazi calculator (362), homepage (106), Earthly Branches (78), Ten Gods (30), Luck Pillars (29), Dragon (24), and Day Master guide (23). Referrers include Google (131), ChatGPT (64), Bing (22), DuckDuckGo (16), Yahoo (4), Copilot (3), and Ecosia (2). Mobile accounts for 51% of visitors and desktop 48%.
+
+Speed Insights identifies a desktop-only quality gap on the same 7-day window: RES 85 from 219 data points, FCP 2.98 s, LCP 3.32 s, and TTFB 1.52 s; INP is 72 ms and CLS 0.01. Mobile remains healthy at RES 100, FCP 1.51 s, LCP 1.54 s, TTFB 0.65 s, INP 144 ms, and CLS 0.02 from 125 data points. Desktop route cohorts with the weakest RES are `/tools/zodiac-compatibility` (41), `/feng-shui/[...slug]` (35), and `/chinese-zodiac` (37), but all are frozen content routes during this observation window.
+
+The global layout was therefore optimized without touching content or indexing policy: Inter and Playfair remain the initial font preloads, while the below-the-fold Cormorant and Geist Mono fonts now load on demand. The production build confirms that the homepage emits two, rather than four, font preloads. Recheck Speed Insights after the next meaningful 7-day sample; the acceptance target remains desktop RES ≥ 90, LCP < 2.5 s, and TTFB < 0.8 s while preserving mobile RES ≥ 95.

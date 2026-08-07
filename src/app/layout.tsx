@@ -13,6 +13,9 @@ import "./globals.css";
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  // Metric labels and technical annotations sit below the first viewport;
+  // avoid competing with the body/display fonts for the initial preload.
+  preload: false,
 });
 
 const inter = Inter({
@@ -23,6 +26,9 @@ const inter = Inter({
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
   subsets: ["latin"],
+  // Decorative serif text is not the first meaningful paint on content pages.
+  // Load it on demand so desktop LCP is not gated by another font preload.
+  preload: false,
 });
 
 const playfair = Playfair_Display({
