@@ -58,9 +58,9 @@ const systemRelatedLinks: RelatedLink[] = [
 ];
 
 const resourceRelatedLinks: RelatedLink[] = [
-  { title: "Learn Overview", href: "/learn", description: "Return to the full roadmap when you want to reset your path." },
-  { title: "I Ching for Beginners", href: "/blog/i-ching-for-beginners", description: "Practice question framing with a beginner-friendly editorial guide." },
-  { title: "Free Bazi Calculator", href: "/tools/bazi-calculator", description: "Turn a birth date into a chart once the basics are clear." },
+  { title: "What Is Bazi?", href: "/bazi/what-is-bazi", description: "Apply the source-checking method to a documented Four Pillars overview." },
+  { title: "I Ching", href: "/i-ching", description: "See how a classical text, hexagram structure, and modern practice fit together." },
+  { title: "Five Elements", href: "/bazi/five-elements", description: "Compare a shared Chinese term across calendar, Bazi, and change traditions." },
 ];
 
 const defaultFaqs: FAQ[] = [
@@ -568,80 +568,156 @@ export const allLearnPages: LearnContentPage[] = [
   buildPage({
     slug: "resources",
     path: "/learn/resources",
-    title: "Chinese Metaphysics Learning Resources",
-    description: "Recommended books, communities, tools, and learning paths for Chinese metaphysics beginners.",
-    entityName: "Chinese Metaphysics Learning Resources",
+    title: "Chinese Metaphysics Books & Source Evaluation Guide",
+    description: "A curated beginner source guide for Bazi, I Ching, Chinese calendars, translations, courses, communities, and calculator verification.",
+    entityName: "Chinese Metaphysics Books and Source Evaluation",
     entityType: "Article",
-    subtitle: "A resource checklist for learning Chinese metaphysics with structure, context, and practical next steps.",
+    subtitle: "A practical method for choosing books, translations, teachers, communities, and tools without mistaking confidence for evidence.",
     directAnswer:
-      "Good Chinese metaphysics resources combine clear beginner explanations, classical context, practical examples, and careful language. Start with Five Elements and calendar basics, then use books, courses, communities, and tools that explain reasoning, show examples, and avoid absolute claims about people or outcomes.",
+      "The best Chinese metaphysics resources identify the system, define translated terms, cite primary texts or stable reference tables, show a worked example, and state where interpretation begins. Start with a calendar reference, a primary source such as the Zhouyi or Yuan Hai Zi Ping, and a modern commentary; compare at least two sources before accepting a predictive or historical claim.",
     breadcrumbs: breadcrumbs("Resources", "/learn/resources"),
-    schema: { headline: "", description: "", url: "", datePublished: "2026-01-25", dateModified: "2026-03-30" },
+    schema: { headline: "", description: "", url: "", datePublished: "2026-01-25", dateModified: "2026-08-07" },
     stats: [
-      { value: "4", label: "Resource types", description: "Guides, books, communities, and calculators." },
-      { value: "2", label: "Classical anchors", description: "Calendar tradition and I Ching context appear often." },
-      { value: "3", label: "Quality checks", description: "Definition, example, and practical next step." },
+      { value: "4", label: "Source layers", description: "Primary text, translation, reference data, and explanation." },
+      { value: "5", label: "Verification steps", description: "Trace a claim before using it in interpretation." },
+      { value: "2+", label: "Sources per claim", description: "Compare wording, context, and limits before concluding." },
     ],
     citations: [
-      { label: "Chinese calendar tradition", source: "Reliable Bazi and zodiac resources explain stems, branches, elements, and timing." },
-      { label: "I Ching", source: "Reliable I Ching resources explain hexagrams, lines, and question framing." },
+      {
+        label: "Hong Kong Observatory Chinese calendar conversion tables",
+        source: "A stable public reference for Gregorian, lunar, stem-branch, and solar-term calendar data.",
+        url: "https://www.hko.gov.hk/en/gts/time/conversion.htm",
+      },
+      { label: "Yuan Hai Zi Ping (渊海子平)", source: "An early foundational text in the Four Pillars / Zi Ping textual tradition." },
+      { label: "San Ming Tong Hui (三命通会)", source: "A Ming-dynasty compilation preserving terminology and methods from multiple fate-calculation traditions." },
+      { label: "Zhouyi (周易 / I Ching)", source: "The received Changes text containing the 64 hexagram statements and line texts." },
+      { label: "Alfred Huang, The Complete I Ching", source: "A modern English translation and commentary that identifies its interpretive choices." },
+      { label: "Martin Palmer, T'ung Shu: The Ancient Chinese Almanac", source: "A secondary reference for calendar customs, almanac concepts, and cultural context." },
+      { label: "Wolfram Eberhard, A Dictionary of Chinese Symbols", source: "A cross-reference for cultural symbols and associations rather than a chart-reading manual." },
     ],
     sections: [
       {
-        heading: "What makes a resource trustworthy",
+        heading: "Use four source layers instead of one authority",
         content: (
           <>
             <p>
-              A strong resource defines terms, shows examples, and explains how it reaches an interpretation. For Bazi and zodiac topics, it should connect back to <cite>Chinese calendar tradition</cite> rather than treating signs as isolated labels.
+              Chinese metaphysics resources do different jobs. A <strong>primary text</strong> preserves historical wording; a translation or commentary explains one reading of that wording; a calendar table or calculation reference supplies reproducible data; and a modern guide connects the material to a beginner&apos;s question. A trustworthy article tells you which layer it is using instead of presenting every sentence as timeless doctrine.
             </p>
             <p>
-              For I Ching resources, look for clear question framing, hexagram structure, and moving-line interpretation instead of one-line answers.
+              No layer is sufficient alone. A classical passage can be terse, copied through later editions, and difficult to apply without context. A modern explanation can be clear while silently combining schools. A calculator can produce consistent pillars while saying nothing about why an interpretation follows. Use the layers together: confirm the data, locate the vocabulary, compare explanations, and mark the point where interpretation begins.
             </p>
           </>
         ),
       },
       {
-        heading: "Use this site's guide sequence",
+        heading: "A starter shelf by subject",
         content: (
           <>
             <p>
-              Start with <Link href="/learn/beginners-guide" className={linkClass}>the beginner guide</Link>, then read <TermLink term="Five Elements">Five Elements</TermLink>, <TermLink term="Chinese Zodiac">Chinese Zodiac</TermLink>, and <TermLink term="Bazi">Bazi</TermLink>. Add <TermLink term="I Ching">I Ching</TermLink> or <TermLink term="Feng Shui">Feng Shui</TermLink> when your question changes.
+              For calendar foundations, begin with the <cite>Hong Kong Observatory Chinese calendar conversion tables</cite>. They provide stable year tables and conversion data that help check lunar dates, stem-branch labels, and solar terms. Use a reference like this for calculation facts; do not ask it to supply personality meanings it was never designed to explain.
             </p>
             <p>
-              The <cite>I Ching</cite> is a good second track if you want to practice structured questions rather than birth-chart analysis.
+              For <TermLink term="Bazi">Bazi</TermLink>, treat <cite>Yuan Hai Zi Ping (渊海子平)</cite> and <cite>San Ming Tong Hui (三命通会)</cite> as textual anchors, not quick beginner manuals. Read them alongside a clear guide to the <Link href="/bazi/heavenly-stems" className={linkClass}>Heavenly Stems</Link>, <Link href="/bazi/earthly-branches" className={linkClass}>Earthly Branches</Link>, <Link href="/bazi/ten-gods" className={linkClass}>Ten Gods</Link>, and seasonal strength. When two authors disagree, record the school, rule, and chart context rather than choosing the more dramatic answer.
+            </p>
+            <p>
+              For <TermLink term="I Ching">I Ching</TermLink>, read the received <cite>Zhouyi (周易 / I Ching)</cite> before relying on a list of one-line hexagram keywords. A translation such as <cite>Alfred Huang&apos;s The Complete I Ching</cite> can help, but compare its wording with another translation and keep the hexagram statement, line text, and later commentary distinct. For broader cultural context, <cite>Martin Palmer&apos;s T&apos;ung Shu</cite> and <cite>Wolfram Eberhard&apos;s A Dictionary of Chinese Symbols</cite> are useful secondary references, not substitutes for system-specific rules.
             </p>
           </>
         ),
-        stats: [{ value: "1", label: "Sequence", description: "Vocabulary, system choice, guide, then tool." }],
+        stats: [{ value: "3", label: "Source roles", description: "Verify data, preserve text, and explain interpretation separately." }],
       },
       {
-        heading: "How to evaluate books, courses, and communities",
+        heading: "A five-step claim verification workflow",
         content: (
           <>
             <p>
-              Prefer resources that separate beginner, intermediate, and advanced material. A useful course explains why a symbol matters, where it appears, and how context changes interpretation.
+              Use the same short workflow for a book, video, course lesson, forum answer, or AI response. It is deliberately slower than accepting a polished explanation, but it creates notes you can reuse and correct.
+            </p>
+            <ol className="list-decimal space-y-3 pl-6">
+              <li><strong>Name the system and claim.</strong> “Wood means growth” is too broad; ask whether the claim concerns Five Phase theory, a Bazi Day Master, seasonal qi, medicine, or symbolism.</li>
+              <li><strong>Identify the source layer.</strong> Is the evidence a classical passage, a translator&apos;s note, a teacher&apos;s rule, a calendar table, or a modern analogy?</li>
+              <li><strong>Locate the exact term.</strong> Record Chinese characters, pinyin, the quoted wording, chapter or hexagram, edition, translator, and URL or page number when available.</li>
+              <li><strong>Compare an independent source.</strong> Check whether another edition or author agrees, narrows the rule, or assigns it to a different school.</li>
+              <li><strong>Write the limit.</strong> Note what the source does not prove and which chart, date, question, or cultural context is required before applying it.</li>
+            </ol>
+          </>
+        ),
+      },
+      {
+        heading: "How to evaluate translations and terminology",
+        content: (
+          <>
+            <p>
+              Translation choices are part of the interpretation. The character 氣 may appear as qi, energy, breath, influence, or material force; 用神 may be rendered as useful god, useful deity, or useful influence. None of those English labels explains the rule by itself. Keep the Chinese term beside the translation and ask how the author uses it in that specific system.
             </p>
             <p>
-              In communities, look for people who ask clarifying questions and cite their reasoning instead of offering dramatic one-line claims.
+              Prefer translations that identify their base text or edition, distinguish original text from commentary, explain unusual choices, and preserve ambiguity where the source is ambiguous. Be cautious when a resource replaces every technical term with modern psychology: accessibility is helpful, but an analogy should not erase the calendar, line position, palace, season, or relationship that gives the term its technical meaning.
             </p>
           </>
         ),
       },
       {
-        heading: "When to use tools",
+        heading: "How to evaluate teachers, courses, and communities",
         content: (
           <>
             <p>
-              Use tools when you have enough vocabulary to read the output. The <Link href="/tools/bazi-calculator" className={linkClass}>Bazi calculator</Link>, <Link href="/tools/i-ching-oracle" className={linkClass}>I Ching oracle</Link>, and <Link href="/tools/zodiac-compatibility" className={linkClass}>zodiac compatibility tool</Link> are most useful when paired with the guide pages.
+              A useful teacher shows a syllabus, names the school or lineage when it matters, demonstrates a rule on more than one example, and explains how errors are corrected. A useful community welcomes requests for definitions and sources. Neither needs to pretend that every tradition agrees. Disagreement becomes informative when participants can name the rule, source, and conditions behind it.
             </p>
             <p>
-              Save the result, then return to the relevant knowledge page to interpret it in context.
+              Treat guaranteed outcomes, fear-based deadlines, secret-rule upsells, copied case studies, and refusal to show calculation steps as warning signs. Testimonials can describe a learner&apos;s experience, but they cannot verify a historical claim or prediction method. Before paying, review a sample lesson and ask whether the course separates calculation, interpretation, ethics, and cultural history.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Use calculators as reproducible tools, not authorities",
+        content: (
+          <>
+            <p>
+              A calculator should make its inputs and conventions visible: calendar date, time, time zone, boundary rules, solar-term handling, and any assumptions used when the birth hour is unknown. Re-enter one example in a second tool and compare the four pillars before interpreting them. If the outputs differ, investigate the boundary rule instead of averaging the readings.
+            </p>
+            <p>
+              Use the <Link href="/tools/bazi-calculator" className={linkClass}>Bazi calculator</Link> to generate a chart, then verify its vocabulary with the <Link href="/bazi/what-is-bazi" className={linkClass}>Bazi overview</Link>. Use the <Link href="/tools/i-ching-oracle" className={linkClass}>I Ching oracle</Link> only after writing a single, open question and learning how primary and relating hexagrams are formed. Use the <Link href="/tools/zodiac-compatibility" className={linkClass}>zodiac compatibility tool</Link> as a branch-pattern reference, not a verdict on a relationship.
+            </p>
+          </>
+        ),
+      },
+      {
+        heading: "Build notes that remain useful when your view changes",
+        content: (
+          <>
+            <p>
+              For every important concept, record the Chinese term, pinyin, working translation, system, source, exact passage, your paraphrase, one example, and a confidence level. Separate quotation from summary and summary from your own inference. This makes it possible to update one layer without rewriting the entire subject from memory.
+            </p>
+            <p>
+              End each note with a next check: compare another translation, test a calendar boundary, find a counterexample, or ask a teacher which school uses the rule. That habit turns a resource list into a research practice and keeps future explanations—human or AI-generated—traceable to evidence.
             </p>
           </>
         ),
       },
     ],
-    faqs: defaultFaqs,
+    faqs: [
+      {
+        question: "Which Chinese metaphysics book should a beginner read first?",
+        answer:
+          "Start with a clear overview of stems, branches, Five Elements, and the Chinese calendar, then choose a primary text that matches your system: the Zhouyi for I Ching or a guided introduction to the Zi Ping textual tradition for Bazi. A primary text alone is rarely the easiest first teacher, so pair it with a transparent modern commentary.",
+      },
+      {
+        question: "How can I tell whether an I Ching or Bazi translation is reliable?",
+        answer:
+          "Look for the Chinese term or source text, the edition or translator, a distinction between original passage and commentary, and notes explaining difficult choices. Compare at least one passage with another translation. Reliability does not require identical wording; it requires enough transparency to see why the wording differs.",
+      },
+      {
+        question: "How do I verify an online Chinese metaphysics claim?",
+        answer:
+          "Name the system, locate the exact term or rule, identify whether the evidence is primary text, commentary, calculation data, or analogy, and compare an independent source. Then state the conditions and limits. If the author cannot show where a rule comes from or when it applies, treat it as an unsupported interpretation.",
+      },
+      {
+        question: "Can a calculator replace a source text or teacher?",
+        answer:
+          "No. A calculator can reproduce calendar or chart calculations when its conventions are clear, but it cannot establish the historical meaning of a term or prove that one interpretation follows. Use tools to verify inputs and structures, then use documented sources and worked examples to evaluate interpretation.",
+      },
+    ],
     relatedLinks: resourceRelatedLinks,
     cta: {
       title: "Use a tool after the guide",

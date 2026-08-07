@@ -23,7 +23,7 @@ The seven-page indexing recovery cohort submitted on 2026-08-03 is now fully ind
 
 The aggregate Page indexing report is not current enough to drive URL-level decisions: it still reports data through 2026-07-24, with 24 indexed and 34 not indexed URLs, including 27 marked "Discovered — currently not indexed." Use individual URL Inspection results for this cohort until the aggregate report catches up.
 
-The current published inventory contains 244 routes and 36 index-eligible routes. A quality-gate audit found no finished page that should be added to the index allowlist now. `/learn/resources` is the nearest candidate at a score of 79, but its 299 words remain below the 650-word minimum, so it stays excluded until it provides materially more standalone value.
+The current published inventory contains 244 routes and 36 index-eligible routes. At cohort-selection time, a quality-gate audit found no finished page that should be added to the index allowlist. `/learn/resources` was the nearest candidate at a score of 79, but its 299 words were below the 650-word minimum, so it was excluded from this indexing batch.
 
 `/bazi/earthly-branches` returned "URL is on Google" and was excluded from submission. The six URLs below returned 200, appear in the production sitemap, declare a self-referencing canonical and `index, follow`, expose six JSON-LD blocks, and have 13–23 source-level internal links each. All six indexing requests were accepted into Google's priority crawl queue on 2026-08-07 without a quota error.
 
@@ -111,6 +111,8 @@ The GA4 property is now linked to the verified `sc-domain:mingliatlas.com` Searc
 Desktop Speed Insights now reports RES 92 from 194 data points, FCP 2.66s, LCP 2.70s, INP 72ms, CLS 0.01, FID 16ms, and TTFB 0.99s. The Bazi calculator has RES 90 from 49 route data points, LCP 2.76s, and TTFB 0.78s. Its mobile path remains healthy at RES 99, LCP 1.37s, INP 144ms, CLS 0.09, and TTFB 0.75s. The desktop LCP signal is now large enough to watch seriously, but this same-day checkpoint overlaps the original window; wait for the next independent seven-day review before opening a performance change.
 
 The HTML `/sitemap` route shows 538 historical 28-day impressions, 0 clicks, and average position 16.3, but it is already `noindex, follow`. Treat that as a recrawl lag, not a snippet opportunity; keep its discovery links intact and do not optimize it for clicks.
+
+The same-day quality pass upgraded `/learn/resources` into a source-evaluation guide covering primary texts, translations, calendar references, claim verification, teachers, communities, and calculator reproducibility. The read-only audit now estimates 1,083 words and scores it 92/A, up from 299 words and 79/B. Keep it `noindex, follow` despite the improvement: content readiness does not override the cohort B gate, and the page should not enter a third recovery batch before the indexing decision rules below are satisfied.
 
 The engagement evidence supports improving the existing result-to-guide continuation before adding more newsletter surface area. Related reading has measurable use, while the seven-day subscription funnel has no activity.
 

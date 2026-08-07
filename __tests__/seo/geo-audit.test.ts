@@ -15,8 +15,9 @@ import { allIChingPages } from "@/content/i-ching/pages";
 import { allLearnPages } from "@/content/learn/pages";
 import { allZodiacPages } from "@/content/zodiac/pages";
 import { allZiweiPages } from "@/content/ziwei/pages";
-import { filterIndexablePages } from "@/lib/content/indexing";
+import { filterIndexablePages, isIndexablePath } from "@/lib/content/indexing";
 import { publishedSitePages } from "@/lib/content/sitePages";
+import { resolveCitationUrls } from "@/lib/content/citations";
 import { AUTHOR, SITE } from "@/lib/constants";
 import {
   buildArticleDefinedTermSchema,
@@ -235,6 +236,23 @@ describe("GEO audit", () => {
 
       expectPriorityQuality(page, path);
     }
+  });
+
+  it("keeps the source guide substantive while staging it outside the index", () => {
+    const page = allLearnPages.find((candidate) => candidate.path === "/learn/resources");
+
+    expect(page).toBeDefined();
+    if (!page) return;
+
+    const markup = sectionMarkup(page);
+    const pageText = `${page.title} ${page.description} ${page.data.directAnswer} ${markup}`;
+    const resolvedCitations = resolveCitationUrls(page.data.citations);
+
+    expect(wordCount(pageText)).toBeGreaterThanOrEqual(900);
+    expect(page.data.sections).toHaveLength(7);
+    expect(resolvedCitations).toHaveLength(7);
+    expect(resolvedCitations.every((citation) => Boolean(citation.url))).toBe(true);
+    expect(isIndexablePath(page.path)).toBe(false);
   });
 
   it("keeps the Bazi expansion batch in the content-quality slice", () => {
