@@ -122,6 +122,21 @@ const htmlPages = [
     requiredLinks: ["/tools/zodiac-compatibility", "/chinese-zodiac"],
   },
   {
+    path: "/learn",
+    expectedTitle: "Learn Chinese Metaphysics",
+    expectedH1: "Learn Chinese Metaphysics: Bazi, I Ching & Feng Shui Roadmap",
+    minJsonLd: 3,
+    allowNoindex: true,
+    requiredLinks: [
+      "/learn/beginners-guide",
+      "/learn/which-system",
+      "/learn/resources",
+      "/bazi/heavenly-stems",
+      "/tools/bazi-calculator",
+      "/tools/i-ching-oracle",
+    ],
+  },
+  {
     path: "/learn/beginners-guide",
     expectedTitle: "Beginner",
     expectedH1: "Chinese Metaphysics Beginner's Guide: A Four-Week Path",
