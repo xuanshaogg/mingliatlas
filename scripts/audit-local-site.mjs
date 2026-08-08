@@ -1,8 +1,12 @@
+import { measureInitialNextJsBytes } from "./audit-initial-js.mjs";
+
 const baseUrl = process.env.AUDIT_BASE_URL ?? "http://localhost:3107";
 const expectedFontPreloads = Number(process.env.AUDIT_EXPECT_FONT_PRELOADS ?? "0");
 const expectedSitemapUrls = Number(process.env.AUDIT_EXPECT_SITEMAP_URLS ?? "0");
 const expectedLlmRoutes = Number(process.env.AUDIT_EXPECT_LLM_ROUTES ?? "0");
 const expectedRssItems = Number(process.env.AUDIT_EXPECT_RSS_ITEMS ?? "0");
+const expectedMaxInitialJsBytes = Number(process.env.AUDIT_EXPECT_MAX_INITIAL_JS_BYTES ?? "0");
+const initialJsPath = process.env.AUDIT_INITIAL_JS_PATH ?? "/tools/zodiac-compatibility";
 
 const htmlPages = [
   {
@@ -351,6 +355,26 @@ for (const page of htmlPages) {
       );
     }
     console.log(`PASS performance ${page.path} | fontPreloads=${fontPreloadCount}`);
+  }
+
+  if (page.path === initialJsPath && expectedMaxInitialJsBytes > 0) {
+    try {
+      const { scriptUrls, totalBytes } = await measureInitialNextJsBytes({
+        html: text,
+        pageUrl: new URL(page.path, baseUrl).href,
+      });
+      if (totalBytes > expectedMaxInitialJsBytes) {
+        fail(
+          `${page.path} initial Next.js JS ${totalBytes} bytes exceeds ${expectedMaxInitialJsBytes}`,
+        );
+      } else {
+        console.log(
+          `PASS performance ${page.path} | initialNextJsBytes=${totalBytes} | scripts=${scriptUrls.length} | max=${expectedMaxInitialJsBytes}`,
+        );
+      }
+    } catch (error) {
+      fail(`${page.path} initial Next.js JS audit failed: ${error instanceof Error ? error.message : error}`);
+    }
   }
 
   console.log(`PASS html ${page.path} | h1=${h1} | jsonLd=${jsonLdCount}`);

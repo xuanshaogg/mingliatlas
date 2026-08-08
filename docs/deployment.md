@@ -43,11 +43,11 @@ Node.js 22 is used because the current local OpenClaw runtime and Next.js 16 sta
   - `CNAME www cname.vercel-dns.com`
 - Both records were left as DNS only for Vercel validation.
 
-### Deployment wiring checkpoint — 2026-08-07
+### Deployment wiring checkpoint — 2026-08-08
 
-The Vercel project `mingliatlascom/mingliatlas` is currently **not connected to a Git repository**. The dashboard still reports production source `3b725e7`, while the latest verified optimization commits (`32baa88` for deferred font preloads, `ba2ff84` for the GEO checkpoint, and `71d4818` for strict production gates) exist on `origin/main` but have not reached `mingliatlas.com`.
+The Vercel project `mingliatlascom/mingliatlas` is connected to `xuanshaogg/mingliatlas`, uses `main` as the production branch, and automatically deployed the verified client-bundle optimization at commit `ba030ee`. The deployment is `Ready` and the production domain passes the strict discovery and performance audit.
 
-Before treating the performance experiment as live, connect the project in **Project Settings → Git → GitHub** to `xuanshaogg/mingliatlas`, keep `main` as the production branch, and verify that the resulting deployment source is the pushed commit. After deployment, check the production HTML for two font preloads, confirm `/llms-full.txt` still exposes 36 routes, and wait for a complete Speed Insights 7-day sample before judging the RES/LCP/TTFB change. Do not submit another sitemap or alter the indexing registry as part of this deployment wiring step.
+The strict audit checks two homepage font preloads, the 36-route discovery registry, the four-item RSS feed, and the initial Next.js JavaScript budget for `/tools/zodiac-compatibility`. The route currently ships about 686 KB of initial raw JavaScript; the 750 KB ceiling preserves most of the verified 32% reduction while leaving room for small framework chunk changes. Continue to wait for a complete Speed Insights 7-day sample before judging the RES/LCP/TTFB change. Do not submit another sitemap or alter the indexing registry as part of performance verification.
 
 The repeatable strict acceptance command is:
 
@@ -57,10 +57,11 @@ AUDIT_EXPECT_FONT_PRELOADS=2 \
 AUDIT_EXPECT_SITEMAP_URLS=36 \
 AUDIT_EXPECT_LLM_ROUTES=36 \
 AUDIT_EXPECT_RSS_ITEMS=4 \
+AUDIT_EXPECT_MAX_INITIAL_JS_BYTES=750000 \
 node scripts/audit-local-site.mjs
 ```
 
-The same command passed against the new local production build on 2026-08-07; it currently reports the live domain's older four-font deployment until the Vercel Git connection is established.
+Use `AUDIT_INITIAL_JS_PATH` only when validating a different critical route; it defaults to `/tools/zodiac-compatibility`. The command passed against production on 2026-08-08 after the repository connection and bundle split were verified.
 
 ## Environment Variables
 
