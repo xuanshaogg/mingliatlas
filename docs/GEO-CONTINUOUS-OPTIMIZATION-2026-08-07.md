@@ -326,3 +326,22 @@ The Vercel project overview was checked after pushing commit `32baa88`. It still
 ### Incremental performance dashboard check — 2026-08-07 23:08 CST
 
 The Vercel Analytics 7-day window advanced to 2026-07-31 23:00 through the current 2026-08-07 snapshot: 115 visitors (+49%), 227 page views (+24%), and 66% bounce rate (+4%). The Bazi calculator remains the leading page at 43 visitors, followed by the homepage at 19 and Dragon at 9. Search Console has not processed a new complete day, and the production Speed Insights values remain unchanged because the active deployment is still `3b725e7`.
+
+### Live dashboard checkpoint — 2026-08-08
+
+The signed-in dashboards were checked again after the 2026-08-07 production deployment and the initial-JavaScript budget gate. Search Console still has 2026-08-05 as its latest complete performance date:
+
+- Seven days (2026-07-30 through 2026-08-05): 14 clicks, 2,359 impressions, 0.6% CTR, average position 17.3.
+- Twenty-eight days (2026-07-09 through 2026-08-05): 41 clicks, 7,197 impressions, 0.6% CTR, average position 18.6.
+- The aggregate indexing card remains a lagging snapshot at 30 indexed and 29 not indexed; the current reasons are 20 discovered but not indexed, six noindex exclusions, three redirects, and zero crawled-but-not-indexed. Do not treat this lagging aggregate as a new recovery problem, repeat URL Inspection, or alter the 36-route registry.
+- In the 7-day page table, the homepage contributes 11 of 14 clicks. `/chinese-zodiac/dragon` has 1,048 impressions and zero clicks, while `/tools/bazi-calculator` has one click from 37 impressions. `/chinese-zodiac` has crossed 100 impressions but its visible query mix remains branded, so it stays a post-freeze candidate rather than an immediate snippet experiment.
+
+Vercel Analytics (2026-08-01 through 2026-08-08) now reports 110 visitors, 214 page views, and a 66% bounce rate. The leading pages are `/tools/bazi-calculator` (38 visitors), `/` (16), `/chinese-zodiac/dragon` (9), `/bazi/earthly-branches` (8), `/bazi/five-elements` (6), `/bazi/heavenly-stems` (6), and `/bazi/luck-pillars` (5). Referrers include Google 22, DuckDuckGo 6, ChatGPT 4, Bing 3, and Ecosia 1. The ChatGPT-only filter sends all four measured visitors to the Bazi calculator; the sample is too small for a content conclusion but validates the calculator as the focused GEO landing path.
+
+GA4's latest processed 7-day window (2026-08-01 through 2026-08-07) reports 82 active users and 509 events. `AI Assistant` drove 22 sessions, 15 engaged (68.18%), with 1m25s average engagement and 7.86 events per session; `Organic Search` drove 16 sessions, 10 engaged (62.5%), with 1m08s average engagement. The event report shows `calculator_completed` 39 events from 21 users, `calculator_started` 31 from 24 users, `related_content_clicked` 9 from six users, and `share_card_clicked` 8 from three users. `primary_guide_clicked` remains only one event in the trailing 28-day report, and no GA4 key events are configured. The event-scoped dimensions registered on 2026-08-07 are still in their first processing window; do not mix pre-registration rows into the result-guide experiment decision.
+
+Speed Insights (same 7-day window) remains split by device: desktop RES 86, FCP 2.77s, LCP 3.32s, INP 64ms, CLS 0.01, and TTFB 1.29s; mobile RES 100, FCP/LCP 1.54s, INP 144ms, CLS 0.02, and TTFB 0.65s. Keep the current JavaScript budget and wait for an independent window before opening a route-level performance change.
+
+The production Vercel project is now connected to `xuanshaogg/mingliatlas`; commit `2337ca4` deployed to `main` with status `Ready`. The strict production audit passes two homepage font preloads, 36 Sitemap URLs, 36 `llms-full.txt` routes, four RSS items, and 686,393 bytes of initial Next.js JavaScript for `/tools/zodiac-compatibility` under the 750,000-byte budget. The previous 2026-08-07 note about an unconnected Vercel project is historical and superseded by this checkpoint.
+
+Decision: keep Cohort B, the three existing CTR experiments, the six staged Learn pages, and the 36-route machine-discovery registry unchanged through 2026-08-21. The next review should use non-branded impressions and the post-registration GA4 dimensions to choose at most one result-to-guide depth refresh or one narrow snippet test; do not open a fourth CTR experiment or another recovery batch before that review.
