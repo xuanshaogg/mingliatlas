@@ -162,7 +162,10 @@ a {
 
 @keyframes home-reveal {
   from {
-    opacity: 0;
+    /* Keep above-the-fold copy paintable while the entrance motion runs.
+       A hidden LCP candidate can make desktop field data look slower than the
+       actual page and delays the first meaningful answer for crawlers/users. */
+    opacity: 1;
     transform: translateY(14px);
   }
   to {
