@@ -2,11 +2,16 @@
 
 import { useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { HeartHandshake } from "lucide-react";
-import ShareCardControls from "@/components/tools/ShareCardControls";
 import { ZODIAC_SIGNS, calculateZodiacCompatibility, type ZodiacSign } from "@/lib/zodiac";
 import { trackEvent } from "@/lib/analytics";
-import { buildZodiacShareParams } from "@/lib/share-card";
+import { buildZodiacShareParams } from "@/lib/share-card-params";
+
+const ShareCardControls = dynamic(() => import("@/components/tools/ShareCardControls"), {
+  ssr: false,
+  loading: () => <div className="h-[7.25rem] rounded-lg border border-ink-200 bg-paper-100" aria-hidden="true" />,
+});
 
 export default function ZodiacCompatibilityCalculator() {
   const [first, setFirst] = useState<ZodiacSign>("rat");

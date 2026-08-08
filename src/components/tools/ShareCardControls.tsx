@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { Copy, Download, Share2 } from "lucide-react";
-import { buildShareCardUrl, type ShareTool } from "@/lib/share-card";
+import { buildShareCardUrl, type ShareTool } from "@/lib/share-card-url";
 import { trackEvent } from "@/lib/analytics";
 import { SITE } from "@/lib/constants";
 

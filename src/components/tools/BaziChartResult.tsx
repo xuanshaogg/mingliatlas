@@ -3,7 +3,7 @@ import { ArrowRight, CalendarDays, Clock3, Info, Mail, ShieldCheck, SunMedium } 
 import ShareCardControls from "@/components/tools/ShareCardControls";
 import type { BaziChart, BaziChartPillar, ElementScore } from "@/lib/bazi";
 import { trackEvent } from "@/lib/analytics";
-import { buildBaziShareParams } from "@/lib/share-card";
+import { buildBaziShareParams } from "@/lib/share-card-params";
 
 interface BaziChartResultProps {
   chart: BaziChart;

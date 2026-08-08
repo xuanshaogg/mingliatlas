@@ -6,7 +6,7 @@ import { Coins, RotateCcw } from "lucide-react";
 import ShareCardControls from "@/components/tools/ShareCardControls";
 import { castIChingReading, createCoinCast, type IChingReading } from "@/lib/i-ching";
 import { trackEvent } from "@/lib/analytics";
-import { buildIChingShareParams } from "@/lib/share-card";
+import { buildIChingShareParams } from "@/lib/share-card-params";
 
 function buildReading(question: string): IChingReading {
   return castIChingReading({ question, coins: createCoinCast(Date.now()) });

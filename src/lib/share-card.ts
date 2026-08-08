@@ -1,14 +1,11 @@
-import { calculateBaziChart, type BaziChart } from "@/lib/bazi";
-import { castIChingReading, getHexagramByNumber, type IChingReading } from "@/lib/i-ching";
-import { calculateZodiacCompatibility, ZODIAC_SIGNS, type ZodiacCompatibilityResult, type ZodiacSign } from "@/lib/zodiac";
-
-export type ShareTool = "bazi" | "i-ching" | "zodiac";
-
-export interface ShareCardUrlOptions {
-  baseUrl?: string;
-  tool: ShareTool;
-  params: Record<string, string | number | boolean | null | undefined>;
-}
+import { calculateBaziChart } from "@/lib/bazi";
+import { castIChingReading, getHexagramByNumber } from "@/lib/i-ching";
+import { calculateZodiacCompatibility, ZODIAC_SIGNS, type ZodiacSign } from "@/lib/zodiac";
+import { sanitizeShareText } from "@/lib/share-card-url";
+import type { ShareTool } from "@/lib/share-card-url";
+export { buildShareCardUrl, encodeShareParam, sanitizeShareText } from "@/lib/share-card-url";
+export type { ShareTool, ShareCardUrlOptions } from "@/lib/share-card-url";
+export { buildBaziShareParams, buildIChingShareParams, buildZodiacShareParams } from "@/lib/share-card-params";
 
 export interface ShareCardData {
   tool: ShareTool;
@@ -21,26 +18,8 @@ export interface ShareCardData {
   isFallback: boolean;
 }
 
-const DEFAULT_BASE_URL = "https://mingliatlas.com";
-const SHARE_CARD_PATH = "/api/share-card";
-const SUMMARY_MAX_LENGTH = 180;
-const QUERY_VALUE_MAX_LENGTH = 80;
 const ALLOWED_GENDERS = new Set(["female", "male", "not-specified"]);
 const ZODIAC_SIGN_SLUGS = new Set<string>(ZODIAC_SIGNS.map((sign) => sign.slug));
-
-export function buildShareCardUrl({ baseUrl = DEFAULT_BASE_URL, tool, params }: ShareCardUrlOptions): string {
-  const url = new URL(SHARE_CARD_PATH, normalizeBaseUrl(baseUrl));
-  url.searchParams.set("tool", tool);
-
-  for (const [key, value] of Object.entries(params)) {
-    const encoded = encodeShareParam(value);
-    if (encoded) {
-      url.searchParams.set(key, encoded);
-    }
-  }
-
-  return url.toString();
-}
 
 export function shapeShareCardData(searchParams: URLSearchParams): ShareCardData {
   const tool = searchParams.get("tool");
@@ -58,57 +37,6 @@ export function shapeShareCardData(searchParams: URLSearchParams): ShareCardData
   }
 
   return buildFallbackCard("mingliatlas Tools", "Generate a local metaphysics result and share a privacy-safe preview.");
-}
-
-export function encodeShareParam(value: string | number | boolean | null | undefined): string | undefined {
-  if (value === null || value === undefined) {
-    return undefined;
-  }
-
-  return sanitizeShareText(String(value), QUERY_VALUE_MAX_LENGTH) || undefined;
-}
-
-export function sanitizeShareText(value: string, maxLength = SUMMARY_MAX_LENGTH): string {
-  return value
-    .replace(/[<>]/g, "")
-    .replace(/[\u0000-\u001F\u007F]/g, " ")
-    .replace(/\s+/g, " ")
-    .trim()
-    .slice(0, maxLength);
-}
-
-export function buildBaziShareParams(chart: BaziChart): Record<string, string | number> {
-  const params: Record<string, string | number> = {
-    y: chart.input.year,
-    m: chart.input.month,
-    d: chart.input.day,
-    h: chart.input.hour,
-    min: chart.input.minute,
-    g: chart.input.gender ?? "not-specified",
-    tz: chart.input.timezone,
-  };
-
-  if (chart.input.timeBasis === "true-solar" && chart.input.longitude !== undefined) {
-    params.tb = "true-solar";
-    params.lon = chart.input.longitude;
-  }
-
-  return params;
-}
-
-export function buildIChingShareParams(reading: IChingReading): Record<string, string | number> {
-  return {
-    hex: reading.primary.number,
-    rel: reading.relating?.number ?? "",
-    lines: reading.changingLines.join(","),
-  };
-}
-
-export function buildZodiacShareParams(result: ZodiacCompatibilityResult): Record<string, string> {
-  return {
-    a: result.signA.slug,
-    b: result.signB.slug,
-  };
 }
 
 function shapeBaziShareCard(searchParams: URLSearchParams): ShareCardData {
@@ -222,14 +150,6 @@ function buildFallbackCard(title: string, summary: string): ShareCardData {
     disclaimer: "Open a tool result to generate a complete share card.",
     isFallback: true,
   };
-}
-
-function normalizeBaseUrl(baseUrl: string): string {
-  try {
-    return new URL(baseUrl).toString();
-  } catch {
-    return DEFAULT_BASE_URL;
-  }
 }
 
 function parseIntegerParam(searchParams: URLSearchParams, key: string): number | undefined {
