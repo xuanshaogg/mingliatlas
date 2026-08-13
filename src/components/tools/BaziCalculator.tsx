@@ -4,7 +4,7 @@ import { useRef, useState, type ReactNode } from "react";
 import { Calculator, Clock3, MapPin, RotateCcw, SunMedium } from "lucide-react";
 import BaziChartResult from "@/components/tools/BaziChartResult";
 import { calculateBaziChart, type BaziChart, type BaziChartInput, type BaziTimeBasis } from "@/lib/bazi";
-import { trackEvent } from "@/lib/analytics";
+import { useToolFunnelTracker } from "@/lib/analytics/tool-funnel";
 
 interface FormState {
   birthDate: string;
@@ -58,13 +58,11 @@ export default function BaziCalculator({ mobileIntro }: BaziCalculatorProps) {
   const [chart, setChart] = useState<BaziChart>(() => buildDefaultChart());
   const [hasCalculated, setHasCalculated] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const startedRef = useRef(false);
+  const funnel = useToolFunnelTracker("bazi");
   const resultRef = useRef<HTMLDivElement>(null);
 
   function markStarted(): void {
-    if (startedRef.current) return;
-    startedRef.current = true;
-    trackEvent("calculator_started", { tool_name: "bazi" });
+    funnel.markStarted();
   }
 
   function updateForm<K extends keyof FormState>(key: K, value: FormState[K]): void {
@@ -82,7 +80,7 @@ export default function BaziCalculator({ mobileIntro }: BaziCalculatorProps) {
       setChart(nextChart);
       setHasCalculated(true);
       setError(null);
-      trackEvent("calculator_completed", { tool_name: "bazi" });
+      funnel.markCompleted();
 
       requestAnimationFrame(() => {
         const result = resultRef.current;
@@ -104,7 +102,6 @@ export default function BaziCalculator({ mobileIntro }: BaziCalculatorProps) {
     setChart(buildDefaultChart());
     setHasCalculated(false);
     setError(null);
-    startedRef.current = false;
   }
 
   return (

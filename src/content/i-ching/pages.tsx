@@ -41,6 +41,19 @@ const relatedLinks = [
   },
 ];
 
+const indexingRecoveryLinks = [
+  {
+    title: "I Ching Overview",
+    href: "/i-ching",
+    description: "Start with the 64-hexagram structure and responsible use.",
+  },
+  {
+    title: "Free I Ching Oracle",
+    href: "/tools/i-ching-oracle",
+    description: "Cast six lines in the browser, then open the matching guide.",
+  },
+];
+
 const PAIRED_HEXAGRAMS: Record<number, number> = {
   1: 2,
   2: 1,
@@ -6999,6 +7012,7 @@ function buildHexagramRelatedLinks(hexagram: (typeof HEXAGRAMS)[number]) {
   const pairedNum = PAIRED_HEXAGRAMS[hexagram.number];
   const pairedHex = HEXAGRAMS.find((item) => item.number === pairedNum);
   const links = [
+    ...indexingRecoveryLinks,
     {
       title: "I Ching Oracle",
       href: "/tools/i-ching-oracle",

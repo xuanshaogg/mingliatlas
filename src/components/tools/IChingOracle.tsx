@@ -1,11 +1,12 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Coins, RotateCcw } from "lucide-react";
 import ShareCardControls from "@/components/tools/ShareCardControls";
 import { castIChingReading, createCoinCast, type IChingReading } from "@/lib/i-ching";
-import { trackEvent } from "@/lib/analytics";
+import { useToolFunnelTracker } from "@/lib/analytics/tool-funnel";
+import { trackAnalyticsEvent as trackEvent } from "@/lib/analytics/track";
 import { buildIChingShareParams } from "@/lib/share-card-params";
 
 function buildReading(question: string): IChingReading {
@@ -18,7 +19,7 @@ export default function IChingOracle() {
     castIChingReading({ question: "Open reflection", coins: createCoinCast(20260523) }),
   );
 
-  const startedRef = useRef(false);
+  const funnel = useToolFunnelTracker("i-ching");
 
   const lineText = useMemo(
     () =>
@@ -31,22 +32,18 @@ export default function IChingOracle() {
   );
 
   function markStarted(): void {
-    if (startedRef.current) return;
-    startedRef.current = true;
-    trackEvent("calculator_started", { tool_name: "i-ching" });
+    funnel.markStarted();
   }
 
   function castReading(): void {
-    // Fallback: if the user casts without editing the prompt, still count as started.
-    markStarted();
-    trackEvent("calculator_completed", { tool_name: "i-ching" });
+    // Fallback: a default-prompt cast still creates a started session.
+    funnel.markCompleted();
     setReading(buildReading(question));
   }
 
   function resetReading(): void {
     setQuestion("What pattern should I pay attention to?");
     setReading(castIChingReading({ question: "Open reflection", coins: createCoinCast(20260523) }));
-    startedRef.current = false;
   }
 
   return (

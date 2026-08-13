@@ -19,6 +19,7 @@ Use `trackAnalyticsEvent` from `src/lib/analytics/track.ts` for these events:
 
 - `calculator_started`
 - `calculator_completed`
+- `calculator_recalculated`
 - `share_card_clicked`
 - `ai_interpretation_requested`
 - `subscribe_clicked`
@@ -31,6 +32,18 @@ Use `trackAnalyticsEvent` from `src/lib/analytics/track.ts` for these events:
 `page_scroll_75` is tracked automatically once per page load by `ScrollDepthTracker`.
 
 Each event is sent to Plausible and GA4 when the corresponding public environment variable is configured. The production GA4 stream is configured and currently receives the event taxonomy below. Vercel page views remain enabled, but its custom-event report is unavailable on the current Hobby plan.
+
+### Calculator funnel definition
+
+The three calculators (`bazi`, `i-ching`, and `zodiac`) share one page-view-scoped acquisition funnel:
+
+| Event | Trigger | Reporting use |
+|---|---|---|
+| `calculator_started` | First meaningful tool interaction, or the first successful default-value submission | Funnel entry; one event at most per tool/page session |
+| `calculator_completed` | First successful result after a start | Activation; one event at most per tool/page session |
+| `calculator_recalculated` | Every later successful result on that same tool/page session | Repeat-use telemetry; excluded from first-completion rate |
+
+The browser records this state in `sessionStorage`, so an in-tab refresh or navigation away and back does not restart the acquisition funnel. Resets do not restart it either. This preserves the invariant that a first completion cannot exceed starts within a tool/page-session cohort. Compare tools with post-deployment events split by `tool_name`; do not use raw cross-tool event totals as a conversion rate.
 
 ## Setup checklist
 
@@ -53,6 +66,21 @@ Each event is sent to Plausible and GA4 when the corresponding public environmen
 - The verified `sc-domain:mingliatlas.com` Search Console property is linked to the `https://mingliatlas.com` web stream. Use the resulting Google organic search query and landing-page reports after Google finishes processing the link.
 - The following event-scoped custom dimensions are registered: `tool_name`, `target`, `source`, `link_rank`, `result_state`, `day_master`, and `action`.
 - GA4 custom dimensions are not retroactive. Use events collected after 2026-08-07 for tool-, destination-, placement-, result-, and share-action breakdowns, and allow 24–48 hours before treating a missing dimension value as an instrumentation defect.
+
+### Key-event configuration required for the first-week plan
+
+As of 2026-08-12, the GA4 Events page shows that the production stream receives `calculator_started`, `calculator_completed`, `share_card_clicked`, `subscribe_clicked`, `subscribe_requested`, and `subscribe_confirmed`; the seven custom dimensions above are registered. No production event is currently marked as a key event.
+
+When an Analytics administrator approves the change, configure the Events page as follows:
+
+| Event | Key event status | Why |
+|---|---|---|
+| `subscribe_confirmed` | Mark as key event | The confirmed subscription is the primary business conversion. |
+| `calculator_completed` | Mark as key event | Product activation; report it separately from subscription confirmation. |
+| `share_card_clicked` | Do not mark as key event | Useful distribution behavior, but not a primary conversion. |
+| `calculator_recalculated` | Do not mark as key event | Repeat product use; it must not inflate acquisition activation. |
+
+Verify the setting on the Key events tab after saving, then allow new events to process before using the count in weekly reporting.
 
 ### Vercel Analytics
 

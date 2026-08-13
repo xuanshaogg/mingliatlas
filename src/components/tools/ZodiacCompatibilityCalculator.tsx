@@ -1,11 +1,12 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { HeartHandshake } from "lucide-react";
 import { ZODIAC_SIGNS, calculateZodiacCompatibility, type ZodiacSign } from "@/lib/zodiac";
-import { trackEvent } from "@/lib/analytics";
+import { useToolFunnelTracker } from "@/lib/analytics/tool-funnel";
+import { trackAnalyticsEvent as trackEvent } from "@/lib/analytics/track";
 import { buildZodiacShareParams } from "@/lib/share-card-params";
 
 const ShareCardControls = dynamic(() => import("@/components/tools/ShareCardControls"), {
@@ -17,18 +18,15 @@ export default function ZodiacCompatibilityCalculator() {
   const [first, setFirst] = useState<ZodiacSign>("rat");
   const [second, setSecond] = useState<ZodiacSign>("ox");
   const result = useMemo(() => calculateZodiacCompatibility(first, second), [first, second]);
-  const startedRef = useRef(false);
+  const funnel = useToolFunnelTracker("zodiac");
 
-  // The result is computed reactively as the two selects change, so each
-  // user selection is one completed comparison. Fire started once on the
-  // first interaction to mirror the funnel used by the other tools.
+  // The result is computed reactively as the selects change. Keep only the
+  // first comparison in the acquisition funnel; later comparisons are useful
+  // product-use telemetry rather than additional funnel completions.
   function handleSelect(setter: (sign: ZodiacSign) => void, value: ZodiacSign): void {
-    if (!startedRef.current) {
-      startedRef.current = true;
-      trackEvent("calculator_started", { tool_name: "zodiac" });
-    }
+    funnel.markStarted();
     setter(value);
-    trackEvent("calculator_completed", { tool_name: "zodiac" });
+    funnel.markCompleted();
   }
 
   return (

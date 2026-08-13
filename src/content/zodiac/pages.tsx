@@ -222,6 +222,19 @@ function animalLink(animal: ZodiacAnimal) {
 
 const zodiacLinks = animals.map(animalLink);
 
+const indexingRecoveryLinks = [
+  {
+    title: "2026 Chinese Zodiac Forecast",
+    href: "/chinese-zodiac/2026-forecast",
+    description: "Read the Fire Horse year context for all 12 animal signs.",
+  },
+  {
+    title: "Chinese Zodiac Overview",
+    href: "/chinese-zodiac",
+    description: "Return to the 12-animal cycle, elements, and year boundaries.",
+  },
+];
+
 // Sibling links spread internal link equity across all 12 animal pages
 // (prev + next in the 12-year cycle) instead of pointing only at the first
 // three signs. Improves crawl depth and ranking for high-impression pages
@@ -1550,6 +1563,7 @@ const animalPages = animals.map((animal) =>
     faqs: faqs(animal),
     relatedLinks: [
       ...siblingAnimalLinks(animal),
+      ...indexingRecoveryLinks,
       {
         title: "Chinese Zodiac Compatibility",
         href: "/blog/chinese-zodiac-compatibility-chart",

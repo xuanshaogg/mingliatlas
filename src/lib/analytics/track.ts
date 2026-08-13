@@ -1,6 +1,7 @@
 export type AnalyticsEventName =
   | "calculator_started"
   | "calculator_completed"
+  | "calculator_recalculated"
   | "share_card_clicked"
   | "ai_interpretation_requested"
   | "subscribe_clicked"

@@ -21,13 +21,10 @@ describe("initial Next.js JavaScript audit", () => {
   });
 
   it("sums decoded script bytes for the production budget", async () => {
-    const fetchImpl = vi.fn(async (url: string) => {
+    const fetchImpl = vi.fn(async (input: RequestInfo | URL) => {
+      const url = typeof input === "string" ? input : input.toString();
       const size = url.endsWith("a.js") ? 120 : 80;
-      return {
-        ok: true,
-        status: 200,
-        arrayBuffer: async () => new ArrayBuffer(size),
-      };
+      return new Response(new Uint8Array(size), { status: 200 });
     });
 
     const result = await measureInitialNextJsBytes({
@@ -46,11 +43,7 @@ describe("initial Next.js JavaScript audit", () => {
       measureInitialNextJsBytes({
         html: '<script src="/_next/static/chunks/missing.js"></script>',
         pageUrl: "https://mingliatlas.com/tools/zodiac-compatibility",
-        fetchImpl: async () => ({
-          ok: false,
-          status: 404,
-          arrayBuffer: async () => new ArrayBuffer(0),
-        }),
+        fetchImpl: async () => new Response(null, { status: 404 }),
       }),
     ).rejects.toThrow("expected 200, got 404");
   });
