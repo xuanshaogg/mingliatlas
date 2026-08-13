@@ -260,7 +260,7 @@ function breadcrumbs(current: string, href: string) {
 
 function cta(
   title = "Find your Chinese zodiac sign",
-  options: Partial<Pick<KnowledgePageProps["cta"], "description" | "href" | "label">> = {}
+  options: Partial<Pick<KnowledgePageProps["cta"], "description" | "href" | "label" | "tracking">> = {}
 ) {
   return {
     title,
@@ -269,6 +269,7 @@ function cta(
       "Use the zodiac pages with a full Bazi chart to understand both yearly symbolism and deeper Four Pillars structure.",
     href: options.href ?? "/tools/zodiac-compatibility",
     label: options.label ?? "Check compatibility",
+    tracking: options.tracking,
   };
 }
 
@@ -828,7 +829,31 @@ const overview = buildPage({
       description: "See how zodiac year signs fit into a complete Four Pillars chart.",
     },
   ],
-  cta: cta(),
+  nextSteps: [
+    {
+      title: "Year of the Dragon years list",
+      href: "/chinese-zodiac/dragon",
+      description: "See the Dragon years from 1940 to 2036, the five elements, and the year-boundary check.",
+    },
+    {
+      title: "2026 Chinese Zodiac Forecast",
+      href: "/chinese-zodiac/2026-forecast",
+      description: "Understand the Fire Horse year before applying an annual theme to a personal chart.",
+    },
+    {
+      title: "Chinese Zodiac Compatibility",
+      href: "/blog/chinese-zodiac-compatibility-chart",
+      description: "Compare harmony pairs, triangular groups, and clash patterns across all 12 signs.",
+    },
+  ],
+  nextStepsTracking: { source: "zodiac_hub_next_steps" },
+  cta: cta("Go beyond a zodiac year sign", {
+    description:
+      "Your year animal is only one layer. Generate a free Four Pillars chart to see the year, month, day, and hour together.",
+    href: "/tools/bazi-calculator",
+    label: "Calculate your Four Pillars",
+    tracking: { source: "zodiac_hub_primary_cta" },
+  }),
 });
 
 const animalSections: Partial<Record<string, KnowledgePageProps["sections"]>> = {
@@ -1590,6 +1615,28 @@ const animalPages = animals.map((animal) =>
         description: "Go beyond the year animal with a Four Pillars chart.",
       },
     ],
+    nextSteps:
+      animal.slug === "dragon"
+        ? [
+            {
+              title: "Earthly Branches: Chen (Dragon) in Bazi",
+              href: "/bazi/earthly-branches",
+              description: "Read the Chen branch, hidden stems, season, and combinations behind the Dragon sign.",
+            },
+            {
+              title: "Chinese Zodiac Overview",
+              href: "/chinese-zodiac",
+              description: "Place the Dragon inside the 12-animal cycle, its elements, and the year-boundary rules.",
+            },
+            {
+              title: "2026 Chinese Zodiac Forecast",
+              href: "/chinese-zodiac/2026-forecast",
+              description: "See how the Fire Horse year is commonly read before applying it to a full personal chart.",
+            },
+          ]
+        : undefined,
+    nextStepsTracking:
+      animal.slug === "dragon" ? { source: "dragon_next_steps" } : undefined,
     cta:
       animal.slug === "dragon"
         ? cta("Go beyond the Dragon year animal", {
@@ -1597,6 +1644,7 @@ const animalPages = animals.map((animal) =>
               "The Dragon year animal is only one layer. Use the free Bazi calculator to check the year, month, day, and hour pillars before making the reading personal.",
             href: "/tools/bazi-calculator",
             label: "Calculate full Bazi chart",
+            tracking: { source: "dragon_primary_cta" },
           })
         : cta(`Compare ${animal.name} compatibility`),
   })

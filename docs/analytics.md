@@ -45,6 +45,19 @@ The three calculators (`bazi`, `i-ching`, and `zodiac`) share one page-view-scop
 
 The browser records this state in `sessionStorage`, so an in-tab refresh or navigation away and back does not restart the acquisition funnel. Resets do not restart it either. This preserves the invariant that a first completion cannot exceed starts within a tool/page-session cohort. Compare tools with post-deployment events split by `tool_name`; do not use raw cross-tool event totals as a conversion rate.
 
+### Content-to-tool path
+
+The Chinese Zodiac hub and Dragon guide each expose one primary path to the Bazi calculator and no more than three contextual next-step links. These clicks are measured without adding an extra page-load tracker:
+
+| Placement | Events | `source` value | Purpose |
+|---|---|---|---|
+| Chinese Zodiac primary CTA | `primary_guide_clicked`, `related_content_clicked` | `zodiac_hub_primary_cta` | Measure movement from a broad year-sign question to a full chart. |
+| Dragon primary CTA | `primary_guide_clicked`, `related_content_clicked` | `dragon_primary_cta` | Measure movement from Dragon-year content to a full chart. |
+| Chinese Zodiac next steps | `related_content_clicked` | `zodiac_hub_next_steps` | Compare the three curated follow-up guides by `target` and `link_rank`. |
+| Dragon next steps | `related_content_clicked` | `dragon_next_steps` | Identify which technical or annual follow-up retains Dragon readers. |
+
+Use the post-deployment count of `primary_guide_clicked` divided by users landing on the corresponding content route as the directional CTA rate. Do not compare it to pre-deployment event rows, and do not mark these navigation events as key events.
+
 ## Setup checklist
 
 ### Plausible

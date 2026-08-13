@@ -7,7 +7,10 @@ import FAQSection, { type FAQ } from "@/components/shared/FAQSection";
 import InfoCard, { type Statistic } from "@/components/shared/InfoCard";
 import NewsletterSignup from "@/components/subscriptions/NewsletterSignup";
 import RelatedContent from "@/components/shared/RelatedContent";
+import TrackedContentLinks from "@/components/analytics/TrackedContentLinks";
+import TrackedCTABanner from "@/components/analytics/TrackedCTABanner";
 import type { RelatedLink } from "@/components/shared/RelatedLinks";
+import type { ContentLinkTracking } from "@/lib/analytics/content-path";
 import { resolveCitationUrls } from "@/lib/content/citations";
 import { SITE } from "@/lib/constants";
 import {
@@ -37,6 +40,7 @@ export interface KnowledgePageCta {
   description: string;
   href: string;
   label: string;
+  tracking?: ContentLinkTracking;
 }
 
 export interface KnowledgePageSchemaInput {
@@ -59,6 +63,8 @@ export interface KnowledgePageProps {
   sections: Section[];
   faqs: FAQ[];
   relatedLinks: RelatedLink[];
+  nextSteps?: RelatedLink[];
+  nextStepsTracking?: ContentLinkTracking;
   schema: KnowledgePageSchemaInput;
   breadcrumbs: Crumb[];
   citations: Citation[];
@@ -114,6 +120,8 @@ export default function KnowledgePage({
   sections,
   faqs,
   relatedLinks,
+  nextSteps,
+  nextStepsTracking,
   schema,
   breadcrumbs,
   citations,
@@ -122,6 +130,8 @@ export default function KnowledgePage({
   ogImage,
 }: KnowledgePageProps) {
   const resolvedCitations = resolveCitationUrls(citations);
+  const visibleNextSteps = nextSteps ?? relatedLinks;
+  const schemaMentionLinks = nextSteps ? nextSteps.slice(0, 3) : relatedLinks;
   const articleSchema = schema.jsonLd ??
     buildArticleDefinedTermSchema({
       headline: schema.headline,
@@ -134,7 +144,7 @@ export default function KnowledgePage({
       dateModified: schema.dateModified,
       image: schema.image ?? ogImage,
       citations: resolvedCitations,
-      mentions: relatedLinks.map((link) => ({
+      mentions: schemaMentionLinks.map((link) => ({
         name: link.title,
         url: link.href,
       })),
@@ -171,8 +181,12 @@ export default function KnowledgePage({
               <SectionBlock key={`${section.heading}-${sectionIndex}`} section={section} />
             ))}
             <FAQSection faqs={faqs} />
-            <RelatedContent links={relatedLinks} />
-            <CTABanner {...cta} />
+            {nextStepsTracking ? (
+              <TrackedContentLinks links={visibleNextSteps.slice(0, 3)} tracking={nextStepsTracking} />
+            ) : (
+              <RelatedContent links={relatedLinks} />
+            )}
+            {cta.tracking ? <TrackedCTABanner {...cta} /> : <CTABanner {...cta} />}
             <NewsletterSignup />
             <p className="mt-8 text-sm leading-6 text-ink-500 dark:text-ink-400">
               For entertainment and self-reflection purposes.
