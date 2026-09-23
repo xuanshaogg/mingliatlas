@@ -29,7 +29,7 @@ These are deterministic regression examples of the library's traditional rule, n
 
 ## Release and measurement
 
-Register an event-scoped GA4 custom dimension whose event parameter is `content_placement`. The current read-only API credentials cannot perform that admin action; report generation clearly marks the dimension unavailable until it exists and has processed data.
+The event-scoped `Content placement` dimension with event parameter `content_placement` was registered in the GA4 admin UI on 2026-09-23 and verified in the saved list. Historical `Interaction source` remains available. Report generation marks a dimension unavailable until API metadata and processing catch up.
 
 Record the actual production deployment time as the migration boundary; 2026-09-23 is the code preparation date, not evidence of deployment. Confirm a GA request contains `content_placement` and omits `source` after deployment, then inspect processed data 24–48 hours later. Keep legacy and new dimension reports separate and do not add their user/session counts.
 
