@@ -49,6 +49,16 @@ export function trackGtagEvent(
     return;
   }
 
+  // `source` is a GA campaign field. UI placement must never overwrite
+  // acquisition attribution; preserve the legacy caller API for Plausible.
+  if (properties && Object.hasOwn(properties, "source")) {
+    const { source, ...safeProperties } = properties;
+    window.gtag("event", eventName, {
+      ...safeProperties,
+      content_placement: properties.content_placement ?? source,
+    });
+    return;
+  }
   window.gtag("event", eventName, properties);
 }
 

@@ -66,6 +66,15 @@ describe("Bazi chart calculation", () => {
     expect(chart.luckPillarStart).toBe("1991-06-21");
   });
 
+  it("reverses the sequence for a male birth in the same yin-stem year", () => {
+    // Ji is yin: male reverses from Bing-Zi, female advances (fixture above).
+    const chart = calculateBaziChart({ year: 1990, month: 1, day: 1, hour: 12,
+      gender: "male", timezone: "Asia/Shanghai" });
+    expect(chart.luckPillarDirection).toBe("reverse");
+    expect(chart.luckPillars.slice(0, 3).map((pillar) => pillar.ganZhi)).toEqual(["乙亥", "甲戌", "癸酉"]);
+    expect(chart.luckPillars).toHaveLength(8);
+  });
+
   it("keeps luck pillars empty when the direction rule is underspecified", () => {
     const chart = calculateBaziChart({ year: 1990, month: 1, day: 1, hour: 12 });
 
