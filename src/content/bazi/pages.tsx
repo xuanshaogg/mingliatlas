@@ -1842,7 +1842,7 @@ const luckPillarsPage = buildPage({
     description: "",
     url: "",
     datePublished: "2026-01-15",
-    dateModified: "2026-07-12",
+    dateModified: "2026-09-23",
   },
   stats: [
     { value: "10", label: "Years per pillar", description: "Each Da Yun runs for a full decade." },
@@ -1986,8 +1986,11 @@ const luckPillarsPage = buildPage({
             <Link href="/bazi/ten-gods" className={linkClass}>
               Ten Gods guide
             </Link>{" "}
-            before calculating Da Yun with a method that documents direction and starting-age rules.
-            The current browser calculator does not generate Luck Pillars.
+            before comparing the displayed Da Yun cycles with the natal chart. Select male or female
+            in the optional gender field to apply the traditional direction rule and show the
+            starting date and ten-year cycles. Without that selection, the natal chart still works,
+            but no Luck Pillars are displayed. Record the date, time basis, and selected rule when
+            comparing the result with another calculator; different conventions can change the result.
           </p>
         </>
       ),
@@ -1997,7 +2000,7 @@ const luckPillarsPage = buildPage({
     {
       question: "When do Luck Pillars start?",
       answer:
-        "The starting age varies by birth date and gender, typically between age 1 and 10. It is calculated from the distance between the birth date and the nearest seasonal node in the Chinese calendar.",
+        "The starting age varies by birth date and gender, typically between age 1 and 10. It is calculated from the distance between the birth date and the next seasonal node for forward cycles or the previous seasonal node for reverse cycles in the Chinese calendar.",
     },
     {
       question: "Can a bad Luck Pillar be avoided?",
@@ -2017,7 +2020,7 @@ const luckPillarsPage = buildPage({
     {
       question: "Does the Mingli Atlas Bazi calculator generate Luck Pillars?",
       answer:
-        "Not currently. The browser calculator builds the natal year, month, day, and hour pillars, Day Master, hidden stems, Ten Gods, and element balance. Use that natal chart as the foundation, then calculate Da Yun separately with a method that shows direction and starting-age assumptions.",
+        "Yes. Select male or female in the optional gender field to calculate the traditional Da Yun direction, starting date, and ten-year cycles alongside the natal chart. If gender is not specified, the calculator still builds the Four Pillars, Day Master, hidden stems, Ten Gods, and element balance, but omits Luck Pillars. Record the selected rule and time basis before comparing results across methods; these cycles are traditional reference information, not predictions.",
     },
     {
       question: "Are the stem and branch limited to five years each?",
@@ -2045,7 +2048,7 @@ const luckPillarsPage = buildPage({
   cta: {
     title: "Build the natal chart first",
     description:
-      "Generate the Four Pillars and Day Master that a Luck Pillar must be compared against. The current calculator does not calculate Da Yun.",
+      "Generate the Four Pillars and Day Master, then select male or female for the traditional rule to see Da Yun direction, starting date, and ten-year cycles alongside the natal chart.",
     href: "/tools/bazi-calculator",
     label: "Open the Bazi calculator",
   },

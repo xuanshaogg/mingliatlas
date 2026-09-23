@@ -479,6 +479,8 @@ describe("GEO audit", () => {
     expect(llms).toContain(`${SITE.url}/blog/ren-water-day-master`);
     expect(llms).toContain(`${SITE.url}/bazi/ten-gods`);
     expect(llms).toContain(`${SITE.url}/bazi/luck-pillars`);
+    expect(llms).toContain("when male or female is selected");
+    expect(llms).not.toContain("does not calculate Da Yun");
   });
 
   it("keeps RSS feed machine-readable for blog discovery", async () => {
@@ -625,8 +627,9 @@ describe("GEO audit", () => {
     expect(
       luckPillars?.data.sections.some((section) => section.heading.includes("Geng-Shen"))
     ).toBe(true);
-    expect(luckPillars?.data.schema.dateModified).toBe("2026-07-12");
-    expect(sectionMarkup(luckPillars!)).toContain("does not generate Luck Pillars");
+    expect(luckPillars?.data.schema.dateModified).toBe("2026-09-23");
+    expect(sectionMarkup(luckPillars!)).toContain("optional gender field");
+    expect(sectionMarkup(luckPillars!)).not.toContain("does not generate Luck Pillars");
     expect(
       renWater?.data.sections.some((section) => section.heading.includes("Ren Water vs Gui Water"))
     ).toBe(true);
