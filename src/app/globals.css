@@ -7,28 +7,28 @@
 
 /* Brand design tokens live here for Tailwind v4; do not add tailwind.config.ts unless the build needs legacy config. */
 @theme {
-  /* Typography: Inter body, Cormorant headings, Playfair hero/display, Geist Mono code. */
-  --font-sans: var(--font-inter), system-ui, sans-serif;
-  --font-serif: var(--font-cormorant), Georgia, serif;
-  --font-display: var(--font-playfair), Georgia, serif;
+  /* One family across the interface; legacy display/serif utilities share it. */
+  --font-sans: var(--font-manrope), "Segoe UI", "Microsoft YaHei", sans-serif;
+  --font-serif: var(--font-manrope), "Segoe UI", "Microsoft YaHei", sans-serif;
+  --font-display: var(--font-manrope), "Segoe UI", "Microsoft YaHei", sans-serif;
   --font-mono: var(--font-geist-mono), monospace;
   --text-hero: 3.5rem;
   --text-hero--line-height: 1.1;
-  --text-hero--font-weight: 700;
+  --text-hero--font-weight: 600;
 
-  /* Brand: deep red primary scale for logo, CTA, links, and strong brand surfaces. */
-  --color-brand-primary: #a52a1c;
-  --color-brand-50: #fdf8f6;
-  --color-brand-100: #f9e8e4;
-  --color-brand-200: #f0c5bc;
-  --color-brand-300: #e4a194;
-  --color-brand-400: #d87d6c;
-  --color-brand-500: #c95a44;
-  --color-brand-600: #a8402e;
-  --color-brand-700: #8f2117;
-  --color-brand-800: #741a13;
-  --color-brand-900: #56140f;
-  --color-brand-950: #35100d;
+  /* Brand: muted terracotta for actions and warm accents. */
+  --color-brand-primary: #934f40;
+  --color-brand-50: #faf3ef;
+  --color-brand-100: #f3e4dc;
+  --color-brand-200: #e7cbbd;
+  --color-brand-300: #d6aa96;
+  --color-brand-400: #bc8570;
+  --color-brand-500: #a96652;
+  --color-brand-600: #934f40;
+  --color-brand-700: #7b4135;
+  --color-brand-800: #62372e;
+  --color-brand-900: #503029;
+  --color-brand-950: #2c1a16;
 
   /* Gold: accent scale for highlights, dividers, focus rings, and dark-background details. */
   --color-brand-gold: #b68c42;
@@ -44,23 +44,24 @@
   --color-gold-900: #3d3015;
 
   /* Paper: warm neutral backgrounds for pages, cards, and soft section contrast. */
-  --color-paper: #f7f7f3;
-  --color-paper-50: #fbfbf8;
-  --color-paper-100: #eeeeea;
-  --color-paper-200: #dfdfd7;
+  --color-paper: #f7f8f5;
+  --color-paper-50: #fafbf8;
+  --color-paper-100: #eff2ec;
+  --color-paper-200: #e2e7de;
 
-  /* Ink: cool dark neutrals for text, borders, and dark mode surfaces. */
-  --color-ink-50: #f7f7fb;
-  --color-ink-100: #ededf4;
-  --color-ink-200: #d9d9e6;
-  --color-ink-300: #b8b8ca;
-  --color-ink-400: #8f90aa;
-  --color-ink-500: #6d6e88;
-  --color-ink-600: #565771;
-  --color-ink-700: #3f3f46;
-  --color-ink-800: #27272a;
-  --color-ink-900: #18181b;
-  --color-ink-950: #111113;
+  /* Ink: green-gray neutrals for text, borders, and dark surfaces. */
+  --color-ink-50: #f6f8f5;
+  --color-ink-100: #edf0eb;
+  --color-ink-200: #e0e5dd;
+  --color-ink-300: #c0c9bd;
+  --color-ink-400: #8a9787;
+  --color-ink-500: #697565;
+  --color-ink-600: #566251;
+  --color-ink-650: #4d5848;
+  --color-ink-700: #414d3e;
+  --color-ink-800: #303d2f;
+  --color-ink-900: #243024;
+  --color-ink-950: #1d281e;
 
   /* Five Elements supporting accent: Wood, reserved for diagrams and element-specific UI. */
   --color-accent: #2d5a27;
@@ -69,24 +70,54 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  /* Component shape: standard card radius from TASK-008. */
-  --radius-card: 0.75rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+  --radius-card: 1.5rem;
 }
 
 :root {
-  --background: #f7f7f3;
-  --foreground: #18181b;
+  --background: #f7f8f5;
+  --foreground: #1d281e;
+  --surface: #ffffff;
+  --surface-muted: #eff2ec;
+  --border-subtle: rgb(29 40 30 / 9%);
 }
 
 .dark {
-  --background: #10101f;
+  --background: #1d281e;
   --foreground: #f5f0e5;
+  --surface: #243024;
+  --surface-muted: #303d2f;
+  --border-subtle: rgb(245 240 229 / 12%);
+}
+
+html {
+  scroll-padding-top: 7rem;
+  text-size-adjust: 100%;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-feature-settings: "ss01" 1, "cv11" 1;
+  font-feature-settings: "ss01" 1;
+  text-rendering: optimizeLegibility;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.25;
+  }
 }
 
 * {
@@ -95,6 +126,59 @@ body {
 
 a {
   text-underline-offset: 4px;
+}
+
+:where(a, button, input, select, textarea, summary, [tabindex]:not([tabindex="-1"])):focus-visible {
+  outline: 3px solid var(--color-brand-gold);
+  outline-offset: 3px;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
+}
+
+/* Shared surfaces and controls for reading and tool workflows. */
+@layer components {
+  .atlas-surface {
+    @apply border-ink-200/60 dark:bg-ink-900 rounded-2xl border bg-white shadow-[0_4px_24px_-12px_rgb(29_40_30_/_0.07)] dark:border-white/10;
+  }
+
+  .atlas-input {
+    @apply border-ink-200 bg-paper-50 text-ink-950 placeholder:text-ink-500 focus:border-brand-300 focus:ring-brand-primary/5 dark:bg-ink-950 dark:text-paper w-full min-w-0 rounded-lg border px-4 text-base transition-colors duration-200 focus:bg-white focus:ring-4 dark:border-white/15;
+  }
+
+  .atlas-button-primary {
+    @apply bg-brand-primary hover:bg-brand-700 dark:bg-gold-400 dark:text-ink-950 dark:hover:bg-gold-300 inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white shadow-[0_4px_12px_-6px_rgb(147_79_64_/_0.4)] transition duration-200 active:scale-[0.98] disabled:cursor-wait disabled:opacity-60;
+  }
+
+  .atlas-button-secondary {
+    @apply border-ink-200/80 text-ink-700 hover:border-brand-200 hover:bg-brand-50 hover:text-brand-primary dark:bg-ink-900 dark:text-paper inline-flex min-h-11 items-center justify-center gap-2 rounded-full border bg-white px-5 py-2.5 text-sm font-semibold transition duration-200 disabled:cursor-wait disabled:opacity-60 dark:border-white/15;
+  }
+
+  .atlas-eyebrow {
+    @apply bg-brand-50 text-brand-primary dark:bg-gold-500/10 dark:text-gold-300 inline-flex w-fit items-center gap-2 rounded-full px-3.5 py-1.5 text-xs leading-5 font-semibold tracking-wide;
+  }
+
+  .atlas-page-title {
+    font-size: clamp(2rem, 4.2vw, 3.5rem);
+    font-weight: 600;
+    line-height: 1.14;
+    letter-spacing: -0.045em;
+    text-wrap: pretty;
+    @apply text-ink-950 dark:text-paper;
+  }
+
+  .atlas-section-title {
+    font-size: clamp(1.5rem, 2.7vw, 2.125rem);
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.035em;
+    @apply text-ink-950 dark:text-paper;
+  }
+
+  .atlas-page-intro {
+    @apply text-ink-600 dark:text-ink-300 text-base leading-8 sm:text-lg;
+  }
 }
 
 ::selection {
@@ -140,13 +224,6 @@ a {
 
 .atlas-ring {
   animation: atlas-turn 28s linear infinite;
-}
-
-.atlas-tool-shell .rounded-lg,
-.atlas-tool-shell .rounded-md,
-.atlas-tool-shell .rounded-full,
-.atlas-knowledge-shell .rounded-lg {
-  border-radius: 0.125rem;
 }
 
 @keyframes hero-reveal {
@@ -197,5 +274,14 @@ a {
   .atlas-plate,
   .atlas-ring {
     animation: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

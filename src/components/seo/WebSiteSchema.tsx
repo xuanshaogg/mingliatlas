@@ -1,13 +1,17 @@
 import { SITE } from "@/lib/constants";
+import { JsonLd } from "@/lib/seo/jsonLd";
 
 export default function WebSiteSchema() {
   const schema = {
-    "@context": "https://schema.org",
+    "@context": "https://schema.org" as const,
     "@type": "WebSite",
+    "@id": `${SITE.url}/#website`,
     name: SITE.name,
     alternateName: SITE.alternateNames,
     url: SITE.url,
     description: SITE.description,
+    inLanguage: "en",
+    publisher: { "@id": `${SITE.url}/#organization` },
     potentialAction: {
       "@type": "SearchAction",
       target: {
@@ -18,10 +22,5 @@ export default function WebSiteSchema() {
     },
   };
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
+  return <JsonLd data={schema} />;
 }

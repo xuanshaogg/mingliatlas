@@ -4,6 +4,8 @@ import KnowledgePage from "@/components/templates/KnowledgePage";
 import { getZiweiPage, getZiweiStaticParams } from "@/content/ziwei/pages";
 import { buildKnowledgePageMetadata } from "@/lib/seo/metadata";
 
+export const dynamicParams = false;
+
 interface ZiweiPageProps {
   params: Promise<{
     slug?: string[];
@@ -23,7 +25,7 @@ export async function generateMetadata({ params }: ZiweiPageProps): Promise<Meta
   const page = getZiweiPage(slugFromSegments(slug));
 
   if (!page) {
-    return {};
+    notFound();
   }
 
   return buildKnowledgePageMetadata(page);

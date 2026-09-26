@@ -21,29 +21,32 @@ export default function HtmlSitemapPage() {
   const grouped = groupPagesBySection(publishedSitePages);
 
   return (
-    <main className="bg-paper px-4 py-12 dark:bg-ink-950 sm:px-6 lg:px-8">
+    <section className="bg-paper dark:bg-ink-950 px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
-        <p className="text-sm font-semibold uppercase tracking-[0.25em] text-brand-primary dark:text-gold-300">
-          HTML Sitemap
-        </p>
-        <h1 className="mt-4 text-4xl font-semibold tracking-tight text-ink-950 dark:text-paper sm:text-5xl">
-          Site map
-        </h1>
-        <p className="mt-5 max-w-3xl text-lg leading-8 text-ink-600 dark:text-ink-300">
+        <p className="atlas-eyebrow">HTML Sitemap</p>
+        <h1 className="atlas-page-title mt-5">Site map</h1>
+        <p className="text-ink-600 dark:text-ink-300 mt-5 max-w-3xl text-lg leading-8">
           A human-readable index of the published site structure.
         </p>
 
         <div className="mt-12 grid gap-8 md:grid-cols-2">
           {Array.from(grouped.entries()).map(([section, pages]) => (
-            <section key={section} className="rounded-[1.25rem] border border-ink-200 bg-white p-6 dark:border-white/10 dark:bg-white/5">
-              <h2 className="text-2xl font-semibold tracking-tight text-ink-950 dark:text-paper">{section}</h2>
+            <section key={section} className="atlas-surface p-6">
+              <h2 className="text-ink-950 dark:text-paper text-2xl font-semibold tracking-tight">
+                {section}
+              </h2>
               <ul className="mt-4 space-y-4">
                 {pages.map((page) => (
                   <li key={page.href}>
-                    <Link href={page.href} className="text-base font-semibold text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">
+                    <Link
+                      href={page.href}
+                      className="text-brand-primary decoration-brand-primary/30 dark:text-gold-300 text-base font-semibold underline"
+                    >
                       {page.title}
                     </Link>
-                    <p className="mt-1 text-sm leading-6 text-ink-600 dark:text-ink-300">{page.description}</p>
+                    <p className="text-ink-600 dark:text-ink-300 mt-1 text-sm leading-6">
+                      {page.description}
+                    </p>
                   </li>
                 ))}
               </ul>
@@ -51,6 +54,6 @@ export default function HtmlSitemapPage() {
           ))}
         </div>
       </div>
-    </main>
+    </section>
   );
 }

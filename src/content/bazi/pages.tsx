@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { KnowledgePageProps } from "@/components/templates/KnowledgePage";
 import type { FAQ } from "@/components/shared/FAQSection";
 import { SITE } from "@/lib/constants";
+import { baziFirstReading, baziNotationExample } from "./reading-examples";
 
 const baziBaseLinks = [
   {
@@ -116,7 +117,7 @@ function buildPage(input: Omit<BaziContentPage, "data"> & KnowledgePageProps): B
     data: {
       ...data,
       title,
-      sections: withEditorialQuote(data.sections),
+      sections: ["/bazi", "/bazi/what-is-bazi"].includes(path) ? data.sections : withEditorialQuote(data.sections),
       schema: {
         ...data.schema,
         headline: title,
@@ -133,21 +134,21 @@ export const baziPages: BaziContentPage[] = [
   buildPage({
     slug: "",
     path: "/bazi",
-    title: "Bazi (Four Pillars of Destiny): Complete Guide",
+    title: "Bazi Guide: Charts, Day Masters & Reading Order",
     description:
-      "Bazi, or Four Pillars of Destiny, analyzes birth year, month, day, and hour through stems, branches, elements, and life cycles.",
+      "Learn Bazi in order: build a Four Pillars chart, identify the Day Master, compare elements and Ten Gods, then study traditional timing cycles.",
     entityName: "Bazi",
     entityType: "DefinedTerm",
     subtitle: "A practical overview of the Four Pillars system for Western readers.",
     directAnswer:
-      "Bazi, also known as the Four Pillars of Destiny, is a Chinese metaphysical system that analyzes a person's birth date and time through year, month, day, and hour pillars. It reveals personality patterns, useful strengths, recurring challenges, and 10-year life cycles without treating them as fixed outcomes.",
+      "Bazi, or Four Pillars of Destiny, represents a birth date and time as four stem-branch pairs. This guide connects the chart to the Day Master, Five Elements, Ten Gods and traditional timing cycles. Begin with the calculation and its calendar conventions, then study how practitioners interpret the relationships between symbols.",
     breadcrumbs: baziBreadcrumbs("Overview", "/bazi"),
     schema: {
       headline: "",
       description: "",
       url: "",
       datePublished: "2025-12-01",
-      dateModified: "2026-08-03",
+      dateModified: "2026-09-26",
     },
     stats: [
       { value: "4", label: "Pillars", description: "Year, month, day, and hour." },
@@ -155,13 +156,14 @@ export const baziPages: BaziContentPage[] = [
       { value: "60", label: "Cycle pairs", description: "The Jia Zi stem-branch cycle." },
     ],
     citations: [
+      { label: "Lunar calendar library: stem-branch boundaries", source: "The library author distinguishes lunar-year, Li Chun day and exact transition conventions.", url: "https://6tail.cn/calendar/lunar.ganzhi.html" },
       {
-        label: "《渊海子平》Yuan Hai Zi Ping (Song Dynasty, ~1100 CE)",
+        label: "《渊海子平》Yuan Hai Zi Ping",
         source: "Classical source associated with Zi Ping Bazi methods.",
         url: "https://zh.wikisource.org/wiki/%E6%B7%B5%E6%B5%B7%E5%AD%90%E5%B9%B3",
       },
       {
-        label: "《三命通会》San Ming Tong Hui (Ming Dynasty, ~1550 CE)",
+        label: "《三命通会》San Ming Tong Hui",
         source: "Ming dynasty synthesis of stems, branches, and chart rules.",
         url: "https://zh.wikisource.org/wiki/%E4%B8%89%E5%91%BD%E9%80%9A%E6%9C%83",
       },
@@ -172,6 +174,7 @@ export const baziPages: BaziContentPage[] = [
       },
     ],
     sections: [
+      baziFirstReading,
       {
         heading: "What Bazi reads in a birth chart",
         content: (
@@ -183,9 +186,7 @@ export const baziPages: BaziContentPage[] = [
               element strength, and relationship roles shape a life pattern.
             </p>
             <p>
-              The system is over 1,200 years old in its mature form. It developed from Tang dynasty
-              birth-year methods and became more detailed when later scholars emphasized the Day
-              Master as the center of the chart.
+              Received works such as Yuan Hai Zi Ping and San Ming Tong Hui preserve different layers of the Four Pillars tradition. Use a named text and passage for a historical claim; the age of a tradition does not establish the accuracy of an individual interpretation.
             </p>
             <p>
               The most important point for beginners is that Bazi is not the same as the Chinese
@@ -463,54 +464,50 @@ export const baziPages: BaziContentPage[] = [
     path: "/bazi/what-is-bazi",
     title: "What Is Bazi? Four Pillars of Destiny Explained",
     description:
-      "Bazi is a Chinese life-pattern analysis system based on birth year, month, day, and hour pillars.",
+      "Bazi explained with a worked day-pillar example, calendar boundaries, Day Master terminology and a practical guide to separating calculation from interpretation.",
     entityName: "Bazi",
     entityType: "DefinedTerm",
     subtitle: "The answer-first guide to Four Pillars history, structure, and practical use.",
     directAnswer:
-      "Bazi, also known as the Four Pillars of Destiny, is a Chinese metaphysical system that analyzes a person's birth date and time to reveal a life blueprint. It studies personality, strengths, challenges, and life cycles through 4 pillars, 8 characters, and the 60-pair stem-branch calendar.",
+      "Bazi means eight characters: one Heavenly Stem and one Earthly Branch for each of the year, month, day and hour pillars. The day stem is called the Day Master. Practitioners interpret relationships among these calendar symbols within a traditional framework; calculating the symbols does not establish that they predict a person's life.",
     breadcrumbs: baziBreadcrumbs("What Is Bazi", "/bazi/what-is-bazi"),
     schema: {
       headline: "",
       description: "",
       url: "",
       datePublished: "2025-12-05",
-      dateModified: "2026-08-03",
+      dateModified: "2026-09-24",
     },
     stats: [
       {
-        value: "1,200+",
-        label: "Years",
-        description: "A mature tradition from Tang and Song development.",
+        value: "8",
+        label: "Characters",
+        description: "Four stems and four branches make a complete chart.",
       },
       { value: "4", label: "Pillars", description: "Year, month, day, and hour." },
       { value: "60", label: "Jia Zi pairs", description: "The repeating stem-branch cycle." },
     ],
     citations: [
+      { label: "Lunar calendar library: stem-branch boundaries", source: "The library author distinguishes lunar-year, Li Chun day and exact transition conventions.", url: "https://6tail.cn/calendar/lunar.ganzhi.html" },
+      { label: "San Ming Tong Hui, volume 10", source: "Traditional month-branch and day-stem reading context in a Chinese Text Project transcription.", url: "https://ctext.org/wiki.pl?chapter=721793&if=en&remap=gb" },
       {
-        label: "Xu Ziping (徐子平, Song Dynasty)",
-        source: "Song dynasty figure associated with Day Master-centered Bazi.",
-      },
-      {
-        label: "《渊海子平》Yuan Hai Zi Ping (Song Dynasty, ~1100 CE)",
+        label: "《渊海子平》Yuan Hai Zi Ping",
         source: "Classical text that shaped later Four Pillars methods.",
       },
       {
-        label: "《三命通会》San Ming Tong Hui (Ming Dynasty, ~1550 CE)",
+        label: "《三命通会》San Ming Tong Hui",
         source:
           "Comprehensive classical synthesis of stem-branch interactions, Ten Gods, and chart structure.",
       },
     ],
     sections: [
+      baziNotationExample,
       {
-        heading: "Bazi began as a calendar-based life map",
+        heading: "Bazi means eight calendar characters",
         content: (
           <>
             <p>
-              Early Chinese birth analysis developed around year and seasonal timing. Tang dynasty
-              scholar Li Xuzhong is often linked with early pillar methods, while Song dynasty Zi
-              Ping methods placed the day stem at the center. In <cite>Yuan Hai Zi Ping</cite>, the
-              Day Master gives the chart a clear reference point.
+              Four Pillars texts organize a birth moment through stems and branches. The day stem is the reference point for the Zi Ping reading framework. San Ming Tong Hui, volume 10, discusses the role of the month branch alongside the day stem; this is a source for traditional reading order, rather than evidence that a personal prediction will come true.
             </p>
             <p>
               A full chart uses 4 pillars and 8 characters. These characters come from the same
@@ -556,10 +553,7 @@ export const baziPages: BaziContentPage[] = [
         content: (
           <>
             <p>
-              Bazi calculation begins by converting the birth moment into the Chinese solar
-              calendar. Month pillars follow the 24 solar terms, not the lunar new year. This is why
-              a person born in early February may still belong to the previous solar month for Bazi
-              even if popular zodiac calendars say the new animal year has started.
+              Bazi uses stem-branch calendar cycles. In a common solar-term convention, the year changes at Li Chun and the twelve months change at the twelve Jie boundaries within the 24 solar terms. These boundaries differ from the first day of a lunar month or Lunar New Year. Record which convention a calculator uses, especially for a birth near a transition.
             </p>
             <p>
               Once the year, month, day, and hour pillars are calculated, the reader identifies the
@@ -625,8 +619,7 @@ export const baziPages: BaziContentPage[] = [
         content: (
           <>
             <p>
-              Bazi can clarify recurring tendencies, useful elements, relationship patterns, and
-              timing pressure. It should not replace practical judgment, medical advice, or
+              Bazi offers traditional language for reflecting on recurring tendencies, element relationships and timing. It should not replace practical judgment, medical advice, or
               professional planning. The best use is reflective: compare the chart with real
               experience, then choose better habits, roles, and seasons for action.
             </p>
@@ -653,7 +646,13 @@ export const baziPages: BaziContentPage[] = [
         ),
       },
     ],
-    faqs: defaultFaqs,
+    faqs: [...defaultFaqs, {
+      question: "Why can two Bazi calculators show different pillars?",
+      answer: "Compare year and month boundaries, local civil versus solar time, time-zone handling and day rollover conventions. This site currently uses a lunar-year boundary and date-level Jie month boundaries. A precise Li Chun-based chart can differ near a transition. Check the calculation method before interpreting the difference.",
+    }, {
+      question: "Is the Day Master the same as my zodiac animal?",
+      answer: "No. The Day Master is the Heavenly Stem of the day pillar. A birth-year zodiac animal comes from the year branch. In the illustrative day pillar Jia Zi, Jia is the Yang Wood Day Master and Zi is the Rat branch; the year animal cannot be inferred from that day pillar alone.",
+    }],
     relatedLinks: [
       ...baziBaseLinks,
       {

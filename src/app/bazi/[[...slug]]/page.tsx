@@ -1,8 +1,11 @@
+import { isCanonicalContentPath } from "@/lib/content/urls";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import KnowledgePage from "@/components/templates/KnowledgePage";
 import { getBaziPage, getBaziStaticParams } from "@/content/bazi/pages";
 import { buildKnowledgePageMetadata } from "@/lib/seo/metadata";
+
+export const dynamicParams = false;
 
 interface BaziPageProps {
   params: Promise<{
@@ -15,7 +18,7 @@ function slugFromSegments(segments?: string[]): string {
 }
 
 export function generateStaticParams(): Array<{ slug?: string[] }> {
-  return getBaziStaticParams();
+  return getBaziStaticParams().filter(({ slug }) => isCanonicalContentPath(`/bazi${slug?.length ? '/' + slug.join('/') : ''}`));
 }
 
 export async function generateMetadata({ params }: BaziPageProps): Promise<Metadata> {
@@ -23,7 +26,7 @@ export async function generateMetadata({ params }: BaziPageProps): Promise<Metad
   const page = getBaziPage(slugFromSegments(slug));
 
   if (!page) {
-    return {};
+    notFound();
   }
 
   return buildKnowledgePageMetadata(page);

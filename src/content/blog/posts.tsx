@@ -3,6 +3,7 @@ import type { KnowledgePageProps } from "@/components/templates/KnowledgePage";
 import type { FAQ } from "@/components/shared/FAQSection";
 import { SITE } from "@/lib/constants";
 import TermLink from "@/components/shared/TermLink";
+import { deskReviewSection, deskReviewFaqs } from "./desk-review";
 
 export interface BlogPost {
   slug: string;
@@ -339,14 +340,14 @@ function buildPage(input: Omit<BlogPost, "data"> & KnowledgePageProps): BlogPost
     data: {
       ...data,
       title,
-      sections: withEditorialQuote(data.sections),
+      sections: path === "/blog/office-desk-feng-shui" ? data.sections : withEditorialQuote(data.sections),
       schema: {
         ...data.schema,
         headline: title,
         description,
         url: pageUrl(path),
-        datePublished: data.schema.datePublished ?? "2026-04-01",
-        dateModified: data.schema.dateModified ?? "2026-04-01",
+        datePublished: data.schema.datePublished,
+        dateModified: data.schema.dateModified,
       },
     },
   };
@@ -1142,9 +1143,9 @@ const editorialSeeds: EditorialSeed[] = [
   {
     slug: "office-desk-feng-shui",
     datePublished: "2026-04-10",
-    dateModified: "2026-05-05",
-    title: "Office Desk Feng Shui: Command Position and Focus",
-    description: "A simple office desk Feng Shui guide for visibility, support, and better work habits.",
+    dateModified: "2026-09-26",
+    title: "Desk Feng Shui Checklist: A 10-Minute Workspace Review",
+    description: "Review desk sightlines, access, lighting and clutter with a five-step checklist. Record one reversible change and compare what improves in everyday use.",
     category: "Feng Shui Guide",
     entity: "Office Desk Feng Shui",
     focus: "desk command",
@@ -1182,7 +1183,7 @@ const editorialSeeds: EditorialSeed[] = [
     category: "Zodiac Guide",
     entity: "Rat Horse Clash",
     focus: "branch opposition",
-    primaryHref: "/chinese-zodiac/compatibility",
+    primaryHref: "/blog/chinese-zodiac-compatibility-chart",
     primaryLabel: "Open compatibility guide",
   },
   {
@@ -1213,6 +1214,7 @@ const editorialSeeds: EditorialSeed[] = [
 
 function createEditorialPost(seed: EditorialSeed): BlogPost {
   const path = `/blog/${seed.slug}`;
+  const isDeskReview = seed.slug === "office-desk-feng-shui";
 
   return buildPage({
     slug: seed.slug,
@@ -1223,19 +1225,25 @@ function createEditorialPost(seed: EditorialSeed): BlogPost {
     entityName: seed.entity,
     entityType: "BlogPosting",
     subtitle: `A practical editorial guide to ${seed.focus}.`,
-    directAnswer: `${seed.entity} is best understood as a practical pattern language, not a total identity label. This article explains ${seed.focus}, shows how to place the symbol inside its wider system, names the mistakes that create shallow readings, and points you toward the right guide or tool for deeper context.`,
+    directAnswer: isDeskReview ? "Review a desk by checking the doorway sightline, support behind the chair, access, lighting and usable work surface. Sketch the current layout, record a specific problem, and choose one reversible change. This checklist applies spatial observation to the desk you already have." : `${seed.entity} is best understood as a practical pattern language, not a total identity label. This article explains ${seed.focus}, shows how to place the symbol inside its wider system, names the mistakes that create shallow readings, and points you toward the right guide or tool for deeper context.`,
     breadcrumbs: breadcrumbs(seed.title, path),
-    schema: { headline: "", description: "", url: "", datePublished: "2026-03-15", dateModified: "2026-04-25" },
-    stats: [
+    schema: { headline: "", description: "", url: "", datePublished: seed.datePublished, dateModified: seed.dateModified },
+    stats: isDeskReview ? [
+      { value: "5", label: "Checks", description: "Sightline, access, lighting, work surface and one change." },
+      { value: "10", label: "Minutes", description: "A short first review of the existing desk." },
+      { value: "1", label: "Change at a time", description: "Keep the before-and-after comparison clear." },
+    ] : [
       { value: "4", label: "Reading steps", description: "Define the symbol, check context, apply, then review." },
       { value: "1", label: "Main question", description: "Each article answers one clear search intent." },
       { value: "3+", label: "Next links", description: "Every article routes readers to a guide, tool, or foundation page." },
     ],
-    citations: [
+    citations: isDeskReview ? [
+      { label: "Office desk layout reference", source: "Mingli Atlas explanation of command position. This checklist records observable layout conditions.", url: `${SITE.url}/feng-shui/office/desk` },
+    ] : [
       { label: "Chinese metaphysics tradition", source: "Classical systems use symbols, cycles, and context as interpretation layers." },
       { label: "Chinese calendar tradition", source: "Many topics rely on stems, branches, elements, and seasonal timing." },
     ],
-    sections: [
+    sections: isDeskReview ? [deskReviewSection] : [
       {
         heading: `Why ${seed.entity} matters`,
         content: (
@@ -1309,7 +1317,7 @@ function createEditorialPost(seed: EditorialSeed): BlogPost {
         ),
       },
     ],
-    faqs: fireElementFaqs,
+    faqs: isDeskReview ? deskReviewFaqs : seed.slug === "fire-element-visibility" ? fireElementFaqs : [],
     relatedLinks: [
       { title: seed.primaryLabel, href: seed.primaryHref, description: "The canonical reference page for this topic — start here for the full definition and structure." },
       { title: "Beginner's Guide", href: "/learn/beginners-guide", description: "Return to the learning path if the vocabulary is new." },

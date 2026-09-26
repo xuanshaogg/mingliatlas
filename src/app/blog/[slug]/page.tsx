@@ -1,8 +1,11 @@
+import { isCanonicalContentPath } from "@/lib/content/urls";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import KnowledgePage from "@/components/templates/KnowledgePage";
 import { getBlogPage, getBlogStaticParams } from "@/content/blog/posts";
 import { buildKnowledgePageMetadata } from "@/lib/seo/metadata";
+
+export const dynamicParams = false;
 
 interface BlogPageProps {
   params: Promise<{
@@ -11,7 +14,7 @@ interface BlogPageProps {
 }
 
 export function generateStaticParams(): Array<{ slug: string }> {
-  return getBlogStaticParams();
+  return getBlogStaticParams().filter(({ slug }) => isCanonicalContentPath(`/blog/${slug}`));
 }
 
 export async function generateMetadata({ params }: BlogPageProps): Promise<Metadata> {
@@ -19,7 +22,7 @@ export async function generateMetadata({ params }: BlogPageProps): Promise<Metad
   const page = getBlogPage(slug);
 
   if (!page) {
-    return {};
+    notFound();
   }
 
   return buildKnowledgePageMetadata(page);

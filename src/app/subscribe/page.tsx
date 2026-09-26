@@ -25,20 +25,16 @@ export default async function SubscribePage({ searchParams }: SubscribePageProps
   const isRateLimited = params?.error === "rate_limited";
 
   return (
-    <main className="bg-paper px-4 py-12 dark:bg-ink-950 sm:px-6 lg:px-8">
+    <section className="bg-paper dark:bg-ink-950 px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-3xl">
-        <p className="text-sm font-semibold uppercase tracking-[0.25em] text-brand-primary dark:text-gold-300">
-          Newsletter
-        </p>
-        <h1 className="mt-4 text-4xl font-semibold tracking-tight text-ink-950 dark:text-paper sm:text-5xl">
-          Subscribe
-        </h1>
-        <p className="mt-5 text-lg leading-8 text-ink-600 dark:text-ink-300">
+        <p className="atlas-eyebrow">Newsletter</p>
+        <h1 className="atlas-page-title mt-5">Subscribe</h1>
+        <p className="atlas-page-intro mt-5">
           Get practical explainers on Chinese metaphysics, seasonal cycles, and new free tools.
         </p>
 
         <TrackedForm
-          className="mt-10 grid gap-4 rounded-[1.25rem] border border-ink-200 bg-white p-6 dark:border-white/10 dark:bg-white/5"
+          className="atlas-surface mt-10 grid gap-4 p-6"
           action="/api/subscribe"
           method="post"
           eventName="subscribe_requested"
@@ -46,25 +42,44 @@ export default async function SubscribePage({ searchParams }: SubscribePageProps
         >
           <input type="hidden" name="source" value="subscribe_page" />
           {hasValidationError ? (
-            <p role="alert" className="rounded-lg border border-brand-200 bg-brand-50 px-4 py-3 text-sm leading-6 text-brand-900 dark:border-brand-500/30 dark:bg-brand-500/10 dark:text-brand-100">
+            <p
+              role="alert"
+              className="border-brand-200 bg-brand-50 text-brand-900 dark:border-brand-500/30 dark:bg-brand-500/10 dark:text-brand-100 rounded-lg border px-4 py-3 text-sm leading-6"
+            >
               Please enter a valid email address before subscribing.
             </p>
           ) : null}
           {isUnavailable ? (
-            <p role="alert" className="rounded-lg border border-brand-200 bg-brand-50 px-4 py-3 text-sm leading-6 text-brand-900 dark:border-brand-500/30 dark:bg-brand-500/10 dark:text-brand-100">
+            <p
+              role="alert"
+              className="border-brand-200 bg-brand-50 text-brand-900 dark:border-brand-500/30 dark:bg-brand-500/10 dark:text-brand-100 rounded-lg border px-4 py-3 text-sm leading-6"
+            >
               Your subscription could not be saved. Please try again later.
             </p>
           ) : null}
           {isRateLimited ? (
-            <p role="alert" className="rounded-lg border border-brand-200 bg-brand-50 px-4 py-3 text-sm leading-6 text-brand-900 dark:border-brand-500/30 dark:bg-brand-500/10 dark:text-brand-100">
-              Too many subscription attempts were submitted from this connection. Please wait before trying again.
+            <p
+              role="alert"
+              className="border-brand-200 bg-brand-50 text-brand-900 dark:border-brand-500/30 dark:bg-brand-500/10 dark:text-brand-100 rounded-lg border px-4 py-3 text-sm leading-6"
+            >
+              Too many subscription attempts were submitted from this connection. Please wait before
+              trying again.
             </p>
           ) : null}
           <div className="absolute left-[-9999px]" aria-hidden="true">
             <label htmlFor="subscribe-website">Website</label>
-            <input id="subscribe-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+            <input
+              id="subscribe-website"
+              name="website"
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+            />
           </div>
-          <label className="grid gap-2 text-sm font-medium text-ink-900 dark:text-paper" htmlFor="subscribe-email">
+          <label
+            className="text-ink-900 dark:text-paper grid gap-2 text-sm font-medium"
+            htmlFor="subscribe-email"
+          >
             Email address
             <input
               id="subscribe-email"
@@ -73,18 +88,32 @@ export default async function SubscribePage({ searchParams }: SubscribePageProps
               required
               autoComplete="email"
               placeholder="you@example.com"
-              className="rounded-md border border-ink-200 bg-paper px-4 py-3 text-sm text-ink-950 outline-none focus:border-brand-primary dark:border-white/10 dark:bg-ink-900 dark:text-paper"
+              className="atlas-input min-h-12 py-3"
             />
           </label>
-          <button type="submit" className="inline-flex w-fit rounded-full bg-brand-primary px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-700">
+          <button type="submit" className="atlas-button-primary w-fit">
             Subscribe
           </button>
         </TrackedForm>
 
-        <p className="mt-6 text-sm leading-6 text-ink-500 dark:text-ink-400">
-          We store your email only for site updates. You can <Link href="/unsubscribe" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">unsubscribe at any time</Link>, or return <Link href="/" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">home</Link>.
+        <p className="text-ink-500 dark:text-ink-400 mt-6 text-sm leading-6">
+          We store your email only for site updates. You can{" "}
+          <Link
+            href="/unsubscribe"
+            className="text-brand-primary decoration-brand-primary/30 dark:text-gold-300 underline"
+          >
+            unsubscribe at any time
+          </Link>
+          , or return{" "}
+          <Link
+            href="/"
+            className="text-brand-primary decoration-brand-primary/30 dark:text-gold-300 underline"
+          >
+            home
+          </Link>
+          .
         </p>
       </div>
-    </main>
+    </section>
   );
 }

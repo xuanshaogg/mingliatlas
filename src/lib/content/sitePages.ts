@@ -5,6 +5,7 @@ import { allIChingPages } from "@/content/i-ching/pages";
 import { allLearnPages } from "@/content/learn/pages";
 import { allZodiacPages } from "@/content/zodiac/pages";
 import { allZiweiPages } from "@/content/ziwei/pages";
+import { isCanonicalContentPath } from "./urls";
 
 export interface SitePage {
   title: string;
@@ -15,9 +16,9 @@ export interface SitePage {
 }
 
 const CONTENT_LAST_MODIFIED = "2026-06-21";
-const ABOUT_LAST_MODIFIED = "2026-08-07";
+const ABOUT_LAST_MODIFIED = "2026-09-24";
 const SITE_STRUCTURE_LAST_MODIFIED = "2026-07-12";
-const CORE_INDEXING_LAST_MODIFIED = "2026-08-03";
+const SEO_CONTENT_LAST_MODIFIED = "2026-09-24";
 
 function latestModified(dates: Array<string | undefined>): string {
   return dates.filter(Boolean).sort().at(-1) ?? CONTENT_LAST_MODIFIED;
@@ -100,7 +101,7 @@ export const systemLandingPages: SitePage[] = [
     href: "/tools",
     description: "Free calculators and workflows for Chinese metaphysics learning.",
     section: "Tools",
-    lastModified: SITE_STRUCTURE_LAST_MODIFIED,
+    lastModified: SEO_CONTENT_LAST_MODIFIED,
   },
   {
     title: "Free Bazi Calculator",
@@ -108,21 +109,21 @@ export const systemLandingPages: SitePage[] = [
     description:
       "Generate a Four Pillars chart with Day Master, Ten Gods, hidden stems, and Five Element balance.",
     section: "Tools",
-    lastModified: CORE_INDEXING_LAST_MODIFIED,
+    lastModified: SEO_CONTENT_LAST_MODIFIED,
   },
   {
     title: "I Ching Oracle",
     href: "/tools/i-ching-oracle",
     description: "Cast a six-line hexagram with changing lines and reflective guidance.",
     section: "Tools",
-    lastModified: CORE_INDEXING_LAST_MODIFIED,
+    lastModified: SEO_CONTENT_LAST_MODIFIED,
   },
   {
     title: "Zodiac Compatibility Calculator",
     href: "/tools/zodiac-compatibility",
     description: "Compare two zodiac signs through harmony, triad, and clash patterns.",
     section: "Tools",
-    lastModified: SITE_STRUCTURE_LAST_MODIFIED,
+    lastModified: SEO_CONTENT_LAST_MODIFIED,
   },
 ];
 
@@ -178,7 +179,7 @@ export const blogPages: SitePage[] = [
     description:
       "Practical Chinese metaphysics articles with source notes, examples, and learning paths.",
     section: "Blog",
-    lastModified: latestBlogModified,
+    lastModified: latestModified([latestBlogModified, SEO_CONTENT_LAST_MODIFIED]),
   },
   ...allBlogPosts.map((page) => ({
     title: page.title,
@@ -189,19 +190,21 @@ export const blogPages: SitePage[] = [
   })),
 ];
 
-export const publishedSitePages: SitePage[] = [
-  {
-    title: "Home",
-    href: "/",
-    description: "Chinese metaphysics guides and free tools for Western readers.",
-    section: "Home",
-    lastModified: CORE_INDEXING_LAST_MODIFIED,
-  },
-  ...blogPages,
-  ...knowledgePages,
-  ...systemLandingPages,
-  ...generalPages,
-];
+export const publishedSitePages: SitePage[] = (
+  [
+    {
+      title: "Home",
+      href: "/",
+      description: "Chinese metaphysics guides and free tools for Western readers.",
+      section: "Home",
+      lastModified: SEO_CONTENT_LAST_MODIFIED,
+    },
+    ...blogPages,
+    ...knowledgePages,
+    ...systemLandingPages,
+    ...generalPages,
+  ] satisfies SitePage[]
+).filter((page) => isCanonicalContentPath(page.href));
 
 export function groupPagesBySection(pages: SitePage[]): Map<string, SitePage[]> {
   const grouped = new Map<string, SitePage[]>();

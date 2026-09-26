@@ -1,7 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { Copy, Download, Share2 } from "lucide-react";
+import { useId, useMemo, useState } from "react";
+import { Check, Copy, Download, LoaderCircle, Share2 } from "lucide-react";
 import { buildShareCardUrl, type ShareTool } from "@/lib/share-card-url";
 import { trackEvent } from "@/lib/analytics";
 import { SITE } from "@/lib/constants";
@@ -13,55 +13,144 @@ interface ShareCardControlsProps {
 }
 
 export default function ShareCardControls({ tool, params, label }: ShareCardControlsProps) {
-  const [copied, setCopied] = useState(false);
-  const shareCardUrl = useMemo(() => buildShareCardUrl({ baseUrl: SITE.url, tool, params }), [params, tool]);
+  const [feedback, setFeedback] = useState({ url: "", kind: "", message: "" });
+  const [downloading, setDownloading] = useState(false);
+  const inputId = useId();
+  const shareCardUrl = useMemo(
+    () => buildShareCardUrl({ baseUrl: SITE.url, tool, params }),
+    [params, tool]
+  );
+  const currentFeedback = feedback.url === shareCardUrl ? feedback : null;
+  const card = new URL(shareCardUrl);
+  const localCardUrl = card.pathname + card.search;
 
   async function copyShareCardUrl(): Promise<void> {
-    await navigator.clipboard.writeText(shareCardUrl);
-    setCopied(true);
-    trackEvent("share_card_clicked", { tool_name: tool, action: "copy" });
-    window.setTimeout(() => setCopied(false), 1800);
+    try {
+      if (!navigator.clipboard) throw new Error("Clipboard unavailable");
+      await navigator.clipboard.writeText(shareCardUrl);
+      setFeedback({
+        url: shareCardUrl,
+        kind: "copy",
+        message: "Card link copied. You can paste it wherever you want to share.",
+      });
+      trackEvent("share_card_clicked", { tool_name: tool, action: "copy" });
+    } catch {
+      setFeedback({
+        url: shareCardUrl,
+        kind: "copy-error",
+        message: "Automatic copying is unavailable. Select and copy the link below.",
+      });
+    }
+  }
+
+  async function downloadCard(): Promise<void> {
+    setDownloading(true);
+    setFeedback({ url: shareCardUrl, kind: "", message: "" });
+    try {
+      const response = await fetch(localCardUrl, { signal: AbortSignal.timeout(15000) });
+      if (!response.ok || !response.headers.get("content-type")?.startsWith("image/"))
+        throw new Error("Card unavailable");
+      const blobUrl = URL.createObjectURL(await response.blob());
+      const anchor = document.createElement("a");
+      anchor.href = blobUrl;
+      anchor.download = label + ".png";
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+      window.setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
+      setFeedback({
+        url: shareCardUrl,
+        kind: "download",
+        message: "Your image is ready. Check your browser downloads.",
+      });
+      trackEvent("share_card_clicked", { tool_name: tool, action: "download" });
+    } catch {
+      setFeedback({
+        url: shareCardUrl,
+        kind: "error",
+        message: "The image could not be downloaded. Try again or use Preview to open the card.",
+      });
+    } finally {
+      setDownloading(false);
+    }
   }
 
   return (
-    <div className="rounded-lg border border-ink-200 bg-paper-100 p-4 dark:border-white/10 dark:bg-ink-900/80">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div>
-          <p className="text-sm font-semibold text-ink-950 dark:text-paper">Share this result</p>
-          <p className="mt-1 text-xs leading-5 text-ink-500 dark:text-ink-400">
-            Privacy-safe card generated only from URL parameters.
+    <div className="border-ink-200 bg-paper-50 dark:bg-ink-950/50 rounded-2xl border p-4 sm:p-5 dark:border-white/10">
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <div className="max-w-md">
+          <p className="text-ink-950 dark:text-paper flex items-center gap-2 text-sm font-semibold">
+            <Share2 className="text-brand-primary h-4 w-4" aria-hidden="true" /> Keep or share this
+            result
+          </p>
+          <p className="text-ink-500 dark:text-ink-400 mt-2 text-xs leading-5">
+            {tool === "bazi"
+              ? "The card link includes the birth date, time, and calculation settings used for this chart."
+              : tool === "i-ching"
+                ? "Only the hexagram and changing lines are shared. Your question stays private."
+                : "The card contains the two selected signs and their compatibility result."}
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
           <a
-            href={shareCardUrl}
+            href={localCardUrl}
             target="_blank"
             rel="noreferrer"
             onClick={() => trackEvent("share_card_clicked", { tool_name: tool, action: "preview" })}
-            className="inline-flex h-10 items-center justify-center gap-2 rounded-full border border-ink-200 px-4 text-sm font-semibold text-ink-800 transition hover:border-brand-primary hover:text-brand-primary dark:border-white/10 dark:text-ink-200 dark:hover:border-gold-300 dark:hover:text-gold-200"
+            className="atlas-button-secondary"
           >
-            <Share2 className="h-4 w-4" aria-hidden="true" />
-            Preview
+            Preview<span className="sr-only"> share card in a new tab</span>
           </a>
+          <button type="button" onClick={copyShareCardUrl} className="atlas-button-secondary">
+            {currentFeedback?.kind === "copy" ? (
+              <Check className="h-4 w-4" aria-hidden="true" />
+            ) : (
+              <Copy className="h-4 w-4" aria-hidden="true" />
+            )}
+            {currentFeedback?.kind === "copy" ? "Copied" : "Copy link"}
+          </button>
           <button
             type="button"
-            onClick={copyShareCardUrl}
-            className="inline-flex h-10 items-center justify-center gap-2 rounded-full border border-ink-200 px-4 text-sm font-semibold text-ink-800 transition hover:border-brand-primary hover:text-brand-primary dark:border-white/10 dark:text-ink-200 dark:hover:border-gold-300 dark:hover:text-gold-200"
+            onClick={downloadCard}
+            disabled={downloading}
+            className="atlas-button-primary"
           >
-            <Copy className="h-4 w-4" aria-hidden="true" />
-            {copied ? "Copied" : "Copy"}
+            {downloading ? (
+              <LoaderCircle
+                className="h-4 w-4 animate-spin motion-reduce:animate-none"
+                aria-hidden="true"
+              />
+            ) : (
+              <Download className="h-4 w-4" aria-hidden="true" />
+            )}
+            {downloading ? "Preparing…" : "Save image"}
           </button>
-          <a
-            href={shareCardUrl}
-            download={`${label}.png`}
-            onClick={() => trackEvent("share_card_clicked", { tool_name: tool, action: "download" })}
-            className="inline-flex h-10 items-center justify-center gap-2 rounded-full bg-brand-primary px-4 text-sm font-semibold text-white transition hover:bg-brand-800 dark:bg-gold-400 dark:text-ink-950 dark:hover:bg-gold-300"
-          >
-            <Download className="h-4 w-4" aria-hidden="true" />
-            Download
-          </a>
         </div>
       </div>
+      <p
+        role="status"
+        className={
+          currentFeedback?.message
+            ? "text-ink-600 dark:text-ink-300 mt-3 text-xs leading-5"
+            : "sr-only"
+        }
+      >
+        {currentFeedback?.message ?? ""}
+      </p>
+      {currentFeedback?.kind === "copy-error" ? (
+        <div className="mt-3">
+          <label htmlFor={inputId} className="text-ink-600 dark:text-ink-300 text-xs font-medium">
+            Share card link
+          </label>
+          <input
+            id={inputId}
+            readOnly
+            value={shareCardUrl}
+            onFocus={(event) => event.currentTarget.select()}
+            className="atlas-input mt-2 h-11"
+          />
+        </div>
+      ) : null}
     </div>
   );
 }

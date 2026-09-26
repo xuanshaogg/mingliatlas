@@ -1,3 +1,4 @@
+import { buildPageMetadata } from "@/lib/seo/metadata";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -22,10 +23,13 @@ import {
 } from "@/lib/seo/jsonLd";
 
 export const metadata: Metadata = {
-  title: `Mingli Meaning & Free Bazi Calculator | Mingli Atlas`,
-  description:
-    "Mingli (ming li, 命理) means life-pattern principles. Mingli Atlas explains Bazi, Chinese Zodiac, I Ching, Ziwei Doushu, and Feng Shui with free tools.",
-  alternates: { canonical: "/" },
+  ...buildPageMetadata({
+    title: "Mingli Meaning & Free Bazi Calculator",
+    description:
+      "Mingli (ming li) means life-pattern principles. Explore Chinese metaphysics, build a Bazi chart, compare zodiac signs, and learn with step-by-step guides.",
+    path: "/",
+  }),
+  title: { absolute: "Mingli Meaning & Free Bazi Calculator | Mingli Atlas" },
 };
 
 const systems = [
@@ -193,6 +197,8 @@ const homepageFaqs = [
 ];
 
 const featuredToolsSchema = buildItemListSchema({
+  id: `${SITE.url}/#featured-tools`,
+  itemType: "WebApplication",
   name: "Featured Chinese Metaphysics Tools",
   description:
     "Free Chinese metaphysics tools for Bazi charts, I Ching reflection, and zodiac compatibility.",
@@ -216,6 +222,7 @@ const mingliEntitySchema = buildDefinedTermSchema({
   },
 });
 const searchIntentSchema = buildItemListSchema({
+  id: `${SITE.url}/#popular-guides`,
   name: "Popular Chinese Metaphysics Searches",
   description:
     "High-intent entry points for Bazi, Chinese zodiac years, Dragon zodiac, and compatibility.",
@@ -229,27 +236,38 @@ const searchIntentSchema = buildItemListSchema({
 
 function HeroMark() {
   return (
-    <div className="border-ink-300 bg-paper-100 relative mx-auto aspect-square w-full max-w-[30rem] overflow-hidden border p-7 sm:p-10 lg:mx-0 lg:ml-auto">
-      <div className="border-ink-300 absolute inset-7 border sm:inset-10" />
-      <div className="border-brand-primary/35 absolute inset-14 rounded-full border sm:inset-20" />
-      <div className="border-ink-300 absolute inset-[28%] rounded-full border" />
-      <div className="bg-brand-primary absolute top-0 left-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full" />
-      <div className="bg-brand-primary absolute bottom-0 left-1/2 h-3 w-3 -translate-x-1/2 translate-y-1/2 rounded-full" />
-      <div className="bg-brand-primary absolute top-1/2 left-0 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full" />
-      <div className="bg-brand-primary absolute top-1/2 right-0 h-3 w-3 translate-x-1/2 -translate-y-1/2 rounded-full" />
-      <Image
-        src="/logo-icon.svg"
-        alt=""
-        width={240}
-        height={240}
-        priority
-        className="absolute top-1/2 left-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 sm:h-52 sm:w-52"
-      />
-      <div className="border-ink-300 text-ink-500 absolute right-7 bottom-7 left-7 flex items-end justify-between border-t pt-4 text-xs tracking-[0.18em] uppercase sm:right-10 sm:bottom-10 sm:left-10">
-        <span>Pattern / timing / context</span>
-        <span className="text-brand-primary font-serif text-3xl tracking-normal normal-case">
-          命理
-        </span>
+    <div
+      aria-hidden="true"
+      className="relative mx-auto aspect-square w-full max-w-[28rem] rounded-full bg-[radial-gradient(circle,rgba(231,203,189,0.45)_0%,rgba(239,242,236,0.5)_48%,transparent_72%)] lg:ml-auto"
+    >
+      <div className="absolute inset-5 rounded-full border border-white/90" />
+      <div className="border-brand-200/50 absolute inset-[16%] rounded-full border" />
+      <div className="absolute inset-[31%] rounded-full border border-white" />
+      <span className="bg-brand-300 absolute top-[24%] left-[15%] h-3 w-3 rounded-full ring-8 ring-white/60" />
+      <span className="bg-ink-400 absolute right-[12%] bottom-[26%] h-2 w-2 rounded-full ring-8 ring-white/60" />
+      <div className="absolute top-[45%] left-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center rounded-[2.25rem] border border-white bg-white/90 px-8 py-7 shadow-[0_20px_60px_-24px_rgb(83_74_54_/_0.22)] sm:px-10 sm:py-9">
+        <Image
+          src="/logo-icon.svg"
+          alt=""
+          width={120}
+          height={120}
+          priority
+          className="h-24 w-24 sm:h-28 sm:w-28"
+        />
+        <span className="text-brand-primary mt-4 text-2xl font-medium tracking-[0.18em]">命理</span>
+      </div>
+      <span className="text-ink-600 absolute top-[17%] right-[2%] rounded-full border border-white bg-white/90 px-4 py-2.5 text-xs font-medium shadow-sm sm:text-sm">
+        Five Elements
+      </span>
+      <span className="text-ink-600 absolute bottom-[24%] left-0 rounded-full border border-white bg-white/90 px-4 py-2.5 text-xs font-medium shadow-sm sm:text-sm">
+        Four Pillars
+      </span>
+      <div className="text-ink-500 absolute inset-x-0 bottom-[5%] flex justify-center gap-2 text-xs">
+        <span>Pattern</span>
+        <span aria-hidden="true">·</span>
+        <span>Timing</span>
+        <span aria-hidden="true">·</span>
+        <span>Context</span>
       </div>
     </div>
   );
@@ -263,14 +281,13 @@ export default function Home() {
       <JsonLd data={mingliEntitySchema} />
       <JsonLd data={searchIntentSchema} />
 
-      <section className="border-ink-200 bg-paper relative overflow-hidden border-b">
-        <div className="border-ink-200 pointer-events-none absolute inset-y-0 right-0 hidden w-[42%] border-l lg:block" />
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-10 sm:px-8 sm:py-14 lg:grid-cols-[1.02fr_0.98fr] lg:gap-12 lg:px-10 lg:py-12">
+      <section className="from-paper-100 via-paper-50 to-brand-50 relative mx-3 overflow-hidden rounded-[2rem] bg-gradient-to-br sm:mx-6 sm:rounded-[2.5rem]">
+        <div className="mx-auto grid max-w-7xl items-center gap-6 px-5 py-10 sm:px-8 sm:py-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-10 lg:px-12 lg:py-14">
           <div className="relative z-10 max-w-2xl">
-            <p className="home-reveal text-brand-primary text-sm font-semibold tracking-[0.22em] uppercase">
+            <p className="home-reveal text-brand-primary inline-flex rounded-full bg-white/80 px-3.5 py-2 text-xs leading-5 font-semibold">
               Free Bazi, I Ching &amp; Chinese Zodiac tools
             </p>
-            <h1 className="home-reveal home-reveal-delay font-display text-ink-950 mt-6 max-w-2xl text-5xl leading-[0.96] tracking-normal sm:text-7xl lg:text-[5rem]">
+            <h1 className="home-reveal home-reveal-delay text-ink-950 mt-5 max-w-2xl text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.12] font-semibold tracking-[-0.055em] sm:mt-6">
               Mingli Atlas
             </h1>
             <p className="home-reveal home-reveal-delay-2 text-ink-600 mt-7 max-w-xl text-base leading-7 sm:text-lg sm:leading-8">
@@ -278,47 +295,43 @@ export default function Home() {
               or cast the I Ching with clear English guidance and no sign-up.
             </p>
             <div className="home-reveal home-reveal-delay-3 mt-9 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/tools/bazi-calculator"
-                className="group bg-brand-primary hover:bg-brand-700 inline-flex items-center justify-center px-6 py-3.5 text-sm font-semibold text-white transition"
-              >
+              <Link href="/tools/bazi-calculator" className="atlas-button-primary group">
                 Build your Bazi chart{" "}
                 <ArrowUpRight
                   className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                   aria-hidden="true"
                 />
               </Link>
-              <Link
-                href="/learn/beginners-guide"
-                className="border-ink-300 text-ink-800 hover:border-brand-primary hover:text-brand-primary inline-flex items-center justify-center border px-6 py-3.5 text-sm font-semibold transition"
-              >
+              <Link href="/learn/beginners-guide" className="atlas-button-secondary">
                 Start with the basics
               </Link>
             </div>
-            <div className="text-ink-500 mt-10 flex items-center gap-4 text-xs tracking-[0.18em] uppercase">
-              <span className="bg-brand-primary h-px w-10" />
+            <div className="text-ink-500 mt-8 flex items-center gap-3 text-xs leading-6">
+              <span className="bg-brand-300 h-1.5 w-1.5 shrink-0 rounded-full" />
               {SITE.tagline}
             </div>
           </div>
-          <div className="home-reveal home-reveal-delay-2 relative z-10">
+          <div className="home-reveal home-reveal-delay-2 relative z-10 hidden sm:block">
             <HeroMark />
           </div>
         </div>
       </section>
 
-      <section className="border-ink-200 border-b bg-white" aria-label="Popular starting points">
-        <div className="mx-auto grid max-w-7xl sm:grid-cols-3">
+      <section className="px-5 pt-6 sm:px-8 lg:px-10" aria-label="Popular starting points">
+        <div className="mx-auto grid max-w-7xl gap-3 sm:grid-cols-3">
           {toolPaths.map((tool, index) => (
             <Link
               key={tool.href}
               href={tool.href}
-              className="group border-ink-200 hover:bg-paper-100 flex items-center justify-between gap-5 px-5 py-5 transition sm:px-7 sm:py-6 sm:[&+a]:border-l"
+              className="atlas-surface group hover:border-brand-200 flex items-center justify-between gap-4 p-5 transition-colors sm:p-6"
             >
               <span>
-                <span className="text-brand-primary block text-[0.68rem] font-semibold tracking-[0.18em] uppercase">
+                <span className="text-ink-500 block text-xs font-medium">
                   0{index + 1} / {tool.label}
                 </span>
-                <span className="text-ink-950 mt-1 block font-serif text-xl">{tool.title}</span>
+                <span className="text-ink-950 mt-2 block text-lg font-semibold tracking-tight">
+                  {tool.title}
+                </span>
               </span>
               <ArrowRight
                 className="text-brand-primary h-4 w-4 flex-none transition-transform group-hover:translate-x-1"
@@ -329,19 +342,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section
-        className="border-ink-200 bg-paper border-b px-5 py-14 sm:px-8 lg:px-10 lg:py-16"
-        aria-labelledby="mingli-meaning"
-      >
+      <section className="px-5 py-16 sm:px-8 lg:px-10 lg:py-20" aria-labelledby="mingli-meaning">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
           <div>
-            <p className="text-brand-primary text-sm font-semibold tracking-[0.2em] uppercase">
-              Mingli meaning
-            </p>
-            <h2
-              id="mingli-meaning"
-              className="font-display text-ink-950 mt-4 max-w-lg text-4xl leading-tight sm:text-5xl"
-            >
+            <p className="atlas-eyebrow">Mingli meaning</p>
+            <h2 id="mingli-meaning" className="atlas-section-title mt-5 max-w-lg">
               Mingli means life-pattern principles.
             </h2>
           </div>
@@ -360,11 +365,9 @@ export default function Home() {
             </Link>
             <div className="mt-8 grid gap-5 sm:grid-cols-3">
               {mingliMeaningPoints.map((point) => (
-                <div key={point.label} className="border-ink-200 border-l pl-4">
-                  <p className="text-brand-primary font-mono text-xs tracking-[0.16em] uppercase">
-                    {point.label}
-                  </p>
-                  <p className="text-ink-950 mt-3 font-serif text-4xl">{point.value}</p>
+                <div key={point.label} className="bg-paper-100/70 rounded-2xl p-5">
+                  <p className="text-ink-500 text-xs font-medium">{point.label}</p>
+                  <p className="text-ink-950 mt-3 text-3xl font-medium">{point.value}</p>
                   <p className="text-ink-600 mt-3 text-sm leading-6">{point.description}</p>
                 </div>
               ))}
@@ -373,13 +376,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-white px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
+      <section className="px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-24">
           <div>
-            <p className="text-brand-primary text-sm font-semibold tracking-[0.2em] uppercase">
-              Start with a question
-            </p>
-            <h2 className="font-display text-ink-950 mt-4 max-w-md text-4xl leading-tight sm:text-5xl">
+            <p className="atlas-eyebrow">Start with a question</p>
+            <h2 className="atlas-section-title mt-5 max-w-md">
               Useful answers, before the jargon.
             </h2>
             <p className="text-ink-600 mt-5 max-w-md text-base leading-7">
@@ -403,7 +404,7 @@ export default function Home() {
                   0{index + 1}
                 </span>
                 <span>
-                  <span className="text-ink-950 group-hover:text-brand-primary block font-serif text-2xl transition">
+                  <span className="text-ink-950 group-hover:text-brand-primary block text-xl font-semibold tracking-tight transition-colors">
                     {item.title}
                   </span>
                   <span className="text-ink-600 mt-2 block max-w-xl text-sm leading-6">
@@ -420,14 +421,12 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-ink-200 bg-paper-100 border-y px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
+      <section className="bg-paper-100/70 px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
         <div className="mx-auto max-w-7xl">
-          <div className="border-ink-200 flex flex-col justify-between gap-6 border-b pb-10 md:flex-row md:items-end">
+          <div className="flex flex-col justify-between gap-6 pb-8 md:flex-row md:items-end">
             <div>
-              <p className="text-brand-primary text-sm font-semibold tracking-[0.2em] uppercase">
-                The knowledge map
-              </p>
-              <h2 className="font-display text-ink-950 mt-4 max-w-2xl text-4xl leading-tight sm:text-5xl">
+              <p className="atlas-eyebrow">The knowledge map</p>
+              <h2 className="atlas-section-title mt-5 max-w-2xl">
                 Six traditions, one clear starting point.
               </h2>
             </div>
@@ -435,25 +434,22 @@ export default function Home() {
               Each system answers a different kind of question. Explore the one that fits yours.
             </p>
           </div>
-          <div className="mt-2 grid sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {systems.map((system) => {
               const Icon = system.icon;
               return (
                 <Link
                   key={system.href}
                   href={system.href}
-                  className="group border-ink-200 border-b py-8 sm:px-5 lg:px-7 lg:[&:nth-child(3n)]:border-l lg:[&:nth-child(3n+2)]:border-l sm:[&:nth-child(odd)]:border-r"
+                  className="atlas-surface group hover:border-brand-200 p-6 transition-colors sm:p-7"
                 >
                   <div className="flex items-start justify-between gap-4">
-                    <Icon
-                      className="text-brand-primary h-6 w-6 transition-transform group-hover:-translate-y-1"
-                      aria-hidden="true"
-                    />
+                    <Icon className="text-brand-primary h-6 w-6" aria-hidden="true" />
                     <span className="text-ink-400 font-mono text-xs tracking-[0.15em]">
                       {system.number}
                     </span>
                   </div>
-                  <h3 className="text-ink-950 group-hover:text-brand-primary mt-7 font-serif text-3xl transition">
+                  <h3 className="text-ink-950 group-hover:text-brand-primary mt-6 text-2xl font-semibold tracking-tight transition-colors">
                     {system.title}
                   </h3>
                   <p className="text-ink-600 mt-3 max-w-xs text-sm leading-6">
@@ -473,15 +469,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-white px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
+      <section className="px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-24">
           <div>
-            <p className="text-brand-primary text-sm font-semibold tracking-[0.2em] uppercase">
-              Latest guides
-            </p>
-            <h2 className="font-display text-ink-950 mt-4 max-w-md text-4xl leading-tight sm:text-5xl">
-              A better first read.
-            </h2>
+            <p className="atlas-eyebrow">Latest guides</p>
+            <h2 className="atlas-section-title mt-5 max-w-md">A better first read.</h2>
             <Link
               href="/blog"
               className="text-brand-primary decoration-brand-300 hover:text-brand-700 mt-8 inline-flex items-center text-sm font-semibold underline underline-offset-8 transition"
@@ -489,16 +481,13 @@ export default function Home() {
               View all articles <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
             </Link>
           </div>
-          <div className="border-ink-200 grid gap-8 border-t lg:grid-cols-3 lg:gap-6">
+          <div className="grid gap-4">
             {posts.map((post, index) => (
-              <article
-                key={post.href}
-                className="border-ink-200 border-b py-6 lg:border-b-0 lg:border-l lg:pl-6"
-              >
-                <p className="text-brand-primary font-mono text-xs tracking-[0.15em]">
+              <article key={post.href} className="atlas-surface p-6">
+                <p className="text-brand-primary text-xs font-medium">
                   0{index + 1} / {post.category}
                 </p>
-                <h3 className="text-ink-950 mt-5 font-serif text-2xl leading-tight">
+                <h3 className="text-ink-950 mt-3 text-xl leading-snug font-semibold">
                   <Link href={post.href} className="hover:text-brand-primary transition">
                     {post.title}
                   </Link>
@@ -510,17 +499,17 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-ink-900 text-paper px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
+      <section className="bg-ink-900 text-paper mx-3 rounded-3xl px-6 py-12 sm:mx-6 sm:px-8 lg:px-12 lg:py-16">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-10 md:flex-row md:items-end">
           <div>
             <BookOpen className="text-gold-300 h-8 w-8" aria-hidden="true" />
-            <h2 className="font-display mt-5 max-w-2xl text-4xl leading-tight sm:text-6xl">
+            <h2 className="mt-5 max-w-2xl text-3xl leading-tight tracking-tight sm:text-4xl">
               Turn a birth date into a readable chart.
             </h2>
           </div>
           <Link
             href="/tools/bazi-calculator"
-            className="group hover:border-gold-300 hover:text-ink-900 inline-flex shrink-0 items-center border border-white/40 px-6 py-3.5 text-sm font-semibold transition hover:bg-white"
+            className="group text-ink-900 hover:bg-paper-200 inline-flex min-h-12 shrink-0 items-center justify-center rounded-full bg-white px-6 py-3.5 text-sm font-semibold transition-colors"
           >
             Open the free calculator{" "}
             <ArrowRight
@@ -531,7 +520,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-white px-5 py-20 sm:px-8 lg:px-10 lg:py-28">
+      <section className="px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
         <div className="mx-auto max-w-4xl">
           <FAQSection faqs={homepageFaqs} />
         </div>

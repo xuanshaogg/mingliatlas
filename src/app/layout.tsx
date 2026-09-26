@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Cormorant_Garamond, Geist_Mono, Inter, Playfair_Display } from "next/font/google";
+import { Geist_Mono, Manrope } from "next/font/google";
 import ScrollDepthTracker from "@/components/analytics/ScrollDepthTracker";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import { OrganizationSchema, WebSiteSchema } from "@/components/seo";
 import { AUTHOR, SITE } from "@/lib/constants";
+import { isPreviewDeployment } from "@/lib/seo/environment";
 import "./globals.css";
 
 const geistMono = Geist_Mono({
@@ -18,22 +19,10 @@ const geistMono = Geist_Mono({
   preload: false,
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
-});
-
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
-  subsets: ["latin"],
-  // Decorative serif text is not the first meaningful paint on content pages.
-  // Load it on demand so desktop LCP is not gated by another font preload.
-  preload: false,
-});
-
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
+  display: "swap",
 });
 
 const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
@@ -62,9 +51,6 @@ export const metadata: Metadata = {
   authors: [{ name: AUTHOR.name, url: AUTHOR.url }],
   creator: AUTHOR.name,
   publisher: SITE.name,
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     type: "website",
     siteName: SITE.name,
@@ -79,10 +65,10 @@ export const metadata: Metadata = {
     description: SITE.description,
   },
   robots: {
-    index: true,
+    index: !isPreviewDeployment,
     follow: true,
     googleBot: {
-      index: true,
+      index: !isPreviewDeployment,
       follow: true,
       "max-video-preview": -1,
       "max-image-preview": "large",
@@ -100,15 +86,23 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${inter.variable} ${cormorant.variable} ${playfair.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
+      className={`${manrope.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
     >
       <head>
-        <OrganizationSchema socialLinks={[
-          "https://mingliatlas.com",
-        ]} />
+        <OrganizationSchema />
         <WebSiteSchema />
-        <link rel="alternate" type="application/rss+xml" title={`${SITE.name} RSS Feed`} href="/rss.xml" />
-        <link rel="alternate" type="text/plain" title={`${SITE.name} LLM Context`} href="/llms.txt" />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title={`${SITE.name} RSS Feed`}
+          href="/rss.xml"
+        />
+        <link
+          rel="alternate"
+          type="text/plain"
+          title={`${SITE.name} LLM Context`}
+          href="/llms.txt"
+        />
         {plausibleDomain ? (
           <Script
             defer
@@ -135,9 +129,17 @@ export default function RootLayout({
           </>
         ) : null}
       </head>
-      <body className="flex min-h-full flex-col bg-paper text-ink-950 dark:bg-ink-950 dark:text-paper">
+      <body className="bg-paper text-ink-950 dark:bg-ink-950 dark:text-paper flex min-h-full flex-col">
+        <a
+          href="#main-content"
+          className="bg-ink-950 fixed top-4 left-5 z-[100] -translate-y-24 rounded-full px-5 py-3 text-sm font-semibold text-white transition-transform focus:translate-y-0"
+        >
+          Skip to content
+        </a>
         <Header />
-        <main className="flex-1">{children}</main>
+        <main id="main-content" tabIndex={-1} className="flex-1 outline-none">
+          {children}
+        </main>
         <Footer />
         <ScrollDepthTracker />
         {isVercelDeployment ? <Analytics /> : null}

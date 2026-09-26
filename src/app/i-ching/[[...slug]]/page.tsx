@@ -4,6 +4,8 @@ import KnowledgePage from "@/components/templates/KnowledgePage";
 import { getIChingPage, getIChingStaticParams } from "@/content/i-ching/pages";
 import { buildKnowledgePageMetadata } from "@/lib/seo/metadata";
 
+export const dynamicParams = false;
+
 interface IChingPageProps {
   params: Promise<{
     slug?: string[];
@@ -23,7 +25,7 @@ export async function generateMetadata({ params }: IChingPageProps): Promise<Met
   const page = getIChingPage(slugFromSegments(slug));
 
   if (!page) {
-    return {};
+    notFound();
   }
 
   return buildKnowledgePageMetadata(page);

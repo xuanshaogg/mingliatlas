@@ -4,6 +4,8 @@ import KnowledgePage from "@/components/templates/KnowledgePage";
 import { getLearnPage, getLearnStaticParams } from "@/content/learn/pages";
 import { buildKnowledgePageMetadata } from "@/lib/seo/metadata";
 
+export const dynamicParams = false;
+
 interface LearnPageProps {
   params: Promise<{
     slug?: string[];
@@ -23,7 +25,7 @@ export async function generateMetadata({ params }: LearnPageProps): Promise<Meta
   const page = getLearnPage(slugFromSegments(slug));
 
   if (!page) {
-    return {};
+    notFound();
   }
 
   return buildKnowledgePageMetadata(page);

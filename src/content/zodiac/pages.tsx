@@ -506,7 +506,7 @@ const overview = buildPage({
     description: "",
     url: "",
     datePublished: "2025-11-05",
-    dateModified: "2026-08-03",
+    dateModified: "2026-09-26",
   },
   stats: [
     { value: "12", label: "Animals", description: "One for each Earthly Branch." },
@@ -641,6 +641,17 @@ const overview = buildPage({
       heading: "The 12 animals and their Earthly Branches",
       content: (
         <>
+          <p>Open an animal guide to compare its year list and branch associations. For a January or February birthday, check the Lunar New Year boundary before selecting a year sign.</p>
+          <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+            {animals.map((animal) => (
+              <li key={animal.slug}>
+                <Link href={`/chinese-zodiac/${animal.slug}`} className="atlas-surface block h-full p-4 transition-colors hover:border-brand-200">
+                  <span className="text-ink-950 dark:text-paper block font-semibold">{animal.name}</span>
+                  <span className="text-ink-600 dark:text-ink-300 mt-1 block text-xs leading-5">{animal.branch} · {animal.polarity} {animal.element}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
           <p>
             The animal sequence is a memorable label for the 12 Earthly Branches. The branch carries
             the calendar position, season, direction, yin-yang polarity, and elemental context used

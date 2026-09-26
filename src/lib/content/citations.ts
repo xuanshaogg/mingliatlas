@@ -17,15 +17,15 @@ const CITATION_URL_RULES: Array<{ match: RegExp; url: string }> = [
     url: "https://zh.wikisource.org/wiki/%E9%BB%83%E5%B8%9D%E5%85%A7%E7%B6%93",
   },
   {
-    match: /Alfred Huang/i,
-    url: "https://www.innertraditions.com/books/the-complete-i-ching",
+    match: /Alfred Huang.*Complete I Ching|Complete I Ching.*Alfred Huang/i,
+    url: "https://www.innertraditions.com/books/the-complete-i-ching-10th-anniversary-edition-590",
   },
   {
-    match: /I Ching|King Wen|周易|Coin method/i,
+    match: /Zhouyi|周易/i,
     url: "https://zh.wikisource.org/wiki/%E5%91%A8%E6%98%93",
   },
   {
-    match: /Chinese calendar tradition/i,
+    match: /Hong Kong Observatory.*calendar|Gregorian.Lunar.*conversion/i,
     url: "https://www.hko.gov.hk/en/gts/time/conversion.htm",
   },
   {
@@ -35,10 +35,6 @@ const CITATION_URL_RULES: Array<{ match: RegExp; url: string }> = [
   {
     match: /Wolfram Eberhard|Dictionary of Chinese Symbols/i,
     url: "https://books.google.com/books?q=Wolfram+Eberhard+Dictionary+of+Chinese+Symbols",
-  },
-  {
-    match: /Classical Four Pillars practice|Xu Ziping/i,
-    url: "https://zh.wikisource.org/wiki/%E6%B7%B5%E6%B5%B7%E5%AD%90%E5%B9%B3",
   },
 ];
 

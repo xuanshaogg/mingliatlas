@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { publishedSitePages, type SitePage } from "@/lib/content/sitePages";
 import { filterIndexablePages } from "@/lib/content/indexing";
 import { SITE } from "@/lib/constants";
+import { isPreviewDeployment } from "@/lib/seo/environment";
 
 type SitemapEntry = MetadataRoute.Sitemap[number];
 
@@ -17,7 +18,8 @@ function priorityFor(page: SitePage): number {
   if (page.href === "/") return 1;
   if (page.href === "/tools/bazi-calculator") return 0.95;
   if (page.section === "Tools") return 0.9;
-  if (["Bazi", "Chinese Zodiac", "Learn", "Ziwei", "I Ching", "Feng Shui"].includes(page.section)) return 0.78;
+  if (["Bazi", "Chinese Zodiac", "Learn", "Ziwei", "I Ching", "Feng Shui"].includes(page.section))
+    return 0.78;
   if (page.section === "Blog") return page.href === "/blog" ? 0.75 : 0.68;
   if (page.section === "Utility") return 0.45;
   if (page.section === "Company") return 0.35;
@@ -25,6 +27,7 @@ function priorityFor(page: SitePage): number {
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  if (isPreviewDeployment) return [];
   const baseUrl = SITE.url;
   const indexablePages = filterIndexablePages(publishedSitePages);
   const staticRoutes: MetadataRoute.Sitemap = indexablePages.map((page) => ({

@@ -1,51 +1,26 @@
 import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/constants";
+import { isPreviewDeployment } from "@/lib/seo/environment";
 
 export default function robots(): MetadataRoute.Robots {
+  if (isPreviewDeployment) return { rules: { userAgent: "*", allow: "/" } };
   return {
     rules: [
-      {
-        userAgent: "*",
-        allow: "/",
-        disallow: ["/api/", "/admin/"],
-      },
-      {
-        userAgent: "GPTBot",
-        allow: "/",
-      },
-      {
-        userAgent: "OAI-SearchBot",
-        allow: "/",
-      },
-      {
-        userAgent: "ChatGPT-User",
-        allow: "/",
-      },
-      {
-        userAgent: "PerplexityBot",
-        allow: "/",
-      },
-      {
-        userAgent: "ClaudeBot",
-        allow: "/",
-      },
-      {
-        userAgent: "Claude-SearchBot",
-        allow: "/",
-      },
-      {
-        userAgent: "anthropic-ai",
-        allow: "/",
-      },
-      {
-        userAgent: "CCBot",
-        allow: "/",
-      },
-      {
-        userAgent: "Google-Extended",
-        allow: "/",
-      },
-    ],
+      "*",
+      "GPTBot",
+      "OAI-SearchBot",
+      "ChatGPT-User",
+      "PerplexityBot",
+      "ClaudeBot",
+      "Claude-SearchBot",
+      "anthropic-ai",
+      "CCBot",
+      "Google-Extended",
+    ].map((userAgent) => ({
+      userAgent,
+      allow: ["/", "/api/share-card"],
+      disallow: ["/api/", "/admin/"],
+    })),
     sitemap: `${SITE.url}/sitemap.xml`,
   };
 }

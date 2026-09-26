@@ -1,3 +1,4 @@
+import { buildPageMetadata } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 import Breadcrumbs, { type Crumb } from "@/components/shared/Breadcrumbs";
 import DirectAnswer from "@/components/shared/DirectAnswer";
@@ -28,28 +29,13 @@ const shareCardImage = buildShareCardUrl({
   },
 });
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Free Bazi Calculator: Generate Your Four Pillars & Day Master Chart",
   description:
     "Free Bazi calculator — enter your birth date to get a complete Four Pillars chart with Day Master, Ten Gods, hidden stems, lunar date, and Five Element balance. Deterministic, no sign-up needed.",
-  alternates: {
-    canonical: "/tools/bazi-calculator",
-  },
-  openGraph: {
-    title: "Free Bazi Calculator: Generate Your Four Pillars & Day Master Chart",
-    description:
-      "Enter your birth date to get a complete Bazi Four Pillars chart with Day Master, Ten Gods, hidden stems, and Five Element balance.",
-    url: "/tools/bazi-calculator",
-    images: [shareCardImage],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Free Bazi Calculator: Generate Your Four Pillars & Day Master Chart",
-    description:
-      "Enter your birth date to get a complete Bazi Four Pillars chart with Day Master, Ten Gods, hidden stems, and Five Element balance.",
-    images: [shareCardImage],
-  },
-};
+  path: "/tools/bazi-calculator",
+  image: shareCardImage,
+});
 
 const breadcrumbs: Crumb[] = [
   { label: "Home", href: "/" },
@@ -169,17 +155,13 @@ export default function BaziCalculatorPage() {
           buildBreadcrumbListSchema(breadcrumbs),
         ]}
       />
-      <main className="atlas-tool-shell bg-paper dark:bg-ink-950 px-4 py-6 sm:px-6 sm:py-10 lg:px-8">
+      <section className="atlas-tool-shell bg-paper dark:bg-ink-950 px-4 py-6 sm:px-6 sm:py-10 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <Breadcrumbs items={breadcrumbs} />
           <header className="mt-6 max-w-4xl sm:mt-10">
-            <p className="text-brand-primary dark:text-gold-300 text-sm font-semibold tracking-[0.24em] uppercase">
-              Tools
-            </p>
-            <h1 className="font-display text-ink-950 dark:text-paper mt-3 text-5xl tracking-tight text-balance sm:mt-4 sm:text-6xl">
-              Free Bazi Calculator
-            </h1>
-            <p className="text-ink-600 dark:text-ink-300 mt-3 text-base leading-7 sm:mt-5 sm:text-lg sm:leading-8">
+            <p className="atlas-eyebrow">Tools</p>
+            <h1 className="atlas-page-title mt-5">Free Bazi Calculator</h1>
+            <p className="atlas-page-intro mt-5 max-w-3xl">
               Generate a deterministic Four Pillars chart from a birth date and local civil time.
               This Ming Li tool returns the Day Master, Ten Gods, hidden stems, lunar date, and Five
               Element balance without storing birth data.
@@ -229,7 +211,10 @@ export default function BaziCalculatorPage() {
               </p>
             </div>
           </section>
-          <section className="border-ink-200 mt-14 border-y py-10 dark:border-white/10">
+          <section
+            id="calculation-method"
+            className="border-ink-200 mt-14 scroll-mt-4 border-y py-10 dark:border-white/10"
+          >
             <div className="max-w-4xl">
               <h2 className="font-display text-ink-950 dark:text-paper text-3xl tracking-tight">
                 Calculation method and limits
@@ -240,6 +225,21 @@ export default function BaziCalculatorPage() {
                   hour stem-branch pillars, then derives the Day Master, hidden stems, Ten Gods,
                   lunar date, and an element-count overview. Repeating the same inputs produces the
                   same chart.
+                </p>
+                <p>
+                  <strong>Calendar boundaries used here:</strong> the current year pillar follows
+                  Lunar New Year. The month pillar changes on the calendar date of a Jie solar term,
+                  rather than its exact transition time. A chart using the precise Li Chun year
+                  boundary or exact solar-term month boundary can therefore differ near those dates.
+                  Compare the same convention before interpreting a disagreement. These choices are
+                  described in the{" "}
+                  <a
+                    href="https://6tail.cn/calendar/lunar.ganzhi.html"
+                    className="text-brand-primary dark:text-gold-300 font-medium underline"
+                  >
+                    calendar library documentation
+                  </a>
+                  .
                 </p>
                 <p>
                   Civil time is used exactly as entered. The optional true solar mode applies an
@@ -312,7 +312,7 @@ export default function BaziCalculatorPage() {
           <FAQSection faqs={baziCalculatorFaqs} />
           <RelatedLinks links={relatedLinks} />
         </div>
-      </main>
+      </section>
     </>
   );
 }

@@ -14,41 +14,49 @@ function formatTime(hour: number, minute: number): string {
   return `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`;
 }
 
-function formatDateTime(time: { year: number; month: number; day: number; hour: number; minute: number }): string {
+function formatDateTime(time: {
+  year: number;
+  month: number;
+  day: number;
+  hour: number;
+  minute: number;
+}): string {
   return `${time.year}-${String(time.month).padStart(2, "0")}-${String(time.day).padStart(2, "0")} ${formatTime(time.hour, time.minute)}`;
 }
 
 function PillarPanel({ pillar }: { pillar: BaziChartPillar }) {
   return (
-    <article className="rounded-lg border border-ink-200 bg-white p-5 dark:border-white/10 dark:bg-white/5">
+    <article className="atlas-surface p-5">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-ink-500 dark:text-ink-400">
+          <h3 className="text-ink-500 dark:text-ink-400 text-sm font-semibold tracking-normal">
             {pillar.label}
           </h3>
-          <p className="mt-3 font-serif text-4xl font-semibold text-ink-950 dark:text-paper">{pillar.ganZhi}</p>
+          <p className="text-ink-950 dark:text-paper mt-3 font-serif text-4xl font-semibold">
+            {pillar.ganZhi}
+          </p>
         </div>
-        <span className="rounded-full bg-gold-100 px-3 py-1 text-xs font-semibold text-gold-800 dark:bg-gold-500/15 dark:text-gold-200">
+        <span className="bg-gold-100 text-gold-800 dark:bg-gold-500/15 dark:text-gold-200 rounded-full px-3 py-1 text-xs font-semibold">
           {pillar.branch.animal}
         </span>
       </div>
-      <p className="mt-4 text-sm leading-6 text-ink-600 dark:text-ink-300">{pillar.focus}</p>
+      <p className="text-ink-600 dark:text-ink-300 mt-4 text-sm leading-6">{pillar.focus}</p>
       <dl className="mt-5 space-y-3 text-sm">
-        <div className="flex justify-between gap-4 border-t border-ink-100 pt-3 dark:border-white/10">
+        <div className="border-ink-100 flex justify-between gap-4 border-t pt-3 dark:border-white/10">
           <dt className="text-ink-500 dark:text-ink-400">Stem</dt>
-          <dd className="text-right font-medium text-ink-900 dark:text-paper">
+          <dd className="text-ink-900 dark:text-paper text-right font-medium">
             {pillar.stem.pinyin} / {pillar.stem.name}
           </dd>
         </div>
         <div className="flex justify-between gap-4">
           <dt className="text-ink-500 dark:text-ink-400">Ten God</dt>
-          <dd className="text-right font-medium text-ink-900 dark:text-paper">
+          <dd className="text-ink-900 dark:text-paper text-right font-medium">
             {pillar.stemTenGod.name} ({pillar.stemTenGod.chinese})
           </dd>
         </div>
         <div className="flex justify-between gap-4">
           <dt className="text-ink-500 dark:text-ink-400">Branch</dt>
-          <dd className="text-right font-medium text-ink-900 dark:text-paper">
+          <dd className="text-ink-900 dark:text-paper text-right font-medium">
             {pillar.branch.pinyin} / {pillar.branch.element}
           </dd>
         </div>
@@ -57,7 +65,7 @@ function PillarPanel({ pillar }: { pillar: BaziChartPillar }) {
         {pillar.hiddenStems.map((hiddenStem) => (
           <span
             key={`${pillar.key}-${hiddenStem.stem.chinese}-${hiddenStem.weight}`}
-            className="rounded-full border border-ink-200 px-2.5 py-1 text-xs text-ink-600 dark:border-white/10 dark:text-ink-300"
+            className="border-ink-200 text-ink-600 dark:text-ink-300 rounded-full border px-2.5 py-1 text-xs dark:border-white/10"
           >
             {hiddenStem.stem.chinese} {hiddenStem.tenGod.chinese}
           </span>
@@ -68,19 +76,31 @@ function PillarPanel({ pillar }: { pillar: BaziChartPillar }) {
 }
 
 function ElementBar({ element }: { element: ElementScore }) {
+  const colors: Record<ElementScore["element"], string> = {
+    Wood: "bg-emerald-700 dark:bg-emerald-400",
+    Fire: "bg-brand-primary dark:bg-brand-400",
+    Earth: "bg-amber-600 dark:bg-amber-400",
+    Metal: "bg-slate-500 dark:bg-slate-300",
+    Water: "bg-sky-700 dark:bg-sky-400",
+  };
   return (
     <div className="grid gap-2 sm:grid-cols-[7rem_minmax(0,1fr)_4rem] sm:items-center">
-      <div className="flex items-center gap-2 text-sm font-medium text-ink-900 dark:text-paper">
+      <div className="text-ink-900 dark:text-paper flex items-center gap-2 text-sm font-medium">
         <span className="font-serif text-lg">{element.chinese}</span>
         <span>{element.element}</span>
       </div>
-      <div className="h-3 overflow-hidden rounded-full bg-ink-100 dark:bg-white/10">
+      <div
+        className="bg-ink-100 h-3 overflow-hidden rounded-full dark:bg-white/10"
+        aria-hidden="true"
+      >
         <div
-          className="h-full rounded-full bg-brand-primary dark:bg-gold-400"
-          style={{ width: `${Math.max(element.percentage, 4)}%` }}
+          className={`h-full rounded-full ${colors[element.element]}`}
+          style={{ width: `${Math.min(100, Math.max(element.percentage, 0))}%` }}
         />
       </div>
-      <div className="text-sm font-semibold text-ink-700 dark:text-ink-200">{element.percentage}%</div>
+      <div className="text-ink-700 dark:text-ink-200 text-sm font-semibold">
+        {element.percentage}%
+      </div>
     </div>
   );
 }
@@ -94,9 +114,21 @@ export default function BaziChartResult({ chart, isSample = false }: BaziChartRe
       label: `${dayMasterLabel} Day Master`,
       description: `Start with the dedicated guide for the ${dayMasterLabel} day stem in this chart.`,
     },
-    { href: "/bazi/ten-gods", label: "Ten Gods", description: "Decode the relationship roles around the Day Master." },
-    { href: "/bazi/five-elements", label: "Five Elements", description: "Read the element balance in depth." },
-    { href: "/bazi/luck-pillars", label: "Luck Pillars", description: "See how timing cycles layer over the natal chart." },
+    {
+      href: "/bazi/ten-gods",
+      label: "Ten Gods",
+      description: "Decode the relationship roles around the Day Master.",
+    },
+    {
+      href: "/bazi/five-elements",
+      label: "Five Elements",
+      description: "Read the element balance in depth.",
+    },
+    {
+      href: "/bazi/luck-pillars",
+      label: "Luck Pillars",
+      description: "See how timing cycles layer over the natal chart.",
+    },
   ];
   const [primaryRead, ...secondaryReads] = nextReads;
 
@@ -118,46 +150,58 @@ export default function BaziChartResult({ chart, isSample = false }: BaziChartRe
   }
 
   return (
-    <section className="space-y-8" aria-live="polite">
+    <section className="space-y-8">
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_20rem]">
-        <div className="rounded-lg border border-ink-200 bg-white p-6 dark:border-white/10 dark:bg-white/5">
+        <div className="atlas-surface p-5 sm:p-6">
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-primary dark:text-gold-300">
+              <p className="text-brand-primary dark:text-gold-300 text-sm font-semibold tracking-normal">
                 {isSample ? "Sample Chart" : "Your Chart"}
               </p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink-950 dark:text-paper">
+              <h2 className="text-ink-950 dark:text-paper mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
                 {dayMasterLabel} Day Master
               </h2>
-              <p className="mt-3 max-w-2xl text-sm leading-6 text-ink-600 dark:text-ink-300">
+              <p className="text-ink-600 dark:text-ink-300 mt-3 max-w-2xl text-sm leading-6">
                 {isSample
                   ? "This example uses the default birth details above. Enter your own date and time, then calculate to generate your chart."
                   : "Four Pillars generated from the local civil birth time you entered. Use this as a structured chart reference before any interpretive reading."}
               </p>
             </div>
-            <div className="rounded-lg bg-brand-50 px-4 py-3 text-sm text-brand-900 dark:bg-gold-500/10 dark:text-gold-200">
+            <div className="bg-brand-50 text-brand-900 dark:bg-gold-500/10 dark:text-gold-200 rounded-lg px-4 py-3 text-sm">
               <span className="block font-semibold">Day Master</span>
               <span className="font-serif text-3xl">{chart.dayMaster.chinese}</span>
             </div>
           </div>
-          <div className="mt-6 grid gap-3 text-sm text-ink-700 dark:text-ink-200 sm:grid-cols-3">
+          <div className="text-ink-700 dark:text-ink-200 mt-6 grid gap-3 text-sm sm:grid-cols-3">
             <div className="flex items-center gap-2">
-              <CalendarDays className="h-4 w-4 text-brand-primary dark:text-gold-300" aria-hidden="true" />
+              <CalendarDays
+                className="text-brand-primary dark:text-gold-300 h-4 w-4"
+                aria-hidden="true"
+              />
               {chart.input.year}-{String(chart.input.month).padStart(2, "0")}-
-              {String(chart.input.day).padStart(2, "0")} {formatTime(chart.input.hour, chart.input.minute)}
+              {String(chart.input.day).padStart(2, "0")}{" "}
+              {formatTime(chart.input.hour, chart.input.minute)}
             </div>
-            <div>Lunar {chart.lunarDate.year}, {chart.lunarDate.monthName} {chart.lunarDate.dayName}</div>
+            <div>
+              Lunar {chart.lunarDate.year}, {chart.lunarDate.monthName} {chart.lunarDate.dayName}
+            </div>
             <div>{chart.input.timezone}</div>
           </div>
-          <div className="mt-5 grid gap-3 border-t border-ink-100 pt-4 text-sm dark:border-white/10 sm:grid-cols-2">
+          <div className="border-ink-100 mt-5 grid gap-3 border-t pt-4 text-sm sm:grid-cols-2 dark:border-white/10">
             <div className="flex items-start gap-2">
               {chart.calculation.basis === "true-solar" ? (
-                <SunMedium className="mt-0.5 h-4 w-4 flex-none text-brand-primary dark:text-gold-300" aria-hidden="true" />
+                <SunMedium
+                  className="text-brand-primary dark:text-gold-300 mt-0.5 h-4 w-4 flex-none"
+                  aria-hidden="true"
+                />
               ) : (
-                <Clock3 className="mt-0.5 h-4 w-4 flex-none text-brand-primary dark:text-gold-300" aria-hidden="true" />
+                <Clock3
+                  className="text-brand-primary dark:text-gold-300 mt-0.5 h-4 w-4 flex-none"
+                  aria-hidden="true"
+                />
               )}
               <span>
-                <span className="block font-semibold text-ink-900 dark:text-paper">
+                <span className="text-ink-900 dark:text-paper block font-semibold">
                   {chart.calculation.basis === "true-solar" ? "True solar time" : "Civil time"}
                 </span>
                 <span className="text-ink-600 dark:text-ink-300">
@@ -169,12 +213,16 @@ export default function BaziChartResult({ chart, isSample = false }: BaziChartRe
               </span>
             </div>
             <div className="text-ink-600 dark:text-ink-300">
-              {chart.input.birthplace ? `Birthplace note: ${chart.input.birthplace}` : "No birthplace note supplied"}
-              {chart.input.longitude !== undefined ? ` · ${chart.input.longitude.toFixed(2)}° longitude` : ""}
+              {chart.input.birthplace
+                ? `Birthplace note: ${chart.input.birthplace}`
+                : "No birthplace note supplied"}
+              {chart.input.longitude !== undefined
+                ? ` · ${chart.input.longitude.toFixed(2)}° longitude`
+                : ""}
             </div>
           </div>
           {chart.calculation.warnings.length > 0 ? (
-            <ul className="mt-4 space-y-2 border-l-2 border-gold-400 pl-4 text-xs leading-5 text-ink-600 dark:text-ink-300">
+            <ul className="border-gold-400 text-ink-600 dark:text-ink-300 mt-4 space-y-2 border-l-2 pl-4 text-xs leading-5">
               {chart.calculation.warnings.map((warning) => (
                 <li key={warning}>{warning}</li>
               ))}
@@ -182,45 +230,47 @@ export default function BaziChartResult({ chart, isSample = false }: BaziChartRe
           ) : null}
         </div>
 
-        <div className="rounded-lg border border-gold-300/70 bg-gold-50 p-6 dark:border-gold-500/30 dark:bg-gold-500/10">
-          <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-gold-800 dark:text-gold-200">
+        <div className="border-gold-300/70 bg-gold-50 dark:border-gold-500/30 dark:bg-gold-500/10 rounded-lg border p-6">
+          <div className="text-gold-800 dark:text-gold-200 flex items-center gap-2 text-sm font-semibold tracking-normal">
             <ShieldCheck className="h-4 w-4" aria-hidden="true" />
             Privacy
           </div>
-          <p className="mt-3 text-sm leading-6 text-ink-700 dark:text-ink-200">
+          <p className="text-ink-700 dark:text-ink-200 mt-3 text-sm leading-6">
             This calculator runs in the browser and does not save your birth details to a server.
           </p>
-          <p className="mt-3 text-sm leading-6 text-ink-700 dark:text-ink-200">
-            Use the birth time already adjusted to the birthplace&apos;s local civil time before reading the pillars.
+          <p className="text-ink-700 dark:text-ink-200 mt-3 text-sm leading-6">
+            Use the birth time already adjusted to the birthplace&apos;s local civil time before
+            reading the pillars.
           </p>
         </div>
       </div>
 
-      <section className="border-y border-brand-200 bg-brand-50 px-4 py-6 dark:border-gold-500/30 dark:bg-gold-500/10 sm:px-5">
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-primary dark:text-gold-300">
+      <section className="bg-brand-50 dark:bg-gold-500/10 rounded-2xl p-5 sm:p-6">
+        <p className="text-brand-primary dark:text-gold-300 text-sm font-semibold tracking-normal">
           {isSample ? "Example reading path" : "Your next reading"}
         </p>
-        <h2 className="mt-2 text-2xl font-semibold tracking-tight text-ink-950 dark:text-paper">
+        <h2 className="text-ink-950 dark:text-paper mt-2 text-2xl font-semibold tracking-tight">
           Your chart starts with the {dayMasterLabel} Day Master
         </h2>
-        <p className="mt-2 max-w-3xl text-sm leading-6 text-ink-600 dark:text-ink-300">
-          Read the day stem first, then use Ten Gods, Five Elements, and Luck Pillars to add context in that order.
+        <p className="text-ink-600 dark:text-ink-300 mt-2 max-w-3xl text-sm leading-6">
+          Read the day stem first, then use Ten Gods, Five Elements, and Luck Pillars to add context
+          in that order.
         </p>
         <div className="mt-5 grid gap-4 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
           <Link
             data-content-role="primary-guide"
             href={primaryRead.href}
             onClick={() => trackReadingClick(primaryRead, 0)}
-            className="group flex min-h-40 flex-col justify-between rounded-lg bg-brand-primary p-5 text-white transition-colors hover:bg-brand-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 dark:bg-gold-400 dark:text-ink-950 dark:hover:bg-gold-300 dark:focus-visible:ring-gold-300 dark:focus-visible:ring-offset-ink-950 sm:p-6"
+            className="group bg-brand-primary hover:bg-brand-800 focus-visible:ring-brand-primary dark:bg-gold-400 dark:text-ink-950 dark:hover:bg-gold-300 dark:focus-visible:ring-gold-300 dark:focus-visible:ring-offset-ink-950 flex min-h-40 flex-col justify-between rounded-lg p-5 text-white transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none sm:p-6"
           >
             <span>
-              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-white/75 dark:text-ink-700">
+              <span className="dark:text-ink-700 text-xs font-semibold tracking-normal text-white/75">
                 Recommended first · Step 1
               </span>
               <span className="mt-3 block text-xl font-semibold tracking-tight sm:text-2xl">
                 Read your {primaryRead.label} guide
               </span>
-              <span className="mt-2 block max-w-xl text-sm leading-6 text-white/80 dark:text-ink-800">
+              <span className="dark:text-ink-800 mt-2 block max-w-xl text-sm leading-6 text-white/80">
                 {primaryRead.description}
               </span>
             </span>
@@ -243,16 +293,16 @@ export default function BaziChartResult({ chart, isSample = false }: BaziChartRe
                     prefetch={false}
                     href={item.href}
                     onClick={() => trackReadingClick(item, index)}
-                    className="group flex h-full min-h-11 items-start gap-3 rounded-lg border border-ink-200 bg-white p-3 transition-colors hover:border-brand-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 dark:border-white/10 dark:bg-white/5 dark:hover:border-gold-400 dark:focus-visible:ring-gold-300 dark:focus-visible:ring-offset-ink-950"
+                    className="group border-ink-200 hover:border-brand-primary focus-visible:ring-brand-primary dark:hover:border-gold-400 dark:focus-visible:ring-gold-300 dark:focus-visible:ring-offset-ink-950 flex h-full min-h-11 items-start gap-3 rounded-lg border bg-white p-3 transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none dark:border-white/10 dark:bg-white/5"
                   >
-                    <span className="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-brand-50 text-xs font-semibold text-brand-primary dark:bg-gold-500/15 dark:text-gold-300">
+                    <span className="bg-brand-50 text-brand-primary dark:bg-gold-500/15 dark:text-gold-300 flex h-7 w-7 flex-none items-center justify-center rounded-full text-xs font-semibold">
                       {index + 1}
                     </span>
                     <span>
-                      <span className="block font-semibold text-ink-950 group-hover:text-brand-primary dark:text-paper dark:group-hover:text-gold-300">
+                      <span className="text-ink-950 group-hover:text-brand-primary dark:text-paper dark:group-hover:text-gold-300 block font-semibold">
                         {item.label}
                       </span>
-                      <span className="mt-1 block text-sm leading-5 text-ink-500 dark:text-ink-400">
+                      <span className="text-ink-500 dark:text-ink-400 mt-1 block text-sm leading-5">
                         {item.description}
                       </span>
                     </span>
@@ -264,21 +314,29 @@ export default function BaziChartResult({ chart, isSample = false }: BaziChartRe
         </div>
       </section>
 
-      <section className="border-y border-brand-200 bg-brand-50 px-1 py-5 dark:border-gold-500/30 dark:bg-gold-500/10 sm:px-5">
+      <section className="border-brand-200 bg-brand-50 dark:border-gold-500/30 dark:bg-gold-500/10 border-y px-1 py-5 sm:px-5">
         <div className="flex flex-wrap items-center justify-between gap-5">
           <div className="flex items-start gap-3">
-            <Mail className="mt-1 h-5 w-5 flex-none text-brand-primary dark:text-gold-300" aria-hidden="true" />
+            <Mail
+              className="text-brand-primary dark:text-gold-300 mt-1 h-5 w-5 flex-none"
+              aria-hidden="true"
+            />
             <div>
-              <h2 className="text-base font-semibold text-ink-950 dark:text-paper">Keep learning from your chart</h2>
-              <p className="mt-1 text-sm leading-6 text-ink-600 dark:text-ink-300">
-                Get one concise Bazi concept or chart-reading prompt each week. No predictions or spam.
+              <h2 className="text-ink-950 dark:text-paper text-base font-semibold">
+                Keep learning from your chart
+              </h2>
+              <p className="text-ink-600 dark:text-ink-300 mt-1 text-sm leading-6">
+                Get one concise Bazi concept or chart-reading prompt each week. No predictions or
+                spam.
               </p>
             </div>
           </div>
           <Link
             href="/subscribe"
-            onClick={() => trackEvent("subscribe_clicked", { tool_name: "bazi", source: "chart_summary" })}
-            className="inline-flex h-11 flex-none items-center justify-center rounded-full bg-brand-primary px-6 text-sm font-semibold text-white transition hover:bg-brand-800 dark:bg-gold-400 dark:text-ink-950 dark:hover:bg-gold-300"
+            onClick={() =>
+              trackEvent("subscribe_clicked", { tool_name: "bazi", source: "chart_summary" })
+            }
+            className="bg-brand-primary hover:bg-brand-800 dark:bg-gold-400 dark:text-ink-950 dark:hover:bg-gold-300 inline-flex h-11 flex-none items-center justify-center rounded-full px-6 text-sm font-semibold text-white transition"
           >
             Get the weekly note
           </Link>
@@ -293,18 +351,27 @@ export default function BaziChartResult({ chart, isSample = false }: BaziChartRe
         ))}
       </div>
 
-      <section className="rounded-lg border border-ink-200 bg-white p-6 dark:border-white/10 dark:bg-white/5">
+      <section className="border-ink-200 rounded-lg border bg-white p-6 dark:border-white/10 dark:bg-white/5">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
-            <h2 className="text-2xl font-semibold tracking-tight text-ink-950 dark:text-paper">10-year Luck Pillars</h2>
-            <p className="mt-2 max-w-3xl text-sm leading-6 text-ink-600 dark:text-ink-300">
-              Traditional Da Yun cycles are shown as a timing reference after the natal chart. Direction and start age depend on the selected gender rule; they are not predictions.
+            <h2 className="text-ink-950 dark:text-paper text-2xl font-semibold tracking-tight">
+              10-year Luck Pillars
+            </h2>
+            <p className="text-ink-600 dark:text-ink-300 mt-2 max-w-3xl text-sm leading-6">
+              Traditional Da Yun cycles are shown as a timing reference after the natal chart.
+              Direction and start age depend on the selected gender rule; they are not predictions.
             </p>
           </div>
           {chart.luckPillarDirection ? (
-            <div className="rounded-md bg-brand-50 px-4 py-3 text-sm text-brand-900 dark:bg-gold-500/10 dark:text-gold-200">
-              <span className="block font-semibold">{chart.luckPillarDirection === "forward" ? "Forward" : "Reverse"} direction</span>
-              <span>{chart.luckPillarStart ? `Starts ${chart.luckPillarStart}` : "Start date calculated"}</span>
+            <div className="bg-brand-50 text-brand-900 dark:bg-gold-500/10 dark:text-gold-200 rounded-md px-4 py-3 text-sm">
+              <span className="block font-semibold">
+                {chart.luckPillarDirection === "forward" ? "Forward" : "Reverse"} direction
+              </span>
+              <span>
+                {chart.luckPillarStart
+                  ? `Starts ${chart.luckPillarStart}`
+                  : "Start date calculated"}
+              </span>
             </div>
           ) : null}
         </div>
@@ -313,7 +380,7 @@ export default function BaziChartResult({ chart, isSample = false }: BaziChartRe
           <div className="mt-6 overflow-x-auto">
             <table className="w-full min-w-[42rem] border-collapse text-left text-sm">
               <thead>
-                <tr className="border-b border-ink-200 text-xs uppercase tracking-[0.14em] text-ink-500 dark:border-white/10 dark:text-ink-400">
+                <tr className="border-ink-200 text-ink-500 dark:text-ink-400 border-b text-xs tracking-normal dark:border-white/10">
                   <th className="px-3 py-3 font-semibold">Cycle</th>
                   <th className="px-3 py-3 font-semibold">Years</th>
                   <th className="px-3 py-3 font-semibold">Nominal age</th>
@@ -327,16 +394,28 @@ export default function BaziChartResult({ chart, isSample = false }: BaziChartRe
                   return (
                     <tr
                       key={pillar.index}
-                      className={`border-b border-ink-100 last:border-0 dark:border-white/10 ${current ? "bg-gold-50/70 dark:bg-gold-500/10" : ""}`}
+                      className={`border-ink-100 border-b last:border-0 dark:border-white/10 ${current ? "bg-gold-50/70 dark:bg-gold-500/10" : ""}`}
                     >
-                      <td className="px-3 py-4 font-serif text-2xl font-semibold text-ink-950 dark:text-paper">
+                      <td className="text-ink-950 dark:text-paper px-3 py-4 font-serif text-2xl font-semibold">
                         {pillar.ganZhi}
-                        {current ? <span className="ml-2 align-middle text-xs font-sans font-semibold text-gold-800 dark:text-gold-200">Current</span> : null}
+                        {current ? (
+                          <span className="text-gold-800 dark:text-gold-200 ml-2 align-middle font-sans text-xs font-semibold">
+                            Current
+                          </span>
+                        ) : null}
                       </td>
-                      <td className="px-3 py-4 text-ink-700 dark:text-ink-200">{pillar.startYear}–{pillar.endYear}</td>
-                      <td className="px-3 py-4 text-ink-700 dark:text-ink-200">{pillar.startAge}–{pillar.endAge}</td>
-                      <td className="px-3 py-4 text-ink-700 dark:text-ink-200">{pillar.stem.name} · {pillar.stemTenGod.name}</td>
-                      <td className="px-3 py-4 text-ink-700 dark:text-ink-200">{pillar.branch.pinyin} {pillar.branch.element}</td>
+                      <td className="text-ink-700 dark:text-ink-200 px-3 py-4">
+                        {pillar.startYear}–{pillar.endYear}
+                      </td>
+                      <td className="text-ink-700 dark:text-ink-200 px-3 py-4">
+                        {pillar.startAge}–{pillar.endAge}
+                      </td>
+                      <td className="text-ink-700 dark:text-ink-200 px-3 py-4">
+                        {pillar.stem.name} · {pillar.stemTenGod.name}
+                      </td>
+                      <td className="text-ink-700 dark:text-ink-200 px-3 py-4">
+                        {pillar.branch.pinyin} {pillar.branch.element}
+                      </td>
                     </tr>
                   );
                 })}
@@ -344,18 +423,21 @@ export default function BaziChartResult({ chart, isSample = false }: BaziChartRe
             </table>
           </div>
         ) : (
-          <div className="mt-6 border-l-2 border-ink-200 pl-4 text-sm leading-6 text-ink-600 dark:border-white/10 dark:text-ink-300">
-            Select male or female in the optional chart labels to calculate the traditional Da Yun direction. The natal chart itself does not require this field.
+          <div className="border-ink-200 text-ink-600 dark:text-ink-300 mt-6 border-l-2 pl-4 text-sm leading-6 dark:border-white/10">
+            Select male or female in the optional chart labels to calculate the traditional Da Yun
+            direction. The natal chart itself does not require this field.
           </div>
         )}
       </section>
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_22rem]">
-        <section className="rounded-lg border border-ink-200 bg-white p-6 dark:border-white/10 dark:bg-white/5">
-          <h2 className="text-2xl font-semibold tracking-tight text-ink-950 dark:text-paper">Five Element Balance</h2>
-          <p className="mt-2 text-sm leading-6 text-ink-600 dark:text-ink-300">
-            Weighted from visible heavenly stems and branch hidden stems. This is a practical signal, not a full
-            strength judgment.
+        <section className="border-ink-200 rounded-lg border bg-white p-6 dark:border-white/10 dark:bg-white/5">
+          <h2 className="text-ink-950 dark:text-paper text-2xl font-semibold tracking-tight">
+            Five Element Balance
+          </h2>
+          <p className="text-ink-600 dark:text-ink-300 mt-2 text-sm leading-6">
+            Weighted from visible heavenly stems and branch hidden stems. This is a practical
+            signal, not a full strength judgment.
           </p>
           <div className="mt-6 space-y-4">
             {chart.elementBalance.map((element) => (
@@ -364,12 +446,17 @@ export default function BaziChartResult({ chart, isSample = false }: BaziChartRe
           </div>
         </section>
 
-        <section className="rounded-lg border border-ink-200 bg-white p-6 dark:border-white/10 dark:bg-white/5">
-          <h2 className="text-2xl font-semibold tracking-tight text-ink-950 dark:text-paper">Reading Cues</h2>
-          <ul className="mt-5 space-y-4 text-sm leading-6 text-ink-700 dark:text-ink-200">
+        <section className="border-ink-200 rounded-lg border bg-white p-6 dark:border-white/10 dark:bg-white/5">
+          <h2 className="text-ink-950 dark:text-paper text-2xl font-semibold tracking-tight">
+            Reading Cues
+          </h2>
+          <ul className="text-ink-700 dark:text-ink-200 mt-5 space-y-4 text-sm leading-6">
             {chart.readingHighlights.map((highlight) => (
               <li key={highlight} className="flex gap-3">
-                <Info className="mt-1 h-4 w-4 flex-none text-brand-primary dark:text-gold-300" aria-hidden="true" />
+                <Info
+                  className="text-brand-primary dark:text-gold-300 mt-1 h-4 w-4 flex-none"
+                  aria-hidden="true"
+                />
                 <span>{highlight}</span>
               </li>
             ))}
@@ -377,18 +464,19 @@ export default function BaziChartResult({ chart, isSample = false }: BaziChartRe
         </section>
       </div>
 
-      <section className="rounded-lg border border-ink-200 bg-white p-6 dark:border-white/10 dark:bg-white/5">
-        <h2 className="text-2xl font-semibold tracking-tight text-ink-950 dark:text-paper">Calculation Notes</h2>
-        <ul className="mt-4 grid gap-3 text-sm leading-6 text-ink-700 dark:text-ink-200 md:grid-cols-3">
+      <section className="border-ink-200 rounded-lg border bg-white p-6 dark:border-white/10 dark:bg-white/5">
+        <h2 className="text-ink-950 dark:text-paper text-2xl font-semibold tracking-tight">
+          Calculation Notes
+        </h2>
+        <ul className="text-ink-700 dark:text-ink-200 mt-4 grid gap-3 text-sm leading-6 md:grid-cols-3">
           {chart.notices.map((notice) => (
             <li key={notice}>{notice}</li>
           ))}
         </ul>
-        <p className="mt-5 text-sm leading-6 text-ink-500 dark:text-ink-400">
+        <p className="text-ink-500 dark:text-ink-400 mt-5 text-sm leading-6">
           For entertainment and self-reflection purposes.
         </p>
       </section>
-
     </section>
   );
 }
