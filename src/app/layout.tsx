@@ -66,10 +66,10 @@ export const metadata: Metadata = {
   },
   robots: {
     index: !isPreviewDeployment,
-    follow: true,
+    follow: !isPreviewDeployment,
     googleBot: {
       index: !isPreviewDeployment,
-      follow: true,
+      follow: !isPreviewDeployment,
       "max-video-preview": -1,
       "max-image-preview": "large",
       "max-snippet": -1,

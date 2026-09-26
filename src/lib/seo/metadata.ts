@@ -40,10 +40,10 @@ export function buildPageMetadata(page: PageMetadataInput): Metadata {
     },
     robots: {
       index: indexable,
-      follow: true,
+      follow: !isPreviewDeployment,
       googleBot: {
         index: indexable,
-        follow: true,
+        follow: !isPreviewDeployment,
         "max-image-preview": "large",
         "max-snippet": -1,
       },
