@@ -3,6 +3,8 @@ import type { KnowledgePageProps } from "@/components/templates/KnowledgePage";
 import type { FAQ } from "@/components/shared/FAQSection";
 import { HEXAGRAMS } from "@/lib/i-ching";
 import { SITE } from "@/lib/constants";
+import { buildCollectionPageSchema } from "@/lib/seo/jsonLd";
+import { TRIGRAM_NAMES, hexagramReferenceSources, hexagramStructureSection, iChingReferenceSections, iChingIntroHighlights, iChingIntroAnswers, iChingIntroFaqs } from "./reference-sections";
 
 export interface IChingContentPage {
   slug: string;
@@ -188,16 +190,6 @@ const HEXAGRAM_PINYIN: Record<number, string> = {
   64: "Weiji",
 };
 
-const TRIGRAM_NAMES: Record<string, string> = {
-  "111": "Heaven",
-  "000": "Earth",
-  "100": "Thunder",
-  "010": "Water",
-  "001": "Mountain",
-  "011": "Wind",
-  "101": "Fire",
-  "110": "Lake",
-};
 
 const defaultFaqs: FAQ[] = [
   {
@@ -244,22 +236,6 @@ function cta(title = "Cast a hexagram") {
   };
 }
 
-const defaultEditorialQuote = {
-  text: "A useful I Ching reading treats the hexagram as structured reflection, then returns the answer to the real question.",
-  author: "Mingli Atlas Editorial Team",
-  title: "Editorial note",
-};
-
-function withEditorialQuote(
-  sections: KnowledgePageProps["sections"]
-): KnowledgePageProps["sections"] {
-  if (sections.some((section) => section.quotes?.length)) return sections;
-
-  return sections.map((section, index) =>
-    index === 0 ? { ...section, quotes: [defaultEditorialQuote] } : section
-  );
-}
-
 function buildPage(input: Omit<IChingContentPage, "data"> & KnowledgePageProps): IChingContentPage {
   const { slug, path, title, description, ...data } = input;
 
@@ -271,14 +247,14 @@ function buildPage(input: Omit<IChingContentPage, "data"> & KnowledgePageProps):
     data: {
       ...data,
       title,
-      sections: withEditorialQuote(data.sections),
+      sections: data.sections,
       schema: {
         ...data.schema,
         headline: title,
         description,
         url: pageUrl(path),
-        datePublished: data.schema.datePublished ?? "2026-01-20",
-        dateModified: data.schema.dateModified ?? "2026-02-05",
+        datePublished: data.schema.datePublished,
+        dateModified: data.schema.dateModified,
       },
     },
   };
@@ -301,7 +277,7 @@ const overview = buildPage({
     description: "",
     url: "",
     datePublished: "2025-11-10",
-    dateModified: "2026-08-03",
+    dateModified: "2026-09-26",
   },
   stats: [
     { value: "64", label: "Hexagrams", description: "The complete Book of Changes structure." },
@@ -633,9 +609,9 @@ const introTopics: IntroTopic[] = [
     datePublished: "2025-12-01",
     dateModified: "2026-02-10",
     label: "64 Hexagrams",
-    title: "The 64 I Ching Hexagrams: Complete Structure",
+    title: "The 64 I Ching Hexagrams: Names, Symbols & Meanings",
     description:
-      "How the 64 I Ching hexagrams are built from trigram pairs, ordered in the King Wen sequence, and used to map 64 archetypal situations of change.",
+      "Browse all 64 I Ching hexagrams by number, name, symbol and upper/lower trigram. Open each guide and learn how changing lines form the relating hexagram.",
     statValue: "64",
     statLabel: "Hexagrams",
   },
@@ -794,7 +770,7 @@ const introSections: Record<string, KnowledgePageProps["sections"]> = {
           </p>
           <p>
             These associations are not rigid personality labels. They describe qualities of movement
-            and relationship. A hexagram with Kan below and Li above (Hexagram 63, Ji Ji) describes
+            and relationship. A hexagram with Li below and Kan above (Hexagram 63, Ji Ji) describes
             a situation where water and fire are in their correct positions — a moment of completion
             that still requires care to maintain.
           </p>
@@ -861,9 +837,10 @@ const introSections: Record<string, KnowledgePageProps["sections"]> = {
             then read the relating hexagram to understand the direction of movement.
           </p>
           <p>
-            Not all 64 hexagrams are equally common in a reading. Some appear more often in certain
-            types of questions. Over time, a reader builds familiarity with the images and learns to
-            connect them to real situations rather than treating them as abstract symbols.
+            In the ideal fair-coin model, each line is equally likely to be yin or yang, so each
+            primary six-line pattern has probability 1/64. The question guides interpretation;
+            it does not change that mathematical distribution. Keep the cast separate from the
+            meaning you later assign to it.
           </p>
         </>
       ),
@@ -1010,11 +987,11 @@ const introSections: Record<string, KnowledgePageProps["sections"]> = {
       heading: "The yarrow stalk method",
       content: (
         <p>
-          The traditional method uses 50 yarrow stalks and a more complex counting procedure. It
-          produces the same four line values but with different probabilities: old yang is rarer
-          than with coins, making changing lines less frequent. The yarrow method is slower and more
-          meditative. Most beginners start with coins and move to yarrow stalks once they are
-          comfortable with the reading process.
+          Yarrow casting uses a different counting procedure. The Xi Ci commentary describes
+          fifty stalks with forty-nine used in the operation. Follow a specified edition for the
+          complete procedure rather than substituting coin-toss steps. Both methods produce
+          line values 6, 7, 8 and 9, but the fair-coin probabilities in this guide describe only
+          the three-coin method.
         </p>
       ),
     },
@@ -1023,6 +1000,8 @@ const introSections: Record<string, KnowledgePageProps["sections"]> = {
 
 function createIntroPage(topic: IntroTopic): IChingContentPage {
   const path = `/i-ching/${topic.slug}`;
+  const referenceSection = iChingReferenceSections[topic.slug];
+  const highlights = iChingIntroHighlights[topic.slug];
 
   return buildPage({
     slug: topic.slug,
@@ -1031,17 +1010,23 @@ function createIntroPage(topic: IntroTopic): IChingContentPage {
     description: topic.description,
     entityName: topic.label,
     entityType: "DefinedTerm",
-    subtitle: "An answer-first I Ching guide for beginners.",
-    directAnswer: `${topic.label} is part of the I Ching system. ${topic.description} It should be used to clarify a question and understand change rather than to force a fixed outcome.`,
+    subtitle: highlights?.subtitle ?? "An answer-first I Ching guide for beginners.",
+    directAnswer: iChingIntroAnswers[topic.slug] ?? `${topic.label} is part of the I Ching system. ${topic.description} It should be used to clarify a question and understand change rather than to force a fixed outcome.`,
     breadcrumbs: breadcrumbs(topic.label, path),
     schema: {
       headline: "",
       description: "",
       url: "",
       datePublished: topic.datePublished,
-      dateModified: topic.dateModified,
+      dateModified: referenceSection ? "2026-09-26" : topic.dateModified,
+      ...(topic.slug === "sixty-four-hexagrams" ? { jsonLd: buildCollectionPageSchema({
+        name: topic.title,
+        description: topic.description,
+        url: pageUrl(path),
+        items: HEXAGRAMS.map((hexagram) => ({ name: `Hexagram ${hexagram.number}: ${hexagram.name} (${hexagram.chinese})`, description: `${TRIGRAM_NAMES[hexagram.binary.slice(3)]} above ${TRIGRAM_NAMES[hexagram.binary.slice(0, 3)]}.`, url: pageUrl(`/i-ching/hexagram-${hexagram.number}`) })),
+      }) } : {}),
     },
-    stats: [
+    stats: highlights?.stats ?? [
       {
         value: topic.statValue,
         label: topic.statLabel,
@@ -1059,16 +1044,14 @@ function createIntroPage(topic: IntroTopic): IChingContentPage {
       },
     ],
     citations: [
-      {
-        label: "Richard Wilhelm & Cary Baynes, The I Ching or Book of Changes (1950)",
-        source: "Classical Chinese text used for symbolic reasoning and structured reflection.",
-      },
-      {
-        label: "Alfred Huang, The Complete I Ching (2004)",
-        source: "Commentaries that developed philosophical interpretation of the hexagrams.",
-      },
+      ...hexagramReferenceSources,
+      ...(topic.slug === "eight-trigrams" ? [
+        { label: "Shuo Gua: trigram images", source: "Received commentary on the eight figures and their associations.", url: "https://ctext.org/book-of-changes/shuo-gua" },
+        { label: "Xiang Zhuan: Ji Ji", source: "The received Image places Water above Fire in Hexagram 63.", url: "https://ctext.org/book-of-changes/ji-ji2/ens" },
+      ] : []),
+      ...(topic.slug === "how-to-cast" ? [{ label: "Xi Ci I: stalk procedure", source: "Received commentary distinguishing the stalk-counting procedure from modern coin casting.", url: "https://ctext.org/book-of-changes/xi-ci-shang" }] : []),
     ],
-    sections: introSections[topic.slug] ?? [
+    sections: [...(referenceSection ? [referenceSection] : []), ...(introSections[topic.slug] ?? [
       {
         heading: `What ${topic.label} means`,
         content: (
@@ -1078,23 +1061,13 @@ function createIntroPage(topic: IntroTopic): IChingContentPage {
           </p>
         ),
       },
-    ],
-    faqs: defaultFaqs,
+    ])],
+    faqs: iChingIntroFaqs[topic.slug] ?? defaultFaqs,
     relatedLinks,
     cta: cta(),
   });
 }
 
-function hexagramDate(n: number): string {
-  const start = new Date("2025-12-20");
-  start.setDate(start.getDate() + Math.round(((n - 1) / 63) * 95));
-  return start.toISOString().slice(0, 10);
-}
-function hexagramModDate(n: number): string {
-  const start = new Date("2026-01-15");
-  start.setDate(start.getDate() + Math.round(((n - 1) / 63) * 95));
-  return start.toISOString().slice(0, 10);
-}
 
 const hexagramDirectAnswers: Partial<Record<number, string>> = {
   1: "Hexagram 1, The Creative (乾 Qian), describes a moment of pure creative momentum — conditions are aligned, energy is available, and the direction is clear. Heaven doubled above Heaven gives the image of force that renews itself through disciplined motion rather than random intensity. It asks whether your momentum is guided by principle, timing, endurance, and a reliable sense of sequence or by restless pressure. Use it when considering a major initiative, leadership commitment, or sustained effort that requires both boldness and self-command.",
@@ -1173,7 +1146,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             Hexagram 1, Qian (乾), is built from six unbroken yang lines — the only hexagram in the{" "}
             <cite>I Ching</cite> made entirely of yang. It describes a moment of pure creative
             momentum: conditions are aligned, energy is available, and the direction is clear. The
-            classical Judgment reads "initiating power, disciplined momentum, and clear direction,"
+            editorial summary is "initiating power, disciplined momentum, and clear direction,"
             which the <cite>King Wen sequence</cite> places first because it represents the
             originating force before any division into yin and yang.
           </p>
@@ -1252,7 +1225,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
           <p>
             Hexagram 2, Kun (坤), is built from six broken yin lines — the only hexagram made
             entirely of yin. In the <cite>I Ching</cite>, it is the complement to Hexagram 1: where
-            Qian initiates, Kun receives, sustains, and completes. The classical Judgment reads
+            Qian initiates, Kun receives, sustains, and completes. The editorial summary is
             "support, patience, cultivation, and grounded responsiveness." The{" "}
             <cite>King Wen sequence</cite> places it second because nothing that is initiated can
             develop without a receptive ground to grow in.
@@ -1337,7 +1310,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             toward each other, exchange happens and things flourish.
           </p>
           <p>
-            The classical Judgment reads "flow between levels creates stability and shared
+            The editorial summary is "flow between levels creates stability and shared
             prosperity." According to the <cite>King Wen sequence</cite>, Hexagram 11 follows the
             pair of Hexagram 9 (Small Taming) and Hexagram 10 (Treading) — suggesting that peace
             arrives after careful restraint and correct conduct, not by accident.
@@ -1412,7 +1385,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             Hexagram 24, Fu (复), shows a single yang line returning at the bottom of five yin
             lines. In the <cite>I Ching</cite>, this is the image of the winter solstice — the
             moment when yang energy, which has been retreating since summer, turns and begins to
-            grow again. The classical Judgment reads "renewal begins with one honest return to the
+            grow again. The editorial summary is "renewal begins with one honest return to the
             path." The <cite>King Wen sequence</cite> places Fu after Hexagram 23 (Splitting Apart)
             because return follows dissolution.
           </p>
@@ -1493,7 +1466,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             Hexagram 29, Kan (坎), is formed by doubling the Water trigram — danger above and danger
             below. In the <cite>I Ching</cite>, Kan does not describe a single difficult moment but
             a repeated pattern of challenge: the same obstacle appearing again, the same pit
-            encountered twice. The classical Judgment reads "repeated difficulty is crossed through
+            encountered twice. The editorial summary is "repeated difficulty is crossed through
             sincerity and skill." The <cite>King Wen sequence</cite> pairs Kan with Li (Fire,
             Hexagram 30) as the two great elemental forces of depth and clarity.
           </p>
@@ -1575,7 +1548,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             Hexagram 36, Ming Yi (明夷), shows Fire (Li) below Earth (Kun) — the sun entering the
             earth, light going underground. In the <cite>I Ching</cite>, this is the image of a
             person of clarity operating in an environment that does not recognize or support that
-            clarity. The classical Judgment reads "protect inner clarity in an unsupportive
+            clarity. The editorial summary is "protect inner clarity in an unsupportive
             environment." The <cite>King Wen sequence</cite> pairs Ming Yi with Hexagram 35
             (Progress) as its opposite: where Progress describes visibility and advancement,
             Darkening of the Light describes concealment and endurance.
@@ -1660,7 +1633,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             flow. The <cite>I Ching</cite> calls this Standstill or Stagnation.
           </p>
           <p>
-            The classical Judgment reads "when flow is blocked, conserve integrity and avoid
+            The editorial summary is "when flow is blocked, conserve integrity and avoid
             wasteful struggle." According to the <cite>King Wen sequence</cite>, Pi and Tai are
             paired precisely because they describe the same relationship in opposite states. What
             was flourishing in Hexagram 11 has now closed. The question is not how to force it open
@@ -1734,8 +1707,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
           <p>
             Hexagram 40, Xie (解), shows Thunder (Zhen) above Water (Kan) — the image of a storm
             breaking after a period of sustained tension. In the <cite>I Ching</cite>, Xie describes
-            the moment when a difficulty that has been building finally releases. The classical
-            Judgment reads "release tension quickly once the cause is understood." The{" "}
+            the moment when a difficulty that has been building finally releases. The editorial summary is "release tension quickly once the cause is understood." The{" "}
             <cite>King Wen sequence</cite> pairs Xie with Hexagram 39 (Obstruction) as its
             resolution: what was blocked in Jian now opens in Xie.
           </p>
@@ -1816,7 +1788,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             Hexagram 47, Kun (困), shows a Lake (Dui) above Water (Kan) — a lake without water,
             drained and exhausted. In the <cite>I Ching</cite>, this is the image of genuine
             constraint: resources are depleted, the usual channels are closed, and words carry
-            little weight. The classical Judgment reads "pressure tests speech, spirit, and
+            little weight. The editorial summary is "pressure tests speech, spirit, and
             priorities." The <cite>King Wen sequence</cite> pairs Kun with Hexagram 48 (The Well) —
             exhaustion and the source of nourishment placed side by side.
           </p>
@@ -1898,7 +1870,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             Hexagram 49, Ge (革), shows Fire (Li) within the Lake (Dui) — two forces that cannot
             coexist indefinitely. Fire evaporates water; water extinguishes fire. In the{" "}
             <cite>I Ching</cite>, this tension describes a situation where real change is necessary,
-            not cosmetic adjustment. The classical Judgment reads "real change requires timing,
+            not cosmetic adjustment. The editorial summary is "real change requires timing,
             legitimacy, and clear need." The <cite>King Wen sequence</cite> pairs Ge with Hexagram
             50 (The Cauldron) — revolution and the vessel that holds what the revolution produces.
           </p>
@@ -1981,7 +1953,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
           <p>
             Hexagram 4, Meng (蒙), is the hexagram of learning in its earliest and most uncertain
             stage. Its structure — a mountain above, water below — describes a spring that has not
-            yet found its course. The classical Judgment reads "learning requires humility,
+            yet found its course. The editorial summary is "learning requires humility,
             repetition, and clear questions," which the <cite>I Ching</cite> places fourth in the{" "}
             <cite>King Wen sequence</cite> because it follows the initial difficulty of beginning:
             once something starts, it must be educated into form.
@@ -2068,7 +2040,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             that arises when two parties each believe they are right and neither is willing to
             examine the origin of the dispute. Its structure — heaven above, water below — describes
             two forces moving in opposite directions: heaven rises, water flows downward. The
-            classical Judgment reads "do not escalate a dispute without clarifying terms," which the{" "}
+            editorial summary is "do not escalate a dispute without clarifying terms," which the{" "}
             <cite>King Wen sequence</cite> places sixth because conflict is the natural consequence
             of collective effort (Hexagram 7 follows) when coordination breaks down.
           </p>
@@ -2241,7 +2213,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             active choice to align with what is genuinely worth following. Its structure — lake
             above, thunder below — describes thunder that has retreated into the lake at the end of
             autumn: the energy that drove summer's growth has settled, and the season asks for rest
-            and responsiveness rather than initiative. The classical Judgment reads "adaptation
+            and responsiveness rather than initiative. The editorial summary is "adaptation
             succeeds when you choose what is worth following," which the{" "}
             <cite>King Wen sequence</cite> places seventeenth as a counterpoint to the organizing
             force of Hexagram 16 (Enthusiasm).
@@ -2331,7 +2303,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             hidden agenda, self-deception, or manipulation. Its structure — heaven above, thunder
             below — describes creative force (heaven) expressed through spontaneous movement
             (thunder): action that arises naturally from the situation rather than from calculation.
-            The classical Judgment reads "act without manipulation and stay aligned with reality,"
+            The editorial summary is "act without manipulation and stay aligned with reality,"
             which the <cite>King Wen sequence</cite> places twenty-fifth as a corrective to the
             accumulated complexity of the preceding hexagrams.
           </p>
@@ -2421,7 +2393,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
           <p>
             Hexagram 30, Li (离), is the hexagram of fire and clarity — but clarity that depends
             entirely on what it clings to. Its structure is fire doubled: two trigrams of Li
-            stacked, each representing a flame with a hollow center. The classical Judgment reads
+            stacked, each representing a flame with a hollow center. The editorial summary is
             "clarity depends on what you attach yourself to," which the{" "}
             <cite>King Wen sequence</cite> places thirtieth as the direct counterpart to Hexagram 29
             (The Abysmal, water doubled). Where water flows downward and inward, fire rises and
@@ -2512,7 +2484,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             fixed in place, available to all, and dependent on maintenance to remain useful. Its
             structure — water above, wood below — describes the wooden bucket and rope that draw
             water upward: the mechanism by which a deep, invisible resource is made accessible. The
-            classical Judgment reads "return to the source that nourishes everyone," which the{" "}
+            editorial summary is "return to the source that nourishes everyone," which the{" "}
             <cite>King Wen sequence</cite> places forty-eighth as a counterpoint to Hexagram 47
             (Oppression), where the lake has run dry.
           </p>
@@ -2601,7 +2573,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             Hexagram 50, Ding (鼎), is the hexagram of the ritual cauldron — the vessel in which raw
             material is transformed into something that can nourish and sustain a community. Its
             structure — fire above, wood below — describes the fire that cooks what the wood
-            supports: transformation through sustained, contained heat. The classical Judgment reads
+            supports: transformation through sustained, contained heat. The editorial summary is
             "transformation happens through culture, vessel, and offering," which the{" "}
             <cite>King Wen sequence</cite> places fiftieth as the direct counterpart to Hexagram 48
             (The Well): where the well draws nourishment from depth, the cauldron transforms raw
@@ -2698,7 +2670,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             <cite>I Ching</cite> where every line is in its correct position: yang lines in yang
             places, yin lines in yin places. Its structure — water above, fire below — describes a
             pot of water over a flame: the conditions for cooking are perfectly arranged. The
-            classical Judgment reads "completion requires maintenance because imbalance can return,"
+            editorial summary is "completion requires maintenance because imbalance can return,"
             which the <cite>King Wen sequence</cite> places sixty-third, second to last, because
             perfect order contains within it the seed of its own unraveling.
           </p>
@@ -2788,7 +2760,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             Hexagram 64, Weiji (未济), is the final hexagram of the <cite>I Ching</cite> — and it
             describes incompletion. Its structure — fire above, water below — is the inverse of
             Hexagram 63: every line is in the wrong position, yang where yin should be, yin where
-            yang should be. The classical Judgment reads "the transition is not finished; sequence
+            yang should be. The editorial summary is "the transition is not finished; sequence
             matters," which the <cite>King Wen sequence</cite> places sixty-fourth, last, because
             the <cite>I Ching</cite> ends not with arrival but with the moment before arrival — the
             threshold that must be crossed carefully.
@@ -2959,7 +2931,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             Hexagram 5, Xu (需), places Water above Heaven — clouds have gathered above the sky, but
             the rain has not yet come. In the <cite>I Ching</cite>, this image describes a moment of
             genuine readiness that cannot yet be released. The energy is present, the direction is
-            clear, but the external conditions have not aligned. The classical Judgment reads:
+            clear, but the external conditions have not aligned. The editorial summary is
             "right timing matters; prepare while conditions gather."
           </p>
           <p>
@@ -3122,7 +3094,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             Hexagram 9, Xiao Chu (小畜), places Wind above Heaven — the gentlest of forces
             positioned above the strongest. In the <cite>I Ching</cite>, this pairing describes a
             situation where a small, persistent influence is the only thing capable of shaping a
-            large, powerful momentum. The classical Judgment reads: "small restraints refine a
+            large, powerful momentum. The editorial summary is "small restraints refine a
             larger force."
           </p>
           <p>
@@ -3206,7 +3178,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             most joyful, creating a significant difference in level and power. The{" "}
             <cite>I Ching</cite> uses the image of treading on a tiger's tail: the danger is real,
             the power differential is obvious, and yet the person who treads carefully is not
-            harmed. The classical Judgment reads: "careful conduct protects progress in sensitive
+            harmed. The editorial summary is "careful conduct protects progress in sensitive
             conditions."
           </p>
           <p>
@@ -3289,7 +3261,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             broadest possible view. In the <cite>I Ching</cite>, this image describes fellowship
             that extends beyond the immediate group: not just loyalty to those who are already
             close, but the capacity to find common ground with people who are different. The
-            classical Judgment reads: "open alignment with others expands perspective."
+            editorial summary is "open alignment with others expands perspective."
           </p>
           <p>
             The hexagram makes a pointed distinction. Fellowship confined to the clan — to those who
@@ -3370,7 +3342,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             itself, casting light in every direction. In the <cite>I Ching</cite>, this image
             describes a moment of exceptional abundance: not just material wealth, but any situation
             where resources, influence, clarity, or opportunity are available in unusual measure.
-            The classical Judgment reads: "abundance is useful only when governed with clarity."
+            The editorial summary is "abundance is useful only when governed with clarity."
           </p>
           <p>
             The hexagram follows Hexagram 13 (Fellowship) in the <cite>King Wen sequence</cite>{" "}
@@ -3450,7 +3422,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             Hexagram 15, Qian (谦), places Mountain below Earth — the image of something substantial
             deliberately positioned beneath rather than above. In the <cite>I Ching</cite>, this is
             one of the most consistently favorable hexagrams: the classical commentary notes that
-            modesty succeeds in every line, which is unusual. The Judgment reads: "measured conduct
+            modesty succeeds in every line, which is unusual. The editorial summary is "measured conduct
             makes strength acceptable and durable."
           </p>
           <p>
@@ -3533,8 +3505,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             Hexagram 16, Yu (豫), places Thunder above Earth — the image of stored energy finally
             releasing into movement. In the <cite>I Ching</cite>, this hexagram describes the
             conditions for genuine collective enthusiasm: not manufactured excitement, but the
-            natural release of energy that has been properly prepared and timed. The classical
-            Judgment reads: "mobilize energy through rhythm, morale, and preparation."
+            natural release of energy that has been properly prepared and timed. The editorial summary is "mobilize energy through rhythm, morale, and preparation."
           </p>
           <p>
             The hexagram is notable for its emphasis on music and ritual as practical tools. The{" "}
@@ -3699,7 +3670,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             Hexagram 19, Lin (临), places the Lake above Earth — water rising over the land,
             bringing nourishment and expanding reach. In the <cite>I Ching</cite>, the character{" "}
             <em>lin</em> carries the meaning of drawing near, overseeing, and approaching with care.
-            The classical Judgment reads: "influence grows through presence, care, and timely
+            The editorial summary is "influence grows through presence, care, and timely
             supervision."
           </p>
           <p>
@@ -3782,7 +3753,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             Hexagram 20, Guan (观), places Wind above Earth — wind moving across the land, observing
             and being observed. In the <cite>I Ching</cite>, the character <em>guan</em> means both
             to contemplate and to be contemplated: the hexagram operates in both directions
-            simultaneously. The classical Judgment reads: "step back and see the pattern before
+            simultaneously. The editorial summary is "step back and see the pattern before
             acting."
           </p>
           <p>
@@ -3864,7 +3835,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             thunder arriving together, the most decisive natural signal. In the <cite>I Ching</cite>
             , the hexagram's name literally means "biting through": the image is of a mouth with
             something obstructing it that must be bitten through before the mouth can close
-            properly. The classical Judgment reads: "a blockage requires precise, fair, and decisive
+            properly. The editorial summary is "a blockage requires precise, fair, and decisive
             action."
           </p>
           <p>
@@ -3947,7 +3918,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             Hexagram 22, Bi (贲), places Fire below Mountain — light at the base of something solid,
             illuminating its surface. In the <cite>I Ching</cite>, this image describes the
             relationship between form and substance: the fire does not create the mountain, but it
-            makes the mountain visible and beautiful. The classical Judgment reads: "form and beauty
+            makes the mountain visible and beautiful. The editorial summary is "form and beauty
             support substance when they do not replace it."
           </p>
           <p>
@@ -4031,7 +4002,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             Five yin lines have risen from the bottom of the hexagram, leaving a single yang line
             isolated at the top. In the <cite>I Ching</cite>, this image describes a period of
             erosion: the solid is being undermined, support is withdrawing, and the conditions that
-            once sustained a situation are no longer present. The classical Judgment reads: "when
+            once sustained a situation are no longer present. The editorial summary is "when
             structure erodes, preserve what is essential."
           </p>
           <p>
@@ -4117,7 +4088,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             force contained within the most solid and immovable structure. In the{" "}
             <cite>I Ching</cite>, this image describes the accumulation of great power through
             restraint: not suppression, but the deliberate holding of force until it has been fully
-            developed and the moment for its release is right. The classical Judgment reads: "strong
+            developed and the moment for its release is right. The editorial summary is "strong
             power must be stored, trained, and directed."
           </p>
           <p>
@@ -4199,7 +4170,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             Hexagram 27, Yi (颐), places Thunder below Mountain — movement at the base, stillness
             above, forming the image of an open mouth. In the <cite>I Ching</cite>, this hexagram
             asks two questions simultaneously: what are you nourishing yourself with, and what are
-            you nourishing others with? The classical Judgment reads: "watch what you feed and what
+            you nourishing others with? The editorial summary is "watch what you feed and what
             feeds you."
           </p>
           <p>
@@ -4283,7 +4254,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             would normally contain it, the image of a ridgepole sagging under excessive weight. In
             the <cite>I Ching</cite>, this hexagram describes a situation of genuine structural
             overload: the middle is too heavy, the ends are too weak, and the ordinary supports are
-            no longer adequate. The classical Judgment reads: "a heavy load asks for transition, not
+            no longer adequate. The editorial summary is "a heavy load asks for transition, not
             denial."
           </p>
           <p>
@@ -4368,8 +4339,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             firm, softness resting on solidity. In the <cite>I Ching</cite>, this is the first
             hexagram of the second half of the sequence, and the <cite>King Wen</cite> commentary
             treats it as foundational: just as Heaven and Earth are the basis of the natural world,
-            the mutual attraction between people is the basis of human society. The classical
-            Judgment reads: "mutual attraction works through openness and restraint."
+            the mutual attraction between people is the basis of human society. The editorial summary is "mutual attraction works through openness and restraint."
           </p>
           <p>
             The hexagram's name, <em>xian</em>, means "all" or "universal" — the sense of a feeling
@@ -4454,7 +4424,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             each reinforcing the other's momentum. In the <cite>I Ching</cite>, this image describes
             duration as an active quality: not the stillness of a stone, but the continuous movement
             of the sun and moon through their cycles, the four seasons through their sequence. The
-            classical Judgment reads: "consistency creates trust when it can adapt without
+            editorial summary is "consistency creates trust when it can adapt without
             breaking."
           </p>
           <p>
@@ -4537,7 +4507,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             Hexagram 33, Dun (遁), places Heaven above Mountain — the sky moving upward, away from
             the rising ground below. In the <cite>I Ching</cite>, this image describes a moment when
             the conditions have shifted and the correct response is to withdraw rather than to hold
-            or advance. The classical Judgment reads: "strategic withdrawal protects long-term
+            or advance. The editorial summary is "strategic withdrawal protects long-term
             strength."
           </p>
           <p>
@@ -4703,7 +4673,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             Hexagram 35, Jin (晋), places Fire above Earth — the sun rising over the land, its light
             spreading outward and upward. In the <cite>I Ching</cite>, this image describes a moment
             of genuine advancement: conditions are open, recognition is available, and movement
-            forward is both possible and welcomed. The classical Judgment reads: "visibility
+            forward is both possible and welcomed. The editorial summary is "visibility
             increases when support and clarity align."
           </p>
           <p>
@@ -4786,7 +4756,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             Hexagram 37, Jia Ren (家人), places Wind above Fire — warmth rising and generating
             outward movement. In the <cite>I Ching</cite>, this image describes the household as a
             microcosm of all social order: the patterns established within a family or close group
-            become the patterns that extend outward into the world. The classical Judgment reads:
+            become the patterns that extend outward into the world. The editorial summary is
             "healthy order begins with roles, care, and example."
           </p>
           <p>
@@ -4870,7 +4840,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             Hexagram 38, Kui (睽), places Fire above the Lake — fire moves upward, water moves
             downward, and the two naturally diverge. In the <cite>I Ching</cite>, this image
             describes genuine opposition: not conflict that can be resolved through better
-            communication, but difference that is real and structural. The classical Judgment reads:
+            communication, but difference that is real and structural. The editorial summary is
             "difference can clarify, but do not force unity too soon."
           </p>
           <p>
@@ -4955,7 +4925,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             Hexagram 39, Jian (蹇), places Water above Mountain — danger in front and difficult
             terrain behind. In the <cite>I Ching</cite>, this image describes a genuine obstruction:
             not a minor inconvenience that can be pushed through, but a situation where the direct
-            path is blocked and the usual approaches are not working. The classical Judgment reads:
+            path is blocked and the usual approaches are not working. The editorial summary is
             "when blocked, seek help and choose a wiser route."
           </p>
           <p>
@@ -5037,7 +5007,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             Hexagram 41, Sun (损), places the Lake below the Mountain — the lower trigram reduced,
             the upper strengthened. In the <cite>I Ching</cite>, this image describes a moment of
             voluntary decrease: something is given up at the lower level in order to support what is
-            above. The classical Judgment reads: "reduce excess to restore right proportion."
+            above. The editorial summary is "reduce excess to restore right proportion."
           </p>
           <p>
             The hexagram is paired with Hexagram 42 (Increase) in the <cite>King Wen sequence</cite>
@@ -5120,7 +5090,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             other, each amplifying the other's momentum. In the <cite>I Ching</cite>, this image
             describes a period of genuine increase: effort produces more than usual return,
             conditions are favorable, and the capacity to grow and to help others grow
-            simultaneously is present. The classical Judgment reads: "growth is favorable when it
+            simultaneously is present. The editorial summary is "growth is favorable when it
             benefits more than the self."
           </p>
           <p>
@@ -5293,8 +5263,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             Hexagram 44, Gou (姤), places Wind below Heaven — a single yin line at the base of five
             yang lines, movement arising beneath the most expansive force. In the{" "}
             <cite>I Ching</cite>, this image describes an unexpected encounter: something arrives
-            without being invited, and its significance is not immediately obvious. The classical
-            Judgment reads: "an unexpected influence needs careful boundaries."
+            without being invited, and its significance is not immediately obvious. The editorial summary is "an unexpected influence needs careful boundaries."
           </p>
           <p>
             The hexagram is the structural opposite of Hexagram 43 (Breakthrough): where
@@ -5466,7 +5435,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             Hexagram 46, Sheng (升), places Wind below Earth — wood pressing upward through the
             ground, growing toward the light through patient, consistent effort. In the{" "}
             <cite>I Ching</cite>, this image describes a period of genuine upward movement that is
-            organic rather than forced. The classical Judgment reads: "gradual ascent succeeds
+            organic rather than forced. The editorial summary is "gradual ascent succeeds
             through steady effort."
           </p>
           <p>
@@ -5549,7 +5518,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             Hexagram 51, Zhen (震), doubles the Thunder trigram — shock arriving from above and
             below simultaneously. In the <cite>I Ching</cite>, this image describes a sudden,
             disruptive event: something that arrives without warning and forces an immediate
-            response. The classical Judgment reads: "shock awakens movement; stay composed after the
+            response. The editorial summary is "shock awakens movement; stay composed after the
             first impact."
           </p>
           <p>
@@ -5632,7 +5601,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             Hexagram 52, Gen (艮), doubles the Mountain trigram — two mountains stacked, stillness
             above and below. In the <cite>I Ching</cite>, this image describes the active practice
             of stopping: not passive inactivity, but the deliberate choice to cease movement at the
-            appropriate moment. The classical Judgment reads: "stillness is active when it stops the
+            appropriate moment. The editorial summary is "stillness is active when it stops the
             wrong movement."
           </p>
           <p>
@@ -5717,7 +5686,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             roots deep, its growth visible and gradual. In the <cite>I Ching</cite>, this image
             describes development that follows a proper sequence: each stage is completed before the
             next begins, and the result is something that has genuine depth because it was not
-            rushed. The classical Judgment reads: "gradual progress becomes stable through proper
+            rushed. The editorial summary is "gradual progress becomes stable through proper
             sequence."
           </p>
           <p>
@@ -5805,7 +5774,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             image of a younger sister entering a household not as the primary wife but in a
             secondary role. In the <cite>I Ching</cite>, this image describes a situation of genuine
             inequality: one party holds more power, and the other must navigate within that
-            constraint. The classical Judgment reads: "unequal roles require caution, dignity, and
+            constraint. The editorial summary is "unequal roles require caution, dignity, and
             realistic expectations."
           </p>
           <p>
@@ -5893,7 +5862,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             Hexagram 55, Feng (丰), places Thunder above Fire — movement and clarity both at their
             maximum, the image of a moment when everything is illuminated and the capacity for
             action is fully present. In the <cite>I Ching</cite>, this is the hexagram of the peak:
-            not the approach to the peak, but the peak itself. The classical Judgment reads: "peak
+            not the approach to the peak, but the peak itself. The editorial summary is "peak
             visibility asks for wise use before decline begins."
           </p>
           <p>
@@ -5979,7 +5948,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             Hexagram 56, Lü (旅), places Fire above Mountain — a flame moving across high ground,
             bright but transient. In the <cite>I Ching</cite>, this image describes the condition of
             the traveler: someone who is passing through a place rather than settled in it, and who
-            must conduct themselves accordingly. The classical Judgment reads: "travel lightly;
+            must conduct themselves accordingly. The editorial summary is "travel lightly;
             courtesy protects you in temporary places."
           </p>
           <p>
@@ -6066,7 +6035,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             the image of wind moving through everything without obstruction. In the{" "}
             <cite>I Ching</cite>, this hexagram describes influence that works through persistence
             rather than force: the kind of effect that accumulates over time through consistent,
-            repeated presence. The classical Judgment reads: "soft persistence penetrates where
+            repeated presence. The editorial summary is "soft persistence penetrates where
             force cannot."
           </p>
           <p>
@@ -6152,7 +6121,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             Hexagram 58, Dui (兑), doubles the Lake trigram — open, reflective water above and
             below, each replenishing the other. In the <cite>I Ching</cite>, this image describes
             joy that is mutual and self-sustaining: not the pleasure of consumption, but the delight
-            of genuine exchange. The classical Judgment reads: "joy is constructive when it remains
+            of genuine exchange. The editorial summary is "joy is constructive when it remains
             sincere."
           </p>
           <p>
@@ -6239,7 +6208,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             river or lake, breaking up ice, dispersing what has congealed. In the{" "}
             <cite>I Ching</cite>, this image describes the dissolution of rigidity: the melting of
             what has frozen, the loosening of what has hardened, the restoration of flow where flow
-            has stopped. The classical Judgment reads: "dissolve rigidity and restore shared
+            has stopped. The editorial summary is "dissolve rigidity and restore shared
             movement."
           </p>
           <p>
@@ -6323,7 +6292,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             Hexagram 60, Jie (节), places Water above the Lake — water contained within its natural
             boundary, neither overflowing nor depleted. In the <cite>I Ching</cite>, this image
             describes the value of appropriate limitation: the kind of boundary that gives a
-            situation its shape and makes sustained effort possible. The classical Judgment reads:
+            situation its shape and makes sustained effort possible. The editorial summary is
             "good limits preserve energy; harsh limits create resistance."
           </p>
           <p>
@@ -6409,8 +6378,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             Hexagram 61, Zhong Fu (中孚), places Wind above the Lake — wind moving across open
             water, penetrating to the center of what it touches. In the <cite>I Ching</cite>, this
             image describes the quality of genuine sincerity: not the performance of honesty, but
-            the actual alignment between what is inside and what is expressed outward. The classical
-            Judgment reads: "trust grows when inner and outer signals match."
+            the actual alignment between what is inside and what is expressed outward. The editorial summary is "trust grows when inner and outer signals match."
           </p>
           <p>
             The hexagram's name, <em>zhong fu</em>, means literally "inner faithfulness" or "truth
@@ -6497,7 +6465,7 @@ const hexagramSections: Partial<Record<number, KnowledgePageProps["sections"]>> 
             the image of something that has gone slightly beyond its proper measure. In the{" "}
             <cite>I Ching</cite>, this hexagram describes a situation where the scale of action must
             be carefully calibrated: small exceeding is possible and sometimes necessary, but large
-            exceeding produces loss. The classical Judgment reads: "small adjustments are favored;
+            exceeding produces loss. The editorial summary is "small adjustments are favored;
             avoid grand overreach."
           </p>
           <p>
@@ -6987,15 +6955,15 @@ function buildHexagramFaqs(hexagram: (typeof HEXAGRAMS)[number]): FAQ[] {
   return [
     {
       question: `What does Hexagram ${hexagram.number} (${hexagram.name}) mean?`,
-      answer: `Hexagram ${hexagram.number}, ${chineseName}, means ${hexagram.judgment.toLowerCase()} Its Image says, "${hexagram.image}" Read it as a complete statement about the pattern now present, not as a fixed prediction or isolated omen.`,
+      answer: `Hexagram ${hexagram.number}, ${chineseName}, means ${hexagram.judgment.toLowerCase()} Our editorial image summary is: ${hexagram.image} Read it as a complete statement about the pattern now present, not as a fixed prediction or isolated omen.`,
     },
     {
       question: `What is the trigram structure of Hexagram ${hexagram.number}?`,
       answer: `Hexagram ${hexagram.number}, ${chineseName}, is built from ${upperTrigram} above ${lowerTrigram}. This structure gives the page its core image: ${hexagram.image} The upper trigram shows the visible field, while the lower trigram shows the pressure or resource underneath.`,
     },
     {
-      question: `When does Hexagram ${hexagram.number} appear in a reading?`,
-      answer: `Hexagram ${hexagram.number}, ${chineseName}, appears when the question matches this Judgment: "${hexagram.judgment}" It often points to decisions about timing, conduct, relationships, or responsibility where the symbolic image gives a practical response.`,
+      question: `What can Hexagram ${hexagram.number} help me reflect on?`,
+      answer: `Hexagram ${hexagram.number}, ${chineseName}, is summarized here as: ${hexagram.judgment} This is an editorial prompt for reflecting on decisions about timing, conduct, relationships, or responsibility where the symbolic image gives a practical response.`,
     },
     {
       question: `How does Hexagram ${hexagram.number} differ from ${pairedName}?`,
@@ -7003,38 +6971,20 @@ function buildHexagramFaqs(hexagram: (typeof HEXAGRAMS)[number]): FAQ[] {
     },
     {
       question: `What does Hexagram ${hexagram.number} warn against?`,
-      answer: `Hexagram ${hexagram.number}, ${chineseName}, warns against missing the discipline implied by its Image: "${hexagram.image}" The risk is treating ${judgmentLower} as permission for habit, haste, or passivity. The safer response is precise conduct that fits the moment.`,
+      answer: `Hexagram ${hexagram.number}, ${chineseName}, can be explored through our editorial image summary: ${hexagram.image} The risk is treating ${judgmentLower} as permission for habit, haste, or passivity. The safer response is precise conduct that fits the moment.`,
     },
   ];
 }
 
 function buildHexagramRelatedLinks(hexagram: (typeof HEXAGRAMS)[number]) {
-  const pairedNum = PAIRED_HEXAGRAMS[hexagram.number];
-  const pairedHex = HEXAGRAMS.find((item) => item.number === pairedNum);
-  const links = [
+  const pairedHex = HEXAGRAMS.find((item) => item.number === PAIRED_HEXAGRAMS[hexagram.number]);
+  return [
+    { title: "All 64 hexagrams", href: "/i-ching/sixty-four-hexagrams", description: "Find another figure by number, name and trigram pair." },
+    ...(pairedHex ? [{ title: `Hexagram ${pairedHex.number}: ${pairedHex.name} (${pairedHex.chinese})`, href: `/i-ching/hexagram-${pairedHex.number}`, description: "Compare the adjacent figure in the King Wen sequence." }] : []),
+    { title: "How to cast with coins", href: "/i-ching/how-to-cast", description: "Record line totals and construct the relating figure." },
+    { title: "I Ching reading workflow", href: "/blog/i-ching-beginners-reading-guide", description: "Keep the question, source passage and interpretation together." },
     ...indexingRecoveryLinks,
-    {
-      title: "I Ching Oracle",
-      href: "/tools/i-ching-oracle",
-      description: "Cast a six-line hexagram in the browser.",
-    },
   ];
-
-  if (pairedHex) {
-    links.push({
-      title: `Hexagram ${pairedHex.number}: ${pairedHex.name} (${pairedHex.chinese})`,
-      href: `/i-ching/hexagram-${pairedHex.number}`,
-      description: `The paired hexagram in the King Wen sequence. ${pairedHex.judgment}`,
-    });
-  }
-
-  links.push({
-    title: "I Ching Overview",
-    href: "/i-ching",
-    description: "Complete guide to the 64 hexagrams and how to use them.",
-  });
-
-  return links;
 }
 
 function createHexagramPage(hexagram: (typeof HEXAGRAMS)[number]): IChingContentPage {
@@ -7053,15 +7003,15 @@ function createHexagramPage(hexagram: (typeof HEXAGRAMS)[number]): IChingContent
     subtitle: `Judgment, image, and reflective use for Hexagram ${hexagram.number}.`,
     directAnswer:
       hexagramDirectAnswers[hexagram.number] ??
-      `Hexagram ${hexagram.number}, ${hexagram.name} (${hexagram.chinese}), points to ${hexagram.judgment.toLowerCase()} Its image says: ${hexagram.image} Use it as a structured mirror for the present situation, then compare changing lines when the cast shows movement.`,
+      `Hexagram ${hexagram.number}, ${hexagram.name} (${hexagram.chinese}), points to ${hexagram.judgment.toLowerCase()} Our editorial image summary is: ${hexagram.image} Use it as a structured mirror for the present situation, then compare changing lines when the cast shows movement.`,
     breadcrumbs: breadcrumbs(`Hexagram ${hexagram.number}`, path),
     schema: {
       headline: "",
       description: "",
       url: "",
       alternateName: [hexagram.chinese, hexagram.name],
-      datePublished: hexagramDate(hexagram.number),
-      dateModified: hexagramModDate(hexagram.number),
+      // Publication records are not available; do not infer dates from sequence numbers.
+      dateModified: "2026-09-26",
     },
     stats: [
       {
@@ -7076,17 +7026,8 @@ function createHexagramPage(hexagram: (typeof HEXAGRAMS)[number]): IChingContent
         description: "1 marks yang and 0 marks yin from bottom upward.",
       },
     ],
-    citations: [
-      {
-        label: "Richard Wilhelm & Cary Baynes, The I Ching or Book of Changes (1950)",
-        source: "Classical source for hexagram judgments and images.",
-      },
-      {
-        label: "King Wen sequence (周文王, ~1000 BCE)",
-        source: "Traditional ordering of the 64 hexagrams attributed to King Wen of Zhou.",
-      },
-    ],
-    sections: hexagramSections[hexagram.number] ?? [
+    citations: hexagramReferenceSources,
+    sections: [hexagramStructureSection(hexagram), ...(hexagramSections[hexagram.number] ?? [
       {
         heading: `What Hexagram ${hexagram.number} describes`,
         content: (
@@ -7166,7 +7107,7 @@ function createHexagramPage(hexagram: (typeof HEXAGRAMS)[number]): IChingContent
           </>
         ),
       },
-    ],
+    ])],
     faqs: hexagramFaqs[hexagram.number] ?? defaultFaqs,
     relatedLinks: buildHexagramRelatedLinks(hexagram),
     cta: cta(`Cast Hexagram ${hexagram.number} context`),

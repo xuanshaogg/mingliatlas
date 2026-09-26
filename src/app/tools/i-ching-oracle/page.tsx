@@ -1,3 +1,4 @@
+import { buildPageMetadata } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 import Breadcrumbs, { type Crumb } from "@/components/shared/Breadcrumbs";
 import DirectAnswer from "@/components/shared/DirectAnswer";
@@ -22,27 +23,12 @@ const shareCardImage = buildShareCardUrl({
   },
 });
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Free I Ching Oracle",
   description: "Cast a browser-based I Ching hexagram with changing lines and reflective guidance.",
-  alternates: {
-    canonical: "/tools/i-ching-oracle",
-  },
-  openGraph: {
-    title: "Free I Ching Oracle",
-    description:
-      "Cast a browser-based I Ching hexagram with changing lines and reflective guidance.",
-    url: "/tools/i-ching-oracle",
-    images: [shareCardImage],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Free I Ching Oracle",
-    description:
-      "Cast a browser-based I Ching hexagram with changing lines and reflective guidance.",
-    images: [shareCardImage],
-  },
-};
+  path: "/tools/i-ching-oracle",
+  image: shareCardImage,
+});
 
 const breadcrumbs: Crumb[] = [
   { label: "Home", href: "/" },
@@ -128,31 +114,30 @@ export default function IChingOraclePage() {
           buildBreadcrumbListSchema(breadcrumbs),
         ]}
       />
-      <main className="atlas-tool-shell bg-paper dark:bg-ink-950 px-4 py-10 sm:px-6 lg:px-8">
+      <section className="atlas-tool-shell bg-paper dark:bg-ink-950 px-4 py-10 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <Breadcrumbs items={breadcrumbs} />
-          <header className="mt-10 max-w-4xl">
-            <p className="text-brand-primary dark:text-gold-300 text-sm font-semibold tracking-[0.24em] uppercase">
-              Tools
-            </p>
-            <h1 className="font-display text-ink-950 dark:text-paper mt-4 text-5xl tracking-tight text-balance sm:text-6xl">
-              Free I Ching Oracle
-            </h1>
-            <p className="text-ink-600 dark:text-ink-300 mt-5 text-lg leading-8">
+          <header className="mt-6 max-w-4xl sm:mt-10">
+            <p className="atlas-eyebrow">Tools</p>
+            <h1 className="atlas-page-title mt-5">Free I Ching Oracle</h1>
+            <p className="atlas-page-intro mt-5 max-w-3xl">
               Cast a six-line hexagram locally in your browser. The result shows the primary
               hexagram, changing lines, and relating hexagram when change is present.
             </p>
-            <div className="mt-8">
+            <a href="#i-ching-tool" className="atlas-button-primary mt-5 lg:hidden">
+              Start casting ↓
+            </a>
+            <div className="mt-6 sm:mt-8">
               <DirectAnswer answer="The free I Ching oracle casts a six-line hexagram for a specific question and shows how changing lines move the reading toward a relating hexagram. Use it to clarify a situation and choose a better next question or action." />
             </div>
           </header>
-          <div className="mt-10">
+          <div id="i-ching-tool" className="mt-6 scroll-mt-4 sm:mt-10">
             <IChingOracle />
           </div>
           <FAQSection faqs={iChingOracleFaqs} />
           <RelatedLinks links={relatedLinks} />
         </div>
-      </main>
+      </section>
     </>
   );
 }

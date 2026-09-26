@@ -1,3 +1,4 @@
+import { buildPageMetadata } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 import Breadcrumbs, { type Crumb } from "@/components/shared/Breadcrumbs";
 import DirectAnswer from "@/components/shared/DirectAnswer";
@@ -23,25 +24,12 @@ const shareCardImage = buildShareCardUrl({
   },
 });
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Chinese Zodiac Compatibility Calculator",
   description: "Compare two Chinese zodiac signs with harmony pairs, triads, clashes, strengths, and watchouts.",
-  alternates: {
-    canonical: "/tools/zodiac-compatibility",
-  },
-  openGraph: {
-    title: "Chinese Zodiac Compatibility Calculator",
-    description: "Compare two Chinese zodiac signs with harmony pairs, triads, clashes, strengths, and watchouts.",
-    url: "/tools/zodiac-compatibility",
-    images: [shareCardImage],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Chinese Zodiac Compatibility Calculator",
-    description: "Compare two Chinese zodiac signs with harmony pairs, triads, clashes, strengths, and watchouts.",
-    images: [shareCardImage],
-  },
-};
+  path: "/tools/zodiac-compatibility",
+  image: shareCardImage,
+});
 
 const breadcrumbs: Crumb[] = [
   { label: "Home", href: "/" },
@@ -52,8 +40,15 @@ const breadcrumbs: Crumb[] = [
 const softwareSchema = buildWebApplicationSchema({
   name: "Chinese Zodiac Compatibility Calculator",
   url: `${SITE.url}/tools/zodiac-compatibility`,
-  description: "A browser-based Chinese zodiac compatibility calculator for harmony, triad, and clash patterns.",
-  featureList: ["Liu He harmony pairs", "three-harmony groups", "clash patterns", "strengths", "watchouts"],
+  description:
+    "A browser-based Chinese zodiac compatibility calculator for harmony, triad, and clash patterns.",
+  featureList: [
+    "Liu He harmony pairs",
+    "three-harmony groups",
+    "clash patterns",
+    "strengths",
+    "watchouts",
+  ],
 });
 
 const zodiacCompatibilityFaqs: FAQ[] = [
@@ -81,7 +76,8 @@ const zodiacCompatibilityFaqs: FAQ[] = [
 
 const zodiacHowToSchema = buildHowToSchema({
   name: "How to use the Chinese zodiac compatibility calculator",
-  description: "Choose two zodiac animals and compare harmony, triad, clash, strengths, and watchouts.",
+  description:
+    "Choose two zodiac animals and compare harmony, triad, clash, strengths, and watchouts.",
   url: `${SITE.url}/tools/zodiac-compatibility`,
   steps: [
     "Choose the first Chinese zodiac animal.",
@@ -92,9 +88,21 @@ const zodiacHowToSchema = buildHowToSchema({
 });
 
 const relatedLinks = [
-  { title: "Chinese Zodiac", href: "/chinese-zodiac", description: "Learn the 12 animal cycle and yearly context." },
-  { title: "Zodiac Compatibility Guide", href: "/blog/chinese-zodiac-compatibility-chart", description: "Read harmony, triads, and clash pairs in detail." },
-  { title: "Bazi Relationships", href: "/bazi/relationships", description: "Compare zodiac context with a deeper Four Pillars approach." },
+  {
+    title: "Chinese Zodiac",
+    href: "/chinese-zodiac",
+    description: "Learn the 12 animal cycle and yearly context.",
+  },
+  {
+    title: "Zodiac Compatibility Guide",
+    href: "/blog/chinese-zodiac-compatibility-chart",
+    description: "Read harmony, triads, and clash pairs in detail.",
+  },
+  {
+    title: "Bazi Relationships",
+    href: "/bazi/relationships",
+    description: "Compare zodiac context with a deeper Four Pillars approach.",
+  },
 ];
 
 export default function ZodiacCompatibilityPage() {
@@ -108,31 +116,30 @@ export default function ZodiacCompatibilityPage() {
           buildBreadcrumbListSchema(breadcrumbs),
         ]}
       />
-      <main className="atlas-tool-shell bg-paper px-4 py-10 dark:bg-ink-950 sm:px-6 lg:px-8">
+      <section className="atlas-tool-shell bg-paper dark:bg-ink-950 px-4 py-10 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <Breadcrumbs items={breadcrumbs} />
-          <header className="mt-10 max-w-4xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-brand-primary dark:text-gold-300">
-              Tools
+          <header className="mt-6 max-w-4xl sm:mt-10">
+            <p className="atlas-eyebrow">Tools</p>
+            <h1 className="atlas-page-title mt-5">Chinese Zodiac Compatibility Calculator</h1>
+            <p className="atlas-page-intro mt-5 max-w-3xl">
+              Compare two zodiac signs through Liu He harmony pairs, three-harmony groups, and clash
+              patterns. Use the result as a conversation aid, not a fixed relationship verdict.
             </p>
-            <h1 className="mt-4 text-balance font-display text-5xl tracking-tight text-ink-950 dark:text-paper sm:text-6xl">
-              Chinese Zodiac Compatibility Calculator
-            </h1>
-            <p className="mt-5 text-lg leading-8 text-ink-600 dark:text-ink-300">
-              Compare two zodiac signs through Liu He harmony pairs, three-harmony groups, and clash patterns. Use
-              the result as a conversation aid, not a fixed relationship verdict.
-            </p>
-            <div className="mt-8">
+            <a href="#zodiac-tool" className="atlas-button-primary mt-5 lg:hidden">
+              Compare signs ↓
+            </a>
+            <div className="mt-6 sm:mt-8">
               <DirectAnswer answer="The Chinese zodiac compatibility calculator compares two animal signs through traditional harmony, triad, and clash relationships. It gives quick relationship context, but it does not replace a full Bazi chart or real-world communication." />
             </div>
           </header>
-          <div className="mt-10">
+          <div id="zodiac-tool" className="mt-6 scroll-mt-4 sm:mt-10">
             <ZodiacCompatibilityCalculator />
           </div>
           <FAQSection faqs={zodiacCompatibilityFaqs} />
           <RelatedLinks links={relatedLinks} />
         </div>
-      </main>
+      </section>
     </>
   );
 }

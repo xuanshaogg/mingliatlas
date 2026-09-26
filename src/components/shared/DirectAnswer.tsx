@@ -4,11 +4,14 @@ interface DirectAnswerProps {
 
 export default function DirectAnswer({ answer }: DirectAnswerProps) {
   return (
-    <div className="border-l-2 border-brand-primary bg-paper-100 px-5 py-4 dark:border-gold-300 dark:bg-gold-500/10">
-      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-primary dark:text-gold-300">
+    <div className="ring-ink-200/50 rounded-2xl bg-white/80 p-5 ring-1 sm:p-6 dark:bg-white/5 dark:ring-white/10">
+      <p className="text-brand-primary dark:text-gold-300 flex items-center gap-2 text-xs font-semibold">
+        <span className="bg-brand-primary/60 h-1.5 w-1.5 rounded-full" aria-hidden="true" />
         Direct Answer
       </p>
-      <p className="mt-3 text-lg leading-8 text-ink-800 dark:text-paper">{answer}</p>
+      <p className="text-ink-700 dark:text-paper mt-3 text-[0.9375rem] leading-7 sm:text-base sm:leading-8">
+        {answer}
+      </p>
     </div>
   );
 }

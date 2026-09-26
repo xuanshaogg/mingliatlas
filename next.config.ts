@@ -1,4 +1,6 @@
 import type { NextConfig } from "next";
+import { CONTENT_REDIRECTS } from "./src/lib/content/urls";
+import { isPreviewDeployment } from "./src/lib/seo/environment";
 
 const contentSecurityPolicy = [
   "default-src 'self'",
@@ -25,25 +27,23 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   async headers() {
-    return [{ source: "/(.*)", headers: securityHeaders }];
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          ...securityHeaders,
+          ...(isPreviewDeployment ? [{ key: "X-Robots-Tag", value: "noindex, nofollow" }] : []),
+        ],
+      },
+    ];
   },
   async redirects() {
     return [
-      {
-        source: "/bazi/free-calculator",
-        destination: "https://mingliatlas.com/tools/bazi-calculator",
+      ...CONTENT_REDIRECTS.map(({ source, destination }) => ({
+        source,
+        destination: `https://mingliatlas.com${destination}`,
         permanent: true,
-      },
-      {
-        source: "/blog/what-is-bazi",
-        destination: "https://mingliatlas.com/bazi/what-is-bazi",
-        permanent: true,
-      },
-      {
-        source: "/chinese-zodiac/compatibility",
-        destination: "https://mingliatlas.com/blog/chinese-zodiac-compatibility-chart",
-        permanent: true,
-      },
+      })),
       {
         source: "/:path*",
         has: [

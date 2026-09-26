@@ -1,4 +1,9 @@
 import type { ReactNode } from "react";
+import Link from "next/link";
+import ArticleByline from "@/components/shared/ArticleByline";
+import TopicPathway from "@/components/shared/TopicPathway";
+import { topicPathways } from "@/lib/content/topicPathways";
+import ArticleNavigation from "@/components/shared/ArticleNavigation";
 import Breadcrumbs, { type Crumb } from "@/components/shared/Breadcrumbs";
 import CTABanner from "@/components/shared/CTABanner";
 import DirectAnswer from "@/components/shared/DirectAnswer";
@@ -12,6 +17,7 @@ import TrackedCTABanner from "@/components/analytics/TrackedCTABanner";
 import type { RelatedLink } from "@/components/shared/RelatedLinks";
 import type { ContentLinkTracking } from "@/lib/analytics/content-path";
 import { resolveCitationUrls } from "@/lib/content/citations";
+import { uniqueContentLinks } from "@/lib/content/urls";
 import { SITE } from "@/lib/constants";
 import {
   buildArticleDefinedTermSchema,
@@ -73,28 +79,49 @@ export interface KnowledgePageProps {
   ogImage?: string;
 }
 
-function SectionBlock({ section, level = 2 }: { section: Section; level?: 2 | 3 }) {
+function SectionBlock({
+  section,
+  level = 2,
+  id,
+}: {
+  section: Section;
+  level?: 2 | 3;
+  id?: string;
+}) {
   const HeadingTag = `h${level}` as "h2" | "h3";
 
   return (
-    <section className={level === 2 ? "mt-12 scroll-mt-24" : "mt-8"}>
+    <section id={id} className={level === 2 ? "mt-12 scroll-mt-4 first:mt-0 sm:mt-14" : "mt-8"}>
       <HeadingTag
         className={
           level === 2
-            ? "font-display text-4xl tracking-tight text-ink-950 dark:text-paper"
-            : "font-display text-3xl tracking-tight text-ink-950 dark:text-paper"
+            ? "atlas-section-title"
+            : "text-ink-950 dark:text-paper text-xl leading-snug sm:text-2xl"
         }
       >
         {section.heading}
       </HeadingTag>
-      <div className="mt-4 space-y-5 text-base leading-8 text-ink-700 dark:text-ink-200">{section.content}</div>
+      <div className="text-ink-700 dark:text-ink-200 mt-4 space-y-5 text-base leading-8">
+        {section.content}
+      </div>
       {section.stats?.length ? (
         <div className="mt-6 grid gap-3 sm:grid-cols-3">
           {section.stats.map((stat, statIndex) => (
-            <div key={`${section.heading}-${stat.value}-${stat.label}-${statIndex}`} className="border-t border-ink-300 bg-white p-4 dark:border-white/10 dark:bg-white/5">
-              <p className="text-2xl font-semibold text-brand-primary dark:text-gold-300">{stat.value}</p>
-              <p className="mt-1 text-sm font-semibold text-ink-900 dark:text-paper">{stat.label}</p>
-              {stat.description ? <p className="mt-2 text-sm leading-6 text-ink-600 dark:text-ink-300">{stat.description}</p> : null}
+            <div
+              key={`${section.heading}-${stat.value}-${stat.label}-${statIndex}`}
+              className="bg-paper-100 rounded-xl p-5 dark:bg-white/5"
+            >
+              <p className="text-brand-primary dark:text-gold-300 text-2xl font-semibold">
+                {stat.value}
+              </p>
+              <p className="text-ink-900 dark:text-paper mt-1 text-sm font-semibold">
+                {stat.label}
+              </p>
+              {stat.description ? (
+                <p className="text-ink-600 dark:text-ink-300 mt-2 text-sm leading-6">
+                  {stat.description}
+                </p>
+              ) : null}
             </div>
           ))}
         </div>
@@ -130,9 +157,25 @@ export default function KnowledgePage({
   ogImage,
 }: KnowledgePageProps) {
   const resolvedCitations = resolveCitationUrls(citations);
-  const visibleNextSteps = nextSteps ?? relatedLinks;
-  const schemaMentionLinks = nextSteps ? nextSteps.slice(0, 3) : relatedLinks;
-  const articleSchema = schema.jsonLd ??
+  const currentPath = new URL(schema.url).pathname;
+  const resolvedRelatedLinks = uniqueContentLinks(relatedLinks, currentPath);
+  const pathway = topicPathways[currentPath];
+  const pageSections: Section[] = pathway
+    ? [{ heading: pathway.heading, content: <TopicPathway pathway={pathway} /> }, ...sections]
+    : sections;
+  const navigationItems = [
+    ...pageSections.map((section, index) => ({
+      id: `article-section-${index + 1}`,
+      label: section.heading,
+    })),
+    ...(faqs.length ? [{ id: "faq-section-heading", label: "Common questions" }] : []),
+  ];
+  const visibleNextSteps = nextSteps
+    ? uniqueContentLinks(nextSteps, currentPath)
+    : resolvedRelatedLinks;
+  const schemaMentionLinks = nextSteps ? visibleNextSteps.slice(0, 3) : resolvedRelatedLinks;
+  const articleSchema =
+    schema.jsonLd ??
     buildArticleDefinedTermSchema({
       headline: schema.headline,
       description: schema.description,
@@ -152,21 +195,34 @@ export default function KnowledgePage({
 
   return (
     <>
-      <JsonLd data={[articleSchema, buildFAQPageSchema(faqs), buildBreadcrumbListSchema(breadcrumbs)]} />
+      <JsonLd
+        data={[
+          articleSchema,
+          ...(faqs.length ? [buildFAQPageSchema(faqs)] : []),
+          buildBreadcrumbListSchema(breadcrumbs),
+        ]}
+      />
       <article className="atlas-knowledge-shell bg-paper dark:bg-ink-950">
-        <header className="border-b border-ink-200 bg-paper-100 px-4 py-10 dark:border-white/10 dark:bg-ink-900 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-7xl">
+        <header id="article-top" className="pt-6 pb-10 sm:pb-14">
+          <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
             <Breadcrumbs items={breadcrumbs} />
-            <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-start">
+            <div className="mt-8 grid gap-8 sm:mt-10 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-start lg:gap-16">
               <div className="max-w-3xl">
-                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-brand-primary dark:text-gold-300">
-                  {entityType}
+                <p className="atlas-eyebrow">
+                  {entityType === "DefinedTerm"
+                    ? "Concept guide"
+                    : ["Article", "BlogPosting"].includes(entityType)
+                      ? "Knowledge guide"
+                      : entityType}
                 </p>
-                <h1 className="mt-4 max-w-4xl text-balance font-display text-5xl tracking-tight text-ink-950 dark:text-paper sm:text-6xl lg:text-7xl">
-                  {title}
-                </h1>
-                {subtitle ? <p className="mt-5 text-xl leading-8 text-ink-600 dark:text-ink-300">{subtitle}</p> : null}
-                <div className="mt-8">
+                <h1 className="atlas-page-title mt-5 max-w-4xl">{title}</h1>
+                {subtitle ? <p className="atlas-page-intro mt-5 max-w-3xl">{subtitle}</p> : null}
+                <ArticleByline
+                  published={schema.datePublished}
+                  modified={schema.dateModified}
+                  hasSources={resolvedCitations.length > 0}
+                />
+                <div className="mt-6 sm:mt-8">
                   <DirectAnswer answer={directAnswer} />
                 </div>
               </div>
@@ -175,47 +231,70 @@ export default function KnowledgePage({
           </div>
         </header>
 
-        <div className="mx-auto grid max-w-7xl gap-12 px-4 py-14 sm:px-6 lg:grid-cols-[minmax(0,1fr)_18rem] lg:px-8">
-          <div>
-            {sections.map((section, sectionIndex) => (
-              <SectionBlock key={`${section.heading}-${sectionIndex}`} section={section} />
-            ))}
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 pt-4 pb-14 sm:px-8 lg:grid-cols-[minmax(0,1fr)_18rem] lg:gap-16 lg:px-10">
+          <div className="max-w-3xl min-w-0">
+            <ArticleNavigation key={`${schema.url}-mobile`} items={navigationItems} mobile />
+            <div className="mt-8 lg:mt-0">
+              {pageSections.map((section, sectionIndex) => (
+                <SectionBlock
+                  key={`${section.heading}-${sectionIndex}`}
+                  section={section}
+                  id={`article-section-${sectionIndex + 1}`}
+                />
+              ))}
+            </div>
             <FAQSection faqs={faqs} />
             {nextStepsTracking ? (
-              <TrackedContentLinks links={visibleNextSteps.slice(0, 3)} tracking={nextStepsTracking} />
+              <TrackedContentLinks
+                links={visibleNextSteps.slice(0, 3)}
+                tracking={nextStepsTracking}
+              />
             ) : (
-              <RelatedContent links={relatedLinks} />
+              <RelatedContent links={resolvedRelatedLinks} />
             )}
             {cta.tracking ? <TrackedCTABanner {...cta} /> : <CTABanner {...cta} />}
             <NewsletterSignup />
-            <p className="mt-8 text-sm leading-6 text-ink-500 dark:text-ink-400">
+            <p className="text-ink-500 dark:text-ink-400 mt-8 text-sm leading-6">
               For entertainment and self-reflection purposes.
             </p>
           </div>
 
-          <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
-            <div className="border-t border-ink-300 bg-white p-5 dark:border-white/10 dark:bg-white/5">
-              <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-brand-primary dark:text-gold-300">
-                Sources
-              </h2>
-              <ul className="mt-4 space-y-3 text-sm leading-6 text-ink-600 dark:text-ink-300">
+          <aside className="min-w-0 space-y-5 lg:sticky lg:top-28 lg:self-start">
+            <ArticleNavigation key={schema.url} items={navigationItems} />
+            <div id="article-sources" className="atlas-surface scroll-mt-4 p-5">
+              <h2 className="text-ink-900 dark:text-paper text-sm font-semibold">Sources</h2>
+              <ul className="text-ink-600 dark:text-ink-300 mt-4 space-y-3 text-sm leading-6">
                 {resolvedCitations.map((citation) => (
                   <li key={`${citation.label}-${citation.source}`}>
                     {citation.url ? (
-                      <a href={citation.url} className="font-medium text-brand-primary underline decoration-brand-primary/30 transition hover:decoration-brand-primary dark:text-gold-300">
+                      <a
+                        href={citation.url}
+                        className="text-brand-primary decoration-brand-primary/30 hover:decoration-brand-primary dark:text-gold-300 font-medium underline transition"
+                      >
                         {citation.label}
                       </a>
                     ) : (
-                      <span className="font-medium text-ink-900 dark:text-paper">{citation.label}</span>
+                      <span className="text-ink-900 dark:text-paper font-medium">
+                        {citation.label}
+                      </span>
                     )}
                     <span className="block">{citation.source}</span>
                   </li>
                 ))}
               </ul>
+              <Link
+                href="/about#editorial-standards"
+                className="text-brand-primary dark:text-gold-300 mt-4 inline-flex text-xs font-medium underline"
+              >
+                Editorial standards and corrections
+              </Link>
             </div>
-            <div className="border-l-2 border-brand-primary bg-paper-100 p-5 text-sm leading-6 text-ink-700 dark:border-gold-300 dark:bg-gold-500/10 dark:text-ink-200">
-              <p className="font-semibold text-ink-950 dark:text-paper">About {SITE.name}</p>
-              <p className="mt-2">We translate classical Chinese metaphysics into clear, modern guidance for structured self-knowledge.</p>
+            <div className="bg-paper-100 text-ink-700 dark:bg-gold-500/10 dark:text-ink-200 rounded-2xl p-5 text-sm leading-6">
+              <p className="text-ink-950 dark:text-paper font-semibold">About {SITE.name}</p>
+              <p className="mt-2">
+                We translate classical Chinese metaphysics into clear, modern guidance for
+                structured self-knowledge.
+              </p>
             </div>
           </aside>
         </div>

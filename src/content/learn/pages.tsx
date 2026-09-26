@@ -3,6 +3,8 @@ import type { KnowledgePageProps } from "@/components/templates/KnowledgePage";
 import type { RelatedLink } from "@/components/shared/RelatedLinks";
 import TermLink from "@/components/shared/TermLink";
 import { SITE } from "@/lib/constants";
+import { buildCollectionPageSchema } from "@/lib/seo/jsonLd";
+import { learningPracticeSections, learningPracticeSources } from "./practice-sections";
 
 export interface LearnContentPage {
   slug: string;
@@ -150,6 +152,7 @@ function withEditorialQuote(sections: KnowledgePageProps["sections"]): Knowledge
 
 function buildPage(input: Omit<LearnContentPage, "data"> & KnowledgePageProps): LearnContentPage {
   const { slug, path, title, description, ...data } = input;
+  const practice = learningPracticeSections[path];
 
   return {
     slug,
@@ -159,14 +162,21 @@ function buildPage(input: Omit<LearnContentPage, "data"> & KnowledgePageProps): 
     data: {
       ...data,
       title,
-      sections: withEditorialQuote(data.sections),
+      sections: practice ? [data.sections[0], practice, ...data.sections.slice(1)] : withEditorialQuote(data.sections),
+      citations: [...data.citations, ...(learningPracticeSources[path] ?? [])],
       schema: {
         ...data.schema,
         headline: title,
         description,
         url: pageUrl(path),
         datePublished: data.schema.datePublished ?? "2026-03-05",
-        dateModified: data.schema.dateModified ?? "2026-03-20",
+        dateModified: practice ? "2026-09-24" : data.schema.dateModified ?? "2026-03-20",
+        ...(path === "/learn" ? { jsonLd: buildCollectionPageSchema({
+          name: title,
+          description,
+          url: pageUrl(path),
+          items: overviewRelatedLinks.map((link) => ({ name: link.title, description: link.description, url: pageUrl(link.href) })),
+        }) } : {}),
       },
     },
   };

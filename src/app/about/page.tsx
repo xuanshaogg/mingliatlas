@@ -1,19 +1,18 @@
+import { buildPageMetadata } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 import Link from "next/link";
 import StaticPage from "@/components/templates/StaticPage";
 import { JsonLd } from "@/lib/seo/jsonLd";
 import { AUTHOR, SITE } from "@/lib/constants";
 
-const ABOUT_LAST_MODIFIED = "2026-08-07";
+const ABOUT_LAST_MODIFIED = "2026-09-24";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "About Mingli Atlas (Ming Li) — Chinese Metaphysics Guides & Free Tools",
   description:
     "Mingli Atlas (Ming Li, 命理) explains Bazi, I Ching, Feng Shui, Ziwei Doushu, and the Chinese Zodiac from classical sources in plain English — with a free Bazi calculator and editorial standards you can check.",
-  alternates: {
-    canonical: "/about",
-  },
-};
+  path: "/about",
+});
 
 const editorialTeamSchema = {
   "@context": "https://schema.org" as const,
@@ -26,6 +25,7 @@ const editorialTeamSchema = {
   knowsAbout: AUTHOR.knowsAbout,
   parentOrganization: {
     "@type": "Organization",
+    "@id": `${SITE.url}/#organization`,
     name: SITE.name,
     url: SITE.url,
   },
@@ -52,22 +52,41 @@ export default function AboutPage() {
         ]}
         sections={[
           {
+            id: "editorial-team",
+            heading: "Editorial responsibility",
+            content: (
+              <>
+                <p>
+                  Articles use the shared byline {AUTHOR.name}. The byline identifies the editorial
+                  attribution for this site; source notes identify the texts, calendar references
+                  and commentaries behind an explanation.
+                </p>
+                <p>
+                  Published and updated dates are shown on knowledge pages. An update date records a
+                  substantive revision to that page. Teaching examples should be read as
+                  illustrations of a rule, not as evidence that a personal prediction came true.
+                </p>
+              </>
+            ),
+          },
+          {
             heading: "Mission",
             content: (
               <>
                 <p>
-                  Chinese metaphysics — Bazi (Four Pillars of Destiny), I Ching (Book of Changes), Feng Shui,
-                  Ziwei Doushu (Purple Star Astrology), and the Chinese Zodiac — is a set of structured
-                  analytical systems that has guided decision-making in East Asia for over two thousand years.
-                  Yet for most Western readers, access to these systems has been filtered through either
-                  over-simplified pop astrology or dense academic translations aimed at specialists.
+                  Chinese metaphysics — Bazi (Four Pillars of Destiny), I Ching (Book of Changes),
+                  Feng Shui, Ziwei Doushu (Purple Star Astrology), and the Chinese Zodiac — brings
+                  together traditions with different histories, source texts, calculation
+                  conventions and uses. Yet for most Western readers, access to these systems has
+                  been filtered through either over-simplified pop astrology or dense academic
+                  translations aimed at specialists.
                 </p>
                 <p>
-                  mingliatlas exists to close that gap. Our mission is to explain each system faithfully —
-                  preserving its internal logic and classical terminology — while writing in plain, modern
-                  English that a curious reader can follow without prior background. We do not flatten these
-                  traditions into fortune-telling language, and we do not invent meanings that the classical
-                  texts do not support.
+                  mingliatlas exists to close that gap. Our mission is to explain each system
+                  faithfully — preserving its internal logic and classical terminology — while
+                  writing in plain, modern English that a curious reader can follow without prior
+                  background. We do not flatten these traditions into fortune-telling language, and
+                  we do not invent meanings that the classical texts do not support.
                 </p>
               </>
             ),
@@ -76,40 +95,43 @@ export default function AboutPage() {
             heading: "What we cover",
             content: (
               <>
-                <p>
-                  The site is organized around five pillars:
-                </p>
+                <p>The site is organized around five pillars:</p>
                 <ul className="mt-3 list-disc space-y-2 pl-6">
                   <li>
-                    <strong>Bazi (四柱命理)</strong> — the Four Pillars system built from birth date and time,
-                    covering Day Masters, Heavenly Stems, Earthly Branches, Ten Gods, and the Five Elements
-                    (Wu Xing 五行).
+                    <strong>Bazi (四柱命理)</strong> — the Four Pillars system built from birth date
+                    and time, covering Day Masters, Heavenly Stems, Earthly Branches, Ten Gods, and
+                    the Five Elements (Wu Xing 五行).
                   </li>
                   <li>
-                    <strong>I Ching (易经)</strong> — the Book of Changes, including all 64 hexagrams, their
-                    line statements, and practical guidance on how to consult the oracle.
+                    <strong>I Ching (易经)</strong> — the Book of Changes, including all 64
+                    hexagrams, their line statements, and practical guidance on how to consult the
+                    oracle.
                   </li>
                   <li>
-                    <strong>Chinese Zodiac (生肖)</strong> — the twelve animal signs with compatibility
-                    analysis grounded in the Liu He (六合), San He (三合), and Liu Chong (六冲) relationships.
+                    <strong>Chinese Zodiac (生肖)</strong> — the twelve animal signs with
+                    compatibility analysis grounded in the Liu He (六合), San He (三合), and Liu
+                    Chong (六冲) relationships.
                   </li>
                   <li>
-                    <strong>Feng Shui (风水)</strong> — spatial harmony principles for homes and workspaces,
-                    explained through directional theory and Five Elements logic.
+                    <strong>Feng Shui (风水)</strong> — spatial harmony principles for homes and
+                    workspaces, explained through directional theory and Five Elements logic.
                   </li>
                   <li>
-                    <strong>Ziwei Doushu (紫微斗数)</strong> — Purple Star Astrology, a chart-based system
-                    distinct from Bazi that maps life sectors onto a twelve-palace grid.
+                    <strong>Ziwei Doushu (紫微斗数)</strong> — Purple Star Astrology, a chart-based
+                    system distinct from Bazi that maps life sectors onto a twelve-palace grid.
                   </li>
                 </ul>
                 <p className="mt-4">
-                  Each section includes both reference knowledge pages and free interactive tools. Start
-                  with the{" "}
+                  Each section includes both reference knowledge pages and free interactive tools.
+                  Start with the{" "}
                   <Link href="/tools/bazi-calculator" className="font-medium underline">
                     free Bazi calculator
                   </Link>{" "}
                   to build your Four Pillars chart and find your{" "}
-                  <Link href="/blog/day-master-bazi-complete-guide" className="font-medium underline">
+                  <Link
+                    href="/blog/day-master-bazi-complete-guide"
+                    className="font-medium underline"
+                  >
                     Day Master
                   </Link>
                   , read{" "}
@@ -130,23 +152,33 @@ export default function AboutPage() {
             ),
           },
           {
+            id: "editorial-standards",
             heading: "Editorial process",
             content: (
               <>
                 <p>
                   Pages are compiled and edited from named classical works, published translations,
-                  historical references, and contemporary practitioner material. AI-assisted drafting may
-                  support the workflow, but published pages are reviewed for terminology, internal
-                  consistency, source attribution, and reader safety.
+                  historical references, and contemporary practitioner material. AI-assisted
+                  drafting may support the workflow, but published pages are reviewed for
+                  terminology, internal consistency, source attribution, and reader safety.
                 </p>
-                <p>
-                  Our editorial standards:
-                </p>
+                <p>Our editorial standards:</p>
                 <ul className="mt-3 list-disc space-y-2 pl-6">
-                  <li>Claims are tied to a named classical source or a verifiable practitioner consensus.</li>
-                  <li>Chinese terms are given with hanzi, pinyin, and an English gloss on first use.</li>
-                  <li>Numerical claims (e.g. stem–branch cycle lengths, hexagram counts) are stated precisely.</li>
-                  <li>Pages carry a published date and are reviewed for accuracy when new scholarship emerges.</li>
+                  <li>
+                    Claims are tied to a named classical source or a verifiable practitioner
+                    consensus.
+                  </li>
+                  <li>
+                    Chinese terms are given with hanzi, pinyin, and an English gloss on first use.
+                  </li>
+                  <li>
+                    Numerical claims (e.g. stem–branch cycle lengths, hexagram counts) are stated
+                    precisely.
+                  </li>
+                  <li>
+                    Pages carry a published date and are reviewed for accuracy when new scholarship
+                    emerges.
+                  </li>
                 </ul>
               </>
             ),
@@ -156,15 +188,17 @@ export default function AboutPage() {
             content: (
               <>
                 <p>
-                  We separate source types so readers can see where a claim comes from. Classical source notes
-                  explain inherited concepts, modern practitioner sources explain contemporary usage, and academic
-                  or historical references help with context. Editorial notes explain how mingliatlas applies those
-                  sources for beginner-friendly education.
+                  We separate source types so readers can see where a claim comes from. Classical
+                  source notes explain inherited concepts, modern practitioner sources explain
+                  contemporary usage, and academic or historical references help with context.
+                  Editorial notes explain how mingliatlas applies those sources for
+                  beginner-friendly education.
                 </p>
                 <p>
-                  A strong knowledge page should not rely on a single generic tradition label. When a page covers a
-                  core entity such as Bazi, Wu Xing, I Ching, Feng Shui, Ziwei Doushu, or the Chinese Zodiac, we aim
-                  to include named sources and clear boundaries around interpretation.
+                  A strong knowledge page should not rely on a single generic tradition label. When
+                  a page covers a core entity such as Bazi, Wu Xing, I Ching, Feng Shui, Ziwei
+                  Doushu, or the Chinese Zodiac, we aim to include named sources and clear
+                  boundaries around interpretation.
                 </p>
               </>
             ),
@@ -204,8 +238,8 @@ export default function AboutPage() {
                   <Link href="/tools/bazi-calculator" className="font-medium underline">
                     Bazi calculator
                   </Link>{" "}
-                  and record the civil date, local time, place, time zone, and solar-term convention.
-                  Compare close boundaries with the{" "}
+                  and record the civil date, local time, place, time zone, and solar-term
+                  convention. Compare close boundaries with the{" "}
                   <a
                     href="https://www.hko.gov.hk/en/gts/time/conversion.htm"
                     target="_blank"
@@ -225,31 +259,71 @@ export default function AboutPage() {
             content: (
               <>
                 <p>
-                  New and revised pages are reviewed against four checks before publication: factual consistency,
-                  terminology consistency, source quality, and reader safety. We check that Chinese terms are used
-                  consistently across the site, that claims match the stated source layer, and that practical advice
-                  stays within education and self-reflection.
+                  New and revised pages are reviewed against four checks before publication: factual
+                  consistency, terminology consistency, source quality, and reader safety. We check
+                  that Chinese terms are used consistently across the site, that claims match the
+                  stated source layer, and that practical advice stays within education and
+                  self-reflection.
                 </p>
                 <p>
-                  We also run technical quality checks for canonical URLs, structured data, sitemap inclusion,
-                  internal links, and AI-readable discovery files such as <code>llms.txt</code> and{" "}
-                  <code>llms-full.txt</code>.
+                  We also run technical quality checks for canonical URLs, structured data, sitemap
+                  inclusion, internal links, and AI-readable discovery files such as{" "}
+                  <code>llms.txt</code> and <code>llms-full.txt</code>.
                 </p>
               </>
             ),
           },
           {
+            id: "tool-methods",
+            heading: "How to read the tool outputs",
+            content: (
+              <>
+                <p>
+                  <strong>Bazi:</strong> the chart is calculated from the entered date and time. Its
+                  current year pillar uses Lunar New Year, and month boundaries use the date of a
+                  Jie solar term. The{" "}
+                  <Link
+                    href="/tools/bazi-calculator#calculation-method"
+                    className="font-medium underline"
+                  >
+                    calculation method note
+                  </Link>{" "}
+                  explains when another convention can produce different pillars. Element
+                  percentages summarize fixed symbol weights; they are not measurements of
+                  personality.
+                </p>
+                <p>
+                  <strong>I Ching:</strong> the tool simulates six three-coin lines and changes the
+                  moving lines to form a relating hexagram. Short result descriptions are editorial
+                  summaries. To study a passage, consult the named hexagram and a specified
+                  translation rather than treating the summary as a direct quotation from the
+                  original text.
+                </p>
+                <p>
+                  <strong>Zodiac compatibility:</strong> the score comes from fixed rules for the
+                  selected branch pair, such as harmony, triad or clash. It is a display scale for
+                  traditional categories, not a measured chance that a relationship will succeed.
+                  Use the accompanying explanation and conversation prompts to understand the
+                  category.
+                </p>
+              </>
+            ),
+          },
+          {
+            id: "corrections",
             heading: "Content update policy",
             content: (
               <p>
                 Knowledge pages are reviewed on a rolling basis. When classical scholarship, new
-                practitioner consensus, or reader corrections indicate that a page needs revision, we
-                update it and refresh the <code>dateModified</code> timestamp in the page metadata when the
-                revision materially changes the page.
-                If you believe a factual error exists on any page, please use the{" "}
-                <a href="/contact" className="font-medium underline">contact form</a> to reach us with
-                the specific claim and the source you believe is more accurate. Submissions are saved for
-                editorial review and assessed as capacity allows.
+                practitioner consensus, or reader corrections indicate that a page needs revision,
+                we update it and refresh the <code>dateModified</code> timestamp in the page
+                metadata when the revision materially changes the page. If you believe a factual
+                error exists on any page, please use the{" "}
+                <a href="/contact" className="font-medium underline">
+                  contact form
+                </a>{" "}
+                to reach us with the specific claim and the source you believe is more accurate.
+                Submissions are saved for editorial review and assessed as capacity allows.
               </p>
             ),
           },
@@ -257,12 +331,13 @@ export default function AboutPage() {
             heading: "Disclaimer",
             content: (
               <p>
-                Content on mingliatlas is provided for educational, entertainment, and self-reflection
-                purposes only. The interpretations and frameworks described represent classical Chinese
-                metaphysical traditions and do not constitute professional medical, psychological, legal,
-                or financial advice. Readers are encouraged to consult qualified professionals for
-                decisions in those domains. The site does not claim that any metaphysical system can
-                predict the future with certainty.
+                Content on mingliatlas is provided for educational, entertainment, and
+                self-reflection purposes only. The interpretations and frameworks described
+                represent classical Chinese metaphysical traditions and do not constitute
+                professional medical, psychological, legal, or financial advice. Readers are
+                encouraged to consult qualified professionals for decisions in those domains. The
+                site does not claim that any metaphysical system can predict the future with
+                certainty.
               </p>
             ),
           },

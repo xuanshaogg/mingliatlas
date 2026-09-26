@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import Breadcrumbs, { type Crumb } from "@/components/shared/Breadcrumbs";
 
 export interface StaticPageSection {
+  id?: string;
   heading: string;
   content: ReactNode;
 }
@@ -33,18 +34,12 @@ export default function StaticPage({
 }: StaticPageProps) {
   return (
     <article className="atlas-knowledge-shell bg-paper dark:bg-ink-950">
-      <header className="border-b border-ink-200 bg-paper-100 px-4 py-10 dark:border-white/10 dark:bg-ink-900 sm:px-6 lg:px-8">
+      <header className="px-5 pt-6 pb-6 sm:px-8 lg:px-10">
         <div className="mx-auto max-w-5xl">
           <Breadcrumbs items={breadcrumbs} />
-          <p className="mt-10 text-sm font-semibold uppercase tracking-[0.24em] text-brand-primary dark:text-gold-300">
-            {eyebrow}
-          </p>
-          <h1 className="mt-4 text-balance font-display text-5xl tracking-tight text-ink-950 dark:text-paper sm:text-6xl">
-            {title}
-          </h1>
-          <p className="mt-5 max-w-3xl text-lg leading-8 text-ink-600 dark:text-ink-300">
-            {description}
-          </p>
+          <p className="atlas-eyebrow mt-10">{eyebrow}</p>
+          <h1 className="atlas-page-title mt-5 max-w-4xl">{title}</h1>
+          <p className="atlas-page-intro mt-5 max-w-3xl">{description}</p>
         </div>
       </header>
 
@@ -53,11 +48,9 @@ export default function StaticPage({
         {sections.length ? (
           <div className="space-y-12">
             {sections.map((section) => (
-              <section key={section.heading}>
-                <h2 className="font-display text-3xl tracking-tight text-ink-950 dark:text-paper">
-                  {section.heading}
-                </h2>
-                <div className="mt-4 space-y-4 text-base leading-8 text-ink-700 dark:text-ink-200">
+              <section key={section.heading} id={section.id} className="scroll-mt-4">
+                <h2 className="atlas-section-title">{section.heading}</h2>
+                <div className="text-ink-700 dark:text-ink-200 mt-4 space-y-4 text-base leading-8">
                   {section.content}
                 </div>
               </section>
@@ -65,13 +58,12 @@ export default function StaticPage({
           </div>
         ) : null}
         {cta ? (
-          <section className="mt-14 border-l-2 border-brand-primary bg-paper-100 p-6 dark:border-gold-300 dark:bg-gold-500/10">
-            <h2 className="font-display text-3xl tracking-tight text-ink-950 dark:text-paper">{cta.title}</h2>
-            <p className="mt-3 max-w-2xl text-base leading-7 text-ink-700 dark:text-ink-200">{cta.description}</p>
-            <Link
-              href={cta.href}
-              className="mt-5 inline-flex bg-brand-primary px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-700"
-            >
+          <section className="bg-paper-100 dark:bg-gold-500/10 mt-14 rounded-2xl p-6 sm:p-8">
+            <h2 className="atlas-section-title">{cta.title}</h2>
+            <p className="text-ink-700 dark:text-ink-200 mt-3 max-w-2xl text-base leading-7">
+              {cta.description}
+            </p>
+            <Link href={cta.href} className="atlas-button-primary mt-5">
               {cta.label}
             </Link>
           </section>

@@ -1,6 +1,7 @@
 import { AUTHOR, SITE } from "@/lib/constants";
 import type { Crumb } from "@/components/shared/Breadcrumbs";
 import type { FAQ } from "@/components/shared/FAQSection";
+import { normalizeBreadcrumbs } from "@/lib/content/breadcrumbs";
 
 interface SchemaBase {
   "@context": "https://schema.org";
@@ -46,9 +47,11 @@ interface WebApplicationSchemaInput {
 }
 
 interface ItemListSchemaInput {
+  id?: string;
   name: string;
   description: string;
   url: string;
+  itemType?: "WebPage" | "WebApplication";
   items: Array<{
     name: string;
     description: string;
@@ -75,7 +78,12 @@ interface DefinedTermSchemaInput {
 }
 
 export function JsonLd({ data }: JsonLdProps) {
-  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />;
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }}
+    />
+  );
 }
 
 export function buildArticleDefinedTermSchema({
@@ -91,8 +99,10 @@ export function buildArticleDefinedTermSchema({
   citations,
   mentions,
 }: ArticleSchemaInput): JsonLdNode {
+  const articleType = entityType === "BlogPosting" ? "BlogPosting" : "Article";
   const entityNode = {
-    "@type": entityType,
+    "@type": ["Article", "BlogPosting"].includes(entityType) ? "Thing" : entityType,
+    "@id": `${url}#topic`,
     name: entityName,
     ...(alternateName ? { alternateName } : {}),
     description,
@@ -100,7 +110,9 @@ export function buildArticleDefinedTermSchema({
 
   return {
     "@context": "https://schema.org",
-    "@type": ["Article", entityType],
+    "@type": articleType,
+    "@id": `${url}#article`,
+    inLanguage: "en",
     headline,
     name: entityName,
     ...(alternateName ? { alternateName } : {}),
@@ -111,6 +123,7 @@ export function buildArticleDefinedTermSchema({
     ...(dateModified ? { dateModified } : {}),
     isPartOf: {
       "@type": "WebSite",
+      "@id": `${SITE.url}/#website`,
       name: SITE.name,
       url: SITE.url,
     },
@@ -118,7 +131,7 @@ export function buildArticleDefinedTermSchema({
     ...(citations?.length
       ? {
           citation: citations.map((citation) => ({
-            "@type": citation.url ? "CreativeWork" : "Book",
+            "@type": "CreativeWork",
             name: citation.label,
             description: citation.source,
             ...(citation.url ? { url: citation.url } : {}),
@@ -128,20 +141,24 @@ export function buildArticleDefinedTermSchema({
     ...(mentions?.length
       ? {
           mentions: mentions.map((mention) => ({
-            "@type": "DefinedTerm",
+            "@type": "WebPage",
             name: mention.name,
-            ...(mention.url ? { url: mention.url.startsWith("http") ? mention.url : `${SITE.url}${mention.url}` } : {}),
+            ...(mention.url
+              ? { url: mention.url.startsWith("http") ? mention.url : `${SITE.url}${mention.url}` }
+              : {}),
           })),
         }
       : {}),
     author: {
       "@type": "Organization",
+      "@id": `${SITE.url}/about#editorial-team`,
       name: AUTHOR.name,
       url: AUTHOR.url,
       description: AUTHOR.description,
     },
     publisher: {
       "@type": "Organization",
+      "@id": `${SITE.url}/#organization`,
       name: SITE.name,
       url: SITE.url,
       logo: {
@@ -150,6 +167,7 @@ export function buildArticleDefinedTermSchema({
       },
     },
     mainEntity: entityNode,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
   };
 }
 
@@ -184,10 +202,18 @@ export function buildWebApplicationSchema({
   };
 }
 
-export function buildItemListSchema({ name, description, url, items }: ItemListSchemaInput): JsonLdNode {
+export function buildItemListSchema({
+  id,
+  name,
+  description,
+  url,
+  items,
+  itemType = "WebPage",
+}: ItemListSchemaInput): JsonLdNode {
   return {
     "@context": "https://schema.org",
     "@type": "ItemList",
+    "@id": id ?? `${url}#list`,
     name,
     description,
     url,
@@ -195,12 +221,27 @@ export function buildItemListSchema({ name, description, url, items }: ItemListS
       "@type": "ListItem",
       position: index + 1,
       item: {
-        "@type": "WebApplication",
+        "@type": itemType,
         name: item.name,
         description: item.description,
         url: item.url,
       },
     })),
+  };
+}
+
+export function buildCollectionPageSchema(input: ItemListSchemaInput): JsonLdNode {
+  const { "@context": context, ...list } = buildItemListSchema(input);
+  return {
+    "@context": context,
+    "@type": "CollectionPage",
+    "@id": input.url,
+    url: input.url,
+    name: input.name,
+    description: input.description,
+    inLanguage: "en",
+    isPartOf: { "@id": `${SITE.url}/#website` },
+    mainEntity: list,
   };
 }
 
@@ -241,7 +282,10 @@ export function buildDefinedTermSchema({
   alternateName,
   definedTermSet,
 }: DefinedTermSchemaInput): JsonLdNode {
-  const termId = name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  const termId = name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
 
   return {
     "@context": "https://schema.org",
@@ -267,7 +311,7 @@ export function buildBreadcrumbListSchema(crumbs: Crumb[]): JsonLdNode {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: crumbs.map((crumb, index) => ({
+    itemListElement: normalizeBreadcrumbs(crumbs).map((crumb, index) => ({
       "@type": "ListItem",
       position: index + 1,
       name: crumb.label,

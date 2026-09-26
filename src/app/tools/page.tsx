@@ -1,20 +1,19 @@
+import { buildPageMetadata } from "@/lib/seo/metadata";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Calculator, Coins, HeartHandshake } from "lucide-react";
+import { ArrowRight, BookOpen, Calculator, Check, Coins, HeartHandshake } from "lucide-react";
 import DirectAnswer from "@/components/shared/DirectAnswer";
 import FAQSection, { type FAQ } from "@/components/shared/FAQSection";
 import RelatedLinks from "@/components/shared/RelatedLinks";
 import { SITE } from "@/lib/constants";
-import { buildFAQPageSchema, buildItemListSchema, JsonLd } from "@/lib/seo/jsonLd";
+import { buildFAQPageSchema, buildCollectionPageSchema, JsonLd } from "@/lib/seo/jsonLd";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Free Bazi, I Ching & Zodiac Tools",
   description:
     "Free browser tools for Chinese metaphysics: a Bazi Four Pillars calculator, an I Ching coin oracle, and a Chinese zodiac compatibility checker.",
-  alternates: {
-    canonical: "/tools",
-  },
-};
+  path: "/tools",
+});
 
 const toolsFaqs: FAQ[] = [
   {
@@ -40,9 +39,21 @@ const toolsFaqs: FAQ[] = [
 ];
 
 const relatedLinks = [
-  { title: "Bazi Overview", href: "/bazi", description: "Learn the Four Pillars vocabulary behind the calculator." },
-  { title: "I Ching Guide", href: "/i-ching", description: "Understand hexagrams, changing lines, and reflective use." },
-  { title: "Chinese Zodiac", href: "/chinese-zodiac", description: "Read the 12-animal cycle before comparing signs." },
+  {
+    title: "Bazi Overview",
+    href: "/bazi",
+    description: "Learn the Four Pillars vocabulary behind the calculator.",
+  },
+  {
+    title: "I Ching Guide",
+    href: "/i-ching",
+    description: "Understand hexagrams, changing lines, and reflective use.",
+  },
+  {
+    title: "Chinese Zodiac",
+    href: "/chinese-zodiac",
+    description: "Read the 12-animal cycle before comparing signs.",
+  },
 ];
 
 export default function ToolsPage() {
@@ -50,26 +61,42 @@ export default function ToolsPage() {
     {
       title: "Free Bazi Calculator",
       href: "/tools/bazi-calculator",
-      description: "Generate a Four Pillars chart with Day Master, Ten Gods, hidden stems, and Five Element balance.",
+      description:
+        "Generate a Four Pillars chart with Day Master, Ten Gods, hidden stems, and Five Element balance.",
       icon: Calculator,
-      status: "Live",
+      need: "Birth date and local birth time",
+      purpose: "Understand your chart",
+      guide: "/bazi/what-is-bazi",
+      guideLabel: "Learn how Bazi works",
+      action: "Build your chart",
     },
     {
       title: "I Ching Oracle",
       href: "/tools/i-ching-oracle",
-      description: "Cast a six-line hexagram with changing lines and a relating hexagram when the cast moves.",
+      description:
+        "Cast a six-line hexagram with changing lines and a relating hexagram when the cast moves.",
       icon: Coins,
-      status: "Live",
+      need: "One specific question",
+      purpose: "Reflect on a decision",
+      guide: "/i-ching/what-is-i-ching",
+      guideLabel: "Learn how to ask",
+      action: "Cast a hexagram",
     },
     {
       title: "Zodiac Compatibility",
       href: "/tools/zodiac-compatibility",
-      description: "Compare two zodiac signs through harmony pairs, triads, clashes, strengths, and watchouts.",
+      description:
+        "Compare two zodiac signs through harmony pairs, triads, clashes, strengths, and watchouts.",
       icon: HeartHandshake,
-      status: "Live",
+      need: "Two Chinese zodiac signs",
+      purpose: "Explore a relationship",
+      guide: "/chinese-zodiac",
+      guideLabel: "Find your zodiac sign",
+      action: "Compare signs",
     },
   ];
-  const itemListSchema = buildItemListSchema({
+  const itemListSchema = buildCollectionPageSchema({
+    itemType: "WebApplication",
     name: "Free Chinese Metaphysics Tools",
     description: "Free calculators and guided workflows for Bazi, I Ching, and Chinese Zodiac.",
     url: `${SITE.url}/tools`,
@@ -83,49 +110,75 @@ export default function ToolsPage() {
   return (
     <>
       <JsonLd data={[itemListSchema, buildFAQPageSchema(toolsFaqs)]} />
-      <main className="atlas-tool-shell bg-paper px-4 py-12 dark:bg-ink-950 sm:px-6 lg:px-8">
+      <section className="atlas-tool-shell bg-paper dark:bg-ink-950 px-4 py-12 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-brand-primary dark:text-gold-300">Tools</p>
-          <h1 className="mt-4 font-display text-5xl tracking-tight text-ink-950 dark:text-paper sm:text-6xl">
-            Free tools
-          </h1>
-          <p className="mt-5 max-w-3xl text-lg leading-8 text-ink-600 dark:text-ink-300">
-            Use these browser-friendly workflows for quick charts, I Ching reflection, and zodiac compatibility checks.
+          <p className="atlas-eyebrow">Tools</p>
+          <h1 className="atlas-page-title mt-5">Free tools</h1>
+          <p className="atlas-page-intro mt-5 max-w-3xl">
+            Use these browser-friendly workflows for quick charts, I Ching reflection, and zodiac
+            compatibility checks.
           </p>
-          <div className="mt-8 max-w-4xl">
-            <DirectAnswer answer="The free tools turn Chinese metaphysics concepts into practical workflows: calculate a Bazi chart, cast an I Ching hexagram, or compare two Chinese zodiac signs. Use them as structured learning aids before reading deeper guides." />
+          <div className="text-ink-600 dark:text-ink-300 mt-6 flex flex-wrap gap-x-6 gap-y-3 text-xs font-medium">
+            {["Free to use", "No account needed", "Clear reading guides"].map((label) => (
+              <span key={label} className="flex items-center gap-2">
+                <Check className="text-brand-primary h-4 w-4" aria-hidden="true" />
+                {label}
+              </span>
+            ))}
           </div>
 
-          <div className="mt-10 grid border-y border-ink-200 md:grid-cols-3">
-            {tools.map((tool) => {
+          <div className="mt-10 grid gap-5 md:grid-cols-3">
+            {tools.map((tool, index) => {
               const Icon = tool.icon;
 
               return (
-                <Link
+                <article
                   key={tool.href}
-                  href={tool.href}
-                  className="group border-b border-ink-200 bg-white p-6 transition hover:bg-paper-100 md:border-b-0 md:border-r md:last:border-r-0 dark:border-white/10 dark:bg-white/5"
+                  className="atlas-surface flex flex-col p-5 sm:p-6 md:p-4 lg:p-7"
                 >
                   <div className="flex items-center justify-between gap-4">
-                    <span className="flex h-10 w-10 items-center justify-center border border-brand-200 bg-brand-50 text-brand-primary dark:bg-gold-500/10 dark:text-gold-300">
-                      <Icon className="h-5 w-5" aria-hidden="true" />
+                    <span className="text-brand-primary dark:bg-gold-500/10 dark:text-gold-300 bg-brand-50 flex h-14 w-14 items-center justify-center rounded-full">
+                      <Icon className="h-6 w-6" aria-hidden="true" />
                     </span>
-                    <span className="border border-gold-300 bg-gold-50 px-3 py-1 text-xs font-semibold text-gold-800 dark:bg-gold-500/15 dark:text-gold-200">
-                      {tool.status}
-                    </span>
+                    <span className="text-ink-400 text-xs tabular-nums">0{index + 1}</span>
                   </div>
-                  <h2 className="mt-5 font-display text-3xl tracking-tight text-ink-950 dark:text-paper">
-                    {tool.title}
-                  </h2>
-                  <p className="mt-3 text-sm leading-6 text-ink-600 dark:text-ink-300">{tool.description}</p>
-                </Link>
+                  <div className="flex flex-1 flex-col pt-7">
+                    <p className="text-ink-500 dark:text-ink-300 text-xs font-medium">
+                      {tool.purpose}
+                    </p>
+                    <h2 className="text-ink-950 dark:text-paper mt-3 text-2xl leading-snug font-semibold tracking-tight">
+                      {tool.title}
+                    </h2>
+                    <p className="text-ink-600 dark:text-ink-300 mt-3 text-sm leading-6">
+                      {tool.description}
+                    </p>
+                    <div className="mt-auto pt-6">
+                      <p className="text-ink-500 pt-4 text-xs font-medium">What you need</p>
+                      <p className="text-ink-700 dark:text-ink-200 mt-1 text-sm">{tool.need}</p>
+                      <Link href={tool.href} className="atlas-button-primary mt-5 w-full">
+                        {tool.action}
+                        <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                      </Link>
+                      <Link
+                        href={tool.guide}
+                        className="text-ink-600 hover:text-brand-primary dark:text-ink-300 mt-2 flex min-h-11 items-center justify-center gap-2 text-xs font-medium"
+                      >
+                        <BookOpen className="h-3.5 w-3.5" aria-hidden="true" />
+                        {tool.guideLabel}
+                      </Link>
+                    </div>
+                  </div>
+                </article>
               );
             })}
+          </div>
+          <div className="mt-10 max-w-4xl">
+            <DirectAnswer answer="The free tools turn Chinese metaphysics concepts into practical workflows: calculate a Bazi chart, cast an I Ching hexagram, or compare two Chinese zodiac signs. Use them as structured learning aids before reading deeper guides." />
           </div>
           <FAQSection faqs={toolsFaqs} />
           <RelatedLinks links={relatedLinks} />
         </div>
-      </main>
+      </section>
     </>
   );
 }

@@ -134,7 +134,9 @@ export function createCoinCast(seed = Date.now()): Array<[number, number, number
 
   function nextCoin(): number {
     state = (1664525 * state + 1013904223) >>> 0;
-    return state % 2 === 0 ? 2 : 3;
+    // The low bit of this generator alternates deterministically. Use the high
+    // bit so a cast can contain both changing and unchanging three-coin lines.
+    return (state >>> 31) === 0 ? 2 : 3;
   }
 }
 

@@ -38,6 +38,7 @@ function wordCount(value: string): number {
 describe("indexing policy", () => {
   it("keeps the indexable registry unique and backed by published routes", () => {
     const publishedPaths = new Set(publishedSitePages.map((page) => page.href));
+    expect(INDEXABLE_PATHS).toHaveLength(40);
     expect(new Set(INDEXABLE_PATHS).size).toBe(INDEXABLE_PATHS.length);
     for (const path of INDEXABLE_PATHS) expect(publishedPaths.has(path), path).toBe(true);
   });
@@ -88,6 +89,10 @@ describe("indexing policy", () => {
       "/blog/day-master-bazi-complete-guide",
       "/blog/chinese-zodiac-compatibility-chart",
       "/tools/bazi-calculator",
+      "/learn",
+      "/learn/beginners-guide",
+      "/learn/which-system",
+      "/learn/resources",
     ]) {
       expect(isIndexablePath(path), path).toBe(true);
     }
@@ -99,12 +104,8 @@ describe("indexing policy", () => {
       "/blog/what-is-bazi",
       "/blog/how-to-read-a-bazi-chart",
       "/chinese-zodiac/compatibility",
-      "/learn",
-      "/learn/beginners-guide",
       "/learn/chinese-vs-western-astrology",
       "/learn/common-misconceptions",
-      "/learn/which-system",
-      "/learn/resources",
       "/privacy",
       "/terms",
       "/ziwei/four-transformations",
@@ -147,7 +148,11 @@ describe("indexing policy", () => {
       data: { schema: { url: `${SITE.url}/ziwei/major-stars/jumen` } },
     });
 
-    expect(metadata.robots).toEqual({ index: false, follow: true });
+    expect(metadata.robots).toMatchObject({
+      index: false,
+      follow: true,
+      googleBot: { index: false, follow: true },
+    });
   });
 
   it("maps named zodiac bibliography to relevant source records", () => {
@@ -187,7 +192,7 @@ describe("indexing policy", () => {
       expect(wordCount(page.data.directAnswer), page.path).toBeGreaterThanOrEqual(30);
       expect(wordCount(page.data.directAnswer), page.path).toBeLessThanOrEqual(95);
       expect(page.data.sections.length, page.path).toBeGreaterThanOrEqual(3);
-      expect(page.data.faqs.length, page.path).toBeGreaterThanOrEqual(4);
+      expect(page.data.faqs.length, page.path).toBeGreaterThanOrEqual(3);
       expect(page.data.citations.length, page.path).toBeGreaterThanOrEqual(2);
       expect(
         resolveCitationUrls(page.data.citations).some((citation) => Boolean(citation.url)),

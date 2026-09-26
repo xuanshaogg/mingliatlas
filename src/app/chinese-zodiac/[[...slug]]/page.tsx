@@ -1,8 +1,11 @@
+import { isCanonicalContentPath } from "@/lib/content/urls";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import KnowledgePage from "@/components/templates/KnowledgePage";
 import { getZodiacPage, getZodiacStaticParams } from "@/content/zodiac/pages";
 import { buildKnowledgePageMetadata } from "@/lib/seo/metadata";
+
+export const dynamicParams = false;
 
 interface ZodiacPageProps {
   params: Promise<{
@@ -15,7 +18,7 @@ function slugFromSegments(segments?: string[]): string {
 }
 
 export function generateStaticParams(): Array<{ slug?: string[] }> {
-  return getZodiacStaticParams();
+  return getZodiacStaticParams().filter(({ slug }) => isCanonicalContentPath(`/chinese-zodiac${slug?.length ? '/' + slug.join('/') : ''}`));
 }
 
 export async function generateMetadata({ params }: ZodiacPageProps): Promise<Metadata> {
@@ -23,7 +26,7 @@ export async function generateMetadata({ params }: ZodiacPageProps): Promise<Met
   const page = getZodiacPage(slugFromSegments(slug));
 
   if (!page) {
-    return {};
+    notFound();
   }
 
   return buildKnowledgePageMetadata(page);

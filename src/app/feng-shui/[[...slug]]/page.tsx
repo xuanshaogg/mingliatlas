@@ -4,6 +4,8 @@ import KnowledgePage from "@/components/templates/KnowledgePage";
 import { getFengShuiPage, getFengShuiStaticParams } from "@/content/feng-shui/pages";
 import { buildKnowledgePageMetadata } from "@/lib/seo/metadata";
 
+export const dynamicParams = false;
+
 interface FengShuiPageProps {
   params: Promise<{
     slug?: string[];
@@ -23,7 +25,7 @@ export async function generateMetadata({ params }: FengShuiPageProps): Promise<M
   const page = getFengShuiPage(slugFromSegments(slug));
 
   if (!page) {
-    return {};
+    notFound();
   }
 
   return buildKnowledgePageMetadata(page);
