@@ -1,3 +1,4 @@
+import { isPreviewDeployment } from "@/lib/seo/environment";
 import type { Metadata } from "next";
 import StaticPage from "@/components/templates/StaticPage";
 
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
   },
   robots: {
     index: false,
-    follow: true,
+    follow: !isPreviewDeployment,
   },
 };
 

@@ -1,3 +1,4 @@
+import { isPreviewDeployment } from "@/lib/seo/environment";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import SearchDirectory from "@/components/search/SearchDirectory";
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
   },
   robots: {
     index: false,
-    follow: true,
+    follow: !isPreviewDeployment,
   },
 };
 

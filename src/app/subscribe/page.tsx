@@ -1,3 +1,4 @@
+import { isPreviewDeployment } from "@/lib/seo/environment";
 import type { Metadata } from "next";
 import Link from "next/link";
 import TrackedForm from "@/components/analytics/TrackedForm";
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
   },
   robots: {
     index: false,
-    follow: true,
+    follow: !isPreviewDeployment,
   },
 };
 

@@ -1,3 +1,4 @@
+import { isPreviewDeployment } from "@/lib/seo/environment";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { groupPagesBySection, publishedSitePages } from "@/lib/content/sitePages";
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
   // impressions (GSC 2026-07-05: /sitemap had 188 impressions, rank 16.8).
   robots: {
     index: false,
-    follow: true,
+    follow: !isPreviewDeployment,
   },
 };
 
