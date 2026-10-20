@@ -259,7 +259,7 @@ export default function KnowledgePage({
             </p>
           </div>
 
-          <aside className="min-w-0 space-y-5 lg:sticky lg:top-28 lg:self-start">
+          <div className="min-w-0 space-y-5 lg:sticky lg:top-28 lg:self-start">
             <ArticleNavigation key={schema.url} items={navigationItems} />
             <div id="article-sources" className="atlas-surface scroll-mt-4 p-5">
               <h2 className="text-ink-900 dark:text-paper text-sm font-semibold">Sources</h2>
@@ -296,7 +296,7 @@ export default function KnowledgePage({
                 structured self-knowledge.
               </p>
             </div>
-          </aside>
+          </div>
         </div>
       </article>
     </>

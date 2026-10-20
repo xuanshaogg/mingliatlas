@@ -2133,7 +2133,7 @@ const highIntentBlogPosts: BlogPost[] = [
               three-harmony group, the harmony column shows the six-combination partner, and the
               clash column shows the branch directly opposite in the 12-sign cycle.
             </p>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto" role="region" aria-label="Scrollable table" tabIndex={0}>
               <table className="w-full min-w-[44rem] border-collapse text-left text-sm">
                 <thead>
                   <tr className="border-ink-300 border-b dark:border-white/20">
@@ -2371,7 +2371,7 @@ const highIntentBlogPosts: BlogPost[] = [
   buildPage({
     slug: "i-ching-beginners-reading-guide",
     path: "/blog/i-ching-beginners-reading-guide",
-    title: "How to Cast and Read an I Ching Hexagram: A Beginner's Reading Guide",
+    title: "How to Cast and Read an I Ching Hexagram: Beginner Guide",
     description:
       "A step-by-step beginner guide to casting an I Ching hexagram, reading the lines, and interpreting changing lines without overcomplicating the practice.",
     category: "I Ching Guide",
@@ -2498,7 +2498,7 @@ const highIntentBlogPosts: BlogPost[] = [
         ),
       },
       {
-        heading: "Step 5: synthesize, don&rsquo;t predict",
+        heading: "Step 5: synthesize, don’t predict",
         content: (
           <>
             <p>
@@ -2635,7 +2635,7 @@ function createDayMasterPost(seed: DayMasterSeed): BlogPost {
   const stemWithCharacter = `${stemLabel} (${stemCharacter})`;
   const isRenWater = seed.slug === "ren-water-day-master";
   const title = isRenWater
-    ? "Ren Water Day Master (壬): Meaning, Strength & Career in Bazi"
+    ? "Ren Water Day Master (壬): Meaning, Strength & Career"
     : `${stemLabel} Day Master (${stemCharacter}): Personality, Career & Relationships`;
   const el = seed.element.toLowerCase();
   const polarityAdv = seed.polarity === "Yang"
@@ -2657,7 +2657,7 @@ function createDayMasterPost(seed: DayMasterSeed): BlogPost {
     path,
     title,
     description: isRenWater
-      ? "Ren Water (壬) is the Yang Water Day Master. Learn its ocean-and-river image, strong vs weak chart conditions, Ten God element map, career themes, and difference from Gui Water."
+      ? "Ren Water (壬) is the Yang Water Day Master: its ocean-and-river image, strong vs weak charts, Ten God element map, career themes, and how it differs from Gui Water."
       : `${stemWithCharacter} is the ${seed.polarity} ${seed.element} Day Master (${seed.imageDesc.split(" —")[0]}). Learn about ${stemLabel} personality, career paths, relationships, and elemental strengths in Bazi.`,
     category: "Bazi Guide",
     entityName: `${stemLabel} Day Master`,
@@ -2708,7 +2708,7 @@ function createDayMasterPost(seed: DayMasterSeed): BlogPost {
                   <p>
                     Ren is Yang Water, so the other elements become roles according to how they produce, match, drain, control, or are controlled by Water. This map is more precise than treating "Water personality" as a complete reading.
                   </p>
-                  <div className="overflow-x-auto">
+                  <div className="overflow-x-auto" role="region" aria-label="Scrollable table" tabIndex={0}>
                     <table className="w-full min-w-[40rem] border-collapse text-left text-sm">
                       <thead>
                         <tr className="border-b border-ink-300 dark:border-white/20">

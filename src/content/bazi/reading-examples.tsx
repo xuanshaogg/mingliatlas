@@ -65,7 +65,7 @@ export const baziNotationExample: Section = {
         column shows 甲子, Jia Zi. Read the two characters separately before interpreting anything
         else.
       </p>
-      <div className="border-ink-200 overflow-x-auto rounded-xl border dark:border-white/10">
+      <div className="border-ink-200 overflow-x-auto rounded-xl border dark:border-white/10" role="region" aria-label="Scrollable table" tabIndex={0}>
         <table className="w-full min-w-[30rem] text-left text-sm leading-6">
           <caption className="px-4 py-3 text-left font-semibold">
             How the two characters identify the Day Master

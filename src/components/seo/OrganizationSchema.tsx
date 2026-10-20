@@ -1,4 +1,4 @@
-import { SITE } from "@/lib/constants";
+import { AUTHOR, SITE } from "@/lib/constants";
 import { JsonLd } from "@/lib/seo/jsonLd";
 
 interface OrganizationSchemaProps {
@@ -15,6 +15,11 @@ export default function OrganizationSchema({ socialLinks = [] }: OrganizationSch
     url: SITE.url,
     logo: `${SITE.url}/logo-icon.svg`,
     description: SITE.description,
+    slogan: SITE.tagline,
+    knowsAbout: AUTHOR.knowsAbout,
+    publishingPrinciples: `${SITE.url}/about#editorial-standards`,
+    correctionsPolicy: `${SITE.url}/about#corrections`,
+    subOrganization: { "@id": `${SITE.url}/about#editorial-team` },
     ...(socialLinks.length > 0 ? { sameAs: socialLinks } : {}),
   };
 

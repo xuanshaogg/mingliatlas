@@ -3,6 +3,8 @@ import type { KnowledgePageProps } from "@/components/templates/KnowledgePage";
 import type { FAQ } from "@/components/shared/FAQSection";
 import { SITE } from "@/lib/constants";
 import { baziFirstReading, baziNotationExample } from "./reading-examples";
+import { baziGlossaryTerms, glossaryGroups } from "./glossary";
+import { buildDefinedTermSetSchema } from "@/lib/seo/jsonLd";
 
 const baziBaseLinks = [
   {
@@ -476,7 +478,7 @@ export const baziPages: BaziContentPage[] = [
       description: "",
       url: "",
       datePublished: "2025-12-05",
-      dateModified: "2026-09-24",
+      dateModified: "2026-10-20",
     },
     stats: [
       {
@@ -648,7 +650,7 @@ export const baziPages: BaziContentPage[] = [
     ],
     faqs: [...defaultFaqs, {
       question: "Why can two Bazi calculators show different pillars?",
-      answer: "Compare year and month boundaries, local civil versus solar time, time-zone handling and day rollover conventions. This site currently uses a lunar-year boundary and date-level Jie month boundaries. A precise Li Chun-based chart can differ near a transition. Check the calculation method before interpreting the difference.",
+      answer: "Compare year and month boundaries, local civil versus solar time, time-zone handling and day rollover conventions. This site changes the year pillar at the exact Li Chun moment and the month pillar at the exact Jie moment, so a calculator that uses Lunar New Year or date-level boundaries can differ near a transition. Check the calculation method before interpreting the difference.",
     }, {
       question: "Is the Day Master the same as my zodiac animal?",
       answer: "No. The Day Master is the Heavenly Stem of the day pillar. A birth-year zodiac animal comes from the year branch. In the illustrative day pillar Jia Zi, Jia is the Yang Wood Day Master and Zi is the Rat branch; the year animal cannot be inferred from that day pillar alone.",
@@ -1137,9 +1139,9 @@ export const baziPages: BaziContentPage[] = [
   buildPage({
     slug: "earthly-branches",
     path: "/bazi/earthly-branches",
-    title: "12 Earthly Branches (Di Zhi): Meanings, Hidden Stems & Clashes",
+    title: "12 Earthly Branches (Di Zhi): Hidden Stems & Clashes",
     description:
-      "A complete Earthly Branches reference for Zi through Hai, including zodiac animals, two-hour periods, hidden stems, seasons, combinations, clashes, harms, and punishments.",
+      "Earthly Branches reference for Zi through Hai: zodiac animals, two-hour periods, hidden stems, seasons, combinations, clashes, harms, and punishments.",
     entityName: "Earthly Branches",
     entityType: "DefinedTerm",
     subtitle: "The seasonal foundation of Bazi pillars and hidden chart structure.",
@@ -1232,7 +1234,7 @@ export const baziPages: BaziContentPage[] = [
               a practical reference; a declared true-solar-time convention can matter near a
               two-hour boundary.
             </p>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto" role="region" aria-label="Scrollable table" tabIndex={0}>
               <table className="w-full min-w-[46rem] border-collapse text-left text-sm">
                 <thead>
                   <tr className="border-ink-300 border-b dark:border-white/20">
@@ -1659,7 +1661,7 @@ const tenGodsPage = buildPage({
             Output, Earth becomes Wealth, and Metal becomes Authority. Polarity decides the direct
             or indirect form.
           </p>
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto" role="region" aria-label="Scrollable table" tabIndex={0}>
             <table className="w-full min-w-[44rem] border-collapse text-left text-sm">
               <thead>
                 <tr className="border-ink-300 border-b dark:border-white/20">
@@ -2055,20 +2057,6 @@ const luckPillarsPage = buildPage({
 
 const briefTopics = [
   [
-    "celebrity/elon-musk",
-    "Elon Musk Bazi Case Study",
-    "A celebrity Bazi case study compares public life patterns with chart structure for education and cultural context.",
-    "1",
-    "Case study",
-  ],
-  [
-    "celebrity/taylor-swift",
-    "Taylor Swift Bazi Case Study",
-    "A celebrity Bazi case study uses public birth data cautiously to illustrate Day Master, elements, and timing themes.",
-    "1",
-    "Case study",
-  ],
-  [
     "career",
     "Bazi Career Analysis: Choosing Work by Element Pattern",
     "Bazi career analysis links useful elements, Ten Gods, and chart structure to work environments and decision patterns.",
@@ -2113,9 +2101,230 @@ const briefLabelOverrides: Record<string, string> = {
   glossary: "Bazi Glossary",
 };
 
-const generatedBriefPages = briefTopics.map(([slug, title, description, statValue, statLabel]) => {
+// Brief topic pages stay noindex until they have full editorial content. Their
+// stats only state facts that are true of every brief page; the topic-specific
+// counts in briefTopics are not displayed because the pages do not yet list them.
+function glossaryTermId(term: string): string {
+  return term
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+// Full reference content for brief pages that now have it (glossary and FAQ
+// hub). Everything here is either a convention-level definition or an answer
+// already published on another Bazi guide, linked back to its source page.
+function briefReferenceContent(
+  slug: string,
+  path: string,
+  description: string
+):
+  | Pick<KnowledgePageProps, "directAnswer" | "sections" | "stats"> & {
+      jsonLd?: ReturnType<typeof buildDefinedTermSetSchema>;
+    }
+  | undefined {
+  if (slug === "glossary") {
+    const count = baziGlossaryTerms.length;
+    return {
+      directAnswer: `This Bazi glossary defines ${count} core Four Pillars terms in four groups (chart structure, elements, relationships, and timing), from Mingli (命理), Bazi (八字), and the Day Master (日主) to the Ten Gods (十神), Luck Pillars (大运), and Li Chun (立春). Each definition is one or two sentences and links to the full guide for that concept.`,
+      stats: [
+        {
+          value: String(count),
+          label: "Terms defined",
+          description: "Each term links to its full guide where one exists.",
+        },
+        {
+          value: "60",
+          label: "Stem-branch cycle",
+          description: "The shared calendar foundation for Bazi timing.",
+        },
+        {
+          value: "4",
+          label: "Pillars",
+          description: "Year, month, day, and hour, each a stem above a branch.",
+        },
+      ],
+      jsonLd: buildDefinedTermSetSchema({
+        name: "Mingli Atlas Chinese Metaphysics Glossary",
+        description,
+        url: pageUrl(path),
+        terms: baziGlossaryTerms.map((term) => ({
+          id: glossaryTermId(term.term),
+          name: `${term.term} (${term.chinese})`,
+          alternateName: term.alternateNames,
+          description: term.definition,
+          url: term.href,
+        })),
+      }),
+      sections: [
+        ...glossaryGroups.map((group) => ({
+          heading: group,
+          content: (
+            <dl className="space-y-6">
+              {baziGlossaryTerms
+                .filter((term) => term.group === group)
+                .map((term) => (
+                  <div key={term.term} id={glossaryTermId(term.term)} className="scroll-mt-28">
+                    <dt className="text-ink-950 dark:text-paper font-semibold">
+                      <dfn className="not-italic">{term.term}</dfn> ({term.chinese})
+                      {term.alternateNames?.length ? (
+                        <span className="text-ink-600 dark:text-ink-300 font-normal">
+                          {" "}
+                          — also {term.alternateNames.join(", ")}
+                        </span>
+                      ) : null}
+                    </dt>
+                    <dd className="mt-1">
+                      {term.definition}
+                      {term.href ? (
+                        <>
+                          {" "}
+                          <Link href={term.href} className={linkClass}>
+                            Read the guide
+                          </Link>
+                        </>
+                      ) : null}
+                    </dd>
+                  </div>
+                ))}
+            </dl>
+          ),
+        })),
+        {
+          heading: "Terms that depend on the calculation method",
+          content: (
+            <>
+              <p>
+                <strong>
+                  Three entries change with the method rather than the birth data: the year
+                  boundary, the hour boundary, and the Useful God.
+                </strong>{" "}
+                A year pillar can change at Lunar New Year or at Li Chun; an hour pillar can follow
+                civil clock time or true solar time; and schools choose the Useful God with
+                different balancing rules.
+              </p>
+              <p>
+                The{" "}
+                <Link href="/tools/bazi-calculator#calculation-method" className={linkClass}>
+                  mingliatlas Bazi calculator
+                </Link>{" "}
+                changes the year pillar at the exact Li Chun moment, uses civil time unless true
+                solar time is selected, and does not choose a Useful God for you. State the same
+                three choices whenever you share or compare a chart.
+              </p>
+            </>
+          ),
+        },
+        {
+          heading: "How to use this glossary",
+          content: (
+            <>
+              <p>
+                Read the groups in order the first time: the later entries assume the earlier ones.
+                The structural terms follow received Zi Ping texts such as{" "}
+                <cite>Yuan Hai Zi Ping</cite> and <cite>San Ming Tong Hui</cite>; the linked guides
+                show where modern interpretation begins.
+              </p>
+              <p>
+                When a chart reading uses a term you do not recognize, return here for the short
+                definition, then open the linked guide for worked examples and sources.
+              </p>
+            </>
+          ),
+        },
+      ],
+    };
+  }
+
+  if (slug === "faq") {
+    const defaultQuestions = new Set(defaultFaqs.map((faq) => faq.question));
+    const seen = new Set<string>();
+    const groups = [...baziPages, tenGodsPage, luckPillarsPage]
+      .map((page) => ({
+        page,
+        faqs: page.data.faqs.filter((faq) => {
+          if (defaultQuestions.has(faq.question) || seen.has(faq.question)) return false;
+          seen.add(faq.question);
+          return true;
+        }),
+      }))
+      .filter((group) => group.faqs.length > 0);
+    const count = groups.reduce((total, group) => total + group.faqs.length, 0);
+
+    return {
+      directAnswer: `This Bazi FAQ collects ${count} questions already answered across the mingliatlas Bazi guides, grouped by topic: what Bazi is, the Five Elements, stems, branches, Ten Gods, and Luck Pillars. Each answer is quoted from its guide, with a link to the page where the topic is explained in full.`,
+      stats: [
+        {
+          value: String(count),
+          label: "Questions collected",
+          description: "Gathered from the Bazi guides and linked to each source page.",
+        },
+        {
+          value: String(groups.length),
+          label: "Source guides",
+          description: "Each group links back to the guide it comes from.",
+        },
+        {
+          value: String(defaultFaqs.length),
+          label: "General questions",
+          description: "Answered in the common questions at the end of this page.",
+        },
+      ],
+      sections: [
+        {
+          heading: "How these answers are sourced",
+          content: (
+            <>
+              <p>
+                Every answer below is reproduced from a mingliatlas Bazi guide and links back to it.
+                Those guides separate classical structure from modern interpretation: definitions of
+                stems, branches, and chart structure follow received texts such as{" "}
+                <cite>Yuan Hai Zi Ping</cite> and <cite>San Ming Tong Hui</cite>, while practical
+                reading advice is marked as editorial guidance.
+              </p>
+              <p>
+                If an answer here and its source guide ever differ, the guide is the reference.
+                Corrections can be sent through the{" "}
+                <Link href="/about#corrections" className={linkClass}>
+                  corrections process
+                </Link>
+                .
+              </p>
+            </>
+          ),
+        },
+        ...groups.map(({ page, faqs }) => ({
+        heading: page.title.split(":")[0],
+        content: (
+          <>
+            {faqs.map((faq) => (
+              <div key={faq.question}>
+                <h3 className="text-ink-950 dark:text-paper text-lg leading-snug font-semibold">
+                  {faq.question}
+                </h3>
+                <p className="mt-2">{faq.answer}</p>
+              </div>
+            ))}
+            <p>
+              Source:{" "}
+              <Link href={page.path} className={linkClass}>
+                {page.title}
+              </Link>
+            </p>
+          </>
+        ),
+        })),
+      ],
+    };
+  }
+
+  return undefined;
+}
+
+const generatedBriefPages = briefTopics.map(([slug, title, description]) => {
   const path = `/bazi/${slug}`;
   const label = briefLabelOverrides[slug] ?? title.split(":")[0].replace("Bazi ", "");
+  const reference = briefReferenceContent(slug, path, description);
 
   return buildPage({
     slug,
@@ -2124,16 +2333,19 @@ const generatedBriefPages = briefTopics.map(([slug, title, description, statValu
     description,
     entityName: label,
     entityType: slug === "glossary" ? "DefinedTermSet" : "DefinedTerm",
-    subtitle: "A focused Bazi guide built with answer-first structure and structured data.",
-    directAnswer: `${label} in Bazi is a focused topic that only makes sense inside the full Four Pillars chart. It explains how a specific symbol, cycle, or relationship changes the Day Master reading, then points you back to season, element balance, and timing before any conclusion.`,
+    subtitle: description,
+    directAnswer:
+      reference?.directAnswer ??
+      `${label} in Bazi is a focused topic that only makes sense inside the full Four Pillars chart. It explains how a specific symbol, cycle, or relationship changes the Day Master reading, then points you back to season, element balance, and timing before any conclusion.`,
     breadcrumbs: baziBreadcrumbs(label, path),
-    schema: { headline: "", description: "", url: "" },
-    stats: [
-      {
-        value: statValue,
-        label: statLabel,
-        description: "A practical number used in this Bazi topic.",
-      },
+    schema: {
+      headline: "",
+      description: "",
+      url: "",
+      ...(reference ? { dateModified: "2026-10-20" } : {}),
+      ...(reference?.jsonLd ? { jsonLd: reference.jsonLd } : {}),
+    },
+    stats: reference?.stats ?? [
       {
         value: "60",
         label: "Stem-branch cycle",
@@ -2155,7 +2367,7 @@ const generatedBriefPages = briefTopics.map(([slug, title, description, statValu
         source: "Classical synthesis of stems, branches, and chart methods.",
       },
     ],
-    sections: [
+    sections: reference?.sections ?? [
       {
         heading: `What ${label} means in Bazi`,
         content: (

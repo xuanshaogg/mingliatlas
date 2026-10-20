@@ -264,7 +264,7 @@ export default function BaziChartResult({ chart, isSample = false }: BaziChartRe
             className="group bg-brand-primary hover:bg-brand-800 focus-visible:ring-brand-primary dark:bg-gold-400 dark:text-ink-950 dark:hover:bg-gold-300 dark:focus-visible:ring-gold-300 dark:focus-visible:ring-offset-ink-950 flex min-h-40 flex-col justify-between rounded-lg p-5 text-white transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none sm:p-6"
           >
             <span>
-              <span className="dark:text-ink-700 text-xs font-semibold tracking-normal text-white/75">
+              <span className="dark:text-ink-700 text-xs font-semibold tracking-normal text-white/90">
                 Recommended first · Step 1
               </span>
               <span className="mt-3 block text-xl font-semibold tracking-tight sm:text-2xl">
@@ -377,7 +377,7 @@ export default function BaziChartResult({ chart, isSample = false }: BaziChartRe
         </div>
 
         {chart.luckPillars.length > 0 ? (
-          <div className="mt-6 overflow-x-auto">
+          <div className="mt-6 overflow-x-auto" role="region" aria-label="Scrollable table" tabIndex={0}>
             <table className="w-full min-w-[42rem] border-collapse text-left text-sm">
               <thead>
                 <tr className="border-ink-200 text-ink-500 dark:text-ink-400 border-b text-xs tracking-normal dark:border-white/10">

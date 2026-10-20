@@ -49,7 +49,7 @@ export default function ArticleNavigation({ items, mobile = false }: ArticleNavi
             }}
             className={`flex min-h-11 items-start gap-3 rounded-lg px-3 py-2.5 text-sm leading-5 transition ${active === item.id ? "bg-brand-50 text-brand-primary dark:bg-gold-500/10 dark:text-gold-300 font-semibold" : "text-ink-600 hover:bg-paper-100 hover:text-ink-950 dark:text-ink-300 dark:hover:bg-white/5"}`}
           >
-            <span className="mt-0.5 text-[0.65rem] tabular-nums opacity-60">
+            <span className="mt-0.5 text-[0.65rem] tabular-nums">
               {String(index + 1).padStart(2, "0")}
             </span>
             <span>{item.label}</span>

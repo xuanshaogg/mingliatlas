@@ -1,5 +1,5 @@
 import {
-  calculateGanZhi,
+  calculateBaziGanZhi,
   getLunarDayName,
   getLunarMonthName,
   solarToLunar,
@@ -265,7 +265,7 @@ export function calculateBaziChart(input: BaziChartInput): BaziChart {
     longitude: input.longitude,
     timeBasis,
   });
-  const ganZhi = calculateGanZhi(effective.year, effective.month, effective.day, effective.hour, effective.minute);
+  const ganZhi = calculateBaziGanZhi(effective.year, effective.month, effective.day, effective.hour, effective.minute);
   const lunarDate = solarToLunar(effective);
   const dayMaster = getStemMeta(ganZhi.day.stem);
   const pillars = buildPillars(ganZhi, dayMaster.chinese);

@@ -38,7 +38,7 @@ function wordCount(value: string): number {
 describe("indexing policy", () => {
   it("keeps the indexable registry unique and backed by published routes", () => {
     const publishedPaths = new Set(publishedSitePages.map((page) => page.href));
-    expect(INDEXABLE_PATHS).toHaveLength(40);
+    expect(INDEXABLE_PATHS).toHaveLength(41);
     expect(new Set(INDEXABLE_PATHS).size).toBe(INDEXABLE_PATHS.length);
     for (const path of INDEXABLE_PATHS) expect(publishedPaths.has(path), path).toBe(true);
   });
@@ -124,11 +124,11 @@ describe("indexing policy", () => {
       (page) => page.path === "/blog/chinese-zodiac-compatibility-chart"
     );
 
-    expect(dragon?.title).toBe("Year of the Dragon: Complete Years List (1940–2036)");
+    expect(dragon?.title).toBe("Year of the Dragon Years List (1940–2036) & Exact Dates");
     expect(dragon?.data.directAnswer).toMatch(
       /^Dragon years are 1940, 1952, 1964, 1976, 1988, 2000, 2012, and 2024;/
     );
-    expect(dragon?.data.schema.dateModified).toBe("2026-08-07");
+    expect(dragon?.data.schema.dateModified).toBe("2026-10-20");
 
     expect(dayMaster?.title).toBe("Bazi Day Master Is the Day Stem: Meaning & Sources");
     expect(dayMaster?.data.directAnswer).toMatch(

@@ -61,6 +61,29 @@ export function calculateGanZhi(
 }
 
 /**
+ * Four Pillars for a Bazi chart. The year pillar changes at the exact Li Chun
+ * (立春) moment and the month pillar at the exact Jie (节) solar-term moment,
+ * matching the convention lunar-typescript's EightChar uses for Da Yun. Day and
+ * hour pillars are the same as calculateGanZhi.
+ */
+export function calculateBaziGanZhi(
+  year: number,
+  month: number,
+  day: number,
+  hour: number,
+  minute = 0,
+): GanZhi {
+  const lunar = Solar.fromYmdHms(year, month, day, hour, minute, 0).getLunar();
+
+  return {
+    year: parseGanZhi(lunar.getYearInGanZhiExact()),
+    month: parseGanZhi(lunar.getMonthInGanZhiExact()),
+    day: parseGanZhi(lunar.getDayInGanZhi()),
+    hour: parseGanZhi(lunar.getTimeInGanZhi()),
+  };
+}
+
+/**
  * Get the index of a heavenly stem (0-9)
  */
 export function getStemIndex(stem: string): number {

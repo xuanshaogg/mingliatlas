@@ -366,7 +366,7 @@ export default function Home() {
             <div className="mt-8 grid gap-5 sm:grid-cols-3">
               {mingliMeaningPoints.map((point) => (
                 <div key={point.label} className="bg-paper-100/70 rounded-2xl p-5">
-                  <p className="text-ink-500 text-xs font-medium">{point.label}</p>
+                  <p className="text-ink-600 text-xs font-medium">{point.label}</p>
                   <p className="text-ink-950 mt-3 text-3xl font-medium">{point.value}</p>
                   <p className="text-ink-600 mt-3 text-sm leading-6">{point.description}</p>
                 </div>
@@ -445,7 +445,7 @@ export default function Home() {
                 >
                   <div className="flex items-start justify-between gap-4">
                     <Icon className="text-brand-primary h-6 w-6" aria-hidden="true" />
-                    <span className="text-ink-400 font-mono text-xs tracking-[0.15em]">
+                    <span className="text-ink-500 font-mono text-xs tracking-[0.15em]">
                       {system.number}
                     </span>
                   </div>

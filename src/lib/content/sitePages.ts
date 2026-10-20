@@ -19,6 +19,8 @@ const CONTENT_LAST_MODIFIED = "2026-06-21";
 const ABOUT_LAST_MODIFIED = "2026-09-24";
 const SITE_STRUCTURE_LAST_MODIFIED = "2026-07-12";
 const SEO_CONTENT_LAST_MODIFIED = "2026-09-24";
+// Year/month pillars switched to exact Li Chun and Jie boundaries.
+const CALCULATOR_METHOD_LAST_MODIFIED = "2026-10-20";
 
 function latestModified(dates: Array<string | undefined>): string {
   return dates.filter(Boolean).sort().at(-1) ?? CONTENT_LAST_MODIFIED;
@@ -109,7 +111,7 @@ export const systemLandingPages: SitePage[] = [
     description:
       "Generate a Four Pillars chart with Day Master, Ten Gods, hidden stems, and Five Element balance.",
     section: "Tools",
-    lastModified: SEO_CONTENT_LAST_MODIFIED,
+    lastModified: CALCULATOR_METHOD_LAST_MODIFIED,
   },
   {
     title: "I Ching Oracle",

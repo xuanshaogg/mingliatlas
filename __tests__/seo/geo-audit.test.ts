@@ -383,7 +383,7 @@ describe("GEO audit", () => {
     const pageText = `${page.title} ${page.description} ${page.data.directAnswer} ${markup}`;
     const resolvedCitations = resolveCitationUrls(page.data.citations);
 
-    expect(page.title).toBe("12 Earthly Branches (Di Zhi): Meanings, Hidden Stems & Clashes");
+    expect(page.title).toBe("12 Earthly Branches (Di Zhi): Hidden Stems & Clashes");
     expect(wordCount(pageText)).toBeGreaterThanOrEqual(1400);
     expect(page.data.sections).toHaveLength(6);
     expect(resolvedCitations).toHaveLength(4);
@@ -604,7 +604,7 @@ describe("GEO audit", () => {
 
     expect(dragon?.title).toContain("1940–2036");
     expect(dragon?.title).toContain("Years List");
-    expect(dragon?.data.schema.dateModified).toBe("2026-08-07");
+    expect(dragon?.data.schema.dateModified).toBe("2026-10-20");
     expect(
       allZodiacPages
         .filter((page) => page.data.stats.some((stat) => stat.label === "Cycle rank"))

@@ -8,9 +8,9 @@ import { AUTHOR, SITE } from "@/lib/constants";
 const ABOUT_LAST_MODIFIED = "2026-09-24";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "About Mingli Atlas (Ming Li) — Chinese Metaphysics Guides & Free Tools",
+  title: "About Mingli Atlas (Ming Li): Chinese Metaphysics Guides",
   description:
-    "Mingli Atlas (Ming Li, 命理) explains Bazi, I Ching, Feng Shui, Ziwei Doushu, and the Chinese Zodiac from classical sources in plain English — with a free Bazi calculator and editorial standards you can check.",
+    "Mingli Atlas (Ming Li, 命理) explains Bazi, I Ching, Feng Shui, Ziwei Doushu, and the Chinese Zodiac in plain English, with free tools and public editorial standards.",
   path: "/about",
 });
 

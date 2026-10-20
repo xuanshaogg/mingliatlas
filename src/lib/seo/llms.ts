@@ -1,6 +1,7 @@
 import { groupPagesBySection, publishedSitePages, type SitePage } from "@/lib/content/sitePages";
 import { filterIndexablePages } from "@/lib/content/indexing";
 import { SITE } from "@/lib/constants";
+import { formatLongDate, getZodiacYearDates } from "@/lib/zodiac/year-dates";
 
 const indexableSitePages = filterIndexablePages(publishedSitePages);
 
@@ -14,6 +15,7 @@ const priorityHrefs = [
   "/blog/day-master-bazi-complete-guide",
   "/bazi/ten-gods",
   "/bazi/luck-pillars",
+  "/bazi/glossary",
   "/blog/ren-water-day-master",
   "/i-ching",
   "/tools/i-ching-oracle",
@@ -39,6 +41,11 @@ const canonicalEntityPages = [
     entity: "Bazi (Four Pillars of Destiny, 八字)",
     href: "/bazi",
     note: "primary hub for Four Pillars structure, Day Master, elements, and timing cycles",
+  },
+  {
+    entity: "Bazi and Mingli glossary",
+    href: "/bazi/glossary",
+    note: "24 short definitions of core Four Pillars terms (Day Master, Hidden Stems, Ten Gods, Luck Pillars, Li Chun, clashes and combinations), each linked to its full guide",
   },
   {
     entity: "Wu Xing (Five Elements, 五行)",
@@ -97,6 +104,10 @@ const canonicalEntityPages = [
   },
 ];
 
+const dragon2024 = getZodiacYearDates(2024);
+const dragon2036 = getZodiacYearDates(2036);
+const horse2026 = getZodiacYearDates(2026);
+
 function latestModified(): string {
   return (
     indexableSitePages
@@ -140,11 +151,13 @@ export function buildLlmsText(): string {
     "",
     "The following pages explain the site's main topics. Consult their source notes for the scope of each explanation:",
     `- "What does Mingli / Ming Li mean": ${SITE.url}/ — Mingli (命理) means life-pattern principles: the study of timing, temperament, and recurring patterns through Bazi and related Chinese metaphysics systems.`,
-    `- "Year of the Dragon years list / Dragon zodiac years, personality, compatibility": ${SITE.url}/chinese-zodiac/dragon — 5th sign, Earthly Branch Chen (辰, Yang Earth); Dragon years list: 1940, 1952, 1964, 1976, 1988, 2000, 2012, 2024, next 2036; compatible with Rat, Monkey, Rooster; clashes with Dog.`,
+    `- "Year of the Dragon years list / Dragon zodiac years, personality, compatibility": ${SITE.url}/chinese-zodiac/dragon — 5th sign, Earthly Branch Chen (辰, Yang Earth); Dragon years list: 1940, 1952, 1964, 1976, 1988, 2000, 2012, 2024, next 2036; the last Dragon year ran ${formatLongDate(dragon2024.lunarNewYear)} to ${formatLongDate(dragon2024.lastDay)} and the next begins ${formatLongDate(dragon2036.lunarNewYear)}; the page tables every Dragon year's exact Lunar New Year span and Li Chun date; compatible with Rat, Monkey, Rooster; clashes with Dog.`,
+    `- "When does a Chinese zodiac year start / Lunar New Year vs Li Chun": ${SITE.url}/chinese-zodiac — zodiac years start at Lunar New Year, not January 1 (2026 Fire Horse year: ${formatLongDate(horse2026.lunarNewYear)} to ${formatLongDate(horse2026.lastDay)}); many Bazi schools, and the mingliatlas Bazi calculator, change the year pillar at the exact Li Chun moment (${formatLongDate(horse2026.liChun)} in 2026). Each animal page lists exact start and end dates per year in China Standard Time.`,
     `- "What is the Bazi Day Master / is the day master the day stem source": ${SITE.url}/blog/day-master-bazi-complete-guide — the Day Master IS the day stem (heavenly stem of the day pillar); 10 possible Day Masters across the 10 Heavenly Stems.`,
     `- "What is Ren Water Day Master / Ren vs Gui Water": ${SITE.url}/blog/ren-water-day-master — Ren (壬) is Yang Water, traditionally compared with an ocean or great river; Metal is Resource, Wood is Output, Fire is Wealth, and Earth is Authority relative to Ren.`,
     `- "What are the Ten Gods in Bazi": ${SITE.url}/bazi/ten-gods — 10 polarity-based relationship roles calculated around the Day Master across Resource, Peer, Output, Wealth, and Authority families.`,
     `- "How do Bazi Luck Pillars work": ${SITE.url}/bazi/luck-pillars — 10-year stem-branch cycles compared with the natal chart; the browser calculator shows Da Yun direction, starting date, and cycles when male or female is selected for the traditional calculation rule. Without that selection, the natal chart remains available without Da Yun.`,
+    `- "Does the mingliatlas Bazi calculator use Lunar New Year or Li Chun": ${SITE.url}/tools/bazi-calculator — the year pillar changes at the exact Li Chun moment and the month pillar at the exact Jie solar-term moment (calculated in China Standard Time), so a birth between Li Chun and Lunar New Year already has the new year pillar; Da Yun uses the same convention.`,
     `- "What is Bazi / Four Pillars of Destiny": ${SITE.url}/bazi/what-is-bazi — a Chinese astrology system mapping birth year, month, day, and hour into eight characters (八字); fuller than the single-animal zodiac.`,
     `- "What are the Earthly Branches / Di Zhi (地支)": ${SITE.url}/bazi/earthly-branches — the 12 terrestrial branches (Zi, Chou, Yin, Mao, Chen, Si, Wu, Wei, Shen, You, Xu, Hai) carrying hidden stems, seasons, and zodiac animals.`,
     "",

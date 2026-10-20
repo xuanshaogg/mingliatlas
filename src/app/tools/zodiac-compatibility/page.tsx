@@ -99,8 +99,8 @@ const relatedLinks = [
     description: "Read harmony, triads, and clash pairs in detail.",
   },
   {
-    title: "Bazi Relationships",
-    href: "/bazi/relationships",
+    title: "What Is Bazi?",
+    href: "/bazi/what-is-bazi",
     description: "Compare zodiac context with a deeper Four Pillars approach.",
   },
 ];

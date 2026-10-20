@@ -1,7 +1,13 @@
 import Link from "next/link";
 import type { KnowledgePageProps } from "@/components/templates/KnowledgePage";
 import type { FAQ } from "@/components/shared/FAQSection";
+import ZodiacYearDatesTable from "@/components/shared/ZodiacYearDatesTable";
 import { SITE } from "@/lib/constants";
+import {
+  describeZodiacYearSpan,
+  formatLongDate,
+  getZodiacYearDates,
+} from "@/lib/zodiac/year-dates";
 
 const linkClass = "text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300";
 
@@ -246,6 +252,68 @@ function siblingAnimalLinks(animal: ZodiacAnimal) {
   return [animalLink(prev), animalLink(next)];
 }
 
+const ZODIAC_REFERENCE_YEAR_SPAN = describeZodiacYearSpan("Horse", getZodiacYearDates(2026));
+const DRAGON_RECENT_SPAN = describeZodiacYearSpan("Dragon", getZodiacYearDates(2024));
+
+// Content reference year for "most recent" / "next" wording on zodiac pages.
+const ZODIAC_REFERENCE_YEAR = 2026;
+
+function animalYearNumbers(animal: ZodiacAnimal): number[] {
+  return animal.years.split(",").map((year) => Number(year.trim()));
+}
+
+function mostRecentAnimalYear(animal: ZodiacAnimal): number {
+  return Math.max(...animalYearNumbers(animal).filter((year) => year <= ZODIAC_REFERENCE_YEAR));
+}
+
+// Resolved at render time (after yearPages is initialised further down).
+function yearPageHref(animal: ZodiacAnimal, year: number): string | undefined {
+  const slug = `${animal.slug}/${year}`;
+  return yearPages.some((page) => page.slug === slug) ? `/chinese-zodiac/${slug}` : undefined;
+}
+
+function animalYearDatesTable(animal: ZodiacAnimal, years = animalYearNumbers(animal)) {
+  return (
+    <ZodiacYearDatesTable
+      animalName={animal.name}
+      years={years}
+      hrefFor={(year) => yearPageHref(animal, year)}
+    />
+  );
+}
+
+function animalYearDatesSummary(animal: ZodiacAnimal): string {
+  const recent = getZodiacYearDates(mostRecentAnimalYear(animal));
+  const next = getZodiacYearDates(recent.year + 12);
+  return `${describeZodiacYearSpan(animal.name, recent)} The next Year of the ${animal.name} begins on ${formatLongDate(next.lunarNewYear)}.`;
+}
+
+function animalYearDatesSection(animal: ZodiacAnimal): KnowledgePageProps["sections"][number] {
+  return {
+    heading: `Year of the ${animal.name} dates: when each year starts and ends`,
+    content: (
+      <>
+        <p>
+          <strong>{animalYearDatesSummary(animal)}</strong> A Chinese zodiac year does not start on
+          January 1. The popular zodiac year begins at Lunar New Year (late January to
+          mid-February), while many Bazi schools change the year pillar at the Li Chun solar term
+          (around February 4). Use the table to check a January or February birthday against both
+          boundaries.
+        </p>
+        {animalYearDatesTable(animal)}
+      </>
+    ),
+  };
+}
+
+function animalYearDatesFaq(animal: ZodiacAnimal): FAQ {
+  const recent = getZodiacYearDates(mostRecentAnimalYear(animal));
+  return {
+    question: `When does the Year of the ${animal.name} start and end?`,
+    answer: `${describeZodiacYearSpan(animal.name, recent)} Each ${animal.name} year starts at Lunar New Year, so January and early-February birthdays can belong to the previous sign.`,
+  };
+}
+
 function pageUrl(path: string): string {
   return `${SITE.url}${path}`;
 }
@@ -291,9 +359,16 @@ const animalFaqs: Partial<Record<string, FAQ[]>> = {
         "Dragon years include 1940, 1952, 1964, 1976, 1988, 2000, 2012, and 2024, with the next in 2036. Each combines the Chen branch with a different Heavenly Stem, producing variations such as Wood Dragon (2024), Water Dragon (2012), and Earth Dragon (1988). Check the Lunar New Year boundary for January or early-February births.",
     },
     {
+      question: "When was the last Year of the Dragon?",
+      answer: `The last Year of the Dragon was the 2024 Wood Dragon year (Jia-Chen, 甲辰). It ran from ${formatLongDate(getZodiacYearDates(2024).lunarNewYear)} to ${formatLongDate(getZodiacYearDates(2024).lastDay)}; the Snake year began the next day. The Dragon year before that was the 2012 Water Dragon year (${formatLongDate(getZodiacYearDates(2012).lunarNewYear)} to ${formatLongDate(getZodiacYearDates(2012).lastDay)}).`,
+    },
+    {
       question: "When is the next Year of the Dragon?",
-      answer:
-        "The next Year of the Dragon is 2036, which will be a Fire Dragon (Bing-Chen, 丙辰) year. The Dragon returns every 12 years, so after 2024 (Wood Dragon) the cycle continues with 2036, 2048 (Earth Dragon), and 2060 (Metal Dragon).",
+      answer: `The next Year of the Dragon is 2036, a Fire Dragon (Bing-Chen, 丙辰) year that begins at Lunar New Year on ${formatLongDate(getZodiacYearDates(2036).lunarNewYear)} and runs to ${formatLongDate(getZodiacYearDates(2036).lastDay)}. The Dragon returns every 12 years, so after 2024 (Wood Dragon) the cycle continues with 2036, 2048 (Earth Dragon), and 2060 (Metal Dragon).`,
+    },
+    {
+      question: "If I was born in early February 1988, am I a Rabbit or a Dragon?",
+      answer: `It depends on the date and the method. The 1988 Dragon year began at Lunar New Year on ${formatLongDate(getZodiacYearDates(1988).lunarNewYear)}, so births before that date are Rabbit in the popular zodiac. Many Bazi schools use Li Chun instead, which fell on ${formatLongDate(getZodiacYearDates(1988).liChun)} at ${getZodiacYearDates(1988).liChunTime} China Standard Time; under that convention, births after that moment have a Wu-Chen (Dragon) year pillar. A birth between those two moments is a Rabbit by the popular zodiac but has a Dragon year pillar in a Li Chun-based Bazi chart, including the mingliatlas Bazi calculator.`,
     },
     {
       question: "What does the Year of the Dragon mean?",
@@ -491,7 +566,7 @@ function buildPage(input: Omit<ZodiacContentPage, "data"> & KnowledgePageProps):
 const overview = buildPage({
   slug: "",
   path: "/chinese-zodiac",
-  title: "Chinese Zodiac: 12 Animal Signs, Meanings, and 2026 Guide",
+  title: "Chinese Zodiac: 12 Animal Signs, Years & Meanings",
   description:
     "The Chinese zodiac is a 12-year animal cycle connected to the Earthly Branches, Five Elements, compatibility, and cultural symbolism.",
   entityName: "Chinese Zodiac",
@@ -499,14 +574,14 @@ const overview = buildPage({
   subtitle:
     "A practical guide to animal signs, elements, compatibility, and how zodiac fits into Bazi.",
   directAnswer:
-    "The Chinese zodiac is a 12-year cycle of animal signs: Rat, Ox, Tiger, Rabbit, Dragon, Snake, Horse, Goat, Monkey, Rooster, Dog, and Pig. Each animal connects to an Earthly Branch, yin-yang quality, and Five Element context, but a complete Bazi chart requires month, day, and hour too.",
+    `The Chinese zodiac is a 12-year cycle of animal signs: Rat, Ox, Tiger, Rabbit, Dragon, Snake, Horse, Goat, Monkey, Rooster, Dog, and Pig. Each zodiac year starts at Lunar New Year, not January 1; 2026 is the Year of the Fire Horse, which began on ${formatLongDate(getZodiacYearDates(2026).lunarNewYear)}. Each animal connects to an Earthly Branch, yin-yang quality, and Five Element context, but a complete Bazi chart requires month, day, and hour too.`,
   breadcrumbs: breadcrumbs("Overview", "/chinese-zodiac"),
   schema: {
     headline: "",
     description: "",
     url: "",
     datePublished: "2025-11-05",
-    dateModified: "2026-09-26",
+    dateModified: "2026-10-20",
   },
   stats: [
     { value: "12", label: "Animals", description: "One for each Earthly Branch." },
@@ -703,6 +778,70 @@ const overview = buildPage({
             describes a structural contrast; the full chart determines whether that contrast is
             disruptive, motivating, or balanced by other branches.
           </p>
+        </>
+      ),
+    },
+    {
+      heading: "Chinese zodiac years by animal",
+      content: (
+        <>
+          <p>
+            <strong>
+              Each animal returns every 12 years, starting at Lunar New Year rather than January 1.
+            </strong>{" "}
+            The table lists recent years for all 12 signs and the exact span of each sign&apos;s
+            most recent zodiac year. {ZODIAC_REFERENCE_YEAR_SPAN}
+          </p>
+          <div className="mt-4 overflow-x-auto" role="region" aria-label="Scrollable table" tabIndex={0}>
+            <table className="w-full border-collapse text-sm">
+              <caption className="text-ink-600 dark:text-ink-300 mb-3 text-left text-xs leading-5">
+                Chinese zodiac animals, Earthly Branches, and years. Dates are civil dates in China
+                Standard Time (UTC+8).
+              </caption>
+              <thead>
+                <tr className="border-ink-200 border-b dark:border-white/10">
+                  <th scope="col" className="py-2 pr-4 text-left font-semibold">
+                    Animal
+                  </th>
+                  <th scope="col" className="py-2 pr-4 text-left font-semibold">
+                    Branch
+                  </th>
+                  <th scope="col" className="py-2 pr-4 text-left font-semibold">
+                    Years
+                  </th>
+                  <th scope="col" className="py-2 text-left font-semibold">
+                    Most recent year (Lunar New Year span)
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {animals.map((animal) => {
+                  const recent = getZodiacYearDates(mostRecentAnimalYear(animal));
+                  return (
+                    <tr
+                      key={animal.slug}
+                      className="border-ink-100 border-b last:border-b-0 dark:border-white/5"
+                    >
+                      <th scope="row" className="py-2 pr-4 text-left font-normal">
+                        <Link href={`/chinese-zodiac/${animal.slug}`} className={linkClass}>
+                          {animal.name}
+                        </Link>
+                      </th>
+                      <td className="py-2 pr-4">{animal.branch}</td>
+                      <td className="py-2 pr-4">{animal.years}</td>
+                      <td className="py-2">
+                        {recent.year} {recent.element} {animal.name}:{" "}
+                        <time dateTime={recent.lunarNewYear}>
+                          {formatLongDate(recent.lunarNewYear)}
+                        </time>{" "}
+                        – <time dateTime={recent.lastDay}>{formatLongDate(recent.lastDay)}</time>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </>
       ),
     },
@@ -1199,113 +1338,15 @@ const animalSections: Partial<Record<string, KnowledgePageProps["sections"]>> = 
             </strong>{" "}
             The Dragon year repeats every 12 years, but each occurrence has a unique elemental
             pairing. The Heavenly Stem that rides above the Chen branch changes every cycle,
-            producing five distinct Dragon types across a 60-year sexagenary cycle. Below is the
-            complete list of recent and upcoming Dragon years with their stem-element combinations:
+            producing five distinct Dragon types across a 60-year sexagenary cycle. The table lists
+            each Dragon year with its element, stem-branch pair, exact Lunar New Year span, and the
+            Li Chun date that many Bazi schools use as the year-pillar boundary.
           </p>
-          <div className="mt-4 overflow-x-auto">
-            <table className="w-full border-collapse text-sm">
-              <thead>
-                <tr className="border-ink-200 border-b dark:border-white/10">
-                  <th className="py-2 pr-4 text-left font-semibold">Year</th>
-                  <th className="py-2 pr-4 text-left font-semibold">Stem-Branch</th>
-                  <th className="py-2 pr-4 text-left font-semibold">Element</th>
-                  <th className="py-2 text-left font-semibold">Key Quality</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-ink-100 border-b dark:border-white/5">
-                  <td className="py-2 pr-4">
-                    <Link href="/chinese-zodiac/dragon/1940" className={linkClass}>
-                      1940
-                    </Link>
-                  </td>
-                  <td className="py-2 pr-4">Geng-Chen (庚辰)</td>
-                  <td className="py-2 pr-4">Metal Dragon</td>
-                  <td className="py-2">Determined, precise, structured</td>
-                </tr>
-                <tr className="border-ink-100 border-b dark:border-white/5">
-                  <td className="py-2 pr-4">
-                    <Link href="/chinese-zodiac/dragon/1952" className={linkClass}>
-                      1952
-                    </Link>
-                  </td>
-                  <td className="py-2 pr-4">Ren-Chen (壬辰)</td>
-                  <td className="py-2 pr-4">Water Dragon</td>
-                  <td className="py-2">Adaptive, strategic, depth-oriented</td>
-                </tr>
-                <tr className="border-ink-100 border-b dark:border-white/5">
-                  <td className="py-2 pr-4">
-                    <Link href="/chinese-zodiac/dragon/1964" className={linkClass}>
-                      1964
-                    </Link>
-                  </td>
-                  <td className="py-2 pr-4">Jia-Chen (甲辰)</td>
-                  <td className="py-2 pr-4">Wood Dragon</td>
-                  <td className="py-2">Growth-oriented, visionary, expansive</td>
-                </tr>
-                <tr className="border-ink-100 border-b dark:border-white/5">
-                  <td className="py-2 pr-4">
-                    <Link href="/chinese-zodiac/dragon/1976" className={linkClass}>
-                      1976
-                    </Link>
-                  </td>
-                  <td className="py-2 pr-4">Bing-Chen (丙辰)</td>
-                  <td className="py-2 pr-4">Fire Dragon</td>
-                  <td className="py-2">Charismatic, expressive, action-driven</td>
-                </tr>
-                <tr className="border-ink-100 border-b dark:border-white/5">
-                  <td className="py-2 pr-4">
-                    <Link href="/chinese-zodiac/dragon/1988" className={linkClass}>
-                      1988
-                    </Link>
-                  </td>
-                  <td className="py-2 pr-4">Wu-Chen (戊辰)</td>
-                  <td className="py-2 pr-4">Earth Dragon</td>
-                  <td className="py-2">Stable, authoritative, grounded</td>
-                </tr>
-                <tr className="border-ink-100 border-b dark:border-white/5">
-                  <td className="py-2 pr-4">
-                    <Link href="/chinese-zodiac/dragon/2000" className={linkClass}>
-                      2000
-                    </Link>
-                  </td>
-                  <td className="py-2 pr-4">Geng-Chen (庚辰)</td>
-                  <td className="py-2 pr-4">Metal Dragon</td>
-                  <td className="py-2">Determined, precise, structured</td>
-                </tr>
-                <tr className="border-ink-100 border-b dark:border-white/5">
-                  <td className="py-2 pr-4">
-                    <Link href="/chinese-zodiac/dragon/2012" className={linkClass}>
-                      2012
-                    </Link>
-                  </td>
-                  <td className="py-2 pr-4">Ren-Chen (壬辰)</td>
-                  <td className="py-2 pr-4">Water Dragon</td>
-                  <td className="py-2">Adaptive, strategic, depth-oriented</td>
-                </tr>
-                <tr className="border-ink-100 border-b dark:border-white/5">
-                  <td className="py-2 pr-4">
-                    <Link href="/chinese-zodiac/dragon/2024" className={linkClass}>
-                      2024
-                    </Link>
-                  </td>
-                  <td className="py-2 pr-4">Jia-Chen (甲辰)</td>
-                  <td className="py-2 pr-4">Wood Dragon</td>
-                  <td className="py-2">Growth-oriented, visionary, expansive</td>
-                </tr>
-                <tr>
-                  <td className="py-2 pr-4">
-                    <Link href="/chinese-zodiac/dragon/2036" className={linkClass}>
-                      2036
-                    </Link>
-                  </td>
-                  <td className="py-2 pr-4">Bing-Chen (丙辰)</td>
-                  <td className="py-2 pr-4">Fire Dragon</td>
-                  <td className="py-2">Charismatic, expressive, action-driven</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <p>
+            <strong>{DRAGON_RECENT_SPAN}</strong> The next Year of the Dragon begins on{" "}
+            {formatLongDate(getZodiacYearDates(2036).lunarNewYear)}.
+          </p>
+          {animalYearDatesTable(animals.find((animal) => animal.slug === "dragon")!)}
           <p className="mt-4">
             The element modifier changes how the Dragon year expresses its energy. A Water Dragon
             year (1952, 2012) emphasizes strategy and depth; a Fire Dragon year (1976, 2036)
@@ -1426,22 +1467,32 @@ const animalSections: Partial<Record<string, KnowledgePageProps["sections"]>> = 
 // quote) for signs that earn the most search impressions, without bloating
 // the generic builder. Dragon alone earns ~50% of all site impressions.
 const animalTitleOverrides: Partial<Record<string, string>> = {
-  dragon: "Year of the Dragon: Complete Years List (1940–2036)",
+  dragon: "Year of the Dragon Years List (1940–2036) & Exact Dates",
 };
 
 const animalDescriptionOverrides: Partial<Record<string, string>> = {
   dragon:
-    "Find your Dragon year in the complete 1940–2036 list, then compare Wood, Fire, Earth, Metal, and Water Dragons, personality, compatibility, and New Year boundaries.",
+    "Every Dragon year from 1940 to 2036 with exact Lunar New Year start and end dates, Li Chun dates, the five Dragon elements, personality, and compatibility.",
 };
 
 const animalDirectAnswerOverrides: Partial<Record<string, string>> = {
   dragon:
-    "Dragon years are 1940, 1952, 1964, 1976, 1988, 2000, 2012, and 2024; the next Year of the Dragon is 2036. Dragon is the fifth Chinese zodiac sign and corresponds to the Chen (辰) Earthly Branch. Each occurrence adds one of the Five Elements, while January or early-February births require a Lunar New Year boundary check.",
+    `Dragon years are 1940, 1952, 1964, 1976, 1988, 2000, 2012, and 2024; the next Year of the Dragon is 2036. The most recent Dragon year ran from ${formatLongDate(getZodiacYearDates(2024).lunarNewYear)} to ${formatLongDate(getZodiacYearDates(2024).lastDay)}, and the next begins on ${formatLongDate(getZodiacYearDates(2036).lunarNewYear)}. Dragon is the fifth Chinese zodiac sign and corresponds to the Chen (辰) Earthly Branch; each occurrence adds one of the Five Elements.`,
 };
 
 const animalDateModifiedOverrides: Partial<Record<string, string>> = {
-  dragon: "2026-08-07",
+  dragon: "2026-10-20",
 };
+
+// The Dragon page already carries its own years-and-dates table; every other
+// animal gets the generated dates section directly after its years overview.
+function withYearDatesSection(
+  animal: ZodiacAnimal,
+  sections: KnowledgePageProps["sections"]
+): KnowledgePageProps["sections"] {
+  if (animal.slug === "dragon") return sections;
+  return [sections[0], animalYearDatesSection(animal), ...sections.slice(1)];
+}
 
 const animalPages = animals.map((animal) =>
   buildPage({
@@ -1465,7 +1516,7 @@ const animalPages = animals.map((animal) =>
       description: "",
       url: "",
       datePublished: animal.datePublished,
-      dateModified: animalDateModifiedOverrides[animal.slug] ?? "2026-07-14",
+      dateModified: animalDateModifiedOverrides[animal.slug] ?? "2026-10-20",
     },
     stats: [
       {
@@ -1493,7 +1544,7 @@ const animalPages = animals.map((animal) =>
         url: "https://books.google.com/books?q=Martin+Palmer+Tung+Shu+Ancient+Chinese+Almanac",
       },
     ],
-    sections: animalSections[animal.slug] ?? [
+    sections: withYearDatesSection(animal, animalSections[animal.slug] ?? [
       {
         heading: `Year of the ${animal.name} years list`,
         content: (
@@ -1595,8 +1646,8 @@ const animalPages = animals.map((animal) =>
           </>
         ),
       },
-    ],
-    faqs: faqs(animal),
+    ]),
+    faqs: animal.slug === "dragon" ? faqs(animal) : [...faqs(animal), animalYearDatesFaq(animal)],
     relatedLinks: [
       ...siblingAnimalLinks(animal),
       ...indexingRecoveryLinks,
@@ -2127,6 +2178,10 @@ const forecast2026 = buildPage({
 // Each page targets a specific animal-year combination (e.g. Dragon/1976)
 // to capture long-tail searches like "year of the dragon 1976 meaning"
 
+function withArticle(word: string): string {
+  return /^[AEIOU]/i.test(word) ? `an ${word}` : `a ${word}`;
+}
+
 function buildYearPage(
   animal: ZodiacAnimal,
   year: string,
@@ -2137,28 +2192,36 @@ function buildYearPage(
   const slug = `${animal.slug}/${year}`;
   const path = `/chinese-zodiac/${slug}`;
   const yearSign = `${year} Year of the ${animal.name}`;
+  const elementAnimal = `${elementLabel} ${animal.name}`;
+  const element = elementLabel.toLowerCase();
+  const stem = stemBranch.split("-")[0];
+  // "Geng-Chen (庚辰)" -> "Geng-Chen, 庚辰" so it can sit inside parentheses.
+  const stemBranchLabel = stemBranch.replace(" (", ", ").replace(")", "");
+  const dates = getZodiacYearDates(Number(year));
+  const previousSign = animals[(animals.indexOf(animal) + animals.length - 1) % animals.length];
+  const span = describeZodiacYearSpan(animal.name, dates);
   return buildPage({
     slug,
     path,
-    title: `${year} Year of the ${animal.name}: ${elementLabel} ${animal.name} Personality & Meaning`,
-    description: `${year} is the ${elementLabel} ${animal.name} year (${stemBranch}). Discover the ${elementLabel.toLowerCase()} ${animal.name} personality, element traits, and what this specific ${animal.name} year means in Bazi and Chinese zodiac.`,
+    title: `${year} Year of the ${animal.name}: ${elementAnimal} Dates, Personality & Meaning`,
+    description: `${year} is the ${elementAnimal} year (${stemBranchLabel}), running from ${formatLongDate(dates.lunarNewYear)} to ${formatLongDate(dates.lastDay)}. See the exact dates, ${element} ${animal.name} personality, and Bazi context.`,
     entityName: yearSign,
     entityType: "DefinedTerm",
-    subtitle: `${yearSign} — the ${elementLabel.toLowerCase()} expression of the ${animal.name} archetype.`,
-    directAnswer: `${year} was a ${elementLabel} ${animal.name} year (${stemBranch}) in the Chinese zodiac. The ${elementLabel.toLowerCase()} modifier gives the ${animal.name} year a distinctive quality: ${elementDesc}. People born in this year carry both the ${animal.name}&rsquo;s base traits (${animal.traits}) and the ${elementLabel.toLowerCase()} element&rsquo;s expressive style.`,
+    subtitle: `${yearSign} — the ${element} expression of the ${animal.name} archetype.`,
+    directAnswer: `${year} is ${withArticle(elementAnimal)} year (${stemBranchLabel}) in the Chinese zodiac, running from ${formatLongDate(dates.lunarNewYear)} to ${formatLongDate(dates.lastDay)}. ${elementDesc} People born in this year combine the ${animal.name}’s traditional traits (${animal.traits}) with the ${element} element’s style.`,
     breadcrumbs: breadcrumbs(yearSign, path),
     schema: {
       headline: "",
       description: "",
       url: "",
       datePublished: "2026-05-01",
-      dateModified: "2026-07-12",
+      dateModified: "2026-10-20",
     },
     stats: [
       {
         value: elementLabel,
         label: "Year element",
-        description: `The ${elementLabel.toLowerCase()} modifier of this ${animal.name} year.`,
+        description: `The ${element} modifier of this ${animal.name} year.`,
       },
       {
         value: stemBranch,
@@ -2166,15 +2229,15 @@ function buildYearPage(
         description: "The Heavenly Stem and Earthly Branch for this year.",
       },
       {
-        value: animal.element,
-        label: "Animal element",
-        description: `${animal.name} belongs to the ${animal.element} element context.`,
+        value: formatLongDate(dates.lunarNewYear),
+        label: "Lunar New Year",
+        description: `First day of the ${yearSign} (China Standard Time).`,
       },
     ],
     citations: [
       {
-        label: "Chinese zodiac tradition",
-        source: `${year} is a ${animal.name} year in the 12-year cycle with a ${elementLabel} Heavenly Stem modifier.`,
+        label: "Hong Kong Observatory: Gregorian-Lunar Calendar Conversion",
+        source: `Conversion tables for checking the ${year} Lunar New Year date and solar terms.`,
         url: "https://www.hko.gov.hk/en/gts/time/conversion.htm",
       },
       {
@@ -2185,36 +2248,34 @@ function buildYearPage(
     ],
     sections: [
       {
-        heading: `What ${year} means as a ${elementLabel} ${animal.name} year`,
+        heading: `What ${year} means as ${withArticle(elementAnimal)} year`,
         content: (
           <>
             <p>
               <strong>
-                ${year} was a ${elementLabel} ${animal.name} year (${stemBranch}) in the Chinese
-                zodiac calendar.
+                {year} is {withArticle(elementAnimal)} year ({stemBranchLabel}) in the Chinese zodiac
+                calendar.
               </strong>{" "}
-              The Heavenly Stem ${stemBranch.split("-")[0] || ""} combined with the ${animal.branch}{" "}
-              (${animal.name}) Earthly Branch to create a year energy that blends ${animal.name}{" "}
-              traits with ${elementLabel.toLowerCase()} element qualities.
+              The Heavenly Stem {stem} combines with the {animal.branch} ({animal.name}) Earthly
+              Branch to create a year energy that blends {animal.name} traits with {element}{" "}
+              element qualities.
             </p>
             <p>
-              ${elementDesc} For people born in this year, the ${elementLabel.toLowerCase()}{" "}
-              modifier shapes how the ${animal.name}&rsquo;s natural ambition, charisma, and vision
-              express themselves. A ${elementLabel} ${animal.name} tends to approach leadership,
-              relationships, and life goals through a ${elementLabel.toLowerCase()}-inflected lens.
+              {elementDesc} For people born in this year, the {element} modifier shapes how the{" "}
+              {animal.name}&rsquo;s traditional traits ({animal.traits}) express themselves.
             </p>
             <p>
               In Bazi, the year pillar represents ancestral background and early social environment.
-              The ${stemBranch} year pillar contributes a specific elemental combination to the full
+              The {stemBranch} year pillar contributes a specific elemental combination to the full
               Four Pillars chart, interacting with the month, day, and hour pillars to produce a
               unique life pattern.
             </p>
             <p>
               Read the{" "}
               <Link href={`/chinese-zodiac/${animal.slug}`} className={linkClass}>
-                ${animal.name} zodiac page
+                {animal.name} zodiac page
               </Link>{" "}
-              for the base ${animal.name} personality, or use the{" "}
+              for the base {animal.name} personality, or use the{" "}
               <Link href="/tools/bazi-calculator" className={linkClass}>
                 Bazi calculator
               </Link>{" "}
@@ -2224,30 +2285,37 @@ function buildYearPage(
         ),
       },
       {
-        heading: `${animal.name} years at a glance`,
+        heading: `${year} Year of the ${animal.name} start and end dates`,
         content: (
           <>
             <p>
-              The ${animal.name} repeats every 12 years in the zodiac cycle. Each occurrence carries
-              a different Heavenly Stem that modifies the year energy. Recent ${animal.name} years
-              include ${animal.years}. The full sexagenary cycle produces five ${animal.name} types
-              — Wood, Fire, Earth, Metal, and Water.
+              <strong>{span}</strong>
             </p>
             <p>
-              ${year} belongs to the ${elementLabel} ${animal.name} type. If your birthday falls in
-              January or early February of ${year}, check the Lunar New Year boundary for that year
-              — the zodiac year does not always begin on January 1st, and the Bazi solar-term
-              boundary (Li Chun) may differ from the popular calendar.
+              If your birthday falls before {formatLongDate(dates.lunarNewYear)}, the popular
+              zodiac places you in the previous sign, the {previousSign.name}. Many Bazi schools
+              use Li Chun ({formatLongDate(dates.liChun)}, {dates.liChunTime} China Standard Time)
+              as the year-pillar boundary instead, so a birth between Li Chun and Lunar New Year
+              can have {withArticle(animal.name)} year pillar in a Li Chun-based chart but is
+              usually listed as {withArticle(previousSign.name)} in popular zodiac charts. Check
+              which boundary a calculator uses before comparing results. The Lunar New Year date can fall one day earlier in the Americas because of
+              time zones.
+            </p>
+            <p>
+              The {animal.name} repeats every 12 years in the zodiac cycle. Each occurrence carries a
+              different Heavenly Stem that modifies the year energy. Recent {animal.name} years
+              include {animal.years}. The full sexagenary cycle produces five {animal.name} types —
+              Wood, Fire, Earth, Metal, and Water.
             </p>
           </>
         ),
       },
       {
-        heading: `Element compatibility and chart context for ${elementLabel} ${animal.name}`,
+        heading: `Element compatibility and chart context for ${elementAnimal}`,
         content: (
           <>
             <p>
-              In Five Element theory, the ${elementLabel.toLowerCase()} element $
+              In Five Element theory, the {element} element{" "}
               {elementLabel === "Wood"
                 ? "generates Fire, controls Earth, and is controlled by Metal"
                 : elementLabel === "Fire"
@@ -2257,17 +2325,15 @@ function buildYearPage(
                     : elementLabel === "Metal"
                       ? "generates Water, controls Wood, and is controlled by Fire"
                       : "generates Wood, controls Fire, and is controlled by Earth"}
-              . This means ${year}&rsquo;s ${elementLabel.toLowerCase()} ${animal.name} energy
-              resonates most harmoniously with charts that need ${elementLabel.toLowerCase()} energy
-              and may create friction in charts that already have excess $
-              {elementLabel.toLowerCase()}.
+              . This means {year}&rsquo;s {element} {animal.name} energy resonates most harmoniously
+              with charts that need {element} energy and may create friction in charts that already
+              have excess {element}.
             </p>
             <p>
-              Traditional compatibility for ${animal.name} involves ${animal.compatible} as harmony
-              signs and ${animal.challenging} as the challenging signs. The $
-              {elementLabel.toLowerCase()} modifier adds a second compatibility layer based on
-              element relationships. A full Bazi chart reading considers both the branch-level
-              compatibility and the elemental interaction.
+              Traditional compatibility for {animal.name} involves {animal.compatible} as harmony
+              signs and {animal.challenging} as the challenging signs. The {element} modifier adds a
+              second compatibility layer based on element relationships. A full Bazi chart reading
+              considers both the branch-level compatibility and the elemental interaction.
             </p>
             <p>
               For a complete compatibility check, use the{" "}
@@ -2286,20 +2352,16 @@ function buildYearPage(
     ],
     faqs: [
       {
-        question: `What does ${year} mean in the Chinese zodiac?`,
-        answer: `${year} was the Year of the ${elementLabel} ${animal.name} (${stemBranch}) in the Chinese zodiac. It is one of five ${animal.name} types in the 60-year cycle.`,
+        question: `When does the ${year} Year of the ${animal.name} start and end?`,
+        answer: span,
       },
       {
         question: `What element is ${year} in the Chinese zodiac?`,
-        answer: `${year} is a ${elementLabel} ${animal.name} year. The Heavenly Stem for ${year} carries ${elementLabel.toLowerCase()} energy, making this a ${elementLabel.toLowerCase()} ${animal.name} year in the 60-year sexagenary cycle.`,
+        answer: `${year} is ${withArticle(elementAnimal)} year (${stemBranchLabel}). The Heavenly Stem ${stem} carries ${element} energy, making this one of the five ${animal.name} types in the 60-year sexagenary cycle.`,
       },
       {
         question: `What animal is ${year} in the Chinese zodiac?`,
-        answer: `${year} is the Year of the ${animal.name}. The ${animal.name} is the ${animal.rank} sign in the 12-year zodiac cycle, associated with the ${animal.branch} Earthly Branch.`,
-      },
-      {
-        question: `Was ${year} a ${elementLabel} ${animal.name}?`,
-        answer: `Yes. ${year} corresponds to ${stemBranch} in the Chinese calendar, making it a ${elementLabel} ${animal.name} year.`,
+        answer: `${year} is the Year of the ${animal.name} for births from ${formatLongDate(dates.lunarNewYear)} onward. The ${animal.name} is the ${animal.rank} sign in the 12-year zodiac cycle, associated with the ${animal.branch} Earthly Branch. Births earlier in ${year} belong to the ${previousSign.name} year.`,
       },
     ],
     relatedLinks: [

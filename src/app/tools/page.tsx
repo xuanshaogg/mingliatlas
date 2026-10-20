@@ -140,7 +140,7 @@ export default function ToolsPage() {
                     <span className="text-brand-primary dark:bg-gold-500/10 dark:text-gold-300 bg-brand-50 flex h-14 w-14 items-center justify-center rounded-full">
                       <Icon className="h-6 w-6" aria-hidden="true" />
                     </span>
-                    <span className="text-ink-400 text-xs tabular-nums">0{index + 1}</span>
+                    <span className="text-ink-500 text-xs tabular-nums">0{index + 1}</span>
                   </div>
                   <div className="flex flex-1 flex-col pt-7">
                     <p className="text-ink-500 dark:text-ink-300 text-xs font-medium">

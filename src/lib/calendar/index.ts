@@ -18,6 +18,7 @@ export {
 
 export {
   calculateGanZhi,
+  calculateBaziGanZhi,
   getStemIndex,
   getBranchIndex,
   getStemByIndex,

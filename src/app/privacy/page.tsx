@@ -82,7 +82,7 @@ export default function PrivacyPage() {
           ),
         },
         {
-          heading: "Children&apos;s privacy",
+          heading: "Children’s privacy",
           content: (
             <p>
               This site is not directed at children under the age of 13. We do not knowingly collect personal information from children under 13. If you believe a child has provided us with personal information, please contact us via the{" "}

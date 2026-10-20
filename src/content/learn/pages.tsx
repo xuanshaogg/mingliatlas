@@ -186,7 +186,7 @@ export const allLearnPages: LearnContentPage[] = [
   buildPage({
     slug: "",
     path: "/learn",
-    title: "Learn Chinese Metaphysics: Bazi, I Ching & Feng Shui Roadmap",
+    title: "Learn Chinese Metaphysics: Bazi, I Ching & Feng Shui",
     description:
       "A structured learning hub for Chinese metaphysics foundations, Bazi, I Ching, Feng Shui, Ziwei Doushu, Chinese zodiac, tools, and sources.",
     entityName: "Chinese Metaphysics Learning Center",
@@ -987,7 +987,7 @@ export const allLearnPages: LearnContentPage[] = [
             <p>
               Use this matrix to narrow the field. “Output” means the structure the method can responsibly provide, not a guaranteed prediction.
             </p>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto" role="region" aria-label="Scrollable table" tabIndex={0}>
               <table className="min-w-[52rem] border-collapse text-left text-sm leading-6">
                 <thead>
                   <tr className="border-b border-ink-200 dark:border-white/10">
