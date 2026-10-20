@@ -136,18 +136,11 @@ function cta(title = "Choose your starting point") {
   };
 }
 
-const defaultEditorialQuote = {
-  text: "The best starting point is the one that matches the question, keeps the rules clear, and avoids certainty theater.",
-  author: "Mingli Atlas Editorial Team",
-  title: "Editorial note",
-};
-
+// Stock "Editorial note" pull-quotes were removed on 2026-10-20: the same
+// sentence appeared on dozens of pages and read as manufactured authority.
+// Hand-written quotes in a page's own sections are still rendered.
 function withEditorialQuote(sections: KnowledgePageProps["sections"]): KnowledgePageProps["sections"] {
-  if (sections.some((section) => section.quotes?.length)) return sections;
-
-  return sections.map((section, index) =>
-    index === 0 ? { ...section, quotes: [defaultEditorialQuote] } : section,
-  );
+  return sections;
 }
 
 function buildPage(input: Omit<LearnContentPage, "data"> & KnowledgePageProps): LearnContentPage {

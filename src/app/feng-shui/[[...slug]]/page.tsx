@@ -1,3 +1,4 @@
+import { isCanonicalContentPath } from "@/lib/content/urls";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import KnowledgePage from "@/components/templates/KnowledgePage";
@@ -17,7 +18,9 @@ function slugFromSegments(segments?: string[]): string {
 }
 
 export function generateStaticParams(): Array<{ slug?: string[] }> {
-  return getFengShuiStaticParams();
+  return getFengShuiStaticParams().filter(({ slug }) =>
+    isCanonicalContentPath(`/feng-shui${slug?.length ? "/" + slug.join("/") : ""}`)
+  );
 }
 
 export async function generateMetadata({ params }: FengShuiPageProps): Promise<Metadata> {

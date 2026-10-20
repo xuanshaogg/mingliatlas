@@ -785,7 +785,7 @@ const introSections: Record<string, KnowledgePageProps["sections"]> = {
           arrangement and the Later Heaven (King Wen) arrangement. The Later Heaven arrangement is
           used in most practical applications, including{" "}
           <Link
-            href="/feng-shui/bagua-map"
+            href="/feng-shui#article-section-6"
             className="text-brand-primary decoration-brand-primary/30 dark:text-gold-300 underline"
           >
             Feng Shui Bagua mapping

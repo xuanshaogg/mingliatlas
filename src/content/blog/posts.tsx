@@ -314,18 +314,11 @@ function breadcrumbs(title: string, href: string) {
   ];
 }
 
-const defaultEditorialQuote = {
-  text: "A useful metaphysics article should make the symbol clearer, keep context visible, and leave the reader with better questions.",
-  author: "Mingli Atlas Editorial Team",
-  title: "Editorial note",
-};
-
+// Stock "Editorial note" pull-quotes were removed on 2026-10-20: the same
+// sentence appeared on dozens of pages and read as manufactured authority.
+// Hand-written quotes in a page's own sections are still rendered.
 function withEditorialQuote(sections: KnowledgePageProps["sections"]): KnowledgePageProps["sections"] {
-  if (sections.some((section) => section.quotes?.length)) return sections;
-
-  return sections.map((section, index) =>
-    index === 0 ? { ...section, quotes: [defaultEditorialQuote] } : section,
-  );
+  return sections;
 }
 
 function buildPage(input: Omit<BlogPost, "data"> & KnowledgePageProps): BlogPost {
@@ -374,7 +367,7 @@ const compareLinks = [
 ];
 
 const careerLinks = [
-  { title: "Bazi and Career", href: "/bazi/career", description: "See how the site frames career applications." },
+  { title: "Ten Gods in Bazi", href: "/bazi/ten-gods", description: "Career readings usually start with the Output, Wealth, and Officer roles around the Day Master." },
   { title: "Which System Should You Learn?", href: "/learn/which-system", description: "Choose the reading path that fits your question." },
   { title: "Free Bazi Calculator", href: "/tools/bazi-calculator", description: "Test the workflow with a birth date." },
 ];
@@ -1149,7 +1142,7 @@ const editorialSeeds: EditorialSeed[] = [
     category: "Feng Shui Guide",
     entity: "Office Desk Feng Shui",
     focus: "desk command",
-    primaryHref: "/feng-shui/office/desk",
+    primaryHref: "/feng-shui",
     primaryLabel: "Open desk guide",
   },
   {
@@ -1238,7 +1231,7 @@ function createEditorialPost(seed: EditorialSeed): BlogPost {
       { value: "3+", label: "Next links", description: "Every article routes readers to a guide, tool, or foundation page." },
     ],
     citations: isDeskReview ? [
-      { label: "Office desk layout reference", source: "Mingli Atlas explanation of command position. This checklist records observable layout conditions.", url: `${SITE.url}/feng-shui/office/desk` },
+      { label: "Feng Shui guide: entrance, bed, desk, and stove priorities", source: "Mingli Atlas explanation of the command position. This checklist records observable layout conditions.", url: `${SITE.url}/feng-shui` },
     ] : [
       { label: "Chinese metaphysics tradition", source: "Classical systems use symbols, cycles, and context as interpretation layers." },
       { label: "Chinese calendar tradition", source: "Many topics rely on stems, branches, elements, and seasonal timing." },

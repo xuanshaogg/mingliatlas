@@ -530,17 +530,8 @@ function faqs(animal?: ZodiacAnimal): FAQ[] {
 function buildPage(input: Omit<ZodiacContentPage, "data"> & KnowledgePageProps): ZodiacContentPage {
   const { slug, path, title, description, ...data } = input;
 
-  const defaultEditorialQuote = {
-    text: "A useful zodiac reading treats the animal sign as one doorway into timing, not the whole person.",
-    author: "Mingli Atlas Editorial Team",
-    title: "Editorial note",
-  };
-
-  const sections = data.sections.some((section) => section.quotes?.length)
-    ? data.sections
-    : data.sections.map((section, index) =>
-        index === 0 ? { ...section, quotes: [defaultEditorialQuote] } : section
-      );
+  // Stock "Editorial note" pull-quotes removed on 2026-10-20 (see bazi/pages.tsx).
+  const sections = data.sections;
 
   return {
     slug,

@@ -117,22 +117,22 @@ export const topicPathways: Record<string, TopicPathway> = {
     links: [
       {
         title: "Follow the path through a room",
-        href: "/feng-shui/qi-flow",
+        href: "/feng-shui#article-section-3",
         description: "Observe entrances, obstructions, light and everyday movement.",
       },
       {
         title: "Review a bedroom layout",
-        href: "/feng-shui/home/bedroom",
+        href: "/feng-shui#article-section-4",
         description: "Consider bed support, privacy and the practical requirements of rest.",
       },
       {
         title: "Position an office desk",
-        href: "/feng-shui/office/desk",
+        href: "/blog/office-desk-feng-shui",
         description: "Compare sightlines, support and access around the work surface.",
       },
       {
         title: "Understand the Bagua map",
-        href: "/feng-shui/bagua-map",
+        href: "/feng-shui#article-section-6",
         description:
           "Identify which mapping convention a guide uses before applying its directions.",
       },
@@ -145,17 +145,17 @@ export const topicPathways: Record<string, TopicPathway> = {
     links: [
       {
         title: "Locate the twelve palaces",
-        href: "/ziwei/twelve-palaces",
+        href: "/ziwei#article-section-4",
         description: "Understand the chart's life-area framework and relationships.",
       },
       {
         title: "Identify the major stars",
-        href: "/ziwei/major-stars",
+        href: "/ziwei#article-section-5",
         description: "Read a star together with its palace and surrounding configuration.",
       },
       {
         title: "Compare Ziwei with Bazi",
-        href: "/ziwei/ziwei-vs-bazi",
+        href: "/ziwei#article-section-8",
         description: "Keep the two calculation systems and reading methods distinct.",
       },
       {
