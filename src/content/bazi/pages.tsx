@@ -20,7 +20,7 @@ const baziBaseLinks = [
   {
     title: "Earthly Branches",
     href: "/bazi/earthly-branches",
-    description: "Explore the 12 branches, hidden stems, seasons, and symbolic animals.",
+    description: "The 12 branches with their hidden stems, seasons, hours, and zodiac animals.",
   },
 ];
 

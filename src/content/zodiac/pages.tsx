@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { KnowledgePageProps } from "@/components/templates/KnowledgePage";
 import type { FAQ } from "@/components/shared/FAQSection";
 import ZodiacYearDatesTable from "@/components/shared/ZodiacYearDatesTable";
+import { branchFacts, hiddenStemsText, relationTo, relationships } from "./branch-facts";
 import { SITE } from "@/lib/constants";
 import {
   describeZodiacYearSpan,
@@ -513,12 +514,11 @@ function faqs(animal?: ZodiacAnimal): FAQ[] {
     },
     {
       question: `Which zodiac signs are most compatible with ${animal.name}?`,
-      answer: `${animal.name} is commonly paired with ${animal.compatible}. These pairings come from harmony patterns in the 12-branch cycle.`,
+      answer: `In the 12-branch cycle, ${animal.name} forms a six combination with ${relationships(animal.name).combination} and a ${relationships(animal.name).triad.element} triad with ${relationships(animal.name).triadPartners.join(" and ")}. Its clash partner is ${relationships(animal.name).clash}. These are symbolic branch patterns, not a verdict on a relationship.`,
     },
     {
       question: `Is 2026 a good year for ${animal.name}?`,
-      answer:
-        "2026 is the Year of the Fire Horse. Its effect depends on the animal sign and the full Bazi chart, so treat yearly themes as general guidance.",
+      answer: `2026 is a Bing-Wu (丙午) Fire Horse year. For the ${animal.name}, the Horse branch is ${relationTo(animal.name, "Horse")}. That is one symbolic layer; how the year reads for a person depends on the full Bazi chart.`,
     },
     {
       question: `What years are Year of the ${animal.name}?`,
@@ -1475,6 +1475,119 @@ const animalDateModifiedOverrides: Partial<Record<string, string>> = {
   dragon: "2026-10-20",
 };
 
+// Sections for the animal pages that do not have hand-written guides. They
+// state calendar facts from branch-facts.ts instead of generic personality copy.
+function genericAnimalSections(animal: ZodiacAnimal): KnowledgePageProps["sections"] {
+  const branch = branchFacts(animal.name);
+  const rel = relationships(animal.name);
+  const recent = mostRecentAnimalYear(animal);
+  return [
+    {
+      heading: `Years of the ${animal.name}`,
+      content: (
+        <>
+          <p>
+            <strong>
+              Recent Years of the {animal.name}: {animal.years}. The sign returns every 12 years;
+              the next one after {recent} is {recent + 12}.
+            </strong>{" "}
+            Each occurrence pairs the {branch.pinyin} ({branch.chinese}) branch with a different
+            Heavenly Stem, so the same animal appears as Wood, Fire, Earth, Metal, and Water
+            versions across a 60-year cycle.
+          </p>
+          <p>
+            A zodiac year starts at Lunar New Year, not on January 1. Anyone born in January or
+            the first half of February should check the exact start date in the table below before
+            assuming the sign.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: `The ${branch.pinyin} branch behind the ${animal.name}`,
+      content: (
+        <>
+          <p>
+            In the Chinese calendar the {animal.name} is a label for {branch.pinyin} ({branch.chinese}),
+            the {animal.rank} of the twelve Earthly Branches. {branch.pinyin} is {animal.polarity}{" "}
+            {animal.element}. It marks the two-hour period from {branch.hours}, the{" "}
+            {branch.direction} direction, and {branch.season}.
+          </p>
+          <p>
+            In a Bazi chart {branch.pinyin} is also the branch of the {ordinal(branch.month)} solar
+            month, which begins at the {branch.jie} solar term. Its hidden stems are{" "}
+            {hiddenStemsText(animal.name)}. Those hidden stems are why the same animal can read
+            differently from one chart to another: they interact with the Day Master in ways the
+            animal symbol does not show.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: `${animal.name} compatibility: combinations, triad, and clash`,
+      content: (
+        <>
+          <p>
+            The traditional relationships are fixed by branch position rather than by personality:
+          </p>
+          <ul className="list-disc space-y-2 pl-6">
+            <li>
+              <strong>Six combination (Liu He):</strong> {animal.name} and {rel.combination}.
+            </li>
+            <li>
+              <strong>Triad (San He):</strong> {rel.triad.members.join(", ")}, which together form a{" "}
+              {rel.triad.element} frame.
+            </li>
+            <li>
+              <strong>Clash (Chong):</strong> {animal.name} and {rel.clash}, the branch six places
+              away.
+            </li>
+            <li>
+              <strong>Six harm (Liu Hai):</strong> {animal.name} and {rel.harm}.
+            </li>
+          </ul>
+          <p>
+            These pairings describe how the branches interact in a calendar or chart. They are not
+            a verdict on any relationship, and a full Bazi comparison looks at all four pillars of
+            both people. The{" "}
+            <Link href="/blog/chinese-zodiac-compatibility-chart" className={linkClass}>
+              compatibility chart
+            </Link>{" "}
+            lists the same patterns for every sign.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: `Traditional ${animal.name} traits, and 2026`,
+      content: (
+        <>
+          <p>
+            Popular zodiac writing describes {animal.name} people as {animal.traits}. Treat that as
+            cultural symbolism attached to the {branch.pinyin} branch, not as a personality test:
+            the year animal is one of eight characters in a birth chart, and the Day Master (the
+            stem of the day pillar) carries more weight in a Bazi reading.
+          </p>
+          <p>
+            2026 is a Bing-Wu (丙午) Fire Horse year. For the {animal.name}, Wu is{" "}
+            {relationTo(animal.name, "Horse")}. The{" "}
+            <Link href="/chinese-zodiac/2026-forecast" className={linkClass}>
+              2026 forecast
+            </Link>{" "}
+            explains how that relationship is usually read, and why it should be checked against
+            the full chart.
+          </p>
+        </>
+      ),
+    },
+  ];
+}
+
+function ordinal(n: number): string {
+  const suffix = n % 10 === 1 && n !== 11 ? "st" : n % 10 === 2 && n !== 12 ? "nd" : n % 10 === 3 && n !== 13 ? "rd" : "th";
+  return `${n}${suffix}`;
+}
+
 // The Dragon page already carries its own years-and-dates table; every other
 // animal gets the generated dates section directly after its years overview.
 function withYearDatesSection(
@@ -1535,109 +1648,7 @@ const animalPages = animals.map((animal) =>
         url: "https://books.google.com/books?q=Martin+Palmer+Tung+Shu+Ancient+Chinese+Almanac",
       },
     ],
-    sections: withYearDatesSection(animal, animalSections[animal.slug] ?? [
-      {
-        heading: `Year of the ${animal.name} years list`,
-        content: (
-          <>
-            <p>
-              <strong>
-                Year of the {animal.name} years list: {animal.years}.
-              </strong>{" "}
-              The cycle repeats every 12 years, so the next Year of the {animal.name} follows 12
-              years after the most recent one. If you were born in January or early February, check
-              the Lunar New Year boundary for that year before confirming your sign — the Chinese
-              zodiac year does not always align with January 1st.
-            </p>
-            <p>
-              In Bazi, the year animal is only one of four pillars. The month, day, and hour pillars
-              each carry their own stem and branch, which means two people born in the same year can
-              have very different charts. The year pillar reflects ancestral background and early
-              social environment, but the Day Master (the stem of the day pillar) is the anchor of
-              the full reading.
-            </p>
-            <p>
-              The {animal.name} year also comes in five elemental versions — Wood, Fire, Earth,
-              Metal, and Water — cycling through a 60-year sexagenary pattern. A Wood {animal.name}{" "}
-              year carries different energy from a Metal {animal.name} year, even though the animal
-              symbol is the same.
-            </p>
-          </>
-        ),
-      },
-      {
-        heading: "Personality traits and life patterns",
-        content: (
-          <>
-            <p>
-              {animal.name} symbolism emphasizes being {animal.traits}. In classical Chinese almanac
-              tradition, these traits are associated with the {animal.branch} Earthly Branch, which
-              governs a specific two-hour window of the day, a season, a direction, and a set of
-              hidden stems that interact with other pillars in a Bazi chart.
-            </p>
-            <p>
-              Strengths often appear when this sign has a clear purpose and a supportive
-              environment. The same qualities that create strength can become liabilities under
-              pressure: adaptability can become inconsistency, ambition can become overreach, and
-              loyalty can become rigidity. Reading the full chart — especially the month pillar and
-              luck cycles — gives a more accurate picture of when these tendencies activate.
-            </p>
-            <p>
-              The {animal.polarity} quality of the {animal.name} (
-              {animal.polarity === "Yang"
-                ? "active, outward-moving energy"
-                : "receptive, inward-moving energy"}
-              ) shapes how the sign expresses itself. Yang signs tend toward initiative and
-              visibility; Yin signs tend toward depth and selectivity. Neither is better — both are
-              necessary in a balanced chart.
-            </p>
-          </>
-        ),
-        stats: [
-          {
-            value: "5",
-            label: "Element versions",
-            description: `Wood, Fire, Earth, Metal, and Water ${animal.name} years modify the base sign.`,
-          },
-        ],
-      },
-      {
-        heading: "Career, wealth, love, and 2026 themes",
-        content: (
-          <>
-            <p>
-              Career and wealth themes favor environments that respect the {animal.name} pattern.
-              The {animal.element} element association shapes which industries and roles tend to
-              align well:{" "}
-              {animal.element === "Wood"
-                ? "growth-oriented fields like education, healthcare, and creative work"
-                : animal.element === "Fire"
-                  ? "high-visibility fields like media, entertainment, and leadership roles"
-                  : animal.element === "Earth"
-                    ? "stable fields like real estate, finance, and management"
-                    : animal.element === "Metal"
-                      ? "precision fields like law, engineering, and finance"
-                      : "adaptive fields like research, communication, and strategy"}
-              .
-            </p>
-            <p>
-              Relationship ease is traditionally stronger with {animal.compatible} signs, which
-              share branch harmony or triangular affinity. {animal.challenging} signs can require
-              more conscious communication because of opposing branch positions — this does not make
-              the relationship impossible, but it does ask for clearer agreements about pacing and
-              priorities.
-            </p>
-            <p>
-              For 2026 (Year of the Horse), read general Horse-year momentum together with your full
-              Bazi chart. The Horse branch (Wu, 午) carries Yang Fire energy, which activates
-              differently depending on your Day Master element. Famous people often cited as{" "}
-              {animal.name} examples include {animal.famous} — though a complete reading would
-              require their full birth data, not just the year.
-            </p>
-          </>
-        ),
-      },
-    ]),
+    sections: withYearDatesSection(animal, animalSections[animal.slug] ?? genericAnimalSections(animal)),
     faqs: animal.slug === "dragon" ? faqs(animal) : [...faqs(animal), animalYearDatesFaq(animal)],
     relatedLinks: [
       ...siblingAnimalLinks(animal),
@@ -2247,19 +2258,18 @@ function buildYearPage(
                 {year} is {withArticle(elementAnimal)} year ({stemBranchLabel}) in the Chinese zodiac
                 calendar.
               </strong>{" "}
-              The Heavenly Stem {stem} combines with the {animal.branch} ({animal.name}) Earthly
-              Branch to create a year energy that blends {animal.name} traits with {element}{" "}
-              element qualities.
+              The name comes from the year&rsquo;s stem-branch pair: the Heavenly Stem {stem}{" "}
+              supplies the {element} element, and the {animal.branch} Earthly Branch supplies the{" "}
+              {animal.name}. The same pair returns once every 60 years.
             </p>
             <p>
               {elementDesc} For people born in this year, the {element} modifier shapes how the{" "}
               {animal.name}&rsquo;s traditional traits ({animal.traits}) express themselves.
             </p>
             <p>
-              In Bazi, the year pillar represents ancestral background and early social environment.
-              The {stemBranch} year pillar contributes a specific elemental combination to the full
-              Four Pillars chart, interacting with the month, day, and hour pillars to produce a
-              unique life pattern.
+              In a Bazi chart, {stemBranch} would be only the year pillar, one of four. The day
+              pillar&rsquo;s stem (the Day Master) is the reference point of the reading, so two
+              people born in {year} can have very different charts.
             </p>
             <p>
               Read the{" "}
@@ -2316,15 +2326,15 @@ function buildYearPage(
                     : elementLabel === "Metal"
                       ? "generates Water, controls Wood, and is controlled by Fire"
                       : "generates Wood, controls Fire, and is controlled by Earth"}
-              . This means {year}&rsquo;s {element} {animal.name} energy resonates most harmoniously
-              with charts that need {element} energy and may create friction in charts that already
-              have excess {element}.
+              . In a Bazi reading, whether more {element} helps or strains a chart depends on the
+              balance of the other seven characters, which the year label alone does not show.
             </p>
             <p>
-              Traditional compatibility for {animal.name} involves {animal.compatible} as harmony
-              signs and {animal.challenging} as the challenging signs. The {element} modifier adds a
-              second compatibility layer based on element relationships. A full Bazi chart reading
-              considers both the branch-level compatibility and the elemental interaction.
+              By branch, {animal.name} combines with {relationships(animal.name).combination},
+              shares a {relationships(animal.name).triad.element} triad with{" "}
+              {relationships(animal.name).triadPartners.join(" and ")}, and clashes with{" "}
+              {relationships(animal.name).clash}. Those patterns are the same in every{" "}
+              {animal.name} year; the {element} stem does not change them.
             </p>
             <p>
               For a complete compatibility check, use the{" "}

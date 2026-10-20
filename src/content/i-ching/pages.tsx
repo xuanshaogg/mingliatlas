@@ -270,7 +270,7 @@ const overview = buildPage({
   entityType: "DefinedTerm",
   subtitle: "A beginner-friendly guide to hexagrams, trigrams, changing lines, and reflective use.",
   directAnswer:
-    "The I Ching, or Book of Changes, is a Chinese classic built around 64 hexagrams. Each hexagram is made from six yin or yang lines. Readers use it to examine change, timing, tension, and possible responses to a question in a specific moment. A careful reading compares the primary hexagram, changing lines, and the question itself before drawing a practical conclusion.",
+    "The I Ching, or Book of Changes, is a Chinese classic built around 64 hexagrams. Each hexagram is made from six yin or yang lines. Readers use it to examine change, timing, tension, and possible responses to a question in a specific moment. A cast gives a primary hexagram and, if any lines are changing, a second hexagram those lines turn it into; the reading compares both against the question that was asked.",
   breadcrumbs: breadcrumbs("Overview", "/i-ching"),
   schema: {
     headline: "",
