@@ -20,7 +20,7 @@ const baziBaseLinks = [
   {
     title: "Earthly Branches",
     href: "/bazi/earthly-branches",
-    description: "Explore the 12 branches, hidden stems, seasons, and symbolic animals.",
+    description: "The 12 branches with their hidden stems, seasons, hours, and zodiac animals.",
   },
 ];
 
@@ -85,20 +85,13 @@ function cta(title = "Explore your own Bazi pattern") {
   };
 }
 
-const defaultEditorialQuote = {
-  text: "A useful Bazi reading keeps symbols connected to context, timing, and choice instead of treating any one sign as a fixed verdict.",
-  author: "Mingli Atlas Editorial Team",
-  title: "Editorial note",
-};
-
+// Stock "Editorial note" pull-quotes were removed on 2026-10-20: the same
+// sentence appeared on dozens of pages and read as manufactured authority.
+// Hand-written quotes in a page's own sections are still rendered.
 function withEditorialQuote(
   sections: KnowledgePageProps["sections"]
 ): KnowledgePageProps["sections"] {
-  if (sections.some((section) => section.quotes?.length)) return sections;
-
-  return sections.map((section, index) =>
-    index === 0 ? { ...section, quotes: [defaultEditorialQuote] } : section
-  );
+  return sections;
 }
 
 export interface BaziContentPage {

@@ -201,7 +201,12 @@ describe("GEO audit", () => {
     const hrefs = publishedSitePages.map((page) => page.href);
     const uniqueHrefs = new Set(hrefs);
 
-    expect(publishedSitePages.length).toBeGreaterThanOrEqual(200);
+    // 76 template shells (Ziwei/Feng Shui sub-pages, Bazi brief pages, blog seed
+    // posts) were consolidated into their hubs on 2026-10-20; volume is not a goal.
+    expect(publishedSitePages.length).toBeGreaterThanOrEqual(150);
+    expect(hrefs.some((href) => href.startsWith("/ziwei/") || href.startsWith("/feng-shui/"))).toBe(false);
+    expect(hrefs).not.toContain("/blog/bedroom-feng-shui-rest");
+    expect(hrefs).toContain("/blog/office-desk-feng-shui");
     expect(uniqueHrefs.size).toBe(hrefs.length);
     expect(hrefs).toContain("/");
     expect(hrefs).toContain("/tools/bazi-calculator");

@@ -98,9 +98,12 @@ export const primaryNavigation: NavigationItem[] = [
 
 export const footerNavigation: NavigationItem[] = [
   { label: "About", href: "/about" },
+  { label: "Editorial Policy", href: "/about#editorial-standards" },
   { label: "Contact", href: "/contact" },
   { label: "Privacy", href: "/privacy" },
+  { label: "Cookies", href: "/privacy#cookies" },
   { label: "Terms", href: "/terms" },
+  { label: "Disclaimer", href: "/terms#disclaimer" },
   { label: "Sitemap", href: "/sitemap" },
   { label: "XML Sitemap", href: "/sitemap.xml" },
 ];

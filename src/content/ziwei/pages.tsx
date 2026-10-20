@@ -129,18 +129,11 @@ function cta(title = "Compare Ziwei with Bazi") {
   };
 }
 
-const defaultEditorialQuote = {
-  text: "A careful Ziwei reading uses palaces and stars as a structured map, then checks timing and lived context.",
-  author: "Mingli Atlas Editorial Team",
-  title: "Editorial note",
-};
-
+// Stock "Editorial note" pull-quotes were removed on 2026-10-20: the same
+// sentence appeared on dozens of pages and read as manufactured authority.
+// Hand-written quotes in a page's own sections are still rendered.
 function withEditorialQuote(sections: KnowledgePageProps["sections"]): KnowledgePageProps["sections"] {
-  if (sections.some((section) => section.quotes?.length)) return sections;
-
-  return sections.map((section, index) =>
-    index === 0 ? { ...section, quotes: [defaultEditorialQuote] } : section,
-  );
+  return sections;
 }
 
 function buildPage(input: Omit<ZiweiContentPage, "data"> & KnowledgePageProps): ZiweiContentPage {
@@ -177,7 +170,7 @@ const overview = buildPage({
   entityType: "DefinedTerm",
   subtitle: "A structured introduction to Purple Star Astrology for Western readers.",
   directAnswer:
-    "Ziwei Doushu, often translated as Purple Star Astrology, is a Chinese metaphysics system that places major stars into 12 life palaces. It studies personality, relationships, career, wealth, health tendencies, and timing through palace structure rather than only stems and branches. A careful reading checks the Life Palace, major stars, Four Transformations, and decade cycles before drawing conclusions.",
+    "Ziwei Doushu, often translated as Purple Star Astrology, is a Chinese metaphysics system that places major stars into 12 life palaces. It studies personality, relationships, career, wealth, health tendencies, and timing through palace structure rather than only stems and branches. Because the chart is built from the lunar birth date and the two-hour birth period, an uncertain birth time can move stars into different palaces.",
   breadcrumbs: breadcrumbs("Overview", "/ziwei"),
   schema: {
     headline: "",
@@ -624,7 +617,7 @@ function createTopicPage(topic: TopicInput): ZiweiContentPage {
         content: (
           <>
             <p>
-              Continue through the <Link href="/ziwei" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Ziwei hub</Link>, then study the <Link href="/ziwei/twelve-palaces" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">12 palaces</Link>, <Link href="/ziwei/major-stars" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">14 major stars</Link>, and <Link href="/ziwei/four-transformations" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Four Transformations</Link>.
+              Continue through the <Link href="/ziwei" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Ziwei hub</Link>, then study the <Link href="/ziwei#article-section-4" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">12 palaces</Link>, <Link href="/ziwei#article-section-5" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">14 major stars</Link>, and <Link href="/ziwei#article-section-8" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Four Transformations</Link>.
             </p>
             <p>
               For system choice, compare Ziwei with <Link href="/bazi" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Bazi</Link> and the <Link href="/learn/which-system" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">which system guide</Link> before deciding which method fits your question.

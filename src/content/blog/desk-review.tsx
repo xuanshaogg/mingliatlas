@@ -46,9 +46,10 @@ export const deskReviewSection: Section = {
       </p>
       <p>
         For the underlying spatial ideas, read the{" "}
-        <Link href="/feng-shui/office/desk" className="font-medium underline">
-          office desk command-position guide
-        </Link>
+        <Link href="/feng-shui#article-section-4" className="font-medium underline">
+          entrance, bed, desk, and stove priorities
+        </Link>{" "}
+        in the Feng Shui guide
         . If moving the desk would obstruct access or make work harder, keep that constraint in the
         plan and consider a smaller adjustment.
       </p>

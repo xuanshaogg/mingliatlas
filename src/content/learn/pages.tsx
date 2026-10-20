@@ -136,18 +136,11 @@ function cta(title = "Choose your starting point") {
   };
 }
 
-const defaultEditorialQuote = {
-  text: "The best starting point is the one that matches the question, keeps the rules clear, and avoids certainty theater.",
-  author: "Mingli Atlas Editorial Team",
-  title: "Editorial note",
-};
-
+// Stock "Editorial note" pull-quotes were removed on 2026-10-20: the same
+// sentence appeared on dozens of pages and read as manufactured authority.
+// Hand-written quotes in a page's own sections are still rendered.
 function withEditorialQuote(sections: KnowledgePageProps["sections"]): KnowledgePageProps["sections"] {
-  if (sections.some((section) => section.quotes?.length)) return sections;
-
-  return sections.map((section, index) =>
-    index === 0 ? { ...section, quotes: [defaultEditorialQuote] } : section,
-  );
+  return sections;
 }
 
 function buildPage(input: Omit<LearnContentPage, "data"> & KnowledgePageProps): LearnContentPage {
@@ -224,7 +217,7 @@ export const allLearnPages: LearnContentPage[] = [
               These systems share terms, but a shared word does not guarantee a shared rule. “Element,” “palace,” “qi,” “star,” and “change” can perform different technical roles. Use this hub to choose a route, then keep each method&apos;s question, input, calculation, source, and interpretation separate until you can explain its grammar without borrowing from another tradition.
             </p>
             <p>
-              The learning center presents the material for education, cultural context, and structured reflection. It does not provide medical, legal, financial, mental-health, or deterministic life advice. A useful interpretation should preserve uncertainty, observation, consent, and the reader&apos;s ability to choose.
+              The learning center presents the material for education, cultural context, and structured reflection. It does not provide medical, legal, financial, mental-health, or deterministic life advice. Where a guide describes a tendency, read it as a prompt to check against what you observe, not as a forecast.
             </p>
           </>
         ),

@@ -150,18 +150,11 @@ function cta(title = "Explore Feng Shui foundations") {
   };
 }
 
-const defaultEditorialQuote = {
-  text: "A responsible Feng Shui reading starts with observable space, human use, and proportion before symbolic conclusions.",
-  author: "Mingli Atlas Editorial Team",
-  title: "Editorial note",
-};
-
+// Stock "Editorial note" pull-quotes were removed on 2026-10-20: the same
+// sentence appeared on dozens of pages and read as manufactured authority.
+// Hand-written quotes in a page's own sections are still rendered.
 function withEditorialQuote(sections: KnowledgePageProps["sections"]): KnowledgePageProps["sections"] {
-  if (sections.some((section) => section.quotes?.length)) return sections;
-
-  return sections.map((section, index) =>
-    index === 0 ? { ...section, quotes: [defaultEditorialQuote] } : section,
-  );
+  return sections;
 }
 
 function buildPage(input: Omit<FengShuiContentPage, "data"> & KnowledgePageProps): FengShuiContentPage {
@@ -475,28 +468,15 @@ const overview = buildPage({
             physical space is clear and functional.
           </p>
           <p>
-            Use Feng Shui as a design and reflection tool. Explore the{" "}
+            For a worked example, the{" "}
             <Link
-              href="/feng-shui/home/bedroom"
+              href="/blog/office-desk-feng-shui"
               className="text-brand-primary decoration-brand-primary/30 dark:text-gold-300 underline"
             >
-              bedroom guide
-            </Link>
-            ,{" "}
-            <Link
-              href="/feng-shui/bagua-map"
-              className="text-brand-primary decoration-brand-primary/30 dark:text-gold-300 underline"
-            >
-              Bagua map
-            </Link>
-            , and{" "}
-            <Link
-              href="/feng-shui/qi-flow"
-              className="text-brand-primary decoration-brand-primary/30 dark:text-gold-300 underline"
-            >
-              qi flow principles
+              desk review checklist
             </Link>{" "}
-            as practical starting points.
+            applies these checks to one work surface: sketch the layout, note one specific problem,
+            and change one thing at a time so the result can be compared.
           </p>
         </>
       ),
@@ -627,7 +607,7 @@ function createTopicPage(topic: FengShuiTopic): FengShuiContentPage {
         content: (
           <>
             <p>
-              Continue with the <Link href="/feng-shui" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Feng Shui hub</Link> for the full reading order, then study <Link href="/feng-shui/qi-flow" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">qi flow</Link>, <Link href="/feng-shui/bagua-map" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Bagua map</Link>, and <Link href="/bazi/five-elements" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Five Elements</Link>.
+              Continue with the <Link href="/feng-shui" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Feng Shui hub</Link> for the full reading order, then study <Link href="/feng-shui#article-section-3" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">qi flow</Link>, <Link href="/feng-shui#article-section-6" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Bagua map</Link>, and <Link href="/bazi/five-elements" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Five Elements</Link>.
             </p>
             <p>
               For comparison across systems, use the <Link href="/learn/which-system" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">which system guide</Link> to see when Feng Shui, Bazi, I Ching, or Ziwei is the better lens for a question.
