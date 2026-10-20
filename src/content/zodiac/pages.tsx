@@ -1496,8 +1496,8 @@ function genericAnimalSections(animal: ZodiacAnimal): KnowledgePageProps["sectio
             versions across a 60-year cycle.
           </p>
           <p>
-            A zodiac year starts at Lunar New Year, not on January 1. Anyone born in January or
-            the first half of February should check the exact start date in the table below before
+            A zodiac year starts at Lunar New Year, not on January 1. Lunar New Year falls between January 21 and February 20,
+            so anyone born in that window should check the exact start date in the table below before
             assuming the sign.
           </p>
         </>
@@ -1510,7 +1510,7 @@ function genericAnimalSections(animal: ZodiacAnimal): KnowledgePageProps["sectio
           <p>
             In the Chinese calendar the {animal.name} is a label for {branch.pinyin} ({branch.chinese}),
             the {animal.rank} of the twelve Earthly Branches. {branch.pinyin} is {animal.polarity}{" "}
-            {animal.element}. It marks the two-hour period from {branch.hours}, the{" "}
+            {animal.element}. It marks the two-hour period of {branch.hours}, the{" "}
             {branch.direction} direction, and {branch.season}.
           </p>
           <p>

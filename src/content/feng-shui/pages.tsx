@@ -607,7 +607,7 @@ function createTopicPage(topic: FengShuiTopic): FengShuiContentPage {
         content: (
           <>
             <p>
-              Continue with the <Link href="/feng-shui" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Feng Shui hub</Link> for the full reading order, then study <Link href="/feng-shui/qi-flow" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">qi flow</Link>, <Link href="/feng-shui/bagua-map" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Bagua map</Link>, and <Link href="/bazi/five-elements" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Five Elements</Link>.
+              Continue with the <Link href="/feng-shui" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Feng Shui hub</Link> for the full reading order, then study <Link href="/feng-shui#article-section-3" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">qi flow</Link>, <Link href="/feng-shui#article-section-6" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Bagua map</Link>, and <Link href="/bazi/five-elements" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Five Elements</Link>.
             </p>
             <p>
               For comparison across systems, use the <Link href="/learn/which-system" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">which system guide</Link> to see when Feng Shui, Bazi, I Ching, or Ziwei is the better lens for a question.

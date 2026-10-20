@@ -617,7 +617,7 @@ function createTopicPage(topic: TopicInput): ZiweiContentPage {
         content: (
           <>
             <p>
-              Continue through the <Link href="/ziwei" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Ziwei hub</Link>, then study the <Link href="/ziwei/twelve-palaces" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">12 palaces</Link>, <Link href="/ziwei/major-stars" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">14 major stars</Link>, and <Link href="/ziwei/four-transformations" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Four Transformations</Link>.
+              Continue through the <Link href="/ziwei" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Ziwei hub</Link>, then study the <Link href="/ziwei#article-section-4" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">12 palaces</Link>, <Link href="/ziwei#article-section-5" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">14 major stars</Link>, and <Link href="/ziwei#article-section-8" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Four Transformations</Link>.
             </p>
             <p>
               For system choice, compare Ziwei with <Link href="/bazi" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">Bazi</Link> and the <Link href="/learn/which-system" className="text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300">which system guide</Link> before deciding which method fits your question.
