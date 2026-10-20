@@ -116,7 +116,7 @@ export default function IChingOracle() {
             </p>
           ) : null}
           <div className="mt-3">
-            <p className="text-ink-500 text-xs font-medium">Need a starting point?</p>
+            <p className="text-ink-600 text-xs font-medium">Need a starting point?</p>
             <div className="mt-2 flex flex-wrap gap-2">
               {[
                 {
@@ -309,7 +309,7 @@ export default function IChingOracle() {
             </div>
           </article>
 
-          <aside className="atlas-surface p-6">
+          <div className="atlas-surface p-6">
             <h2 className="text-ink-950 dark:text-paper text-xl font-semibold tracking-tight">
               Lines
             </h2>
@@ -346,7 +346,7 @@ export default function IChingOracle() {
                 <li key={note}>{note}</li>
               ))}
             </ul>
-          </aside>
+          </div>
         </section>
         <ShareCardControls
           tool="i-ching"

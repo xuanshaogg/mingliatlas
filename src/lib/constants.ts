@@ -2,7 +2,9 @@ const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://mingliatla
 
 export const SITE = {
   name: "mingliatlas",
-  alternateNames: ["mingliatlas.com"],
+  // "Mingli Atlas" is the spelled-out form used in bylines and the home title;
+  // listing it keeps the brand one entity for search and answer engines.
+  alternateNames: ["Mingli Atlas", "mingliatlas.com"],
   tagline: "Where Eastern Wisdom Meets Modern Logic",
   url: siteUrl,
   description:

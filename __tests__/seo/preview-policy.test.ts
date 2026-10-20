@@ -31,13 +31,13 @@ describe("deployment indexing policy", () => {
     });
   });
 
-  it("restores the 40-page allowlist and follow rules in a fresh Production module load", async () => {
+  it("restores the 41-page allowlist and follow rules in a fresh Production module load", async () => {
     vi.stubEnv("VERCEL_ENV", "production");
     vi.resetModules();
     const { buildPageMetadata } = await import("@/lib/seo/metadata");
     const { default: sitemap } = await import("@/app/sitemap");
     const { default: config } = await import("../../next.config");
-    expect(sitemap()).toHaveLength(40);
+    expect(sitemap()).toHaveLength(41);
     expect(
       buildPageMetadata({ title: "Home", description: "Release check", path: "/" }).robots
     ).toMatchObject({ index: true, follow: true });

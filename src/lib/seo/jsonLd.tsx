@@ -319,3 +319,46 @@ export function buildBreadcrumbListSchema(crumbs: Crumb[]): JsonLdNode {
     })),
   };
 }
+
+interface DefinedTermSetSchemaInput {
+  name: string;
+  description: string;
+  url: string;
+  terms: Array<{
+    id: string;
+    name: string;
+    alternateName?: string[];
+    description: string;
+    url?: string;
+  }>;
+}
+
+export function buildDefinedTermSetSchema({
+  name,
+  description,
+  url,
+  terms,
+}: DefinedTermSetSchemaInput): JsonLdNode {
+  return {
+    "@context": "https://schema.org",
+    "@type": "DefinedTermSet",
+    "@id": `${url}#glossary`,
+    name,
+    description,
+    url,
+    inLanguage: "en",
+    isPartOf: { "@id": `${SITE.url}/#website` },
+    publisher: { "@id": `${SITE.url}/#organization` },
+    hasDefinedTerm: terms.map((term) => ({
+      "@type": "DefinedTerm",
+      "@id": `${url}#${term.id}`,
+      name: term.name,
+      ...(term.alternateName?.length ? { alternateName: term.alternateName } : {}),
+      description: term.description,
+      inDefinedTermSet: { "@id": `${url}#glossary` },
+      ...(term.url
+        ? { url: term.url.startsWith("http") ? term.url : `${SITE.url}${term.url}` }
+        : {}),
+    })),
+  };
+}

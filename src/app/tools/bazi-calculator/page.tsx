@@ -30,9 +30,9 @@ const shareCardImage = buildShareCardUrl({
 });
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Free Bazi Calculator: Generate Your Four Pillars & Day Master Chart",
+  title: "Free Bazi Calculator: Four Pillars & Day Master Chart",
   description:
-    "Free Bazi calculator — enter your birth date to get a complete Four Pillars chart with Day Master, Ten Gods, hidden stems, lunar date, and Five Element balance. Deterministic, no sign-up needed.",
+    "Free Bazi calculator: get a Four Pillars chart with Day Master, Ten Gods, hidden stems, Luck Pillars, and Five Element balance. Li Chun year boundary, no sign-up.",
   path: "/tools/bazi-calculator",
   image: shareCardImage,
 });
@@ -57,6 +57,9 @@ const softwareSchema = buildWebApplicationSchema({
     "Five Element balance",
     "10-year Luck Pillars",
     "optional true solar time",
+    "year pillar at the exact Li Chun moment",
+    "month pillar at the exact Jie solar term",
+    "no sign-up; birth details are not stored",
   ],
 });
 
@@ -70,6 +73,11 @@ const baziCalculatorFaqs: FAQ[] = [
     question: "Should I enter local time or convert to another time zone?",
     answer:
       "Enter the birth time as the local civil clock time at the birthplace. Civil time is the default. For an optional true solar time calculation, enter an IANA time zone and the birthplace longitude; the result shows the correction applied.",
+  },
+  {
+    question: "Does the calculator use Lunar New Year or Li Chun for the year pillar?",
+    answer:
+      "Li Chun. The year pillar changes at the exact moment of the Li Chun solar term (around February 4), and the month pillar changes at the exact moment of each Jie solar term. A birth between Li Chun and Lunar New Year therefore already has the new year pillar, even though popular zodiac charts list the previous animal.",
   },
   {
     question: "Does the calculator save my birth details?",
@@ -227,12 +235,15 @@ export default function BaziCalculatorPage() {
                   same chart.
                 </p>
                 <p>
-                  <strong>Calendar boundaries used here:</strong> the current year pillar follows
-                  Lunar New Year. The month pillar changes on the calendar date of a Jie solar term,
-                  rather than its exact transition time. A chart using the precise Li Chun year
-                  boundary or exact solar-term month boundary can therefore differ near those dates.
-                  Compare the same convention before interpreting a disagreement. These choices are
-                  described in the{" "}
+                  <strong>Calendar boundaries used here:</strong> the year pillar changes at the exact
+                  moment of Li Chun (立春, around February 4), not at Lunar New Year, and the month
+                  pillar changes at the exact moment of each Jie solar term. This is the solar-term
+                  convention used by many Bazi schools and by the Da Yun calculation, so a birth
+                  between Li Chun and Lunar New Year already has the new year pillar. Solar-term
+                  moments are calculated in China Standard Time (UTC+8); for a birth elsewhere within
+                  a day of a boundary, convert the birth time before relying on the year or month
+                  pillar. Calculators that use Lunar New Year or date-level boundaries can differ near
+                  those dates. These choices are described in the{" "}
                   <a
                     href="https://6tail.cn/calendar/lunar.ganzhi.html"
                     className="text-brand-primary dark:text-gold-300 font-medium underline"

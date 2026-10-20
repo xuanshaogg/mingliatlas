@@ -6,6 +6,10 @@ export const CONTENT_REDIRECTS = [
     source: "/chinese-zodiac/compatibility",
     destination: "/blog/chinese-zodiac-compatibility-chart",
   },
+  // Retired 2026-10-20: placeholder "case study" pages about real people that
+  // contained no case material.
+  { source: "/bazi/celebrity/elon-musk", destination: "/bazi" },
+  { source: "/bazi/celebrity/taylor-swift", destination: "/bazi" },
 ] as const;
 
 const CONTENT_ALIASES = new Map<string, string>(

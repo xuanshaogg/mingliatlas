@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import Breadcrumbs, { type Crumb } from "@/components/shared/Breadcrumbs";
+import { buildBreadcrumbListSchema, JsonLd } from "@/lib/seo/jsonLd";
 
 export interface StaticPageSection {
   id?: string;
@@ -34,6 +35,7 @@ export default function StaticPage({
 }: StaticPageProps) {
   return (
     <article className="atlas-knowledge-shell bg-paper dark:bg-ink-950">
+      <JsonLd data={buildBreadcrumbListSchema(breadcrumbs)} />
       <header className="px-5 pt-6 pb-6 sm:px-8 lg:px-10">
         <div className="mx-auto max-w-5xl">
           <Breadcrumbs items={breadcrumbs} />

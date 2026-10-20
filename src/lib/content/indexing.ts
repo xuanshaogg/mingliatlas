@@ -22,6 +22,8 @@ const INDEXABLE_PATH_LIST = [
   "/bazi/earthly-branches",
   "/bazi/ten-gods",
   "/bazi/luck-pillars",
+  // Added 2026-10-20 once the page became a full 24-term reference.
+  "/bazi/glossary",
   "/chinese-zodiac",
   "/chinese-zodiac/rat",
   "/chinese-zodiac/tiger",

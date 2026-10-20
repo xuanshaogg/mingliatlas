@@ -159,7 +159,7 @@ const coinReference: Section = {
         This guide uses tails = 2 and heads = 3. Add three coins for each line and write the first
         result at the bottom. Keep that convention for the whole cast.
       </p>
-      <div className="border-ink-200 overflow-x-auto rounded-xl border dark:border-white/15">
+      <div className="border-ink-200 overflow-x-auto rounded-xl border dark:border-white/15" role="region" aria-label="Scrollable table" tabIndex={0}>
         <table className="w-full min-w-[30rem] text-left text-sm leading-6">
           <caption className="p-4 text-left font-semibold">
             Line values for three independent, fair coins

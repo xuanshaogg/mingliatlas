@@ -55,7 +55,7 @@ const htmlPages = [
   {
     path: "/bazi",
     expectedTitle: "Bazi",
-    expectedH1: "Bazi (Four Pillars of Destiny): Complete Guide",
+    expectedH1: "Bazi Guide: Charts, Day Masters & Reading Order",
     minJsonLd: 3,
     requiredLinks: ["/bazi/what-is-bazi", "/bazi/five-elements", "/tools/bazi-calculator"],
   },
@@ -75,8 +75,8 @@ const htmlPages = [
   },
   {
     path: "/bazi/earthly-branches",
-    expectedTitle: "12 Earthly Branches (Di Zhi): Meanings, Hidden Stems & Clashes",
-    expectedH1: "12 Earthly Branches (Di Zhi): Meanings, Hidden Stems & Clashes",
+    expectedTitle: "12 Earthly Branches (Di Zhi): Hidden Stems & Clashes",
+    expectedH1: "12 Earthly Branches (Di Zhi): Hidden Stems & Clashes",
     minJsonLd: 3,
     requiredLinks: ["/tools/bazi-calculator", "/bazi/what-is-bazi", "/bazi/five-elements"],
   },
@@ -114,7 +114,7 @@ const htmlPages = [
   {
     path: "/chinese-zodiac",
     expectedTitle: "Chinese Zodiac",
-    expectedH1: "Chinese Zodiac: 12 Animal Signs, Meanings, and 2026 Guide",
+    expectedH1: "Chinese Zodiac: 12 Animal Signs, Years & Meanings",
     minJsonLd: 3,
     requiredLinks: [
       "/chinese-zodiac/dragon",
@@ -124,8 +124,8 @@ const htmlPages = [
   },
   {
     path: "/chinese-zodiac/dragon",
-    expectedTitle: "Year of the Dragon: Complete Years List (1940–2036)",
-    expectedH1: "Year of the Dragon: Complete Years List (1940–2036)",
+    expectedTitle: "Year of the Dragon Years List (1940–2036) & Exact Dates",
+    expectedH1: "Year of the Dragon Years List (1940–2036) & Exact Dates",
     minJsonLd: 3,
     requiredLinks: ["/tools/bazi-calculator", "/bazi/five-elements"],
   },
@@ -146,7 +146,7 @@ const htmlPages = [
   {
     path: "/learn",
     expectedTitle: "Learn Chinese Metaphysics",
-    expectedH1: "Learn Chinese Metaphysics: Bazi, I Ching & Feng Shui Roadmap",
+    expectedH1: "Learn Chinese Metaphysics: Bazi, I Ching & Feng Shui",
     minJsonLd: 3,
     allowNoindex: true,
     requiredLinks: [

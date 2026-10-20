@@ -34,8 +34,8 @@ export function Stat({ value, label, description }: StatProps) {
 
 export default function InfoCard({ title = "Quick Facts", stats, children }: InfoCardProps) {
   return (
-    <aside className="bg-paper-100/70 rounded-2xl p-5 sm:p-7 dark:bg-white/5">
-      <h2 className="text-ink-500 dark:text-gold-300 text-xs font-semibold">{title}</h2>
+    <div className="bg-paper-100/70 rounded-2xl p-5 sm:p-7 dark:bg-white/5">
+      <h2 className="text-ink-600 dark:text-gold-300 text-xs font-semibold">{title}</h2>
       <div className="mt-5 grid gap-6 sm:grid-cols-3 lg:grid-cols-1">
         {stats.map((stat) => (
           <Stat key={`${stat.value}-${stat.label}`} {...stat} />
@@ -44,6 +44,6 @@ export default function InfoCard({ title = "Quick Facts", stats, children }: Inf
       {children ? (
         <div className="text-ink-600 dark:text-ink-300 mt-5 text-sm leading-6">{children}</div>
       ) : null}
-    </aside>
+    </div>
   );
 }
