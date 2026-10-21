@@ -26,9 +26,11 @@ const manrope = Manrope({
 });
 
 // Editorial display face for headings; the second (and last) preloaded font.
+// A single static weight keeps the file about half the size of the variable font.
 const newsreader = Newsreader({
   variable: "--font-newsreader",
   subsets: ["latin"],
+  weight: "500",
   display: "swap",
 });
 

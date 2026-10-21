@@ -118,6 +118,8 @@ body {
   h4 {
     font-family: var(--font-display);
     font-weight: 500;
+    /* Only weight 500 ships; never fake a bold for heavier heading utilities. */
+    font-synthesis-weight: none;
     letter-spacing: -0.012em;
     line-height: 1.2;
     text-wrap: balance;
