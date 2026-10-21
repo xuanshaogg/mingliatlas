@@ -19,17 +19,20 @@ export default function FAQSection({ faqs }: FAQSectionProps) {
       <h2 id={headingId} className="atlas-section-title mt-4">
         Common questions
       </h2>
-      <div className="atlas-surface divide-ink-100 mt-6 divide-y overflow-hidden dark:divide-white/10">
+      <div className="border-ink-200 divide-ink-200 mt-6 divide-y border-y dark:divide-white/10 dark:border-white/10">
         {faqs.map((faq, index) => (
           <details key={faq.question} open={index === 0} className="group">
-            <summary className="text-ink-950 hover:bg-paper-100 focus-visible:ring-brand-primary/30 dark:text-paper flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 px-4 py-4 text-left text-base font-semibold transition focus-visible:ring-2 focus-visible:outline-none sm:px-5 dark:hover:bg-white/5 [&::-webkit-details-marker]:hidden">
-              {faq.question}
+            <summary className="hover:bg-paper-100/70 focus-visible:ring-brand-primary/30 flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 px-1 py-4 text-left transition focus-visible:ring-2 focus-visible:outline-none sm:px-2 dark:hover:bg-white/5 [&::-webkit-details-marker]:hidden">
+              {/* Questions are headings so readers and answer engines can scan them. */}
+              <h3 className="text-ink-950 dark:text-paper font-sans text-base leading-6 font-semibold tracking-normal">
+                {faq.question}
+              </h3>
               <ChevronDown
                 className="text-brand-primary dark:text-gold-300 h-5 w-5 shrink-0 transition group-open:rotate-180"
                 aria-hidden="true"
               />
             </summary>
-            <div className="text-ink-600 dark:text-ink-300 px-5 pb-5 text-sm leading-7">
+            <div className="text-ink-700 dark:text-ink-200 max-w-[44rem] px-1 pb-6 text-[0.9375rem] leading-7 sm:px-2">
               {faq.answer}
             </div>
           </details>

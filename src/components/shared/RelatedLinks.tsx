@@ -27,9 +27,9 @@ export default function RelatedLinks({ links }: RelatedLinksProps) {
           <Link
             key={link.href}
             href={link.href}
-            className="atlas-surface group hover:border-brand-200 p-5 transition-colors duration-200 sm:p-6"
+            className="atlas-surface group hover:border-brand-300 p-5 transition-colors duration-200 sm:p-6"
           >
-            <h3 className="text-ink-950 dark:text-paper text-lg leading-7 font-semibold">
+            <h3 className="text-ink-950 dark:text-paper group-hover:text-brand-primary text-xl leading-7 transition-colors">
               {link.title}
             </h3>
             <p className="text-ink-600 dark:text-ink-300 mt-2 text-sm leading-6">

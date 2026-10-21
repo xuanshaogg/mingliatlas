@@ -32,7 +32,7 @@ export default function BlogIndexPage() {
   );
 
   return (
-    <section className="bg-paper dark:bg-ink-950 px-4 py-12 sm:px-6 lg:px-8">
+    <section className="bg-paper dark:bg-ink-950 px-5 py-12 sm:px-8 sm:py-16 lg:px-10">
       <JsonLd
         data={buildCollectionPageSchema({
           name: "Chinese metaphysics articles and practical guides",
@@ -48,7 +48,7 @@ export default function BlogIndexPage() {
       <div className="mx-auto max-w-7xl">
         <div className="max-w-3xl">
           <p className="atlas-eyebrow">Blog</p>
-          <h1 className="atlas-page-title mt-5">
+          <h1 className="atlas-page-title mt-4">
             Chinese metaphysics articles and practical guides
           </h1>
           <p className="atlas-page-intro mt-5 max-w-3xl">
@@ -60,7 +60,7 @@ export default function BlogIndexPage() {
         <div
           role="group"
           aria-label="Browse article categories"
-          className="-mx-4 mt-8 flex flex-nowrap gap-2 overflow-x-auto px-4 pb-2 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0"
+          className="border-ink-200 -mx-5 mt-10 flex flex-nowrap gap-2 overflow-x-auto border-y px-5 py-3 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 dark:border-white/10"
         >
           {categoryOrder
             .filter((category) => allBlogPosts.some((post) => post.category === category))
@@ -68,49 +68,49 @@ export default function BlogIndexPage() {
               <a
                 key={category}
                 href={`#${category.toLowerCase().replaceAll(" ", "-")}`}
-                className="border-ink-200 text-ink-700 hover:border-brand-gold hover:text-brand-primary dark:text-ink-200 min-h-11 shrink-0 rounded-full border bg-white px-4 py-2 text-sm font-semibold transition dark:border-white/10 dark:bg-white/5"
+                className="text-ink-700 hover:text-brand-primary dark:text-ink-200 inline-flex min-h-11 shrink-0 items-center rounded-lg px-3 text-sm font-semibold transition hover:bg-white dark:hover:bg-white/5"
               >
                 {category}
               </a>
             ))}
         </div>
 
-        <div className="mt-12 space-y-12">
+        <div className="mt-12 space-y-14">
           {categoryOrder
             .filter((category) => sortedPosts.some((post) => post.category === category))
             .map((category) => (
               <section
                 key={category}
                 id={category.toLowerCase().replaceAll(" ", "-")}
-                className="scroll-mt-4"
+                className="scroll-mt-4 lg:grid lg:grid-cols-[14rem_minmax(0,1fr)] lg:gap-12"
               >
-                <h2 className="text-ink-950 dark:text-paper text-2xl font-semibold tracking-tight">
-                  {category}
-                </h2>
-                <div className="mt-5 grid gap-5 lg:grid-cols-2">
+                <h2 className="atlas-section-title lg:pt-5 lg:text-[1.75rem]">{category}</h2>
+                <div className="border-ink-200 mt-5 grid gap-x-10 border-t sm:grid-cols-2 lg:mt-0 dark:border-white/10">
                   {sortedPosts
                     .filter((post) => post.category === category)
                     .map((post) => (
                       <article
                         key={post.path}
-                        className="atlas-surface hover:border-brand-200 p-5 transition-colors sm:p-6"
+                        className="group border-ink-200 relative border-b py-5 dark:border-white/10"
                       >
-                        <p className="text-brand-primary dark:text-gold-300 text-xs font-semibold tracking-normal">
-                          {post.category}
-                        </p>
-                        <h3 className="text-ink-950 dark:text-paper mt-3 text-xl font-semibold tracking-tight sm:text-2xl">
-                          <Link href={canonicalContentPath(post.path)}>{post.title}</Link>
+                        <h3 className="text-ink-950 dark:text-paper group-hover:text-brand-primary text-[1.375rem] leading-snug transition-colors">
+                          <Link
+                            href={canonicalContentPath(post.path)}
+                            className="after:absolute after:inset-0"
+                          >
+                            {post.title}
+                          </Link>
                         </h3>
-                        <p className="text-ink-600 dark:text-ink-300 mt-3 text-sm leading-6">
+                        <p className="text-ink-700 dark:text-ink-300 mt-2 text-[0.9375rem] leading-7">
                           {post.description}
                         </p>
-                        <Link
-                          href={canonicalContentPath(post.path)}
-                          className="text-brand-primary dark:text-gold-300 mt-5 inline-flex items-center text-sm font-semibold"
+                        <span
+                          aria-hidden="true"
+                          className="text-brand-primary dark:text-gold-300 mt-3 inline-flex items-center text-sm font-semibold"
                         >
                           Read article
-                          <ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
-                        </Link>
+                          <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                        </span>
                       </article>
                     ))}
                 </div>
@@ -118,9 +118,12 @@ export default function BlogIndexPage() {
             ))}
         </div>
 
-        <div className="border-gold-300/70 bg-gold-50 dark:border-gold-500/30 dark:bg-gold-500/10 mt-12 rounded-[1.25rem] border p-6">
-          <BookOpen className="text-brand-primary dark:text-gold-300 h-6 w-6" aria-hidden="true" />
-          <p className="text-ink-700 dark:text-ink-200 mt-3 text-sm leading-7">
+        <div className="border-ink-200 mt-14 flex gap-4 border-t pt-6 dark:border-white/10">
+          <BookOpen
+            className="text-brand-primary dark:text-gold-300 mt-1 h-5 w-5 flex-none"
+            aria-hidden="true"
+          />
+          <p className="text-ink-700 dark:text-ink-200 max-w-3xl text-sm leading-7">
             Articles are kept focused and practical, with source notes and internal links that help
             you move from definitions to tools and deeper learning paths.
           </p>

@@ -36,13 +36,13 @@ export default async function SubscribeSuccessPage({ searchParams }: SubscribeSu
       <div className="mt-8 flex flex-wrap gap-3">
         <Link
           href="/unsubscribe"
-          className="border-ink-200 text-ink-800 dark:text-ink-200 rounded-full border px-5 py-3 text-sm font-semibold dark:border-white/10"
+          className="border-ink-200 text-ink-800 dark:text-ink-200 rounded-lg border px-5 py-3 text-sm font-semibold dark:border-white/10"
         >
           Unsubscribe
         </Link>
         <Link
           href="/subscribe"
-          className="bg-brand-primary rounded-full px-5 py-3 text-sm font-semibold text-white"
+          className="bg-brand-primary rounded-lg px-5 py-3 text-sm font-semibold text-white"
         >
           Back to subscribe
         </Link>

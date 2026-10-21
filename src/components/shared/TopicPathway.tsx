@@ -10,7 +10,7 @@ export default function TopicPathway({ pathway }: { pathway: TopicPathwayData })
           <li key={link.href}>
             <Link
               href={link.href}
-              className="atlas-surface hover:border-brand-200 flex h-full gap-3 p-4 transition-colors"
+              className="atlas-surface hover:border-brand-300 flex h-full gap-3 p-4 no-underline transition-colors"
             >
               <span
                 aria-hidden="true"

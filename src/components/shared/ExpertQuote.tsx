@@ -13,8 +13,10 @@ export default function ExpertQuote({ quote }: ExpertQuoteProps) {
   const attribution = [quote.title, quote.organization].filter(Boolean).join(", ");
 
   return (
-    <blockquote className="bg-brand-50 rounded-2xl p-5 sm:p-6 dark:bg-white/5">
-      <p className="text-ink-900 dark:text-paper text-lg leading-8 font-medium">“{quote.text}”</p>
+    <blockquote className="border-gold-400 border-l-2 py-1 pl-5 sm:pl-6">
+      <p className="text-ink-900 dark:text-paper font-display text-xl leading-8 italic sm:text-[1.375rem]">
+        “{quote.text}”
+      </p>
       <footer className="text-ink-600 dark:text-ink-300 mt-4 text-sm leading-6">
         —{" "}
         <cite className="text-brand-primary dark:text-gold-300 font-semibold not-italic">

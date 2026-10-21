@@ -25,7 +25,7 @@ export default function ContactSuccessPage() {
       </p>
       <Link
         href="/contact"
-        className="bg-brand-primary mt-8 rounded-full px-5 py-3 text-sm font-semibold text-white"
+        className="bg-brand-primary mt-8 rounded-lg px-5 py-3 text-sm font-semibold text-white"
       >
         Back to contact
       </Link>
