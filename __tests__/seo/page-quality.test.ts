@@ -5,6 +5,7 @@ import AboutPage from "@/app/about/page";
 import KnowledgePage from "@/components/templates/KnowledgePage";
 import { allBaziPages } from "@/content/bazi/pages";
 import { allBlogPosts } from "@/content/blog/posts";
+import { allZodiacPages } from "@/content/zodiac/pages";
 import { baziGlossaryTerms } from "@/content/bazi/glossary";
 import { isIndexablePath } from "@/lib/content/indexing";
 import { canonicalContentPath } from "@/lib/content/urls";
@@ -70,6 +71,19 @@ describe("page quality guards", () => {
       expect(canonicalContentPath(path)).toBe("/bazi");
       expect(publishedSitePages.some((page) => page.href === path)).toBe(false);
       expect(allBaziPages.some((page) => page.path === path)).toBe(false);
+    }
+  });
+
+  it("keeps celebrity name lists off zodiac pages", () => {
+    for (const page of allZodiacPages) {
+      const markup = renderToStaticMarkup(createElement(KnowledgePage, page.data));
+      expect(markup, page.path).not.toMatch(/Famous people|often cited as/i);
+    }
+  });
+
+  it("uses descriptive titles instead of 'Complete Guide' on indexable pages", () => {
+    for (const page of publishedSitePages.filter((candidate) => isIndexablePath(candidate.href))) {
+      expect(page.title, page.href).not.toMatch(/complete (beginner )?guide/i);
     }
   });
 

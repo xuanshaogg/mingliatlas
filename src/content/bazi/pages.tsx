@@ -436,7 +436,7 @@ export const baziPages: BaziContentPage[] = [
         description: "Understand how 10-year cycles change the chart environment.",
       },
       {
-        title: "Day Master Complete Guide",
+        title: "Day Master guide",
         href: "/blog/day-master-bazi-complete-guide",
         description:
           "The Day Master is the day stem (heavenly stem of the day pillar) — read all 10 Day Masters.",
@@ -671,7 +671,7 @@ export const baziPages: BaziContentPage[] = [
   buildPage({
     slug: "five-elements",
     path: "/bazi/five-elements",
-    title: "The Five Elements (Wu Xing): A Complete Guide",
+    title: "The Five Elements (Wu Xing): Cycles and Use in Bazi",
     description:
       "The Five Elements (Wu Xing) explain how Wood, Fire, Earth, Metal, and Water describe changing energy patterns in Bazi and classical Chinese metaphysics.",
     entityName: "The Five Elements",
@@ -917,7 +917,7 @@ export const baziPages: BaziContentPage[] = [
   buildPage({
     slug: "heavenly-stems",
     path: "/bazi/heavenly-stems",
-    title: "The 10 Heavenly Stems (Tian Gan): Complete Guide",
+    title: "The 10 Heavenly Stems (Tian Gan) and the Day Master",
     description:
       "The Heavenly Stems are 10 yin-yang elemental signs used in Bazi to describe visible energy and Day Master qualities.",
     entityName: "Heavenly Stems",
@@ -1121,7 +1121,7 @@ export const baziPages: BaziContentPage[] = [
         description: "See how stems become relationship roles around the Day Master.",
       },
       {
-        title: "Day Master Complete Guide",
+        title: "Day Master guide",
         href: "/blog/day-master-bazi-complete-guide",
         description:
           "Your Day Master is one of these ten stems — read the full guide to all 10 Day Masters.",
@@ -1794,7 +1794,7 @@ const tenGodsPage = buildPage({
       description: "The element relationships that define all Ten God roles.",
     },
     {
-      title: "Day Master Complete Guide",
+      title: "Day Master guide",
       href: "/blog/day-master-bazi-complete-guide",
       description:
         "Every Ten God role is read relative to your Day Master — the day stem of your chart.",

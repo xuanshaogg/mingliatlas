@@ -23,7 +23,6 @@ interface ZodiacAnimal {
   years: string;
   compatible: string;
   challenging: string;
-  famous: string;
   datePublished?: string;
   dateModified?: string;
 }
@@ -50,7 +49,6 @@ const animals: ZodiacAnimal[] = [
     years: "1948, 1960, 1972, 1984, 1996, 2008, 2020",
     compatible: "Ox, Dragon, Monkey",
     challenging: "Horse, Goat",
-    famous: "William Shakespeare, George Washington, Scarlett Johansson",
   },
   {
     slug: "ox",
@@ -65,7 +63,6 @@ const animals: ZodiacAnimal[] = [
     years: "1949, 1961, 1973, 1985, 1997, 2009, 2021",
     compatible: "Rat, Snake, Rooster",
     challenging: "Goat, Horse",
-    famous: "Barack Obama, Princess Diana, George Clooney",
   },
   {
     slug: "tiger",
@@ -80,7 +77,6 @@ const animals: ZodiacAnimal[] = [
     years: "1950, 1962, 1974, 1986, 1998, 2010, 2022",
     compatible: "Horse, Dog, Pig",
     challenging: "Monkey, Snake",
-    famous: "Queen Elizabeth II, Lady Gaga, Leonardo DiCaprio",
   },
   {
     slug: "rabbit",
@@ -95,7 +91,6 @@ const animals: ZodiacAnimal[] = [
     years: "1951, 1963, 1975, 1987, 1999, 2011, 2023",
     compatible: "Goat, Pig, Dog",
     challenging: "Rooster, Dragon",
-    famous: "Albert Einstein, Angelina Jolie, David Beckham",
   },
   {
     slug: "dragon",
@@ -110,7 +105,6 @@ const animals: ZodiacAnimal[] = [
     years: "1940, 1952, 1964, 1976, 1988, 2000, 2012, 2024, 2036",
     compatible: "Rat, Monkey, Rooster",
     challenging: "Dog, Rabbit",
-    famous: "Bruce Lee, Rihanna, Adele",
   },
   {
     slug: "snake",
@@ -125,7 +119,6 @@ const animals: ZodiacAnimal[] = [
     years: "1953, 1965, 1977, 1989, 2001, 2013, 2025",
     compatible: "Ox, Rooster, Monkey",
     challenging: "Pig, Tiger",
-    famous: "Taylor Swift, Bob Dylan, J.K. Rowling",
   },
   {
     slug: "horse",
@@ -140,7 +133,6 @@ const animals: ZodiacAnimal[] = [
     years: "1954, 1966, 1978, 1990, 2002, 2014, 2026",
     compatible: "Tiger, Dog, Goat",
     challenging: "Rat, Ox",
-    famous: "Nelson Mandela, Aretha Franklin, Emma Watson",
   },
   {
     slug: "goat",
@@ -155,7 +147,6 @@ const animals: ZodiacAnimal[] = [
     years: "1955, 1967, 1979, 1991, 2003, 2015, 2027",
     compatible: "Rabbit, Horse, Pig",
     challenging: "Ox, Rat",
-    famous: "Steve Jobs, Bill Gates, Julia Roberts",
   },
   {
     slug: "monkey",
@@ -170,7 +161,6 @@ const animals: ZodiacAnimal[] = [
     years: "1956, 1968, 1980, 1992, 2004, 2016, 2028",
     compatible: "Rat, Dragon, Snake",
     challenging: "Tiger, Pig",
-    famous: "Leonardo da Vinci, Tom Hanks, Selena Gomez",
   },
   {
     slug: "rooster",
@@ -185,7 +175,6 @@ const animals: ZodiacAnimal[] = [
     years: "1957, 1969, 1981, 1993, 2005, 2017, 2029",
     compatible: "Ox, Snake, Dragon",
     challenging: "Rabbit, Dog",
-    famous: "Beyonce, Serena Williams, Ariana Grande",
   },
   {
     slug: "dog",
@@ -200,7 +189,6 @@ const animals: ZodiacAnimal[] = [
     years: "1958, 1970, 1982, 1994, 2006, 2018, 2030",
     compatible: "Tiger, Rabbit, Horse",
     challenging: "Dragon, Rooster",
-    famous: "Madonna, Michael Jackson, Prince William",
   },
   {
     slug: "pig",
@@ -215,7 +203,6 @@ const animals: ZodiacAnimal[] = [
     years: "1959, 1971, 1983, 1995, 2007, 2019, 2031",
     compatible: "Rabbit, Goat, Tiger",
     challenging: "Snake, Monkey",
-    famous: "Elon Musk, Hillary Clinton, Arnold Schwarzenegger",
   },
 ];
 
@@ -1091,9 +1078,7 @@ const animalSections: Partial<Record<string, KnowledgePageProps["sections"]>> = 
             For 2026 (Year of the Fire Horse), the Wu branch brings Yang Fire energy. For Rat (Zi,
             Yang Water), the Horse year activates the Zi-Wu clash. This does not mean 2026 is
             uniformly difficult for Rat — it means the year brings movement, disruption of existing
-            patterns, and the need to respond rather than initiate. Famous people often cited as Rat
-            examples include William Shakespeare, George Washington, and Scarlett Johansson, though
-            a complete reading requires their full birth data.
+            patterns, and the need to respond rather than initiate.
           </p>
         </>
       ),
@@ -1195,9 +1180,7 @@ const animalSections: Partial<Record<string, KnowledgePageProps["sections"]>> = 
             For 2026 (Year of the Fire Horse), the Wu branch brings Yang Fire energy. For Tiger
             (Yin, Yang Wood), the Horse year activates the Yin-Wu-Xu Fire frame — a partial harmony
             that can amplify Fire energy in the chart. This tends to bring visibility, momentum, and
-            the opportunity to act on plans that have been building. Famous people often cited as
-            Tiger examples include Queen Elizabeth II, Lady Gaga, and Leonardo DiCaprio, though a
-            complete reading requires their full birth data.
+            the opportunity to act on plans that have been building.
           </p>
         </>
       ),
@@ -1312,8 +1295,7 @@ const animalSections: Partial<Record<string, KnowledgePageProps["sections"]>> = 
             (Chen, Yang Earth), Fire generates Earth in the generating cycle — the Horse year tends
             to bring resources, support, and the conditions for Dragon's ambitions to find traction.
             This is generally a favorable dynamic, though the full effect depends on the Day Master
-            and the complete chart. Famous people often cited as Dragon examples include Bruce Lee,
-            Rihanna, and Adele, though a complete reading requires their full birth data.
+            and the complete chart.
           </p>
         </>
       ),
@@ -1471,8 +1453,11 @@ const animalDirectAnswerOverrides: Partial<Record<string, string>> = {
     `Dragon years are 1940, 1952, 1964, 1976, 1988, 2000, 2012, and 2024; the next Year of the Dragon is 2036. The most recent Dragon year ran from ${formatLongDate(getZodiacYearDates(2024).lunarNewYear)} to ${formatLongDate(getZodiacYearDates(2024).lastDay)}, and the next begins on ${formatLongDate(getZodiacYearDates(2036).lunarNewYear)}. Dragon is the fifth Chinese zodiac sign and corresponds to the Chen (辰) Earthly Branch; each occurrence adds one of the Five Elements.`,
 };
 
+// Rat, Tiger and Dragon: celebrity name lists removed on 2026-10-21.
 const animalDateModifiedOverrides: Partial<Record<string, string>> = {
-  dragon: "2026-10-20",
+  rat: "2026-10-21",
+  tiger: "2026-10-21",
+  dragon: "2026-10-21",
 };
 
 // Sections for the animal pages that do not have hand-written guides. They
@@ -2205,11 +2190,11 @@ function buildYearPage(
   return buildPage({
     slug,
     path,
-    title: `${year} Year of the ${animal.name}: ${elementAnimal} Dates, Personality & Meaning`,
-    description: `${year} is the ${elementAnimal} year (${stemBranchLabel}), running from ${formatLongDate(dates.lunarNewYear)} to ${formatLongDate(dates.lastDay)}. See the exact dates, ${element} ${animal.name} personality, and Bazi context.`,
+    title: `${year} Year of the ${animal.name} (${elementLabel}): Dates & Li Chun`,
+    description: `${year} is the ${elementAnimal} year (${stemBranchLabel}), running from ${formatLongDate(dates.lunarNewYear)} to ${formatLongDate(dates.lastDay)}. See the Lunar New Year and Li Chun boundaries and how the year pillar fits a Bazi chart.`,
     entityName: yearSign,
     entityType: "DefinedTerm",
-    subtitle: `${yearSign} — the ${element} expression of the ${animal.name} archetype.`,
+    subtitle: `${yearSign}: the ${stemBranch} year in the 60-year stem-branch cycle.`,
     directAnswer: `${year} is ${withArticle(elementAnimal)} year (${stemBranchLabel}) in the Chinese zodiac, running from ${formatLongDate(dates.lunarNewYear)} to ${formatLongDate(dates.lastDay)}. ${elementDesc} People born in this year combine the ${animal.name}’s traditional traits (${animal.traits}) with the ${element} element’s style.`,
     breadcrumbs: breadcrumbs(yearSign, path),
     schema: {

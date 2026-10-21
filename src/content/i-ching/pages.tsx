@@ -263,7 +263,7 @@ function buildPage(input: Omit<IChingContentPage, "data"> & KnowledgePageProps):
 const overview = buildPage({
   slug: "",
   path: "/i-ching",
-  title: "I Ching (Book of Changes): Complete Guide",
+  title: "I Ching (Book of Changes): Hexagrams & Changing Lines",
   description:
     "The I Ching, or Book of Changes, is a 64-hexagram Chinese classic used for structured reflection, timing, and decision context.",
   entityName: "I Ching",
