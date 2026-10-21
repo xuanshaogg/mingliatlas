@@ -184,7 +184,7 @@ function buildPage(input: Omit<FengShuiContentPage, "data"> & KnowledgePageProps
 const overview = buildPage({
   slug: "",
   path: "/feng-shui",
-  title: "Feng Shui: Complete Beginner Guide",
+  title: "Feng Shui for Beginners: Entrance, Bed, Desk & Stove",
   description:
     "Feng Shui is a Chinese spatial system for reading layout, direction, landform, qi flow, and the relationship between people and environment.",
   entityName: "Feng Shui",

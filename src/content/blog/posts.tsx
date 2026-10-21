@@ -1809,7 +1809,7 @@ const highIntentBlogPosts: BlogPost[] = [
       "A practical, non-fatalistic walkthrough of the Day Master concept and the ten Heavenly Stems in Bazi.",
     directAnswer:
       "Yes. In Bazi, the Day Master is the heavenly stem of the day pillar—the day stem, not the whole day pillar. It represents the self and becomes the reference point for the other stems, branches, and Ten Gods. Classical sources including Yuan Hai Zi Ping and San Ming Tong Hui establish this method; every chart has one of 10 possible Day Masters.",
-    breadcrumbs: breadcrumbs("Day Master Complete Guide", "/blog/day-master-bazi-complete-guide"),
+    breadcrumbs: breadcrumbs("Day Master guide", "/blog/day-master-bazi-complete-guide"),
     schema: {
       headline: "",
       description: "",
@@ -2655,7 +2655,7 @@ function createDayMasterPost(seed: DayMasterSeed): BlogPost {
     category: "Bazi Guide",
     entityName: `${stemLabel} Day Master`,
     entityType: "BlogPosting",
-    subtitle: `A complete guide to the ${stemWithCharacter} Day Master — the ${el} ${seed.polarity.toLowerCase()} expression in Bazi.`,
+    subtitle: `The ${stemWithCharacter} Day Master — the ${el} ${seed.polarity.toLowerCase()} expression in Bazi.`,
     directAnswer: isRenWater
       ? "Ren Water (壬) is the Yang Water Day Master, traditionally compared with an ocean or great river. Its strength is strategic movement, scale, and adaptability; its risk is dispersion without channels. Metal is Resource, Wood is Output, Fire is Wealth, and Earth is Authority relative to Ren. Season and the full chart decide whether those roles support or pressure it."
       : `${stemWithCharacter} is the ${seed.polarity} ${seed.element} Heavenly Stem. As the ${stemLabel} Day Master, it represents ${seed.imageDesc}. ${seed.stemShort} Day Master people tend to be ${seed.traits}. The full chart — season, month pillar, Ten Gods, and Luck Pillars — determines how this energy expresses across life areas.`,
@@ -2809,7 +2809,7 @@ function createDayMasterPost(seed: DayMasterSeed): BlogPost {
         : []),
     ],
     relatedLinks: [
-      { title: "Day Master Complete Guide", href: "/blog/day-master-bazi-complete-guide", description: "Overview of all 10 Day Masters." },
+      { title: "Day Master guide", href: "/blog/day-master-bazi-complete-guide", description: "Overview of all 10 Day Masters." },
       { title: "What Your Day Master Means", href: "/blog/day-master-meaning", description: "A shorter introduction to the Day Master." },
       { title: "Heavenly Stems Guide", href: "/bazi/heavenly-stems", description: "Complete guide to all 10 Heavenly Stems." },
       { title: "Ten Gods", href: "/bazi/ten-gods", description: `How every other stem becomes a role relative to your ${seed.stemShort} Day Master.` },

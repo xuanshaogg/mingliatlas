@@ -609,7 +609,7 @@ describe("GEO audit", () => {
 
     expect(dragon?.title).toContain("1940–2036");
     expect(dragon?.title).toContain("Years List");
-    expect(dragon?.data.schema.dateModified).toBe("2026-10-20");
+    expect(dragon?.data.schema.dateModified).toBe("2026-10-21");
     expect(
       allZodiacPages
         .filter((page) => page.data.stats.some((stat) => stat.label === "Cycle rank"))

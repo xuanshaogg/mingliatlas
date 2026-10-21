@@ -128,7 +128,7 @@ describe("indexing policy", () => {
     expect(dragon?.data.directAnswer).toMatch(
       /^Dragon years are 1940, 1952, 1964, 1976, 1988, 2000, 2012, and 2024;/
     );
-    expect(dragon?.data.schema.dateModified).toBe("2026-10-20");
+    expect(dragon?.data.schema.dateModified).toBe("2026-10-21");
 
     expect(dayMaster?.title).toBe("Bazi Day Master Is the Day Stem: Meaning & Sources");
     expect(dayMaster?.data.directAnswer).toMatch(

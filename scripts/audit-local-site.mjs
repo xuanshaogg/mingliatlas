@@ -69,7 +69,7 @@ const htmlPages = [
   {
     path: "/bazi/five-elements",
     expectedTitle: "Five Elements",
-    expectedH1: "The Five Elements (Wu Xing): A Complete Guide",
+    expectedH1: "The Five Elements (Wu Xing): Cycles and Use in Bazi",
     minJsonLd: 3,
     requiredLinks: ["/bazi", "/tools/bazi-calculator"],
   },
@@ -89,7 +89,7 @@ const htmlPages = [
   {
     path: "/i-ching",
     expectedTitle: "I Ching",
-    expectedH1: "I Ching (Book of Changes): Complete Guide",
+    expectedH1: "I Ching (Book of Changes): Hexagrams & Changing Lines",
     minJsonLd: 3,
     requiredLinks: ["/i-ching/eight-trigrams", "/i-ching/how-to-cast", "/tools/i-ching-oracle"],
   },
@@ -102,7 +102,7 @@ const htmlPages = [
   {
     path: "/feng-shui",
     expectedTitle: "Feng Shui",
-    expectedH1: "Feng Shui: Complete Beginner Guide",
+    expectedH1: "Feng Shui for Beginners: Entrance, Bed, Desk & Stove",
     minJsonLd: 3,
   },
   {
