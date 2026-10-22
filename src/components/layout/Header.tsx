@@ -7,8 +7,8 @@ import PrimaryNavigation from "./PrimaryNavigation";
 
 export default function Header() {
   return (
-    <header className="text-ink-950 sticky top-0 z-50 px-3 py-3 sm:px-6">
-      <div className="mx-auto flex h-[4.25rem] max-w-7xl items-center justify-between gap-4 rounded-full border border-white/80 bg-white/90 px-4 shadow-[0_8px_32px_-20px_rgb(29_40_30_/_0.25)] backdrop-blur-xl sm:px-6">
+    <header className="text-ink-950 border-ink-200 bg-paper/95 supports-[backdrop-filter]:bg-paper/85 sticky top-0 z-50 border-b backdrop-blur-md">
+      <div className="mx-auto flex h-[var(--header-height)] max-w-7xl items-center justify-between gap-6 px-5 sm:px-8 lg:px-10">
         <Link
           href="/"
           className="flex shrink-0 items-center gap-2.5"
@@ -17,13 +17,15 @@ export default function Header() {
           <Image
             src="/logo-icon.svg"
             alt=""
-            width={36}
-            height={36}
+            width={32}
+            height={32}
             priority
             loading="eager"
-            className="h-9 w-9"
+            className="h-8 w-8"
           />
-          <span className="text-xl font-bold tracking-[-0.045em] sm:text-2xl">{SITE.name}</span>
+          <span className="font-display text-[1.375rem] leading-none font-medium tracking-[-0.01em] sm:text-2xl">
+            {SITE.name}
+          </span>
         </Link>
 
         <PrimaryNavigation />
@@ -31,7 +33,7 @@ export default function Header() {
         <div className="hidden items-center gap-2 xl:flex">
           <Link
             href="/search"
-            className="bg-paper-100 text-ink-700 hover:bg-brand-50 hover:text-brand-primary inline-flex h-11 w-11 items-center justify-center rounded-full transition-colors"
+            className="text-ink-700 hover:bg-paper-100 hover:text-brand-primary inline-flex h-11 w-11 items-center justify-center rounded-lg transition-colors"
             aria-label="Search"
           >
             <Search className="h-4 w-4" aria-hidden="true" />

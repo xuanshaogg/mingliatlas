@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
+import AdSlot from "@/components/ads/AdSlot";
 import ArticleByline from "@/components/shared/ArticleByline";
 import TopicPathway from "@/components/shared/TopicPathway";
 import { topicPathways } from "@/lib/content/topicPathways";
@@ -83,35 +84,44 @@ function SectionBlock({
   section,
   level = 2,
   id,
+  first = false,
 }: {
   section: Section;
   level?: 2 | 3;
   id?: string;
+  first?: boolean;
 }) {
   const HeadingTag = `h${level}` as "h2" | "h3";
 
   return (
-    <section id={id} className={level === 2 ? "mt-12 scroll-mt-4 first:mt-0 sm:mt-14" : "mt-8"}>
+    <section
+      id={id}
+      className={
+        level !== 2
+          ? "mt-10"
+          : first
+            ? "scroll-mt-4"
+            : "border-ink-200 mt-14 scroll-mt-4 border-t pt-10 sm:mt-16 dark:border-white/10"
+      }
+    >
       <HeadingTag
         className={
           level === 2
             ? "atlas-section-title"
-            : "text-ink-950 dark:text-paper text-xl leading-snug sm:text-2xl"
+            : "text-ink-950 dark:text-paper text-[1.375rem] leading-snug sm:text-2xl"
         }
       >
         {section.heading}
       </HeadingTag>
-      <div className="text-ink-700 dark:text-ink-200 mt-4 space-y-5 text-base leading-8">
-        {section.content}
-      </div>
+      <div className="atlas-prose mt-5 space-y-5">{section.content}</div>
       {section.stats?.length ? (
-        <div className="mt-6 grid gap-3 sm:grid-cols-3">
+        <div className="mt-8 grid gap-3 sm:grid-cols-3">
           {section.stats.map((stat, statIndex) => (
             <div
               key={`${section.heading}-${stat.value}-${stat.label}-${statIndex}`}
-              className="bg-paper-100 rounded-xl p-5 dark:bg-white/5"
+              className="border-ink-200 dark:bg-ink-900 rounded-xl border bg-white p-5 dark:border-white/10"
             >
-              <p className="text-brand-primary dark:text-gold-300 text-2xl font-semibold">
+              <p className="text-brand-primary dark:text-gold-300 font-display text-3xl font-medium">
                 {stat.value}
               </p>
               <p className="text-ink-900 dark:text-paper mt-1 text-sm font-semibold">
@@ -203,10 +213,13 @@ export default function KnowledgePage({
         ]}
       />
       <article className="atlas-knowledge-shell bg-paper dark:bg-ink-950">
-        <header id="article-top" className="pt-6 pb-10 sm:pb-14">
+        <header
+          id="article-top"
+          className="border-ink-200 border-b pt-6 pb-10 sm:pb-14 dark:border-white/10"
+        >
           <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
             <Breadcrumbs items={breadcrumbs} />
-            <div className="mt-8 grid gap-8 sm:mt-10 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-start lg:gap-16">
+            <div className="mt-8 grid gap-10 sm:mt-12 lg:grid-cols-[minmax(0,1fr)_17rem] lg:items-end lg:gap-16">
               <div className="max-w-3xl">
                 <p className="atlas-eyebrow">
                   {entityType === "DefinedTerm"
@@ -231,18 +244,25 @@ export default function KnowledgePage({
           </div>
         </header>
 
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 pt-4 pb-14 sm:px-8 lg:grid-cols-[minmax(0,1fr)_18rem] lg:gap-16 lg:px-10">
-          <div className="max-w-3xl min-w-0">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 pt-10 pb-14 sm:px-8 sm:pt-14 lg:grid-cols-[minmax(0,1fr)_17rem] lg:gap-16 lg:px-10">
+          <div className="max-w-[46rem] min-w-0">
             <ArticleNavigation key={`${schema.url}-mobile`} items={navigationItems} mobile />
-            <div className="mt-8 lg:mt-0">
+            <div className="mt-10 lg:mt-0">
               {pageSections.map((section, sectionIndex) => (
-                <SectionBlock
-                  key={`${section.heading}-${sectionIndex}`}
-                  section={section}
-                  id={`article-section-${sectionIndex + 1}`}
-                />
+                <div key={`${section.heading}-${sectionIndex}`} className="contents">
+                  <SectionBlock
+                    section={section}
+                    id={`article-section-${sectionIndex + 1}`}
+                    first={sectionIndex === 0}
+                  />
+                  {/* One in-content placement after the reader is two sections in. */}
+                  {sectionIndex === 1 && pageSections.length > 3 ? (
+                    <AdSlot placement="article-inline" />
+                  ) : null}
+                </div>
               ))}
             </div>
+            <AdSlot placement="article-end" />
             <FAQSection faqs={faqs} />
             {nextStepsTracking ? (
               <TrackedContentLinks
@@ -259,10 +279,15 @@ export default function KnowledgePage({
             </p>
           </div>
 
-          <div className="min-w-0 space-y-5 lg:sticky lg:top-28 lg:self-start">
+          <div className="min-w-0 space-y-8 lg:sticky lg:top-[calc(var(--header-height)+2rem)] lg:self-start">
             <ArticleNavigation key={schema.url} items={navigationItems} />
-            <div id="article-sources" className="atlas-surface scroll-mt-4 p-5">
-              <h2 className="text-ink-900 dark:text-paper text-sm font-semibold">Sources</h2>
+            <div
+              id="article-sources"
+              className="border-ink-200 scroll-mt-4 border-t pt-5 dark:border-white/10"
+            >
+              <h2 className="text-ink-950 dark:text-paper font-sans text-xs font-semibold tracking-[0.14em] uppercase">
+                Sources
+              </h2>
               <ul className="text-ink-600 dark:text-ink-300 mt-4 space-y-3 text-sm leading-6">
                 {resolvedCitations.map((citation) => (
                   <li key={`${citation.label}-${citation.source}`}>
@@ -289,7 +314,7 @@ export default function KnowledgePage({
                 Editorial standards and corrections
               </Link>
             </div>
-            <div className="bg-paper-100 text-ink-700 dark:bg-gold-500/10 dark:text-ink-200 rounded-2xl p-5 text-sm leading-6">
+            <div className="border-ink-200 text-ink-700 dark:text-ink-200 border-t pt-5 text-sm leading-6 dark:border-white/10">
               <p className="text-ink-950 dark:text-paper font-semibold">About {SITE.name}</p>
               <p className="mt-2">
                 We translate classical Chinese metaphysics into clear, modern guidance for

@@ -23,7 +23,7 @@ export default function ArticleByline({
   const publicationDate = displayDate(published);
   const updateDate = modified !== published ? displayDate(modified) : null;
   return (
-    <div className="text-ink-600 dark:text-ink-300 mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs leading-6">
+    <div className="text-ink-650 dark:text-ink-300 mt-6 flex flex-wrap items-center gap-x-5 gap-y-1 text-sm leading-6">
       <span>
         By{" "}
         <Link

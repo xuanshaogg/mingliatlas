@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Geist_Mono, Manrope } from "next/font/google";
+import { Geist_Mono, Manrope, Newsreader } from "next/font/google";
 import ScrollDepthTracker from "@/components/analytics/ScrollDepthTracker";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
@@ -22,6 +22,15 @@ const geistMono = Geist_Mono({
 const manrope = Manrope({
   variable: "--font-manrope",
   subsets: ["latin"],
+  display: "swap",
+});
+
+// Editorial display face for headings; the second (and last) preloaded font.
+// A single static weight keeps the file about half the size of the variable font.
+const newsreader = Newsreader({
+  variable: "--font-newsreader",
+  subsets: ["latin"],
+  weight: "500",
   display: "swap",
 });
 
@@ -86,7 +95,7 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${manrope.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
+      className={`${manrope.variable} ${newsreader.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
     >
       <head>
         <OrganizationSchema />
@@ -132,7 +141,7 @@ export default function RootLayout({
       <body className="bg-paper text-ink-950 dark:bg-ink-950 dark:text-paper flex min-h-full flex-col">
         <a
           href="#main-content"
-          className="bg-ink-950 fixed top-4 left-5 z-[100] -translate-y-24 rounded-full px-5 py-3 text-sm font-semibold text-white transition-transform focus:translate-y-0"
+          className="bg-ink-950 fixed top-3 left-4 z-[100] -translate-y-24 rounded-lg px-5 py-3 text-sm font-semibold text-white transition-transform focus:translate-y-0"
         >
           Skip to content
         </a>

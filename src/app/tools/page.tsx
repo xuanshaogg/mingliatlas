@@ -110,15 +110,15 @@ export default function ToolsPage() {
   return (
     <>
       <JsonLd data={[itemListSchema, buildFAQPageSchema(toolsFaqs)]} />
-      <section className="atlas-tool-shell bg-paper dark:bg-ink-950 px-4 py-12 sm:px-6 lg:px-8">
+      <section className="atlas-tool-shell bg-paper dark:bg-ink-950 px-5 py-12 sm:px-8 sm:py-16 lg:px-10">
         <div className="mx-auto max-w-6xl">
           <p className="atlas-eyebrow">Tools</p>
-          <h1 className="atlas-page-title mt-5">Free tools</h1>
+          <h1 className="atlas-page-title mt-4">Free tools</h1>
           <p className="atlas-page-intro mt-5 max-w-3xl">
             Use these browser-friendly workflows for quick charts, I Ching reflection, and zodiac
             compatibility checks.
           </p>
-          <div className="text-ink-600 dark:text-ink-300 mt-6 flex flex-wrap gap-x-6 gap-y-3 text-xs font-medium">
+          <div className="text-ink-700 dark:text-ink-300 mt-6 flex flex-wrap gap-x-6 gap-y-3 text-sm font-medium">
             {["Free to use", "No account needed", "Clear reading guides"].map((label) => (
               <span key={label} className="flex items-center gap-2">
                 <Check className="text-brand-primary h-4 w-4" aria-hidden="true" />
@@ -128,7 +128,7 @@ export default function ToolsPage() {
           </div>
 
           <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {tools.map((tool, index) => {
+            {tools.map((tool) => {
               const Icon = tool.icon;
 
               return (
@@ -137,23 +137,24 @@ export default function ToolsPage() {
                   className="atlas-surface flex flex-col p-5 sm:p-6 md:p-4 lg:p-7"
                 >
                   <div className="flex items-center justify-between gap-4">
-                    <span className="text-brand-primary dark:bg-gold-500/10 dark:text-gold-300 bg-brand-50 flex h-14 w-14 items-center justify-center rounded-full">
+                    <span className="text-brand-primary dark:bg-gold-500/10 dark:text-gold-300 bg-brand-50 flex h-11 w-11 items-center justify-center rounded-lg">
                       <Icon className="h-6 w-6" aria-hidden="true" />
                     </span>
-                    <span className="text-ink-500 text-xs tabular-nums">0{index + 1}</span>
                   </div>
-                  <div className="flex flex-1 flex-col pt-7">
+                  <div className="flex flex-1 flex-col pt-6">
                     <p className="text-ink-500 dark:text-ink-300 text-xs font-medium">
                       {tool.purpose}
                     </p>
-                    <h2 className="text-ink-950 dark:text-paper mt-3 text-2xl leading-snug font-semibold tracking-tight">
+                    <h2 className="text-ink-950 dark:text-paper mt-2 text-[1.75rem] leading-tight">
                       {tool.title}
                     </h2>
-                    <p className="text-ink-600 dark:text-ink-300 mt-3 text-sm leading-6">
+                    <p className="text-ink-700 dark:text-ink-300 mt-3 text-[0.9375rem] leading-7">
                       {tool.description}
                     </p>
                     <div className="mt-auto pt-6">
-                      <p className="text-ink-500 pt-4 text-xs font-medium">What you need</p>
+                      <p className="text-ink-600 border-ink-200 border-t pt-4 text-xs font-semibold tracking-[0.14em] uppercase dark:border-white/10">
+                        What you need
+                      </p>
                       <p className="text-ink-700 dark:text-ink-200 mt-1 text-sm">{tool.need}</p>
                       <Link href={tool.href} className="atlas-button-primary mt-5 w-full">
                         {tool.action}

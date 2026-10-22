@@ -37,8 +37,8 @@ export default function ArticleNavigation({ items, mobile = false }: ArticleNavi
   }, [items]);
 
   const links = (
-    <ol className="space-y-1">
-      {items.map((item, index) => (
+    <ol className="border-ink-200 border-l dark:border-white/10">
+      {items.map((item) => (
         <li key={item.id}>
           <a
             href={`#${item.id}`}
@@ -47,11 +47,8 @@ export default function ArticleNavigation({ items, mobile = false }: ArticleNavi
               setActive(item.id);
               if (detailsRef.current) detailsRef.current.open = false;
             }}
-            className={`flex min-h-11 items-start gap-3 rounded-lg px-3 py-2.5 text-sm leading-5 transition ${active === item.id ? "bg-brand-50 text-brand-primary dark:bg-gold-500/10 dark:text-gold-300 font-semibold" : "text-ink-600 hover:bg-paper-100 hover:text-ink-950 dark:text-ink-300 dark:hover:bg-white/5"}`}
+            className={`-ml-px flex min-h-10 items-start gap-3 border-l-2 py-2 pr-2 pl-4 text-sm leading-5 transition ${active === item.id ? "border-brand-primary text-ink-950 dark:border-gold-400 dark:text-paper font-semibold" : "text-ink-600 hover:text-ink-950 dark:text-ink-300 border-transparent dark:hover:text-white"}`}
           >
-            <span className="mt-0.5 text-[0.65rem] tabular-nums">
-              {String(index + 1).padStart(2, "0")}
-            </span>
             <span>{item.label}</span>
           </a>
         </li>
@@ -70,20 +67,20 @@ export default function ArticleNavigation({ items, mobile = false }: ArticleNavi
             </span>
             <ChevronDown className="h-4 w-4 transition group-open:rotate-180" aria-hidden="true" />
           </summary>
-          <div className="border-ink-100 border-t p-2 dark:border-white/10">{links}</div>
+          <div className="border-ink-100 border-t px-4 py-3 dark:border-white/10">{links}</div>
         </details>
       </nav>
     );
 
   return (
-    <nav aria-label="On this page" className="atlas-surface hidden p-4 lg:block">
-      <h2 className="text-ink-900 dark:text-paper flex items-center gap-2 px-3 pb-3 text-sm font-semibold">
-        <List className="h-4 w-4" aria-hidden="true" /> On this page
+    <nav aria-label="On this page" className="hidden lg:block">
+      <h2 className="text-ink-950 dark:text-paper flex items-center gap-2 pb-3 font-sans text-xs font-semibold tracking-[0.14em] uppercase">
+        <List className="h-3.5 w-3.5" aria-hidden="true" /> On this page
       </h2>
       <div className="max-h-[45vh] overflow-y-auto">{links}</div>
       <a
         href="#article-top"
-        className="border-ink-100 text-ink-500 hover:text-brand-primary mt-3 flex min-h-10 items-center gap-2 border-t px-3 pt-3 text-xs font-medium dark:border-white/10"
+        className="text-ink-600 hover:text-brand-primary mt-3 flex min-h-10 items-center gap-2 text-xs font-medium"
       >
         <ArrowUp className="h-3.5 w-3.5" aria-hidden="true" /> Back to top
       </a>

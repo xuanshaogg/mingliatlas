@@ -73,7 +73,7 @@ export default function MobileNav({ children, triggerLabel }: MobileNavProps) {
         ref={triggerRef}
         type="button"
         onClick={() => setOpen(true)}
-        className="text-ink-800 hover:text-brand-primary bg-paper-100 inline-flex h-11 w-11 items-center justify-center rounded-full transition-colors"
+        className="text-ink-800 hover:text-brand-primary hover:bg-paper-100 border-ink-200 inline-flex h-11 w-11 items-center justify-center rounded-lg border transition-colors"
         aria-label={triggerLabel}
         aria-expanded={open}
         aria-haspopup="dialog"
@@ -98,21 +98,21 @@ export default function MobileNav({ children, triggerLabel }: MobileNavProps) {
               />
               <aside
                 ref={drawerRef}
-                className="animate-in bg-paper slide-in-from-left dark:bg-ink-950 absolute top-3 bottom-3 left-3 z-10 flex w-[calc(100vw-2.5rem)] max-w-sm flex-col overflow-y-auto rounded-3xl p-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))] shadow-2xl duration-200"
+                className="animate-in bg-paper slide-in-from-left dark:bg-ink-950 absolute top-0 bottom-0 left-0 z-10 flex w-[calc(100vw-3rem)] max-w-sm flex-col overflow-y-auto p-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))] shadow-2xl duration-200"
               >
                 <div className="border-ink-200 flex items-center justify-between border-b pb-4 dark:border-white/10">
                   <Link
                     id="mobile-nav-title"
                     href="/"
                     onClick={close}
-                    className="text-ink-950 dark:text-paper font-semibold"
+                    className="text-ink-950 dark:text-paper font-display text-xl font-medium"
                   >
                     {SITE.name}
                   </Link>
                   <button
                     type="button"
                     onClick={close}
-                    className="border-ink-200 text-ink-700 dark:text-ink-200 inline-flex h-11 w-11 items-center justify-center rounded-full border dark:border-white/10"
+                    className="border-ink-200 text-ink-700 dark:text-ink-200 inline-flex h-11 w-11 items-center justify-center rounded-lg border dark:border-white/10"
                     aria-label="Close navigation"
                   >
                     <X className="h-4 w-4" aria-hidden="true" />
@@ -132,7 +132,7 @@ export default function MobileNav({ children, triggerLabel }: MobileNavProps) {
                             ? "true"
                             : undefined
                       }
-                      className={`flex min-h-12 items-center justify-between rounded-lg px-3 py-3 text-left transition hover:bg-white dark:hover:bg-white/10 ${pathname === item.href || pathname.startsWith(`${item.href}/`) ? "bg-white shadow-sm dark:bg-white/10" : ""}`}
+                      className={`flex min-h-12 items-center justify-between border-l-2 px-3 py-3 text-left transition hover:bg-white dark:hover:bg-white/10 ${pathname === item.href || pathname.startsWith(`${item.href}/`) ? "border-brand-primary bg-white dark:bg-white/10" : "border-transparent"}`}
                     >
                       <span>
                         <span className="text-ink-950 dark:text-paper block text-sm font-semibold">
@@ -153,7 +153,7 @@ export default function MobileNav({ children, triggerLabel }: MobileNavProps) {
                   <Link
                     href="/search"
                     onClick={close}
-                    className="text-ink-800 dark:text-paper flex min-h-12 items-center gap-3 rounded-lg bg-white px-3 py-3 text-sm font-medium shadow-sm dark:bg-white/10"
+                    className="text-ink-800 dark:text-paper border-ink-200 flex min-h-12 items-center gap-3 rounded-lg border bg-white px-3 py-3 text-sm font-medium dark:border-white/10 dark:bg-white/10"
                   >
                     <Search className="h-4 w-4" aria-hidden="true" />
                     Search the knowledge base
