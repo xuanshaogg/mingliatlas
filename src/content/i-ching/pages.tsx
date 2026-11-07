@@ -25,6 +25,8 @@ interface IntroTopic {
   dateModified?: string;
 }
 
+const linkClass = "text-brand-primary underline decoration-brand-primary/30 dark:text-gold-300";
+
 const relatedLinks = [
   {
     title: "I Ching Oracle",
@@ -265,7 +267,7 @@ const overview = buildPage({
   path: "/i-ching",
   title: "I Ching (Book of Changes): Hexagrams & Changing Lines",
   description:
-    "The I Ching, or Book of Changes, is a 64-hexagram Chinese classic used for structured reflection, timing, and decision context.",
+    "Learn what the I Ching means, how to read six lines, and how changing lines form a second hexagram. Includes a worked example and a free three-coin oracle.",
   entityName: "I Ching",
   entityType: "DefinedTerm",
   subtitle: "A beginner-friendly guide to hexagrams, trigrams, changing lines, and reflective use.",
@@ -277,7 +279,7 @@ const overview = buildPage({
     description: "",
     url: "",
     datePublished: "2025-11-10",
-    dateModified: "2026-09-26",
+    dateModified: "2026-11-07",
   },
   stats: [
     { value: "64", label: "Hexagrams", description: "The complete Book of Changes structure." },
@@ -417,6 +419,33 @@ const overview = buildPage({
             waiting, define what evidence would make action timely. If it emphasizes repair, name
             the relationship, process, or assumption that needs attention. This turns symbolic
             language into a testable next step while leaving room for circumstances to change.
+          </p>
+        </>
+      ),
+    },
+    {
+      heading: "Worked example: Hexagram 1 with the first line changing",
+      content: (
+        <>
+          <p>
+            <strong>Read the cast from bottom to top: 9, 7, 7, 7, 7, 7.</strong> All six lines
+            begin as yang, giving Hexagram 1 (Qian, The Creative). Only the bottom 9 is changing:
+            it becomes yin while the five 7s remain yang. The resulting figure is Hexagram 44
+            (Gou, Coming to Meet), with Wind below Heaven.
+          </p>
+          <ol className="list-decimal space-y-2 pl-6">
+            <li>Record the first throw as line 1 at the bottom, not at the top.</li>
+            <li>Identify the initial pattern: six unbroken lines, Hexagram 1.</li>
+            <li>Read Hexagram 1 and its first line in one named translation. The unchanged 7s do not call for changing-line readings.</li>
+            <li>Change only line 1 to a broken line and look up Hexagram 44 as the relating figure.</li>
+            <li>Compare the two figures against the original question. The second hexagram is context for reflection, not a guaranteed future event.</li>
+          </ol>
+          <p>
+            This is a constructed example of the line transformation, not a cast made for the reader.
+            Verify the resulting Wind-below-Heaven structure in the{' '}
+            <a href="https://ctext.org/book-of-changes/gou2/ens" className={linkClass}>received Image commentary for Gou, with James Legge translation</a>.
+            Then use the <Link href="/i-ching/sixty-four-hexagrams" className={linkClass}>64-hexagram reference</Link>{' '}
+            to check other patterns, or <Link href="/tools/i-ching-oracle" className={linkClass}>cast your own six lines with the free I Ching oracle</Link>.
           </p>
         </>
       ),
