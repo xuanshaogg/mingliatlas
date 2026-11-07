@@ -48,6 +48,7 @@ export interface KnowledgePageCta {
   href: string;
   label: string;
   tracking?: ContentLinkTracking;
+  placement?: "after-first-section";
 }
 
 export interface KnowledgePageSchemaInput {
@@ -173,6 +174,8 @@ export default function KnowledgePage({
   const pageSections: Section[] = pathway
     ? [{ heading: pathway.heading, content: <TopicPathway pathway={pathway} /> }, ...sections]
     : sections;
+  const earlyCta = cta.placement === "after-first-section" && pageSections.length > 0;
+  const primaryCta = cta.tracking ? <TrackedCTABanner {...cta} /> : <CTABanner {...cta} />;
   const navigationItems = [
     ...pageSections.map((section, index) => ({
       id: `article-section-${index + 1}`,
@@ -255,6 +258,7 @@ export default function KnowledgePage({
                     id={`article-section-${sectionIndex + 1}`}
                     first={sectionIndex === 0}
                   />
+                  {earlyCta && sectionIndex === 0 ? primaryCta : null}
                   {/* One in-content placement after the reader is two sections in. */}
                   {sectionIndex === 1 && pageSections.length > 3 ? (
                     <AdSlot placement="article-inline" />
@@ -272,7 +276,7 @@ export default function KnowledgePage({
             ) : (
               <RelatedContent links={resolvedRelatedLinks} />
             )}
-            {cta.tracking ? <TrackedCTABanner {...cta} /> : <CTABanner {...cta} />}
+            {!earlyCta ? primaryCta : null}
             <NewsletterSignup />
             <p className="text-ink-500 dark:text-ink-400 mt-8 text-sm leading-6">
               For entertainment and self-reflection purposes.

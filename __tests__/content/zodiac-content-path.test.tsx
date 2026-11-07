@@ -44,6 +44,9 @@ describe("zodiac content-to-tool path", () => {
     ]);
     expect(page.data.nextStepsTracking).toEqual({ source: "dragon_next_steps" });
     expect(markup.match(/data-content-role="next-step"/g)).toHaveLength(3);
-    expect(markup).toContain('data-content-role="primary-content-cta"');
+    expect(markup.match(/data-content-role="primary-content-cta"/g)).toHaveLength(1);
+    const ctaIndex = markup.indexOf('data-content-role="primary-content-cta"');
+    expect(ctaIndex).toBeGreaterThan(markup.indexOf('id="article-section-1"'));
+    expect(ctaIndex).toBeLessThan(markup.indexOf('id="article-section-2"'));
   });
 });

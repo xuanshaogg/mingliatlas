@@ -316,7 +316,7 @@ function breadcrumbs(current: string, href: string) {
 
 function cta(
   title = "Find your Chinese zodiac sign",
-  options: Partial<Pick<KnowledgePageProps["cta"], "description" | "href" | "label" | "tracking">> = {}
+  options: Partial<Pick<KnowledgePageProps["cta"], "description" | "href" | "label" | "tracking" | "placement">> = {}
 ) {
   return {
     title,
@@ -326,11 +326,20 @@ function cta(
     href: options.href ?? "/tools/zodiac-compatibility",
     label: options.label ?? "Check compatibility",
     tracking: options.tracking,
+    placement: options.placement,
   };
 }
 
 const animalFaqs: Partial<Record<string, FAQ[]>> = {
   dragon: [
+    {
+      question: "How old are people born in a Dragon year in 2026?",
+      answer: "People born in the Gregorian years 2024, 2012, 2000, 1988, 1976, 1964, 1952, and 1940 turn 2, 14, 26, 38, 50, 62, 74, and 86 in 2026. Before their birthday they are one year younger. These are birthday-based ages, not traditional nominal age. A Dragon lunar year extends into the following Gregorian year, so use the actual birth year for age and the exact Lunar New Year dates for the animal sign.",
+    },
+    {
+      question: "Is 2026 the Year of the Dragon?",
+      answer: "No. The Fire Horse year begins on February 17, 2026; dates before that are still in the preceding Snake lunar year. The most recent Dragon year began on February 10, 2024, and the next begins on January 28, 2036. Bazi uses the Li Chun solar-term boundary instead of Lunar New Year.",
+    },
     {
       question: "What are the personality traits of the Dragon zodiac?",
       answer:
@@ -1198,6 +1207,7 @@ const animalSections: Partial<Record<string, KnowledgePageProps["sections"]>> = 
             boundary and the Bazi solar-term boundary do not always coincide, and a few days can
             shift your sign.
           </p>
+          <p><a href="#dragon-age-table" className={linkClass}>Check Dragon birth years and ages in 2026</a> using the birthday-based lookup below.</p>
           <p>
             In the{" "}
             <Link href="/bazi/earthly-branches" className={linkClass}>
@@ -1320,6 +1330,32 @@ const animalSections: Partial<Record<string, KnowledgePageProps["sections"]>> = 
             {formatLongDate(getZodiacYearDates(2036).lunarNewYear)}.
           </p>
           {animalYearDatesTable(animals.find((animal) => animal.slug === "dragon")!)}
+          <h3 id="dragon-age-table" className="scroll-mt-28">Dragon year age chart: ages reached in 2026</h3>
+          <p>
+            Subtract the Gregorian birth year from 2026 to find the age reached on the birthday
+            that year. Before that birthday, subtract one more. This is birthday-based age,
+            not traditional nominal age (sui).
+          </p>
+          <div className="overflow-x-auto" role="region" aria-label="Dragon birth years and ages in 2026" tabIndex={0}>
+            <table className="w-full border-collapse text-sm">
+              <caption className="text-left">Gregorian birth year and age on the 2026 birthday</caption>
+              <thead><tr><th scope="col" className="py-2 text-left">Birth year</th><th scope="col" className="py-2 text-left">Turns in 2026</th></tr></thead>
+              <tbody>
+                {[2024, 2012, 2000, 1988, 1976, 1964, 1952, 1940].map((year) => (
+                  <tr key={year} className="border-ink-200 border-b dark:border-white/10">
+                    <th scope="row" className="py-2 text-left font-normal">{year}</th>
+                    <td className="py-2">{2026 - year}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            The animal sign and age require separate checks. Someone born on January 10, 2025
+            is still in the 2024 Dragon lunar year but turns 1 in 2026, not 2. Someone born on
+            January 10, 2024 turns 2 in 2026 but belongs to the preceding Rabbit lunar year.
+            Use the exact date spans above before assigning a sign.
+          </p>
           <p className="mt-4">
             The element modifier changes how the Dragon year expresses its energy. A Water Dragon
             year (1952, 2012) emphasizes strategy and depth; a Fire Dragon year (1976, 2036)
@@ -1457,7 +1493,7 @@ const animalDirectAnswerOverrides: Partial<Record<string, string>> = {
 const animalDateModifiedOverrides: Partial<Record<string, string>> = {
   rat: "2026-10-21",
   tiger: "2026-10-21",
-  dragon: "2026-10-21",
+  dragon: "2026-11-07",
 };
 
 // Sections for the animal pages that do not have hand-written guides. They
@@ -1694,6 +1730,7 @@ const animalPages = animals.map((animal) =>
             href: "/tools/bazi-calculator",
             label: "Calculate full Bazi chart",
             tracking: { source: "dragon_primary_cta" },
+            placement: "after-first-section",
           })
         : cta(`Compare ${animal.name} compatibility`),
   })
