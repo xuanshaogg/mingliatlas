@@ -1476,12 +1476,15 @@ const animalSections: Partial<Record<string, KnowledgePageProps["sections"]>> = 
 // quote) for signs that earn the most search impressions, without bloating
 // the generic builder. Dragon alone earns ~50% of all site impressions.
 const animalTitleOverrides: Partial<Record<string, string>> = {
-  dragon: "Year of the Dragon Years List (1940–2036) & Exact Dates",
+  // 2026-11-17: GSC 28d showed ~31k impressions at avg position 7.8 but 0.32%
+  // CTR; most queries ask "when is the (next) year of the dragon", so the
+  // title keeps "Years List" (the one query already at #3) and adds the answer.
+  dragon: "Year of the Dragon Years List (1940–2036): Next Is 2036",
 };
 
 const animalDescriptionOverrides: Partial<Record<string, string>> = {
   dragon:
-    "Every Dragon year from 1940 to 2036 with exact Lunar New Year start and end dates, Li Chun dates, the five Dragon elements, personality, and compatibility.",
+    `The next Year of the Dragon starts ${formatLongDate(getZodiacYearDates(2036).lunarNewYear)}; the last was 2024, and 2026 is a Horse year. All Dragon years 1940–2036 with exact dates and ages.`,
 };
 
 const animalDirectAnswerOverrides: Partial<Record<string, string>> = {

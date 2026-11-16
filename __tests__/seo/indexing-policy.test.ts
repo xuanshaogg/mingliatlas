@@ -124,11 +124,12 @@ describe("indexing policy", () => {
       (page) => page.path === "/blog/chinese-zodiac-compatibility-chart"
     );
 
-    expect(dragon?.title).toBe("Year of the Dragon Years List (1940–2036) & Exact Dates");
+    expect(dragon?.title).toBe("Year of the Dragon Years List (1940–2036): Next Is 2036");
+    expect(dragon?.description).toMatch(/^The next Year of the Dragon starts January 28, 2036/);
     expect(dragon?.data.directAnswer).toMatch(
       /^Dragon years are 1940, 1952, 1964, 1976, 1988, 2000, 2012, and 2024;/
     );
-    expect(dragon?.data.schema.dateModified).toBe("2026-10-21");
+    expect(dragon?.data.schema.dateModified).toBe("2026-11-07");
 
     expect(dayMaster?.title).toBe("Bazi Day Master Is the Day Stem: Meaning & Sources");
     expect(dayMaster?.data.directAnswer).toMatch(
