@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import AdSlot from "@/components/ads/AdSlot";
+import InlineChartPrompt from "@/components/analytics/InlineChartPrompt";
 import ArticleByline from "@/components/shared/ArticleByline";
 import TopicPathway from "@/components/shared/TopicPathway";
 import { topicPathways } from "@/lib/content/topicPathways";
@@ -18,6 +19,7 @@ import TrackedCTABanner from "@/components/analytics/TrackedCTABanner";
 import type { RelatedLink } from "@/components/shared/RelatedLinks";
 import type { ContentLinkTracking } from "@/lib/analytics/content-path";
 import { resolveCitationUrls } from "@/lib/content/citations";
+import { pageGlyph } from "@/lib/content/pageGlyph";
 import { uniqueContentLinks } from "@/lib/content/urls";
 import { SITE } from "@/lib/constants";
 import {
@@ -175,6 +177,12 @@ export default function KnowledgePage({
     ? [{ heading: pathway.heading, content: <TopicPathway pathway={pathway} /> }, ...sections]
     : sections;
   const earlyCta = cta.placement === "after-first-section" && pageSections.length > 0;
+  const glyph = pageGlyph(currentPath);
+  // Reading pages that do not already lead with a tool CTA get one compact,
+  // tracked path to the calculator after the first section.
+  const inlinePromptSource = `${currentPath.split("/")[1] || "content"}_inline_chart_prompt`;
+  const showInlinePrompt =
+    !earlyCta && pageSections.length > 1 && !cta.href.startsWith("/tools/bazi-calculator");
   const primaryCta = cta.tracking ? <TrackedCTABanner {...cta} /> : <CTABanner {...cta} />;
   const navigationItems = [
     ...pageSections.map((section, index) => ({
@@ -218,9 +226,17 @@ export default function KnowledgePage({
       <article className="atlas-knowledge-shell bg-paper dark:bg-ink-950">
         <header
           id="article-top"
-          className="border-ink-200 border-b pt-6 pb-10 sm:pb-14 dark:border-white/10"
+          className="border-ink-950/15 relative overflow-hidden border-b pt-6 pb-10 sm:pb-14 dark:border-white/10"
         >
-          <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+          {glyph ? (
+            <span
+              className="atlas-hanzi text-brand-primary/[0.07] pointer-events-none absolute -top-2 -right-3 text-[10rem] select-none sm:text-[15rem] lg:top-4 lg:right-[max(1rem,calc(50%-38rem))] lg:text-[19rem]"
+              aria-hidden="true"
+            >
+              {glyph}
+            </span>
+          ) : null}
+          <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
             <Breadcrumbs items={breadcrumbs} />
             <div className="mt-8 grid gap-10 sm:mt-12 lg:grid-cols-[minmax(0,1fr)_17rem] lg:items-end lg:gap-16">
               <div className="max-w-3xl">
@@ -259,6 +275,12 @@ export default function KnowledgePage({
                     first={sectionIndex === 0}
                   />
                   {earlyCta && sectionIndex === 0 ? primaryCta : null}
+                  {showInlinePrompt && sectionIndex === 0 ? (
+                    <InlineChartPrompt
+                      source={inlinePromptSource}
+                      zodiac={currentPath.startsWith("/chinese-zodiac")}
+                    />
+                  ) : null}
                   {/* One in-content placement after the reader is two sections in. */}
                   {sectionIndex === 1 && pageSections.length > 3 ? (
                     <AdSlot placement="article-inline" />

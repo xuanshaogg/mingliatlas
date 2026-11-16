@@ -6,12 +6,18 @@ import { footerNavigation, primaryNavigation, SITE } from "@/lib/constants";
 
 export default function Footer() {
   return (
-    <footer className="bg-ink-900 text-paper mt-16">
+    <footer className="bg-ink-950 text-paper border-brand-primary mt-16 border-t-[3px]">
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:grid-cols-2 sm:px-8 lg:grid-cols-[1.4fr_1fr_1fr_1.3fr] lg:px-10">
         <div>
           <Link href="/" className="flex items-center gap-3" aria-label={`${SITE.name} home`}>
             <Image src="/logo-icon.svg" alt="" width={36} height={36} className="h-9 w-9" />
             <span className="font-display text-2xl font-medium">{SITE.name}</span>
+            <span
+              className="atlas-seal ml-1 h-9 w-9 text-[0.8125rem] leading-[1.05]"
+              aria-hidden="true"
+            >
+              命理
+            </span>
           </Link>
           <p className="text-ink-300 mt-5 max-w-sm text-sm leading-6">
             Clear guides and tools for exploring Bazi, Ziwei Doushu, I Ching, Feng Shui, and the

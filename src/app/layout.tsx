@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Geist_Mono, Manrope, Newsreader } from "next/font/google";
+import { Fraunces, Geist_Mono, Manrope } from "next/font/google";
+import localFont from "next/font/local";
 import ScrollDepthTracker from "@/components/analytics/ScrollDepthTracker";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
@@ -27,11 +28,22 @@ const manrope = Manrope({
 
 // Editorial display face for headings; the second (and last) preloaded font.
 // A single static weight keeps the file about half the size of the variable font.
-const newsreader = Newsreader({
-  variable: "--font-newsreader",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
   weight: "500",
   display: "swap",
+});
+
+// Decorative CJK display glyphs (命理, 龍, 八字 ...). An 8 KB subset of Noto Serif SC
+// Black (SIL OFL) holding only the ~30 glyphs the UI draws, so no full CJK font
+// ships. Add a glyph to the subset before using a new one in .atlas-hanzi.
+const hanzi = localFont({
+  src: "./fonts/atlas-hanzi.woff2",
+  variable: "--font-hanzi",
+  weight: "900",
+  display: "swap",
+  preload: false,
 });
 
 const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
@@ -95,7 +107,7 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${manrope.variable} ${newsreader.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
+      className={`${manrope.variable} ${fraunces.variable} ${hanzi.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
     >
       <head>
         <OrganizationSchema />
