@@ -17,7 +17,7 @@ const goat2015 = getZodiacYearDates(2015);
 const HORSE_YEARS = [2026, 2014, 2002, 1990, 1978, 1966, 1954, 1942];
 const GOAT_YEARS = [2027, 2015, 2003, 1991, 1979, 1967, 1955, 1943];
 
-function AgeTable({
+export function AgeTable({
   id,
   animal,
   years,

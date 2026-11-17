@@ -32,6 +32,14 @@ const INDEXABLE_PATH_LIST = [
   "/chinese-zodiac/horse",
   "/chinese-zodiac/goat",
   "/chinese-zodiac/2026-forecast",
+  // Added 2026-11-17 with hand-written guides so all 12 signs are indexable before Lunar New Year 2027.
+  "/chinese-zodiac/ox",
+  "/chinese-zodiac/rabbit",
+  "/chinese-zodiac/snake",
+  "/chinese-zodiac/monkey",
+  "/chinese-zodiac/rooster",
+  "/chinese-zodiac/dog",
+  "/chinese-zodiac/pig",
   // Added 2026-11-17 ahead of the 2027 Lunar New Year search season.
   "/chinese-zodiac/2027-forecast",
   "/i-ching",
