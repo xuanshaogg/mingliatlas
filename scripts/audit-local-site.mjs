@@ -89,7 +89,7 @@ const htmlPages = [
   {
     path: "/i-ching",
     expectedTitle: "I Ching",
-    expectedH1: "I Ching (Book of Changes): Hexagrams & Changing Lines",
+    expectedH1: "I Ching (Book of Changes): How to Read Hexagrams & Lines",
     minJsonLd: 3,
     requiredLinks: ["/i-ching/eight-trigrams", "/i-ching/how-to-cast", "/tools/i-ching-oracle"],
   },
@@ -108,7 +108,7 @@ const htmlPages = [
   {
     path: "/ziwei",
     expectedTitle: "Ziwei",
-    expectedH1: "Ziwei Doushu: Purple Star Astrology Guide",
+    expectedH1: "Ziwei Doushu (Zi Wei Dou Shu): Purple Star Astrology",
     minJsonLd: 3,
   },
   {
@@ -138,8 +138,8 @@ const htmlPages = [
   },
   {
     path: "/blog/chinese-zodiac-compatibility-chart",
-    expectedTitle: "Chinese Zodiac Compatibility Chart: Triads & Clashes",
-    expectedH1: "Chinese Zodiac Compatibility Chart: Triads & Clashes",
+    expectedTitle: "Chinese Zodiac Compatibility Chart: Best Matches, Triads & Clashes",
+    expectedH1: "Chinese Zodiac Compatibility Chart: Best Matches, Triads & Clashes",
     minJsonLd: 3,
     requiredLinks: ["/tools/zodiac-compatibility", "/chinese-zodiac"],
   },

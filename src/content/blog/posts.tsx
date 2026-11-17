@@ -2049,9 +2049,9 @@ const highIntentBlogPosts: BlogPost[] = [
   buildPage({
     slug: "chinese-zodiac-compatibility-chart",
     path: "/blog/chinese-zodiac-compatibility-chart",
-    title: "Chinese Zodiac Compatibility Chart: Triads & Clashes",
+    title: "Chinese Zodiac Compatibility Chart: Best Matches, Triads & Clashes",
     description:
-      "Compare all 12 Chinese zodiac signs in one chart, including three-harmony triads, six harmony pairs, clash pairs, and links to detailed sign compatibility.",
+      "Every sign's best and worst matches in one chart, Rat to Pig: the four zodiac triads, six harmony pairs, and six clash pairs explained in plain English.",
     category: "Zodiac Guide",
     entityName: "Chinese Zodiac Compatibility Chart",
     entityType: "BlogPosting",

@@ -265,9 +265,9 @@ function buildPage(input: Omit<IChingContentPage, "data"> & KnowledgePageProps):
 const overview = buildPage({
   slug: "",
   path: "/i-ching",
-  title: "I Ching (Book of Changes): Hexagrams & Changing Lines",
+  title: "I Ching (Book of Changes): How to Read Hexagrams & Lines",
   description:
-    "Learn what the I Ching means, how to read six lines, and how changing lines form a second hexagram. Includes a worked example and a free three-coin oracle.",
+    "How to read the I Ching: cast six lines, find your hexagram among the 64, then read the changing lines. Includes a worked example and a free three-coin oracle.",
   entityName: "I Ching",
   entityType: "DefinedTerm",
   subtitle: "A beginner-friendly guide to hexagrams, trigrams, changing lines, and reflective use.",

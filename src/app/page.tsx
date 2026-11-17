@@ -22,12 +22,12 @@ import {
 
 export const metadata: Metadata = {
   ...buildPageMetadata({
-    title: "Mingli Meaning & Free Bazi Calculator",
+    title: "Mingli (Ming Li): Free Bazi Chart & Chinese Astrology Tools",
     description:
-      "Mingli (ming li) means life-pattern principles. Explore Chinese metaphysics, build a Bazi chart, compare zodiac signs, and learn with step-by-step guides.",
+      "Mingli (命理, ming li) is the Chinese study of life patterns. Get a free Bazi Four Pillars chart, check zodiac compatibility, and cast the I Ching. No sign-up.",
     path: "/",
   }),
-  title: { absolute: "Mingli Meaning & Free Bazi Calculator | Mingli Atlas" },
+  title: { absolute: "Mingli (Ming Li): Free Bazi Chart & Chinese Astrology Tools | Mingli Atlas" },
 };
 
 const systems = [
