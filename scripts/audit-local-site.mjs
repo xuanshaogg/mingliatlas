@@ -69,7 +69,7 @@ const htmlPages = [
   {
     path: "/bazi/five-elements",
     expectedTitle: "Five Elements",
-    expectedH1: "The Five Elements (Wu Xing): Cycles and Use in Bazi",
+    expectedH1: "Five Elements (Wu Xing): Generating & Controlling Cycles",
     minJsonLd: 3,
     requiredLinks: ["/bazi", "/tools/bazi-calculator"],
   },

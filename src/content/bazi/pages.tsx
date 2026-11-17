@@ -671,9 +671,9 @@ export const baziPages: BaziContentPage[] = [
   buildPage({
     slug: "five-elements",
     path: "/bazi/five-elements",
-    title: "The Five Elements (Wu Xing): Cycles and Use in Bazi",
+    title: "Five Elements (Wu Xing): Generating & Controlling Cycles",
     description:
-      "The Five Elements (Wu Xing) explain how Wood, Fire, Earth, Metal, and Water describe changing energy patterns in Bazi and classical Chinese metaphysics.",
+      "Wood feeds Fire, Fire makes Earth, Earth bears Metal, Metal enriches Water, Water feeds Wood. Both Wu Xing cycles, with each element's season and direction.",
     entityName: "The Five Elements",
     entityType: "DefinedTerm",
     subtitle:

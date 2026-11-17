@@ -2364,9 +2364,9 @@ const highIntentBlogPosts: BlogPost[] = [
   buildPage({
     slug: "i-ching-beginners-reading-guide",
     path: "/blog/i-ching-beginners-reading-guide",
-    title: "How to Cast and Read an I Ching Hexagram: Beginner Guide",
+    title: "How to Cast an I Ching Hexagram with Three Coins (6 Steps)",
     description:
-      "A step-by-step beginner guide to casting an I Ching hexagram, reading the lines, and interpreting changing lines without overcomplicating the practice.",
+      "Toss three coins six times (heads 3, tails 2): totals of 6-9 give each line and mark the changing lines. Then find your hexagram and read it, step by step.",
     category: "I Ching Guide",
     entityName: "I Ching Beginners Reading Guide",
     entityType: "BlogPosting",
