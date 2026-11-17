@@ -163,9 +163,9 @@ function buildPage(input: Omit<ZiweiContentPage, "data"> & KnowledgePageProps): 
 const overview = buildPage({
   slug: "",
   path: "/ziwei",
-  title: "Ziwei Doushu: Purple Star Astrology Guide",
+  title: "Ziwei Doushu (Zi Wei Dou Shu): Purple Star Astrology",
   description:
-    "Ziwei Doushu, or Purple Star Astrology, is a Chinese natal chart system built from palaces, stars, transformations, and life-cycle timing.",
+    "Ziwei Doushu (Zi Wei Dou Shu, 紫微斗数) for beginners: the 12 palaces, 14 major stars, Four Transformations, and why birth hour matters.",
   entityName: "Ziwei Doushu",
   entityType: "DefinedTerm",
   subtitle: "A structured introduction to Purple Star Astrology for Western readers.",
