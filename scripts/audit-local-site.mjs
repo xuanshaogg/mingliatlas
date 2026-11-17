@@ -89,7 +89,7 @@ const htmlPages = [
   {
     path: "/i-ching",
     expectedTitle: "I Ching",
-    expectedH1: "I Ching (Book of Changes): How to Read Hexagrams & Lines",
+    expectedH1: "I Ching (Book of Changes): Hexagrams & Changing Lines",
     minJsonLd: 3,
     requiredLinks: ["/i-ching/eight-trigrams", "/i-ching/how-to-cast", "/tools/i-ching-oracle"],
   },
