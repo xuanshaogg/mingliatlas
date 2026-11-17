@@ -265,7 +265,11 @@ export const horseGoatSections: Record<string, KnowledgePageProps["sections"]> =
             their birth sign, traditionally met with red clothing or accessories. The Horse and the
             Goat form a six combination (Wu-Wei), so the hand-over from 2026 to 2027 is one of the
             smoother transitions in the cycle. The Goat&rsquo;s clash sign, the Ox, meets the annual
-            branch head-on in 2027.
+            branch head-on in 2027. The{" "}
+            <Link href="/chinese-zodiac/2027-forecast" className={linkClass}>
+              2027 Chinese zodiac forecast
+            </Link>{" "}
+            has a note for every sign.
           </p>
           <h3 id="goat-age-table" className="scroll-mt-28">
             Goat year age chart: ages reached in 2027

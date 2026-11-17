@@ -32,6 +32,8 @@ const INDEXABLE_PATH_LIST = [
   "/chinese-zodiac/horse",
   "/chinese-zodiac/goat",
   "/chinese-zodiac/2026-forecast",
+  // Added 2026-11-17 ahead of the 2027 Lunar New Year search season.
+  "/chinese-zodiac/2027-forecast",
   "/i-ching",
   "/i-ching/eight-trigrams",
   "/i-ching/how-to-cast",
