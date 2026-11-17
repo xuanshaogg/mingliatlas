@@ -33,36 +33,42 @@ export const metadata: Metadata = {
 const systems = [
   {
     title: "Bazi",
+    glyph: "八字",
     href: "/bazi",
     icon: CalendarDays,
     description: "Four Pillars, Day Master, Ten Gods, elements, and life-pattern timing.",
   },
   {
     title: "Ziwei Doushu",
+    glyph: "紫微",
     href: "/ziwei",
     icon: Stars,
     description: "Palaces, major stars, transformations, and chart-based life areas.",
   },
   {
     title: "I Ching",
+    glyph: "易經",
     href: "/i-ching",
     icon: Hexagon,
     description: "Hexagrams, changing lines, trigrams, and structured reflection.",
   },
   {
     title: "Feng Shui",
+    glyph: "風水",
     href: "/feng-shui",
     icon: Compass,
     description: "Qi flow, front doors, bedrooms, desks, and practical space reading.",
   },
   {
     title: "Chinese Zodiac",
+    glyph: "生肖",
     href: "/chinese-zodiac",
     icon: Orbit,
     description: "Twelve signs, yearly cycles, harmony, and clashes.",
   },
   {
     title: "Free Tools",
+    glyph: "工具",
     href: "/tools",
     icon: Sparkles,
     description: "Bazi calculator, I Ching oracle, and zodiac compatibility workflows.",
@@ -234,8 +240,14 @@ export default function Home() {
       <JsonLd data={mingliEntitySchema} />
       <JsonLd data={searchIntentSchema} />
 
-      <section className="border-ink-200 border-b px-5 sm:px-8 lg:px-10">
-        <div className="mx-auto grid max-w-7xl gap-10 py-12 sm:py-16 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,0.75fr)] lg:gap-16 lg:py-20">
+      <section className="border-ink-950/15 relative overflow-hidden border-b px-5 sm:px-8 lg:px-10">
+        <span
+          className="atlas-hanzi text-brand-primary/[0.08] pointer-events-none absolute top-6 -right-4 text-[8.5rem] select-none [writing-mode:vertical-rl] lg:hidden"
+          aria-hidden="true"
+        >
+          命理
+        </span>
+        <div className="relative mx-auto grid max-w-7xl gap-10 py-12 sm:py-16 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-center lg:gap-16 lg:py-20">
           <div className="home-reveal max-w-2xl">
             <p className="atlas-eyebrow">Chinese metaphysics, explained in English</p>
             <h1 className="text-ink-950 font-display mt-5 text-[clamp(3rem,7vw,5.25rem)] leading-[1.02] font-medium tracking-[-0.025em]">
@@ -264,43 +276,61 @@ export default function Home() {
             <p className="text-ink-600 mt-8 text-sm leading-6">{SITE.tagline}</p>
           </div>
 
-          <section
-            className="home-reveal home-reveal-delay lg:pt-2"
-            aria-labelledby="free-tools-heading"
+          <div
+            className="border-ink-950/15 from-paper-50 to-paper-100 relative hidden h-[30rem] overflow-hidden rounded-xl border bg-gradient-to-b lg:block"
+            aria-hidden="true"
           >
-            <h2
-              id="free-tools-heading"
-              className="text-ink-950 font-sans text-xs font-semibold tracking-[0.14em] uppercase"
-            >
-              Free tools
-            </h2>
-            <ul className="border-ink-200 divide-ink-200 mt-4 divide-y border-y">
-              {toolPaths.map((tool) => (
-                <li key={tool.href}>
-                  <Link
-                    href={tool.href}
-                    className="group flex items-start justify-between gap-4 py-5"
-                  >
-                    <span>
-                      <span className="text-brand-700 block text-xs font-semibold tracking-wide">
-                        {tool.label}
-                      </span>
-                      <span className="text-ink-950 group-hover:text-brand-primary font-display mt-1 block text-2xl leading-tight transition-colors">
-                        {tool.title}
-                      </span>
-                      <span className="text-ink-650 mt-2 block text-sm leading-6">
-                        {tool.description}
-                      </span>
+            <p className="text-ink-700 absolute top-10 left-10 max-w-[11rem] text-[0.8125rem] leading-6">
+              <span className="text-ink-950 font-display mb-1 block text-[1.375rem]">Mingli</span>
+              Ming: life and timing. Li: principle and pattern.
+            </p>
+            <span className="atlas-hanzi text-ink-950 absolute top-10 right-10 text-[10.5rem] [writing-mode:vertical-rl]">
+              命理
+            </span>
+            <span className="atlas-seal absolute bottom-12 left-10 h-[5.5rem] w-[5.5rem] text-[1.75rem] leading-[1.05]">
+              圖譜
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section
+        className="border-ink-950/15 border-b bg-white/50 px-5 py-10 sm:px-8 lg:px-10 lg:py-12"
+        aria-labelledby="free-tools-heading"
+      >
+        <div className="mx-auto max-w-7xl">
+          <h2
+            id="free-tools-heading"
+            className="text-ink-950 font-sans text-xs font-semibold tracking-[0.18em] uppercase"
+          >
+            Free tools
+          </h2>
+          <ul className="border-ink-950/15 divide-ink-950/15 mt-4 grid divide-y border-y md:grid-cols-3 md:divide-x md:divide-y-0">
+            {toolPaths.map((tool) => (
+              <li key={tool.href} className="md:first:[&>a]:pl-0">
+                <Link
+                  href={tool.href}
+                  className="group flex h-full items-start justify-between gap-4 py-5 md:px-6 md:py-7"
+                >
+                  <span>
+                    <span className="text-brand-700 block text-xs font-semibold tracking-wide">
+                      {tool.label}
                     </span>
-                    <ArrowRight
-                      className="text-brand-primary mt-6 h-4 w-4 flex-none transition-transform group-hover:translate-x-1"
-                      aria-hidden="true"
-                    />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
+                    <span className="text-ink-950 group-hover:text-brand-primary font-display mt-1 block text-2xl leading-tight transition-colors">
+                      {tool.title}
+                    </span>
+                    <span className="text-ink-650 mt-2 block text-sm leading-6">
+                      {tool.description}
+                    </span>
+                  </span>
+                  <ArrowRight
+                    className="text-brand-primary mt-6 h-4 w-4 flex-none transition-transform group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -347,7 +377,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-white px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
+      <section className="border-ink-950/15 border-y bg-white/60 px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-16">
           <div>
             <p className="atlas-eyebrow">Start with a question</p>
@@ -412,7 +442,12 @@ export default function Home() {
                   href={system.href}
                   className="group hover:bg-paper-50 flex flex-col bg-white p-6 transition-colors sm:p-8"
                 >
-                  <Icon className="text-brand-primary h-5 w-5" aria-hidden="true" />
+                  <span className="flex items-center justify-between">
+                    <span className="atlas-hanzi text-brand-primary text-4xl" aria-hidden="true">
+                      {system.glyph}
+                    </span>
+                    <Icon className="text-ink-400 h-5 w-5" aria-hidden="true" />
+                  </span>
                   <h3 className="text-ink-950 group-hover:text-brand-primary mt-5 text-[1.75rem] leading-tight transition-colors">
                     {system.title}
                   </h3>
@@ -464,7 +499,7 @@ export default function Home() {
       </section>
 
       <section className="px-5 sm:px-8 lg:px-10">
-        <div className="bg-ink-900 text-paper mx-auto flex max-w-7xl flex-col justify-between gap-8 rounded-xl px-6 py-12 sm:px-10 md:flex-row md:items-end lg:px-14 lg:py-14">
+        <div className="bg-ink-950 text-paper border-brand-primary mx-auto flex max-w-7xl flex-col justify-between gap-8 rounded-xl border-l-[3px] px-6 py-12 sm:px-10 md:flex-row md:items-end lg:px-14 lg:py-14">
           <div>
             <p className="text-gold-300 text-xs font-semibold tracking-[0.14em] uppercase">
               Bazi calculator
@@ -475,7 +510,7 @@ export default function Home() {
           </div>
           <Link
             href="/tools/bazi-calculator"
-            className="group text-ink-900 hover:bg-paper-200 inline-flex min-h-12 shrink-0 items-center justify-center rounded-lg bg-white px-6 py-3.5 text-sm font-semibold transition-colors"
+            className="group bg-brand-primary hover:bg-brand-500 inline-flex min-h-12 shrink-0 items-center justify-center rounded-lg px-6 py-3.5 text-sm font-semibold text-white transition-colors"
           >
             Open the free calculator{" "}
             <ArrowRight

@@ -7,28 +7,28 @@
 
 /* Brand design tokens live here for Tailwind v4; do not add tailwind.config.ts unless the build needs legacy config. */
 @theme {
-  /* Manrope carries the interface and body copy; Newsreader sets editorial headings. */
+  /* Manrope carries the interface and body copy; Fraunces sets editorial headings. */
   --font-sans: var(--font-manrope), "Segoe UI", "Microsoft YaHei", sans-serif;
-  --font-serif: var(--font-newsreader), Georgia, "Songti SC", "SimSun", serif;
-  --font-display: var(--font-newsreader), Georgia, "Songti SC", "SimSun", serif;
+  --font-serif: var(--font-fraunces), Georgia, "Songti SC", "SimSun", serif;
+  --font-display: var(--font-fraunces), Georgia, "Songti SC", "SimSun", serif;
   --font-mono: var(--font-geist-mono), monospace;
   --text-hero: 3.5rem;
   --text-hero--line-height: 1.1;
   --text-hero--font-weight: 600;
 
-  /* Brand: muted terracotta for actions and warm accents. */
-  --color-brand-primary: #934f40;
-  --color-brand-50: #faf3ef;
-  --color-brand-100: #f3e4dc;
-  --color-brand-200: #e7cbbd;
-  --color-brand-300: #d6aa96;
-  --color-brand-400: #bc8570;
-  --color-brand-500: #a96652;
-  --color-brand-600: #934f40;
-  --color-brand-700: #7b4135;
-  --color-brand-800: #62372e;
-  --color-brand-900: #503029;
-  --color-brand-950: #2c1a16;
+  /* Brand: cinnabar (seal-ink red) for actions and accents. */
+  --color-brand-primary: #a8341f;
+  --color-brand-50: #fbf1ed;
+  --color-brand-100: #f6ded6;
+  --color-brand-200: #edbeb0;
+  --color-brand-300: #e09683;
+  --color-brand-400: #cc6a52;
+  --color-brand-500: #b94a31;
+  --color-brand-600: #a8341f;
+  --color-brand-700: #8c2a19;
+  --color-brand-800: #6f2315;
+  --color-brand-900: #561c12;
+  --color-brand-950: #2e0e08;
 
   /* Gold: accent scale for highlights, dividers, focus rings, and dark-background details. */
   --color-brand-gold: #b68c42;
@@ -44,24 +44,27 @@
   --color-gold-900: #3d3015;
 
   /* Paper: warm neutral backgrounds for pages, cards, and soft section contrast. */
-  --color-paper: #f8f7f2;
-  --color-paper-50: #fcfbf8;
-  --color-paper-100: #f1efe7;
-  --color-paper-200: #e4e1d6;
+  --color-paper: #f3ede2;
+  --color-paper-50: #faf6ee;
+  --color-paper-100: #eae2d3;
+  --color-paper-200: #ddd2be;
 
-  /* Ink: green-gray neutrals for text, borders, and dark surfaces. */
-  --color-ink-50: #f6f8f5;
-  --color-ink-100: #edf0eb;
-  --color-ink-200: #e0e5dd;
-  --color-ink-300: #c0c9bd;
-  --color-ink-400: #8a9787;
-  --color-ink-500: #697565;
-  --color-ink-600: #566251;
-  --color-ink-650: #4d5848;
-  --color-ink-700: #414d3e;
-  --color-ink-800: #303d2f;
-  --color-ink-900: #243024;
-  --color-ink-950: #1d281e;
+  /* Ink: warm soot-black neutrals for text, borders, and dark surfaces. */
+  --color-ink-50: #f7f4ee;
+  --color-ink-100: #efeae0;
+  --color-ink-200: #dfd7c8;
+  --color-ink-300: #c6bcaa;
+  --color-ink-400: #968b79;
+  --color-ink-500: #73695a;
+  --color-ink-600: #5c5347;
+  --color-ink-650: #524a3f;
+  --color-ink-700: #453e35;
+  --color-ink-800: #332e27;
+  --color-ink-900: #24201b;
+  --color-ink-950: #1c1a16;
+
+  /* Warm paper white, so cards sit on the page rather than glare against it. */
+  --color-white: #fffdf8;
 
   /* Five Elements supporting accent: Wood, reserved for diagrams and element-specific UI. */
   --color-accent: #2d5a27;
@@ -70,29 +73,29 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  /* Flatter, reference-book corners: cards and panels top out at 12px. */
-  --radius-md: 0.375rem;
-  --radius-lg: 0.5rem;
-  --radius-xl: 0.625rem;
-  --radius-2xl: 0.75rem;
-  --radius-3xl: 0.75rem;
-  --radius-card: 0.75rem;
+  /* Near-square corners, like printed plates and seals. */
+  --radius-md: 0.125rem;
+  --radius-lg: 0.1875rem;
+  --radius-xl: 0.25rem;
+  --radius-2xl: 0.25rem;
+  --radius-3xl: 0.25rem;
+  --radius-card: 0.25rem;
 }
 
 :root {
-  --background: #f8f7f2;
-  --foreground: #1d281e;
-  --surface: #ffffff;
-  --surface-muted: #f1efe7;
+  --background: #f3ede2;
+  --foreground: #1c1a16;
+  --surface: #fffdf8;
+  --surface-muted: #eae2d3;
   --header-height: 4rem;
-  --border-subtle: rgb(29 40 30 / 9%);
+  --border-subtle: rgb(28 26 22 / 12%);
 }
 
 .dark {
-  --background: #1d281e;
-  --foreground: #f5f0e5;
-  --surface: #243024;
-  --surface-muted: #303d2f;
+  --background: #1c1a16;
+  --foreground: #f3ede2;
+  --surface: #24201b;
+  --surface-muted: #332e27;
   --border-subtle: rgb(245 240 229 / 12%);
 }
 
@@ -102,7 +105,10 @@ html {
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
+  /* Faint paper grain: a 4px dot screen, cheap to paint and invisible to crawlers. */
+  background-image: radial-gradient(rgb(28 26 22 / 3.5%) 1px, transparent 1px);
+  background-size: 4px 4px;
   color: var(--foreground);
   font-feature-settings: "ss01" 1;
   text-rendering: optimizeLegibility;
@@ -163,7 +169,32 @@ button:not(:disabled) {
 
   /* Section label: small caps text, not a badge. */
   .atlas-eyebrow {
-    @apply text-brand-700 dark:text-gold-300 inline-flex w-fit items-center gap-2 font-sans text-xs leading-5 font-semibold tracking-[0.14em] uppercase;
+    @apply text-brand-700 dark:text-gold-300 inline-flex w-fit items-center gap-3 font-sans text-xs leading-5 font-semibold tracking-[0.18em] uppercase;
+  }
+
+  .atlas-eyebrow::before {
+    content: "";
+    @apply h-px w-7 flex-none bg-current;
+  }
+
+  /* CJK display glyphs (命理, 龍, 八字 ...) from the small self-hosted subset in
+     layout.tsx. Always decorative: pair with aria-hidden. */
+  .atlas-hanzi {
+    font-family: var(--font-hanzi), "Songti SC", "Noto Serif CJK SC", "STSong", "SimSun", serif;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  /* Cinnabar seal mark. */
+  .atlas-seal {
+    font-family: var(--font-hanzi), "Songti SC", "Noto Serif CJK SC", "STSong", "SimSun", serif;
+    font-weight: 900;
+    line-height: 1;
+    @apply bg-brand-primary text-paper-50 grid place-items-center text-center;
+    box-shadow:
+      inset 0 0 0 4px var(--color-brand-primary),
+      inset 0 0 0 6px var(--color-paper-50);
+    transform: rotate(-4deg);
   }
 
   .atlas-page-title {
@@ -248,8 +279,8 @@ button:not(:disabled) {
 }
 
 ::selection {
-  background: #ecd99e;
-  color: #1d281e;
+  background: #edbeb0;
+  color: #1c1a16;
 }
 
 .hero-reveal {

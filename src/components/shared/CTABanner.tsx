@@ -10,7 +10,7 @@ interface CTABannerProps {
 
 export default function CTABanner({ title, description, href, label }: CTABannerProps) {
   return (
-    <section className="bg-ink-900 mt-16 rounded-xl p-6 text-white sm:p-8 lg:p-10">
+    <section className="bg-ink-950 border-brand-primary mt-16 rounded-xl border-l-[3px] p-6 text-white sm:p-8 lg:p-10">
       <div className="flex flex-col items-start gap-6">
         <div className="max-w-2xl">
           <p className="text-gold-300 text-xs font-semibold tracking-[0.14em] uppercase">
@@ -21,7 +21,7 @@ export default function CTABanner({ title, description, href, label }: CTABanner
         </div>
         <Link
           href={href}
-          className="text-ink-900 hover:bg-paper-200 inline-flex min-h-12 items-center justify-center rounded-lg bg-white px-6 py-3 text-sm font-semibold transition-colors"
+          className="bg-brand-primary hover:bg-brand-500 inline-flex min-h-12 items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold text-white transition-colors"
         >
           {label}
           <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />

@@ -7,7 +7,7 @@ import PrimaryNavigation from "./PrimaryNavigation";
 
 export default function Header() {
   return (
-    <header className="text-ink-950 border-ink-200 bg-paper/95 supports-[backdrop-filter]:bg-paper/85 sticky top-0 z-50 border-b backdrop-blur-md">
+    <header className="text-ink-950 border-ink-950/15 bg-paper/95 supports-[backdrop-filter]:bg-paper/85 sticky top-0 z-50 border-b backdrop-blur-md">
       <div className="mx-auto flex h-[var(--header-height)] max-w-7xl items-center justify-between gap-6 px-5 sm:px-8 lg:px-10">
         <Link
           href="/"
@@ -37,6 +37,12 @@ export default function Header() {
             aria-label="Search"
           >
             <Search className="h-4 w-4" aria-hidden="true" />
+          </Link>
+          <Link
+            href="/tools/bazi-calculator"
+            className="bg-ink-950 text-paper-50 hover:bg-brand-primary inline-flex min-h-10 items-center rounded-md px-4 text-[0.8125rem] font-semibold transition-colors"
+          >
+            Free Bazi chart
           </Link>
         </div>
 
