@@ -11,6 +11,7 @@ import {
   horseGoatSections,
   horseGoatTitleOverrides,
 } from "./horse-goat-guides";
+import { forecast2027DirectAnswer, forecast2027Faqs, forecast2027Sections } from "./forecast-2027";
 import { SITE } from "@/lib/constants";
 import {
   describeZodiacYearSpan,
@@ -225,6 +226,11 @@ function animalLink(animal: ZodiacAnimal) {
 const zodiacLinks = animals.map(animalLink);
 
 const indexingRecoveryLinks = [
+  {
+    title: "2027 Chinese Zodiac Forecast",
+    href: "/chinese-zodiac/2027-forecast",
+    description: "Fire Goat year dates and notes for all 12 animal signs.",
+  },
   {
     title: "2026 Chinese Zodiac Forecast",
     href: "/chinese-zodiac/2026-forecast",
@@ -2195,7 +2201,11 @@ const forecast2026 = buildPage({
             >
               Bazi calculator
             </Link>{" "}
-            to place the annual theme inside a full chart.
+            to place the annual theme inside a full chart. Looking ahead, the{" "}
+            <Link href="/chinese-zodiac/2027-forecast" className={linkClass}>
+              2027 Fire Goat forecast
+            </Link>{" "}
+            covers the year that starts on February 6, 2027.
           </p>
           <p>
             For relationship questions during the year, pair this page with the{" "}
@@ -2214,6 +2224,51 @@ const forecast2026 = buildPage({
   faqs: faqs(),
   relatedLinks: zodiacLinks,
   cta: cta("Explore zodiac compatibility before 2026"),
+});
+
+const forecast2027 = buildPage({
+  slug: "2027-forecast",
+  path: "/chinese-zodiac/2027-forecast",
+  title: "2027 Chinese Zodiac Forecast: Year of the Fire Goat for All 12 Signs",
+  description:
+    "2027 is the Year of the Fire Goat (Ding-Wei), starting February 6, 2027. Dates, the signs that clash with Tai Sui, and a 2027 note for each of the 12 animals.",
+  entityName: "2027 Chinese Zodiac Forecast",
+  entityType: "DefinedTerm",
+  subtitle: "Fire Goat year dates, Tai Sui signs, and a branch-based note for every sign.",
+  directAnswer: forecast2027DirectAnswer,
+  breadcrumbs: breadcrumbs("2027 Forecast", "/chinese-zodiac/2027-forecast"),
+  schema: {
+    headline: "",
+    description: "",
+    url: "",
+    datePublished: "2026-11-17",
+    dateModified: "2026-11-17",
+  },
+  stats: [
+    { value: "2027", label: "Forecast year", description: "Ding-Wei, the Fire Goat year." },
+    { value: "12", label: "Animal signs", description: "Each sign has its own branch note." },
+    { value: "4", label: "Tai Sui signs", description: "Goat, Ox, Dog, and Rat." },
+  ],
+  citations: [
+    {
+      label: "《尔雅·释天》(Erya, Han Dynasty)",
+      source: "Records the 12 Earthly Branches behind the annual animal cycle.",
+      url: "https://zh.wikisource.org/wiki/%E7%88%BE%E9%9B%85/%E9%87%8B%E5%A4%A9",
+    },
+    {
+      label: "《三命通会》(San Ming Tong Hui, Ming Dynasty)",
+      source: "Classical source for branch combinations, clashes, harms, and punishments used in annual readings.",
+    },
+    {
+      label: "Hong Kong Observatory: Gregorian-Lunar Calendar Conversion",
+      source: "Official conversion tables used to verify the 2027 Lunar New Year date.",
+      url: "https://www.hko.gov.hk/en/gts/time/conversion.htm",
+    },
+  ],
+  sections: forecast2027Sections,
+  faqs: forecast2027Faqs,
+  relatedLinks: zodiacLinks,
+  cta: cta("Check your compatibility for 2027"),
 });
 
 // ── Year-specific zodiac pages ──────────────────────────────────────────
@@ -2703,7 +2758,7 @@ const yearPages: ZodiacContentPage[] = [
   ),
 ];
 
-export const allZodiacPages = [overview, ...animalPages, compatibility, forecast2026, ...yearPages];
+export const allZodiacPages = [overview, ...animalPages, compatibility, forecast2026, forecast2027, ...yearPages];
 
 export function getZodiacPage(slug: string): ZodiacContentPage | undefined {
   return allZodiacPages.find((page) => page.slug === slug);
