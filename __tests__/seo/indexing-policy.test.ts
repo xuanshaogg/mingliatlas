@@ -38,7 +38,7 @@ function wordCount(value: string): number {
 describe("indexing policy", () => {
   it("keeps the indexable registry unique and backed by published routes", () => {
     const publishedPaths = new Set(publishedSitePages.map((page) => page.href));
-    expect(INDEXABLE_PATHS).toHaveLength(41);
+    expect(INDEXABLE_PATHS).toHaveLength(43);
     expect(new Set(INDEXABLE_PATHS).size).toBe(INDEXABLE_PATHS.length);
     for (const path of INDEXABLE_PATHS) expect(publishedPaths.has(path), path).toBe(true);
   });

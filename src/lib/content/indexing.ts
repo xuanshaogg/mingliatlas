@@ -28,6 +28,9 @@ const INDEXABLE_PATH_LIST = [
   "/chinese-zodiac/rat",
   "/chinese-zodiac/tiger",
   "/chinese-zodiac/dragon",
+  // Added 2026-11-17 with hand-written guides: current (2026) and next (2027) zodiac years.
+  "/chinese-zodiac/horse",
+  "/chinese-zodiac/goat",
   "/chinese-zodiac/2026-forecast",
   "/i-ching",
   "/i-ching/eight-trigrams",

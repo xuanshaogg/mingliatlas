@@ -3,6 +3,14 @@ import type { KnowledgePageProps } from "@/components/templates/KnowledgePage";
 import type { FAQ } from "@/components/shared/FAQSection";
 import ZodiacYearDatesTable from "@/components/shared/ZodiacYearDatesTable";
 import { branchFacts, hiddenStemsText, relationTo, relationships } from "./branch-facts";
+import {
+  horseGoatDateModified,
+  horseGoatDescriptionOverrides,
+  horseGoatDirectAnswerOverrides,
+  horseGoatFaqs,
+  horseGoatSections,
+  horseGoatTitleOverrides,
+} from "./horse-goat-guides";
 import { SITE } from "@/lib/constants";
 import {
   describeZodiacYearSpan,
@@ -331,6 +339,7 @@ function cta(
 }
 
 const animalFaqs: Partial<Record<string, FAQ[]>> = {
+  ...horseGoatFaqs,
   dragon: [
     {
       question: "How old are people born in a Dragon year in 2026?",
@@ -994,6 +1003,7 @@ const overview = buildPage({
 });
 
 const animalSections: Partial<Record<string, KnowledgePageProps["sections"]>> = {
+  ...horseGoatSections,
   rat: [
     {
       heading: "Years of the Rat and the Zi branch",
@@ -1480,14 +1490,17 @@ const animalTitleOverrides: Partial<Record<string, string>> = {
   // CTR; most queries ask "when is the (next) year of the dragon", so the
   // title keeps "Years List" (the one query already at #3) and adds the answer.
   dragon: "Year of the Dragon Years List (1940–2036): Next Is 2036",
+  ...horseGoatTitleOverrides,
 };
 
 const animalDescriptionOverrides: Partial<Record<string, string>> = {
+  ...horseGoatDescriptionOverrides,
   dragon:
     `The next Year of the Dragon starts ${formatLongDate(getZodiacYearDates(2036).lunarNewYear)}; the last was 2024, and 2026 is a Horse year. All Dragon years 1940–2036 with exact dates and ages.`,
 };
 
 const animalDirectAnswerOverrides: Partial<Record<string, string>> = {
+  ...horseGoatDirectAnswerOverrides,
   dragon:
     `Dragon years are 1940, 1952, 1964, 1976, 1988, 2000, 2012, and 2024; the next Year of the Dragon is 2036. The most recent Dragon year ran from ${formatLongDate(getZodiacYearDates(2024).lunarNewYear)} to ${formatLongDate(getZodiacYearDates(2024).lastDay)}, and the next begins on ${formatLongDate(getZodiacYearDates(2036).lunarNewYear)}. Dragon is the fifth Chinese zodiac sign and corresponds to the Chen (辰) Earthly Branch; each occurrence adds one of the Five Elements.`,
 };
@@ -1497,6 +1510,8 @@ const animalDateModifiedOverrides: Partial<Record<string, string>> = {
   rat: "2026-10-21",
   tiger: "2026-10-21",
   dragon: "2026-11-07",
+  horse: horseGoatDateModified,
+  goat: horseGoatDateModified,
 };
 
 // Sections for the animal pages that do not have hand-written guides. They
