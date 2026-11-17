@@ -137,7 +137,7 @@ describe("indexing policy", () => {
     );
     expect(dayMaster?.data.schema.dateModified).toBe("2026-08-07");
 
-    expect(compatibility?.title).toBe("Chinese Zodiac Compatibility Chart: Triads & Clashes");
+    expect(compatibility?.title).toBe("Chinese Zodiac Compatibility Chart: Best Matches, Triads & Clashes");
     expect(compatibility?.data.schema.dateModified).toBe("2026-08-07");
   });
 

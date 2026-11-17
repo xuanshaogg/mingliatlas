@@ -30,7 +30,7 @@ const shareCardImage = buildShareCardUrl({
 });
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Free Bazi Calculator: Four Pillars & Day Master Chart",
+  title: "Mingli Bazi Calculator: Free Four Pillars & Day Master Chart",
   description:
     "Free Bazi calculator: get a Four Pillars chart with Day Master, Ten Gods, hidden stems, Luck Pillars, and Five Element balance. Li Chun year boundary, no sign-up.",
   path: "/tools/bazi-calculator",

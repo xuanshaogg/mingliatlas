@@ -69,7 +69,7 @@ const htmlPages = [
   {
     path: "/bazi/five-elements",
     expectedTitle: "Five Elements",
-    expectedH1: "The Five Elements (Wu Xing): Cycles and Use in Bazi",
+    expectedH1: "Five Elements (Wu Xing): Generating & Controlling Cycles",
     minJsonLd: 3,
     requiredLinks: ["/bazi", "/tools/bazi-calculator"],
   },
@@ -108,7 +108,7 @@ const htmlPages = [
   {
     path: "/ziwei",
     expectedTitle: "Ziwei",
-    expectedH1: "Ziwei Doushu: Purple Star Astrology Guide",
+    expectedH1: "Ziwei Doushu (Zi Wei Dou Shu): Purple Star Astrology",
     minJsonLd: 3,
   },
   {
@@ -138,8 +138,8 @@ const htmlPages = [
   },
   {
     path: "/blog/chinese-zodiac-compatibility-chart",
-    expectedTitle: "Chinese Zodiac Compatibility Chart: Triads & Clashes",
-    expectedH1: "Chinese Zodiac Compatibility Chart: Triads & Clashes",
+    expectedTitle: "Chinese Zodiac Compatibility Chart: Best Matches, Triads & Clashes",
+    expectedH1: "Chinese Zodiac Compatibility Chart: Best Matches, Triads & Clashes",
     minJsonLd: 3,
     requiredLinks: ["/tools/zodiac-compatibility", "/chinese-zodiac"],
   },
