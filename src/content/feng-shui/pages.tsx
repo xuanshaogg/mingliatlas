@@ -186,7 +186,7 @@ const overview = buildPage({
   path: "/feng-shui",
   title: "Feng Shui for Beginners: Entrance, Bed, Desk & Stove",
   description:
-    "Feng Shui is a Chinese spatial system for reading layout, direction, landform, qi flow, and the relationship between people and environment.",
+    "Start Feng Shui with four places: entrance, bed, desk and stove. A plain-English beginner checklist on qi flow, the Five Elements, and Form vs Compass School.",
   entityName: "Feng Shui",
   entityType: "DefinedTerm",
   subtitle: "A practical introduction to spatial harmony for homes and workspaces.",
