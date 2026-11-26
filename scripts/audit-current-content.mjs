@@ -335,7 +335,30 @@ function analyzePage(page) {
 const pages = [];
 
 for (const file of contentFiles) {
-  const src = await readSrc(file.rel);
+  let src = await readSrc(file.rel);
+  if (file.section === "Chinese Zodiac") {
+    const forecast2027Src = await readSrc("src/content/zodiac/forecast-2027.tsx");
+    if (forecast2027Src) {
+      const directAnswerMatch = forecast2027Src.match(
+        /export const forecast2027DirectAnswer\s*=\s*([\s\S]*?);\s*\n/,
+      );
+      const sectionsMatch = forecast2027Src.match(
+        /export const forecast2027Sections(?::[\s\S]*?)?=\s*\[([\s\S]*?)\];\s*\n\s*export const forecast2027Faqs/,
+      );
+      const faqsMatch = forecast2027Src.match(
+        /export const forecast2027Faqs(?::[\s\S]*?)?=\s*\[([\s\S]*?)\];/,
+      );
+      if (directAnswerMatch) {
+        src = src.replace(/directAnswer:\s*forecast2027DirectAnswer,/, `directAnswer: ${directAnswerMatch[1]},`);
+      }
+      if (sectionsMatch) {
+        src = src.replace(/sections:\s*forecast2027Sections,/, `sections: [${sectionsMatch[1]}],`);
+      }
+      if (faqsMatch) {
+        src = src.replace(/faqs:\s*forecast2027Faqs,/, `faqs: [${faqsMatch[1]}],`);
+      }
+    }
+  }
   const pageStartIndex = pages.length;
   const buildBlocks = extractBlocks(src, /buildPage\(\{/g);
 
